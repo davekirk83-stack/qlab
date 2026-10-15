@@ -1,0 +1,71 @@
+{
+ "registered": {
+  "spec_version": 3,
+  "registered_on": "2026-10-15",
+  "spec_doc": "56-base-then-bid",
+  "v1_void": "market entry at first green minute; ~24bp breakeven (doc 52)",
+  "v2_void": "laddered bids DOWN into the flush; knife-catching (doc 53)",
+  "method": "cascade low -> lift 0.8% -> hold 10min without a new low -> rest a bid 0.4% below price and above the low -> stop under the low",
+  "risk_control": "no base, no trade \u2014 the cascades that keep falling never fire",
+  "minimum_evidence": "100 closed trades or 6 months",
+  "pass": "mean > 0 net of costs AND beats the time-matched control",
+  "fail": "mean <= 0 at n=100",
+  "early_kill": "any 20-trade block worse than -1.5% mean",
+  "amendment": "any spec change voids the run and restarts the clock",
+  "backtest": {
+   "n": 225,
+   "mean": 0.00378,
+   "win": 0.658,
+   "t": 4.42,
+   "control_mean": 0.00062,
+   "edge_pp": 0.316,
+   "edge_t": 2.5,
+   "y2025": 0.00345,
+   "y2026": 0.00397,
+   "symbols": "17/18",
+   "grid": "36/36 configurations positive"
+  }
+ },
+ "started": "2026-10-15",
+ "days_done": [
+  "2026-10-10",
+  "2026-10-11",
+  "2026-10-12",
+  "2026-10-13"
+ ],
+ "trades": [
+  {
+   "sym": "CRVUSDT",
+   "day": "2026-10-12",
+   "entry_time": "2026-10-12 17:19:00",
+   "entry": 0.35026364,
+   "stop": 0.34592695,
+   "ret": -0.007803,
+   "exit": "time",
+   "close_in_bar": 0.6604,
+   "risk_pct": 0.01238
+  },
+  {
+   "sym": "NEARUSDT",
+   "day": "2026-10-11",
+   "entry_time": "2026-10-11 16:26:00",
+   "entry": 5.731134,
+   "stop": 5.691153,
+   "ret": 0.014797,
+   "exit": "target",
+   "close_in_bar": 0.6048,
+   "risk_pct": 0.00698
+  },
+  {
+   "sym": "APTUSDT",
+   "day": "2026-10-11",
+   "entry_time": "2026-10-11 15:06:00",
+   "entry": 0.92576792,
+   "stop": 0.915542,
+   "ret": 0.014797,
+   "exit": "target",
+   "close_in_bar": 0.5302,
+   "risk_pct": 0.01105
+  }
+ ]
+}
