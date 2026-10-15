@@ -1,0 +1,44 @@
+{
+ "registered": {
+  "spec_version": 2,
+  "registered_on": "2026-10-14",
+  "v1_voided": "market entry at the first green minute; breakeven slippage ~24bp (doc 52). Replaced by laddered maker entry (doc 53).",
+  "entry": "ladder of limit bids at -0.5/-1.0/-1.5/-2.0/-2.5% below signal close",
+  "spec_docs": [
+   "35-the-minute-scale-cascade-bounce",
+   "37-levels-refine-the-cascade-entry",
+   "53-laddered-entry"
+  ],
+  "minimum_evidence": "100 closed trades or 6 months, whichever first",
+  "pass": "mean > 0 net of costs AND filtered beats open-air",
+  "fail": "mean <= 0 at n=100",
+  "early_kill": "any 20-trade block worse than -2% mean",
+  "not_evidence": [
+   "a good week",
+   "the first 30 trades",
+   "a single large winner"
+  ],
+  "amendment": "any change to universe, signal, filter, exits or costs voids the run",
+  "backtest_reference": {
+   "ladder_mean_4bp": 0.00665,
+   "ladder_mean_40bp": 0.00586,
+   "market_mean_4bp": 0.00341,
+   "market_mean_40bp": -0.00207,
+   "ladder_win": 0.771,
+   "paired_edge_t": "+3.94 to +7.30",
+   "rungs_filled_mean": 2.93,
+   "no_fill_share": 0.176,
+   "caveat": "13 months; ladder is near-immune to slippage because fills are maker"
+  }
+ },
+ "started": "2026-10-14",
+ "days_done": [],
+ "trades": [],
+ "SUSPENDED": {
+  "on": "2026-10-14",
+  "reason": "v2 laddered entry is knife-catching: rungs fill DEEPER as price falls, so the position is largest exactly in the cascades that do not bounce. Maximally long when most wrong. DK identified this.",
+  "v1_also_void": "market entry at first green minute; breakeven slippage ~24bp against a median entry bar of 0.96% (doc 52)",
+  "replacement": "v3 \u2014 DK's actual method: wait for the cascade low, require a LIFT off it, require a HOLD (no new low for N minutes, the 'few levels a bit higher'), THEN rest bids above the low with a structural stop beneath it. Cascades that never base simply never trigger. To be built and registered next session.",
+  "do_not_accumulate": "this journal must not gather further evidence until v3 is specified and registered"
+ }
+}

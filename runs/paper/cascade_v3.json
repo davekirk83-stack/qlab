@@ -1,0 +1,57 @@
+{
+ "registered": {
+  "spec_version": 3,
+  "registered_on": "2026-10-15",
+  "spec_doc": "56-base-then-bid",
+  "v1_void": "market entry at first green minute; ~24bp breakeven (doc 52)",
+  "v2_void": "laddered bids DOWN into the flush; knife-catching (doc 53)",
+  "method": "cascade low -> lift 0.8% -> hold 10min without a new low -> rest a bid 0.4% below price and above the low -> stop under the low",
+  "risk_control": "no base, no trade \u2014 the cascades that keep falling never fire",
+  "minimum_evidence": "100 closed trades or 6 months",
+  "pass": "mean > 0 net of costs AND beats the time-matched control",
+  "fail": "mean <= 0 at n=100",
+  "early_kill": "any 20-trade block worse than -1.5% mean",
+  "amendment": "any spec change voids the run and restarts the clock",
+  "backtest": {
+   "n": 225,
+   "mean": 0.00378,
+   "win": 0.658,
+   "t": 4.42,
+   "control_mean": 0.00062,
+   "edge_pp": 0.316,
+   "edge_t": 2.5,
+   "y2025": 0.00345,
+   "y2026": 0.00397,
+   "symbols": "17/18",
+   "grid": "36/36 configurations positive"
+  }
+ },
+ "started": "2026-10-15",
+ "days_done": [
+  "2026-10-11",
+  "2026-10-12",
+  "2026-10-13"
+ ],
+ "trades": [
+  {
+   "sym": "NEARUSDT",
+   "day": "2026-10-12",
+   "entry_time": "2026-10-12 21:55:00",
+   "entry": 5.15632706,
+   "stop": 4.9984995,
+   "ret": -0.015581,
+   "exit": "time",
+   "risk_pct": 0.03061
+  },
+  {
+   "sym": "TIAUSDT",
+   "day": "2026-10-11",
+   "entry_time": "2026-10-11 03:14:00",
+   "entry": 0.60130584,
+   "stop": 0.5815091,
+   "ret": -0.014177,
+   "exit": "time",
+   "risk_pct": 0.03292
+  }
+ ]
+}

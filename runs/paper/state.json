@@ -1,0 +1,217 @@
+{
+ "started": "2026-10-14",
+ "criteria": {
+  "registered_on": "2026-10-14",
+  "minimum_evidence": {
+   "closed_trades_per_book": 150,
+   "or_elapsed_months": 12,
+   "note": "whichever comes first; no verdict before this point, in either direction"
+  },
+  "primary_question": "Does the LIVE book's mean R exceed the SHADOW (random-entry) book's mean R, by more than 2 standard errors of the difference?",
+  "pass": {
+   "live_minus_shadow_R": "> 0",
+   "t_of_difference": "> 2.0",
+   "live_mean_R": "> 0 after costs"
+  },
+  "fail_and_stop": {
+   "live_minus_shadow_R": "<= 0 at n=150 \u2014 the entries add nothing, abandon signal research"
+  },
+  "early_kill": {
+   "equity_drawdown": "> 25% \u2014 twice the backtested max on the clean ETF book (-11%)",
+   "live_mean_R_at_n100": "< -0.10 with t < -2 \u2014 losing faster than noise explains",
+   "any_engine_defect_found": "pause, fix, RESTART the clock \u2014 a patched run is not a continuous one"
+  },
+  "explicitly_not_evidence": [
+   "profit in a rising market (the shadow book controls for this)",
+   "any result before the minimum evidence threshold",
+   "a good month, a good week, or a single large winner"
+  ],
+  "amendment_rule": "Any change to universe, entries, management, sizing or costs VOIDS the run and restarts the clock. Record the reason and begin again."
+ },
+ "spec": {
+  "stop_atr": 1.5,
+  "stop_min_atr": 0.5,
+  "risk_pct": 0.005,
+  "max_open": 4,
+  "max_heat": 0.03,
+  "max_position_pct": 0.25,
+  "be_offset_r": 0.1,
+  "meat_bars": 5,
+  "runner_bars": 60,
+  "slippage_bp": 5.0,
+  "entries": [
+   "flag",
+   "pullback in uptrend",
+   "month-high break"
+  ]
+ },
+ "books": {
+  "LIVE": {
+   "equity": 1.0,
+   "peak": 1.0,
+   "open": [
+    {
+     "sym": "SPY",
+     "setup": "pullback in uptrend",
+     "entry_date": "2026-10-13",
+     "entry": 778.01,
+     "stop": 769.075464,
+     "tp1": 786.944536,
+     "tp2": 804.813607,
+     "be_stop": 779.675552,
+     "risk_frac": 0.011484,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.0009924017802133511
+    },
+    {
+     "sym": "QQQ",
+     "setup": "pullback in uptrend",
+     "entry_date": "2026-10-13",
+     "entry": 743.57,
+     "stop": 732.56875,
+     "tp1": 754.57125,
+     "tp2": 776.57375,
+     "be_stop": 745.747113,
+     "risk_frac": 0.014795,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.001448401724498644
+    },
+    {
+     "sym": "VTI",
+     "setup": "pullback in uptrend",
+     "entry_date": "2026-10-13",
+     "entry": 381.32,
+     "stop": 376.695071,
+     "tp1": 385.944929,
+     "tp2": 395.194786,
+     "be_stop": 382.148111,
+     "risk_frac": 0.012129,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.0009588230201780062
+    },
+    {
+     "sym": "MTUM",
+     "setup": "pullback in uptrend",
+     "entry_date": "2026-10-13",
+     "entry": 313.11,
+     "stop": 307.397887,
+     "tp1": 318.822113,
+     "tp2": 330.246339,
+     "be_stop": 314.377078,
+     "risk_frac": 0.018243,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.002222434062333234
+    }
+   ],
+   "closed": [],
+   "marked_equity": 1.0
+  },
+  "SHADOW": {
+   "equity": 1.0,
+   "peak": 1.0,
+   "open": [
+    {
+     "sym": "MUB",
+     "setup": "RANDOM",
+     "entry_date": "2026-10-13",
+     "entry": 101.77,
+     "stop": 100.699054,
+     "tp1": 102.840946,
+     "tp2": 104.982839,
+     "be_stop": 101.928281,
+     "risk_frac": 0.010523,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.0005029566539126375
+    },
+    {
+     "sym": "SPLV",
+     "setup": "RANDOM",
+     "entry_date": "2026-10-13",
+     "entry": 72.98,
+     "stop": 71.929196,
+     "tp1": 74.030804,
+     "tp2": 76.132411,
+     "be_stop": 73.17735,
+     "risk_frac": 0.014399,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.001264318243658266
+    },
+    {
+     "sym": "SHY",
+     "setup": "RANDOM",
+     "entry_date": "2026-10-13",
+     "entry": 81.19,
+     "stop": 81.028439,
+     "tp1": 81.351561,
+     "tp2": 81.674682,
+     "be_stop": 81.246751,
+     "risk_frac": 0.00199,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.0005
+    },
+    {
+     "sym": "INDA",
+     "setup": "RANDOM",
+     "entry_date": "2026-10-13",
+     "entry": 47.24,
+     "stop": 46.446071,
+     "tp1": 48.033929,
+     "tp2": 49.621786,
+     "be_stop": 47.355469,
+     "risk_frac": 0.016806,
+     "notional_frac": 0.25,
+     "filled": 0.0,
+     "pnl_r": 0.0,
+     "bars": 0,
+     "cost": 0.0007636748325001663
+    }
+   ],
+   "closed": [],
+   "marked_equity": 1.0
+  }
+ },
+ "log": [
+  {
+   "date": "2026-10-13",
+   "events": [
+    "LIVE  OPEN  SPY    pullback in uptrend @ 778.01 stop 769.075464 tp1 786.944536",
+    "LIVE  OPEN  QQQ    pullback in uptrend @ 743.57 stop 732.56875 tp1 754.57125",
+    "LIVE  OPEN  VTI    pullback in uptrend @ 381.32 stop 376.695071 tp1 385.944929",
+    "LIVE  OPEN  MTUM   pullback in uptrend @ 313.11 stop 307.397887 tp1 318.822113",
+    "LIVE  SKIP  XLK    pullback in uptrend \u2014 slots/heat full",
+    "LIVE  SKIP  XLE    month-high break \u2014 slots/heat full",
+    "LIVE  SKIP  EEM    pullback in uptrend \u2014 slots/heat full",
+    "LIVE  SKIP  EWJ    pullback in uptrend \u2014 slots/heat full",
+    "LIVE  SKIP  EWZ    pullback in uptrend \u2014 slots/heat full",
+    "LIVE  SKIP  EWY    pullback in uptrend \u2014 slots/heat full",
+    "LIVE  SKIP  EWT    pullback in uptrend \u2014 slots/heat full",
+    "SHADOW OPEN MUB    random @ 101.77",
+    "SHADOW OPEN SPLV   random @ 72.98",
+    "SHADOW OPEN SHY    random @ 81.19",
+    "SHADOW OPEN INDA   random @ 47.24"
+   ]
+  }
+ ],
+ "last_bar": "2026-10-13"
+}

@@ -1,0 +1,78 @@
+{
+ "registered": {
+  "registered_on": "2026-10-14",
+  "spec_docs": [
+   "39-patterns-done-properly",
+   "40-candles-as-triggers"
+  ],
+  "universe": "33 crypto perps, hourly",
+  "patterns": [
+   "double_bottom",
+   "inv_hs",
+   "asc_triangle"
+  ],
+  "excluded": {
+   "flag": "-0.199R vs control, t=-12.46",
+   "etf": "loses at every score quartile"
+  },
+  "gates": [
+   "confluence score in top quartile",
+   "structural low closed in bottom third of its range"
+  ],
+  "minimum_evidence": "150 resolved trades or 6 months, whichever first",
+  "pass": "mean > +0.017R (cost line) AND gated beats ungated",
+  "fail": "mean <= 0 at n=150",
+  "early_kill": "any 30-trade block worse than -0.40R mean",
+  "not_evidence": [
+   "a good week",
+   "the first 50 trades",
+   "one large winner"
+  ],
+  "amendment": "any spec change voids the run and restarts the clock",
+  "backtest_reference": {
+   "all": 0.006,
+   "top_quartile": 0.055,
+   "t": 1.66,
+   "caveat": "component weights unstable across universes; ranking works, attribution does not"
+  }
+ },
+ "started": "2026-10-14",
+ "seen": [],
+ "trades": [],
+ "watermarks": {
+  "AAVEUSDT": "2026-09-30 23:00:00",
+  "ADAUSDT": "2026-09-30 23:00:00",
+  "APTUSDT": "2026-09-30 23:00:00",
+  "ARBUSDT": "2026-09-30 23:00:00",
+  "ATOMUSDT": "2026-09-30 23:00:00",
+  "AVAXUSDT": "2026-09-30 23:00:00",
+  "AXSUSDT": "2026-09-30 23:00:00",
+  "BCHUSDT": "2026-09-30 23:00:00",
+  "BNBUSDT": "2026-09-30 23:00:00",
+  "BTCUSDT": "2026-09-30 23:00:00",
+  "DOGEUSDT": "2026-09-30 23:00:00",
+  "DOTUSDT": "2026-09-30 23:00:00",
+  "ETCUSDT": "2026-09-30 23:00:00",
+  "ETHUSDT": "2026-09-30 23:00:00",
+  "FILUSDT": "2026-09-30 23:00:00",
+  "GALAUSDT": "2026-09-30 23:00:00",
+  "INJUSDT": "2026-09-30 23:00:00",
+  "LINKUSDT": "2026-09-30 23:00:00",
+  "LTCUSDT": "2026-09-30 23:00:00",
+  "NEARUSDT": "2026-09-30 23:00:00",
+  "OPUSDT": "2026-09-30 23:00:00",
+  "ORDIUSDT": "2026-09-30 23:00:00",
+  "RUNEUSDT": "2026-09-30 23:00:00",
+  "SANDUSDT": "2026-09-30 23:00:00",
+  "SEIUSDT": "2026-09-30 23:00:00",
+  "SOLUSDT": "2026-09-30 23:00:00",
+  "SUIUSDT": "2026-09-30 23:00:00",
+  "TIAUSDT": "2026-09-30 23:00:00",
+  "TONUSDT": "2026-09-30 23:00:00",
+  "TRXUSDT": "2026-09-30 23:00:00",
+  "UNIUSDT": "2026-09-30 23:00:00",
+  "WIFUSDT": "2026-09-30 23:00:00",
+  "XRPUSDT": "2026-09-30 23:00:00"
+ },
+ "cutoff": 0.0439275317723993
+}

@@ -1,0 +1,6 @@
+# Market data is large, re-downloadable, and does not belong in git.
+# Sources and periods are recorded in the dk-capital D1 database (data_assets).
+data*/
+*.csv
+*.pkl
+__pycache__/

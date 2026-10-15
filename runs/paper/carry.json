@@ -1,0 +1,63 @@
+{
+ "registered": {
+  "registered_on": "2026-10-14",
+  "rule": "top 12 hedgeable perps by previous-30-day mean funding, held one month, delta-neutral, 20bp rebalance cost",
+  "minimum_evidence_months": 12,
+  "fail": "mean monthly funding <= 0 net of costs over 12 months",
+  "early_kill": [
+   "any month worse than -5%",
+   "two consecutive negative months",
+   "hedge unavailable for more than 3 of the 12 selections"
+  ],
+  "not_evidence": [
+   "a good month",
+   "the first six months",
+   "the absence of a crisis in the sample"
+  ],
+  "backtest_for_reference": {
+   "months": 13,
+   "cagr": 0.0854,
+   "maxdd": 0.0,
+   "sharpe": 5.09,
+   "caveat": "Sharpe 5 and zero drawdown is what carry looks like before its tail risk appears. Treat as a warning, not an expectation."
+  }
+ },
+ "started": "2026-10-14",
+ "months": [
+  {
+   "month": "2026-10",
+   "decided_on": "2026-10-14",
+   "picks": [
+    "GRASS",
+    "PONS",
+    "AERO",
+    "VVV",
+    "GRAM",
+    "FARTCOIN",
+    "MON",
+    "ZRO",
+    "TAO",
+    "ONDO",
+    "NEAR",
+    "WLD"
+   ],
+   "trailing_ann_pct": {
+    "GRASS": 29.0,
+    "PONS": 26.6,
+    "AERO": 25.2,
+    "VVV": 20.2,
+    "GRAM": 19.9,
+    "FARTCOIN": 19.7,
+    "MON": 19.2,
+    "ZRO": 18.8,
+    "TAO": 18.6,
+    "ONDO": 18.0,
+    "NEAR": 17.9,
+    "WLD": 16.6
+   },
+   "start_ms": 1791932400000,
+   "end_ms": 1793491200000,
+   "realised": null
+  }
+ ]
+}
