@@ -42,6 +42,7 @@ the five-year test shows were profitable.
 
   python killswitch.py on  "Israel-Iran escalation" --days 5
   python killswitch.py on  "flash crash" --no-flatten
+  python killswitch.py on  "squeaky bum time" --shorts-only --days 30
   python killswitch.py off
   python killswitch.py status
 """
@@ -83,10 +84,13 @@ if __name__ == "__main__":
         days = int(sys.argv[sys.argv.index("--days")+1])
     if "--no-flatten" in sys.argv:
         flatten = 0
+    if "--shorts-only" in sys.argv:
+        flatten = 2      # close longs, block new longs, shorts keep running
     until = (pd.Timestamp.utcnow() + pd.Timedelta(days=days)).strftime("%Y-%m-%d")
     write(f"UPDATE pb_halt SET active = 1, reason = '{esc(reason)}', "
           f"set_at = '{now}', set_by = 'DK', resume_after = '{until}', "
           f"flatten = {flatten} WHERE id = 1;")
     print(f"\nHALT: {reason}")
-    print(f"  {'flatten all positions' if flatten else 'hold positions, no new entries'}")
+    print("  " + {0: 'hold positions, no new entries', 1: 'flatten all positions',
+                   2: 'SHORTS ONLY - longs closed and blocked, shorts keep running'}[flatten])
     print(f"  resumes automatically after {until} ({days} days)")

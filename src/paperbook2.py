@@ -61,7 +61,8 @@ MK, TAKER, SLIP = 1.5/10000, 4.5/10000, 5/10000
 BID = [(0.15, 0.30), (0.25, 0.05), (0.30, -0.25), (0.30, -0.55)]
 ASK = [(0.4, "mid"), (0.4, 0.0), (1.0, 0.35)]
 CAP_BARS, MARGIN_STOP = 48, 0.15
-COOLDOWN_H = 6   # doc 74: no new episode on a coin/side within 6h of its last close
+COOLDOWN_H = 6
+LONGS_OFF = False  # kill switch flatten=2: shorts only (DK, 16 Oct: 'squeaky bum time')   # doc 74: no new episode on a coin/side within 6h of its last close
 CHASE_FILL, CHASE_PREM = 0.92, 0.05
 START = 2000.0
 
@@ -203,6 +204,7 @@ def step(sym, d, pos, since, slots_free):
         for side in ("L", "S"):
             p = pos.get(side)
             if p is None:
+                if LONGS_OFF and side == "L": continue
                 ct = pos.get("cool", {}).get(side)
                 if ct and idx[i] < pd.Timestamp(ct) + pd.Timedelta(hours=COOLDOWN_H):
                     continue
@@ -259,6 +261,22 @@ if __name__ == "__main__":
     syms = universe()
     print(f"paper book v2 — {today} — {len(syms)} products, "
           f"equity ${st['equity']:,.2f}", flush=True)
+    halt_lines = []
+    if H and int(H.get("flatten", 1)) == 2:
+        # SHORTS ONLY: close every long, open no longs, let shorts run.
+        print(f"  *** SHORTS ONLY: {H.get('reason')} ***", flush=True)
+        LONGS_OFF = True; n = 0
+        for sym, rec in st["sym"].items():
+            p = rec["pos"].get("L")
+            if not p: continue
+            r = p["pnl"]/max(p["intended"], 1e-9)
+            st["equity"] += (st["equity"]/SLOTS)*r*LEV
+            halt_lines.append("INSERT INTO pb2_trades (d, sym, side, opened, closed, "
+                              f"ret, how) VALUES ('{today}', '{sql_escape(sym)}', 'L', "
+                              f"'{sql_escape(p['open'])}', '{today}', {r:.6f}, 'halt');")
+            rec["pos"]["L"] = None; rec["pos"].setdefault("cool", {})["L"] = today; n += 1
+        print(f"  closed {n} longs; shorts continue", flush=True)
+        H = None
     if H:
         print(f"  *** HALTED: {H.get('reason')} ***", flush=True)
         lines = []
@@ -312,7 +330,7 @@ if __name__ == "__main__":
           f"equity ${st['equity']:,.2f}", flush=True)
     json.dump(st, open(STATE, "w"), indent=1)
 
-    lines = [f"INSERT OR REPLACE INTO pb2_equity (d, equity, open_positions, closed_total) "
+    lines = halt_lines + [f"INSERT OR REPLACE INTO pb2_equity (d, equity, open_positions, closed_total) "
              f"VALUES ('{today}', {st['equity']:.4f}, {open_n}, {st['closed']});"]
     for c in all_closed[:400]:
         lines.append(

@@ -95,6 +95,21 @@ if __name__ == "__main__":
         except Exception: pass
     print(f"paper book v3 (ETF) — {today} — {len(UNIVERSE)} instruments, "
           f"equity ${st['equity']:,.2f}", flush=True)
+    halt_lines = []
+    if H and int(H.get("flatten", 1)) == 2:
+        print(f"  *** SHORTS ONLY: {H.get('reason')} ***", flush=True)
+        PB.LONGS_OFF = True; n = 0
+        for sym, rec in st["sym"].items():
+            p = rec["pos"].get("L")
+            if not p: continue
+            r = p["pnl"]/max(p["intended"], 1e-9)
+            st["equity"] += (st["equity"]/PB.SLOTS)*r*PB.LEV
+            halt_lines.append("INSERT INTO pb3_trades (d, sym, side, opened, closed, "
+                              f"ret, how) VALUES ('{today}', '{sym}', 'L', "
+                              f"'{PB.sql_escape(p['open'])}', '{today}', {r:.6f}, 'halt');")
+            rec["pos"]["L"] = None; rec["pos"].setdefault("cool", {})["L"] = today; n += 1
+        print(f"  closed {n} longs; shorts continue", flush=True)
+        H = None
     if H:
         print(f"  *** HALTED: {H.get('reason')} ***", flush=True)
         lines = []
@@ -140,7 +155,7 @@ if __name__ == "__main__":
     print(f"  closed {len(all_closed)} episodes, {open_n} open, "
           f"equity ${st['equity']:,.2f}", flush=True)
     json.dump(st, open(STATE, "w"), indent=1)
-    lines = ["INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) "
+    lines = halt_lines + ["INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) "
              f"VALUES ('{today}', {st['equity']:.4f}, {open_n}, {st['closed']});"]
     for c in all_closed[:400]:
         lines.append("INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) "
