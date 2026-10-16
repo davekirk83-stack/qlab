@@ -18,3 +18,5 @@ INSERT INTO findings (doc, title, date, verdict, summary) VALUES
 INSERT INTO rules (rule, why, doc, added) VALUES
 ('The containment switch stays sharp and off means close. No hysteresis, dwell, persistence or hold-through.', 'Every smoothing variant lowered CAGR or doubled drawdown; a fall in containment is the exit signal, not noise.', 140, '2026-10-16'),
 ('No new episode on a coin/side within 6 hours of its last close (range book v2.1).', 'Re-entries inside 6h lose; the 2-12h plateau lifts CAGR 60%->77-85% and Sharpe 4.1->6.0 with lower drawdown.', 141, '2026-10-16');
+INSERT INTO findings (doc, title, date, verdict, summary) VALUES
+(143, 'Cooldown transfers to equities (daily panels)', '2026-10-16', 'ACCEPTED', 'Per-instrument cooldown as entry gate on daily bars. 79 stocks: 0 bars CAGR 7.5% Sharpe 1.22 -> 5 bars 10.3%/1.67, per ep +0.714% -> +0.948%. 37 ETFs: 0 bars 2.4%/0.61 maxDD -15.0% -> 3 bars 4.1%/1.08/-7.1%; total P&L +70%, drawdown halved. Monotone to 5 bars. General property of the mean-reversion book, not crypto-specific. ETF v3 15m book keeps 6h wall-clock; a 1-2 day setting for equities untestable at 15m (60d history) - open.');
