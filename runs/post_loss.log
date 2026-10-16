@@ -1,0 +1,25 @@
+
+  previous episode on this coin WON
+  gap since prev         n    per ep      t   win   worst
+  <6h               22,950   -0.157%  -12.5   42%  -24.3%
+  6-24h              2,451   +0.111%   +3.2   50%  -11.2%
+  24-48h               562   +0.112%   +1.5   47%   -7.7%
+
+  previous episode LOST
+  gap since prev         n    per ep      t   win   worst
+  <6h               11,830   -0.245%  -13.8   38%  -13.1%
+  6-24h             19,796   +0.207%  +16.0   51%  -21.1%
+  24-48h             6,379   +0.211%   +8.7   51%  -18.7%
+  >48h                 907   +0.199%   +3.0   48%  -13.6%
+
+  previous episode LOST BIG (< -5%)
+  gap since prev         n    per ep      t   win   worst
+  <6h                  211   -2.177%   -7.9   21%  -13.1%
+  6-24h                305   +0.541%   +2.6   53%  -11.0%
+
+  all
+  gap since prev         n    per ep      t   win   worst
+  <6h               34,780   -0.187%  -18.2   40%  -24.3%
+  6-24h             22,247   +0.196%  +16.2   51%  -21.1%
+  24-48h             6,941   +0.203%   +8.8   50%  -18.7%
+  >48h                 996   +0.171%   +2.7   47%  -13.6%

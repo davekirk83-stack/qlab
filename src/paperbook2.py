@@ -26,6 +26,10 @@ on a break.
 
 THE REGISTERED CONFIGURATION
   bars        15-minute
+  cooldown    no new episode on a coin/side within 6h of its last close
+              (doc 74: re-entries inside 6h lost -0.19%/ep, t=-18; the 6h
+              gate lifts the book from 60% to 77% CAGR at 1x, 21/27 coins,
+              6/6 years). Added 16 Oct 2026, day one of the record = v2.1
   switch      containment above its own expanding median (doc 115 - NOT
               tightened, and no efficiency/ADX confirmation stacked on it)
   centre      EMA 20, bands +/- 2.0 ATR14
@@ -57,6 +61,7 @@ MK, TAKER, SLIP = 1.5/10000, 4.5/10000, 5/10000
 BID = [(0.15, 0.30), (0.25, 0.05), (0.30, -0.25), (0.30, -0.55)]
 ASK = [(0.4, "mid"), (0.4, 0.0), (1.0, 0.35)]
 CAP_BARS, MARGIN_STOP = 48, 0.15
+COOLDOWN_H = 6   # doc 74: no new episode on a coin/side within 6h of its last close
 CHASE_FILL, CHASE_PREM = 0.92, 0.05
 START = 2000.0
 
@@ -157,7 +162,7 @@ def step(sym, d, pos, since, slots_free):
                     p["pnl"] += r*held
                     closed.append((sym, side, p["open"], str(idx[i]),
                                    p["pnl"]/max(p["intended"], 1e-9), "stop"))
-                    pos[side] = None; slots_free[0] += 1; continue
+                    pos[side] = None; slots_free[0] += 1; pos.setdefault('cool', {})[side] = str(idx[i]); continue
             broke = (C[i] < lo_b[i]-1.5*a[i]) or (C[i] > hi_b[i]+1.5*a[i])
             age = i - p["i0"]
             if age >= CAP_BARS or broke or not ok:
@@ -171,7 +176,7 @@ def step(sym, d, pos, since, slots_free):
                                p["pnl"]/max(p["intended"], 1e-9),
                                "break" if broke else ("cap" if age >= CAP_BARS
                                                       else "regime")))
-                pos[side] = None; slots_free[0] += 1; continue
+                pos[side] = None; slots_free[0] += 1; pos.setdefault('cool', {})[side] = str(idx[i]); continue
             # scale out
             for k, (frac, lvl) in enumerate(ASK):
                 if k in p["sold"]: continue
@@ -193,11 +198,14 @@ def step(sym, d, pos, since, slots_free):
                     if not p["inv"]:
                         closed.append((sym, side, p["open"], str(idx[i]),
                                        p["pnl"]/max(p["intended"], 1e-9), "sold"))
-                        pos[side] = None; slots_free[0] += 1; break
+                        pos[side] = None; slots_free[0] += 1; pos.setdefault('cool', {})[side] = str(idx[i]); break
         if not ok: continue
         for side in ("L", "S"):
             p = pos.get(side)
             if p is None:
+                ct = pos.get("cool", {}).get(side)
+                if ct and idx[i] < pd.Timestamp(ct) + pd.Timedelta(hours=COOLDOWN_H):
+                    continue
                 p = {"open": str(idx[i]), "i0": i, "inv": [], "sold": [],
                      "intended": 0.0, "pnl": 0.0, "tried": []}
             for k, (frac, off) in enumerate(BID):
