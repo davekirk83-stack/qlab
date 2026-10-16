@@ -1,0 +1,15 @@
+27 coins, 15-minute bars, five years.
+
+Side selection is the ONLY thing that changes between rows.
+
+  variant                         episodes     per ep       t   win    worst   CAGR 1x    maxDD  Sharpe
+  both sides always (registered)    82,366   +0.1157%  +17.60   49%   -24.3%     60.1%    -5.3%    4.12
+  biased: long up / short down      40,272   -0.0357%   -5.08   35%   -20.2%     -7.1%   -31.1%   -1.23
+  contrarian: long down / short up    71,751   -0.0148%   -2.39   52%   -24.3%     -5.7%   -28.4%   -0.50
+  long side only                    41,532   +0.0941%  +10.20   49%   -23.0%     20.9%    -9.1%    1.74
+  short side only                   40,834   +0.1377%  +14.70   49%   -24.3%     32.0%    -6.8%    2.89
+
+  If 'biased' wins, DK's directional overlay is right and the book
+  should stop fighting the coin's own trend. If 'contrarian' wins,
+  the intuition is backwards and the book earns precisely by taking
+  the side the trend argues against — which is what mean reversion is.
