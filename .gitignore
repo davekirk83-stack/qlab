@@ -4,3 +4,7 @@ data*/
 *.csv
 *.pkl
 __pycache__/
+
+# Exception: the compact 15-minute cache the paper books run from in a fresh container (~1MB)
+!data_15m_cache/
+!data_15m_cache/*.csv.gz
