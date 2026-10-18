@@ -81,20 +81,38 @@ def get(url, tries=3):
     return None
 
 
+CACHE = "/home/claude/qlab/data_15m_cache"   # last ~1,500 bars per coin, committed to the repo
+MEDIANS = f"{RUNS}/contain_median.json"      # per-coin containment median from the full 5y history
+_MED = {}
+try: _MED = json.load(open(MEDIANS))
+except Exception: pass
+
+
 def universe():
-    return sorted(os.path.basename(f)[:-4]
-                  for f in glob.glob(f"{DATA}/*USD.csv"))
+    full = {os.path.basename(f)[:-4] for f in glob.glob(f"{DATA}/*USD.csv")}
+    cached = {os.path.basename(f)[:-7] for f in glob.glob(f"{CACHE}/*USD.csv.gz")}
+    STABLE = {"USDTUSD", "USDCUSD", "DAIUSD", "PYUSDUSD", "USDSUSD", "RLUSDUSD"}
+    return sorted((full | cached) - STABLE)
+
+
+def _load(sym):
+    """Full 5y file if this container has it, else the committed cache."""
+    for path in (f"{DATA}/{sym}.csv", f"{CACHE}/{sym}.csv.gz"):
+        try:
+            d = pd.read_csv(path, index_col=0)
+            d.index = pd.to_datetime(d.index, utc=True, format="ISO8601")
+            return d[~d.index.duplicated(keep="last")].sort_index()
+        except Exception:
+            continue
+    return None
 
 
 def refresh(sym):
     """Top up one product's 15-minute file with the newest candles."""
     path = f"{DATA}/{sym}.csv"
     pid = sym[:-3] + "-USD"
-    try:
-        d = pd.read_csv(path, index_col=0)
-        d.index = pd.to_datetime(d.index, utc=True)
-    except Exception:
-        return None
+    d = _load(sym)
+    if d is None: return None
     last = d.index.max()
     now = pd.Timestamp.utcnow().floor("15min")
     if (now - last) < pd.Timedelta(minutes=30):
@@ -114,11 +132,13 @@ def refresh(sym):
         n = n[["open","high","low","close","volume"]].astype(float)
         d = pd.concat([d, n])
         d = d[~d.index.duplicated(keep="last")].sort_index()
-        d.to_csv(path)
+        if os.path.exists(path): d.to_csv(path)
+        os.makedirs(CACHE, exist_ok=True)
+        d.tail(3000).to_csv(f"{CACHE}/{sym}.csv.gz", compression="gzip")
     return d
 
 
-def indicators(d):
+def indicators(d, sym=None):
     C, H, L = d.close.values, d.high.values, d.low.values
     pc = np.roll(C, 1); pc[0] = C[0]
     tr = np.maximum(H-L, np.maximum(np.abs(H-pc), np.abs(L-pc)))
@@ -127,14 +147,20 @@ def indicators(d):
     lo_b, hi_b = ema-2*a, ema+2*a
     inside = ((C <= hi_b) & (C >= lo_b)).astype(float)
     contain = pd.Series(inside).rolling(50).mean()
-    allow = (contain > contain.expanding(500).median()).values
+    # The switch: containment above its own median. The median is taken over
+    # the coin's full five-year history (runs/contain_median.json, refreshed
+    # monthly); a fresh container only carries the last ~1,500 bars, and the
+    # expanding median of those would not be the registered threshold.
+    m = _MED.get(sym, {}).get("median") if sym else None
+    thr = m if m is not None else contain.expanding(500).median()
+    allow = (contain > thr).values
     return ema, lo_b, hi_b, a, allow
 
 
 def step(sym, d, pos, since, slots_free):
     """Replay the book over bars newer than `since`. Mutates pos; returns
     (closed_episodes, new_watermark)."""
-    ema, lo_b, hi_b, a, allow = indicators(d)
+    ema, lo_b, hi_b, a, allow = indicators(d, sym)
     C, H, L = d.close.values, d.high.values, d.low.values
     idx = d.index
     if since is None:

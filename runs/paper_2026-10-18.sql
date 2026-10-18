@@ -1,0 +1,5 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-18', exit_px=11.57732693, exit_reason='target', ret=0.034407, pnl=5.16 WHERE sym='CLANKERUSD' AND opened='2026-10-15' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-18', exit_px=0.01180874, exit_reason='target', ret=0.043612, pnl=6.54 WHERE sym='COTIUSD' AND opened='2026-10-15' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-18', exit_px=0.13533007, exit_reason='target', ret=0.026578, pnl=3.99 WHERE sym='OCEANUSD' AND opened='2026-10-15' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('BIGTIMEUSD','2026-10-18',0.006821,0.00529014,0.00707614,0.00051029,50.39,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-18',2015.69,1,1,1,1,0,'1 signals, 1 taken, 0 dropped, 3 closed, 1 open');

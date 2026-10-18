@@ -1,0 +1,5 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-10-18', 1997.5854, 7, 4);
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-18', 'XLE', 'S', '2026-10-16 14:30:00+00:00', '2026-10-16 15:00:00+00:00', -0.002474, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-18', 'SPY', 'L', '2026-10-16 16:30:00+00:00', '2026-10-16 18:30:00+00:00', -0.006372, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-18', 'FXI', 'L', '2026-10-16 15:00:00+00:00', '2026-10-16 15:45:00+00:00', -0.002691, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-18', 'EWJ', 'L', '2026-10-16 16:45:00+00:00', '2026-10-16 17:15:00+00:00', -0.004560, 'regime');
