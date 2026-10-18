@@ -1,5 +1,10 @@
 """
-THE PAPER BOOK v2 — the containment range book, two-sided, run once a day.
+THE PAPER BOOK v2.2 — the containment range book, two-sided, run once a day.
+
+v2.2 (18 Oct 2026, doc 78): universe pinned to the registered 27; switch
+threshold = each coin's full-history containment median, frozen and refreshed
+monthly (identical to the expanding median at the last bar, but reproducible
+from a fresh container); state and a 1,500-bar cache committed to the repo.
 
 SIMULATED LEDGER ONLY. Standing constraint CAP-021: research and paper trading
 only. No live order, brokerage or exchange account, credential, authentication,
@@ -91,8 +96,14 @@ except Exception: pass
 def universe():
     full = {os.path.basename(f)[:-4] for f in glob.glob(f"{DATA}/*USD.csv")}
     cached = {os.path.basename(f)[:-7] for f in glob.glob(f"{CACHE}/*USD.csv.gz")}
-    STABLE = {"USDTUSD", "USDCUSD", "DAIUSD", "PYUSDUSD", "USDSUSD", "RLUSDUSD"}
-    return sorted((full | cached) - STABLE)
+    # v2.2: the universe is the REGISTERED 27 — the coins every range-book
+    # backtest was measured on (runs/range_universe.json). Not whatever is
+    # cached. A young coin joins only after it has a backtest of its own.
+    try:
+        reg = set(json.load(open(f"{RUNS}/range_universe.json"))["registered_universe"])
+    except Exception:
+        reg = set()
+    return sorted((full | cached) & reg) if reg else []
 
 
 def _load(sym):

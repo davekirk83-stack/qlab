@@ -1,0 +1,32 @@
+{
+ "registered_universe": [
+  "AAVEUSD",
+  "ADAUSD",
+  "AEROUSD",
+  "ARBUSD",
+  "AVAXUSD",
+  "BTCUSD",
+  "DOGEUSD",
+  "DOTUSD",
+  "ETHUSD",
+  "FETUSD",
+  "FILUSD",
+  "HBARUSD",
+  "ICPUSD",
+  "INJUSD",
+  "LINKUSD",
+  "LTCUSD",
+  "NEARUSD",
+  "ONDOUSD",
+  "QNTUSD",
+  "SOLUSD",
+  "STRKUSD",
+  "SUIUSD",
+  "UNIUSD",
+  "XLMUSD",
+  "XRPUSD",
+  "ZECUSD",
+  "ZROUSD"
+ ],
+ "note": "27 coins with >60,000 15-minute bars (~1.7y+) on 2026-10-16: the panel every range-book backtest (docs 68-74, findings 105-141) was measured on. Young coins excluded until they have a backtest."
+}
