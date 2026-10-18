@@ -1,0 +1,33 @@
+Listing Coinbase USD products by dollar volume...
+28 products. Target 5 years of 15-minute bars each.
+
+  [1/28] BTC-USD        175,122 bars   5.0y  from 2021-10-19  (178s)
+  [2/28] ETH-USD        175,121 bars   5.0y  from 2021-10-19  (176s)
+  [3/28] ZEC-USD        172,824 bars   5.0y  from 2021-10-19  (178s)
+  [4/28] XRP-USD        114,415 bars   3.3y  from 2023-07-13  (123s)
+  [5/28] SOL-USD        175,119 bars   5.0y  from 2021-10-19  (177s)
+  [6/28] NEAR-USD       144,640 bars   4.1y  from 2022-09-01  (154s)
+  [7/28] USDT-USD       175,117 bars   5.0y  from 2021-10-19  (178s)
+  [8/28] SUI-USD        118,076 bars   3.4y  from 2023-05-18  (129s)
+  [9/28] HYPE-USD        24,407 bars   0.7y  from 2026-02-05  (32s)
+  [10/28] QNT-USD        174,752 bars   5.0y  from 2021-10-19  (174s)
+  [11/28] STRK-USD        80,839 bars   2.7y  from 2024-02-21  (98s)
+  [12/28] XLM-USD        175,116 bars   5.0y  from 2021-10-19  (173s)
+  [13/28] ENA-USD         47,882 bars   1.4y  from 2025-06-05  (53s)
+  [14/28] HBAR-USD       140,617 bars   4.0y  from 2022-10-13  (145s)
+  [15/28] ADA-USD        175,115 bars   5.0y  from 2021-10-19  (170s)
+  [16/28] LTC-USD        175,120 bars   5.0y  from 2021-10-19  (170s)
+  [17/28] DOGE-USD       175,119 bars   5.0y  from 2021-10-19  (190s)
+  [18/28] AERO-USD        94,372 bars   2.7y  from 2024-02-06  (105s)
+  [19/28] TAO-USD         57,991 bars   1.7y  from 2025-02-20  (64s)
+  [20/28] LINK-USD       175,119 bars   5.0y  from 2021-10-19  (169s)
+  [21/28] UNI-USD        175,100 bars   5.0y  from 2021-10-19  (171s)
+  [22/28] INJ-USD        139,657 bars   4.1y  from 2022-09-20  (145s)
+  [23/28] SAND-USD       150,019 bars   4.4y  from 2022-05-26  (155s)
+  [24/28] TIA-USD        103,762 bars   3.0y  from 2023-11-01  (111s)
+  [25/28] RSC-USD         24,210 bars   1.2y  from 2025-07-31  (49s)
+  [26/28] AVAX-USD       175,094 bars   5.0y  from 2021-10-19  (173s)
+  [27/28] PUMP-USD        44,076 bars   1.3y  from 2025-07-15  (51s)
+  [28/28] ICNT-USD        16,254 bars   0.6y  from 2026-03-25  (27s)
+
+28 symbols written to /home/claude/qlab/data_15m
