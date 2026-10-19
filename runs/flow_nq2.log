@@ -1,0 +1,41 @@
+NQ 1-minute 2026-07-16..2026-10-16, 86,044 bars. Management: stop 50, half at +20 -> BE, trail 30, 2h cap.
+
+0. RANDOM ENTRIES with his management, by hour block (UTC) — where does the geometry alone pay?
+      22-24    n= 6000  -0.61 pts  win  68%  race  50%  1-min autocorr -0.007
+       0-3     n= 6000  -2.28 pts  win  67%  race  50%  1-min autocorr -0.032
+       3-7     n= 6000  -1.18 pts  win  68%  race  50%  1-min autocorr +0.007
+       7-10    n= 6000  -1.64 pts  win  68%  race  50%  1-min autocorr +0.003
+      10-13.5  n= 6000  -1.46 pts  win  69%  race  50%  1-min autocorr -0.035
+    13.5-16    n= 6000  -0.13 pts  win  71%  race  50%  1-min autocorr -0.009
+      16-20    n= 6000  +0.03 pts  win  70%  race  50%  1-min autocorr +0.029
+      20-22    n= 1890  +3.48 pts  win  66%  race  50%  1-min autocorr -0.086
+
+1. FADE THE EXTREME (mean reversion) — overnight unless stated
+  variant                                n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl pts/month
+  touch overnight high -> SHORT / low -> LONG 1,150   -2.52  -2.6   67%  0.83   37   -0.89  -1.63    48%   51%     -987
+  touch prior-day H/L, fade          1,663   -1.72  -2.0   68%  0.89   31   -0.31  -1.41    50%   51%     -953
+  fade + delta BALANCED (|dz|<0.5)     664   -3.40  -2.6   65%  0.79   39   -1.32  -2.08    49%   50%     -770
+  fade + delta AGAINST the touch (absorption)   294   -2.76  -1.4   67%  0.82   36   -0.53  -2.23    49%   50%     -277
+  fade + delta WITH the fade           151   -1.40  -0.5   69%  0.91   29   -3.87  +2.48    50%   48%      -73
+  fade VWAP +-30pt stretch           4,019   -2.26  -4.2   68%  0.85   31   -1.18  -1.09    48%   50%    -2999
+  fade VWAP stretch, delta balanced  2,618   -2.90  -4.3   67%  0.82   32   -1.01  -1.90    49%   50%    -2506
+  fade 240-min z<-1.5 / >1.5         2,568   -1.61  -2.4   68%  0.89   35   -1.09  -0.52    48%   50%    -1363
+  fade overnight H/L, DAY session      304   -3.06  -1.5   66%  0.82   11   -1.04  -2.02    48%   48%     -307
+  first touch of ON H/L (gap 60)       484   -2.11  -1.4   67%  0.86   37   -0.70  -1.41    51%   50%     -348
+
+2. DELTA DIVERGENCE / ABSORPTION — price pushes, delta does not confirm
+  variant                                n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl pts/month
+  new 30m low, d15 > d15 30m ago (long) 1,877   -1.31  -1.7   69%  0.91   33   -1.53  +0.22    50%   50%     -813
+  new 30m low, delta z > 0 (long)    1,525   -1.94  -2.3   68%  0.87   32   -0.88  -1.06    49%   51%     -977
+  cum delta z vs price z diverge >1  4,447   -3.47  -6.7   65%  0.79   36   -0.99  -2.48    46%   50%    -5093
+  cum delta z vs price z diverge >2  2,735   -3.53  -5.4   65%  0.78   35   -0.99  -2.54    46%   50%    -3184
+  heavy delta, price flat (abs, 15m)   644   +1.56  +1.2   73%  1.12   30   -0.15  +1.71    55%   52%      331
+
+3. OUR RANGE LOGIC on NQ overnight — containment switch + Keltner band touch, fade
+  variant                                n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl pts/month
+  Keltner lower touch (contain>median) 2,274   -1.25  -1.8   68%  0.91   40   -0.85  -0.40    50%   50%     -940
+   by hour (pts/trade, n): 0:+1.5(158) 1:+1.1(103) 2:-2.3(147) 3:+1.0(177) 4:+2.3(190) 5:-7.7(157) 6:+1.5(100) 7:-3.0(85) 8:-8.3(117) 9:-3.8(176) 10:+0.6(198) 11:+1.3(173) 12:-1.9(141) 13:-4.8(61) 22:-3.2(113) 23:+0.3(178)
+   exits: {'be': 1438, 'stop': 608, 'cap': 228}
+  Keltner touch, contain<median      2,633   -1.99  -3.0   68%  0.87   31   -0.59  -1.40    49%   50%    -1729
+  Keltner touch, any session, contain>med 3,215   -1.10  -1.8   68%  0.93   35   -0.91  -0.18    50%   50%    -1162
+  Keltner 2.5-ATR touch, overnight   1,983   -2.02  -2.7   68%  0.87   33   -0.56  -1.46    49%   51%    -1320

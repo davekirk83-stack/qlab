@@ -1,0 +1,34 @@
+A. NIGHT SELECTION — his-management trades at every 15th overnight minute, P&L per night vs features known at 22:00
+   66 nights; mean night P&L -1.19 pts/trade, SD across nights 2.09, nights >0: 30%
+   prior-day rng  : low -1.62 (n=22)  mid -0.51 (n=22)  high -1.43 (n=22)
+   prior-day cloc : low -1.38 (n=22)  mid -1.29 (n=22)  high -0.88 (n=22)
+   prior-day ret  : low -1.50 (n=22)  mid -0.96 (n=22)  high -1.09 (n=22)
+   prior-day vol  : low -1.94 (n=22)  mid -0.44 (n=22)  high -1.18 (n=22)
+   by weekday (Mon=0): 0:-1.53 1:-1.70 2:-0.58 3:-0.87 6:-1.28
+   night-to-night autocorr of P&L: +0.05
+
+B. SESSION-OPEN BREAKOUTS — opening range (first 30 min) break with his management
+  variant                                n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl pts/month
+  ORB Globex 22:00 (first break, 30m range)    64   -3.39  -0.8   62%  0.79   56   -2.26  -1.13    44%   48%      -75
+    + delta confirms                    15 too few
+    FADE the break                      64   -1.72  -0.4   69%  0.88   52   +3.30  -5.02    56%   54%      -38
+  ORB London 07:00 (first break, 30m range)    83   -0.59  -0.2   72%  0.96   33   -0.44  -0.15    50%   51%      -17
+    + delta confirms                    15 too few
+    FADE the break                      83   +1.15  +0.3   72%  1.09   26   -2.06  +3.21    50%   48%       32
+  ORB pre-cash 13:30 (first break, 30m range)    72   -8.70  -2.1   61%  0.56    8   -5.69  -3.01    44%   46%     -209
+    + delta confirms                    39   -7.52  -1.3   62%  0.61    8   -0.97  -6.55    49%   49%     -103
+    FADE the break                      72   +2.80  +0.8   76%  1.23    8   +0.75  +2.05    56%   52%       67
+  ORB Asia 00:00 (first break, 30m range)    78   -4.90  -1.3   67%  0.70   38   -3.76  -1.14    47%   48%     -132
+    + delta confirms                    21 too few
+    FADE the break                      78   +1.59  +0.4   74%  1.13   34   -1.90  +3.49    53%   51%       43
+
+C. SLOWER DELTA — 60-min and 180-min delta z, go with / fade, overnight
+  variant                                n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl pts/month
+  delta60 z>1.5 go-with                472   -2.49  -1.6   67%  0.84   33   +0.09  -2.58    48%   50%     -392
+  delta60 z>1.5 FADE                   472   +1.89  +1.2   73%  1.14   32   -0.62  +2.51    52%   50%      298
+  delta180 z>1.5 go-with               389   -0.72  -0.4   70%  0.95   35   -1.28  +0.55    54%   50%      -94
+  delta180 z>1.5 FADE                  389   -3.09  -1.8   67%  0.81   31   -0.10  -2.99    46%   51%     -401
+  absorption 15m, ANY session          917   +1.25  +1.1   72%  1.09   26   -1.32  +2.57    54%   50%      378
+  absorption 15m, z>2, price flat/against   210   +1.66  +0.7   73%  1.12   28   -0.01  +1.67    55%   51%      121
+  absorption 15m, overnight, gap 30    471   +1.09  +0.7   72%  1.08   30   -0.83  +1.92    55%   51%      169
+   absorption by month: 2026-07:-2.8(68) 2026-08:+2.3(153) 2026-09:-0.1(163) 2026-10:+4.1(87)
