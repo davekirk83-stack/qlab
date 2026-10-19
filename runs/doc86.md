@@ -36,4 +36,4 @@ Tick-rule delta on a CFD mid-price is a proxy for the futures footprint delta he
 **Finding 156 — REJECTED on his own market as well.** The AuclairsDad book is closed on both panels. Nothing is transferred into ours except the lesson already taken (test an imported strategy on its own market first) and the reinforced rule 164: a posted win rate and profit factor describe the management, not the edge. The ingest scripts stay for any future order-flow question.
 
 ## Record
-Data `data_nq/` (1-minute file + 82 daily checkpoints, in the repo). Finding 156 queued to D1 in `runs/pending_d1_2026-10-18.sql`. Paper books unchanged.
+Data: the 1-minute file `data_nq/nq_1m.csv` is in the repo (8.7 MB); the 82 raw tick-day checkpoints (1.1 GB) are container-only and rebuildable with `get_nq_ticks.py` (~70 min). Finding 156 queued to D1 in `runs/pending_d1_2026-10-18.sql`. Paper books unchanged.
