@@ -1,0 +1,196 @@
+{
+ "equity": 2000.0,
+ "sym": {
+  "AAVEUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ADAUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "AEROUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ARBUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "AVAXUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "BTCUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "DOGEUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "DOTUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ETHUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "FETUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "FILUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "HBARUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ICPUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "INJUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "LINKUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "LTCUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "NEARUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ONDOUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "QNTUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "SOLUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "STRKUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "SUIUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "UNIUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "XLMUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "XRPUSD": {
+   "since": "2026-10-19 14:00:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ZECUSD": {
+   "since": "2026-10-19 14:00:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  },
+  "ZROUSD": {
+   "since": "2026-10-19 13:45:00+00:00",
+   "pos": {
+    "L": null,
+    "S": null
+   }
+  }
+ },
+ "closed": 0,
+ "started": "2026-10-19"
+}

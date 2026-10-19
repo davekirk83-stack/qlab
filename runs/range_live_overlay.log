@@ -1,0 +1,4 @@
+LIVE v2.2: 172 trips closed, equity 1966.91 started 2026-10-16
+  BACKTEST over the live window v2.2 ladder                  eps  162 per ep -0.014% win 44%  -> $2,000 at 20 slots 3x: 2,002
+  BACKTEST over the live window bids + ONE mid-EMA target    eps  255 per ep +0.028% win 64%  -> $2,000 at 20 slots 3x: 2,025
+  BACKTEST over the live window CL lots + mid target         eps  192 per ep -0.036% win 58%  -> $2,000 at 20 slots 3x: 1,973
