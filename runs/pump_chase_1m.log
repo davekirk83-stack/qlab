@@ -1,0 +1,70 @@
+
+===== 1m panel: 18 instruments, 10,238,148 bars, 2025-09-01 .. 2026-09-30; cost 4bp/side; cap 240 bars =====
+  entry / exit                                       n   per ep     t   win hold     ctrl   edge  coins  race ctrl top5%
+  pump +2%/5b, trail 1 ATR                       1,881  +0.466%  +5.1   38%    2  -0.034% +0.500    83%    53%   49%   131%
+     biggest month 2025-10: +2.6% x 320 = 95% of P&L; EX that month +0.028%/ep (n=1561); months >0: 46%; median trade -0.23%
+  pump +2%/5b, trail 2 ATR                       1,881  +0.679%  +5.7   39%    7  -0.045% +0.724    94%    53%   48%   118%
+     biggest month 2025-10: +3.7% x 320 = 93% of P&L; EX that month +0.055%/ep (n=1561); months >0: 31%; median trade -0.32%
+  pump +2%/5b, trail 3 ATR                       1,881  +0.767%  +6.1   42%   19  -0.053% +0.820    94%    53%   49%   113%
+     biggest month 2025-10: +4.2% x 320 = 94% of P&L; EX that month +0.056%/ep (n=1561); months >0: 38%; median trade -0.37%
+  pump +2%/5b, scale-out + trail 2               1,881  +0.456%  +5.7   63%    6  -0.034% +0.490   100%    53%   50%   115%
+     biggest month 2025-10: +2.5% x 320 = 92% of P&L; EX that month +0.043%/ep (n=1561); months >0: 23%; median trade +0.26%
+  pump (no volume filter) +2%/5b, trail 1 ATR    1,890  +0.463%  +5.1   38%    2  -0.040% +0.503    83%    53%   48%   131%
+     biggest month 2025-10: +2.6% x 320 = 95% of P&L; EX that month +0.026%/ep (n=1570); months >0: 46%; median trade -0.23%
+  pump (no volume filter) +2%/5b, trail 2 ATR    1,890  +0.677%  +5.7   39%    7  -0.047% +0.724    94%    53%   48%   118%
+     biggest month 2025-10: +3.7% x 320 = 93% of P&L; EX that month +0.056%/ep (n=1570); months >0: 31%; median trade -0.32%
+  pump (no volume filter) +2%/5b, trail 3 ATR    1,890  +0.764%  +6.1   42%   19  -0.053% +0.817    94%    53%   49%   113%
+     biggest month 2025-10: +4.2% x 320 = 94% of P&L; EX that month +0.056%/ep (n=1570); months >0: 38%; median trade -0.37%
+  pump (no volume filter) +2%/5b, scale-out + trail 2 1,890  +0.453%  +5.7   63%    6  -0.039% +0.492   100%    53%   48%   116%
+     biggest month 2025-10: +2.5% x 320 = 92% of P&L; EX that month +0.042%/ep (n=1570); months >0: 23%; median trade +0.26%
+  DUMP chase short -2%/5b, trail 1 ATR (alts)    1,543  +0.384%  +3.2   33%    2  -0.040% +0.425   100%    45%   50%   163%
+     biggest month 2025-10: +1.7% x 292 = 85% of P&L; EX that month +0.073%/ep (n=1251); months >0: 46%; median trade -0.38%
+  DUMP chase short -2%/5b, trail 2 ATR (alts)    1,543  +0.124%  +0.9   36%    4  -0.041% +0.165    81%    45%   50%   542%
+     by month (real/ctrl %): 2025-09:+0.6/-0.1(66) 2025-10:+0.2/-0.0(292) 2025-11:+0.2/-0.0(263) 2025-12:-0.2/-0.0(65) 2026-01:-0.2/-0.1(86) 2026-02:+0.1/-0.0(126) 2026-03:-0.2/-0.0(38) 2026-04:+0.1/-0.1(31) 2026-05:-0.5/-0.0(110) 2026-06:-0.3/+0.0(151) 2026-07:-0.3/-0.0(13) 2026-08:+1.7/-0.1(81) 2026-09:+0.1/-0.0(221)
+     split-half: +0.168% / +0.080%   median -0.536%  worst -67.5%  best +62.6%
+  DUMP chase short -2%/5b, trail 3 ATR (alts)    1,543  -0.147%  -0.8   34%    9  -0.048% -0.099    38%    45%   50%   nan%
+  DUMP chase short -2%/5b, NO volume filter, trail 2 1,545  +0.124%  +0.9   36%    4  -0.033% +0.156    81%    45%   51%   542%
+  pump +3%/15b, trail 1 ATR                      1,264  +0.138%  +2.6   37%    3  -0.037% +0.175    89%    56%   49%   184%
+     biggest month 2025-10: +0.9% x 192 = 102% of P&L; EX that month -0.003%/ep (n=1072); months >0: 38%; median trade -0.21%
+  pump +3%/15b, trail 2 ATR                      1,264  +0.182%  +2.9   40%    8  -0.037% +0.218    78%    56%   50%   188%
+     biggest month 2025-10: +1.0% x 192 = 86% of P&L; EX that month +0.030%/ep (n=1072); months >0: 46%; median trade -0.26%
+  pump +3%/15b, trail 3 ATR                      1,264  +0.277%  +3.1   39%   21  -0.041% +0.319    78%    56%   51%   168%
+     biggest month 2025-10: +1.7% x 192 = 91% of P&L; EX that month +0.028%/ep (n=1072); months >0: 46%; median trade -0.40%
+  pump +3%/15b, scale-out + trail 2              1,264  +0.138%  +3.1   64%    6  -0.040% +0.179    94%    56%   49%   164%
+     biggest month 2025-10: +0.8% x 192 = 89% of P&L; EX that month +0.017%/ep (n=1072); months >0: 38%; median trade +0.27%
+  pump (no volume filter) +3%/15b, trail 1 ATR   1,278  +0.136%  +2.5   37%    3  -0.040% +0.176    89%    56%   49%   185%
+     biggest month 2025-10: +0.9% x 192 = 103% of P&L; EX that month -0.004%/ep (n=1086); months >0: 38%; median trade -0.22%
+  pump (no volume filter) +3%/15b, trail 2 ATR   1,278  +0.181%  +2.9   40%    8  -0.054% +0.235    78%    56%   48%   186%
+     biggest month 2025-10: +1.0% x 192 = 85% of P&L; EX that month +0.031%/ep (n=1086); months >0: 54%; median trade -0.28%
+  pump (no volume filter) +3%/15b, trail 3 ATR   1,278  +0.273%  +3.1   40%   21  -0.028% +0.302    83%    56%   50%   169%
+     biggest month 2025-10: +1.7% x 192 = 92% of P&L; EX that month +0.027%/ep (n=1086); months >0: 46%; median trade -0.40%
+  pump (no volume filter) +3%/15b, scale-out + trail 2 1,278  +0.138%  +3.1   64%    6  -0.044% +0.181    89%    56%   49%   163%
+     biggest month 2025-10: +0.8% x 192 = 89% of P&L; EX that month +0.018%/ep (n=1086); months >0: 38%; median trade +0.27%
+  DUMP chase short -3%/15b, trail 1 ATR (alts)   1,027  +0.005%  +0.1   33%    2  -0.026% +0.031    50%    47%   52%  6426%
+  DUMP chase short -3%/15b, trail 2 ATR (alts)   1,027  -0.204%  -1.5   36%    4  -0.035% -0.169    25%    47%   51%   nan%
+     by month (real/ctrl %): 2025-09:+1.6/-0.0(25) 2025-10:-2.1/+0.0(179) 2025-11:+0.4/+0.0(166) 2025-12:+0.2/-0.0(52) 2026-01:-0.2/-0.1(90) 2026-02:-0.3/-0.1(120) 2026-03:-0.2/-0.0(26) 2026-04:+0.0/-0.0(13) 2026-05:-0.3/-0.0(58) 2026-06:-0.1/-0.0(107) 2026-07:-0.5/-0.0(3) 2026-08:+2.5/-0.0(50) 2026-09:+0.0/-0.1(138)
+     split-half: -0.522% / +0.113%   median -0.537%  worst -61.2%  best +16.0%
+  DUMP chase short -3%/15b, trail 3 ATR (alts)   1,027  -0.422%  -2.2   35%   11  -0.040% -0.382    12%    47%   51%   nan%
+  DUMP chase short -3%/15b, NO volume filter, trail 2 1,029  -0.205%  -1.5   36%    4  -0.047% -0.158    31%    47%   50%   nan%
+  pump +5%/60b, trail 1 ATR                        655  -0.005%  -0.2   36%    2  -0.038% +0.033    39%    55%   50%   nan%
+  pump +5%/60b, trail 2 ATR                        655  +0.033%  +0.6   38%    7  -0.042% +0.074    44%    55%   51%   684%
+  pump +5%/60b, trail 3 ATR                        655  +0.103%  +1.4   42%   18  -0.063% +0.166    61%    55%   50%   290%
+  pump +5%/60b, scale-out + trail 2                655  -0.003%  -0.1   63%    5  -0.052% +0.049    44%    55%   49%   nan%
+  pump (no volume filter) +5%/60b, trail 1 ATR     674  -0.005%  -0.2   36%    2  -0.037% +0.031    44%    55%   49%   nan%
+  pump (no volume filter) +5%/60b, trail 2 ATR     674  +0.022%  +0.4   37%    7  -0.046% +0.068    44%    55%   49%  1002%
+  pump (no volume filter) +5%/60b, trail 3 ATR     674  +0.087%  +1.2   42%   17  -0.071% +0.158    61%    55%   48%   342%
+  pump (no volume filter) +5%/60b, scale-out + trail 2   674  -0.012%  -0.3   62%    5  -0.045% +0.033    50%    55%   48%   nan%
+  DUMP chase short -5%/60b, trail 1 ATR (alts)     577  +0.103%  +1.5   33%    2  -0.039% +0.142    62%    44%   49%   292%
+  DUMP chase short -5%/60b, trail 2 ATR (alts)     577  -0.021%  -0.3   32%    5  -0.029% +0.008    50%    44%   51%   nan%
+     by month (real/ctrl %): 2025-09:-0.9/+0.0(17) 2025-10:+1.1/+0.0(58) 2025-11:-0.5/+0.0(102) 2025-12:+0.2/-0.0(68) 2026-01:-0.3/+0.0(70) 2026-02:+0.4/-0.1(70) 2026-03:+0.2/+0.0(4) 2026-04:+0.4/-0.1(3) 2026-05:-0.5/-0.1(29) 2026-06:-0.1/-0.1(80) 2026-07:-0.0/-0.0(2) 2026-08:+0.9/-0.1(22) 2026-09:-0.5/+0.0(52)
+     split-half: +0.097% / -0.139%   median -0.585%  worst -5.4%  best +10.2%
+  DUMP chase short -5%/60b, trail 3 ATR (alts)     577  -0.146%  -1.5   33%   11  -0.044% -0.102    25%    44%   50%   nan%
+  DUMP chase short -5%/60b, NO volume filter, trail 2   579  -0.019%  -0.2   32%    5  -0.030% +0.011    44%    44%   51%   nan%
+  EMA golden cross, trail 2 ATR                 96,822  -0.044% -42.0   30%    7  -0.041% -0.003    22%    49%   49%   nan%
+  EMA golden cross, trail 3 ATR                 96,822  -0.049% -32.0   31%   14  -0.045% -0.004    28%    49%   49%   nan%
+  EMA about to golden-cross, trail 2 ATR        115,367  -0.044% -44.9   30%    7  -0.041% -0.003    22%    49%   49%   nan%
+  EMA about to golden-cross, trail 3 ATR        115,367  -0.047% -33.3   32%   15  -0.045% -0.002    33%    49%   49%   nan%
+  EMA death cross, trail 2 ATR                  85,884  -0.036% -30.4   31%    7  -0.037% +0.001    62%    50%   51%   nan%
+  EMA death cross, trail 3 ATR                  85,884  -0.035% -20.6   33%   14  -0.032% -0.003    44%    50%   51%   nan%
+  EMA about to death-cross, trail 2 ATR         101,921  -0.035% -31.9   31%    7  -0.038% +0.003    69%    51%   51%   nan%
+  EMA about to death-cross, trail 3 ATR         101,921  -0.031% -19.7   33%   15  -0.033% +0.002    62%    51%   51%   nan%
