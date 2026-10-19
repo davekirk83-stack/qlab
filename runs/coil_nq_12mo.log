@@ -1,0 +1,17 @@
+NQ 5-minute 2025-10-15..2026-10-16, 66,229 bars, median ATR 22.0 pts, cost 1.12 pts round trip (CFD; his future ~0.5). Exit: stop 45 / BE +15 / trail 1 ATR / target 9 ATR / cap 3h. Points per trade.
+
+  variant                                              n  per tr     t   win    PF   avgW   avgL hold    ctrl   edge  race ctrl  mo>0  half1  half2 /d/sym
+  COIL IGNITION: coil + ign + delta share + HTF      272  +2.773  +1.3   74%  1.25 +18.63 -42.12    6  +1.538 +1.235    49%   49%   62%  +4.06  +1.49  0.75
+     exits {'be': 199, 'stop': 62, 'cap': 9, 'tgt': 2}; longs +3.07 (n=185) shorts +2.15 (n=87)
+     overnight +2.72 (n=231, win 74%)  RTH +3.07 (n=41, win 71%)
+     by month: 2025-10:+4.4(18) 2025-11:+4.8(36) 2025-12:-0.0(33) 2026-01:+9.4(24) 2026-02:+9.2(16) 2026-03:-4.8(14) 2026-04:+7.7(14) 2026-05:-1.9(11) 2026-06:-6.0(22) 2026-07:-1.7(18) 2026-08:+6.3(25) 2026-09:+3.0(25) 2026-10:+2.4(16)
+     at his futures cost (0.5 pt round trip instead of 1.12): +3.40 pts/trade
+    + channel break (structure)                      101  +7.669  +2.1   76%  1.78 +22.96 -41.40    5  -2.068 +9.737    54%   46%   85%  +8.24  +7.11  0.28
+    without HTF (both ways)                          421  +1.728  +1.1   73%  1.15 +18.22 -43.22    6  -1.139 +2.866    49%   47%   69%  +2.91  +0.55  1.16
+    without delta share                            1,342  +1.244  +1.3   72%  1.10 +18.79 -43.83    4  +0.805 +0.439    51%   50%   85%  +2.50  -0.02  3.68
+    without coil (ignition + delta + HTF)            694  +3.597  +2.6   74%  1.32 +19.98 -43.18    5  +0.577 +3.020    52%   49%   85%  +3.13  +4.06  1.91
+    COUNTER-HTF (fade the ignition)                  203  -0.316  -0.1   72%  0.97 +16.51 -43.43    5  +0.329 -0.645    52%   49%   46%  -0.58  -0.06  0.56
+    + efficiency >= 0.4 (his OFF gate)                 3 too few
+  RAW CONVICTION: delta ratio 1.19 + HTF             234  +6.075  +2.4   76%  1.63 +20.58 -41.13    8  +1.158 +4.918    57%   50%   69%  +5.54  +6.61  0.64
+    raw conviction + ignition                         87  +8.692  +2.1   77%  2.03 +22.26 -36.76    8  -0.135 +8.827    59%   50%   77% +12.10  +5.36  0.24
+  HTF + candle only (control read)                 2,193  +1.222  +1.8   74%  1.11 +16.78 -43.29    6  +0.707 +0.515    54%   50%   69%  +2.47  -0.02  6.01
