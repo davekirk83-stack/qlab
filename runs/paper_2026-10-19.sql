@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-19',2015.69,2,1,0,0,0,'0 signals, 0 taken, 0 dropped, 0 closed, 2 open');
