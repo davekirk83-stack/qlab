@@ -1,0 +1,17 @@
+18 perps, 5-minute bars with TRUE taker delta, 2,047,302 bars. Exit in ATR units: stop 1.5 / BE +0.5 / trail 1 / target 9 / cap 3h; 4.5bp per side. Returns in ATR units per trade.
+
+  variant                                              n  per tr     t   win    PF   avgW   avgL hold    ctrl   edge  race ctrl  mo>0  half1  half2 /d/sym
+  COIL IGNITION: coil + ign + delta share + HTF   41,309  -0.258 -37.6   63%  0.60  +0.62  -1.73    3  -0.262 +0.004    49%   50%    0%  -0.24  -0.28  5.84
+     exits {'be': 25824, 'stop': 15401, 'tgt': 82, 'cap': 2}; longs -0.265 (n=19593) shorts -0.252 (n=21716); coins >0: 0%
+     Asia -0.270 (n=14789)  US -0.217 (n=13246)
+     by month: 2025-09:-0.25 2025-10:-0.17 2025-11:-0.27 2025-12:-0.29 2026-01:-0.24 2026-02:-0.16 2026-03:-0.27 2026-04:-0.32 2026-05:-0.25 2026-06:-0.21 2026-07:-0.32 2026-08:-0.39 2026-09:-0.19
+     median ATR = 0.27% of price -> -0.070% per trade net
+    + channel break (structure)                   20,409  -0.244 -23.4   61%  0.64  +0.69  -1.73    2  -0.264 +0.020    48%   50%    0%  -0.22  -0.26  2.89
+    without HTF (both ways)                       53,952  -0.262 -44.6   63%  0.59  +0.59  -1.74    3  -0.264 +0.002    50%   50%    0%  -0.24  -0.28  7.63
+    without delta share                           46,448  -0.267 -41.7   63%  0.59  +0.61  -1.73    3  -0.261 -0.006    49%   50%    0%  -0.24  -0.29  6.57
+    without coil (ignition + delta + HTF)         56,728  -0.264 -44.4   63%  0.60  +0.63  -1.75    3  -0.265 +0.001    49%   50%    0%  -0.24  -0.29  8.02
+    COUNTER-HTF (fade the ignition)               40,006  -0.264 -40.1   64%  0.57  +0.55  -1.73    3  -0.258 -0.006    50%   50%    0%  -0.25  -0.28  5.66
+    + efficiency >= 0.4 (his OFF gate)               800  -0.216  -3.3   55%  0.72  +1.02  -1.74    2  -0.248 +0.032    46%   50%   23%  -0.26  -0.17  0.11
+  RAW CONVICTION: delta ratio 1.19 + HTF          56,736  -0.261 -47.2   64%  0.58  +0.56  -1.73    3  -0.262 +0.001    50%   50%    0%  -0.24  -0.28  8.02
+    raw conviction + ignition                     56,710  -0.264 -44.5   62%  0.60  +0.63  -1.75    3  -0.268 +0.003    49%   50%    0%  -0.24  -0.29  8.02
+  HTF + candle only (control read)                56,736  -0.258 -47.1   64%  0.58  +0.55  -1.72    3  -0.265 +0.006    50%   50%    0%  -0.23  -0.28  8.02

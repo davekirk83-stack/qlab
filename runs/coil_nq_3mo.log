@@ -1,0 +1,17 @@
+NQ 5-minute 2026-07-15..2026-10-16, 17,529 bars, median ATR 22.7 pts, cost 1.43 pts round trip (CFD; his future ~0.5). Exit: stop 45 / BE +15 / trail 1 ATR / target 9 ATR / cap 3h. Points per trade.
+
+  variant                                              n  per tr     t   win    PF   avgW   avgL hold    ctrl   edge  race ctrl  mo>0  half1  half2 /d/sym
+  COIL IGNITION: coil + ign + delta share + HTF       75  +3.220  +0.8   76%  1.29 +18.66 -45.68    5  -0.042 +3.263    44%   48%   75%  +4.42  +2.05  0.83
+     exits {'be': 57, 'stop': 18}; longs +0.92 (n=47) shorts +7.08 (n=28)
+     overnight +2.84 (n=63, win 76%)  RTH +5.20 (n=12, win 75%)
+     by month: 2026-07:-3.5(9) 2026-08:+6.3(25) 2026-09:+3.0(25) 2026-10:+2.4(16)
+     at his futures cost (0.5 pt round trip instead of 1.43): +4.15 pts/trade
+    + channel break (structure)                       26 too few
+    without HTF (both ways)                          113  +0.124  +0.0   73%  1.01 +17.43 -45.67    5  -0.008 +0.132    45%   49%   50%  -0.71  +0.95  1.26
+    without delta share                              364  +0.763  +0.4   72%  1.06 +18.83 -45.64    4  +1.694 -0.931    50%   51%   75%  -0.81  +2.34  3.96
+    without coil (ignition + delta + HTF)            184  +3.061  +1.1   74%  1.26 +20.02 -44.99    5  +0.888 +2.173    48%   53%  100%  +2.70  +3.42  2.02
+    COUNTER-HTF (fade the ignition)                   49  -4.889  -1.1   67%  0.67 +14.88 -45.66    4  +0.709 -5.598    44%   52%   25%  -1.80  -7.86  0.54
+    + efficiency >= 0.4 (his OFF gate)                 1 too few
+  RAW CONVICTION: delta ratio 1.19 + HTF              33 too few
+    raw conviction + ignition                          6 too few
+  HTF + candle only (control read)                   568  -0.385  -0.3   74%  0.97 +15.58 -44.88    5  -0.481 +0.095    54%   49%   50%  +0.20  -0.98  6.17
