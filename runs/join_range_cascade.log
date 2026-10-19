@@ -1,0 +1,32 @@
+  ADAUSDT   range eps   693  cascade eps    9  (range on   2 / off   7)
+  ARBUSDT   range eps   736  cascade eps   15  (range on   6 / off   9)
+  AVAXUSDT  range eps   713  cascade eps   12  (range on   2 / off  10)
+  BTCUSDT   range eps   739  cascade eps    1  (range on   0 / off   1)
+  DOGEUSDT  range eps   701  cascade eps    9  (range on   2 / off   7)
+  ETHUSDT   range eps   775  cascade eps    6  (range on   2 / off   4)
+  FILUSDT   range eps   650  cascade eps   38  (range on  11 / off  27)
+  INJUSDT   range eps   848  cascade eps   18  (range on   6 / off  12)
+  LINKUSDT  range eps   827  cascade eps   10  (range on   2 / off   8)
+  LTCUSDT   range eps   740  cascade eps    9  (range on   2 / off   7)
+  NEARUSDT  range eps   765  cascade eps   17  (range on   4 / off  13)
+  SOLUSDT   range eps   752  cascade eps    7  (range on   1 / off   6)
+  SUIUSDT   range eps   847  cascade eps   15  (range on   4 / off  11)
+  XRPUSDT   range eps   703  cascade eps   12  (range on   3 / off   9)
+
+Overlap 2025-09-01 to 2026-09-30, 14 coins.
+
+Per-episode (the diagnostic that decides the join):
+  range episodes                      10,489  +0.040%  +3.0   48%
+  cascade, all                           178  +0.379%  +3.9   65%
+  cascade while range switch ON           47  +0.410%  +2.1   64%
+  cascade while range switch OFF         131  +0.368%  +3.3   65%
+  range L side                         5,339  -0.021%  -1.1   46%
+  range S side                         5,150  +0.103%  +5.3   49%
+
+Books through the same simulator ($2,000, 40 slots, 1x), same coins and bars:
+  book                                  taken skipped    per ep     CAGR    maxDD  Sharpe      final
+  range alone                           10489       0   +0.040%    +9.9%    -4.5%    1.56      2,215
+  cascade alone                           178       0   +0.379%    +1.6%    -0.4%    2.08      2,034
+  UNJOINED: range + cascade (all)       10667       0   +0.045%   +11.7%    -4.3%    1.82      2,253
+  JOINED: range + cascade only when OFF  10620       0   +0.044%   +11.2%    -4.4%    1.74      2,242
+  inverse: range + cascade only when ON  10536       0   +0.041%   +10.4%    -4.5%    1.64      2,226
