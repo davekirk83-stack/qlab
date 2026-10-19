@@ -8,7 +8,8 @@ import numpy as np, pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 BASE = "https://datafeed.dukascopy.com/datafeed"; INSTR = "USATECHIDXUSD"; POINT = 1000.0
 OUT = "/home/claude/qlab/data_nq"; os.makedirs(OUT, exist_ok=True)
-START, END = "2026-07-15", "2026-10-17"
+import sys
+START, END = (sys.argv[1], sys.argv[2]) if len(sys.argv) > 2 else ("2026-07-15", "2026-10-17")
 
 def fetch_hour(args):
     d, h = args
@@ -57,4 +58,4 @@ if __name__ == "__main__":
                       "up": (t.sgn > 0).resample("1min").sum(), "down": (t.sgn < 0).resample("1min").sum(),
                       "spread": (t.ask - t.bid).resample("1min").mean()}).dropna(subset=["close"])
     b["delta"] = b.up - b.down
-    b.to_csv(f"{OUT}/nq_1m.csv"); print(f"{len(t):,} ticks -> {len(b):,} minutes, {b.index.min()} .. {b.index.max()} -> {OUT}/nq_1m.csv")
+    b.to_csv(f"{OUT}/nq_1m_{START}_{END}.csv"); print(f"{len(t):,} ticks -> {len(b):,} minutes, {b.index.min()} .. {b.index.max()} -> {OUT}/nq_1m.csv")

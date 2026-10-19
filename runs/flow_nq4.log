@@ -1,0 +1,63 @@
+NQ 1-min 2026-07-15..2026-10-16, 87,348 bars. Regime up 38% / down 36% of bars. Exit stack: stop 50 -> BE at +20 -> trail 30, cap 180m.
+
+  variant                                           n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl  pts/mo  /day
+  FULL: regime + setup + trigger + agree + brk (ON)   35   +0.74  +0.1   71%  1.05   55   +3.52  -2.79    46%   49%       9   0.4
+  FULL without regime (both ways)                  71   -7.39  -1.6   59%  0.62   53   +2.06  -9.45    42%   49%    -175   0.8
+  FULL, any session                                36   +1.10  +0.2   72%  1.08   54   -1.36  +2.46    47%   53%      13   0.4
+  setup>=60, trig>=60 (looser), regime, ON        156   +2.98  +0.9   74%  1.23   48   -0.73  +3.71    55%   49%     153   1.7
+  setup>=80, trig>=80 (tighter), no regime, ON      1 too few
+  PATH breakout only: setup + brk + candle, ON    203   +1.92  +0.7   72%  1.14   51   -0.33  +2.25    50%   50%     127   2.2
+  PATH continuation: regime + trig + agree, ON    497   -1.28  -0.7   69%  0.92   33   +1.08  -2.36    51%   51%    -208   5.4
+  PATH breakout COUNTER-regime, ON                 27 too few
+  trigger + agree only, ON                        504   -1.21  -0.7   68%  0.92   36   -0.03  -1.17    49%   48%    -200   5.5
+  setup only + candle, ON                         357   +0.77  +0.4   70%  1.05   43   +0.04  +0.73    51%   48%      91   3.9
+  regime only + candle, ON                        516   +1.22  +0.7   71%  1.09   33   +0.56  +0.66    53%   50%     207   5.7
+  channel break only, ON                          496   -0.48  -0.3   72%  0.97   33   +0.56  -1.03    52%   50%     -78   5.5
+  FADE the full-stack breakout, ON                 72   +0.83  +0.2   71%  1.06   55   -3.17  +4.00    58%   49%      20   0.8
+  FULL, governors OFF                              40   +0.76  +0.1   70%  1.05   56   -7.28  +8.05    45%   42%      10   0.4
+
+  FILL INTERROGATION (his step 15), FULL stack:
+     longs                                         24 too few
+     shorts                                        11 too few
+   win rate by hour: 0:100%(1) 2:100%(3) 3:60%(5) 4:100%(1) 5:67%(6) 6:100%(2) 7:100%(2) 9:50%(2) 10:100%(2) 11:100%(2) 12:50%(2) 13:0%(1) 22:0%(1) 23:60%(5)
+   exit mix: {'be': 23, 'stop': 9, 'cap': 3}
+   loss sizes: median -50.7, mean -47.6, full-stop share 90%; win sizes median +14.5 mean +20.1
+   by month (pts/trade, n): 2026-07:-3.7(4) 2026-08:+3.6(13) 2026-09:-3.6(11) 2026-10:+4.7(7)
+   nights traded 29, mean +0.9 pts, >0 66%, best +77, worst -51
+  loose stack: stop 50 / BE 20 / trail 30 (base)  156   +2.98  +0.9   74%  1.23   48   +0.12  +2.86    55%   48%     153   1.7
+  loose stack: stop 30 / BE 15 / trail 20         179   -0.20  -0.1   69%  0.98   21   -1.06  +0.86    54%   48%     -12   2.0
+  loose stack: STRUCTURAL stop (channel +5, cap 50) / BE 15 / trail 25  173   +1.44  +0.6   73%  1.15   26   -1.80  +3.24    54%   47%      82   1.9
+  loose stack: stop 50 / BE 20 / trail 30 + SCRATCH 20m<+5  183   +0.48  +0.2   52%  1.05   20   +0.16  +0.32    52%   50%      29   2.0
+      exits {'scratch': 98, 'be': 73, 'stop': 11, 'cap': 1}; loss median -14.5, win median +3.6
+  loose stack: structural / BE 15 / trail 25 + scratch 20m  190   -0.52  -0.3   56%  0.94   20   +0.45  -0.96    53%   51%     -32   2.1
+      exits {'be': 91, 'scratch': 79, 'stop': 19, 'cap': 1}; loss median -16.3, win median +3.2
+  loose stack: stop 50 / BE 10 / trail 20         180   +0.25  +0.1   85%  1.03   18   -2.04  +2.29    53%   50%      15   2.0
+  breakout path: stop 50 / BE 20 / trail 30 (base)  203   +1.92  +0.7   72%  1.14   51   -1.84  +3.76    50%   48%     127   2.2
+  breakout path: stop 30 / BE 15 / trail 20       228   -1.45  -0.8   64%  0.87   24   -3.12  +1.67    50%   47%    -108   2.5
+  breakout path: STRUCTURAL stop (channel +5, cap 50) / BE 15 / trail 25  224   +0.73  +0.3   67%  1.07   31   +0.32  +0.41    50%   52%      54   2.4
+  breakout path: stop 50 / BE 20 / trail 30 + SCRATCH 20m<+5  249   -0.31  -0.2   50%  0.96   20   -1.42  +1.11    49%   48%     -25   2.7
+      exits {'scratch': 143, 'be': 90, 'stop': 15, 'cap': 1}; loss median -12.4, win median +3.6
+  breakout path: structural / BE 15 / trail 25 + scratch 20m  251   -0.03  -0.0   55%  1.00   20   -0.67  +0.65    49%   49%      -2   2.7
+      exits {'be': 113, 'scratch': 98, 'stop': 39, 'cap': 1}; loss median -15.9, win median +3.0
+  breakout path: stop 50 / BE 10 / trail 20       233   -0.67  -0.4   82%  0.93   22   -1.14  +0.47    50%   50%     -51   2.5
+  SCALE-IN GEOMETRY (the /CL room: adds before the stop, one target for all lots). pts = sum over lots per trade; 'lots' = mean lots used
+  variant                                                 n  pts/tr     t   win    PF lots    ctrl   edge maxloss  pts/mo
+  loose stack: CL ratio on 50-pt base: adds -23/-33, stop -50, tgt +62  141   +5.30  +0.6   51%  1.12  2.3   +1.25  +4.05     -98     246
+  loose stack: CL ratio on 30-pt base: adds -14/-20, stop -30, tgt +37  164   +3.54  +0.6   48%  1.11  2.4   -3.93  +7.46     -60     191
+  loose stack: no adds, stop -50, tgt +62 (control geometry)  141   +3.32  +0.7   48%  1.14  1.0   -0.79  +4.11     -51     154
+  loose stack: one add at -25, stop -50, tgt +40        150   +1.26  +0.2   57%  1.04  1.6   +0.73  +0.53     -77      62
+  loose stack: adds -23/-33, stop -50, tgt +30          159   +4.69  +0.8   67%  1.15  2.0   -2.69  +7.38     -98     246
+  breakout path: CL ratio on 50-pt base: adds -23/-33, stop -50, tgt +62  187   +4.93  +0.6   49%  1.12  2.2   +2.63  +2.30     -98     301
+  breakout path: CL ratio on 30-pt base: adds -14/-20, stop -30, tgt +37  211   -4.80  -1.0   45%  0.85  2.4   -1.34  -3.46     -60    -330
+  breakout path: no adds, stop -50, tgt +62 (control geometry)  187   +3.20  +0.8   48%  1.14  1.0   -1.54  +4.74     -51     195
+  breakout path: one add at -25, stop -50, tgt +40      192   +0.79  +0.2   56%  1.03  1.6   -1.43  +2.22     -77      49
+  breakout path: adds -23/-33, stop -50, tgt +30        204   +1.89  +0.3   63%  1.06  2.0   -6.27  +8.16     -98     126
+  variant                                           n  pts/tr     t   win    PF hold    ctrl   edge  race ctrl  pts/mo  /day
+  DIVERGENCE: weak-flow break of W-high -> short / low -> long  365   -0.32  -0.1   70%  0.98   39   -0.09  -0.23    52%   49%     -38   4.0
+     + CL scale-in: n 312 pts/tr -9.74 t -1.7 win 46% PF 0.81 lots 2.3 ctrl -4.88
+    (control: STRONG-flow break, go with)         504   -0.52  -0.3   72%  0.96   34   +0.12  -0.64    52%   50%     -87   5.5
+     + CL scale-in: n 508 pts/tr -9.68 t -2.1 win 45% PF 0.81 lots 2.4 ctrl -0.78
+  MEAN REVERSION: no regime, z60 > 2, flow flat -> fade  131   +1.80  +0.5   72%  1.14   37   -1.30  +3.11    48%   49%      79   1.5
+     + CL scale-in: n 113 pts/tr +7.85 t +0.7 win 50% PF 1.17 lots 2.3 ctrl -7.23
+    mean reversion, any regime                    419   -1.37  -0.7   70%  0.90   31   -0.43  -0.94    51%   49%    -188   4.6
+     + CL scale-in: n 343 pts/tr -5.16 t -0.9 win 46% PF 0.90 lots 2.4 ctrl -3.20
