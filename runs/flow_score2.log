@@ -1,0 +1,12 @@
+Exit-free: share reaching +k ATR before -k ATR within 4h, and raw forward return (bp, signed by side), vs random. Costs not deducted.
+
+  delta z>1.5                        137,059  race1 49.6% vs 50.0%   race2 49.4% vs 50.2%   fwd30m  -1.0bp vs  +0.0   2h  -2.1 vs  +0.1   8h  -2.0 vs  +0.4
+  delta z>2.5                         17,980  race1 49.3% vs 49.7%   race2 49.2% vs 49.6%   fwd30m  -1.2bp vs  -1.0   2h  -3.6 vs  -0.3   8h  -2.2 vs  -1.8
+  delta z>3.5                            752  race1 47.0% vs 49.5%   race2 48.5% vs 50.0%   fwd30m  -2.0bp vs  -2.7   2h  -3.4 vs  -8.8   8h  -9.7 vs -20.9
+  delta z>2.5 + trend agrees           8,158  race1 49.5% vs 50.3%   race2 48.7% vs 49.5%   fwd30m  -1.3bp vs  -0.2   2h  -3.7 vs  -1.4   8h  +1.9 vs  -0.4
+  delta z>2.5 + trend + Asia           3,205  race1 49.7% vs 49.4%   race2 49.3% vs 49.3%   fwd30m  -1.2bp vs  -1.0   2h  -3.2 vs  -0.1   8h  +7.4 vs  +2.0
+  delta z>2.5 AGAINST trend (fade)     9,863  race1 49.2% vs 50.4%   race2 49.5% vs 50.3%   fwd30m  -1.1bp vs  -0.0   2h  -3.5 vs  +0.9   8h  -5.3 vs  +3.9
+  raw 5m delta >+0.3 (buy 65%+)      282,794  race1 50.1% vs 50.1%   race2 49.9% vs 50.2%   fwd30m  -0.3bp vs  +0.4   2h  -0.5 vs  +0.5   8h  -0.4 vs  +0.9
+  absorption: px -1ATR/3bars, delta z>+1.5   1,956  race1 51.9% vs 50.6%   race2 51.1% vs 54.0%   fwd30m  -1.4bp vs  +3.0   2h  -3.2 vs  +3.3   8h  -8.5 vs +11.0
+  exhaustion: px +1ATR/3bars, delta z<-1.5 (fade)   1,956  race1 48.1% vs 51.4%   race2 48.9% vs 49.8%   fwd30m  +1.4bp vs  +1.1   2h  +3.2 vs  -4.3   8h  +8.5 vs  -5.7
+  trend + vwap + level, no delta      81,142  race1 50.3% vs 50.2%   race2 50.4% vs 50.2%   fwd30m  -0.0bp vs  +0.1   2h  -0.1 vs  -0.4   8h  +4.1 vs  -1.0

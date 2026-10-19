@@ -1,0 +1,14 @@
+Golden-cross long v1 refinements (bull+confirmed base), 4h, 27 coins, 3 controls/trade
+  variant                                n   per ep     t   win hold     ctrl   edge   coins   yrs    worst   top5%
+  REGISTERED hold18 stop3            1,000  +1.114%  +4.0   49%   18  -0.019% +1.133     78%  4/6   -20.8%    120%
+  half off +2ATR, BE, hold18         1,000  +0.661%  +3.3   61%   18  -0.020% +0.682     59%  3/6   -20.8%    116%
+  ride ribbon, stop3, cap60          1,000  +1.615%  +2.9   35%   41  +0.699% +0.916     67%  4/6   -20.8%    161%
+  hold18, trail 4ATR after +2        1,000  +0.895%  +3.3   48%   18  +0.158% +0.737     70%  4/6   -20.8%    137%
+
+  gate strong (hold18 stop3)             0 too few
+  gate fresh (hold18 stop3)          1,000  +1.114%  +4.0   49%   18  +0.149% +0.964     78%  4/6   -20.8%    120%
+  gate cooldown24 (hold18 stop3)       995  +1.115%  +3.9   49%   18  +0.119% +0.996     74%  4/6   -20.8%    119%
+  gate slope (hold18 stop3)          1,000  +1.114%  +4.0   49%   18  -0.117% +1.231     85%  4/6   -20.8%    120%
+  gate above200 (hold18 stop3)         807  +1.250%  +3.9   49%   18  -0.038% +1.288     74%  4/6   -20.8%    110%
+  gate notweekend (hold18 stop3)       734  +1.213%  +3.6   50%   18  +0.107% +1.107     78%  4/6   -20.8%    112%
+  gate asia (hold18 stop3)             396  +1.491%  +3.4   52%   18  -0.212% +1.702     78%  4/6   -20.8%     85%
