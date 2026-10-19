@@ -1,0 +1,26 @@
+  RANGE v3       eps  32613  per ep +0.220%  active days 367/367  final $68,986,193
+  DEATH-CROSS    eps    713  per ep +0.998%  active days 337/367  final $3,143
+  GOLDEN-CROSS   eps    204  per ep +3.073%  active days 126/367  final $4,073
+  IGNITION       eps    693  per ep +0.359%  active days 260/367  final $15,208
+
+  All books scaled to 1%/day volatility (so CAGR is comparable across schemes, not a forecast):
+
+  scheme                                 CAGR    maxDD Sharpe  worst d   mo>0    $2k ->
+  ALONE RANGE v3                      +835.9%    -4.1%  11.83   -2.13%    100%    18,920
+  ALONE DEATH-CROSS                    +19.3%   -23.2%   1.02   -3.16%     54%     2,389
+  ALONE GOLDEN-CROSS                   +40.8%    -7.1%   1.88   -2.25%     31%     2,820
+  ALONE IGNITION                       +63.9%    -7.4%   2.68   -4.46%     77%     3,287
+  RESERVED equal split (1/N always)   +128.6%    -1.6%   8.96   -1.00%     92%     4,590
+  POOLED-ACTIVE equal shares, ceil 50%  +229.7%    -2.7%   8.72   -1.81%     92%     6,631
+  POOLED-ACTIVE no ceiling            +234.8%    -2.7%   8.78   -1.81%     92%     6,734
+  POOLED-RISK inverse-vol shares, ceil 50%  +189.2%    -3.0%   8.28   -1.68%     92%     5,813
+  POOLED-RISK + governors (DD halve, -4% day cap)  +191.7%    -3.0%   8.55   -1.68%     92%     5,864
+
+  days with 2+ books losing >0.5% of their own unit: 5.7% of days (21); 3+: 2
+  pairwise daily-return correlations:
+              RANGE v3  DEATH-CROSS  GOLDEN-CROSS  IGNITION
+RANGE v3          1.00        -0.02         -0.01     -0.11
+DEATH-CROSS      -0.02         1.00         -0.02      0.02
+GOLDEN-CROSS     -0.01        -0.02          1.00      0.03
+IGNITION         -0.11         0.02          0.03      1.00
+  share of days each book is active: {'RANGE v3': '100%', 'DEATH-CROSS': '92%', 'GOLDEN-CROSS': '34%', 'IGNITION': '71%'} | days with no book active: 0%
