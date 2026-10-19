@@ -30,15 +30,23 @@ def fetch_hour(args):
     base = np.datetime64(dt.datetime(d.year, d.month, d.day, h))
     return pd.DataFrame({"ts": base + arr["ms"].astype("timedelta64[ms]"), "ask": arr["ask"]/POINT, "bid": arr["bid"]/POINT})
 
+
+def fetch_day(d):
+    f = f"{OUT}/days/{d}.csv"
+    if os.path.exists(f): return f
+    parts = [p for p in map(fetch_hour, [(d, h) for h in range(24)]) if p is not None]
+    if parts: pd.concat(parts).to_csv(f, index=False)
+    else: open(f, "w").write("ts,ask,bid\n")
+    return f
+
 if __name__ == "__main__":
-    days = [x.date() for x in pd.date_range(START, END)]
-    tasks = [(d, h) for d in days for h in range(24)]
-    parts = []
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        for i, df in enumerate(ex.map(fetch_hour, tasks)):
-            if df is not None: parts.append(df)
-            if i % 240 == 239: print(f"  {i+1}/{len(tasks)} hours, {sum(len(p) for p in parts):,} ticks", flush=True)
-    t = pd.concat(parts).sort_values("ts"); t["mid"] = (t.ask + t.bid)/2
+    os.makedirs(f"{OUT}/days", exist_ok=True)
+    days = [x.date() for x in pd.date_range(START, END) if x.weekday() != 5]   # CFD trades Sun 22:00 -> Fri 21:00
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        for i, f in enumerate(ex.map(fetch_day, days)):
+            if i % 5 == 4: print(f"  {i+1}/{len(days)} days", flush=True)
+    t = pd.concat([pd.read_csv(f"{OUT}/days/{d}.csv") for d in days]); t["ts"] = pd.to_datetime(t.ts)
+    t = t.sort_values("ts"); t["mid"] = (t.ask + t.bid)/2
     sgn = np.sign(t.mid.diff().fillna(0).values)
     for i in range(1, len(sgn)):
         if sgn[i] == 0: sgn[i] = sgn[i-1]

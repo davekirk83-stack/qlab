@@ -42,6 +42,51 @@ import ingest_15m as IN
 OUT = "/home/claude/qlab/data_15m_dead"
 
 
+def fetch_dead(pid, years=IN.YEARS):
+    """Find when the coin actually traded, THEN fetch it.
+
+    The previous version walked backwards from today and gave up after a few
+    empty windows. For a DELISTED product the empty space is at the RECENT
+    end - it stopped trading - so that logic quit before ever reaching the
+    period when the coin was alive, and returned nothing for 85 of 89
+    symbols even though the data was plainly there.
+
+    So: probe a spread of dates across the window to find where data exists,
+    then fetch only the span between the first and last hit. A dead coin's
+    life is a contiguous block, so a dozen probes locate it cheaply."""
+    import time
+    end = pd.Timestamp.utcnow().floor("15min")
+    start = end - pd.Timedelta(days=365*years)
+    probes = pd.date_range(start, end, periods=26)
+    hits = []
+    for t in probes:
+        a = t - pd.Timedelta(seconds=IN.GRAN*IN.MAX)
+        c = IN.get(f"{IN.BASE}/products/{pid}/candles?granularity={IN.GRAN}"
+                   f"&start={a.isoformat()}&end={t.isoformat()}")
+        time.sleep(IN.PAUSE)
+        if c: hits.append(t)
+    if not hits: return None
+    lo = max(hits[0] - pd.Timedelta(days=365*years/25), start)
+    hi = min(hits[-1] + pd.Timedelta(days=365*years/25), end)
+    span = pd.Timedelta(seconds=IN.GRAN*IN.MAX)
+    out = []; t = hi; empty = 0
+    while t > lo:
+        a = max(t-span, lo)
+        c = IN.get(f"{IN.BASE}/products/{pid}/candles?granularity={IN.GRAN}"
+                   f"&start={a.isoformat()}&end={t.isoformat()}")
+        time.sleep(IN.PAUSE)
+        if c: out.extend(c); empty = 0
+        else:
+            empty += 1
+            if empty > 10: break
+        t = a
+    if not out: return None
+    d = pd.DataFrame(out, columns=["t","low","high","open","close","volume"])
+    d = d.drop_duplicates(subset="t").sort_values("t")
+    d.index = pd.to_datetime(d.t, unit="s", utc=True)
+    return d[["open","high","low","close","volume"]].astype(float)
+
+
 def dead_products():
     p = IN.get(f"{IN.BASE}/products")
     if not p: return []
@@ -71,7 +116,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         t0 = time.time()
-        d = IN.fetch(pid)
+        d = fetch_dead(pid)
         if d is None or len(d) < 3000:
             print(f"  [{i}/{len(pids)}] {pid:<14} too little "
                   f"({0 if d is None else len(d)})", flush=True)

@@ -64,7 +64,7 @@ def efficiency(C, w=100):
     return net/np.where(gross > 0, gross, np.nan)
 
 
-def work_range(d, bid_rungs, ask_rungs, max_inv, hold_unsold):
+def work_range(d, bid_rungs, ask_rungs, max_inv, hold_unsold, max_bars=None):
     """Returns a list of (entry_ts, exit_ts, pnl_on_committed, bars_held, how)."""
     C, H, L = d.close.values, d.high.values, d.low.values
     n = len(C); a = atr_np(H, L, C)
@@ -79,6 +79,17 @@ def work_range(d, bid_rungs, ask_rungs, max_inv, hold_unsold):
         if not np.isfinite(a[i]) or a[i] <= 0: continue
         in_range = eff[i] < EFF_CUT
         broke = (C[i] < lo_b[i] - BREAK_ATR*a[i]) or (C[i] > hi_b[i] + BREAK_ATR*a[i])
+        # DK: carrying residual inventory into a second or third oscillation
+        # is the riskiest state - it is exposure held purely in hope while a
+        # crash can arrive. A hard time limit forces the leftovers out.
+        if inv and max_bars is not None and (i - opened_i) >= max_bars:
+            size = sum(s for _, s in inv)
+            cost = sum(p*s for p, s in inv)/size
+            px = C[i]*(1-SLIP-TAKER)
+            out.append((opened, d.index[i], (px/(cost*(1+MK))-1),
+                        i - opened_i, "timeout"))
+            inv = []; opened = None; sold_levels = set()
+            continue
         if inv and (broke or not in_range):
             # liquidate the book at market
             size = sum(s for _, s in inv)
@@ -138,21 +149,42 @@ if __name__ == "__main__":
     data = load()
     print(f"{len(data)} symbols, {TF} bars\n")
     print("WORKING THE RANGE — ladder in, ladder out, hold the remainder\n")
-    BIDS = {
-        "1 bid":  [(1.0, 0.0)],
-        "3 bids": [(0.25, 0.25), (0.35, 0.0), (0.40, -0.35)],
-        "4 bids": [(0.15, 0.30), (0.25, 0.05), (0.30, -0.25), (0.30, -0.55)],
-    }
-    ASKS = {
-        "all at mid":        [(1.0, "mid")],
-        "half mid/half band":[(0.5, "mid"), (1.0, 0.0)],
-        "DK: mid, band, beyond": [(0.4, "mid"), (0.4, 0.0), (1.0, 0.35)],
-    }
-    for bname, bid in BIDS.items():
-        for aname, ask in ASKS.items():
-            res = []
-            for s, d in data.items():
-                if len(d) < 800: continue
-                res += work_range(d, bid, ask, max_inv=1.0, hold_unsold=True)
-            summarise(res, f"{bname:<8} / {aname}")
-        print()
+    BID = [(0.15, 0.30), (0.25, 0.05), (0.30, -0.25), (0.30, -0.55)]
+    ASK = [(0.4, "mid"), (0.4, 0.0), (1.0, 0.35)]
+    print("DK: how costly is carrying residual inventory into later oscillations?")
+    print("4 bids in, scaled exit out. Only the hard time limit on leftovers changes.\n")
+    print(f"  {'limit':<34}{'n':>8}{'per trade':>12}{'t':>8}{'win':>6}"
+          f"{'held':>7}{'breaks':>8}{'worst':>9}{'P1 tail':>9}")
+    rows=[]
+    for mb,lbl in ((8,"force out after  8 bars (2h)"),(16,"force out after 16 bars (4h)"),
+                   (24,"force out after 24 bars (6h)"),(48,"force out after 48 bars (12h)"),
+                   (96,"force out after 96 bars (24h)"),(None,"no limit - hold indefinitely")):
+        res=[]
+        for s,d in data.items():
+            if len(d)<800: continue
+            res += work_range(d, BID, ASK, max_inv=1.0, hold_unsold=True, max_bars=mb)
+        if len(res)<50: continue
+        R=pd.DataFrame(res,columns=["open","close","ret","bars","how"])
+        m=R.ret.mean(); t=m/(R.ret.std(ddof=1)/np.sqrt(len(R)))
+        brk=R[R.how.isin(["break","trend","timeout"])]
+        p1=R.ret.quantile(0.01)
+        print(f"  {lbl:<34}{len(R):>8}{m*100:>+11.4f}%{t:>+8.2f}"
+              f"{(R.ret>0).mean()*100:>5.0f}%{R.bars.median():>7.0f}"
+              f"{len(brk)/len(R)*100:>7.0f}%{R.ret.min()*100:>+8.1f}%{p1*100:>+8.2f}%")
+        rows.append((lbl,m,t,R))
+    print("\n  'P1 tail' is the 1st-percentile trade: the bad day you must survive.")
+    print("\n  WHERE THE MONEY COMES FROM, by how long the position was carried:")
+    res=[]
+    for s,d in data.items():
+        if len(d)<800: continue
+        res += work_range(d, BID, ASK, max_inv=1.0, hold_unsold=True)
+    R=pd.DataFrame(res,columns=["open","close","ret","bars","how"])
+    R["band"]=pd.cut(R.bars,[0,8,16,32,64,10**6],
+                     labels=["<=8 bars","9-16","17-32","33-64",">64"])
+    tot=R.ret.sum()
+    print(f"  {'held for':<12}{'n':>8}{'share of trades':>17}{'mean':>10}"
+          f"{'total P&L':>12}{'share of P&L':>14}{'worst':>9}")
+    for b,g in R.groupby("band",observed=True):
+        print(f"  {str(b):<12}{len(g):>8}{len(g)/len(R)*100:>16.0f}%"
+              f"{g.ret.mean()*100:>+9.3f}%{g.ret.sum()*100:>+11.1f}%"
+              f"{g.ret.sum()/tot*100:>13.0f}%{g.ret.min()*100:>+8.1f}%")
