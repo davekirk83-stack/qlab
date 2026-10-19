@@ -1,0 +1,44 @@
+
+4-HOUR bars, cross 20/50 LONG, 27 coins. edge = real minus random (same exit); yrs+ = years real beats random
+  gate           exit           n   per ep      t   win    ctrl    edge coins>ctrl  yrs+
+  none           scaled     2,394  +0.024%   +0.3   51% -0.124% +0.148        52%   4/6
+  none           hold 12    2,394  +0.129%   +0.9   46% +0.378% -0.249        41%   3/6
+  btc bull       scaled     1,477  +0.223%   +1.9   53% -0.366% +0.589        81%   5/6
+  btc bull       hold 12    1,477  +0.452%   +2.4   47% -0.035% +0.486        70%   3/6
+  slope          scaled     1,976  +0.060%   +0.6   51% -0.205% +0.266        63%   3/6
+  slope          hold 12    1,976  +0.175%   +1.1   46% +0.008% +0.168        56%   4/6
+  confirmed      scaled         0 too few
+  confirmed      hold 12        0 too few
+  pullback       scaled     1,918  -0.364%   -3.1   48% -0.213% -0.152        30%   3/6
+  pullback       hold 12    1,918  -0.244%   -1.6   44% +0.231% -0.475        33%   1/6
+  bull+pullback  scaled     1,200  -0.137%   -0.9   49% -0.316% +0.179        63%   3/6
+  bull+pullback  hold 12    1,200  +0.194%   +1.0   47% -0.024% +0.218        59%   2/6
+  alts only      scaled     2,190  +0.016%   +0.2   51% -0.079% +0.094        52%   3/6
+  alts only      hold 12    2,190  +0.124%   +0.8   46% +0.165% -0.040        52%   4/6
+  majors only    scaled       204  +0.116%   +0.5   52% +0.115% +0.001        50%   3/6
+  majors only    hold 12      204  +0.183%   +0.6   49% +0.315% -0.132        50%   1/6
+  week4          scaled       498  -0.204%   -1.1   51% -0.049% -0.155        37%   2/6
+  week4          hold 12      498  -0.298%   -1.0   43% -0.566% +0.269        56%   4/6
+  not US         scaled     1,616  -0.033%   -0.3   50% -0.377% +0.344        63%   4/6
+  not US         hold 12    1,616  +0.023%   +0.1   45% -0.148% +0.172        44%   5/6
+
+DAILY bars, cross 20/50 LONG, 27 coins. edge = real minus random (same exit); yrs+ = years real beats random
+  gate           exit           n   per ep      t   win    ctrl    edge coins>ctrl  yrs+
+  none           scaled       352  -0.670%   -1.1   47% +0.033% -0.703        44%   1/5
+  none           hold 10      352  +0.175%   +0.2   42% +1.254% -1.079        44%   1/5
+  btc bull       scaled       247  -0.847%   -1.2   47% -0.145% -0.702        44%   1/5
+  btc bull       hold 10      247  +1.494%   +1.2   43% +2.333% -0.839        56%   3/5
+  slope          scaled       299  -0.458%   -0.7   49% +0.349% -0.807        41%   1/5
+  slope          hold 10      299  +0.792%   +0.8   44% +0.697% +0.095        56%   2/5
+  confirmed      scaled         0 too few
+  confirmed      hold 10        0 too few
+  pullback       scaled       279  +1.656%   +1.8   55% +0.259% +1.397        63%   4/5
+  pullback       hold 10      279  +2.427%   +2.4   48% +1.655% +0.772        52%   3/5
+  bull+pullback  scaled       208  +2.462%   +2.5   59% +0.016% +2.446        67%   4/5
+  bull+pullback  hold 10      208  +4.696%   +3.9   54% +1.906% +2.790        63%   3/5
+  alts only      scaled       323  -0.605%   -1.0   48% -0.162% -0.443        48%   1/5
+  alts only      hold 10      323  +0.372%   +0.3   42% +1.010% -0.637        56%   2/5
+  majors only    scaled        29 too few
+  majors only    hold 10       29 too few
+  week4          scaled        83  -0.757%   -0.6   48% -1.695% +0.939        35%   3/5
+  week4          hold 10       83  +0.482%   +0.3   43% -1.298% +1.780        58%   3/5
