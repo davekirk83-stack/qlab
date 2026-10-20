@@ -20,7 +20,7 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from trading_ig import IGService, IGStreamService
-from trading_ig.lightstreamer import Subscription
+from lightstreamer.client import Subscription
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.IFD.IP")
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
