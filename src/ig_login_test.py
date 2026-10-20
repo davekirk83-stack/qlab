@@ -6,7 +6,7 @@ out = "runs/ig_login_test.txt"; os.makedirs("runs", exist_ok=True)
 now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 try:
     u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME","IG_PASSWORD","IG_API_KEY"))
-    if not (u and p and k): raise RuntimeError("one or more secrets are empty")
+    if not (u and p and k): raise RuntimeError(f"one or more secrets are empty (username set={bool(u)}, password set={bool(p)}, key set={bool(k)})")
     h = {"X-IG-API-KEY": k, "Content-Type": "application/json; charset=UTF-8", "Accept": "application/json; charset=UTF-8", "Version": "2"}
     r = requests.post(f"{BASE}/session", headers=h, data=json.dumps({"identifier": u, "password": p}), timeout=30)
     if r.status_code != 200:
