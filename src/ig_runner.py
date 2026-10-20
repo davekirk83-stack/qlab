@@ -20,7 +20,7 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from trading_ig import IGService, IGStreamService
-from lightstreamer.client import Subscription, SubscriptionListener
+from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.IFD.IP")
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
@@ -38,7 +38,7 @@ class Runner:
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
         self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
-        sess = self.ig.create_session(); self.session_acc = sess.get("currentAccountId")
+        sess = self.ig.create_session(); self.session_acc = sess.get("currentAccountId"); self.ls_endpoint = sess.get("lightstreamerEndpoint")
         accs = self.ig.fetch_accounts()["accounts"]
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
@@ -46,7 +46,7 @@ class Runner:
         if self.session_acc != self.acc:
             try:
                 self.ig.switch_account(self.acc, True); log(f"switched session from {self.session_acc} to spread-bet account {self.acc}")
-                sess = self.ig.read_session() if hasattr(self.ig, "read_session") else {}; self.session_acc = (sess or {}).get("accountId", self.acc)
+                self.session_acc = self.acc
             except Exception as e: log("switch_account:", e); self.session_acc = self.session_acc or self.acc
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.expiry = mkt["instrument"]["expiry"]; self.ccy = mkt["instrument"]["currencies"][0]["code"]
@@ -188,7 +188,14 @@ class Runner:
 
     # ---------------------------------------------------------------- loop
     def run(self):
-        stream = IGStreamService(self.ig); stream.acc_number = self.session_acc; log('stream user', self.session_acc); stream.create_session()
+        # stream on the EXISTING session (IGStreamService.create_session would log in again and reset the account)
+        cst = self.ig.session.headers["CST"]; xst = self.ig.session.headers["X-SECURITY-TOKEN"]
+        ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.session_acc); ls.connectionDetails.setPassword(f"CST-{cst}|XST-{xst}")
+        ls.connect(); log("stream user", self.session_acc, "endpoint", self.ls_endpoint)
+        class _S:  # minimal shim with the two methods used below
+            def subscribe(self, sub): ls.subscribe(sub)
+            def disconnect(self): ls.disconnect()
+        stream = _S()
         sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"])
         runner = self
         class L(SubscriptionListener):
