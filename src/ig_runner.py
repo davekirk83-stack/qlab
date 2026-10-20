@@ -227,8 +227,28 @@ class Runner:
                 last_check = time.time()
                 if self.pos and not self.dry: self.check_closed_by_ig()
                 if self.cur and (utcnow() - self.cur["ts"]).total_seconds() > BAR*60 + 20: self.close_bar(); self.cur = None
-        if self.pos and utcnow().hour >= 21: self.close("session_end")
+        if self.pos: self.close("session_end")
         self.save(); self.ls.disconnect(); log("done; ticks", self.ticks, "bars", len(self.bars))
+
+
+def order_test(r):
+    """DEMO ONLY: open the minimum position with stop/limit attached, move the stop, close at market. Proves the order path."""
+    d = P7.features(r.bars); row = d.iloc[-1]; atr = float(row.atr) if not np.isnan(row.atr) else 30.0
+    log(f"ORDER TEST on demo {r.acc}: BUY {r.size}/pt, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
+    res = r.ig.create_open_position(currency_code=r.ccy, direction="BUY", epic=EPIC, expiry=r.expiry, force_open=True, guaranteed_stop=False, level=None,
+                                    limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=r.size,
+                                    stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
+    log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel")})
+    if res.get("dealStatus") != "ACCEPTED": return
+    time.sleep(3); lvl = float(res["level"])
+    up = r.ig.update_open_position(limit_level=None, stop_level=round(lvl - P7.STOP + 5, 1), deal_id=res["dealId"])
+    log("move stop ->", {k: up.get(k) for k in ("dealStatus", "reason", "stopLevel")})
+    time.sleep(3)
+    cl = r.ig.close_open_position(deal_id=res["dealId"], direction="SELL", epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=r.size)
+    log("close ->", {k: cl.get(k) for k in ("dealStatus", "reason", "level", "profit", "profitCurrency")})
+    try:
+        pts = float(cl["level"]) - lvl; log(f"round trip: in {lvl} out {cl['level']} = {pts:+.1f} pts (spread cost) in {time.time():.0f}")
+    except Exception: pass
 
 
 if __name__ == "__main__":
@@ -236,6 +256,8 @@ if __name__ == "__main__":
     dry = "--dry" in sys.argv
     end = utcnow() + dt.timedelta(minutes=minutes)
     try:
+        if "--order-test" in sys.argv:
+            r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
         Runner(end, dry).run()
     except Exception:
         log("FATAL", traceback.format_exc())
