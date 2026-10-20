@@ -39,6 +39,8 @@ class Runner:
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
         self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
         sess = self.ig.create_session(); self.session_acc = sess.get("currentAccountId"); self.ls_endpoint = sess.get("lightstreamerEndpoint")
+        # stream credentials are taken from THIS first session (the default demo account), before any account switch
+        self.stream_acc = self.session_acc; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
         accs = self.ig.fetch_accounts()["accounts"]
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
@@ -189,13 +191,12 @@ class Runner:
     # ---------------------------------------------------------------- loop
     def run(self):
         # stream on the EXISTING session (IGStreamService.create_session would log in again and reset the account)
-        cst = self.ig.session.headers["CST"]; xst = self.ig.session.headers["X-SECURITY-TOKEN"]
-        ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.session_acc); ls.connectionDetails.setPassword(f"CST-{cst}|XST-{xst}")
+        ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.stream_acc); ls.connectionDetails.setPassword(self.stream_pw)
         runner = self
         class CL(ClientListener):
             def onStatusChange(self, status): log("ls status:", status)
             def onServerError(self, code, message): log("ls server error:", code, message)
-        ls.addListener(CL()); ls.connect(); log("stream user", self.session_acc, "endpoint", self.ls_endpoint)
+        ls.addListener(CL()); ls.connect(); log("stream user", self.stream_acc, "endpoint", self.ls_endpoint)
         class _S:  # minimal shim with the two methods used below
             def subscribe(self, sub): ls.subscribe(sub)
             def disconnect(self): ls.disconnect()
