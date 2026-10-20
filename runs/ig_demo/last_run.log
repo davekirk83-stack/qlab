@@ -1,5 +1,5 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 23, in <module>
-    from trading_ig.lightstreamer import Subscription
-ModuleNotFoundError: No module named 'trading_ig.lightstreamer'
+10:48:17 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+10:48:35 history 300 bars to 2026-10-20 10:48:00+00:00
+10:48:36 streaming IX.D.NASDAQ.IFD.IP
+10:58:17 done; ticks 0 bars 300
