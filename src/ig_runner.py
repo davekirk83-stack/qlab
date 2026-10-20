@@ -234,12 +234,19 @@ class Runner:
 def order_test(r):
     """DEMO ONLY: open the minimum position with stop/limit attached, move the stop, close at market. Proves the order path."""
     d = P7.features(r.bars); row = d.iloc[-1]; atr = float(row.atr) if not np.isnan(row.atr) else 30.0
-    log(f"ORDER TEST on demo {r.acc}: BUY {r.size}/pt, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
-    res = r.ig.create_open_position(currency_code=r.ccy, direction="BUY", epic=EPIC, expiry=r.expiry, force_open=True, guaranteed_stop=False, level=None,
-                                    limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=r.size,
-                                    stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
-    log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel")})
-    if res.get("dealStatus") != "ACCEPTED": return
+    for a in r.ig.fetch_accounts()["accounts"]:
+        log("account", a["accountId"], a["accountType"], a.get("currency"), "balance", a.get("balance"), "preferred", a.get("preferred"), "status", a.get("status"))
+    mkt = r.ig.fetch_market_by_epic(EPIC); curs = [c["code"] for c in mkt["instrument"]["currencies"]]; rules = mkt["dealingRules"]
+    log("market currencies", curs, "min size", rules["minDealSize"], "min stop", rules.get("minNormalStopOrLimitDistance"), "status", mkt["snapshot"]["marketStatus"])
+    res = None
+    for ccy in (["GBP"] if "GBP" in curs else []) + [c for c in curs if c != "GBP"]:
+        log(f"ORDER TEST on demo {r.acc}: BUY {r.size}/pt in {ccy}, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
+        res = r.ig.create_open_position(currency_code=ccy, direction="BUY", epic=EPIC, expiry=r.expiry, force_open=True, guaranteed_stop=False, level=None,
+                                        limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=r.size,
+                                        stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
+        log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel")})
+        if res.get("dealStatus") == "ACCEPTED": r.ccy = ccy; break
+    if not res or res.get("dealStatus") != "ACCEPTED": return
     time.sleep(3); lvl = float(res["level"])
     up = r.ig.update_open_position(limit_level=None, stop_level=round(lvl - P7.STOP + 5, 1), deal_id=res["dealId"])
     log("move stop ->", {k: up.get(k) for k in ("dealStatus", "reason", "stopLevel")})
