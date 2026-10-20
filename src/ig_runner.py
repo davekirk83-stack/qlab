@@ -22,7 +22,8 @@ import paperbook7 as P7
 from trading_ig import IGService, IGStreamService
 from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
 
-EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.IFD.IP")
+EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.CASH.IP")   # US Tech 100, daily funded SPREAD BET (GBP per point); IX.D.NASDAQ.IFD.IP is the CFD
+SIZE = float(os.environ.get("IG_SIZE", "1.0"))               # £ per point on the demo (doc 99 sizing)
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
 STATE = f"{OUT}/state.json"; TRADES = f"{OUT}/trades.csv"
 US_OPEN, US_CLOSE = 13*60+30, 20*60
@@ -44,7 +45,7 @@ class Runner:
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]; cfd = [a for a in accs if a["accountType"] == "CFD"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
         self.acc = sb[0]["accountId"]
-        want_px = cfd[0]["accountId"] if (cfd and os.environ.get("IG_STREAM_VIA_CFD", "1") == "1") else self.acc
+        want_px = cfd[0]["accountId"] if (cfd and os.environ.get("IG_STREAM_VIA_CFD", "0") == "1") else self.acc
         if cur != want_px: self.ig.switch_account(want_px, False); cur = want_px
         self.stream_acc = cur; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
         self.ig_px = self.ig
@@ -60,7 +61,7 @@ class Runner:
             self.ig.switch_account(self.acc, True)
         self.session_acc = self.acc; log("trading session on", self.session_acc)
         mkt = self.ig.fetch_market_by_epic(EPIC)
-        self.size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.expiry = mkt["instrument"]["expiry"]; self.ccy = mkt["instrument"]["currencies"][0]["code"]
+        self.size = max(SIZE, float(mkt["dealingRules"]["minDealSize"]["value"])); self.expiry = mkt["instrument"]["expiry"]; cc = [c["code"] for c in mkt["instrument"]["currencies"]]; self.ccy = "GBP" if "GBP" in cc else cc[0]
         log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
         self.state = json.load(open(STATE)) if os.path.exists(STATE) else {}
         today = utcnow().strftime("%Y-%m-%d")
@@ -238,25 +239,13 @@ def order_test(r):
         log("account", a["accountId"], a["accountType"], a.get("currency"), "balance", a.get("balance"), "preferred", a.get("preferred"), "status", a.get("status"))
     mkt = r.ig.fetch_market_by_epic(EPIC); curs = [c["code"] for c in mkt["instrument"]["currencies"]]; rules = mkt["dealingRules"]
     log("market currencies", curs, "min size", rules["minDealSize"], "min stop", rules.get("minNormalStopOrLimitDistance"), "status", mkt["snapshot"]["marketStatus"])
-    cands = []
-    for m in r.ig.search_markets("US Tech 100")["markets"]:
-        if "Tech 100" in m.get("instrumentName", ""):
-            mk = r.ig.fetch_market_by_epic(m["epic"]); ins = mk["instrument"]
-            cc = [c["code"] for c in ins["currencies"]]
-            log("candidate", m["epic"], ins["name"], ins.get("type"), "expiry", ins.get("expiry"), "ccy", cc, "min", mk["dealingRules"]["minDealSize"]["value"], mk["snapshot"]["marketStatus"])
-            cands.append((m["epic"], ins.get("expiry"), cc, float(mk["dealingRules"]["minDealSize"]["value"])))
-    res = None; used = None
-    for epic, expiry, cc, msize in sorted(cands, key=lambda x: ("GBP" not in x[2], x[0] != EPIC)):
-        if "GBP" not in cc and epic != EPIC: continue
-        ccy = "GBP" if "GBP" in cc else cc[0]
-        log(f"ORDER TEST on demo {r.acc}: BUY {msize}/pt {epic} in {ccy}, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
-        res = r.ig.create_open_position(currency_code=ccy, direction="BUY", epic=epic, expiry=expiry, force_open=True, guaranteed_stop=False, level=None,
-                                        limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=msize,
-                                        stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
-        log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel", "dealReference")})
-        if res.get("dealStatus") == "ACCEPTED": r.ccy = ccy; r.size = msize; used = epic; break
-    if not res or res.get("dealStatus") != "ACCEPTED": return
-    log("WORKING EPIC for spread bet:", used)
+    log(f"ORDER TEST on demo {r.acc}: BUY {r.size}/pt {EPIC} in {r.ccy}, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
+    res = r.ig.create_open_position(currency_code=r.ccy, direction="BUY", epic=EPIC, expiry=r.expiry, force_open=True, guaranteed_stop=False, level=None,
+                                    limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=r.size,
+                                    stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
+    log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel", "dealReference")})
+    if res.get("dealStatus") != "ACCEPTED": return
+
     time.sleep(3); lvl = float(res["level"])
     up = r.ig.update_open_position(limit_level=None, stop_level=round(lvl - P7.STOP + 5, 1), deal_id=res["dealId"])
     log("move stop ->", {k: up.get(k) for k in ("dealStatus", "reason", "stopLevel")})
