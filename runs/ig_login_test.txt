@@ -1,1 +1,1 @@
-FAIL 2026-10-20 10:31 UTC — login HTTP 400: validation.pattern.invalid.authenticationRequest.identifier (key length 40, hex=True, user length 23)
+FAIL 2026-10-20 10:32 UTC — login HTTP 401: error.security.invalid-details (key length 40, hex=True, user length 17)
