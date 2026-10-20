@@ -8,3 +8,7 @@ __pycache__/
 # Exception: the compact 15-minute cache the paper books run from in a fresh container (~1MB)
 !data_15m_cache/
 !data_15m_cache/*.csv.gz
+
+# Exception: the Nasdaq 5-minute bar cache the Ignition book replays from (Dukascopy rebuild is ~70h)
+!data_nq_cache/
+!data_nq_cache/*.csv
