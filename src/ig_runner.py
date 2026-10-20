@@ -38,14 +38,16 @@ class Runner:
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
         self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
-        self.ig.create_session()
+        sess = self.ig.create_session(); self.session_acc = sess.get("currentAccountId")
         accs = self.ig.fetch_accounts()["accounts"]
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
         self.acc = sb[0]["accountId"]
-        if not sb[0].get("preferred", False):
-            try: self.ig.switch_account(self.acc, False)
-            except Exception as e: log("switch_account:", e)
+        if self.session_acc != self.acc:
+            try:
+                self.ig.switch_account(self.acc, True); log(f"switched session from {self.session_acc} to spread-bet account {self.acc}")
+                sess = self.ig.read_session() if hasattr(self.ig, "read_session") else {}; self.session_acc = (sess or {}).get("accountId", self.acc)
+            except Exception as e: log("switch_account:", e); self.session_acc = self.session_acc or self.acc
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.expiry = mkt["instrument"]["expiry"]; self.ccy = mkt["instrument"]["currencies"][0]["code"]
         log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
@@ -186,7 +188,7 @@ class Runner:
 
     # ---------------------------------------------------------------- loop
     def run(self):
-        stream = IGStreamService(self.ig); stream.acc_number = self.acc; stream.create_session()
+        stream = IGStreamService(self.ig); stream.acc_number = self.session_acc; log('stream user', self.session_acc); stream.create_session()
         sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"])
         runner = self
         class L(SubscriptionListener):
