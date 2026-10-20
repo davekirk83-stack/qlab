@@ -20,7 +20,7 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from trading_ig import IGService, IGStreamService
-from lightstreamer.client import Subscription
+from lightstreamer.client import Subscription, SubscriptionListener
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.IFD.IP")
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
@@ -186,9 +186,15 @@ class Runner:
 
     # ---------------------------------------------------------------- loop
     def run(self):
-        stream = IGStreamService(self.ig); stream.create_session()
+        stream = IGStreamService(self.ig); stream.acc_number = self.acc; stream.create_session()
         sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"])
-        sub.addListener(type("L", (), {"onItemUpdate": lambda _s, u: self.on_tick({"BID": u.getValue("BID"), "OFR": u.getValue("OFR")})})())
+        runner = self
+        class L(SubscriptionListener):
+            def onItemUpdate(self, u):
+                runner.ticks += 1; runner.on_tick({"BID": u.getValue("BID"), "OFR": u.getValue("OFR")})
+            def onSubscriptionError(self, code, message): log("subscription error", code, message)
+            def onSubscription(self): log("subscribed")
+        sub.addListener(L())
         stream.subscribe(sub); log("streaming", EPIC)
         last_check = time.time()
         while utcnow() < self.end:
