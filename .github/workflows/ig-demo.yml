@@ -1,0 +1,35 @@
+name: IG demo runner (Ignition v1, US hours, DEMO ONLY)
+on:
+  workflow_dispatch:
+    inputs:
+      minutes: { description: "how long to run", default: "60" }
+      dry: { description: "dry run (no orders)", default: "false" }
+  push:
+    paths: ["runs/ig_demo/trigger.txt"]
+permissions:
+  contents: write
+concurrency: ig-demo
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q trading-ig pandas numpy
+      - name: Run (demo account only; secrets never printed)
+        env:
+          IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
+          IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
+        run: |
+          ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
+          if [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
+          [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
+          python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "ig-runner"; git config user.email "ig-runner@users.noreply.github.com"
+          git add runs/ig_demo; git commit -m "ig demo run $(date -u +%Y-%m-%dT%H:%M)" || true; git pull --rebase -q; git push
