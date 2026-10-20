@@ -21,3 +21,4 @@ except Exception as e:
     line = f"FAIL {now} — {e}"
 open(out, "w").write(line + "\n"); print(line)
 # rerun 10:20
+# rerun 10:31
