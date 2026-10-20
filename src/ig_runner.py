@@ -49,6 +49,7 @@ class Runner:
         self.stream_acc = cur; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
         self.ig_px = self.ig
         self.feed = None; self.ticks = 0; self.cur = None; self.last_sign = 0; self.bars = pd.DataFrame()
+        self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
         self.open_stream()
         for _ in range(20):
             if self.feed: break
@@ -65,8 +66,7 @@ class Runner:
         today = utcnow().strftime("%Y-%m-%d")
         if self.state.get("day") != today: self.state = {"day": today, "ntr": 0, "dpl": 0.0, "last_exit_bar": None}
         self.pos = None; self.recover_position()
-        hist = self.history(); self.bars = pd.concat([hist, self.bars]) if len(self.bars) else hist
-        log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
+
 
     # ---------------------------------------------------------------- data
     def history(self):
@@ -98,6 +98,7 @@ class Runner:
 
     def close_bar(self):
         c = self.cur
+        log(f"bar {c['ts']:%H:%M} o {c['open']:.1f} h {c['high']:.1f} l {c['low']:.1f} c {c['close']:.1f} ticks {c['vol']} delta {c['delta']:+.0f}")
         row = pd.DataFrame([dict(open=c["open"], high=c["high"], low=c["low"], close=c["close"], vol=c["vol"], delta=c["delta"], spread=c["spread_sum"]/max(c["vol"], 1))], index=[pd.Timestamp(c["ts"])])
         self.bars = pd.concat([self.bars, row]); self.bars = self.bars[~self.bars.index.duplicated(keep="last")].tail(600)
         with open(f"{OUT}/bars_{c['ts'].strftime('%Y-%m-%d')}.csv", "a") as f:
@@ -207,9 +208,11 @@ class Runner:
         class L(SubscriptionListener):
             def __init__(self, name, bidf, ofrf): self.name, self.bidf, self.ofrf = name, bidf, ofrf
             def onItemUpdate(self, u):
-                runner.ticks += 1
-                if runner.ticks <= 3: log(self.name, "update:", {f: u.getValue(f) for f in (self.bidf, self.ofrf)})
-                if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)})
+                try:
+                    runner.ticks += 1
+                    if runner.ticks <= 3: log(self.name, "update:", {f: u.getValue(f) for f in (self.bidf, self.ofrf)})
+                    if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)})
+                except Exception: log("on_tick error:", traceback.format_exc())
             def onSubscriptionError(self, code, message): log(self.name, "subscription error", code, message)
             def onSubscription(self): log(self.name, "subscribed"); runner.feed = runner.feed or self.name
         sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"]); sub.addListener(L("CHART", "BID", "OFR"))
