@@ -1,1 +1,1 @@
-FAIL 2026-10-20 10:40 UTC — one or more secrets are empty
+ok 2026-10-20 10:40 UTC — demo login good; 2 demo account(s) ['CFD', 'SPREADBET']; US Tech 100 epics: ['IX.D.NASDAQ.IFD.IP', 'IX.D.NASDAQ.IFM.IP', 'IX.D.NASDAQ.FWS1.IP', 'IX.D.NASDAQ.FWM1.IP', 'IX.D.NASDAQ.IFS.IP', 'IX.D.SUNNAS.IFS.IP']
