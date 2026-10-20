@@ -1,6 +1,8 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-10:59:29 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
-10:59:47 history 300 bars to 2026-10-20 10:59:00+00:00
-10:59:48 streaming IX.D.NASDAQ.IFD.IP
-10:59:49 subscription error -1 Invalid account type
-11:07:29 done; ticks 0 bars 300
+11:08:31 switched session from Z6FARV to spread-bet account Z6FARW
+11:08:31 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+11:08:48 history 300 bars to 2026-10-20 11:08:00+00:00
+11:08:48 stream user Z6FARW
+11:08:49 streaming IX.D.NASDAQ.IFD.IP
+11:08:49 subscription error -1 Invalid account type
+11:16:31 done; ticks 0 bars 300
