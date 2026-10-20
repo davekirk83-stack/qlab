@@ -27,7 +27,7 @@ jobs:
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
           if [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
-          python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
+          QLAB_ROOT=$PWD python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
       - name: Commit results
         if: always()
         run: |

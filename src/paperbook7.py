@@ -23,7 +23,8 @@ import warnings; warnings.filterwarnings("ignore")
 import os, sys, json, glob
 import numpy as np, pandas as pd
 sys.path.insert(0, "/home/claude/qlab/src")
-RUNS = "/home/claude/qlab/runs"; CACHE = "/home/claude/qlab/data_nq_cache"; os.makedirs(CACHE, exist_ok=True); os.makedirs(RUNS, exist_ok=True)
+ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); RUNS = f"{ROOT}/runs"; CACHE = f"{ROOT}/data_nq_cache"
+if os.access(os.path.dirname(ROOT) if os.path.exists(os.path.dirname(ROOT)) else "/", os.W_OK): os.makedirs(CACHE, exist_ok=True); os.makedirs(RUNS, exist_ok=True)
 STATE = f"{RUNS}/paper7_state.json"; BARS = f"{CACHE}/nq_5m.csv"
 START_DATE = "2026-10-19"; START = 2000.0; PT = 2.0
 IGN, DSHARE = 1.25, 0.05
