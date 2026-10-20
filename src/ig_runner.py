@@ -265,6 +265,8 @@ if __name__ == "__main__":
         if "--order-test" in sys.argv:
             r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
         Runner(end, dry).run()
+    except SystemExit: pass
     except Exception:
         log("FATAL", traceback.format_exc())
         open(f"{OUT}/last_error.txt", "w").write(traceback.format_exc())
+    sys.stdout.flush(); os._exit(0)   # daemon stream threads otherwise trip a lock at interpreter shutdown

@@ -12,3 +12,4 @@ __pycache__/
 # Exception: the Nasdaq 5-minute bar cache the Ignition book replays from (Dukascopy rebuild is ~70h)
 !data_nq_cache/
 !data_nq_cache/*.csv
+runs/ig_demo/trigger.txt

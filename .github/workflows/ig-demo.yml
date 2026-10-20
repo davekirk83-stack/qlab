@@ -6,6 +6,9 @@ on:
       dry: { description: "dry run (no orders)", default: "false" }
   push:
     paths: ["runs/ig_demo/trigger.txt"]
+  schedule:
+    - cron: "25 13 * * 1-5"   # 13:25 UTC: first half of the US session (runs 215 min, to ~17:00)
+    - cron: "58 16 * * 1-5"   # 16:58 UTC: second half (runs 245 min, to ~21:03; flattens at the end)
 permissions:
   contents: write
 concurrency: ig-demo
@@ -25,7 +28,8 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
         run: |
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
-          if [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then H=$(date -u +%H); if [ "$H" -lt 15 ]; then ARGS=215; else ARGS=245; fi; DRY=""
+          elif [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
           [ "$DRY" = "--order-test" ] && DRYF="--order-test"
           QLAB_ROOT=$PWD python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
