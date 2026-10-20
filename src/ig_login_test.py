@@ -10,7 +10,15 @@ try:
     h = {"X-IG-API-KEY": k, "Content-Type": "application/json; charset=UTF-8", "Accept": "application/json; charset=UTF-8", "Version": "2"}
     r = requests.post(f"{BASE}/session", headers=h, data=json.dumps({"identifier": u, "password": p}), timeout=30)
     if r.status_code != 200:
-        raise RuntimeError(f"login HTTP {r.status_code}: {r.json().get('errorCode', r.text[:80])} (key length {len(k)}, hex={all(c in '0123456789abcdef' for c in k)}, user length {len(u)})")
+        # fallback: version 3 (OAuth-style) session, in case v2 is refused for this account type
+        h3 = {**h, "Version": "3"}
+        r3 = requests.post(f"{BASE}/session", headers=h3, data=json.dumps({"identifier": u, "password": p}), timeout=30)
+        if r3.status_code == 200:
+            tok = r3.json(); h2 = {**h, "Authorization": f"Bearer {tok['oauthToken']['access_token']}", "IG-ACCOUNT-ID": tok["accountId"], "Version": "1"}
+            a = requests.get(f"{BASE}/accounts", headers=h2, timeout=30).json().get("accounts", [])
+            line = f"ok {now} — demo login good via v3; {len(a)} demo account(s) {sorted({x.get('accountType','?') for x in a})}"
+            open(out, "w").write(line + "\n"); print(line); raise SystemExit(0)
+        raise RuntimeError(f"login HTTP {r.status_code}: {r.json().get('errorCode', r.text[:80])} (v3: HTTP {r3.status_code} {r3.json().get('errorCode', '') if r3.headers.get('content-type','').startswith('application/json') else ''}; key length {len(k)}, user length {len(u)}, pw length {len(p)})")
     h2 = {**h, "CST": r.headers["CST"], "X-SECURITY-TOKEN": r.headers["X-SECURITY-TOKEN"], "Version": "1"}
     a = requests.get(f"{BASE}/accounts", headers=h2, timeout=30).json().get("accounts", [])
     kinds = sorted({x.get("accountType", "?") for x in a})
