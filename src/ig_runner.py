@@ -37,24 +37,27 @@ class Runner:
     def __init__(self, end_utc, dry):
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-        # SESSION 1 — prices only: logged in on the CFD demo account (the original default), never switched afterwards
-        self.ig_px = IGService(u, p, k, acc_type="demo", return_dataframe=False)
-        sess = self.ig_px.create_session(); self.ls_endpoint = sess.get("lightstreamerEndpoint"); px_acc = sess.get("currentAccountId")
-        accs = self.ig_px.fetch_accounts()["accounts"]
+        # ONE session. Step 1: on the CFD demo account, open the price stream and confirm the subscription.
+        self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
+        sess = self.ig.create_session(); self.ls_endpoint = sess.get("lightstreamerEndpoint"); cur = sess.get("currentAccountId")
+        accs = self.ig.fetch_accounts()["accounts"]
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]; cfd = [a for a in accs if a["accountType"] == "CFD"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
         self.acc = sb[0]["accountId"]
         want_px = cfd[0]["accountId"] if (cfd and os.environ.get("IG_STREAM_VIA_CFD", "1") == "1") else self.acc
-        if px_acc != want_px:
-            self.ig_px.switch_account(want_px, False); px_acc = want_px
-        self.stream_acc = px_acc; self.stream_pw = f"CST-{self.ig_px.session.headers['CST']}|XST-{self.ig_px.session.headers['X-SECURITY-TOKEN']}"
-        log("price session on", self.stream_acc)
-        # SESSION 2 — trading: a separate login, switched to the spread-bet account
-        self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
-        sess2 = self.ig.create_session(); self.session_acc = sess2.get("currentAccountId")
-        if self.session_acc != self.acc:
-            self.ig.switch_account(self.acc, True); self.session_acc = self.acc
-        log("trading session on", self.session_acc)
+        if cur != want_px: self.ig.switch_account(want_px, False); cur = want_px
+        self.stream_acc = cur; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
+        self.ig_px = self.ig
+        self.feed = None; self.ticks = 0; self.cur = None; self.last_sign = 0; self.bars = pd.DataFrame()
+        self.open_stream()
+        for _ in range(20):
+            if self.feed: break
+            time.sleep(0.5)
+        log("stream", "subscribed on " + self.feed if self.feed else "NOT subscribed", "via", self.stream_acc)
+        # Step 2: switch the REST session to the spread-bet account for orders
+        if cur != self.acc:
+            self.ig.switch_account(self.acc, True)
+        self.session_acc = self.acc; log("trading session on", self.session_acc)
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.expiry = mkt["instrument"]["expiry"]; self.ccy = mkt["instrument"]["currencies"][0]["code"]
         log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
@@ -62,7 +65,7 @@ class Runner:
         today = utcnow().strftime("%Y-%m-%d")
         if self.state.get("day") != today: self.state = {"day": today, "ntr": 0, "dpl": 0.0, "last_exit_bar": None}
         self.pos = None; self.recover_position()
-        self.bars = self.history(); self.cur = None; self.ticks = 0; self.last_sign = 0
+        hist = self.history(); self.bars = pd.concat([hist, self.bars]) if len(self.bars) else hist
         log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
 
     # ---------------------------------------------------------------- data
@@ -194,18 +197,13 @@ class Runner:
         json.dump(self.state, open(STATE, "w"), indent=1)
 
     # ---------------------------------------------------------------- loop
-    def run(self):
-        # stream on the EXISTING session (IGStreamService.create_session would log in again and reset the account)
-        ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.stream_acc); ls.connectionDetails.setPassword(self.stream_pw)
+    def open_stream(self):
         runner = self
+        ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.stream_acc); ls.connectionDetails.setPassword(self.stream_pw)
         class CL(ClientListener):
             def onStatusChange(self, status): log("ls status:", status)
             def onServerError(self, code, message): log("ls server error:", code, message)
         ls.addListener(CL()); ls.connect(); log("stream user", self.stream_acc, "endpoint", self.ls_endpoint)
-        class _S:  # minimal shim with the two methods used below
-            def subscribe(self, sub): ls.subscribe(sub)
-            def disconnect(self): ls.disconnect()
-        stream = _S()
         class L(SubscriptionListener):
             def __init__(self, name, bidf, ofrf): self.name, self.bidf, self.ofrf = name, bidf, ofrf
             def onItemUpdate(self, u):
@@ -214,10 +212,11 @@ class Runner:
                 if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)})
             def onSubscriptionError(self, code, message): log(self.name, "subscription error", code, message)
             def onSubscription(self): log(self.name, "subscribed"); runner.feed = runner.feed or self.name
-        self.feed = None
         sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"]); sub.addListener(L("CHART", "BID", "OFR"))
         sub2 = Subscription(mode="MERGE", items=[f"MARKET:{EPIC}"], fields=["BID", "OFFER", "UPDATE_TIME", "MARKET_STATE"]); sub2.addListener(L("MARKET", "BID", "OFFER"))
-        stream.subscribe(sub); stream.subscribe(sub2); log("streaming", EPIC)
+        ls.subscribe(sub); ls.subscribe(sub2); self.ls = ls; log("streaming", EPIC)
+
+    def run(self):
         last_check = time.time()
         while utcnow() < self.end:
             time.sleep(1)
@@ -226,7 +225,7 @@ class Runner:
                 if self.pos and not self.dry: self.check_closed_by_ig()
                 if self.cur and (utcnow() - self.cur["ts"]).total_seconds() > BAR*60 + 20: self.close_bar(); self.cur = None
         if self.pos and utcnow().hour >= 21: self.close("session_end")
-        self.save(); stream.disconnect(); log("done; ticks", self.ticks, "bars", len(self.bars))
+        self.save(); self.ls.disconnect(); log("done; ticks", self.ticks, "bars", len(self.bars))
 
 
 if __name__ == "__main__":
