@@ -1,40 +1,23 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-12:14:18 history 300 bars to 2026-10-20 12:14:00+00:00
-12:14:18 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
-12:14:18 streaming IX.D.NASDAQ.IFD.IP
-12:14:18 ls status: CONNECTING
-12:14:19 ls status: CONNECTED:WS-STREAMING
-12:14:19 MARKET subscription error 21 Invalid group
-12:14:19 CHART subscribed
-12:14:19 stream subscribed on CHART via Z6FARV
-12:14:19 CHART update: {'BID': '29313', 'OFR': '29315'}
-12:14:19 CHART update: {'BID': '29313.3', 'OFR': '29315.3'}
-12:14:20 trading session on Z6FARW
-12:14:20 CHART update: {'BID': '29313.5', 'OFR': '29315.5'}
-12:14:20 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
-12:14:20 account Z6FARV CFD GBP balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0} preferred False status ENABLED
-12:14:20 account Z6FARW SPREADBET GBP balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0} preferred True status ENABLED
-12:14:20 market currencies ['USD'] min size {'unit': 'POINTS', 'value': 0.5} min stop {'unit': 'POINTS', 'value': 4.0} status TRADEABLE
-12:14:21 candidate IX.D.NASDAQ.CASH.IP US Tech 100 INDICES expiry DFB ccy ['USD', 'AUD', 'GBP', 'EUR'] min 0.01 TRADEABLE
-12:14:21 candidate IX.D.NASDAQ.MONTH4.IP US Tech 100 INDICES expiry DEC-26 ccy ['EUR', 'AUD', 'USD', 'GBP'] min 0.04 TRADEABLE
-12:14:21 candidate KA.D.SQQQLN.DAILY.IP Leverage Shares -5x Short US Tech 100 ETP Securities SHARES expiry DFB ccy ['GBP'] min 1.0 TRADEABLE
-12:14:22 candidate KA.D.SQQQLN.DEC.IP Leverage Shares -5x Short US Tech 100 ETP Securities SHARES expiry DEC-26 ccy ['GBP'] min 1.0 TRADEABLE
-12:14:22 candidate KA.D.SQQQLN.MAR.IP Leverage Shares -5x Short US Tech 100 ETP Securities SHARES expiry MAR-27 ccy ['GBP'] min 1.0 TRADEABLE
-12:14:22 candidate KA.D.SQQQLN.JUN.IP Leverage Shares -5x Short US Tech 100 ETP Securities SHARES expiry JUN-27 ccy ['GBP'] min 1.0 TRADEABLE
-12:14:22 FATAL Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 277, in <module>
-    r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
-                           ^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 244, in order_test
-    mk = r.ig.fetch_market_by_epic(m["epic"]); ins = mk["instrument"]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
-    response = self._req(action, endpoint, params, session, version)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
-    result = self._request(action, endpoint, params, session, version, check)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
-    raise ApiExceededException()
-trading_ig.rest.ApiExceededException
-
+12:15:44 history 300 bars to 2026-10-20 12:15:00+00:00
+12:15:44 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+12:15:44 streaming IX.D.NASDAQ.CASH.IP
+12:15:44 ls status: CONNECTING
+12:15:45 ls status: CONNECTED:WS-STREAMING
+12:15:45 CHART subscribed
+12:15:45 MARKET subscription error 21 Invalid group
+12:15:45 CHART update: {'BID': '29324', 'OFR': '29326.2'}
+12:15:45 CHART update: {'BID': '29322.8', 'OFR': '29325'}
+12:15:45 stream subscribed on CHART via Z6FARW
+12:15:45 trading session on Z6FARW
+12:15:45 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+12:15:45 account Z6FARV CFD GBP balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0} preferred False status ENABLED
+12:15:45 account Z6FARW SPREADBET GBP balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0} preferred True status ENABLED
+12:15:45 CHART update: {'BID': '29320.6', 'OFR': '29322.8'}
+12:15:46 market currencies ['USD', 'AUD', 'GBP', 'EUR'] min size {'unit': 'POINTS', 'value': 0.01} min stop {'unit': 'POINTS', 'value': 4.0} status TRADEABLE
+12:15:46 ORDER TEST on demo Z6FARW: BUY 1.0/pt IX.D.NASDAQ.CASH.IP in GBP, stop 45.0, limit +127
+12:15:46 open -> {'dealStatus': 'ACCEPTED', 'reason': 'SUCCESS', 'level': 29322.8, 'dealId': 'DIAAAAYPKJYG4BW', 'stopLevel': 29277.8, 'limitLevel': 29449.7, 'dealReference': 'BK4TMN6SAVLTYRZ'}
+12:15:49 move stop -> {'dealStatus': 'ACCEPTED', 'reason': 'SUCCESS', 'stopLevel': 29282.8}
+12:15:53 close -> {'dealStatus': 'ACCEPTED', 'reason': 'SUCCESS', 'level': 29319.8, 'profit': -3.0, 'profitCurrency': 'GBP'}
+12:15:53 round trip: in 29322.8 out 29319.8 = -3.0 pts (spread cost) in 1792498553
+12:15:53 ls status: DISCONNECTED
