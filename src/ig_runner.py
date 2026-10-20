@@ -45,6 +45,14 @@ class Runner:
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
         self.acc = sb[0]["accountId"]
+        cfd = [a for a in accs if a["accountType"] == "CFD"]
+        if cfd and os.environ.get("IG_STREAM_VIA_CFD", "1") == "1" and self.session_acc != cfd[0]["accountId"]:
+            # take stream tokens from the CFD demo account (the original default), then trade on the spread-bet account
+            try:
+                self.ig.switch_account(cfd[0]["accountId"], False); self.stream_acc = cfd[0]["accountId"]
+                self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"; self.session_acc = self.stream_acc
+                log("stream tokens taken from", self.stream_acc)
+            except Exception as e: log("switch to CFD for stream:", e)
         if self.session_acc != self.acc:
             try:
                 self.ig.switch_account(self.acc, True); log(f"switched session from {self.session_acc} to spread-bet account {self.acc}")
