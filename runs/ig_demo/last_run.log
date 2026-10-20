@@ -1,17 +1,16 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-11:53:41 price session on Z6FARV
-11:53:41 trading session on Z6FARW
-11:53:41 FATAL Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 237, in <module>
-    Runner(end, dry).run()
-    ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 58, in __init__
-    mkt = self.ig.fetch_market_by_epic(EPIC)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1504, in fetch_market_by_epic
-    data = self.parse_response(response.text)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 395, in parse_response
-    raise (Exception(response["errorCode"]))
-Exception: error.security.account-token-invalid
-
+11:54:43 ls status: CONNECTING
+11:54:43 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
+11:54:43 streaming IX.D.NASDAQ.IFD.IP
+11:54:44 ls status: CONNECTED:WS-STREAMING
+11:54:44 MARKET subscription error 21 Invalid group
+11:54:44 CHART subscribed
+11:54:44 CHART update: {'BID': '29335.3', 'OFR': '29337.3'}
+11:54:45 CHART update: {'BID': '29334.9', 'OFR': '29336.9'}
+11:54:45 CHART update: {'BID': '29333.9', 'OFR': '29335.9'}
+11:54:45 stream subscribed on CHART via Z6FARV
+11:54:45 trading session on Z6FARW
+11:54:45 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+11:55:03 history 301 bars to 2026-10-20 11:50:00+00:00
+12:00:43 done; ticks 1452 bars 300
+12:00:43 ls status: DISCONNECTED
