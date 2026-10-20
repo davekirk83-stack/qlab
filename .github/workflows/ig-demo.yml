@@ -7,11 +7,13 @@ on:
   push:
     paths: ["runs/ig_demo/trigger.txt"]
   schedule:
-    - cron: "25 13 * * 1-5"   # 13:25 UTC: first half of the US session (runs 215 min, to ~17:00)
-    - cron: "58 16 * * 1-5"   # 16:58 UTC: second half (runs 245 min, to ~21:03; flattens at the end)
+    - cron: "25 13 * * 1-5"   # 13:25 UTC: first half of the US session (runs 200 min, to ~16:45)
+    - cron: "5 17 * * 1-5"    # 17:05 UTC: second half (runs 235 min, to ~21:00; flattens at the end). 20-min gap absorbs late cron starts.
 permissions:
   contents: write
-concurrency: ig-demo
+concurrency:
+  group: ig-demo-${{ github.event_name }}-${{ github.event.schedule || 'x' }}
+  cancel-in-progress: false
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -28,7 +30,7 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
         run: |
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
-          if [ "${{ github.event_name }}" = "schedule" ]; then H=$(date -u +%H); if [ "$H" -lt 15 ]; then ARGS=215; else ARGS=245; fi; DRY=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then H=$(date -u +%H); if [ "$H" -lt 15 ]; then ARGS=200; else ARGS=235; fi; DRY=""
           elif [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
           [ "$DRY" = "--order-test" ] && DRYF="--order-test"
@@ -37,4 +39,5 @@ jobs:
         if: always()
         run: |
           git config user.name "ig-runner"; git config user.email "ig-runner@users.noreply.github.com"
-          git add -f runs/ig_demo; git commit -m "ig demo run $(date -u +%Y-%m-%dT%H:%M)" || true; git pull --rebase -q; git push
+          git add -f runs/ig_demo; git commit -m "ig demo run $(date -u +%Y-%m-%dT%H:%M)" || true
+          git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
