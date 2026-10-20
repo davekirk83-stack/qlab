@@ -37,27 +37,24 @@ class Runner:
     def __init__(self, end_utc, dry):
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-        self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
-        sess = self.ig.create_session(); self.session_acc = sess.get("currentAccountId"); self.ls_endpoint = sess.get("lightstreamerEndpoint")
-        # stream credentials are taken from THIS first session (the default demo account), before any account switch
-        self.stream_acc = self.session_acc; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
-        accs = self.ig.fetch_accounts()["accounts"]
-        sb = [a for a in accs if a["accountType"] == "SPREADBET"]
+        # SESSION 1 — prices only: logged in on the CFD demo account (the original default), never switched afterwards
+        self.ig_px = IGService(u, p, k, acc_type="demo", return_dataframe=False)
+        sess = self.ig_px.create_session(); self.ls_endpoint = sess.get("lightstreamerEndpoint"); px_acc = sess.get("currentAccountId")
+        accs = self.ig_px.fetch_accounts()["accounts"]
+        sb = [a for a in accs if a["accountType"] == "SPREADBET"]; cfd = [a for a in accs if a["accountType"] == "CFD"]
         if not sb: raise RuntimeError("no SPREADBET demo account")
         self.acc = sb[0]["accountId"]
-        cfd = [a for a in accs if a["accountType"] == "CFD"]
-        if cfd and os.environ.get("IG_STREAM_VIA_CFD", "1") == "1" and self.session_acc != cfd[0]["accountId"]:
-            # take stream tokens from the CFD demo account (the original default), then trade on the spread-bet account
-            try:
-                self.ig.switch_account(cfd[0]["accountId"], False); self.stream_acc = cfd[0]["accountId"]
-                self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"; self.session_acc = self.stream_acc
-                log("stream tokens taken from", self.stream_acc)
-            except Exception as e: log("switch to CFD for stream:", e)
+        want_px = cfd[0]["accountId"] if (cfd and os.environ.get("IG_STREAM_VIA_CFD", "1") == "1") else self.acc
+        if px_acc != want_px:
+            self.ig_px.switch_account(want_px, False); px_acc = want_px
+        self.stream_acc = px_acc; self.stream_pw = f"CST-{self.ig_px.session.headers['CST']}|XST-{self.ig_px.session.headers['X-SECURITY-TOKEN']}"
+        log("price session on", self.stream_acc)
+        # SESSION 2 — trading: a separate login, switched to the spread-bet account
+        self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
+        sess2 = self.ig.create_session(); self.session_acc = sess2.get("currentAccountId")
         if self.session_acc != self.acc:
-            try:
-                self.ig.switch_account(self.acc, True); log(f"switched session from {self.session_acc} to spread-bet account {self.acc}")
-                self.session_acc = self.acc
-            except Exception as e: log("switch_account:", e); self.session_acc = self.session_acc or self.acc
+            self.ig.switch_account(self.acc, True); self.session_acc = self.acc
+        log("trading session on", self.session_acc)
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.expiry = mkt["instrument"]["expiry"]; self.ccy = mkt["instrument"]["currencies"][0]["code"]
         log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
@@ -70,7 +67,7 @@ class Runner:
 
     # ---------------------------------------------------------------- data
     def history(self):
-        h = self.ig.fetch_historical_prices_by_epic(EPIC, resolution="5Min", numpoints=300)["prices"]
+        h = self.ig_px.fetch_historical_prices_by_epic(EPIC, resolution="5Min", numpoints=300)["prices"]
         rows = []
         for x in h:
             ts = pd.Timestamp(x["snapshotTimeUTC"] if "snapshotTimeUTC" in x else x["snapshotTime"]).tz_localize("UTC") if pd.Timestamp(x.get("snapshotTimeUTC", x["snapshotTime"])).tz is None else pd.Timestamp(x["snapshotTimeUTC"])
