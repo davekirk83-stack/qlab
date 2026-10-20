@@ -1,17 +1,24 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-12:03:07 history 300 bars to 2026-10-20 12:03:00+00:00
-12:03:07 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
-12:03:07 streaming IX.D.NASDAQ.IFD.IP
-12:03:07 ls status: CONNECTING
-12:03:08 ls status: CONNECTED:WS-STREAMING
-12:03:08 CHART subscribed
-12:03:08 MARKET subscription error 21 Invalid group
-12:03:08 CHART update: {'BID': '29328.1', 'OFR': '29330.1'}
-12:03:09 CHART update: {'BID': '29327.5', 'OFR': '29329.5'}
-12:03:09 stream subscribed on CHART via Z6FARV
-12:03:09 CHART update: {'BID': '29327', 'OFR': '29329'}
-12:03:09 trading session on Z6FARW
-12:03:10 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
-12:05:00 bar 12:00 o 29329.1 h 29338.1 l 29324.7 c 29337.3 ticks 439 delta +6
-12:09:49 done; ticks 1641 bars 300
-12:09:49 ls status: DISCONNECTED
+12:11:18 history 300 bars to 2026-10-20 12:11:00+00:00
+12:11:18 ls status: CONNECTING
+12:11:18 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
+12:11:18 streaming IX.D.NASDAQ.IFD.IP
+12:11:19 ls status: CONNECTED:WS-STREAMING
+12:11:19 CHART subscribed
+12:11:19 MARKET subscription error 21 Invalid group
+12:11:19 CHART update: {'BID': '29312', 'OFR': '29314'}
+12:11:19 CHART update: {'BID': '29312.2', 'OFR': '29314.2'}
+12:11:19 stream subscribed on CHART via Z6FARV
+12:11:19 CHART update: {'BID': '29311.7', 'OFR': '29313.7'}
+12:11:20 trading session on Z6FARW
+12:11:20 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+12:11:20 ORDER TEST on demo Z6FARW: BUY 0.5/pt, stop 45.0, limit +111
+12:11:20 open -> {'dealStatus': 'REJECTED', 'reason': 'UNKNOWN', 'level': None, 'dealId': 'DIAAAAYPKJQTXBZ', 'stopLevel': None, 'limitLevel': None}
+12:11:20 ls status: DISCONNECTED
+Fatal Python error: _enter_buffered_busy: could not acquire lock for <_io.BufferedWriter name='<stdout>'> at interpreter shutdown, possibly due to daemon threads
+Python runtime state: finalizing (tstate=0x00007feefde8c6f0)
+
+Current thread 0x00007feefdeaab80 (most recent call first):
+  <no Python frame>
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, _cyutility, pandas._libs._cyutility, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.properties, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist (total: 67)
