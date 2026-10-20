@@ -1,13 +1,16 @@
 Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 237, in <module>
-    Runner(end, dry).run()
-    ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 58, in __init__
-    mkt = self.ig.fetch_market_by_epic(EPIC)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1504, in fetch_market_by_epic
-    data = self.parse_response(response.text)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 395, in parse_response
-    raise (Exception(response["errorCode"]))
-Exception: error.security.account-token-invalid
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 277, in <module>
+    r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
+                           ^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 244, in order_test
+    mk = r.ig.fetch_market_by_epic(m["epic"]); ins = mk["instrument"]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
+    response = self._req(action, endpoint, params, session, version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
+    result = self._request(action, endpoint, params, session, version, check)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
+    raise ApiExceededException()
+trading_ig.rest.ApiExceededException
