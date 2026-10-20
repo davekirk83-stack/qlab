@@ -1,16 +1,17 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-11:54:43 ls status: CONNECTING
-11:54:43 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
-11:54:43 streaming IX.D.NASDAQ.IFD.IP
-11:54:44 ls status: CONNECTED:WS-STREAMING
-11:54:44 MARKET subscription error 21 Invalid group
-11:54:44 CHART subscribed
-11:54:44 CHART update: {'BID': '29335.3', 'OFR': '29337.3'}
-11:54:45 CHART update: {'BID': '29334.9', 'OFR': '29336.9'}
-11:54:45 CHART update: {'BID': '29333.9', 'OFR': '29335.9'}
-11:54:45 stream subscribed on CHART via Z6FARV
-11:54:45 trading session on Z6FARW
-11:54:45 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
-11:55:03 history 301 bars to 2026-10-20 11:50:00+00:00
-12:00:43 done; ticks 1452 bars 300
-12:00:43 ls status: DISCONNECTED
+12:03:07 history 300 bars to 2026-10-20 12:03:00+00:00
+12:03:07 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
+12:03:07 streaming IX.D.NASDAQ.IFD.IP
+12:03:07 ls status: CONNECTING
+12:03:08 ls status: CONNECTED:WS-STREAMING
+12:03:08 CHART subscribed
+12:03:08 MARKET subscription error 21 Invalid group
+12:03:08 CHART update: {'BID': '29328.1', 'OFR': '29330.1'}
+12:03:09 CHART update: {'BID': '29327.5', 'OFR': '29329.5'}
+12:03:09 stream subscribed on CHART via Z6FARV
+12:03:09 CHART update: {'BID': '29327', 'OFR': '29329'}
+12:03:09 trading session on Z6FARW
+12:03:10 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+12:05:00 bar 12:00 o 29329.1 h 29338.1 l 29324.7 c 29337.3 ticks 439 delta +6
+12:09:49 done; ticks 1641 bars 300
+12:09:49 ls status: DISCONNECTED
