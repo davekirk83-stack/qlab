@@ -20,7 +20,7 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from trading_ig import IGService, IGStreamService
-from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient
+from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.IFD.IP")
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
@@ -191,20 +191,27 @@ class Runner:
         # stream on the EXISTING session (IGStreamService.create_session would log in again and reset the account)
         cst = self.ig.session.headers["CST"]; xst = self.ig.session.headers["X-SECURITY-TOKEN"]
         ls = LightstreamerClient(self.ls_endpoint, None); ls.connectionDetails.setUser(self.session_acc); ls.connectionDetails.setPassword(f"CST-{cst}|XST-{xst}")
-        ls.connect(); log("stream user", self.session_acc, "endpoint", self.ls_endpoint)
+        runner = self
+        class CL(ClientListener):
+            def onStatusChange(self, status): log("ls status:", status)
+            def onServerError(self, code, message): log("ls server error:", code, message)
+        ls.addListener(CL()); ls.connect(); log("stream user", self.session_acc, "endpoint", self.ls_endpoint)
         class _S:  # minimal shim with the two methods used below
             def subscribe(self, sub): ls.subscribe(sub)
             def disconnect(self): ls.disconnect()
         stream = _S()
-        sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"])
-        runner = self
         class L(SubscriptionListener):
+            def __init__(self, name, bidf, ofrf): self.name, self.bidf, self.ofrf = name, bidf, ofrf
             def onItemUpdate(self, u):
-                runner.ticks += 1; runner.on_tick({"BID": u.getValue("BID"), "OFR": u.getValue("OFR")})
-            def onSubscriptionError(self, code, message): log("subscription error", code, message)
-            def onSubscription(self): log("subscribed")
-        sub.addListener(L())
-        stream.subscribe(sub); log("streaming", EPIC)
+                runner.ticks += 1
+                if runner.ticks <= 3: log(self.name, "update:", {f: u.getValue(f) for f in (self.bidf, self.ofrf)})
+                if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)})
+            def onSubscriptionError(self, code, message): log(self.name, "subscription error", code, message)
+            def onSubscription(self): log(self.name, "subscribed"); runner.feed = runner.feed or self.name
+        self.feed = None
+        sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"]); sub.addListener(L("CHART", "BID", "OFR"))
+        sub2 = Subscription(mode="MERGE", items=[f"MARKET:{EPIC}"], fields=["BID", "OFFER", "UPDATE_TIME", "MARKET_STATE"]); sub2.addListener(L("MARKET", "BID", "OFFER"))
+        stream.subscribe(sub); stream.subscribe(sub2); log("streaming", EPIC)
         last_check = time.time()
         while utcnow() < self.end:
             time.sleep(1)
