@@ -238,15 +238,25 @@ def order_test(r):
         log("account", a["accountId"], a["accountType"], a.get("currency"), "balance", a.get("balance"), "preferred", a.get("preferred"), "status", a.get("status"))
     mkt = r.ig.fetch_market_by_epic(EPIC); curs = [c["code"] for c in mkt["instrument"]["currencies"]]; rules = mkt["dealingRules"]
     log("market currencies", curs, "min size", rules["minDealSize"], "min stop", rules.get("minNormalStopOrLimitDistance"), "status", mkt["snapshot"]["marketStatus"])
-    res = None
-    for ccy in (["GBP"] if "GBP" in curs else []) + [c for c in curs if c != "GBP"]:
-        log(f"ORDER TEST on demo {r.acc}: BUY {r.size}/pt in {ccy}, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
-        res = r.ig.create_open_position(currency_code=ccy, direction="BUY", epic=EPIC, expiry=r.expiry, force_open=True, guaranteed_stop=False, level=None,
-                                        limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=r.size,
+    cands = []
+    for m in r.ig.search_markets("US Tech 100")["markets"]:
+        if "Tech 100" in m.get("instrumentName", ""):
+            mk = r.ig.fetch_market_by_epic(m["epic"]); ins = mk["instrument"]
+            cc = [c["code"] for c in ins["currencies"]]
+            log("candidate", m["epic"], ins["name"], ins.get("type"), "expiry", ins.get("expiry"), "ccy", cc, "min", mk["dealingRules"]["minDealSize"]["value"], mk["snapshot"]["marketStatus"])
+            cands.append((m["epic"], ins.get("expiry"), cc, float(mk["dealingRules"]["minDealSize"]["value"])))
+    res = None; used = None
+    for epic, expiry, cc, msize in sorted(cands, key=lambda x: ("GBP" not in x[2], x[0] != EPIC)):
+        if "GBP" not in cc and epic != EPIC: continue
+        ccy = "GBP" if "GBP" in cc else cc[0]
+        log(f"ORDER TEST on demo {r.acc}: BUY {msize}/pt {epic} in {ccy}, stop {P7.STOP}, limit +{P7.TGT_ATR*atr:.0f}")
+        res = r.ig.create_open_position(currency_code=ccy, direction="BUY", epic=epic, expiry=expiry, force_open=True, guaranteed_stop=False, level=None,
+                                        limit_distance=round(P7.TGT_ATR*atr, 1), limit_level=None, order_type="MARKET", quote_id=None, size=msize,
                                         stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
-        log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel")})
-        if res.get("dealStatus") == "ACCEPTED": r.ccy = ccy; break
+        log("open ->", {k: res.get(k) for k in ("dealStatus", "reason", "level", "dealId", "stopLevel", "limitLevel", "dealReference")})
+        if res.get("dealStatus") == "ACCEPTED": r.ccy = ccy; r.size = msize; used = epic; break
     if not res or res.get("dealStatus") != "ACCEPTED": return
+    log("WORKING EPIC for spread bet:", used)
     time.sleep(3); lvl = float(res["level"])
     up = r.ig.update_open_position(limit_level=None, stop_level=round(lvl - P7.STOP + 5, 1), deal_id=res["dealId"])
     log("move stop ->", {k: up.get(k) for k in ("dealStatus", "reason", "stopLevel")})
