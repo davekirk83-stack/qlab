@@ -1,11 +1,11 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-11:34:01 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
-11:34:19 history 300 bars to 2026-10-20 11:34:00+00:00
-11:34:19 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-11:34:19 streaming IX.D.NASDAQ.IFD.IP
-11:34:19 ls status: CONNECTING
-11:34:20 ls status: CONNECTED:WS-STREAMING
-11:34:20 CHART subscription error -1 Invalid account type
-11:34:20 MARKET subscription error 21 Invalid group
-11:40:00 done; ticks 0 bars 300
-11:40:00 ls status: DISCONNECTED
+11:46:46 stream tokens taken from Z6FARV
+11:46:46 switched session from Z6FARV to spread-bet account Z6FARW
+11:46:46 demo account Z6FARW, IX.D.NASDAQ.IFD.IP US Tech 100 Cash ($100) min size 0.5 USD/pt, status TRADEABLE
+11:47:04 history 300 bars to 2026-10-20 11:47:00+00:00
+11:47:04 stream user Z6FARV endpoint https://demo-apd.marketdatasystems.com
+11:47:04 streaming IX.D.NASDAQ.IFD.IP
+11:47:04 ls status: CONNECTING
+11:47:05 ls status: DISCONNECTED
+11:47:05 ls server error: 1 User/password check failed
+11:52:45 done; ticks 0 bars 300
