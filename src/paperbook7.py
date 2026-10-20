@@ -96,7 +96,10 @@ def manage(O, H, L, C, cost, atr, i, s, n):
     return None
 
 
-def replay(d, start, flatten):
+US_OPEN, US_CLOSE = 13*60+30, 20*60   # UTC minutes; the IG candidate (doc 100 Phase 0): entries only in US cash hours
+
+
+def replay(d, start, flatten, us_hours=False):
     O, H, L, C, cost, atr, sig, day = d.open.values, d.high.values, d.low.values, d.close.values, d.cost.values, d.atr.values, d.sig.values, d.day.values
     n = len(C); idx = d.index; rng = np.random.default_rng(7)
     t0 = np.searchsorted(idx, pd.Timestamp(start, tz="UTC"))
@@ -106,6 +109,7 @@ def replay(d, start, flatten):
         s = int(sig[i])
         if s == 0 or np.isnan(atr[i]) or i < last_exit + COOL or ntr >= MAXT or dpl <= -LOSSCAP: continue
         if flatten == 1 or (flatten == 2 and s == 1): continue
+        if us_hours and not (US_OPEN <= idx[i].hour*60 + idx[i].minute < US_CLOSE): continue
         r = manage(O, H, L, C, cost, atr, i, s, n)
         if r is None: open_tr = {"opened": str(idx[i]), "side": s, "entry": float(O[i+1]), "bars_so_far": int(n-1-i)}; break
         pts, k, how = r; trades.append({"opened": str(idx[i]), "closed": str(idx[i+k]), "side": s, "pts": round(float(pts), 2), "bars": int(k), "how": how})
@@ -127,14 +131,18 @@ if __name__ == "__main__":
     d = features(bars)
     H = halted(); flatten = int(H.get("flatten", 1)) if H else 0
     trades, shadow, open_tr = replay(d, st["started"], flatten)
+    trades_us, shadow_us, open_us = replay(d, st["started"], flatten, us_hours=True)
     eq = START + PT*sum(t["pts"] for t in trades); seq = START + PT*sum(x["pts"] for x in shadow)/max(NCTRL, 1)
+    eq_us = START + PT*sum(t["pts"] for t in trades_us); seq_us = START + PT*sum(x["pts"] for x in shadow_us)/max(NCTRL, 1)
     new_tr = [t for t in trades if t["closed"][:10] >= (st.get("last_booked") or "0000")]
-    st.update({"equity": round(eq, 2), "shadow_equity": round(seq, 2), "closed": len(trades), "closed_shadow": len(shadow), "open": open_tr, "last_bar": str(d.index.max()), "last_booked": today, "halt": H})
+    st.update({"equity": round(eq, 2), "shadow_equity": round(seq, 2), "closed": len(trades), "closed_shadow": len(shadow), "open": open_tr, "last_bar": str(d.index.max()), "last_booked": today, "halt": H,
+               "us_hours": {"equity": round(eq_us, 2), "shadow_equity": round(seq_us, 2), "closed": len(trades_us), "open": open_us}})
     json.dump(st, open(STATE, "w"), indent=1)
-    lines = [f"INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('{today}', {eq:.2f}, {seq:.2f}, {1 if open_tr else 0}, {len(trades)}, {len(shadow)});"]
+    lines = [f"INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow, equity_us, shadow_us, closed_us) VALUES ('{today}', {eq:.2f}, {seq:.2f}, {1 if open_tr else 0}, {len(trades)}, {len(shadow)}, {eq_us:.2f}, {seq_us:.2f}, {len(trades_us)});"]
     for t in new_tr:
         lines.append(f"INSERT INTO pb7_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('{today}', 'NQ', '{t['opened']}', '{t['closed']}', {t['pts']:.2f}, '{t['how']}', 0);")
     open(f"{RUNS}/paper7_{today}.sql", "w").write("\n".join(lines) + "\n")
     wins = sum(1 for t in trades if t["pts"] > 0)
     print(f"paper book v7 Ignition v1 — {today} — bars to {d.index.max()} — real ${eq:,.2f} ({len(trades)} closed, win {wins/len(trades)*100 if trades else 0:.0f}%) shadow ${seq:,.2f} — gap {eq-seq:+,.2f} — open: {open_tr}", flush=True)
+    print(f"  US-hours variant (IG candidate): real ${eq_us:,.2f} ({len(trades_us)} closed) shadow ${seq_us:,.2f} — gap {eq_us-seq_us:+,.2f} — open: {open_us}", flush=True)
     print(f"  SQL -> {RUNS}/paper7_{today}.sql ({len(lines)} statements)")

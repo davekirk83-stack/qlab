@@ -174,7 +174,7 @@ def run(which):
             r = PP.resolve(df, g["bar"], g["entry"], g["stop"], g["target"])
             if not r: continue
             b = g["bar"]; row = ind.iloc[b]
-            r.update(name=g["name"], sym=s, contain_on=row.contain_on, trend_up=row.trend_up, btc_bull=row.btc_bull, vol_recede=row.vol_recede,
+            r.update(stop_pct=1-g["stop"]/g["entry"], tgt_pct=g["target"]/g["entry"]-1, name=g["name"], sym=s, contain_on=row.contain_on, trend_up=row.trend_up, btc_bull=row.btc_bull, vol_recede=row.vol_recede,
                      yearly_low=row.yearly_low_third, height_atr=g["height"]/row.atr if row.atr and row.atr > 0 else np.nan,
                      throwback=throwback(df, b, g["line"], row.atr if row.atr and row.atr > 0 else 0))
             real.append(r); keep.append(g)
