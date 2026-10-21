@@ -42,13 +42,17 @@
   }
  },
  "restarted": {
-  "on": "2026-10-18",
-  "by": "DK decision, option 2 of doc 55 (void and restart the clocks at the information frontier)",
-  "reason": "every trade before 2026-10-14 was entered on data publicly available but not in the lab (doc 55); the FAIL was carried 261/265 by pre-registration trades (doc 76)",
-  "archive": "claude/capital/paper/archive/retest_pre-restart_2026-10-18.json",
+  "on": "2026-10-21",
+  "by": "DK, 21 Oct 08:14: 'Continue as you see fit' \u2014 Claude's recommended option 1 of doc 106",
+  "reason": "refresh_open() skipped resolved-but-not-mature trades, so stop-outs never matured and were excluded from the evidence pool by construction (doc 106); fixed in retest_paper.py so only MATURE trades are skipped; the fix is a spec-adjacent change, so the clock restarts",
+  "archive": "qlab runs/paper/archive/retest_pre-restart_2026-10-21.csv (84 trades, 73 stopped, 1 mature; all-trade mean -0.713R) \u2014 the second holdout; counts for nothing",
+  "previous_restart": {
+   "on": "2026-10-18",
+   "archive": "claude/capital/paper/archive/retest_pre-restart_2026-10-18.json"
+  },
   "forward_evidence_counts_from": "the first bar after the watermarks"
  },
- "started": "2026-10-18",
+ "started": "2026-10-21",
  "seen": [],
  "trades": [],
  "watermarks": {

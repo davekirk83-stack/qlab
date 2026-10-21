@@ -249,7 +249,10 @@ def refresh_open(s):
     """Re-score every still-open setup against the latest bars."""
     by_sym = {}
     for t in s["trades"]:
-        if t.get("resolved") == 1 or t.get("mature"):
+        # Re-score anything not yet MATURE — including stop-outs. A stopped trade is
+        # resolved at once but its bars_since must keep advancing until HOLD, or it
+        # never matures and the evidence pool silently drops every loser (doc 106).
+        if t.get("mature"):
             continue
         by_sym.setdefault((t["universe"], t["sym"]), []).append(t)
     if not by_sym:
