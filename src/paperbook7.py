@@ -80,9 +80,10 @@ def features(d):
     return d
 
 
-def manage(O, H, L, C, cost, atr, i, s, n):
+def manage(O, H, L, C, cost, atr, i, s, n, stop_pts=None):
     """Returns (pts, bars, how) or None if the trade is still open at the end of data."""
-    e = O[i+1] + s*cost[i+1]; stop = e - s*STOP; tgt = e + s*TGT_ATR*atr[i]; best = e; be = False
+    if stop_pts is None: stop_pts = STOP
+    e = O[i+1] + s*cost[i+1]; stop = e - s*stop_pts; tgt = e + s*TGT_ATR*atr[i]; best = e; be = False
     pts = lambda px: s*(px - e) - cost[i+1]
     for j in range(i+1, min(i+CAP+1, n)):
         fav = H[j] if s == 1 else L[j]; adv = L[j] if s == 1 else H[j]
@@ -98,9 +99,12 @@ def manage(O, H, L, C, cost, atr, i, s, n):
 
 
 US_OPEN, US_CLOSE = 13*60+30, 20*60   # UTC minutes; the IG candidate (doc 100 Phase 0): entries only in US cash hours
+# v1.1 (doc 108, 21 Oct 2026): no entries 16:00-18:59 UTC (US lunch: 45 trades, -166 pts over the year) and the stop is
+# max(45, 1.5 ATR20) — 14 of the 29 US-hours stops hit on the very next bar when ATR was ~57 and 45 pts was under one ATR.
+V11_SKIP_HOURS = (16, 17, 18); V11_STOP_ATR = 1.5
 
 
-def replay(d, start, flatten, us_hours=False):
+def replay(d, start, flatten, us_hours=False, v11=False):
     O, H, L, C, cost, atr, sig, day = d.open.values, d.high.values, d.low.values, d.close.values, d.cost.values, d.atr.values, d.sig.values, d.day.values
     n = len(C); idx = d.index; rng = np.random.default_rng(7)
     t0 = np.searchsorted(idx, pd.Timestamp(start, tz="UTC"))
@@ -111,13 +115,15 @@ def replay(d, start, flatten, us_hours=False):
         if s == 0 or np.isnan(atr[i]) or i < last_exit + COOL or ntr >= MAXT or dpl <= -LOSSCAP: continue
         if flatten == 1 or (flatten == 2 and s == 1): continue
         if us_hours and not (US_OPEN <= idx[i].hour*60 + idx[i].minute < US_CLOSE): continue
-        r = manage(O, H, L, C, cost, atr, i, s, n)
+        if v11 and idx[i].hour in V11_SKIP_HOURS: continue
+        sp = max(STOP, V11_STOP_ATR*atr[i]) if v11 else STOP
+        r = manage(O, H, L, C, cost, atr, i, s, n, sp)
         if r is None: open_tr = {"opened": str(idx[i]), "side": s, "entry": float(O[i+1]), "bars_so_far": int(n-1-i)}; break
         pts, k, how = r; trades.append({"opened": str(idx[i]), "closed": str(idx[i+k]), "side": s, "pts": round(float(pts), 2), "bars": int(k), "how": how})
         last_exit = i + k; ntr += 1; dpl += pts
         lo = max(300, i - 30*288); cands = np.arange(lo, i - CAP - 1)
         for j in rng.choice(cands, size=min(NCTRL, len(cands)), replace=False):
-            r2 = manage(O, H, L, C, cost, atr, int(j), s, n)
+            r2 = manage(O, H, L, C, cost, atr, int(j), s, n, (max(STOP, V11_STOP_ATR*atr[j]) if v11 else STOP))
             if r2 is not None: shadow.append({"opened": str(idx[j]), "for": str(idx[i]), "side": s, "pts": round(float(r2[0]), 2), "how": r2[2]})
     return trades, shadow, open_tr
 
@@ -133,17 +139,21 @@ if __name__ == "__main__":
     H = halted(); flatten = int(H.get("flatten", 1)) if H else 0
     trades, shadow, open_tr = replay(d, st["started"], flatten)
     trades_us, shadow_us, open_us = replay(d, st["started"], flatten, us_hours=True)
+    trades_v11, shadow_v11, open_v11 = replay(d, "2026-10-22" if st["started"] < "2026-10-22" else st["started"], flatten, us_hours=True, v11=True)
+    eq_v11 = START + PT*sum(t["pts"] for t in trades_v11); seq_v11 = START + PT*sum(x["pts"] for x in shadow_v11)/max(NCTRL, 1)
     eq = START + PT*sum(t["pts"] for t in trades); seq = START + PT*sum(x["pts"] for x in shadow)/max(NCTRL, 1)
     eq_us = START + PT*sum(t["pts"] for t in trades_us); seq_us = START + PT*sum(x["pts"] for x in shadow_us)/max(NCTRL, 1)
     new_tr = [t for t in trades if t["closed"][:10] >= (st.get("last_booked") or "0000")]
     st.update({"equity": round(eq, 2), "shadow_equity": round(seq, 2), "closed": len(trades), "closed_shadow": len(shadow), "open": open_tr, "last_bar": str(d.index.max()), "last_booked": today, "halt": H,
-               "us_hours": {"equity": round(eq_us, 2), "shadow_equity": round(seq_us, 2), "closed": len(trades_us), "open": open_us}})
+               "us_hours": {"equity": round(eq_us, 2), "shadow_equity": round(seq_us, 2), "closed": len(trades_us), "open": open_us},
+               "v11": {"started": "2026-10-22", "spec": "Ignition v1.1 (doc 108): US hours, no 16-18 UTC entries, stop max(45, 1.5 ATR)", "equity": round(eq_v11, 2), "shadow_equity": round(seq_v11, 2), "closed": len(trades_v11), "open": open_v11}})
     json.dump(st, open(STATE, "w"), indent=1)
-    lines = [f"INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow, equity_us, shadow_us, closed_us) VALUES ('{today}', {eq:.2f}, {seq:.2f}, {1 if open_tr else 0}, {len(trades)}, {len(shadow)}, {eq_us:.2f}, {seq_us:.2f}, {len(trades_us)});"]
+    lines = [f"INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow, equity_us, shadow_us, closed_us, equity_v11, shadow_v11, closed_v11) VALUES ('{today}', {eq:.2f}, {seq:.2f}, {1 if open_tr else 0}, {len(trades)}, {len(shadow)}, {eq_us:.2f}, {seq_us:.2f}, {len(trades_us)}, {eq_v11:.2f}, {seq_v11:.2f}, {len(trades_v11)});"]
     for t in new_tr:
         lines.append(f"INSERT INTO pb7_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('{today}', 'NQ', '{t['opened']}', '{t['closed']}', {t['pts']:.2f}, '{t['how']}', 0);")
     open(f"{RUNS}/paper7_{today}.sql", "w").write("\n".join(lines) + "\n")
     wins = sum(1 for t in trades if t["pts"] > 0)
     print(f"paper book v7 Ignition v1 — {today} — bars to {d.index.max()} — real ${eq:,.2f} ({len(trades)} closed, win {wins/len(trades)*100 if trades else 0:.0f}%) shadow ${seq:,.2f} — gap {eq-seq:+,.2f} — open: {open_tr}", flush=True)
     print(f"  US-hours variant (IG candidate): real ${eq_us:,.2f} ({len(trades_us)} closed) shadow ${seq_us:,.2f} — gap {eq_us-seq_us:+,.2f} — open: {open_us}", flush=True)
+    print(f"  v1.1 variant (from 22 Oct): real ${eq_v11:,.2f} ({len(trades_v11)} closed) shadow ${seq_v11:,.2f} — gap {eq_v11-seq_v11:+,.2f} — open: {open_v11}", flush=True)
     print(f"  SQL -> {RUNS}/paper7_{today}.sql ({len(lines)} statements)")
