@@ -1,4 +1,56 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-13:47:42 dateUtc=2026-10-20T18:25:00 | instrumentName=US Tech 100 | transactionType=DEAL | size=+1 | openLevel=29597.5 | closeLevel=29552.5 | profitAndLoss=£-45.00 | reference=DIAAAAYPLKDZ7BV
-13:47:42 dateUtc=2026-10-20T12:15:53 | instrumentName=US Tech 100 | transactionType=DEAL | size=+1 | openLevel=29322.8 | closeLevel=29319.8 | profitAndLoss=£-3.00 | reference=DIAAAAYPKJ6ZJAE
-13:47:42 dateUtc=2026-10-20T10:06:54 | instrumentName=Bank Deposit | transactionType=DEPO | size=- | openLevel=- | closeLevel=0 | profitAndLoss=£10,000.00 | reference=CS266060118231792490814060183
+13:58:54 history 300 bars to 2026-10-21 13:58:00+00:00
+13:58:54 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+13:58:54 streaming IX.D.NASDAQ.CASH.IP
+13:58:54 ls status: CONNECTING
+13:58:55 ls status: CONNECTED:WS-STREAMING
+13:58:55 CHART subscribed
+13:58:55 MARKET subscription error 21 Invalid group
+13:58:55 CHART update: {'BID': '29709.6', 'OFR': '29710.8'}
+13:58:55 CHART update: {'BID': '29707.6', 'OFR': '29708.8'}
+13:58:55 stream subscribed on CHART via Z6FARW
+13:58:55 trading session on Z6FARW
+13:58:56 CHART update: {'BID': '29706.4', 'OFR': '29707.6'}
+13:58:56 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+14:00:00 bar 13:55 o 29710.2 h 29725.5 l 29705.5 c 29708.8 ticks 310 delta +1
+14:05:00 bar 14:00 o 29708.4 h 29750.7 l 29685.9 c 29702.0 ticks 1666 delta -24
+14:10:00 bar 14:05 o 29700.8 h 29704.8 l 29644.8 c 29651.6 ticks 1615 delta -51
+14:15:00 bar 14:10 o 29652.5 h 29659.4 l 29603.2 c 29622.4 ticks 1624 delta -52
+14:20:00 bar 14:15 o 29622.6 h 29656.2 l 29605.1 c 29632.6 ticks 1632 delta -10
+14:25:00 bar 14:20 o 29634.1 h 29675.2 l 29609.2 c 29663.2 ticks 1559 delta +51
+14:30:00 bar 14:25 o 29663.4 h 29697.4 l 29645.7 c 29673.1 ticks 1572 delta +26
+14:35:00 bar 14:30 o 29673.7 h 29719.1 l 29664.1 c 29709.1 ticks 1529 delta +57
+14:40:00 bar 14:35 o 29708.9 h 29717.5 l 29645.8 c 29650.3 ticks 1515 delta -5
+14:45:00 bar 14:40 o 29650.4 h 29722.7 l 29645.7 c 29700.9 ticks 1546 delta +52
+14:50:00 bar 14:45 o 29700.3 h 29741.9 l 29692.5 c 29735.9 ticks 1441 delta +49
+14:55:00 bar 14:50 o 29736.5 h 29758.3 l 29721.9 c 29724.3 ticks 1481 delta -39
+15:00:00 bar 14:55 o 29723.3 h 29752.2 l 29713.3 c 29740.4 ticks 1444 delta +24
+15:05:00 bar 15:00 o 29739.0 h 29763.4 l 29730.4 c 29746.2 ticks 1493 delta -13
+15:10:00 bar 15:05 o 29746.0 h 29761.2 l 29739.1 c 29757.3 ticks 1656 delta -20
+15:15:00 bar 15:10 o 29757.2 h 29793.2 l 29757.2 c 29790.0 ticks 2842 delta +24
+15:20:00 bar 15:15 o 29790.1 h 29796.9 l 29743.8 c 29747.9 ticks 3522 delta -88
+15:25:00 bar 15:20 o 29747.1 h 29777.8 l 29735.9 c 29763.8 ticks 3588 delta +32
+15:30:00 bar 15:25 o 29764.1 h 29803.7 l 29755.3 c 29795.4 ticks 3638 delta -2
+15:35:00 bar 15:30 o 29795.7 h 29816.0 l 29794.2 c 29808.9 ticks 3481 delta +31
+15:40:00 bar 15:35 o 29808.6 h 29856.3 l 29803.6 c 29844.1 ticks 3422 delta +32
+15:45:00 bar 15:40 o 29844.3 h 29847.2 l 29829.7 c 29844.7 ticks 3475 delta +63
+15:50:00 bar 15:45 o 29844.2 h 29865.1 l 29844.2 c 29859.3 ticks 3275 delta +111
+15:55:00 bar 15:50 o 29859.5 h 29873.3 l 29851.6 c 29853.0 ticks 3265 delta -61
+16:00:00 bar 15:55 o 29853.1 h 29865.2 l 29849.6 c 29856.1 ticks 3252 delta -36
+16:05:00 bar 16:00 o 29856.0 h 29857.6 l 29835.0 c 29840.9 ticks 3354 delta -20
+16:10:00 bar 16:05 o 29840.7 h 29849.4 l 29828.5 c 29836.0 ticks 3321 delta -25
+16:15:00 bar 16:10 o 29835.8 h 29842.6 l 29824.2 c 29838.3 ticks 3152 delta +50
+16:20:00 bar 16:15 o 29838.4 h 29845.7 l 29822.1 c 29833.3 ticks 3045 delta -21
+16:25:00 bar 16:20 o 29832.4 h 29843.1 l 29823.1 c 29830.8 ticks 3065 delta +27
+16:30:00 bar 16:25 o 29830.9 h 29832.5 l 29801.3 c 29816.3 ticks 3178 delta -56
+16:35:00 bar 16:30 o 29816.8 h 29824.9 l 29805.8 c 29816.2 ticks 3079 delta -37
+16:40:00 bar 16:35 o 29815.7 h 29910.8 l 29813.9 c 29907.9 ticks 3096 delta +114
+16:45:00 bar 16:40 o 29907.7 h 29920.4 l 29855.8 c 29880.4 ticks 3645 delta -171
+16:50:00 bar 16:45 o 29881.2 h 29884.5 l 29856.7 c 29863.6 ticks 3585 delta -129
+16:55:00 bar 16:50 o 29863.4 h 29902.8 l 29861.4 c 29892.3 ticks 3399 delta +71
+17:00:00 bar 16:55 o 29892.2 h 29899.2 l 29882.5 c 29884.3 ticks 3135 delta -85
+17:05:00 bar 17:00 o 29884.4 h 29895.5 l 29872.9 c 29888.0 ticks 3335 delta +79
+17:10:00 bar 17:05 o 29887.8 h 29913.0 l 29884.1 c 29907.9 ticks 3127 delta -11
+17:15:00 bar 17:10 o 29907.0 h 29913.0 l 29896.6 c 29901.6 ticks 3027 delta +53
+17:18:37 ls status: DISCONNECTED
+17:18:37 done; ticks 116215 bars 339
