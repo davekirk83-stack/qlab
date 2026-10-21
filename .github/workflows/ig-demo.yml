@@ -33,7 +33,7 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then H=$(date -u +%H); if [ "$H" -lt 15 ]; then ARGS=200; else ARGS=235; fi; DRY=""
           elif [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
-          [ "$DRY" = "--order-test" ] && DRYF="--order-test"
+          [ "$DRY" = "--order-test" ] && DRYF="--order-test"; [ "$DRY" = "--tx" ] && DRYF="--tx"
           QLAB_ROOT=$PWD python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
       - name: Commit results
         if: always()

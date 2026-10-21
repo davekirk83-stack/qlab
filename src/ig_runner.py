@@ -159,10 +159,23 @@ class Runner:
             self.book(lvl, how)
 
     def last_close_level(self):
+        """Exit level of the position IG just closed (stop/limit). Transactions first (openLevel/closeLevel), activity as fallback."""
+        p = self.pos
+        try:
+            now = utcnow(); tx = self.ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%S"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=50)
+            rows = tx.get("transactions", tx) if isinstance(tx, dict) else tx
+            for t in rows:
+                if str(t.get("transactionType", "")).upper() != "DEAL": continue
+                try: ol, cl = float(t.get("openLevel")), float(t.get("closeLevel"))
+                except Exception: continue
+                if abs(ol - p["entry"]) <= 2.0:
+                    log("tx:", t.get("instrumentName"), "open", ol, "close", cl, "P&L", t.get("profitAndLoss"))
+                    return cl, "ig_stop" if (p["side"]*(cl - ol) < 0) else "ig_limit"
+        except Exception as e: log("transactions:", e)
         try:
             act = self.ig.fetch_account_activity_by_period(1_800_000)["activities"]   # last 30 min
             for a in act:
-                if a.get("epic") == EPIC and a.get("status") in ("CLOSED", "DELETED") or "clos" in str(a.get("activity", "")).lower():
+                if a.get("epic") == EPIC and ("clos" in str(a.get("activity", "")).lower() or a.get("status") in ("CLOSED", "DELETED")):
                     return float(a.get("level") or a.get("details", {}).get("level") or np.nan), "ig_stop_or_limit"
         except Exception as e: log("activity:", e)
         return np.nan, "ig_closed"
@@ -262,6 +275,18 @@ if __name__ == "__main__":
     dry = "--dry" in sys.argv
     end = utcnow() + dt.timedelta(minutes=minutes)
     try:
+        if "--tx" in sys.argv:
+            u, p_, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
+            ig = IGService(u, p_, k, acc_type="demo", return_dataframe=False); sess = ig.create_session()
+            sb = [a for a in ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
+            if sb and sess.get("currentAccountId") != sb[0]["accountId"]: ig.switch_account(sb[0]["accountId"], True)
+            now = utcnow(); tx = ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M:%S"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=100)
+            rows = tx.get("transactions", tx) if isinstance(tx, dict) else tx
+            with open(f"{OUT}/tx.txt", "w") as f:
+                for t in rows:
+                    line = " | ".join(f"{k}={t.get(k)}" for k in ("dateUtc", "instrumentName", "transactionType", "size", "openLevel", "closeLevel", "profitAndLoss", "reference"))
+                    log(line); f.write(line + "\n")
+            sys.exit(0)
         if "--order-test" in sys.argv:
             r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
         Runner(end, dry).run()
