@@ -275,7 +275,7 @@ if showSessions and not na(asiaHiLn) and not na(aH)
     setln(asiaLoLn, aBar, aL, bar_index + 1, aL)
 // one small tag per session start and per sweep — highs above the bar, lows below
 if showSessions and nyStart
-    tag(bar_index, nyPos < 0.5 ? low : high, "NY - " + nyLean, cNy, nyPos >= 0.5)
+    tag(bar_index, high, "NY - " + nyLean, cNy, true)   // session tags always ABOVE the bar; sweeps of lows go below
 if showSessions and ldnStart
     tag(bar_index, high, "LDN", cLdn, true)
 if showSessions and asiaStart
