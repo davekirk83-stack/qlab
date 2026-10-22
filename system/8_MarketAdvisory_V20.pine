@@ -348,23 +348,30 @@ bool indexWeekend = weekend and syminfo.type != "crypto"
 string block = monthEnd ? "MONTH-END (last 3 days)" : indexWeekend ? "WEEKEND" : "-"
 
 // ------------------------------------------------ PANEL (2 x 9) ------------------------------------------------
-var table panel = table.new(pos(), 2, 9, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
+var table panel = table.new(pos(), 2, 11, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
 row(int r, string k, string v, color c) =>
     table.cell(panel, 0, r, k, text_color=cMute, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, r, v, text_color=c, text_size=sz(), text_halign=text.align_right)
 if barstate.islast
     table.cell(panel, 0, 0, "MKT ADVISORY V20", text_color=cHead, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
-    row(1, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00"), inRange ? cUp : cWarn)
+    // THE READ — one plain-English line from the tested parts (no score: the V19 score was indistinguishable from random)
+    bool  trendUp = ta.ema(close, 20) > ta.ema(close, 50)
+    string readTxt = inRange ? (brokeUp or brokeDn ? "RANGE BROKEN - stand aside until the band is back" : lowTouched > 0 ? "LONG - buy the lower rungs, sell at the mid EMA (72% win)" : highTouched > 0 ? "SHORT - sell the upper rungs, cover at the mid EMA (72% win)" : close < mid ? "RANGE - wait for a long rung below " + str.tostring(b1, format.mintick) : "RANGE - wait for a short rung above " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - no ladder; expansion bars up only" : "TREND DOWN - no ladder; expansion bars down only")
+    color readCol = inRange ? (brokeUp or brokeDn ? cWarn : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead) : (trendUp ? cUp : cDn)
+    row(1, "READ", readTxt, readCol)
+    string sessTxt = inNy ? (na(nyPos) ? "NY" : nyPos < 0.5 ? "NY aims LOW first (" + (nyPos < 0.2 ? "96%" : "77%") + ") then the high" : "NY aims HIGH first (" + (nyPos > 0.8 ? "~90%" : "77%") + ") then the low") : inLdn ? "LDN - takes an Asia extreme 89%, nearest first" : inAsia ? "ASIA - sets the box; London rests inside it" : "off hours - levels carry to the next session"
+    row(2, "SESSION READ", sessTxt, inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    row(3, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00") + (inRange ? "  (inside its band more than usual)" : "  (breaking out more than usual)"), inRange ? cUp : cWarn)
     string ladderTxt = not inRange ? "off (trend)" : brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "long " + str.tostring(lowTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : highTouched > 0 ? "short " + str.tostring(highTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : "waiting for a rung"
-    row(2, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
-    row(3, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    row(4, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
+    row(5, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
     string tgtTxt = na(t1) or not (inNy or inLdn) ? "-" : (t1Done ? "T1 done - " : "T1 " + str.tostring(t1, format.mintick) + " - ") + (t2Done ? "T2 done" : "T2 " + str.tostring(t2, format.mintick))
-    row(4, "TARGETS", tgtTxt, cHead)
-    row(5, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
-    row(6, "WEEK", weekText, cWk)
-    row(7, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
-    row(8, "BLOCK", block, block == "-" ? cMute : cWarn)
+    row(6, "TARGETS", tgtTxt, cHead)
+    row(7, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
+    row(8, "WEEK", weekText, cWk)
+    row(9, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
+    row(10, "BLOCK", block, block == "-" ? cMute : cWarn)
 
 // ------------------------------------------------ ALERTS ------------------------------------------------
 alertcondition(regimeFlip, "Regime flip", "MktAdv20 regime flip {{ticker}} {{interval}}")
