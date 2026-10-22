@@ -204,6 +204,12 @@ if ldnStart and not na(aH) and aH > aL
     t1Name := lowNearL ? "T1 Asia LOW" : "T1 Asia HIGH"
     t2Name := lowNearL ? "T2 Asia HIGH" : "T2 Asia LOW"
     tBar := bar_index
+// sweeps during NY of the London extremes; during London of the Asia extremes
+bool sweptLdnH  = inNy and not na(lH) and high > lH and high[1] <= lH
+bool sweptLdnL  = inNy and not na(lL) and low < lL and low[1] >= lL
+bool sweptAsiaH = inLdn and not na(aH) and high > aH and high[1] <= aH
+bool sweptAsiaL = inLdn and not na(aL) and low < aL and low[1] >= aL
+bool sweepBar = sweptLdnH or sweptLdnL or sweptAsiaH or sweptAsiaL   // a sweep tag will be drawn this bar; target tags fold into it
 bool t1Hit = not na(t1) and (t1 >= close[1] ? high >= t1 : low <= t1)
 bool t2Hit = not na(t2) and (t2 >= close[1] ? high >= t2 : low <= t2)
 var bool t1Done = false
@@ -211,13 +217,15 @@ var bool t2Done = false
 if nyStart or ldnStart
     t1Done := false
     t2Done := false
-if t1Hit and not t1Done
+bool t1Now = t1Hit and not t1Done
+bool t2Now = t2Hit and not t2Done
+if t1Now
     t1Done := true
-    if showTargets
+    if showTargets and not sweepBar
         tag(bar_index, t1, "T1 hit", cHead, t1 >= close)
-if t2Hit and not t2Done
+if t2Now
     t2Done := true
-    if showTargets
+    if showTargets and not sweepBar
         tag(bar_index, t2, "T2 hit", cHead, t2 >= close)
 var line t1Ln = na
 var line t2Ln = na
@@ -231,11 +239,6 @@ if showTargets and not na(t1Ln) and (inNy or inLdn)
     setln(t1Ln, tBar, t1, bar_index + 1, t1)
     setln(t2Ln, tBar, t2, bar_index + 1, t2)
 
-// sweeps during NY of the London extremes; during London of the Asia extremes
-bool sweptLdnH  = inNy and not na(lH) and high > lH and high[1] <= lH
-bool sweptLdnL  = inNy and not na(lL) and low < lL and low[1] >= lL
-bool sweptAsiaH = inLdn and not na(aH) and high > aH and high[1] <= aH
-bool sweptAsiaL = inLdn and not na(aL) and low < aL and low[1] >= aL
 var string lastEvent = "-"
 if nyStart
     lastEvent := "LDN standing - NY sweeps 95%"
@@ -277,10 +280,11 @@ if showSessions and ldnStart
     tag(bar_index, high, "LDN", cLdn, true)
 if showSessions and asiaStart
     tag(bar_index, high, "ASIA", cAsia, true)
+string tgtSuffix = t1Now ? " = T1" : t2Now ? " = T2" : ""
 if showSessions and (sweptLdnH or sweptAsiaH)
-    tag(bar_index, high, sweptLdnH ? "LDN H swept" : "ASIA H swept", cWarn, true)
+    tag(bar_index, high, (sweptLdnH ? "LDN H swept" : "ASIA H swept") + tgtSuffix, cWarn, true)
 if showSessions and (sweptLdnL or sweptAsiaL)
-    tag(bar_index, low, sweptLdnL ? "LDN L swept" : "ASIA L swept", cWarn, false)
+    tag(bar_index, low, (sweptLdnL ? "LDN L swept" : "ASIA L swept") + tgtSuffix, cWarn, false)
 
 // ------------------------------------------------ WEEKEND LEVELS (crypto) ------------------------------------------------
 int dowU = dayofweek(time, "UTC")
