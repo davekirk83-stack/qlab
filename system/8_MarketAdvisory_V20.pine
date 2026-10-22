@@ -108,6 +108,10 @@ var line la2 = na
 var line la3 = na
 var line la4 = na
 var line lmid = na
+var label[] rungLb = array.new_label()
+if barstate.islast and array.size(rungLb) == 0
+    for i = 0 to 7
+        array.push(rungLb, label.new(bar_index, close, "", style=label.style_label_left, color=color.new(#0d1117, 30), textcolor=cHead, size=size.tiny))
 if barstate.islast
     if na(lmid)
         lmid := line.new(bar_index, mid, bar_index, mid, color=color.new(cHead, 30), width=2)
@@ -131,6 +135,14 @@ if barstate.islast
     setln(la2, x0, on ? a2 : na, x1, on ? a2 : na)
     setln(la3, x0, on ? a3 : na, x1, on ? a3 : na)
     setln(la4, x0, on ? a4 : na, x1, on ? a4 : na)
+    // rung labels: Range v3 bid sizes 15 / 25 / 30 / 30 % of the intended position, at +0.30 / +0.05 / -0.25 / -0.55 ATR off the band
+    float[] rungPx = array.from(b1, b2, b3, b4, a1, a2, a3, a4)
+    string[] rungTx = array.from("BUY 1  15%", "BUY 2  25%", "BUY 3  30%", "BUY 4  30%", "SELL 1  15%", "SELL 2  25%", "SELL 3  30%", "SELL 4  30%")
+    for i = 0 to 7
+        label lr = array.get(rungLb, i)
+        label.set_xy(lr, x1, on ? array.get(rungPx, i) : na)
+        label.set_text(lr, on ? array.get(rungTx, i) + "  " + str.tostring(array.get(rungPx, i), format.mintick) : "")
+        label.set_textcolor(lr, i < 4 ? cUp : cDn)
 plot(hiB, "Upper band", color=color.new(cMute, 70))
 plot(loB, "Lower band", color=color.new(cMute, 70))
 plot(mid, "Mid EMA", color=color.new(cHead, 60))
