@@ -32,6 +32,7 @@ bool  showSessions = input.bool(true, "Session lines and tags", group=gS)
 bool  showTargets  = input.bool(true, "Session target lines (T1 / T2)", group=gS)
 bool  showWeekend  = input.bool(true, "Weekend H/L and midpoint (crypto)", group=gS)
 int   keepLabels   = input.int(30, "Keep last N tags", minval=5, maxval=100, group=gS)
+float tagGap       = input.float(0.8, "Tag distance from the bar (ATR)", minval=0.1, step=0.1, group=gS)
 
 string gI = "Expansion tag"
 bool  showIgn      = input.bool(true, "Tag expansion bars", group=gI)
@@ -56,7 +57,8 @@ color cAsia = #ff7eb6
 color cWk   = #b388ff
 var label[] tags = array.new_label()
 tag(int x, float y, string t, color c, bool above) =>
-    label lb = label.new(x, y, t, style=above ? label.style_label_down : label.style_label_up, color=color.new(c, 20), textcolor=color.white, size=size.tiny)
+    float yOff = above ? y + tagGap * ta.atr(14) : y - tagGap * ta.atr(14)
+    label lb = label.new(x, yOff, t, style=above ? label.style_label_down : label.style_label_up, color=color.new(c, 20), textcolor=color.white, size=size.tiny)
     array.push(tags, lb)
     if array.size(tags) > keepLabels
         label.delete(array.shift(tags))
