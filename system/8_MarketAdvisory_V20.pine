@@ -1,0 +1,369 @@
+//@version=6
+// MARKET ADVISORY V20 — rebuilt from tested parts only (DK Operations, Capital section, doc 115, 22 Oct 2026).
+// Every line on the panel has a number behind it from the five-year BTC record (docs 44, 68, 91, 105, 108):
+//   REGIME   containment switch — share of closes inside EMA20 ± 2 ATR over 50 bars vs its own median. The switch every book runs on.
+//   LADDER   Range v3 bids (+0.30 / +0.05 / -0.25 / -0.55 ATR off the band) and the single mid-EMA exit. +0.21%/episode, t 63, 72% win.
+//   TARGETS  NY: nearest side of the overnight (Asia+London) range first (77%; 96% from the bottom fifth), far side second.
+//            London: nearest Asia extreme first (London takes an Asia extreme 89%). A London extreme is swept in NY 95% of days.
+//            First 30-min NY move retraces the open 81%. Weekend midpoint revisited 74% of weeks.
+//   WEEK     weekend H/L and the Sunday-close rule (lower third -> low first 80%, upper third -> high first 85%).
+//   IGN      expansion bar (range >= 1.25x prior 20) with EMA20/50 agreement — Ignition without delta: a TAG, not a signal.
+//   BLOCK    last three days of the month (the one calendar effect that survived out of sample); weekend on non-crypto charts.
+// Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
+// the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
+// Works on any symbol and intraday timeframe: everything is ATR- and session-relative. Advisory only — no orders.
+indicator("Market Advisory V20", shorttitle="MktAdv20", overlay=true, max_lines_count=200, max_labels_count=200)
+
+// ------------------------------------------------ INPUTS ------------------------------------------------
+string gR = "Regime & ladder"
+int   emaLen     = input.int(20, "Mid EMA", minval=5, group=gR)
+int   atrLen     = input.int(14, "ATR", minval=5, group=gR)
+float bandMult   = input.float(2.0, "Band (ATR)", step=0.1, group=gR)
+int   contWin    = input.int(50, "Containment window", minval=20, group=gR)
+int   medLook    = input.int(1000, "Median lookback (bars)", minval=200, maxval=2000, group=gR)
+bool  showLadder = input.bool(true, "Draw ladder when in RANGE", group=gR)
+float breakATR   = input.float(1.5, "Break beyond band (ATR)", step=0.1, group=gR)
+
+string gS = "Sessions (UTC, as the study defines them)"
+string asiaSes     = input.session("0000-0700", "Asia", group=gS)
+string londonSes   = input.session("0700-1300", "London", group=gS)
+string nySes       = input.session("1300-2000", "New York", group=gS)
+bool  showSessions = input.bool(true, "Session lines and tags", group=gS)
+bool  showTargets  = input.bool(true, "Session target lines (T1 / T2)", group=gS)
+bool  showWeekend  = input.bool(true, "Weekend H/L and midpoint (crypto)", group=gS)
+int   keepLabels   = input.int(30, "Keep last N tags", minval=5, maxval=100, group=gS)
+
+string gI = "Expansion tag"
+bool  showIgn      = input.bool(true, "Tag expansion bars", group=gI)
+float ignMult      = input.float(1.25, "Range >= x prior-20 average", step=0.05, group=gI)
+bool  ignSkipLunch = input.bool(true, "Skip 16:00-18:59 UTC (US lunch, doc 108)", group=gI)
+
+string gP = "Panel"
+string panelPos  = input.string("Top Right", "Position", options=["Top Right","Top Left","Bottom Right","Bottom Left"], group=gP)
+string panelSize = input.string("Small", "Text", options=["Tiny","Small","Normal"], group=gP)
+
+// ------------------------------------------------ HELPERS ------------------------------------------------
+pos() => panelPos == "Top Left" ? position.top_left : panelPos == "Bottom Right" ? position.bottom_right : panelPos == "Bottom Left" ? position.bottom_left : position.top_right
+sz()  => panelSize == "Tiny" ? size.tiny : panelSize == "Normal" ? size.normal : size.small
+color cUp   = #26a69a
+color cDn   = #ef5350
+color cMute = #8b949e
+color cHead = #e6edf3
+color cWarn = #ff9800
+color cLdn  = #fdd835
+color cNy   = #26c6da
+color cAsia = #ff7eb6
+color cWk   = #b388ff
+var label[] tags = array.new_label()
+tag(int x, float y, string t, color c, bool above) =>
+    label lb = label.new(x, y, t, style=above ? label.style_label_down : label.style_label_up, color=color.new(c, 20), textcolor=color.white, size=size.tiny)
+    array.push(tags, lb)
+    if array.size(tags) > keepLabels
+        label.delete(array.shift(tags))
+setln(line ln, int x0, float y0, int x1, float y1) =>
+    line.set_xy1(ln, x0, y0)
+    line.set_xy2(ln, x1, y1)
+
+// ------------------------------------------------ REGIME ------------------------------------------------
+float atr     = ta.atr(atrLen)
+float mid     = ta.ema(close, emaLen)
+float hiB     = mid + bandMult * atr
+float loB     = mid - bandMult * atr
+float inside  = close <= hiB and close >= loB ? 1.0 : 0.0
+float contain = ta.sma(inside, contWin)
+float contMed = ta.percentile_nearest_rank(contain, medLook, 50)
+bool  inRange = contain > contMed
+bool  brokeUp = close > hiB + breakATR * atr
+bool  brokeDn = close < loB - breakATR * atr
+string regime = inRange ? "RANGE" : "TREND"
+bool  regimeFlip = inRange != inRange[1]
+
+// ladder rungs (Range v3): bids below the lower band for longs, above the upper band for shorts
+float b1 = loB + 0.30 * atr
+float b2 = loB + 0.05 * atr
+float b3 = loB - 0.25 * atr
+float b4 = loB - 0.55 * atr
+float a1 = hiB - 0.30 * atr
+float a2 = hiB - 0.05 * atr
+float a3 = hiB + 0.25 * atr
+float a4 = hiB + 0.55 * atr
+float lo48 = ta.lowest(low, 48)
+float hi48 = ta.highest(high, 48)
+int lowTouched  = (lo48 < b1 ? 1 : 0) + (lo48 < b2 ? 1 : 0) + (lo48 < b3 ? 1 : 0) + (lo48 < b4 ? 1 : 0)
+int highTouched = (hi48 > a1 ? 1 : 0) + (hi48 > a2 ? 1 : 0) + (hi48 > a3 ? 1 : 0) + (hi48 > a4 ? 1 : 0)
+bool newLongRung     = inRange and low < b1 and low[1] >= b1
+bool newShortRung    = inRange and high > a1 and high[1] <= a1
+bool midHitFromBelow = inRange and high >= mid and close[1] < mid[1]
+bool midHitFromAbove = inRange and low <= mid and close[1] > mid[1]
+
+var line lb1 = na
+var line lb2 = na
+var line lb3 = na
+var line lb4 = na
+var line la1 = na
+var line la2 = na
+var line la3 = na
+var line la4 = na
+var line lmid = na
+if barstate.islast
+    if na(lmid)
+        lmid := line.new(bar_index, mid, bar_index, mid, color=color.new(cHead, 30), width=2)
+        lb1 := line.new(bar_index, b1, bar_index, b1, color=color.new(cUp, 40))
+        lb2 := line.new(bar_index, b2, bar_index, b2, color=color.new(cUp, 40))
+        lb3 := line.new(bar_index, b3, bar_index, b3, color=color.new(cUp, 40))
+        lb4 := line.new(bar_index, b4, bar_index, b4, color=color.new(cUp, 40))
+        la1 := line.new(bar_index, a1, bar_index, a1, color=color.new(cDn, 40))
+        la2 := line.new(bar_index, a2, bar_index, a2, color=color.new(cDn, 40))
+        la3 := line.new(bar_index, a3, bar_index, a3, color=color.new(cDn, 40))
+        la4 := line.new(bar_index, a4, bar_index, a4, color=color.new(cDn, 40))
+    bool on = showLadder and inRange
+    int x0 = bar_index - 12
+    int x1 = bar_index + 6
+    setln(lmid, x0, mid, x1, mid)
+    setln(lb1, x0, on ? b1 : na, x1, on ? b1 : na)
+    setln(lb2, x0, on ? b2 : na, x1, on ? b2 : na)
+    setln(lb3, x0, on ? b3 : na, x1, on ? b3 : na)
+    setln(lb4, x0, on ? b4 : na, x1, on ? b4 : na)
+    setln(la1, x0, on ? a1 : na, x1, on ? a1 : na)
+    setln(la2, x0, on ? a2 : na, x1, on ? a2 : na)
+    setln(la3, x0, on ? a3 : na, x1, on ? a3 : na)
+    setln(la4, x0, on ? a4 : na, x1, on ? a4 : na)
+plot(hiB, "Upper band", color=color.new(cMute, 70))
+plot(loB, "Lower band", color=color.new(cMute, 70))
+plot(mid, "Mid EMA", color=color.new(cHead, 60))
+
+// ------------------------------------------------ SESSIONS ------------------------------------------------
+bool intraday  = timeframe.isintraday
+bool inAsia    = intraday and not na(time(timeframe.period, asiaSes, "UTC"))
+bool inLdn     = intraday and not na(time(timeframe.period, londonSes, "UTC"))
+bool inNy      = intraday and not na(time(timeframe.period, nySes, "UTC"))
+bool asiaStart = inAsia and not inAsia[1]
+bool ldnStart  = inLdn and not inLdn[1]
+bool nyStart   = inNy and not inNy[1]
+var float aH = na
+var float aL = na
+var float lH = na
+var float lL = na
+var float nH = na
+var float nL = na
+var float nyOpen = na
+var float ldnOpen = na
+var int ldnBar = na
+var int aBar = na
+var int nyBar = na
+if asiaStart
+    aH := high
+    aL := low
+    aBar := bar_index
+else if inAsia
+    aH := math.max(aH, high)
+    aL := math.min(aL, low)
+if ldnStart
+    lH := high
+    lL := low
+    ldnBar := bar_index
+    ldnOpen := open
+else if inLdn
+    lH := math.max(lH, high)
+    lL := math.min(lL, low)
+if nyStart
+    nH := high
+    nL := low
+    nyOpen := open
+    nyBar := bar_index
+else if inNy
+    nH := math.max(nH, high)
+    nL := math.min(nL, low)
+
+// NY lean from the open's position in the overnight (Asia + London) range — doc 105 B
+float ovH = math.max(nz(aH, high), nz(lH, high))
+float ovL = math.min(nz(aL, low), nz(lL, low))
+float nyPos = not na(nyOpen) and ovH > ovL ? (nyOpen - ovL) / (ovH - ovL) : na
+string nyLean = na(nyPos) ? "-" : nyPos < 0.2 ? "LOW first 96%" : nyPos > 0.8 ? "HIGH first ~90%" : nyPos < 0.5 ? "LOW first 77%" : "HIGH first 77%"
+
+// Session targets: T1 = nearest extreme of the prior range, T2 = far side
+var float t1 = na
+var float t2 = na
+var string t1Name = "-"
+var string t2Name = "-"
+var int tBar = na
+if nyStart and not na(nyPos)
+    bool lowNear = nyPos < 0.5
+    t1 := lowNear ? ovL : ovH
+    t2 := lowNear ? ovH : ovL
+    t1Name := lowNear ? "T1 overnight LOW" : "T1 overnight HIGH"
+    t2Name := lowNear ? "T2 overnight HIGH" : "T2 overnight LOW"
+    tBar := bar_index
+if ldnStart and not na(aH) and aH > aL
+    bool lowNearL = (ldnOpen - aL) < (aH - ldnOpen)
+    t1 := lowNearL ? aL : aH
+    t2 := lowNearL ? aH : aL
+    t1Name := lowNearL ? "T1 Asia LOW" : "T1 Asia HIGH"
+    t2Name := lowNearL ? "T2 Asia HIGH" : "T2 Asia LOW"
+    tBar := bar_index
+bool t1Hit = not na(t1) and (t1 >= close[1] ? high >= t1 : low <= t1)
+bool t2Hit = not na(t2) and (t2 >= close[1] ? high >= t2 : low <= t2)
+var bool t1Done = false
+var bool t2Done = false
+if nyStart or ldnStart
+    t1Done := false
+    t2Done := false
+if t1Hit and not t1Done
+    t1Done := true
+    if showTargets
+        tag(bar_index, t1, "T1 hit", cHead, t1 >= close)
+if t2Hit and not t2Done
+    t2Done := true
+    if showTargets
+        tag(bar_index, t2, "T2 hit", cHead, t2 >= close)
+var line t1Ln = na
+var line t2Ln = na
+if showTargets and (nyStart or ldnStart) and not na(t1)
+    if not na(t1Ln)
+        line.delete(t1Ln)
+        line.delete(t2Ln)
+    t1Ln := line.new(bar_index, t1, bar_index + 1, t1, color=color.new(cHead, 20), width=2, style=line.style_dashed)
+    t2Ln := line.new(bar_index, t2, bar_index + 1, t2, color=color.new(cHead, 60), width=1, style=line.style_dashed)
+if showTargets and not na(t1Ln) and (inNy or inLdn)
+    setln(t1Ln, tBar, t1, bar_index + 1, t1)
+    setln(t2Ln, tBar, t2, bar_index + 1, t2)
+
+// sweeps during NY of the London extremes; during London of the Asia extremes
+bool sweptLdnH  = inNy and not na(lH) and high > lH and high[1] <= lH
+bool sweptLdnL  = inNy and not na(lL) and low < lL and low[1] >= lL
+bool sweptAsiaH = inLdn and not na(aH) and high > aH and high[1] <= aH
+bool sweptAsiaL = inLdn and not na(aL) and low < aL and low[1] >= aL
+var string lastEvent = "-"
+if nyStart
+    lastEvent := "LDN standing - NY sweeps 95%"
+if sweptLdnH
+    lastEvent := "NY took LDN high"
+if sweptLdnL
+    lastEvent := "NY took LDN low"
+if sweptAsiaH
+    lastEvent := "LDN took ASIA high"
+if sweptAsiaL
+    lastEvent := "LDN took ASIA low"
+
+var line ldnHiLn = na
+var line ldnLoLn = na
+var line asiaHiLn = na
+var line asiaLoLn = na
+if showSessions and ldnStart
+    if not na(ldnHiLn)
+        line.delete(ldnHiLn)
+        line.delete(ldnLoLn)
+    ldnHiLn := line.new(bar_index, high, bar_index + 1, high, color=color.new(cLdn, 40), style=line.style_dotted)
+    ldnLoLn := line.new(bar_index, low, bar_index + 1, low, color=color.new(cLdn, 40), style=line.style_dotted)
+if showSessions and asiaStart
+    if not na(asiaHiLn)
+        line.delete(asiaHiLn)
+        line.delete(asiaLoLn)
+    asiaHiLn := line.new(bar_index, high, bar_index + 1, high, color=color.new(cAsia, 50), style=line.style_dotted)
+    asiaLoLn := line.new(bar_index, low, bar_index + 1, low, color=color.new(cAsia, 50), style=line.style_dotted)
+if showSessions and not na(ldnHiLn) and not na(lH)
+    setln(ldnHiLn, ldnBar, lH, bar_index + 1, lH)
+    setln(ldnLoLn, ldnBar, lL, bar_index + 1, lL)
+if showSessions and not na(asiaHiLn) and not na(aH)
+    setln(asiaHiLn, aBar, aH, bar_index + 1, aH)
+    setln(asiaLoLn, aBar, aL, bar_index + 1, aL)
+// one small tag per session start and per sweep — highs above the bar, lows below
+if showSessions and nyStart
+    tag(bar_index, nyPos < 0.5 ? low : high, "NY - " + nyLean, cNy, nyPos >= 0.5)
+if showSessions and ldnStart
+    tag(bar_index, high, "LDN", cLdn, true)
+if showSessions and asiaStart
+    tag(bar_index, high, "ASIA", cAsia, true)
+if showSessions and (sweptLdnH or sweptAsiaH)
+    tag(bar_index, high, sweptLdnH ? "LDN H swept" : "ASIA H swept", cWarn, true)
+if showSessions and (sweptLdnL or sweptAsiaL)
+    tag(bar_index, low, sweptLdnL ? "LDN L swept" : "ASIA L swept", cWarn, false)
+
+// ------------------------------------------------ WEEKEND LEVELS (crypto) ------------------------------------------------
+int dowU = dayofweek(time, "UTC")
+bool weekend = dowU == dayofweek.saturday or dowU == dayofweek.sunday
+bool wkStart = weekend and not weekend[1]
+bool wkEnd   = not weekend and weekend[1]
+var float wH = na
+var float wL = na
+var float wkHeldH = na
+var float wkHeldL = na
+var string weekLean = "-"
+var bool wkHighGone = false
+var bool wkLowGone = false
+if wkStart
+    wH := high
+    wL := low
+else if weekend
+    wH := math.max(wH, high)
+    wL := math.min(wL, low)
+if wkEnd
+    wkHeldH := wH
+    wkHeldL := wL
+    wkHighGone := false
+    wkLowGone := false
+    float p = wH > wL ? (close[1] - wL) / (wH - wL) : 0.5
+    weekLean := p < 0.333 ? "LOW first 80%" : p > 0.667 ? "HIGH first 85%" : "coin flip"
+if not weekend and not na(wkHeldH)
+    if high > wkHeldH and not wkHighGone
+        wkHighGone := true
+        if showWeekend
+            tag(bar_index, high, "WKND H taken", cWk, true)
+    if low < wkHeldL and not wkLowGone
+        wkLowGone := true
+        if showWeekend
+            tag(bar_index, low, "WKND L taken", cWk, false)
+float wkMid = (wkHeldH + wkHeldL) / 2.0
+plot(showWeekend and not weekend ? wkHeldH : na, "Weekend high", color=color.new(cWk, 40), style=plot.style_linebr)
+plot(showWeekend and not weekend ? wkHeldL : na, "Weekend low", color=color.new(cWk, 40), style=plot.style_linebr)
+plot(showWeekend and not weekend ? wkMid : na, "Weekend midpoint (74%)", color=color.new(cWk, 70), style=plot.style_linebr)
+string weekText = na(wkHeldH) ? "-" : wkHighGone and wkLowGone ? "both taken" : wkHighGone ? "H taken - L 54% later - mid 74%" : wkLowGone ? "L taken - H open" : weekLean
+
+// ------------------------------------------------ EXPANSION TAG (Ignition without delta) ------------------------------------------------
+float rng   = high - low
+float ign   = rng / ta.sma(rng[1], 20)
+bool  emaUp = ta.ema(close, 20) > ta.ema(close, 50)
+int   hourU = hour(time, "UTC")
+bool  lunch = ignSkipLunch and hourU >= 16 and hourU <= 18
+bool  ignLong  = showIgn and barstate.isconfirmed and ign >= ignMult and close > open and emaUp and not lunch
+bool  ignShort = showIgn and barstate.isconfirmed and ign >= ignMult and close < open and not emaUp and not lunch
+plotshape(ignLong, "Expansion up", style=shape.diamond, location=location.belowbar, color=color.new(cUp, 0), size=size.tiny)
+plotshape(ignShort, "Expansion down", style=shape.diamond, location=location.abovebar, color=color.new(cDn, 0), size=size.tiny)
+var string lastIgn = "-"
+if ignLong
+    lastIgn := "UP x" + str.tostring(ign, "#.0")
+if ignShort
+    lastIgn := "DOWN x" + str.tostring(ign, "#.0")
+
+// ------------------------------------------------ BLOCKS ------------------------------------------------
+bool monthEnd = dayofmonth(time + 3 * 86400000, "UTC") <= 3   // inside the last three days of the month
+bool indexWeekend = weekend and syminfo.type != "crypto"
+string block = monthEnd ? "MONTH-END (last 3 days)" : indexWeekend ? "WEEKEND" : "-"
+
+// ------------------------------------------------ PANEL (2 x 9) ------------------------------------------------
+var table panel = table.new(pos(), 2, 9, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
+row(int r, string k, string v, color c) =>
+    table.cell(panel, 0, r, k, text_color=cMute, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, r, v, text_color=c, text_size=sz(), text_halign=text.align_right)
+if barstate.islast
+    table.cell(panel, 0, 0, "MKT ADVISORY V20", text_color=cHead, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
+    row(1, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00"), inRange ? cUp : cWarn)
+    string ladderTxt = not inRange ? "off (trend)" : brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "long " + str.tostring(lowTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : highTouched > 0 ? "short " + str.tostring(highTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : "waiting for a rung"
+    row(2, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
+    row(3, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    string tgtTxt = na(t1) or not (inNy or inLdn) ? "-" : (t1Done ? "T1 done - " : "T1 " + str.tostring(t1, format.mintick) + " - ") + (t2Done ? "T2 done" : "T2 " + str.tostring(t2, format.mintick))
+    row(4, "TARGETS", tgtTxt, cHead)
+    row(5, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
+    row(6, "WEEK", weekText, cWk)
+    row(7, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
+    row(8, "BLOCK", block, block == "-" ? cMute : cWarn)
+
+// ------------------------------------------------ ALERTS ------------------------------------------------
+alertcondition(regimeFlip, "Regime flip", "MktAdv20 regime flip {{ticker}} {{interval}}")
+alertcondition(newLongRung, "Long ladder rung", "MktAdv20 first long rung touched {{ticker}} {{interval}}")
+alertcondition(newShortRung, "Short ladder rung", "MktAdv20 first short rung touched {{ticker}} {{interval}}")
+alertcondition(midHitFromBelow or midHitFromAbove, "Mid EMA reached", "MktAdv20 mid EMA (ladder exit) {{ticker}} {{interval}}")
+alertcondition(t1Hit, "Session target 1 hit", "MktAdv20 T1 hit {{ticker}} {{interval}}")
+alertcondition(sweptLdnH or sweptLdnL, "London extreme swept", "MktAdv20 London extreme swept in NY {{ticker}}")
+alertcondition(ignLong or ignShort, "Expansion bar", "MktAdv20 expansion bar {{ticker}} {{interval}}")
