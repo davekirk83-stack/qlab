@@ -14,3 +14,5 @@ __pycache__/
 !data_nq_cache/*.csv
 !runs/ig_demo/
 !runs/ig_demo/*.csv
+!data_ig_cache/
+!data_ig_cache/*.csv
