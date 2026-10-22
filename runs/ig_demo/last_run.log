@@ -1,60 +1,61 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-17:32:45 history 300 bars to 2026-10-21 17:32:00+00:00
-17:32:45 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-17:32:45 streaming IX.D.NASDAQ.CASH.IP
-17:32:45 ls status: CONNECTING
-17:32:46 ls status: CONNECTED:WS-STREAMING
-17:32:46 MARKET subscription error 21 Invalid group
-17:32:46 CHART subscribed
-17:32:47 CHART update: {'BID': '29880', 'OFR': '29881.2'}
-17:32:47 CHART update: {'BID': '29879.7', 'OFR': '29880.9'}
-17:32:47 CHART update: {'BID': '29879.5', 'OFR': '29880.7'}
-17:32:47 stream subscribed on CHART via Z6FARW
-17:32:47 trading session on Z6FARW
-17:32:47 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
-17:35:00 bar 17:30 o 29880.6 h 29883.4 l 29863.2 c 29869.1 ticks 1484 delta -23
-17:40:00 bar 17:35 o 29868.8 h 29882.8 l 29867.1 c 29872.3 ticks 3047 delta +27
-17:45:00 bar 17:40 o 29872.1 h 29896.0 l 29869.7 c 29882.2 ticks 2906 delta +52
-17:50:00 bar 17:45 o 29881.9 h 29887.7 l 29869.1 c 29873.1 ticks 2906 delta +60
-17:55:00 bar 17:50 o 29873.2 h 29885.9 l 29871.8 c 29876.3 ticks 2560 delta +70
-18:00:00 bar 17:55 o 29876.1 h 29879.0 l 29862.1 c 29864.0 ticks 2649 delta -5
-18:05:00 bar 18:00 o 29865.1 h 29873.4 l 29855.7 c 29868.1 ticks 3061 delta -5
-18:10:00 bar 18:05 o 29868.3 h 29880.3 l 29862.6 c 29877.7 ticks 2574 delta +68
-18:15:00 bar 18:10 o 29877.8 h 29880.7 l 29869.7 c 29875.9 ticks 2482 delta +2
-18:20:00 bar 18:15 o 29875.8 h 29899.5 l 29873.8 c 29894.1 ticks 2615 delta +67
-18:25:00 bar 18:20 o 29894.2 h 29896.7 l 29886.5 c 29886.6 ticks 2339 delta -37
-18:30:00 bar 18:25 o 29886.8 h 29897.2 l 29886.3 c 29895.0 ticks 2352 delta +34
-18:35:00 bar 18:30 o 29894.9 h 29902.8 l 29887.6 c 29891.4 ticks 2349 delta -61
-18:40:00 bar 18:35 o 29891.2 h 29898.1 l 29883.1 c 29891.4 ticks 2442 delta +8
-18:45:00 bar 18:40 o 29892.3 h 29897.1 l 29880.4 c 29885.4 ticks 2288 delta -16
-18:50:00 bar 18:45 o 29885.3 h 29889.9 l 29836.9 c 29836.9 ticks 3070 delta +94
-18:55:00 bar 18:50 o 29836.4 h 29850.2 l 29807.0 c 29849.7 ticks 3626 delta +144
-19:00:00 bar 18:55 o 29849.9 h 29852.5 l 29768.8 c 29783.0 ticks 3626 delta -6
-19:05:00 bar 19:00 o 29783.1 h 29784.0 l 29704.5 c 29745.9 ticks 3701 delta -109
-19:10:00 bar 19:05 o 29745.8 h 29778.1 l 29725.5 c 29746.3 ticks 3659 delta +5
-19:15:00 bar 19:10 o 29746.1 h 29770.0 l 29716.3 c 29766.6 ticks 3634 delta -16
-19:20:00 bar 19:15 o 29766.7 h 29806.8 l 29764.4 c 29800.7 ticks 3584 delta +20
-19:25:00 bar 19:20 o 29800.6 h 29807.2 l 29776.9 c 29804.0 ticks 3594 delta -82
-19:30:00 bar 19:25 o 29804.1 h 29849.4 l 29802.6 c 29847.7 ticks 3649 delta -131
-19:35:00 bar 19:30 o 29848.1 h 29854.2 l 29830.9 c 29839.9 ticks 3599 delta -85
-19:40:00 bar 19:35 o 29839.7 h 29851.5 l 29834.4 c 29839.7 ticks 3499 delta -67
-19:45:00 bar 19:40 o 29840.0 h 29843.9 l 29814.6 c 29838.7 ticks 3517 delta -41
-19:50:00 bar 19:45 o 29838.6 h 29875.0 l 29838.1 c 29873.6 ticks 3430 delta +4
-19:55:00 bar 19:50 o 29873.9 h 29873.9 l 29837.5 c 29850.1 ticks 3536 delta -82
-20:00:00 bar 19:55 o 29850.2 h 29856.0 l 29803.1 c 29811.8 ticks 3424 delta -66
-20:05:00 bar 20:00 o 29811.3 h 29870.6 l 29806.7 c 29860.3 ticks 1800 delta +64
-20:10:00 bar 20:05 o 29859.6 h 29862.1 l 29802.6 c 29815.9 ticks 1279 delta +17
-20:15:00 bar 20:10 o 29815.7 h 29822.4 l 29777.4 c 29778.1 ticks 1085 delta -81
-20:20:00 bar 20:15 o 29778.6 h 29802.7 l 29768.3 c 29799.9 ticks 655 delta +21
-20:25:00 bar 20:20 o 29800.4 h 29816.7 l 29792.5 c 29807.0 ticks 569 delta -3
-20:30:00 bar 20:25 o 29806.3 h 29817.9 l 29797.4 c 29805.3 ticks 439 delta -3
-20:35:00 bar 20:30 o 29806.3 h 29809.2 l 29793.2 c 29802.0 ticks 361 delta +15
-20:40:00 bar 20:35 o 29802.2 h 29815.7 l 29801.0 c 29814.6 ticks 435 delta +9
-20:45:00 bar 20:40 o 29814.7 h 29843.0 l 29813.9 c 29835.9 ticks 573 delta +11
-20:50:00 bar 20:45 o 29835.4 h 29850.5 l 29832.8 c 29837.9 ticks 511 delta -19
-20:55:00 bar 20:50 o 29838.7 h 29839.7 l 29822.3 c 29827.8 ticks 388 delta -6
-20:55:59 ls status: DISCONNECTED:WILL-RETRY
-20:55:59 ls status: CONNECTING
-20:56:01 ls status: CONNECTED:WS-STREAMING
-20:56:01 CHART subscribed
-20:59:26 done; ticks 109250 bars 340
+13:47:01 history 300 bars to 2026-10-22 13:46:00+00:00
+13:47:01 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+13:47:01 ls status: CONNECTING
+13:47:01 streaming IX.D.NASDAQ.CASH.IP
+13:47:02 ls status: CONNECTED:WS-STREAMING
+13:47:03 CHART subscribed
+13:47:03 MARKET subscription error 21 Invalid group
+13:47:03 CHART update: {'BID': '29303.8', 'OFR': '29305'}
+13:47:03 CHART update: {'BID': '29304.2', 'OFR': '29305.4'}
+13:47:03 CHART update: {'BID': '29303.7', 'OFR': '29304.9'}
+13:47:03 stream subscribed on CHART via Z6FARW
+13:47:03 trading session on Z6FARW
+13:47:03 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+13:50:00 bar 13:45 o 29304.4 h 29327.5 l 29264.2 c 29323.7 ticks 2173 delta +36
+13:55:00 bar 13:50 o 29324.8 h 29327.7 l 29259.8 c 29324.9 ticks 3731 delta +55
+14:00:00 bar 13:55 o 29325.4 h 29392.1 l 29316.2 c 29365.4 ticks 3694 delta +92
+14:05:00 bar 14:00 o 29365.6 h 29411.8 l 29354.6 c 29382.0 ticks 3732 delta +20
+14:10:00 bar 14:05 o 29381.3 h 29386.1 l 29304.6 c 29323.4 ticks 3729 delta -41
+14:15:00 bar 14:10 o 29323.2 h 29331.4 l 29277.9 c 29284.0 ticks 3739 delta -57
+14:20:00 bar 14:15 o 29283.5 h 29299.0 l 29252.8 c 29280.0 ticks 3710 delta +40
+14:25:00 bar 14:20 o 29279.8 h 29279.8 l 29220.5 c 29224.6 ticks 3693 delta -133
+14:30:00 bar 14:25 o 29224.9 h 29243.1 l 29169.4 c 29183.4 ticks 3622 delta -178
+14:35:00 bar 14:30 o 29183.1 h 29192.2 l 29111.6 c 29130.8 ticks 3732 delta -12
+14:40:00 bar 14:35 o 29130.5 h 29143.5 l 29101.6 c 29116.6 ticks 3734 delta -24
+14:45:00 bar 14:40 o 29117.2 h 29148.0 l 29108.2 c 29120.4 ticks 3729 delta +35
+14:50:00 bar 14:45 o 29120.0 h 29136.5 l 29073.8 c 29106.6 ticks 3735 delta -43
+14:55:00 bar 14:50 o 29106.4 h 29117.8 l 29077.3 c 29115.0 ticks 3717 delta -21
+15:00:00 bar 14:55 o 29114.8 h 29141.4 l 29075.4 c 29132.1 ticks 3701 delta -43
+15:05:00 bar 15:00 o 29132.4 h 29146.0 l 29093.7 c 29096.3 ticks 3699 delta -61
+15:10:00 bar 15:05 o 29096.0 h 29106.5 l 29069.4 c 29087.3 ticks 3686 delta -90
+15:15:00 bar 15:10 o 29087.5 h 29093.2 l 29051.0 c 29065.7 ticks 3658 delta -154
+15:20:00 bar 15:15 o 29066.0 h 29129.0 l 29057.7 c 29121.0 ticks 3657 delta +87
+15:25:00 bar 15:20 o 29120.5 h 29180.0 l 29117.9 c 29176.0 ticks 3639 delta +91
+15:30:00 bar 15:25 o 29176.4 h 29182.9 l 29105.2 c 29108.9 ticks 3693 delta -133
+15:35:00 bar 15:30 o 29108.6 h 29116.6 l 29078.1 c 29103.0 ticks 3724 delta -36
+15:40:00 bar 15:35 o 29102.8 h 29132.9 l 29099.5 c 29104.2 ticks 3728 delta -58
+15:45:00 bar 15:40 o 29104.5 h 29119.1 l 29057.5 c 29097.1 ticks 3661 delta +71
+15:50:00 bar 15:45 o 29096.1 h 29113.0 l 29081.5 c 29094.8 ticks 3707 delta -35
+15:55:00 bar 15:50 o 29095.8 h 29144.7 l 29094.9 c 29131.7 ticks 3659 delta +11
+16:00:00 bar 15:55 o 29131.5 h 29165.3 l 29126.4 c 29162.5 ticks 3679 delta +1
+16:05:00 bar 16:00 o 29162.6 h 29194.8 l 29145.7 c 29161.1 ticks 3678 delta -16
+16:10:00 bar 16:05 o 29161.3 h 29178.6 l 29128.6 c 29174.7 ticks 3628 delta +14
+16:15:00 bar 16:10 o 29174.8 h 29181.9 l 29160.6 c 29174.2 ticks 3646 delta -8
+16:20:00 bar 16:15 o 29174.3 h 29190.5 l 29164.0 c 29183.2 ticks 3644 delta -30
+16:24:59 ls status: DISCONNECTED:WILL-RETRY
+16:24:59 ls status: CONNECTING
+16:25:00 ls status: CONNECTED:WS-STREAMING
+16:25:00 CHART subscribed
+16:25:00 bar 16:20 o 29183.4 h 29198.9 l 29168.0 c 29179.2 ticks 3612 delta -42
+16:30:00 bar 16:25 o 29179.7 h 29195.8 l 29152.7 c 29159.6 ticks 3588 delta -96
+16:35:00 bar 16:30 o 29159.4 h 29160.2 l 29092.3 c 29095.7 ticks 3604 delta -176
+16:40:00 bar 16:35 o 29095.6 h 29119.0 l 29083.9 c 29087.2 ticks 3674 delta +48
+16:45:00 bar 16:40 o 29087.4 h 29088.5 l 29039.0 c 29042.9 ticks 3633 delta -141
+16:50:00 bar 16:45 o 29043.2 h 29055.2 l 28984.0 c 28986.6 ticks 3636 delta -200
+16:50:00 SIGNAL SELL at bar 16:45 close 28986.6 atr 45.9 ign 1.55 dshare -0.055
+16:50:00 FILLED SELL 1.0/pt at 28986.7 (paper would assume next open) stop 29031.7 limit +412.9
+16:55:00 bar 16:50 o 28986.8 h 29018.4 l 28956.8 c 29014.1 ticks 3692 delta -58
+16:56:06 CLOSED ig_closed at nan -> +nan pts (day +0.0, trades 1)
+16:57:43 ls status: DISCONNECTED
+16:57:43 done; ticks 150366 bars 337
