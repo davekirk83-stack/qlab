@@ -56,8 +56,9 @@ color cNy   = #26c6da
 color cAsia = #ff7eb6
 color cWk   = #b388ff
 var label[] tags = array.new_label()
+float atrTag = ta.atr(14)   // computed every bar at global scope, so the tag offset is consistent
 tag(int x, float y, string t, color c, bool above) =>
-    float yOff = above ? y + tagGap * ta.atr(14) : y - tagGap * ta.atr(14)
+    float yOff = above ? y + tagGap * atrTag : y - tagGap * atrTag
     label lb = label.new(x, yOff, t, style=above ? label.style_label_down : label.style_label_up, color=color.new(c, 20), textcolor=color.white, size=size.tiny)
     array.push(tags, lb)
     if array.size(tags) > keepLabels
