@@ -1,5 +1,0 @@
-ALTER TABLE pb7_equity ADD COLUMN equity_v11 REAL;
-ALTER TABLE pb7_equity ADD COLUMN shadow_v11 REAL;
-ALTER TABLE pb7_equity ADD COLUMN closed_v11 INTEGER;
-INSERT OR REPLACE INTO findings (doc, title, date, verdict, superseded_by, summary) VALUES (108, 'Ignition v1: where it loses, and v1.1', '2026-10-21', 'v1.1 registered as a parallel paper variant', NULL, 'US-hours Ignition over 12 months (128 trades, +9.2 pts/trade): every loss is a full 45-pt stop; 14 of 29 stops hit on the very next bar when ATR ~57; 16:00-18:59 UTC entries (45 trades) lost 166 pts. v1.1 = skip 16-18 UTC + stop max(45, 1.5 ATR): 84 trades, +20.4/trade, gap over random +13.6 (v1 +7.9), max DD -136 vs -273, holds in both half-years (+17.7 / +24.0 per trade).');
-INSERT OR REPLACE INTO rules (id, rule, why, doc, added) VALUES (178, 'Ignition: no entries 16:00-18:59 UTC; stop = max(45 pts, 1.5 x ATR20) (v1.1). v1 keeps running as the registered control until v1.1 has its own record.', 'doc 108: lunch-hour ignitions are false starts and a fixed 45-pt stop is under one ATR on wide days', 108, '2026-10-21');

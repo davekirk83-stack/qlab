@@ -1,0 +1,3 @@
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('COOKIEUSD','2026-10-22',0.009225,0.00733843,0.00953943,0.00062886,50.39,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('MINAUSD','2026-10-22',0.0718,0.0505,0.07535,0.0071,50.39,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-22',2015.69,4,1,3,2,1,'3 signals, 2 taken, 1 dropped, 0 closed, 4 open');
