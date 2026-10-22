@@ -347,8 +347,68 @@ bool monthEnd = dayofmonth(time + 3 * 86400000, "UTC") <= 3   // inside the last
 bool indexWeekend = weekend and syminfo.type != "crypto"
 string block = monthEnd ? "MONTH-END (last 3 days)" : indexWeekend ? "WEEKEND" : "-"
 
+// ------------------------------------------------ ADVISORY STATE ------------------------------------------------
+// LONG / SHORT come only from the range ladder (the tested edge). In TREND the panel says LEAN with the direction of the
+// EMA20/50 — untested as an entry, so a lean, not a call. CAUTION when the band is broken or a block is on.
+bool  trendUp  = ta.ema(close, 20) > ta.ema(close, 50)
+bool  recentLongRung  = inRange and ta.barssince(low < b1) <= 12 and close < mid
+bool  recentShortRung = inRange and ta.barssince(high > a1) <= 12 and close > mid
+bool  caution = (brokeUp or brokeDn) or monthEnd or indexWeekend
+int   advState = caution ? 9 : recentLongRung ? 2 : recentShortRung ? -2 : (not inRange ? (trendUp ? 1 : -1) : 0)
+string advText = advState == 9 ? "CAUTION" : advState == 2 ? "LONG" : advState == -2 ? "SHORT" : advState == 1 ? "LEAN LONG" : advState == -1 ? "LEAN SHORT" : "NEUTRAL"
+color  advCol  = advState == 9 ? cWarn : advState == 2 ? cUp : advState == -2 ? cDn : advState == 1 ? color.new(cUp, 30) : advState == -1 ? color.new(cDn, 30) : cMute
+string advWhy  = advState == 9 ? (brokeUp ? "band broken upward" : brokeDn ? "band broken downward" : monthEnd ? "month-end block" : "weekend") : advState == 2 ? "ladder rung hit, below mid - target mid " + str.tostring(mid, format.mintick) : advState == -2 ? "ladder rung hit, above mid - target mid " + str.tostring(mid, format.mintick) : advState == 1 ? "trend regime, EMA20 > EMA50 - longs on expansion bars only" : advState == -1 ? "trend regime, EMA20 < EMA50 - shorts on expansion bars only" : "range, no rung touched yet"
+bool newLong    = advState == 2 and advState[1] != 2 and barstate.isconfirmed
+bool newShort   = advState == -2 and advState[1] != -2 and barstate.isconfirmed
+bool newCaution = advState == 9 and advState[1] != 9 and barstate.isconfirmed
+plotshape(newLong, "LONG", style=shape.circle, location=location.belowbar, color=color.new(cUp, 0), size=size.small, text="LONG", textcolor=color.new(cUp, 0))
+plotshape(newShort, "SHORT", style=shape.circle, location=location.abovebar, color=color.new(cDn, 0), size=size.small, text="SHORT", textcolor=color.new(cDn, 0))
+plotshape(newCaution, "CAUTION", style=shape.xcross, location=location.abovebar, color=color.new(cWarn, 0), size=size.small, text="CAUTION", textcolor=color.new(cWarn, 0))
+
+// ------------------------------------------------ TRADE MARKERS: entry, target, invalidation ------------------------------------------------
+// On a new LONG: BUY marker at the first rung, TARGET line at the mid EMA, INVALID line 1.5 ATR under the band (the break exit).
+// Lines follow the mid EMA while the call is live and are removed when the mid is hit or the state ends.
+var line tgtLn = na
+var line invLn = na
+var label tgtLb = na
+var label invLb = na
+bool liveLong  = advState == 2
+bool liveShort = advState == -2
+if newLong or newShort
+    if not na(tgtLn)
+        line.delete(tgtLn)
+        line.delete(invLn)
+        label.delete(tgtLb)
+        label.delete(invLb)
+    float invLvl = newLong ? loB - breakATR * atr : hiB + breakATR * atr
+    tgtLn := line.new(bar_index, mid, bar_index + 1, mid, color=color.new(cHead, 0), width=2)
+    invLn := line.new(bar_index, invLvl, bar_index + 1, invLvl, color=color.new(cWarn, 0), width=1, style=line.style_dashed)
+    tgtLb := label.new(bar_index + 1, mid, "TARGET " + str.tostring(mid, format.mintick), style=label.style_label_left, color=color.new(cHead, 20), textcolor=color.black, size=size.tiny)
+    invLb := label.new(bar_index + 1, invLvl, "INVALID " + str.tostring(invLvl, format.mintick), style=label.style_label_left, color=color.new(cWarn, 20), textcolor=color.white, size=size.tiny)
+    tag(bar_index, newLong ? low : high, newLong ? "BUY " + str.tostring(b1, format.mintick) : "SELL " + str.tostring(a1, format.mintick), newLong ? cUp : cDn, newShort)
+if not na(tgtLn) and (liveLong or liveShort)
+    float invNow = liveLong ? loB - breakATR * atr : hiB + breakATR * atr
+    setln(tgtLn, line.get_x1(tgtLn), mid, bar_index + 1, mid)
+    setln(invLn, line.get_x1(invLn), invNow, bar_index + 1, invNow)
+    label.set_xy(tgtLb, bar_index + 1, mid)
+    label.set_text(tgtLb, "TARGET " + str.tostring(mid, format.mintick))
+    label.set_xy(invLb, bar_index + 1, invNow)
+    label.set_text(invLb, "INVALID " + str.tostring(invNow, format.mintick))
+bool targetHit = not na(tgtLn) and ((liveLong and high >= mid) or (liveShort and low <= mid))
+if not na(tgtLn) and (targetHit or (not liveLong and not liveShort))
+    if targetHit
+        tag(bar_index, mid, "TARGET HIT", cHead, liveLong)
+    line.delete(tgtLn)
+    line.delete(invLn)
+    label.delete(tgtLb)
+    label.delete(invLb)
+    tgtLn := na
+    invLn := na
+    tgtLb := na
+    invLb := na
+
 // ------------------------------------------------ PANEL (2 x 9) ------------------------------------------------
-var table panel = table.new(pos(), 2, 11, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
+var table panel = table.new(pos(), 2, 13, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
 row(int r, string k, string v, color c) =>
     table.cell(panel, 0, r, k, text_color=cMute, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, r, v, text_color=c, text_size=sz(), text_halign=text.align_right)
@@ -356,24 +416,30 @@ if barstate.islast
     table.cell(panel, 0, 0, "MKT ADVISORY V20", text_color=cHead, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
     // THE READ — one plain-English line from the tested parts (no score: the V19 score was indistinguishable from random)
-    bool  trendUp = ta.ema(close, 20) > ta.ema(close, 50)
     string readTxt = inRange ? (brokeUp or brokeDn ? "RANGE BROKEN - stand aside until the band is back" : lowTouched > 0 ? "LONG - buy the lower rungs, sell at the mid EMA (72% win)" : highTouched > 0 ? "SHORT - sell the upper rungs, cover at the mid EMA (72% win)" : close < mid ? "RANGE - wait for a long rung below " + str.tostring(b1, format.mintick) : "RANGE - wait for a short rung above " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - no ladder; expansion bars up only" : "TREND DOWN - no ladder; expansion bars down only")
     color readCol = inRange ? (brokeUp or brokeDn ? cWarn : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead) : (trendUp ? cUp : cDn)
-    row(1, "READ", readTxt, readCol)
+    table.cell(panel, 0, 1, "ADVISORY", text_color=cHead, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, 1, advText, text_color=advCol, text_size=panelSize == "Tiny" ? size.small : size.normal, text_halign=text.align_right)
+    row(2, "  why", advWhy, cMute)
+    row(3, "READ", readTxt, readCol)
     string sessTxt = inNy ? (na(nyPos) ? "NY" : nyPos < 0.5 ? "NY aims LOW first (" + (nyPos < 0.2 ? "96%" : "77%") + ") then the high" : "NY aims HIGH first (" + (nyPos > 0.8 ? "~90%" : "77%") + ") then the low") : inLdn ? "LDN - takes an Asia extreme 89%, nearest first" : inAsia ? "ASIA - sets the box; London rests inside it" : "off hours - levels carry to the next session"
-    row(2, "SESSION READ", sessTxt, inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
-    row(3, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00") + (inRange ? "  (inside its band more than usual)" : "  (breaking out more than usual)"), inRange ? cUp : cWarn)
+    row(4, "SESSION READ", sessTxt, inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    row(5, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00") + (inRange ? "  (inside its band more than usual)" : "  (breaking out more than usual)"), inRange ? cUp : cWarn)
     string ladderTxt = not inRange ? "off (trend)" : brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "long " + str.tostring(lowTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : highTouched > 0 ? "short " + str.tostring(highTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : "waiting for a rung"
-    row(4, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
-    row(5, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    row(6, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
+    row(7, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
     string tgtTxt = na(t1) or not (inNy or inLdn) ? "-" : (t1Done ? "T1 done - " : "T1 " + str.tostring(t1, format.mintick) + " - ") + (t2Done ? "T2 done" : "T2 " + str.tostring(t2, format.mintick))
-    row(6, "TARGETS", tgtTxt, cHead)
-    row(7, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
-    row(8, "WEEK", weekText, cWk)
-    row(9, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
-    row(10, "BLOCK", block, block == "-" ? cMute : cWarn)
+    row(8, "TARGETS", tgtTxt, cHead)
+    row(9, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
+    row(10, "WEEK", weekText, cWk)
+    row(11, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
+    row(12, "BLOCK", block, block == "-" ? cMute : cWarn)
 
 // ------------------------------------------------ ALERTS ------------------------------------------------
+alertcondition(newLong, "ADVISORY LONG", "MktAdv20 LONG {{ticker}} {{interval}}")
+alertcondition(newShort, "ADVISORY SHORT", "MktAdv20 SHORT {{ticker}} {{interval}}")
+alertcondition(newCaution, "ADVISORY CAUTION", "MktAdv20 CAUTION {{ticker}} {{interval}}")
+alertcondition(targetHit, "TARGET HIT", "MktAdv20 target (mid EMA) hit {{ticker}} {{interval}}")
 alertcondition(regimeFlip, "Regime flip", "MktAdv20 regime flip {{ticker}} {{interval}}")
 alertcondition(newLongRung, "Long ladder rung", "MktAdv20 first long rung touched {{ticker}} {{interval}}")
 alertcondition(newShortRung, "Short ladder rung", "MktAdv20 first short rung touched {{ticker}} {{interval}}")
