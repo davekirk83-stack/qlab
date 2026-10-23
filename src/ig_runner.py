@@ -14,17 +14,22 @@ What it does (one GitHub Actions job per half-session, see .github/workflows/ig-
   6. logs every bar (runs/ig_demo/bars_<date>.csv) and every fill (runs/ig_demo/trades.csv) with the price the paper book would
      have assumed (next bar open) beside the price IG actually gave — that is the doc 93 fill-shape evidence
 State between jobs: runs/ig_demo/state.json (committed by the job). An open position is recovered from IG at start.
+v1.1 (doc 108, from Mon 26 Oct 2026): no entries 16:00-18:59 UTC; stop = max(45, 1.5 x ATR20).
+Second engine (doc 116, from Mon 26 Oct 2026): Range v3-IDX in src/ig_range_engine.py on US Tech 100 / Wall Street / Germany 40 — set IG_RANGE=0 to disable.
 """
 import os, sys, json, time, math, datetime as dt, traceback
 import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
+from ig_range_engine import RangeEngine
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
 from trading_ig import IGService, IGStreamService
 from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.CASH.IP")   # US Tech 100, daily funded SPREAD BET (GBP per point); IX.D.NASDAQ.IFD.IP is the CFD
 SIZE = float(os.environ.get("IG_SIZE", "1.0"))               # £ per point on the demo (doc 99 sizing)
+V11 = os.environ.get("IG_V11", "1") == "1"                   # Ignition v1.1 (doc 108)
+RANGE = os.environ.get("IG_RANGE", "1") == "1"               # Range v3-IDX engine (doc 116)
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
 
 
@@ -73,7 +78,7 @@ class Runner:
         if cur != want_px: self.ig.switch_account(want_px, False); cur = want_px
         self.stream_acc = cur; self.stream_pw = f"CST-{self.ig.session.headers['CST']}|XST-{self.ig.session.headers['X-SECURITY-TOKEN']}"
         self.ig_px = self.ig
-        self.feed = None; self.ticks = 0; self.cur = None; self.last_sign = 0; self.bars = pd.DataFrame()
+        self.feed = None; self.ticks = 0; self.cur = {}; self.last_sign = {}; self.bars = pd.DataFrame(); self.engine = None; self.epics = [EPIC]
         self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
         self.open_stream()
         for _ in range(20):
@@ -91,11 +96,19 @@ class Runner:
         today = utcnow().strftime("%Y-%m-%d")
         if self.state.get("day") != today: self.state = {"day": today, "ntr": 0, "dpl": 0.0, "last_exit_bar": None}
         self.pos = None; self.recover_position()
+        if RANGE:
+            try:
+                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history)
+                extra = [e for e in self.engine.epic2name if e not in self.epics]; self.epics += extra
+                if extra: self.subscribe(extra)
+            except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
 
 
     # ---------------------------------------------------------------- data
-    def history(self):
-        h = self.ig_px.fetch_historical_prices_by_epic(EPIC, resolution="5Min", numpoints=300)["prices"]
+    def history(self): return self.rest_history(EPIC, "5Min", 300)
+
+    def rest_history(self, epic, res, n):
+        h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
         rows = []
         for x in h:
             ts = pd.Timestamp(x["snapshotTimeUTC"] if "snapshotTimeUTC" in x else x["snapshotTime"]).tz_localize("UTC") if pd.Timestamp(x.get("snapshotTimeUTC", x["snapshotTime"])).tz is None else pd.Timestamp(x["snapshotTimeUTC"])
@@ -106,23 +119,29 @@ class Runner:
         d = d[~d.index.duplicated(keep="last")]
         return d
 
-    def on_tick(self, item):
+    def on_tick(self, item, epic=EPIC):
         v = item.get("values", item) if isinstance(item, dict) else item
         try:
             bid, ofr = float(v["BID"]), float(v["OFR"])
         except (KeyError, TypeError, ValueError): return
         t = utcnow(); mid = (bid + ofr)/2; spread = ofr - bid
         bucket = t.replace(second=0, microsecond=0, minute=(t.minute//BAR)*BAR)
-        if self.cur is None or bucket != self.cur["ts"]:
-            if self.cur is not None: self.close_bar()
-            self.cur = {"ts": bucket, "open": mid, "high": mid, "low": mid, "close": mid, "vol": 0, "delta": 0, "spread_sum": 0.0, "last_mid": mid}
-        c = self.cur; s = np.sign(mid - c["last_mid"])
-        if s == 0: s = self.last_sign
-        self.last_sign = s; c["delta"] += s; c["vol"] += 1; c["spread_sum"] += spread; c["last_mid"] = mid
+        cur = self.cur.get(epic)
+        if cur is None or bucket != cur["ts"]:
+            if cur is not None: self.close_bar(epic)
+            self.cur[epic] = {"ts": bucket, "open": mid, "high": mid, "low": mid, "close": mid, "vol": 0, "delta": 0, "spread_sum": 0.0, "last_mid": mid}
+        c = self.cur[epic]; s = np.sign(mid - c["last_mid"])
+        if s == 0: s = self.last_sign.get(epic, 0)
+        self.last_sign[epic] = s; c["delta"] += s; c["vol"] += 1; c["spread_sum"] += spread; c["last_mid"] = mid
         c["high"] = max(c["high"], mid); c["low"] = min(c["low"], mid); c["close"] = mid
 
-    def close_bar(self):
-        c = self.cur
+    def close_bar(self, epic=EPIC):
+        c = self.cur.get(epic); self.cur[epic] = None
+        if c is None: return
+        if self.engine:
+            try: self.engine.on_bar5(epic, c)
+            except Exception: log("range engine error:", traceback.format_exc())
+        if epic != EPIC: return
         log(f"bar {c['ts']:%H:%M} o {c['open']:.1f} h {c['high']:.1f} l {c['low']:.1f} c {c['close']:.1f} ticks {c['vol']} delta {c['delta']:+.0f}")
         row = pd.DataFrame([dict(open=c["open"], high=c["high"], low=c["low"], close=c["close"], vol=c["vol"], delta=c["delta"], spread=c["spread_sum"]/max(c["vol"], 1))], index=[pd.Timestamp(c["ts"])])
         self.bars = pd.concat([self.bars, row]); self.bars = self.bars[~self.bars.index.duplicated(keep="last")].tail(600)
@@ -141,6 +160,7 @@ class Runner:
         s = int(row.sig)
         if s == 0 or np.isnan(row.atr): return
         if not (US_OPEN <= mins < US_CLOSE): log(f"bar {ts:%H:%M} sig {s} outside US hours — skipped"); return
+        if V11 and ts.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the 16-18 UTC lunch window — skipped (v1.1)"); return
         st = self.state
         if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return
         if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return
@@ -148,16 +168,17 @@ class Runner:
 
     def open(self, s, row, ts):
         direction = "BUY" if s == 1 else "SELL"; tgt = round(P7.TGT_ATR*row.atr, 1)
+        stop_pts = round(max(P7.STOP, P7.V11_STOP_ATR*row.atr), 1) if V11 else P7.STOP
         log(f"SIGNAL {direction} at bar {ts:%H:%M} close {row.close:.1f} atr {row.atr:.1f} ign {row.ign:.2f} dshare {row.dshare:+.3f}")
-        if self.dry: log("dry run — no order"); return
+        if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts)"); return
         r = self.ig.create_open_position(currency_code=self.ccy, direction=direction, epic=EPIC, expiry=self.expiry, force_open=True, guaranteed_stop=False,
                                          level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=self.size,
-                                         stop_distance=P7.STOP, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
+                                         stop_distance=stop_pts, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
         if r.get("dealStatus") != "ACCEPTED": log("order rejected:", r.get("reason"), r); return
         self.pos = {"deal_id": r["dealId"], "side": s, "entry": float(r["level"]), "paper_entry": float(row.close), "atr": float(row.atr), "opened": str(ts),
-                    "bar_i": len(self.bars) - 1, "best": float(r["level"]), "be": False, "stop": float(r["level"]) - s*P7.STOP, "bars": 0}
+                    "bar_i": len(self.bars) - 1, "best": float(r["level"]), "be": False, "stop": float(r["level"]) - s*stop_pts, "bars": 0}
         self.state["ntr"] += 1; self.save()
-        log(f"FILLED {direction} {self.size}/pt at {self.pos['entry']} (paper would assume next open) stop {self.pos['stop']:.1f} limit +{tgt}")
+        log(f"FILLED {direction} {self.size}/pt at {self.pos['entry']} (paper would assume next open) stop {self.pos['stop']:.1f} ({stop_pts} pts) limit +{tgt}")
 
     def manage(self, d, i):
         p = self.pos; s = p["side"]; H, L, C = d.high.values, d.low.values, d.close.values
@@ -269,19 +290,24 @@ class Runner:
             def onStatusChange(self, status): log("ls status:", status)
             def onServerError(self, code, message): log("ls server error:", code, message)
         ls.addListener(CL()); ls.connect(); log("stream user", self.stream_acc, "endpoint", self.ls_endpoint)
+        self.ls = ls; self.subscribe([EPIC])
+
+    def subscribe(self, epics):
+        runner = self
         class L(SubscriptionListener):
-            def __init__(self, name, bidf, ofrf): self.name, self.bidf, self.ofrf = name, bidf, ofrf
+            def __init__(self, name, bidf, ofrf, epic): self.name, self.bidf, self.ofrf, self.epic = name, bidf, ofrf, epic
             def onItemUpdate(self, u):
                 try:
                     runner.ticks += 1
-                    if runner.ticks <= 3: log(self.name, "update:", {f: u.getValue(f) for f in (self.bidf, self.ofrf)})
-                    if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)})
+                    if runner.ticks <= 3: log(self.name, self.epic, "update:", {f: u.getValue(f) for f in (self.bidf, self.ofrf)})
+                    if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)}, self.epic)
                 except Exception: log("on_tick error:", traceback.format_exc())
-            def onSubscriptionError(self, code, message): log(self.name, "subscription error", code, message)
-            def onSubscription(self): log(self.name, "subscribed"); runner.feed = runner.feed or self.name
-        sub = Subscription(mode="DISTINCT", items=[f"CHART:{EPIC}:TICK"], fields=["BID", "OFR", "UTM"]); sub.addListener(L("CHART", "BID", "OFR"))
-        sub2 = Subscription(mode="MERGE", items=[f"MARKET:{EPIC}"], fields=["BID", "OFFER", "UPDATE_TIME", "MARKET_STATE"]); sub2.addListener(L("MARKET", "BID", "OFFER"))
-        ls.subscribe(sub); ls.subscribe(sub2); self.ls = ls; log("streaming", EPIC)
+            def onSubscriptionError(self, code, message): log(self.name, self.epic, "subscription error", code, message)
+            def onSubscription(self): log(self.name, self.epic, "subscribed"); runner.feed = runner.feed or self.name
+        for e in epics:
+            sub = Subscription(mode="DISTINCT", items=[f"CHART:{e}:TICK"], fields=["BID", "OFR", "UTM"]); sub.addListener(L("CHART", "BID", "OFR", e))
+            sub2 = Subscription(mode="MERGE", items=[f"MARKET:{e}"], fields=["BID", "OFFER", "UPDATE_TIME", "MARKET_STATE"]); sub2.addListener(L("MARKET", "BID", "OFFER", e))
+            self.ls.subscribe(sub); self.ls.subscribe(sub2); log("streaming", e)
 
     def run(self):
         last_check = time.time()
@@ -290,8 +316,12 @@ class Runner:
             if time.time() - last_check > 60:
                 last_check = time.time()
                 if self.pos and not self.dry: self.check_closed_by_ig()
-                if self.cur and (utcnow() - self.cur["ts"]).total_seconds() > BAR*60 + 20: self.close_bar(); self.cur = None
+                for e, c in list(self.cur.items()):
+                    if c and (utcnow() - c["ts"]).total_seconds() > BAR*60 + 20: self.close_bar(e)
         if self.pos: self.close("session_end")
+        if self.engine:
+            try: self.engine.end_of_job()
+            except Exception: log("range engine end:", traceback.format_exc())
         self.save(); self.ls.disconnect(); log("done; ticks", self.ticks, "bars", len(self.bars))
 
 
