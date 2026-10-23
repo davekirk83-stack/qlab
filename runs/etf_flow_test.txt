@@ -1,0 +1,17 @@
+sessions 714  flow mean 80 sd 337  corr(flow, same-day ret) 0.42
+corr(flow, next1) 0.085  next3 0.052  next5 0.030
+all                                n  714  next1 +0.12% (t +1.1, win 50%)  next3 +0.39% (t +2.1, win 52%)  next5 +0.66% (t +2.7, win 52%)
+outflow < -400M                    n   44  next1 -0.71% (t -1.2, win 47%)  next3 -0.54% (t -0.6, win 49%)  next5 -0.27% (t -0.2, win 47%)
+outflow < -600M                    n   14  next1 -0.83% (t -1.6, win 46%)  next3 -1.93% (t -2.0, win 46%)  next5 -2.89% (t -1.2, win 38%)
+outflow bottom decile              n   72  next1 -0.24% (t -0.6, win 51%)  next3 -0.29% (t -0.4, win 49%)  next5 +0.09% (t +0.1, win 51%)
+inflow > 400M                      n  117  next1 +0.40% (t +1.5, win 56%)  next3 +0.66% (t +1.2, win 55%)  next5 +0.76% (t +1.3, win 56%)
+inflow top decile                  n   72  next1 +0.61% (t +1.7, win 62%)  next3 +0.76% (t +1.0, win 55%)  next5 +0.78% (t +0.9, win 53%)
+big inflow -> big outflow flip     n    4  next1 +0.05% (t +0.0, win 33%)  next3 +3.03% (t +1.8, win 67%)  next5 +4.25% (t +1.1, win 67%)
+H1 outflow<-400 next3 +1.58% n 12  | all next3 +0.91%
+H2 outflow<-400 next3 -1.36% n 31  | all next3 -0.14%
+same-day ret < -2% (any flow)      n  155  next1 +0.37% (t +1.2, win 57%)  next3 +0.25% (t +0.6, win 47%)  next5 +0.89% (t +1.6, win 55%)
+                  flow     px        r0
+date                                   
+2026-10-20   23.162423  82752  1.025491
+2026-10-21  528.400237  84623  2.260973
+2026-10-22 -635.492639  81177 -4.072179
