@@ -3,3 +3,7 @@ logged_utc,account,price_at_call,call,resolve_by,outcome
 2026-10-22T12:46,DK,81730,opens with a big raid lower then reverses up toward 85k,2026-10-22 NY close,"WRONG - raid came (81,358 then 80,915) but no reverse: ceiling 81,923 held 4x, NY closed 81,380"
 2026-10-22T15:55,Stoic (orderbook),81300,range holds; passive bids stepping in; another LTF bounce loading,2026-10-22 NY close,"RIGHT (small) - 80,915 low bought, 81,552 by 19:30, no new low into the close"
 2026-10-22T08:55,Claude (session read),81950,"down day ~65/35, London low swept first, 81,300 realistic target, weekend low ~40% today",2026-10-22 NY close,"RIGHT - NY closed down (81,690 -> 81,380), London low swept 14:40, low 80,915; weekend low not taken"
+2026-10-23T08:38,Crypto Tony,81600,"broadening pattern on 1h is bearish after steep drop; pumps are for shorting; distributive",2026-10-24 Asia close,
+2026-10-23T10:30,Kingfisher,81640,"balanced liq around 81.6k slight downside skew; whipsaw hunting both clusters (81,430-80,760 below; 82,100-82,400 above)",2026-10-23 NY close,
+2026-10-23T10:42,Jelle,81640,"BTC rarely ends October red; another week to push higher",2026-10-31 close,
+2026-10-23T12:20,Claude (session read),81560,"raid-then-reverse: sweep 81,056-80,760 into whale bids then back through 81,550 toward 82,232; don't front-run 81,550; straight-up open less likely",2026-10-23 NY close,
