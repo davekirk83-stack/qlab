@@ -1,27 +1,27 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-21:11:44 delta-share threshold 0.0439 (tail-ratio default (248 IG bars, <500)); registered 0.05
-21:12:03 history 300 bars to 2026-10-23 21:00:00+00:00
-21:12:03 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-21:12:03 ls status: CONNECTING
-21:12:03 streaming IX.D.NASDAQ.CASH.IP
-21:12:04 ls status: CONNECTED:WS-STREAMING
-21:12:04 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-21:12:04 CHART IX.D.NASDAQ.CASH.IP subscribed
-21:12:04 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
-21:12:05 stream subscribed on CHART via Z6FARW
-21:12:05 trading session on Z6FARW
-21:12:05 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status EDITS_ONLY
-21:12:17 [range] NQ rest history 
-21:12:17 [range] NQ: containment median 0.860 over 22446 15-min bars
-21:12:17 [range] search Wall Street 
-21:12:17 [range] epic IX.D.DOW.DAILY.IP -> 
-21:12:18 [range] epic IX.D.DOW.CASH.IP -> 
-21:12:18 [range] WALLST no epic found — instrument skipped
-21:12:18 [range] search Germany 40 
-21:12:18 [range] epic IX.D.DAX.DAILY.IP -> 
-21:12:18 [range] epic IX.D.DAX.CASH.IP -> 
-21:12:18 [range] DAX no epic found — instrument skipped
-21:12:18 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
-21:19:45 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-21:19:45 ls status: DISCONNECTED
-21:19:45 done; ticks 1 bars 300
+21:21:23 delta-share threshold 0.0439 (tail-ratio default (248 IG bars, <500)); registered 0.05
+21:21:42 history 300 bars to 2026-10-23 21:00:00+00:00
+21:21:42 ls status: CONNECTING
+21:21:42 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+21:21:42 streaming IX.D.NASDAQ.CASH.IP
+21:21:43 ls status: CONNECTED:WS-STREAMING
+21:21:43 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+21:21:43 CHART IX.D.NASDAQ.CASH.IP subscribed
+21:21:43 stream subscribed on CHART via Z6FARW
+21:21:43 trading session on Z6FARW
+21:21:43 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
+21:21:43 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status EDITS_ONLY
+21:21:44 [range] search US Tech 100 -> [('IX.D.NASDAQ.CASH.IP', 'US Tech 100'), ('IX.D.NASDAQ.MONTH4.IP', 'US Tech 100'), ('KA.D.SQQQLN.DAILY.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities'), ('KA.D.SQQQLN.DEC.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities'), ('KA.D.SQQQLN.MAR.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities'), ('KA.D.SQQQLN.JUN.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities'), ('KA.D.QQ3SLN.DAILY.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities - QQ3S'), ('KA.D.QQ3SLN.DEC.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities - QQ3S'), ('KA.D.QQ3SLN.MAR.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities - QQ3S'), ('KA.D.QQ3SLN.JUN.IP', 'Leverage Shares -5x Short US Tech 100 ETP Securities - QQ3S'), ('KA.D.3QQQLN.DAILY.IP', 'Leverage Shares 3x Long US Tech 100 ETP Securities'), ('KA.D.3QQQLN.DEC.IP', 'Leverage Shares 3x Long US Tech 100 ETP Securities')]
+21:21:55 [range] NQ rest history ApiExceededException: ApiExceededException()
+21:21:55 [range] NQ: containment median 0.860 over 22446 15-min bars
+21:21:56 [range] search Wall Street ApiExceededException: ApiExceededException()
+21:21:56 [range] epic IX.D.DOW.DAILY.IP -> ApiExceededException: ApiExceededException()
+21:21:56 [range] epic IX.D.DOW.CASH.IP -> ApiExceededException: ApiExceededException()
+21:21:56 [range] WALLST no epic found — instrument skipped
+21:21:56 [range] search Germany 40 ApiExceededException: ApiExceededException()
+21:21:56 [range] epic IX.D.DAX.DAILY.IP -> ApiExceededException: ApiExceededException()
+21:21:56 [range] epic IX.D.DAX.CASH.IP -> ApiExceededException: ApiExceededException()
+21:21:56 [range] DAX no epic found — instrument skipped
+21:21:56 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
+21:29:23 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+21:29:23 done; ticks 1 bars 300
