@@ -1,2 +1,17 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-21:14:46 dateUtc=2026-10-22T16:55:36 | instrumentName=US Tech 100 | transactionType=DEAL | size=-1 | openLevel=28986.7 | closeLevel=29031.7 | profitAndLoss=£-45.00 | reference=DIAAAAYP9XTULBR
+09:20:01 delta-share threshold 0.0439 (tail-ratio default (208 IG bars, <500)); registered 0.05
+09:20:19 history 300 bars to 2026-10-23 09:20:00+00:00
+09:20:19 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+09:20:19 streaming IX.D.NASDAQ.CASH.IP
+09:20:19 ls status: CONNECTING
+09:20:20 ls status: CONNECTED:WS-STREAMING
+09:20:20 MARKET subscription error 21 Invalid group
+09:20:20 CHART subscribed
+09:20:20 CHART update: {'BID': '29013.2', 'OFR': '29015.4'}
+09:20:20 stream subscribed on CHART via Z6FARW
+09:20:20 trading session on Z6FARW
+09:20:20 CHART update: {'BID': '29013.3', 'OFR': '29015.5'}
+09:20:20 CHART update: {'BID': '29013.3', 'OFR': '29015.5'}
+09:20:20 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+09:25:00 bar 09:20 o 29014.3 h 29027.7 l 28988.4 c 28994.0 ticks 2895 delta -4
+09:25:02 done; ticks 3025 bars 300

@@ -1,8 +1,6 @@
 {
- "day": "2026-10-22",
- "ntr": 1,
+ "day": "2026-10-23",
+ "ntr": 0,
  "dpl": 0.0,
- "last_exit_bar": 336,
- "last_atr": 45.880000000000294,
- "open_bars": 0
+ "last_exit_bar": null
 }
