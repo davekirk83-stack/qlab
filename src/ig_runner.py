@@ -19,12 +19,35 @@ import os, sys, json, time, math, datetime as dt, traceback
 import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
+ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
 from trading_ig import IGService, IGStreamService
 from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
 
 EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.CASH.IP")   # US Tech 100, daily funded SPREAD BET (GBP per point); IX.D.NASDAQ.IFD.IP is the CFD
 SIZE = float(os.environ.get("IG_SIZE", "1.0"))               # £ per point on the demo (doc 99 sizing)
 OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
+
+
+def calibrate_dshare():
+    """IG's tick feed carries ~1.7x the ticks of the Dukascopy feed the book was fitted on, so delta SHARE runs smaller in
+    the tails (doc 119). Map the registered 0.05 (the top ~9% of Dukascopy bars over the year) to the same percentile of
+    IG's own bars, once enough IG bars exist; until then use the tail ratio measured on the first three days (0.878)."""
+    import glob
+    try:
+        full = pd.read_csv(f"{ROOT}/data_nq_cache/nq_5m.csv", index_col=0)
+        p = float(((full.delta/full.vol.replace(0, np.nan)).abs().dropna() >= P7.DSHARE).mean())
+        fs = sorted(glob.glob(f"{OUT}/bars_*.csv"))
+        ig = pd.concat([pd.read_csv(f, header=None, names="ts,open,high,low,close,vol,delta,spread".split(",")) for f in fs]) if fs else pd.DataFrame()
+        ig = ig[ig.ts.astype(str).str.startswith("20")] if len(ig) else ig
+        if len(ig) >= 500:
+            ds = (ig.delta.astype(float)/ig.vol.astype(float).replace(0, np.nan)).abs().dropna()
+            thr = float(ds.quantile(1 - p)); src = f"percentile-matched on {len(ig)} IG bars"
+        else:
+            thr = P7.DSHARE*0.878; src = f"tail-ratio default ({len(ig)} IG bars, <500)"
+        thr = min(max(thr, 0.035), P7.DSHARE)
+    except Exception as e:
+        thr, src = P7.DSHARE, f"calibration failed ({e}); registered threshold"
+    return thr, src
 STATE = f"{OUT}/state.json"; TRADES = f"{OUT}/trades.csv"
 US_OPEN, US_CLOSE = 13*60+30, 20*60
 BAR = 5
@@ -36,6 +59,7 @@ def log(*a): print(utcnow().strftime("%H:%M:%S"), *a, flush=True)
 
 class Runner:
     def __init__(self, end_utc, dry):
+        thr, src = calibrate_dshare(); P7.DSHARE = thr; log(f"delta-share threshold {thr:.4f} ({src}); registered 0.05")
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
         # ONE session. Step 1: on the CFD demo account, open the price stream and confirm the subscription.
@@ -109,6 +133,7 @@ class Runner:
 
     # ---------------------------------------------------------------- strategy
     def decide(self):
+        if not self.dry: self.resolve_pending()
         d = P7.features(self.bars); i = len(d) - 1; row = d.iloc[i]; ts = d.index[i]
         mins = ts.hour*60 + ts.minute
         if self.pos:
@@ -187,8 +212,33 @@ class Runner:
         lvl = float(r.get("level") or np.nan)
         self.book(lvl, how)
 
+    def resolve_pending(self):
+        """A stop/limit exit whose level was unknown when booked (IG posts the transaction a few seconds late): re-query and patch the row."""
+        pend = self.state.get("pending_exit")
+        if not pend: return
+        try:
+            now = utcnow(); tx = self.ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(hours=12)).strftime("%Y-%m-%dT%H:%M:%S"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=50)
+            rows = tx.get("transactions", tx) if isinstance(tx, dict) else tx
+            for t in rows:
+                if str(t.get("transactionType", "")).upper() != "DEAL": continue
+                try: ol, cl = float(t.get("openLevel")), float(t.get("closeLevel"))
+                except Exception: continue
+                if abs(ol - pend["entry"]) <= 2.0:
+                    pts = pend["side"]*(cl - ol); how = "ig_stop" if pts < 0 else "ig_limit"
+                    lines = open(TRADES).read().splitlines()
+                    for k, ln in enumerate(lines):
+                        if ln.startswith(pend["opened"]) and ",nan,nan," in ln:
+                            f = ln.split(","); f[5] = f"{cl:.2f}"; f[6] = f"{pts:.2f}"; f[7] = how; lines[k] = ",".join(f)
+                    open(TRADES, "w").write("\n".join(lines) + "\n")
+                    self.state["dpl"] += pts; self.state["pending_exit"] = None; self.save(); log(f"pending exit resolved: {how} at {cl} -> {pts:+.1f} pts"); return
+            pend["tries"] = pend.get("tries", 0) + 1
+            if pend["tries"] >= 6: self.state["pending_exit"] = None; log("pending exit: not found after 6 tries")
+            self.save()
+        except Exception as e: log("resolve_pending:", e)
+
     def book(self, lvl, how):
         p = self.pos; s = p["side"]; pts = s*(lvl - p["entry"]) if not np.isnan(lvl) else np.nan
+        if np.isnan(lvl): self.state["pending_exit"] = {"opened": p["opened"], "entry": p["entry"], "side": s, "tries": 0}
         hdr = not os.path.exists(TRADES)
         with open(TRADES, "a") as f:
             if hdr: f.write("opened,closed,side,paper_entry,ig_entry,ig_exit,pts,how,bars\n")
