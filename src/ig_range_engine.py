@@ -56,10 +56,12 @@ class RangeEngine:
     def resolve(self, m):
         cands = list(m["epics"])
         try:
-            for r in self.ig.search_markets(m["search"]).get("markets", []):
+            res = self.ig.search_markets(m["search"]); ms = res.get("markets", []) if isinstance(res, dict) else []
+            log("search", m["search"], "->", [(x.get("epic"), x.get("instrumentName")) for x in ms][:12])
+            for r in ms:
                 e = r.get("epic", "")
                 if e.startswith("IX.") and e not in cands and (e.endswith(".DAILY.IP") or e.endswith(".CASH.IP")): cands.append(e)
-        except Exception as ex: log("search", m["search"], ex)
+        except Exception as ex: log("search", m["search"], f"{type(ex).__name__}: {ex!r}"[:200])
         for e in cands:
             try:
                 mk = self.ig.fetch_market_by_epic(e); ins, rules = mk["instrument"], mk["dealingRules"]
@@ -68,7 +70,7 @@ class RangeEngine:
                 if cc and self.ccy not in cc: continue
                 return e, dict(epic=e, name=ins["name"], expiry=ins["expiry"], min=float(rules["minDealSize"]["value"]),
                                minstop=float(rules.get("minNormalStopOrLimitDistance", {}).get("value", 0) or 0), status=mk["snapshot"]["marketStatus"])
-            except Exception as ex: log("epic", e, "->", str(ex)[:80])
+            except Exception as ex: log("epic", e, "->", f"{type(ex).__name__}: {ex!r}"[:200])
         return None, None
 
     def seed(self, name, epic, m):
@@ -76,7 +78,7 @@ class RangeEngine:
         try: c = pd.read_csv(m["cache"], index_col=0, parse_dates=True); c.index = pd.to_datetime(c.index, utc=True); c = c[["open", "high", "low", "close"]]
         except Exception as ex: log(name, "cache", ex); c = pd.DataFrame()
         try: r = self.rest(epic, "5Min", 300)[["open", "high", "low", "close"]]
-        except Exception as ex: log(name, "rest history", ex); r = pd.DataFrame()
+        except Exception as ex: log(name, "rest history", f"{type(ex).__name__}: {ex!r}"[:200]); r = pd.DataFrame()
         if len(c) and len(r):
             j = c.index.searchsorted(r.index[0]); k = min(max(j - 1, 0), len(c) - 1)
             off = float(r.close.iloc[0] - c.close.iloc[k]); c = c + off; c = c[c.index < r.index[0]]
