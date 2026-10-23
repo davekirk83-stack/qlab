@@ -1,17 +1,55 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-09:20:01 delta-share threshold 0.0439 (tail-ratio default (208 IG bars, <500)); registered 0.05
-09:20:19 history 300 bars to 2026-10-23 09:20:00+00:00
-09:20:19 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-09:20:19 streaming IX.D.NASDAQ.CASH.IP
-09:20:19 ls status: CONNECTING
-09:20:20 ls status: CONNECTED:WS-STREAMING
-09:20:20 MARKET subscription error 21 Invalid group
-09:20:20 CHART subscribed
-09:20:20 CHART update: {'BID': '29013.2', 'OFR': '29015.4'}
-09:20:20 stream subscribed on CHART via Z6FARW
-09:20:20 trading session on Z6FARW
-09:20:20 CHART update: {'BID': '29013.3', 'OFR': '29015.5'}
-09:20:20 CHART update: {'BID': '29013.3', 'OFR': '29015.5'}
-09:20:20 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
-09:25:00 bar 09:20 o 29014.3 h 29027.7 l 28988.4 c 28994.0 ticks 2895 delta -4
-09:25:02 done; ticks 3025 bars 300
+13:42:03 delta-share threshold 0.0439 (tail-ratio default (209 IG bars, <500)); registered 0.05
+13:42:23 history 300 bars to 2026-10-23 13:42:00+00:00
+13:42:23 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+13:42:23 streaming IX.D.NASDAQ.CASH.IP
+13:42:23 ls status: CONNECTING
+13:42:24 ls status: CONNECTED:WS-STREAMING
+13:42:24 MARKET subscription error 21 Invalid group
+13:42:24 CHART subscribed
+13:42:24 CHART update: {'BID': '28922.7', 'OFR': '28923.9'}
+13:42:24 CHART update: {'BID': '28922.2', 'OFR': '28923.4'}
+13:42:24 CHART update: {'BID': '28923.7', 'OFR': '28924.9'}
+13:42:24 stream subscribed on CHART via Z6FARW
+13:42:24 trading session on Z6FARW
+13:42:24 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+13:45:00 bar 13:40 o 28923.3 h 28955.3 l 28919.3 c 28953.7 ticks 1928 delta -9
+13:50:00 bar 13:45 o 28954.0 h 28974.0 l 28919.9 c 28960.1 ticks 3792 delta +18
+13:55:00 bar 13:50 o 28959.9 h 28983.5 l 28914.8 c 28949.7 ticks 3750 delta -44
+14:00:00 bar 13:55 o 28948.9 h 29004.1 l 28923.8 c 28999.3 ticks 3670 delta +94
+14:05:00 bar 14:00 o 28999.0 h 29022.4 l 28952.8 c 28999.4 ticks 3695 delta +27
+14:10:00 bar 14:05 o 28998.9 h 29013.2 l 28964.9 c 28998.6 ticks 3710 delta +8
+14:15:00 bar 14:10 o 28998.4 h 29013.8 l 28971.1 c 28996.6 ticks 3719 delta -15
+14:20:00 bar 14:15 o 28997.2 h 29010.6 l 28910.8 c 28934.3 ticks 3724 delta -140
+14:25:00 bar 14:20 o 28934.0 h 28996.4 l 28925.4 c 28953.7 ticks 3718 delta -100
+14:30:00 bar 14:25 o 28953.5 h 28976.5 l 28907.7 c 28971.6 ticks 3715 delta +59
+14:35:00 bar 14:30 o 28971.5 h 29029.7 l 28964.9 c 28987.8 ticks 3737 delta -39
+14:40:00 bar 14:35 o 28987.5 h 29059.7 l 28971.2 c 29054.4 ticks 3679 delta +43
+14:45:00 bar 14:40 o 29054.3 h 29098.9 l 29052.3 c 29094.2 ticks 3652 delta +32
+14:50:00 bar 14:45 o 29094.3 h 29113.2 l 29063.3 c 29111.1 ticks 3735 delta -47
+14:55:00 bar 14:50 o 29112.0 h 29162.0 l 29108.1 c 29127.3 ticks 3682 delta +14
+15:00:00 bar 14:55 o 29127.1 h 29150.6 l 29111.8 c 29127.1 ticks 3742 delta -10
+15:05:00 bar 15:00 o 29126.6 h 29133.0 l 29072.8 c 29094.6 ticks 3764 delta -64
+15:10:00 bar 15:05 o 29092.9 h 29119.6 l 29065.6 c 29065.9 ticks 3741 delta -49
+15:15:00 bar 15:10 o 29066.5 h 29098.4 l 29059.6 c 29067.5 ticks 3702 delta -44
+15:20:00 bar 15:15 o 29067.3 h 29106.6 l 29064.5 c 29092.9 ticks 3754 delta +6
+15:25:00 bar 15:20 o 29093.0 h 29094.0 l 29058.1 c 29088.9 ticks 3737 delta -37
+15:30:00 bar 15:25 o 29088.8 h 29121.4 l 29078.3 c 29097.5 ticks 3724 delta -42
+15:35:00 bar 15:30 o 29096.7 h 29131.2 l 29085.0 c 29123.4 ticks 3730 delta +64
+15:40:00 bar 15:35 o 29123.9 h 29124.4 l 29071.0 c 29087.4 ticks 3682 delta -32
+15:45:00 bar 15:40 o 29087.5 h 29105.0 l 29054.0 c 29069.3 ticks 3712 delta +38
+15:50:00 bar 15:45 o 29069.1 h 29107.3 l 29054.1 c 29103.7 ticks 3715 delta +103
+15:55:00 bar 15:50 o 29103.5 h 29123.9 l 29099.8 c 29111.5 ticks 3641 delta -27
+16:00:00 bar 15:55 o 29111.8 h 29135.5 l 29096.6 c 29131.6 ticks 3661 delta +111
+16:05:00 bar 16:00 o 29131.9 h 29140.1 l 29114.9 c 29125.2 ticks 3674 delta -150
+16:10:00 bar 16:05 o 29125.5 h 29135.2 l 29110.2 c 29120.5 ticks 3628 delta -10
+16:15:00 bar 16:10 o 29120.8 h 29125.5 l 29078.4 c 29081.6 ticks 3639 delta -51
+16:20:00 bar 16:15 o 29081.4 h 29111.5 l 29073.8 c 29079.4 ticks 3627 delta -13
+16:25:00 bar 16:20 o 29079.3 h 29085.9 l 29042.2 c 29052.8 ticks 3552 delta -32
+16:30:00 bar 16:25 o 29053.2 h 29064.4 l 29043.3 c 29051.1 ticks 3634 delta +62
+16:35:00 bar 16:30 o 29051.4 h 29089.6 l 29049.2 c 29084.8 ticks 3634 delta -2
+16:40:00 bar 16:35 o 29084.2 h 29099.7 l 29052.4 c 29080.4 ticks 3629 delta -61
+16:45:00 bar 16:40 o 29080.3 h 29090.8 l 29064.5 c 29088.8 ticks 3606 delta -22
+16:50:00 bar 16:45 o 29088.5 h 29108.7 l 29082.8 c 29093.4 ticks 3575 delta -69
+16:55:00 bar 16:50 o 29093.5 h 29102.7 l 29031.1 c 29042.6 ticks 3574 delta -26
+16:57:04 done; ticks 152889 bars 338
