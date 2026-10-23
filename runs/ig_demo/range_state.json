@@ -7,5 +7,23 @@
   },
   "cool": {},
   "orders": {}
+ },
+ "WALLST": {
+  "since": null,
+  "pos": {
+   "L": null,
+   "S": null
+  },
+  "cool": {},
+  "orders": {}
+ },
+ "DAX": {
+  "since": null,
+  "pos": {
+   "L": null,
+   "S": null
+  },
+  "cool": {},
+  "orders": {}
  }
 }
