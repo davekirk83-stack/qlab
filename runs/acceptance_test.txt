@@ -1,0 +1,31 @@
+tags 458 over 367 days; dwell distribution:
+{0: 104, 1: 43, 2: 37, 3: 36, 4: 19, 5: 19, 6: 16, 7: 27, 8: 25, 9: 32, 10: 100}
+
+All session-extreme tags (NY hours), by dwell in the first 10 min:
+                      n  out30 %  out60 %  cont60 %  t60
+bin                                                     
+0 instant reject  104.0   -0.263   -0.284      28.0 -4.4
+1-2                80.0   -0.152   -0.113      41.0 -2.0
+3-5                74.0   -0.173   -0.194      43.0 -2.6
+6-8                68.0    0.076    0.178      63.0  2.2
+9-10 accepted     132.0    0.353    0.386      73.0  5.6
+
+High tags only:
+                     n  out30 %  out60 %  cont60 %  t60
+bin                                                    
+0 instant reject  54.0   -0.304   -0.323      26.0 -3.3
+1-2               42.0   -0.266   -0.161      38.0 -2.4
+3-5               33.0   -0.119   -0.057      58.0 -0.6
+6-8               37.0    0.037    0.143      59.0  1.6
+9-10 accepted     63.0    0.262    0.264      60.0  2.4
+
+Low tags only:
+                     n  out30 %  out60 %  cont60 %  t60
+bin                                                    
+0 instant reject  50.0   -0.218   -0.241      30.0 -2.9
+1-2               38.0   -0.026   -0.060      45.0 -0.6
+3-5               41.0   -0.217   -0.304      32.0 -2.8
+6-8               31.0    0.121    0.221      68.0  1.6
+9-10 accepted     69.0    0.435    0.497      84.0  6.2
+H1: instant-reject n 58 out60 -0.331% | accepted(6+) n 94 out60 +0.459%
+H2: instant-reject n 46 out60 -0.224% | accepted(6+) n 106 out60 +0.188%
