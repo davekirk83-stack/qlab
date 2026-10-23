@@ -1,0 +1,74 @@
+AAVEUSD    v3   n 3970 per-ep +0.178% win 72% H1 +0.157 H2 +0.200 exits {'sold': 2954, 'regime': 770, 'break': 218, 'stop': 27, 'cap': 1}
+AAVEUSD    v31  n 3935 per-ep +0.227% win 79% H1 +0.202 H2 +0.252 exits {'sold': 3498, 'break': 349, 'stop': 86, 'cap': 2}
+ADAUSD     v3   n 3484 per-ep +0.145% win 71% H1 +0.107 H2 +0.182 exits {'sold': 2530, 'regime': 782, 'break': 155, 'stop': 17}
+ADAUSD     v31  n 3462 per-ep +0.217% win 80% H1 +0.194 H2 +0.240 exits {'sold': 3134, 'break': 273, 'stop': 54, 'cap': 1}
+AEROUSD    v3   n 1601 per-ep +0.180% win 68% H1 +0.205 H2 +0.155 exits {'sold': 1122, 'regime': 393, 'break': 71, 'stop': 15}
+AEROUSD    v31  n 1594 per-ep +0.221% win 77% H1 +0.257 H2 +0.186 exits {'sold': 1391, 'break': 135, 'stop': 67, 'cap': 1}
+  RUNNING v3: n9055 per-ep +0.166% win 71% t +13.9
+  RUNNING v31: n8991 per-ep +0.222% win 79% t +16.9
+ARBUSD     v3   n 2543 per-ep +0.115% win 69% H1 +0.095 H2 +0.135 exits {'sold': 1791, 'regime': 583, 'break': 152, 'stop': 17}
+ARBUSD     v31  n 2511 per-ep +0.173% win 76% H1 +0.161 H2 +0.184 exits {'sold': 2200, 'break': 266, 'stop': 45}
+AVAXUSD    v3   n 3685 per-ep +0.124% win 70% H1 +0.140 H2 +0.109 exits {'sold': 2656, 'regime': 783, 'break': 235, 'stop': 11}
+AVAXUSD    v31  n 3666 per-ep +0.178% win 77% H1 +0.201 H2 +0.154 exits {'sold': 3229, 'break': 360, 'stop': 77}
+BTCUSD     v3   n 3494 per-ep +0.063% win 73% H1 +0.079 H2 +0.047 exits {'sold': 2609, 'regime': 726, 'break': 158, 'stop': 1}
+BTCUSD     v31  n 3480 per-ep +0.108% win 81% H1 +0.134 H2 +0.081 exits {'sold': 3189, 'break': 275, 'stop': 15, 'cap': 1}
+  RUNNING v3: n18777 per-ep +0.131% win 71% t +17.1
+  RUNNING v31: n18648 per-ep +0.185% win 79% t +21.9
+DOGEUSD    v3   n 3303 per-ep +0.127% win 71% H1 +0.138 H2 +0.116 exits {'sold': 2377, 'regime': 791, 'break': 117, 'stop': 18}
+DOGEUSD    v31  n 3283 per-ep +0.232% win 81% H1 +0.250 H2 +0.214 exits {'sold': 3015, 'break': 214, 'stop': 52, 'cap': 2}
+DOTUSD     v3   n 3690 per-ep +0.141% win 71% H1 +0.149 H2 +0.132 exits {'sold': 2691, 'regime': 791, 'break': 200, 'stop': 8}
+DOTUSD     v31  n 3674 per-ep +0.211% win 78% H1 +0.221 H2 +0.200 exits {'sold': 3319, 'break': 313, 'stop': 40, 'cap': 2}
+ETHUSD     v3   n 3791 per-ep +0.103% win 74% H1 +0.114 H2 +0.093 exits {'sold': 2910, 'regime': 667, 'break': 206, 'stop': 8}
+ETHUSD     v31  n 3768 per-ep +0.157% win 81% H1 +0.160 H2 +0.154 exits {'sold': 3445, 'break': 291, 'stop': 27, 'cap': 5}
+  RUNNING v3: n29561 per-ep +0.128% win 71% t +21.7
+  RUNNING v31: n29373 per-ep +0.190% win 79% t +29.6
+FETUSD     v3   n 3856 per-ep +0.284% win 72% H1 +0.298 H2 +0.270 exits {'sold': 2847, 'regime': 775, 'break': 171, 'stop': 63}
+FETUSD     v31  n 3817 per-ep +0.394% win 80% H1 +0.429 H2 +0.359 exits {'sold': 3422, 'break': 254, 'stop': 138, 'cap': 3}
+FILUSD     v3   n 3323 per-ep +0.137% win 70% H1 +0.139 H2 +0.134 exits {'sold': 2381, 'regime': 741, 'break': 171, 'stop': 30}
+FILUSD     v31  n 3297 per-ep +0.207% win 80% H1 +0.219 H2 +0.196 exits {'sold': 2940, 'break': 285, 'stop': 71, 'cap': 1}
+HBARUSD    v3   n 3062 per-ep +0.165% win 71% H1 +0.127 H2 +0.203 exits {'sold': 2228, 'regime': 683, 'break': 130, 'stop': 21}
+HBARUSD    v31  n 3043 per-ep +0.227% win 79% H1 +0.198 H2 +0.256 exits {'sold': 2749, 'break': 248, 'stop': 44, 'cap': 2}
+  RUNNING v3: n39802 per-ep +0.147% win 71% t +27.2
+  RUNNING v31: n39530 per-ep +0.214% win 79% t +36.7
+ICPUSD     v3   n 3598 per-ep +0.208% win 71% H1 +0.183 H2 +0.233 exits {'sold': 2610, 'regime': 806, 'break': 160, 'stop': 22}
+ICPUSD     v31  n 3575 per-ep +0.301% win 80% H1 +0.278 H2 +0.323 exits {'sold': 3232, 'break': 267, 'stop': 73, 'cap': 3}
+INJUSD     v3   n 3376 per-ep +0.297% win 73% H1 +0.343 H2 +0.252 exits {'sold': 2540, 'regime': 596, 'break': 201, 'stop': 39}
+INJUSD     v31  n 3348 per-ep +0.355% win 79% H1 +0.404 H2 +0.306 exits {'sold': 2962, 'break': 277, 'stop': 108, 'cap': 1}
+LINKUSD    v3   n 3928 per-ep +0.170% win 72% H1 +0.161 H2 +0.178 exits {'sold': 2921, 'regime': 814, 'break': 183, 'stop': 10}
+LINKUSD    v31  n 3891 per-ep +0.249% win 80% H1 +0.244 H2 +0.254 exits {'sold': 3547, 'break': 298, 'stop': 45, 'cap': 1}
+  RUNNING v3: n50704 per-ep +0.163% win 71% t +33.3
+  RUNNING v31: n50344 per-ep +0.232% win 79% t +44.2
+LTCUSD     v3   n 3695 per-ep +0.163% win 73% H1 +0.180 H2 +0.145 exits {'sold': 2773, 'regime': 774, 'break': 138, 'stop': 10}
+LTCUSD     v31  n 3678 per-ep +0.230% win 81% H1 +0.247 H2 +0.213 exits {'sold': 3394, 'break': 242, 'stop': 40, 'cap': 2}
+NEARUSD    v3   n 2881 per-ep +0.187% win 70% H1 +0.158 H2 +0.217 exits {'sold': 2067, 'regime': 665, 'break': 128, 'stop': 21}
+NEARUSD    v31  n 2858 per-ep +0.273% win 80% H1 +0.237 H2 +0.309 exits {'sold': 2570, 'break': 221, 'stop': 67}
+ONDOUSD    v3   n 2039 per-ep +0.265% win 72% H1 +0.358 H2 +0.172 exits {'sold': 1498, 'regime': 436, 'break': 85, 'stop': 20}
+ONDOUSD    v31  n 2032 per-ep +0.358% win 81% H1 +0.489 H2 +0.228 exits {'sold': 1829, 'break': 145, 'stop': 57, 'cap': 1}
+  RUNNING v3: n59319 per-ep +0.168% win 71% t +37.0
+  RUNNING v31: n58912 per-ep +0.238% win 80% t +49.0
+QNTUSD     v3   n 3452 per-ep +0.215% win 72% H1 +0.198 H2 +0.232 exits {'sold': 2524, 'regime': 783, 'break': 128, 'stop': 17}
+QNTUSD     v31  n 3435 per-ep +0.292% win 81% H1 +0.293 H2 +0.291 exits {'sold': 3123, 'break': 250, 'stop': 61, 'cap': 1}
+SOLUSD     v3   n 3597 per-ep +0.160% win 71% H1 +0.191 H2 +0.129 exits {'sold': 2647, 'regime': 794, 'break': 139, 'stop': 17}
+SOLUSD     v31  n 3566 per-ep +0.213% win 79% H1 +0.242 H2 +0.184 exits {'sold': 3248, 'break': 235, 'stop': 81, 'cap': 2}
+STRKUSD    v3   n 1745 per-ep +0.597% win 75% H1 +0.224 H2 +0.970 exits {'sold': 1328, 'regime': 267, 'break': 117, 'stop': 33}
+STRKUSD    v31  n 1730 per-ep +0.629% win 80% H1 +0.257 H2 +1.001 exits {'sold': 1490, 'break': 182, 'stop': 58}
+  RUNNING v3: n68113 per-ep +0.181% win 72% t +42.2
+  RUNNING v31: n67643 per-ep +0.250% win 80% t +54.2
+SUIUSD     v3   n 2973 per-ep +0.189% win 74% H1 +0.137 H2 +0.241 exits {'sold': 2268, 'regime': 475, 'break': 190, 'stop': 40}
+SUIUSD     v31  n 2940 per-ep +0.237% win 79% H1 +0.175 H2 +0.299 exits {'sold': 2592, 'break': 256, 'stop': 92}
+UNIUSD     v3   n 3995 per-ep +0.167% win 72% H1 +0.136 H2 +0.199 exits {'sold': 2999, 'regime': 723, 'break': 242, 'stop': 31}
+UNIUSD     v31  n 3967 per-ep +0.232% win 78% H1 +0.217 H2 +0.246 exits {'sold': 3537, 'break': 362, 'stop': 66, 'cap': 2}
+XLMUSD     v3   n 3428 per-ep +0.147% win 71% H1 +0.133 H2 +0.161 exits {'sold': 2477, 'regime': 807, 'break': 133, 'stop': 11}
+XLMUSD     v31  n 3409 per-ep +0.221% win 80% H1 +0.203 H2 +0.239 exits {'sold': 3120, 'break': 253, 'stop': 36}
+  RUNNING v3: n78509 per-ep +0.179% win 72% t +44.8
+  RUNNING v31: n77959 per-ep +0.247% win 80% t +57.7
+XRPUSD     v3   n 2140 per-ep +0.092% win 71% H1 +0.080 H2 +0.103 exits {'sold': 1547, 'regime': 497, 'break': 88, 'stop': 8}
+XRPUSD     v31  n 2130 per-ep +0.177% win 80% H1 +0.192 H2 +0.163 exits {'sold': 1965, 'break': 140, 'stop': 25}
+ZECUSD     v3   n 4028 per-ep +0.219% win 73% H1 +0.154 H2 +0.284 exits {'sold': 3015, 'regime': 689, 'break': 248, 'stop': 76}
+ZECUSD     v31  n 3994 per-ep +0.267% win 79% H1 +0.190 H2 +0.344 exits {'sold': 3499, 'break': 361, 'stop': 133, 'cap': 1}
+ZROUSD     v3   n 1839 per-ep +0.190% win 69% H1 +0.189 H2 +0.190 exits {'sold': 1329, 'regime': 346, 'break': 137, 'stop': 27}
+ZROUSD     v31  n 1823 per-ep +0.262% win 77% H1 +0.243 H2 +0.282 exits {'sold': 1565, 'break': 197, 'stop': 61}
+  RUNNING v3: n86516 per-ep +0.179% win 72% t +46.4
+  RUNNING v31: n85906 per-ep +0.247% win 79% t +59.8
+FINAL v3: n86516 per-ep +0.179% win 72% t +46.4 by year {2021: 0.219, 2022: 0.182, 2023: 0.115, 2024: 0.188, 2025: 0.216, 2026: 0.181} exits {'sold': 63639, 'regime': 17957, 'break': 4301, 'stop': 618, 'cap': 1}
+FINAL v31: n85906 per-ep +0.247% win 79% t +59.8 by year {2021: 0.355, 2022: 0.256, 2023: 0.176, 2024: 0.262, 2025: 0.274, 2026: 0.246} exits {'sold': 77204, 'break': 6949, 'stop': 1719, 'cap': 34}

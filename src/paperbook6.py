@@ -126,7 +126,8 @@ def indicators(d, sym=None):
     return ema, lo_b, hi_b, a, allow
 
 
-def step(sym, d, pos, since, slots_free):
+def step(sym, d, pos, since, slots_free, hold_regime=False):
+    """hold_regime=True is the v3.1 variant (doc 120): a regime switch no longer forces an exit; positions leave only at the mid, a break, the cap or the stop. v3 itself is unchanged (hold_regime=False)."""
     """Replay the book over bars newer than `since`. Mutates pos; returns
     (closed_episodes, new_watermark)."""
     ema, lo_b, hi_b, a, allow = indicators(d, sym)
@@ -161,7 +162,7 @@ def step(sym, d, pos, since, slots_free):
                     pos[side] = None; slots_free[0] += 1; pos.setdefault('cool', {})[side] = str(idx[i]); continue
             broke = (C[i] < lo_b[i]-1.5*a[i]) or (C[i] > hi_b[i]+1.5*a[i])
             age = i - p["i0"]
-            if age >= CAP_BARS or broke or not ok:
+            if age >= CAP_BARS or broke or (not ok and not hold_regime):
                 if held > 0:
                     cost = sum(x["px"]*x["sz"] for x in p["inv"])/held
                     px = L[i] if side == "L" else H[i]
@@ -304,6 +305,9 @@ if __name__ == "__main__":
                    for k in ("L", "S") if v.get("pos", {}).get(k))
     slots_free = [SLOTS - open_now]
     all_closed = []
+    # v3.1 ledger (doc 120): same coins, same bars, hold through the regime switch. Runs BESIDE v3; its own equity and positions.
+    v31 = st.setdefault("v31", {"started": today, "equity": START, "sym": {}, "closed": 0, "spec": "Range v3.1 hold-through-regime (doc 120)"})
+    open31 = sum(1 for v in v31["sym"].values() for k in ("L", "S") if v.get("pos", {}).get(k)); slots31 = [SLOTS - open31]; closed31 = []
     for s in syms:
         d = refresh(s)
         if d is None or len(d) < 600: continue
@@ -314,19 +318,35 @@ if __name__ == "__main__":
             print(f"  {s}: {e}", flush=True); continue
         rec["since"] = wm
         all_closed.extend(closed)
+        rec31 = v31["sym"].setdefault(s, {"since": None, "pos": {"L": None, "S": None}})
+        try:
+            c31, wm31 = step(s, d, rec31["pos"], rec31["since"], slots31, hold_regime=True)
+        except Exception as e:
+            print(f"  {s} v31: {e}", flush=True); continue
+        rec31["since"] = wm31; closed31.extend(c31)
     # book the P&L: each episode gets one slot's worth of margin
     per = st["equity"]/SLOTS
     for c in all_closed:
         st["equity"] += per*c[4]*LEV
     st["closed"] += len(all_closed)
+    per31 = v31["equity"]/SLOTS
+    for c in closed31: v31["equity"] += per31*c[4]*LEV
+    v31["closed"] += len(closed31)
+    open31_n = sum(1 for v in v31["sym"].values() for k in ("L", "S") if v["pos"].get(k))
+    print(f"  v3.1: closed {len(closed31)} episodes, {open31_n} open, equity ${v31['equity']:,.2f} (v3 minus v3.1 = {st['equity']-v31['equity']:+,.2f})", flush=True)
     open_n = sum(1 for s in st["sym"].values()
                  for k in ("L", "S") if s["pos"].get(k))
     print(f"  closed {len(all_closed)} episodes, {open_n} open, "
           f"equity ${st['equity']:,.2f}", flush=True)
     json.dump(st, open(STATE, "w"), indent=1)
 
-    lines = halt_lines + [f"INSERT OR REPLACE INTO pb6_equity (d, equity, open_positions, closed_total) "
-             f"VALUES ('{today}', {st['equity']:.4f}, {open_n}, {st['closed']});"]
+    lines = halt_lines + [f"INSERT OR REPLACE INTO pb6_equity (d, equity, open_positions, closed_total, equity_v31, open_v31, closed_v31) "
+             f"VALUES ('{today}', {st['equity']:.4f}, {open_n}, {st['closed']}, {v31['equity']:.4f}, {open31_n}, {v31['closed']});"]
+    for c in closed31[:200]:
+        lines.append(
+            "INSERT INTO pb6_trades (d, sym, side, opened, closed, ret, how) "
+            f"VALUES ('{today}', '{sql_escape(c[0])}@v31', '{c[1]}', "
+            f"'{sql_escape(c[2])}', '{sql_escape(c[3])}', {c[4]:.6f}, '{c[5]}');")
     for c in all_closed[:400]:
         lines.append(
             "INSERT INTO pb6_trades (d, sym, side, opened, closed, ret, how) "
