@@ -31,6 +31,16 @@ def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), "[range]", *a, flush=True)
 
 
+def retry(fn, what, tries=4, wait=15):
+    """IG throttles bursts of non-trading requests (ApiExceededException); back off and retry."""
+    for k in range(tries):
+        try: return fn()
+        except Exception as ex:
+            name = type(ex).__name__
+            if "Exceeded" not in name or k == tries - 1: raise
+            log(what, "throttled — waiting", wait, "s"); time.sleep(wait)
+
+
 def to15(b5):
     b = pd.DataFrame({"open": b5.open.resample("15min").first(), "high": b5.high.resample("15min").max(),
                       "low": b5.low.resample("15min").min(), "close": b5.close.resample("15min").last()}).dropna()
@@ -38,9 +48,10 @@ def to15(b5):
 
 
 class RangeEngine:
-    def __init__(self, ig, ccy, dry, gov, rest_history):
-        """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame."""
-        self.ig, self.ccy, self.dry, self.gov, self.rest = ig, ccy, dry, gov, rest_history
+    def __init__(self, ig, ccy, dry, gov, rest_history, primary=None):
+        """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame;
+        primary: (epic, DataFrame) of 5-min bars the runner already holds, so that epic needs no second history call."""
+        self.ig, self.ccy, self.dry, self.gov, self.rest, self.primary = ig, ccy, dry, gov, rest_history, primary or (None, None)
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
         self.mkt, self.bars5, self.bars15 = {}, {}, {}
         for name, m in INSTR.items():
@@ -54,30 +65,37 @@ class RangeEngine:
 
     # ------------------------------------------------------------------ setup
     def resolve(self, m):
-        cands = list(m["epics"])
-        try:
-            res = self.ig.search_markets(m["search"]); ms = res.get("markets", []) if isinstance(res, dict) else []
-            log("search", m["search"], "->", [(x.get("epic"), x.get("instrumentName")) for x in ms][:12])
-            for r in ms:
-                e = r.get("epic", "")
-                if e.startswith("IX.") and e not in cands and (e.endswith(".DAILY.IP") or e.endswith(".CASH.IP")): cands.append(e)
-        except Exception as ex: log("search", m["search"], f"{type(ex).__name__}: {ex!r}"[:200])
-        for e in cands:
+        def search():
+            out = []
             try:
-                mk = self.ig.fetch_market_by_epic(e); ins, rules = mk["instrument"], mk["dealingRules"]
+                res = retry(lambda: self.ig.search_markets(m["search"]), "search"); ms = res.get("markets", []) if isinstance(res, dict) else []
+                log("search", m["search"], "->", [(x.get("epic"), x.get("instrumentName")) for x in ms][:8])
+                for r in ms:
+                    e = r.get("epic", "")
+                    if e.startswith("IX.") and (e.endswith(".DAILY.IP") or e.endswith(".CASH.IP")): out.append(e)
+            except Exception as ex: log("search", m["search"], f"{type(ex).__name__}: {ex!r}"[:200])
+            return out
+        cands = list(m["epics"]); searched = False
+        while cands:
+            e = cands.pop(0); time.sleep(1.5)
+            try:
+                mk = retry(lambda: self.ig.fetch_market_by_epic(e), f"market {e}"); ins, rules = mk["instrument"], mk["dealingRules"]
                 if ins.get("type") not in (None, "INDICES"): continue
                 cc = [c["code"] for c in ins.get("currencies", [])]
                 if cc and self.ccy not in cc: continue
                 return e, dict(epic=e, name=ins["name"], expiry=ins["expiry"], min=float(rules["minDealSize"]["value"]),
                                minstop=float(rules.get("minNormalStopOrLimitDistance", {}).get("value", 0) or 0), status=mk["snapshot"]["marketStatus"])
             except Exception as ex: log("epic", e, "->", f"{type(ex).__name__}: {ex!r}"[:200])
+            if not cands and not searched: searched = True; cands = [x for x in search() if x not in m["epics"]]
         return None, None
 
     def seed(self, name, epic, m):
         """15-min history: the 5-min cache (Dukascopy, offset to IG's level at the join) plus the last 300 IG 5-min bars by REST."""
         try: c = pd.read_csv(m["cache"], index_col=0, parse_dates=True); c.index = pd.to_datetime(c.index, utc=True); c = c[["open", "high", "low", "close"]]
         except Exception as ex: log(name, "cache", ex); c = pd.DataFrame()
-        try: r = self.rest(epic, "5Min", 300)[["open", "high", "low", "close"]]
+        try:
+            if epic == self.primary[0] and self.primary[1] is not None and len(self.primary[1]): r = self.primary[1][["open", "high", "low", "close"]].copy(); log(f"{name}: using the runner's own {len(r)} IG bars")
+            else: time.sleep(2); r = retry(lambda: self.rest(epic, "5Min", 300), f"{name} history")[["open", "high", "low", "close"]]
         except Exception as ex: log(name, "rest history", f"{type(ex).__name__}: {ex!r}"[:200]); r = pd.DataFrame()
         if len(c) and len(r):
             j = c.index.searchsorted(r.index[0]); k = min(max(j - 1, 0), len(c) - 1)

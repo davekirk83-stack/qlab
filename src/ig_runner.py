@@ -98,7 +98,7 @@ class Runner:
         self.pos = None; self.recover_position()
         if RANGE:
             try:
-                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history)
+                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history, primary=(EPIC, self.bars))
                 extra = [e for e in self.engine.epic2name if e not in self.epics]; self.epics += extra
                 if extra: self.subscribe(extra)
             except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
