@@ -1,0 +1,12 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-10-24', 1982.7192, 9, 92);
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'USO', 'S', '2026-10-21 18:45:00+00:00', '2026-10-23 13:45:00+00:00', -0.020379, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'CORN', 'L', '2026-10-23 13:45:00+00:00', '2026-10-23 14:00:00+00:00', -0.004287, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'DIA', 'L', '2026-10-22 14:30:00+00:00', '2026-10-23 14:00:00+00:00', -0.004652, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'XLF', 'S', '2026-10-22 13:45:00+00:00', '2026-10-23 14:00:00+00:00', 0.000547, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'XLF', 'L', '2026-10-23 13:45:00+00:00', '2026-10-23 14:30:00+00:00', -0.006042, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'XLB', 'S', '2026-10-22 19:45:00+00:00', '2026-10-23 14:00:00+00:00', 0.007968, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'XLY', 'L', '2026-10-21 18:45:00+00:00', '2026-10-23 13:45:00+00:00', -0.009434, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'EWJ', 'L', '2026-10-23 13:45:00+00:00', '2026-10-23 14:00:00+00:00', -0.004214, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'UUP', 'L', '2026-10-21 17:30:00+00:00', '2026-10-23 13:45:00+00:00', 0.001292, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'FXE', 'L', '2026-10-23 13:30:00+00:00', '2026-10-23 13:45:00+00:00', -0.001339, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-24', 'SLX', 'L', '2026-10-22 20:00:00+00:00', '2026-10-23 14:30:00+00:00', -0.006808, 'regime');

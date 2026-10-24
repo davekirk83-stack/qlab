@@ -1,0 +1,2 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-24', exit_px=0.00707473, exit_reason='target', ret=0.036991, pnl=5.59 WHERE sym='BIGTIMEUSD' AND opened='2026-10-18' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-24',2021.28,3,1,0,0,0,'0 signals, 0 taken, 0 dropped, 1 closed, 3 open');
