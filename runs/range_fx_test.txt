@@ -1,0 +1,12 @@
+       instr  bars15   n  per_ep%  ctrl%      t   win    H1%    H2%  eps/wk                                    exits
+      EURUSD   12751 281    0.011 -0.005  2.759 0.698  0.006  0.015  10.298 {'sold': 200, 'regime': 59, 'break': 22}
+      GBPUSD   12835 270    0.012 -0.007  2.684 0.737  0.012  0.006   9.895 {'sold': 203, 'regime': 53, 'break': 14}
+      USDJPY    4635  95    0.021 -0.003  4.100 0.758  0.035  0.008   9.638   {'sold': 75, 'regime': 14, 'break': 6}
+      USDCAD   12815 254    0.001 -0.019  0.270 0.689  0.006 -0.004   9.309 {'sold': 190, 'regime': 51, 'break': 13}
+      USDCHF   12814 267   -0.004 -0.026 -0.773 0.689 -0.004 -0.012   9.785 {'sold': 194, 'regime': 57, 'break': 16}
+      XAGUSD    3742  70    0.069 -0.059  0.664 0.714  0.036  0.136   8.596   {'sold': 52, 'break': 11, 'regime': 7}
+ BRENTCMDUSD    3317  60   -0.179 -0.148 -1.231 0.567 -0.187 -0.337   7.368  {'sold': 36, 'break': 12, 'regime': 12}
+ LIGHTCMDUSD   12259 240    0.048  0.020  0.963 0.708  0.054  0.043   8.796 {'sold': 173, 'regime': 51, 'break': 16}
+COPPERCMDUSD   12272 269   -0.006 -0.081 -0.275 0.680 -0.011 -0.014   9.859 {'sold': 196, 'regime': 47, 'break': 26}
+
+deflated bar for 9 instruments (rule 179): t > 2.54; a clear needs that, both halves positive, and per-episode > control

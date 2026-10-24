@@ -1,0 +1,31 @@
+
+== WALLST (35187 bars, spread 2.0)
+  ORB 15m to close                   n 118  mean -0.212R  t -2.1  win 35%  H1 -0.236 H2 -0.188  | control +0.055R  edge -0.266
+  ORB 15m target 1R                  n 118  mean -0.188R  t -2.3  win 42%  H1 -0.176 H2 -0.200  | control +0.029R  edge -0.217
+  ORB 30m to close                   n 108  mean -0.159R  t -1.9  win 38%  H1 -0.144 H2 -0.174  | control -0.056R  edge -0.103
+  ORB 30m target 1R                  n 108  mean -0.095R  t -1.2  win 44%  H1 -0.018 H2 -0.172  | control -0.039R  edge -0.056
+  gap fade |gap|>=0.2%               n  72  mean +0.108R  t +1.1  win 50%  H1 +0.271 H2 -0.054
+  gap fade |gap|>=0.4%               n  50  mean +0.114R  t +1.1  win 48%  H1 +0.160 H2 +0.068
+
+== NQ (34337 bars, spread 1.0)
+  ORB 15m to close                   n 121  mean -0.238R  t -2.2  win 36%  H1 -0.278 H2 -0.199  | control +0.013R  edge -0.251
+  ORB 15m target 1R                  n 121  mean -0.123R  t -1.4  win 47%  H1 -0.193 H2 -0.054  | control +0.016R  edge -0.139
+  ORB 30m to close                   n 112  mean -0.105R  t -1.1  win 43%  H1 -0.017 H2 -0.193  | control +0.003R  edge -0.108
+  ORB 30m target 1R                  n 112  mean -0.105R  t -1.3  win 46%  H1 -0.033 H2 -0.177  | control +0.117R  edge -0.222
+  gap fade |gap|>=0.2%               n  79  mean +0.048R  t +0.6  win 52%  H1 -0.011 H2 +0.106
+  gap fade |gap|>=0.4%               n  59  mean +0.001R  t +0.0  win 49%  H1 -0.039 H2 +0.040
+
+== DAX (35413 bars, spread 1.2)
+  ORB 15m to close                   n 131  mean -0.119R  t -0.8  win 34%  H1 -0.015 H2 -0.221  | control -0.170R  edge +0.051
+  ORB 15m target 1R                  n 131  mean -0.064R  t -0.7  win 50%  H1 +0.045 H2 -0.172  | control +0.021R  edge -0.086
+  ORB 30m to close                   n 125  mean -0.069R  t -0.5  win 39%  H1 -0.019 H2 -0.118  | control +0.103R  edge -0.172
+  ORB 30m target 1R                  n 125  mean +0.025R  t +0.3  win 53%  H1 +0.065 H2 -0.014  | control +0.007R  edge +0.018
+  gap fade |gap|>=0.2%               n  70  mean -0.100R  t -1.1  win 46%  H1 -0.084 H2 -0.116
+  gap fade |gap|>=0.4%               n  41  mean -0.129R  t -1.4  win 44%  H1 -0.059 H2 -0.195
+
+cuts 18: deflated bar t > 2.77   (R = opening range for ORB, gap size for the fade)
+
+-- mirror cut (pre-declared, 3 more cuts -> bar t > 2.86): fade the first OR break, target the OR midpoint, stop 1R, 2h cap
+  WALLST ORB-fade 15m                n 118  mean +0.047R  t +0.8  win 61%  H1 +0.008 H2 +0.086
+  NQ ORB-fade 15m                    n 121  mean +0.097R  t +1.5  win 64%  H1 +0.130 H2 +0.065
+  DAX ORB-fade 15m                   n 131  mean +0.010R  t +0.2  win 59%  H1 -0.090 H2 +0.109
