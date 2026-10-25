@@ -1,0 +1,18 @@
+
+== BTC: 1052 forecasts (2026-05-01 -> 2026-10-23)
+  direction hit, next 1h:  Kronos 51.2%   momentum 45.6%   reversal 54.4%   (coin-flip 50)
+  direction hit, next bar: Kronos 51.0%
+  corr(pred 1h, actual 1h) -0.032   (H1 -0.020, H2 -0.039)
+  forecast size: median |pred 1h| 0.086%  vs median |actual 1h| 0.164%   cost 0.110%
+  trade sign(pred) for 1h, |pred| > 0.000%: n 1052  net -0.115%/trade t -9.4  | gross -0.005%
+  trade sign(pred) for 1h, |pred| > 0.110%: n 426  net -0.136%/trade t -6.0  | gross -0.026%
+  baseline momentum trade:   n 1052  net -0.102%/trade t -8.4
+
+== NQ: 552 forecasts (2026-05-01 -> 2026-09-11)
+  direction hit, next 1h:  Kronos 50.7%   momentum 50.5%   reversal 49.5%   (coin-flip 50)
+  direction hit, next bar: Kronos 48.6%
+  corr(pred 1h, actual 1h) +0.042   (H1 +0.027, H2 +0.071)
+  forecast size: median |pred 1h| 0.089%  vs median |actual 1h| 0.146%   cost 0.006%
+  trade sign(pred) for 1h, |pred| > 0.000%: n 552  net +0.001%/trade t +0.1  | gross +0.007%
+  trade sign(pred) for 1h, |pred| > 0.006%: n 528  net -0.000%/trade t -0.0  | gross +0.006%
+  baseline momentum trade:   n 552  net -0.010%/trade t -0.8
