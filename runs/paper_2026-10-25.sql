@@ -1,0 +1,4 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-25', exit_px=0.51801781, exit_reason='target', ret=0.03273, pnl=4.93 WHERE sym='CTXUSD' AND opened='2026-10-16' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('DRIFTUSD','2026-10-25',0.01366,0.01043071,0.01419821,0.00107643,50.66,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('RAREUSD','2026-10-25',0.012234,0.00973607,0.01265032,0.00083264,50.66,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-25',2026.21,4,1,2,2,0,'2 signals, 2 taken, 0 dropped, 1 closed, 4 open');
