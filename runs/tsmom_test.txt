@@ -1,0 +1,5 @@
+12m all ETFs                   +2.3%/yr  t +2.6  H1 +2.9 H2 +1.6  | in SPY's worst 10% months: -0.05%/mo (SPY -7.96%)  | 2008 +4.8% 2020 -2.8% 2022 +2.9%  corr w/ SPY +0.11
+3m all ETFs                    +1.6%/yr  t +1.9  H1 +2.8 H2 +0.5  | in SPY's worst 10% months: +0.60%/mo (SPY -7.96%)  | 2008 +6.7% 2020 +4.8% 2022 +0.9%  corr w/ SPY -0.07
+12m equity ETFs only           +4.0%/yr  t +2.7  H1 +4.2 H2 +3.7  | in SPY's worst 10% months: -0.55%/mo (SPY -7.96%)  | 2008 +9.9% 2020 -6.4% 2022 -2.8%  corr w/ SPY +0.24
+12m equity, SHORT side only    -1.0%/yr  t -1.2  H1 -1.1 H2 -0.8  | in SPY's worst 10% months: +1.77%/mo (SPY -7.96%)  | 2008 +13.1% 2020 -1.3% 2022 +3.1%  corr w/ SPY -0.73
+SPY itself by year: 2008 -38.3% 2020 +16.2% 2022 -19.5%
