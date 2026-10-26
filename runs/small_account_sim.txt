@@ -1,0 +1,21 @@
+Ignition: 84 trades 2025-10-20 -> 2026-10-15;  Range: 734 episodes 2025-10-24 -> 2026-10-21
+
+== capital efficiency (return on margin employed, per trade and per hour in the market)
+  Ignition NQ        n   84  avg hold 0.4 h  return on margin +1.56%/trade  -> +4.348% per margin-hour  (trades/yr ~85)
+  Range DAX          n  275  avg hold 2.8 h  return on margin +0.46%/episode -> +0.165% per margin-hour  (episodes/yr ~558)
+  Range NQ           n  217  avg hold 0.9 h  return on margin +0.97%/episode -> +1.103% per margin-hour  (episodes/yr ~222)
+  Range WALLST       n  242  avg hold 2.0 h  return on margin +0.57%/episode -> +0.286% per margin-hour  (episodes/yr ~488)
+
+== one-year account simulation (rule 186 sizing, margin capped at 60% of equity)
+  start £500   risk 1%/Ignition trade                                          end £668 (+34%)  max drawdown -1%
+  start £500   risk 1%/Ignition trade + Range NQ at 10% of equity as margin    end £821 (+64%)  max drawdown -8%
+  start £500   risk 1%/Ignition trade + Range NQ at 20% of equity as margin    end £983 (+97%)  max drawdown -15%
+  start £500   risk 2%/Ignition trade                                          end £871 (+74%)  max drawdown -3%
+  start £500   risk 2%/Ignition trade + Range NQ at 10% of equity as margin    end £1,071 (+114%)  max drawdown -8%
+  start £500   risk 2%/Ignition trade + Range NQ at 20% of equity as margin    end £1,282 (+156%)  max drawdown -15%
+  start £1000  risk 1%/Ignition trade                                          end £1,339 (+34%)  max drawdown -1%
+  start £1000  risk 1%/Ignition trade + Range NQ at 10% of equity as margin    end £1,639 (+64%)  max drawdown -8%
+  start £1000  risk 1%/Ignition trade + Range NQ at 20% of equity as margin    end £1,972 (+97%)  max drawdown -15%
+  start £1000  risk 2%/Ignition trade                                          end £1,749 (+75%)  max drawdown -3%
+  start £1000  risk 2%/Ignition trade + Range NQ at 10% of equity as margin    end £2,142 (+114%)  max drawdown -8%
+  start £1000  risk 2%/Ignition trade + Range NQ at 20% of equity as margin    end £2,556 (+156%)  max drawdown -15%

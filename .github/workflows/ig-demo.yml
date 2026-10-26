@@ -31,7 +31,9 @@ jobs:
           IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
-          IG_RANGE_SIZE: "0.25"   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
+          IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
+          IG_RANGE_INSTR: "NQ"    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
+          IG_SIZE: "0.25"         # doc 137: Ignition at ~2% risk of a £1,000 account (stop 45-90 pts)   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)

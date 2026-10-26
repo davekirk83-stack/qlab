@@ -25,6 +25,10 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
     "DAX":    dict(epics=["IX.D.DAX.DAILY.IP", "IX.D.DAX.CASH.IP"], search="Germany 40", cache=f"{ROOT}/data_ig_cache/DEUIDXEUR_5m.csv", hours=None),
 }
 MAXT, LOSSCAP = 8, 200.0
+# Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
+# Wall Street / Germany 40 ladders, which lock margin for 2-3 h per episode and add overnight funding.
+_ONLY = [x.strip() for x in os.environ.get("IG_RANGE_INSTR", "").split(",") if x.strip()]
+if _ONLY: INSTR = {k: v for k, v in INSTR.items() if k in _ONLY}
 
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
