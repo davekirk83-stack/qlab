@@ -43,7 +43,7 @@ jobs:
             DRY=""
           elif [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
-          [ "$DRY" = "--order-test" ] && DRYF="--order-test"; [ "$DRY" = "--tx" ] && DRYF="--tx"
+          [ "$DRY" = "--order-test" ] && DRYF="--order-test"; [ "$DRY" = "--tx" ] && DRYF="--tx"; [ "$DRY" = "--markets" ] && DRYF="--markets"
           QLAB_ROOT=$PWD python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_demo/last_run.log
       - name: Commit results
         if: always()

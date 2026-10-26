@@ -367,6 +367,24 @@ if __name__ == "__main__":
                     line = " | ".join(f"{k}={t.get(k)}" for k in ("dateUtc", "instrumentName", "transactionType", "size", "openLevel", "closeLevel", "profitAndLoss", "reference"))
                     log(line); f.write(line + "\n")
             sys.exit(0)
+        if "--markets" in sys.argv:
+            u, p_, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
+            ig = IGService(u, p_, k, acc_type="demo", return_dataframe=False); sess = ig.create_session()
+            sb = [a for a in ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
+            if sb and sess.get("currentAccountId") != sb[0]["accountId"]: ig.switch_account(sb[0]["accountId"], True)
+            for a in ig.fetch_accounts()["accounts"]: log("account", a["accountType"], "balance", a.get("balance"))
+            epics = ["IX.D.NASDAQ.CASH.IP", "IX.D.DOW.DAILY.IP", "IX.D.DAX.DAILY.IP", "IX.D.FTSE.DAILY.IP", "IX.D.SPTRD.DAILY.IP", "CS.D.EURUSD.TODAY.IP", "CS.D.GBPUSD.TODAY.IP", "CS.D.USCGC.TODAY.IP", "CC.D.LCO.USS.IP"]
+            with open(f"{OUT}/markets.txt", "w") as f:
+                for e in epics:
+                    try:
+                        m = ig.fetch_market_by_epic(e); ins, r, sn = m["instrument"], m["dealingRules"], m["snapshot"]
+                        bands = [(b.get("min"), b.get("max"), b.get("margin")) for b in (ins.get("marginDepositBands") or [])][:3]
+                        line = (f"{e} | {ins.get('name')} | expiry {ins.get('expiry')} | minSize {r['minDealSize']} | minStop {r.get('minNormalStopOrLimitDistance')} | "
+                                f"marginFactor {ins.get('marginFactor')} {ins.get('marginFactorUnit')} | bands {bands} | bid {sn.get('bid')} offer {sn.get('offer')} | "
+                                f"valueOfOnePip {ins.get('valueOfOnePip')} onePipMeans {ins.get('onePipMeans')} | status {sn.get('marketStatus')} | ccy {[c['code'] for c in ins.get('currencies', [])]}")
+                    except Exception as ex: line = f"{e} | ERROR {ex}"
+                    log(line); f.write(line + "\n"); time.sleep(2)
+            sys.exit(0)
         if "--order-test" in sys.argv:
             r = Runner(end, True); order_test(r); r.ls.disconnect(); sys.exit(0)
         Runner(end, dry).run()
