@@ -1,0 +1,32 @@
+
+== crypto 4h, 27 coins, 5y
+  A|risk|2.0     n  315  -0.157R  t -2.1  win 32%  H1 +0.033 H2 -0.346  | random -0.011R  edge -0.146R
+  A|risk|1.5     n  315  -0.186R  t -2.8  win 36%  H1 +0.033 H2 -0.404  | random +0.023R  edge -0.209R
+  A|conf|2.0     n  866  -0.067R  t -1.3  win 36%  H1 -0.096 H2 -0.038  | random -0.163R  edge +0.096R
+  A|conf|1.5     n  866  -0.099R  t -2.2  win 41%  H1 -0.103 H2 -0.094  | random -0.151R  edge +0.052R
+  B|risk|2.0     n  109  -0.059R  t -0.4  win 38%  H1 +0.278 H2 -0.389  | random -0.191R  edge +0.132R
+  B|risk|1.5     n  109  -0.049R  t -0.4  win 43%  H1 +0.380 H2 -0.471  | random -0.088R  edge +0.039R
+  B|conf|2.0     n  374  -0.115R  t -1.5  win 36%  H1 -0.049 H2 -0.182  | random -0.096R  edge -0.019R
+  B|conf|1.5     n  374  -0.125R  t -1.8  win 40%  H1 -0.029 H2 -0.221  | random -0.147R  edge +0.022R
+
+== crypto 1h, 27 coins, 5y
+  A|risk|2.0     n 1082  -0.200R  t -3.7  win 35%  H1 -0.358 H2 -0.042  | random -0.170R  edge -0.030R
+  A|risk|1.5     n 1082  -0.228R  t -4.6  win 39%  H1 -0.373 H2 -0.083  | random -0.148R  edge -0.080R
+  A|conf|2.0     n 2750  -0.294R  t -7.4  win 34%  H1 -0.466 H2 -0.122  | random -0.308R  edge +0.015R
+  A|conf|1.5     n 2750  -0.292R  t -7.8  win 39%  H1 -0.462 H2 -0.122  | random -0.289R  edge -0.003R
+  B|risk|2.0     n  486  -0.150R  t -2.0  win 37%  H1 -0.295 H2 -0.005  | random -0.258R  edge +0.108R
+  B|risk|1.5     n  486  -0.193R  t -2.7  win 40%  H1 -0.309 H2 -0.078  | random -0.136R  edge -0.057R
+  B|conf|2.0     n 1447  -0.228R  t -4.7  win 35%  H1 -0.285 H2 -0.171  | random -0.309R  edge +0.081R
+  B|conf|1.5     n 1447  -0.208R  t -4.6  win 41%  H1 -0.261 H2 -0.154  | random -0.310R  edge +0.102R
+
+== US Tech 100 15m, 1y
+  A|risk|2.0     n 14 — too few
+  A|risk|1.5     n 14 — too few
+  A|conf|2.0     n   29  -0.234R  t -1.0  win 28%  H1 -0.809 H2 +0.303  | random +0.259R  edge -0.493R
+  A|conf|1.5     n   29  -0.165R  t -0.8  win 34%  H1 -0.809 H2 +0.436  | random -0.312R  edge +0.147R
+  B|risk|2.0     n 3 — too few
+  B|risk|1.5     n 3 — too few
+  B|conf|2.0     n 8 — too few
+  B|conf|1.5     n 8 — too few
+
+24 cuts -> deflated bar t > 2.87
