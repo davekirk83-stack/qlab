@@ -1,0 +1,13 @@
+signals 906 on 18 coins (2025-09-06 -> 2026-09-30); control minutes 3600 (high-volume, random)
+
+  SELLER-heavy extreme (Saturday's kind): n 535
+    fade,  1h: +0.06%  t +1.3  win 57%  H1 +0.06 H2 +0.07   | raw price move +0.06%  (control +0.01%)
+    fade,  4h: +0.18%  t +2.4  win 56%  H1 +0.11 H2 +0.24   | raw price move +0.18%  (control +0.05%)
+    fade, 12h: +0.26%  t +2.4  win 55%  H1 +0.23 H2 +0.29   | raw price move +0.26%  (control +0.07%)
+
+  BUYER-heavy extreme: n 371
+    fade,  1h: -0.04%  t -1.0  win 50%  H1 -0.03 H2 -0.06   | raw price move +0.04%  (control +0.01%)
+    fade,  4h: -0.06%  t -0.7  win 54%  H1 -0.01 H2 -0.12   | raw price move +0.06%  (control +0.05%)
+    fade, 12h: -0.29%  t -2.0  win 51%  H1 -0.13 H2 -0.45   | raw price move +0.29%  (control +0.07%)
+
+  BTC seller-heavy extremes: n 35; fade 4h -0.02%  12h +0.02%  — dates: 2026-07-01, 2026-07-06, 2026-07-11, 2026-07-13, 2026-07-14, 2026-07-21, 2026-07-27, 2026-09-22

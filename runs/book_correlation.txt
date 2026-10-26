@@ -1,0 +1,32 @@
+daily P&L, 2025-10-20 -> 2026-09-30, 346 days; active days per book: Range v3 (crypto) 346, Range v3.1 346, Ignition v1.1 (NQ) 71, Death-cross 213, Golden-cross 83
+
+all days:
+                     Range v3 (crypto)  Range v3.1  ...  Death-cross  Golden-cross
+Range v3 (crypto)                1.00        0.94  ...         0.03          0.06
+Range v3.1                       0.94        1.00  ...         0.02          0.02
+Ignition v1.1 (NQ)              -0.02       -0.01  ...        -0.02         -0.02
+Death-cross                      0.03        0.02  ...         1.00         -0.01
+Golden-cross                     0.06        0.02  ...        -0.01          1.00
+
+[5 rows x 5 columns]
+
+worst 10% of days for the combined book:
+                     Range v3 (crypto)  Range v3.1  ...  Death-cross  Golden-cross
+Range v3 (crypto)                1.00        0.84  ...        -0.18         -0.27
+Range v3.1                       0.84        1.00  ...        -0.34         -0.25
+Ignition v1.1 (NQ)              -0.32       -0.25  ...        -0.12         -0.07
+Death-cross                     -0.18       -0.34  ...         1.00         -0.20
+Golden-cross                    -0.27       -0.25  ...        -0.20          1.00
+
+[5 rows x 5 columns]
+
+mean pairwise corr: all days +0.10 -> N_eff 3.6 of 5;  worst days -0.12 -> N_eff 9.4
+corr with BTC daily return: {'Range v3 (crypto)': np.float64(-0.1), 'Range v3.1': np.float64(-0.1), 'Ignition v1.1 (NQ)': np.float64(-0.13), 'Death-cross': np.float64(0.1), 'Golden-cross': np.float64(0.1)}
+worst-day mean P&L by book (std units): {'Range v3 (crypto)': -0.81, 'Range v3.1': -0.79, 'Ignition v1.1 (NQ)': -0.13, 'Death-cross': -0.58, 'Golden-cross': -0.09}
+  File "/home/claude/qlab/src/book_correlation.py", line 53, in <module>
+    print("\nBTC's worst 10% of days (BTC mean %.2f%%): mean P&L per book (std units):" % (btcd.loc[bw].mean()*100), {k: round(float(Z.loc[bw, k].mean()), 2) for k in M})
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: %o format: an integer is required, not numpy.float64
+BTC worst 10pct of days (BTC mean -4.04%): mean P&L per book (std units): {'Range v3 (crypto)': 0.67, 'Range v3.1': 0.85, 'Ignition v1.1 (NQ)': 0.41, 'Death-cross': 0.1, 'Golden-cross': -0.13}
+BTC best 10pct of days (BTC mean +4.37%): mean P&L per book (std units): {'Range v3 (crypto)': 0.13, 'Range v3.1': 0.22, 'Ignition v1.1 (NQ)': 0.21, 'Death-cross': 0.06, 'Golden-cross': 0.26}
+distinct books (v3.1 dropped as a variant): on BTC's worst days mean corr +0.03 -> N_eff 3.6 of 4

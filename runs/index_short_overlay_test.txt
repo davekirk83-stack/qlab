@@ -1,0 +1,6 @@
+63d    D: -6.8%/yr  maxDD -85%  time short 41%  | SPY worst 10% months: +3.96%/mo  | 2008 +28% 2020 -16% 2022 -5%  | half-long alone +6.1%/yr dd -30% -> with overlay +2.7%/yr dd -14%
+63d    W: -6.8%/yr  maxDD -85%  time short 39%  | SPY worst 10% months: +3.91%/mo  | 2008 +26% 2020 -20% 2022 -10%  | half-long alone +6.1%/yr dd -30% -> with overlay +2.7%/yr dd -14%
+126d   D: -4.6%/yr  maxDD -77%  time short 34%  | SPY worst 10% months: +3.71%/mo  | 2008 +29% 2020 -23% 2022 -0%  | half-long alone +6.1%/yr dd -30% -> with overlay +3.8%/yr dd -11%
+126d   W: -4.7%/yr  maxDD -76%  time short 33%  | SPY worst 10% months: +3.82%/mo  | 2008 +28% 2020 -17% 2022 +4%  | half-long alone +6.1%/yr dd -30% -> with overlay +3.7%/yr dd -10%
+200sma D: -4.9%/yr  maxDD -77%  time short 30%  | SPY worst 10% months: +3.69%/mo  | 2008 +26% 2020 -15% 2022 -1%  | half-long alone +6.1%/yr dd -30% -> with overlay +3.7%/yr dd -12%
+200sma W: -4.6%/yr  maxDD -76%  time short 30%  | SPY worst 10% months: +3.80%/mo  | 2008 +29% 2020 -15% 2022 +3%  | half-long alone +6.1%/yr dd -30% -> with overlay +3.8%/yr dd -10%
