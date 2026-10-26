@@ -1,0 +1,7 @@
+ridge dev     weeks 274  net L/S (half each side) Sharpe  0.50 t  1.1 total  +81.9% | long-vs-EW Sharpe  0.87  EW-vs-short Sharpe  0.47 | median $vol top 18.8m bottom 3.3m
+ridge HOLDOUT weeks  79  net L/S (half each side) Sharpe  0.81 t  1.0 total  +30.5% | long-vs-EW Sharpe  0.23  EW-vs-short Sharpe  1.67 | median $vol top 13.3m bottom 2.7m
+ridge net L/S Sharpe by year: 2020:+3.46  2021:-1.23  2022:+0.59  2023:-0.98  2024:-0.18  2025:+2.31  2026:+0.16
+lgbm  dev     weeks 274  net L/S (half each side) Sharpe -0.41 t -0.9 total  -59.7% | long-vs-EW Sharpe  0.09  EW-vs-short Sharpe  0.00 | median $vol top 7.8m bottom 4.4m
+lgbm  HOLDOUT weeks  79  net L/S (half each side) Sharpe  0.90 t  1.1 total  +27.8% | long-vs-EW Sharpe  0.46  EW-vs-short Sharpe  1.79 | median $vol top 6.6m bottom 2.8m
+lgbm  net L/S Sharpe by year: 2020:+0.42  2021:-1.46  2022:-0.97  2023:-1.27  2024:+0.07  2025:+2.89  2026:-0.80
+ridge standardised coefficients (top 8): d_ema200 +0.0416, range7 -0.0245, r90 -0.0200, vol30 -0.0192, r30_xs +0.0171, d_ema200_xs -0.0169, rsi14 +0.0164, r30 -0.0158
