@@ -1,1 +1,2 @@
-dateUtc=2026-10-22T16:55:36 | instrumentName=US Tech 100 | transactionType=DEAL | size=-1 | openLevel=28986.7 | closeLevel=29031.7 | profitAndLoss=£-45.00 | reference=DIAAAAYP9XTULBR
+dateUtc=2026-10-26T19:00:41 | instrumentName=US Tech 100 | transactionType=DEAL | size=-0.25 | openLevel=29381.8 | closeLevel=29289.9 | profitAndLoss=£22.98 | reference=DIAAAAYQK9MFLBR
+dateUtc=2026-10-26T19:00:41 | instrumentName=US Tech 100 | transactionType=DEAL | size=-0.15 | openLevel=29381.8 | closeLevel=29289.9 | profitAndLoss=£13.79 | reference=DIAAAAYQK9MFGBR
