@@ -1,0 +1,13 @@
+SPY  full     2016-10-13→2026-10-13  rule   +66.3%  B&H   +265.2%  in-mkt   18%  trades  45  maxDD -29.8%  Sharpe 0.46 vs B&H 0.81
+SPY  1st half 2016-10-13→2021-10-08  rule    +6.8%  B&H   +105.6%  in-mkt   16%  trades  19  maxDD -29.8%  Sharpe 0.16 vs B&H 0.86
+SPY  2nd half 2021-10-11→2026-10-13  rule   +54.1%  B&H    +79.0%  in-mkt   19%  trades  26  maxDD -10.7%  Sharpe 0.82 vs B&H 0.77
+QQQ  full     2016-10-13→2026-10-13  rule   +42.9%  B&H   +535.5%  in-mkt   17%  trades  36  maxDD -22.4%  Sharpe 0.32 vs B&H 0.94
+QQQ  1st half 2016-10-13→2021-10-08  rule   +23.0%  B&H   +208.7%  in-mkt   14%  trades  17  maxDD -22.4%  Sharpe 0.35 vs B&H 1.13
+QQQ  2nd half 2021-10-11→2026-10-13  rule   +14.5%  B&H   +107.5%  in-mkt   20%  trades  19  maxDD -16.1%  Sharpe 0.26 vs B&H 0.75
+GS   full     2016-10-18→2026-10-16  rule   +74.4%  B&H   +422.0%  in-mkt   22%  trades  49  maxDD -42.9%  Sharpe 0.39 vs B&H 0.70
+GS   1st half 2016-10-18→2021-10-13  rule   +20.4%  B&H   +123.8%  in-mkt   22%  trades  25  maxDD -42.9%  Sharpe 0.28 vs B&H 0.67
+GS   2nd half 2021-10-14→2026-10-16  rule   +44.8%  B&H   +130.3%  in-mkt   23%  trades  24  maxDD -18.2%  Sharpe 0.57 vs B&H 0.73
+BTC  full     2015-07-20→2026-10-18  rule   -10.0%  B&H +29063.4%  in-mkt   22%  trades  59  maxDD -70.6%  Sharpe 0.14 vs B&H 0.91
+BTC  1st half 2015-07-20→2021-03-03  rule   -25.7%  B&H +17885.7%  in-mkt   19%  trades  24  maxDD -70.4%  Sharpe 0.09 vs B&H 1.33
+BTC  2nd half 2021-03-04→2026-10-18  rule   +21.1%  B&H    +68.8%  in-mkt   24%  trades  35  maxDD -52.7%  Sharpe 0.22 vs B&H 0.37
+Stocks (10y): rule Sharpe beats buy-and-hold Sharpe on 9/78
