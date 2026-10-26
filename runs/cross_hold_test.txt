@@ -1,0 +1,14 @@
+
+== death-cross, 25 alts, 5 years
+  registered: 3-ATR trail, 30d cap   n 2773  +0.51%/trade  t +2.8  win 39%  H1 +0.35 H2 +0.67  held 5.3d  per day held +0.096%  capture 38%
+  3-ATR trail, 7d cap                n 2773  +0.34%/trade  t +2.1  win 42%  H1 +0.09 H2 +0.58  held 3.8d  per day held +0.089%  capture 42%
+  3-ATR trail, 3d cap                n 2773  +0.09%/trade  t +0.7  win 46%  H1 -0.07 H2 +0.24  held 2.3d  per day held +0.036%  capture 43%
+  2-ATR trail, 7d cap                n 2773  +0.01%/trade  t +0.1  win 38%  H1 -0.08 H2 +0.09  held 2.2d  per day held +0.003%  capture 37%
+  fixed 7d, 3-ATR stop               n 2773  +0.44%/trade  t +2.4  win 46%  H1 +0.19 H2 +0.68  held 5.4d  per day held +0.081%  capture 47%
+  fixed 3d, 3-ATR stop               n 2773  +0.06%/trade  t +0.4  win 48%  H1 -0.08 H2 +0.19  held 2.7d  per day held +0.021%  capture 44%
+
+== golden-cross, 25 alts, 5 years
+  registered: fixed 3d, 3-ATR stop   n 1143  +1.37%/trade  t +4.3  win 48%  H1 +1.22 H2 +1.52  held 2.7d  per day held +0.515%  capture 49%
+  fixed 7d, 3-ATR stop               n 1143  +1.92%/trade  t +3.5  win 40%  H1 +2.05 H2 +1.79  held 5.2d  per day held +0.370%  capture 45%
+  3-ATR trail, 7d cap                n 1143  +0.43%/trade  t +1.9  win 40%  H1 +0.34 H2 +0.53  held 2.5d  per day held +0.175%  capture 38%
+  2-ATR trail, 7d cap                n 1143  +0.47%/trade  t +2.7  win 41%  H1 +0.29 H2 +0.65  held 1.3d  per day held +0.366%  capture 40%
