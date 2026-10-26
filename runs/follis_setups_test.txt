@@ -1,0 +1,20 @@
+
+== crypto 4-hour, 27 coins, 5 years, cost 0.11%
+  cont_risk n  3569  -0.107R  t -5.0  win 36%  H1 -0.091 H2 -0.123  | random same geometry -0.007R  edge -0.100R
+  cont_conf n  1739  -0.013R  t -0.4  win 35%  H1 -0.047 H2 +0.021  | random same geometry -0.009R  edge -0.004R
+  rev_risk  n   220  -0.035R  t -0.4  win 37%  H1 +0.198 H2 -0.267  | random same geometry -0.145R  edge +0.110R
+  rev_conf  n   678  -0.130R  t -2.3  win 34%  H1 -0.049 H2 -0.211  | random same geometry -0.134R  edge +0.004R
+
+== crypto 1-hour, 27 coins, 5 years, cost 0.11%
+  cont_risk n 14805  -0.180R  t -14.3  win 35%  H1 -0.145 H2 -0.215  | random same geometry -0.099R  edge -0.081R
+  cont_conf n  6900  -0.134R  t -3.8  win 37%  H1 -0.050 H2 -0.217  | random same geometry -0.171R  edge +0.037R
+  rev_risk  n   921  -0.375R  t -2.2  win 36%  H1 -0.278 H2 -0.472  | random same geometry -0.199R  edge -0.176R
+  rev_conf  n  2565  -0.291R  t -6.9  win 34%  H1 -0.403 H2 -0.179  | random same geometry -0.275R  edge -0.016R
+
+== US Tech 100 15-minute, 1 year, IG 1-pt spread
+  cont_risk n   306  -0.044R  t -0.6  win 35%  H1 -0.115 H2 +0.027  | random same geometry +0.018R  edge -0.061R
+  cont_conf n   181  +0.098R  t +0.9  win 39%  H1 +0.266 H2 -0.068  | random same geometry -0.083R  edge +0.181R
+  rev_risk  n    25  +0.470R  t +1.7  win 52%  H1 +0.575 H2 +0.372  | random same geometry -0.116R  edge +0.586R
+  rev_conf  n    67  -0.033R  t -0.2  win 33%  H1 +0.418 H2 -0.470  | random same geometry -0.170R  edge +0.137R
+
+cuts: 4 setups x 3 data sets = 12 -> deflated bar t > 2.64 (rule 179)
