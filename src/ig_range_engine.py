@@ -284,10 +284,12 @@ class RangeEngine:
     def book(self, name, side, how):
         st = self.st[name]; p = st["pos"][side]; ts = self.bars15[name].index[-1]
         gbp = float(np.nansum([c["pts"]*c["sz"] for c in p["closed"]])); n = len(p["closed"])
+        import csv as _csv
         hdr = not os.path.exists(TRADES)
-        with open(TRADES, "a") as f:
-            if hdr: f.write("instr,side,opened,closed,lots,gbp,how,detail\n")
-            f.write(f"{name},{side},{p['open']},{ts.isoformat()},{n},{gbp:.2f},{how},\"{json.dumps(p['closed'])}\"\n")
+        with open(TRADES, "a", newline="") as f:
+            w = _csv.writer(f)
+            if hdr: w.writerow(["instr", "side", "opened", "closed", "lots", "gbp", "how", "detail"])
+            w.writerow([name, side, p["open"], ts.isoformat(), n, f"{gbp:.2f}", how, json.dumps(p["closed"])])
         self.gov["dpl"] += gbp; st["pos"][side] = None; st["cool"][side] = str(ts)
         log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (day {self.gov['dpl']:+.1f})")
 
