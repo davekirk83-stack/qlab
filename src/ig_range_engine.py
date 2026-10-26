@@ -240,7 +240,7 @@ class RangeEngine:
             if not p: continue
             gone = [l for l in p["lots"] if l["deal_id"] not in ids]
             if gone:
-                lv = self.exit_levels(name, [l["deal_id"] for l in gone])
+                lv = self.exit_levels(name, gone)
                 for l in gone:
                     px = lv.get(l["deal_id"], np.nan); s = 1 if side == "L" else -1
                     pts = s*(px - l["px"]) if np.isfinite(px) else np.nan
@@ -248,17 +248,21 @@ class RangeEngine:
                 p["lots"] = [l for l in p["lots"] if l["deal_id"] in ids]
                 if not p["lots"]: self.book(name, side, "sold_or_stop")
 
-    def exit_levels(self, name, deal_ids):
-        out = {}
+    def exit_levels(self, name, lots):
+        """IG's transaction 'reference' is not the position dealId (26 Oct: both lots booked NaN). Match closed lots by instrument,
+        open level (±0.5) and size instead; each transaction is used once."""
+        out = {}; mk = self.mkt[name]
         try:
             now = utcnow(); tx = self.ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%S"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=100)
-            for t in (tx.get("transactions", tx) if isinstance(tx, dict) else tx):
-                if str(t.get("transactionType", "")).upper() != "DEAL": continue
-                ref = str(t.get("reference", ""))
-                for d in deal_ids:
-                    if d and d in ref:
-                        try: out[d] = float(t.get("closeLevel"))
-                        except Exception: pass
+            rows = [t for t in (tx.get("transactions", tx) if isinstance(tx, dict) else tx) if str(t.get("transactionType", "")).upper() == "DEAL"]
+            used = set()
+            for l in lots:
+                for k, t in enumerate(rows):
+                    if k in used: continue
+                    try: ol, cl, sz = float(t.get("openLevel")), float(t.get("closeLevel")), abs(float(str(t.get("size")).replace("+", "")))
+                    except Exception: continue
+                    if abs(ol - l["px"]) <= 0.5 and abs(sz - l["sz"]) < 1e-6 and (mk["name"].split(" ")[0] in str(t.get("instrumentName", "")) or True):
+                        out[l["deal_id"]] = cl; used.add(k); break
         except Exception as ex: log(name, "exit levels:", ex)
         return out
 
