@@ -1,35 +1,106 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-21:31:19 delta-share threshold 0.0439 (tail-ratio default (248 IG bars, <500)); registered 0.05
-21:31:37 history 300 bars to 2026-10-23 21:00:00+00:00
-21:31:37 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-21:31:37 streaming IX.D.NASDAQ.CASH.IP
-21:31:37 ls status: CONNECTING
-21:31:38 ls status: CONNECTED:WS-STREAMING
-21:31:38 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-21:31:38 CHART IX.D.NASDAQ.CASH.IP subscribed
-21:31:38 stream subscribed on CHART via Z6FARW
-21:31:38 trading session on Z6FARW
-21:31:38 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
-21:31:38 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status EDITS_ONLY
-21:31:40 [range] NQ: using the runner's own 300 IG bars
-21:31:40 [range] NQ: cache 67330 bars offset +170.9 to IG level, REST 300 bars to 2026-10-23 21:00:00+00:00
-21:31:40 [range] NQ: containment median 0.860 over 22446 15-min bars
-21:31:55 [range] WALLST history throttled — waiting 15 s
-21:32:10 [range] WALLST history throttled — waiting 15 s
-21:32:43 [range] WALLST: cache 35454 bars offset -565.2 to IG level, REST 300 bars to 2026-10-23 20:59:00+00:00
-21:32:43 [range] WALLST: containment median 0.860 over 11822 15-min bars
-21:33:03 [range] DAX history throttled — waiting 15 s
-21:33:18 [range] DAX history throttled — waiting 15 s
-21:33:52 [range] DAX: cache 35668 bars offset -204.5 to IG level, REST 300 bars to 2026-10-23 20:59:00+00:00
-21:33:52 [range] DAX: containment median 0.860 over 11895 15-min bars
-21:33:52 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'WALLST': 'IX.D.DOW.DAILY.IP min 0.04 GBP/pt', 'DAX': 'IX.D.DAX.DAILY.IP min 0.04 GBP/pt'}
-21:33:52 streaming IX.D.DOW.DAILY.IP
-21:33:52 streaming IX.D.DAX.DAILY.IP
-21:33:52 MARKET IX.D.DOW.DAILY.IP subscription error 21 Invalid group
-21:33:52 MARKET IX.D.DAX.DAILY.IP subscription error 21 Invalid group
-21:33:52 CHART IX.D.DOW.DAILY.IP subscribed
-21:33:52 CHART IX.D.DAX.DAILY.IP subscribed
-21:33:52 CHART IX.D.DOW.DAILY.IP update: {'BID': None, 'OFR': None}
-21:33:52 CHART IX.D.DAX.DAILY.IP update: {'BID': None, 'OFR': None}
-21:39:19 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-21:39:19 done; ticks 3 bars 300
+14:50:00 delta-share threshold 0.0439 (tail-ratio default (248 IG bars, <500)); registered 0.05
+14:50:19 history 300 bars to 2026-10-26 14:50:00+00:00
+14:50:19 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+14:50:19 streaming IX.D.NASDAQ.CASH.IP
+14:50:19 ls status: CONNECTING
+14:50:20 ls status: CONNECTED:WS-STREAMING
+14:50:20 CHART IX.D.NASDAQ.CASH.IP subscribed
+14:50:20 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+14:50:20 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29319.2', 'OFR': '29320.4'}
+14:50:20 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29319.9', 'OFR': '29321.1'}
+14:50:20 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29319.7', 'OFR': '29320.9'}
+14:50:21 stream subscribed on CHART via Z6FARW
+14:50:21 trading session on Z6FARW
+14:50:21 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 1.0 GBP/pt, status TRADEABLE
+14:50:23 [range] NQ: using the runner's own 300 IG bars
+14:50:23 [range] NQ: cache 67597 bars offset +77.2 to IG level, REST 300 bars to 2026-10-26 14:50:00+00:00
+14:50:24 [range] NQ: containment median 0.860 over 22535 15-min bars
+14:50:39 [range] WALLST history throttled — waiting 15 s
+14:50:54 [range] WALLST history throttled — waiting 15 s
+14:51:28 [range] WALLST: cache 35721 bars offset +211.2 to IG level, REST 300 bars to 2026-10-26 14:51:00+00:00
+14:51:28 [range] WALLST: containment median 0.860 over 11911 15-min bars
+14:51:48 [range] DAX history throttled — waiting 15 s
+14:52:03 [range] DAX history throttled — waiting 15 s
+14:52:37 [range] DAX: cache 35896 bars offset +304.9 to IG level, REST 300 bars to 2026-10-26 14:52:00+00:00
+14:52:37 [range] DAX: containment median 0.860 over 11971 15-min bars
+14:52:37 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'WALLST': 'IX.D.DOW.DAILY.IP min 0.04 GBP/pt', 'DAX': 'IX.D.DAX.DAILY.IP min 0.04 GBP/pt'}
+14:52:37 streaming IX.D.DOW.DAILY.IP
+14:52:37 streaming IX.D.DAX.DAILY.IP
+14:52:37 MARKET IX.D.DAX.DAILY.IP subscription error 21 Invalid group
+14:52:37 MARKET IX.D.DOW.DAILY.IP subscription error 21 Invalid group
+14:52:37 CHART IX.D.DOW.DAILY.IP subscribed
+14:52:37 CHART IX.D.DAX.DAILY.IP subscribed
+14:55:00 bar 14:50 o 29319.8 h 29351.5 l 29306.0 c 29340.7 ticks 3382 delta +35
+15:00:00 [range] NQ: first bar 14:45 — watermark adopted, no trade (paperbook6 rule)
+15:00:00 bar 14:55 o 29340.2 h 29369.6 l 29329.9 c 29360.4 ticks 3629 delta +9
+15:00:00 [range] WALLST: first bar 14:45 — watermark adopted, no trade (paperbook6 rule)
+15:00:00 [range] DAX: first bar 14:45 — watermark adopted, no trade (paperbook6 rule)
+15:05:00 bar 15:00 o 29359.9 h 29409.2 l 29355.3 c 29378.2 ticks 3570 delta +0
+15:10:00 bar 15:05 o 29378.3 h 29385.7 l 29352.0 c 29359.8 ticks 3614 delta -44
+15:15:38 [range] DAX 15:00 c 25488.8 ema 25446.9 band 25374.7-25519.0 atr 36.1 regime ON L 0 S 0 orders 0
+15:15:38 [range] DAX LIMIT BUY rung 0 0.15/pt at 25385.6 placed (DIAAAAYQK7EGBBG)
+15:15:38 [range] DAX LIMIT BUY rung 1 0.25/pt at 25376.5 placed (DIAAAAYQK7LQKBF)
+15:15:39 [range] DAX LIMIT BUY rung 2 0.3/pt at 25365.7 placed (DIAAAAYQK539AA2)
+15:15:39 [range] DAX LIMIT BUY rung 3 0.3/pt at 25354.9 placed (DIAAAAYQK8BW7AS)
+15:15:40 [range] DAX LIMIT SELL rung 0 0.15/pt at 25508.2 placed (DIAAAAYQK6XA5BC)
+15:15:40 [range] DAX LIMIT SELL rung 1 0.25/pt at 25517.2 placed (DIAAAAYQK7HFWBD)
+15:15:41 [range] DAX LIMIT SELL rung 2 0.3/pt at 25528.0 placed (DIAAAAYQK6R94BY)
+15:15:41 [range] DAX LIMIT SELL rung 3 0.3/pt at 25538.8 placed (DIAAAAYQK7GG9BH)
+15:15:42 [range] WALLST 15:00 c 52481.0 ema 52454.1 band 52270.6-52637.5 atr 91.7 regime ON L 0 S 0 orders 0
+15:15:42 [range] WALLST LIMIT BUY rung 0 0.15/pt at 52298.1 placed (DIAAAAYQK6DJ9B4)
+15:15:42 [range] WALLST LIMIT BUY rung 1 0.25/pt at 52275.2 placed (DIAAAAYQK7M5MB2)
+15:15:43 [range] WALLST LIMIT BUY rung 2 0.3/pt at 52247.7 placed (DIAAAAYQK8BYDAS)
+15:15:43 [range] WALLST LIMIT BUY rung 3 0.3/pt at 52220.2 placed (DIAAAAYQK7AU5BZ)
+15:15:44 [range] WALLST LIMIT SELL rung 0 0.15/pt at 52610.0 placed (DIAAAAYQK6XA6BC)
+15:15:44 [range] WALLST LIMIT SELL rung 1 0.25/pt at 52632.9 placed (DIAAAAYQK8ADJBX)
+15:15:44 [range] WALLST LIMIT SELL rung 2 0.3/pt at 52660.4 placed (DIAAAAYQK7HF2BD)
+15:15:45 [range] WALLST LIMIT SELL rung 3 0.3/pt at 52688.0 placed (DIAAAAYQK7DPCBV)
+15:30:49 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+15:30:49 [range] NQ 15:00 c 29365.2 ema 29154.2 band 28965.6-29342.7 atr 94.3 regime ON L 0 S 0 orders 0
+15:30:50 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:50 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:51 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:51 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:51 [range] NQ market order rejected: INSUFFICIENT_FUNDS
+15:30:52 [range] NQ market order rejected: INSUFFICIENT_FUNDS
+15:30:52 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:53 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+15:30:53 bar 15:10 o 29360.2 h 29377.4 l 29350.0 c 29365.2 ticks 3659 delta -55
+15:30:53 bar 15:15 o 29365.1 h 29365.1 l 29365.1 c 29365.1 ticks 1 delta -1
+15:35:00 bar 15:30 o 29364.7 h 29405.8 l 29341.8 c 29373.6 ticks 14423 delta -131
+15:40:00 bar 15:35 o 29373.4 h 29403.5 l 29363.0 c 29393.4 ticks 3578 delta +18
+15:45:39 [range] DAX 15:30 c 25476.0 ema 25449.6 band 25378.0-25521.2 atr 35.8 regime ON L 0 S 0 orders 8
+15:45:40 [range] DAX LIMIT BUY rung 0 0.15/pt at 25388.8 placed (DIAAAAYQLAXQMBT)
+15:45:41 [range] DAX LIMIT BUY rung 1 0.25/pt at 25379.8 placed (DIAAAAYQLAPAPBQ)
+15:45:42 [range] DAX LIMIT BUY rung 2 0.3/pt at 25369.1 placed (DIAAAAYQLAC5MBJ)
+15:45:43 [range] DAX LIMIT BUY rung 3 0.3/pt at 25358.3 placed (DIAAAAYQK8ZT4A2)
+15:45:44 [range] DAX LIMIT SELL rung 0 0.15/pt at 25510.5 placed (DIAAAAYQK9V3BBW)
+15:45:45 [range] DAX LIMIT SELL rung 1 0.25/pt at 25519.4 placed (DIAAAAYQK93LKA8)
+15:45:46 [range] DAX LIMIT SELL rung 2 0.3/pt at 25530.2 placed (DIAAAAYQK9P2QBK)
+15:45:46 [range] DAX LIMIT SELL rung 3 0.3/pt at 25540.9 placed (DIAAAAYQK9DGZBS)
+15:45:47 [range] WALLST 15:30 c 52383.5 ema 52447.3 band 52262.0-52632.7 atr 92.7 regime ON L 0 S 0 orders 8
+15:45:48 [range] WALLST LIMIT BUY rung 0 0.15/pt at 52289.8 placed (DIAAAAYQK9RU4B2)
+15:45:48 [range] WALLST LIMIT BUY rung 1 0.25/pt at 52266.6 placed (DIAAAAYQLAF7NBU)
+15:45:49 [range] WALLST LIMIT BUY rung 2 0.3/pt at 52238.8 placed (DIAAAAYQK94HPAL)
+15:45:50 [range] WALLST LIMIT BUY rung 3 0.3/pt at 52211.0 placed (DIAAAAYQK9DG5BS)
+15:45:51 [range] WALLST LIMIT SELL rung 0 0.15/pt at 52604.9 placed (DIAAAAYQLAEK4BF)
+15:45:52 [range] WALLST LIMIT SELL rung 1 0.25/pt at 52628.1 placed (DIAAAAYQLAA9XBZ)
+15:45:53 [range] WALLST LIMIT SELL rung 2 0.3/pt at 52655.9 placed (DIAAAAYQLAPBKBQ)
+15:45:54 [range] WALLST LIMIT SELL rung 3 0.3/pt at 52683.7 placed (DIAAAAYQK9M8ABY)
+16:00:51 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+16:00:51 [range] NQ 15:30 c 29377.5 ema 29193.6 band 29021.7-29365.5 atr 85.9 regime ON L 0 S 0 orders 0
+16:00:52 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:53 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:53 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:53 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:54 [range] NQ market order rejected: INSUFFICIENT_FUNDS
+16:00:54 [range] NQ market order rejected: INSUFFICIENT_FUNDS
+16:00:55 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:55 [range] NQ working order rejected: INSUFFICIENT_FUNDS
+16:00:55 bar 15:40 o 29392.8 h 29398.6 l 29371.6 c 29377.5 ticks 3544 delta +18
+16:00:55 bar 15:45 o 29377.7 h 29377.7 l 29377.7 c 29377.7 ticks 1 delta -1
+16:05:00 bar 16:00 o 29377.8 h 29391.7 l 29286.1 c 29303.4 ticks 14335 delta -121
+16:05:06 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+16:05:06 ls status: DISCONNECTED
+16:05:06 done; ticks 93357 bars 310
