@@ -179,6 +179,38 @@ if __name__ == "__main__":
                                                         "atr": float(a2[j]), "best": float(C2[j]), "bars": 0, "shadow": True}
         rec["since"] = str(idx[-1])
 
+    # v1.1 parallel arm (doc 132, DK 26 Oct): identical signal, exit and shadow, but gated on the COIN'S OWN 4h EMA200
+    # instead of BTC's. v1 above is untouched; this ledger opens from its first run (watermark adopted, nothing traded).
+    v = st.setdefault("v11", {"equity": START, "shadow_equity": START, "sym": {}, "shadow": {}, "closed": 0, "closed_shadow": 0, "started": today})
+    c11, cs11 = [], []; open11 = sum(1 for x in v["sym"].values() if x.get("pos"))
+    for s, (C, H, L, a, sig, e200, idx) in data.items():
+        rec = v["sym"].setdefault(s, {"since": None, "pos": None})
+        if rec["since"] is None: rec["since"] = str(idx[-1]); continue
+        start = int(np.searchsorted(idx, pd.Timestamp(rec["since"]), side="right"))
+        for i in range(start, len(C)):
+            if rec["pos"]:
+                row = manage(rec["pos"], H, L, C, i, idx)
+                if row: c11.append(row); rec["pos"] = None; open11 -= 1
+            for key, sp in list(v["shadow"].items()):
+                if sp["sym"] != s or pd.Timestamp(sp["opened"]) >= idx[i]: continue
+                row = manage(sp, H, L, C, i, idx)
+                if row: cs11.append(row); v["shadow"].pop(key)
+            if flatten in (1, 2) and rec["pos"]:
+                p = rec["pos"]; ret = (C[i]*(1-COST))/(p["entry"]*(1+COST)) - 1
+                c11.append((s, p["opened"], str(idx[i]), ret, "halt", False)); rec["pos"] = None; open11 -= 1
+            if sig[i] and C[i] > e200[i] and not rec["pos"] and not block_entries and open11 < SLOTS:
+                rec["pos"] = {"sym": s, "opened": str(idx[i]), "entry": float(C[i]), "atr": float(a[i]), "best": float(C[i]), "bars": 0, "shadow": False}
+                open11 += 1
+                sh = pick_shadow(syms, f"{s}|{idx[i]}|v11")
+                if sh in data:
+                    C2, H2, L2, a2, _, _, idx2 = data[sh]; j = int(np.searchsorted(idx2, idx[i], side="right")) - 1
+                    if j >= 0: v["shadow"][f"{s}|{idx[i]}"] = {"sym": sh, "opened": str(idx2[j]), "entry": float(C2[j]), "atr": float(a2[j]), "best": float(C2[j]), "bars": 0, "shadow": True}
+        rec["since"] = str(idx[-1])
+    for c in c11: v["equity"] += v["equity"]/SLOTS*c[3]*LEV
+    for c in cs11: v["shadow_equity"] += v["shadow_equity"]/SLOTS*c[3]*LEV
+    v["closed"] += len(c11); v["closed_shadow"] += len(cs11)
+    print(f"  v1.1 (own EMA200 gate): closed {len(c11)} real / {len(cs11)} shadow, {open11} open, equity ${v['equity']:,.2f} / shadow ${v['shadow_equity']:,.2f}", flush=True)
+
     per = st["equity"]/SLOTS
     for c in closed: st["equity"] += per*c[3]*LEV
     per_s = st["shadow_equity"]/SLOTS
@@ -191,6 +223,11 @@ if __name__ == "__main__":
 
     lines = [f"INSERT OR REPLACE INTO pb5_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) "
              f"VALUES ('{today}', {st['equity']:.4f}, {st['shadow_equity']:.4f}, {open_n}, {st['closed']}, {st['closed_shadow']});"]
+    lines.append("CREATE TABLE IF NOT EXISTS pb5_v11_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);")
+    lines.append(f"INSERT OR REPLACE INTO pb5_v11_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('{today}', {v['equity']:.4f}, {v['shadow_equity']:.4f}, {open11}, {v['closed']}, {v['closed_shadow']});")
+    for c in c11 + cs11:
+        lines.append("INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) "
+                     f"VALUES ('{today}', '{PB.sql_escape(c[0])}@v11', '{PB.sql_escape(c[1])}', '{PB.sql_escape(c[2])}', {c[3]:.6f}, '{c[4]}', {1 if c[5] else 0});")
     for c in (closed + closed_sh)[:400]:
         lines.append("INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) "
                      f"VALUES ('{today}', '{PB.sql_escape(c[0])}', '{PB.sql_escape(c[1])}', '{PB.sql_escape(c[2])}', "
