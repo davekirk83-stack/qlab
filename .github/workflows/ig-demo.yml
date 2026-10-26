@@ -31,6 +31,7 @@ jobs:
           IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
+          IG_RANGE_SIZE: "0.25"   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)
