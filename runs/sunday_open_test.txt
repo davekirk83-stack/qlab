@@ -1,0 +1,26 @@
+weekends 262 (2021-10-24 -> 2026-10-25)
+  first hour after reopen      mean +0.055%  median +0.017%  up 52%  t +1.2  H1 +0.052 H2 +0.057
+  first 4 hours                mean -0.141%  median -0.096%  up 44%  t -1.6  H1 -0.257 H2 -0.026
+  reopen -> Monday 08:00 UTC   mean +0.042%  median +0.039%  up 52%  t +0.3  H1 -0.036 H2 +0.119
+  baseline: any 1h +0.002% (sd 0.54%), |first hour| median 0.31% vs |any hour| median 0.21%
+
+  gap-fill: does the reopen fade the weekend move?
+    weekend up > +1%     n  67  first hour +0.288% (up 69%)  first 4h +0.354%  to Mon 08:00 +0.683%
+    weekend down < -1%   n  51  first hour -0.158% (up 37%)  first 4h -0.788%  to Mon 08:00 -0.590%
+    weekend flat         n 144  first hour +0.021% (up 49%)  first 4h -0.142%  to Mon 08:00 -0.033%
+  corr(weekend move, first 4h) +0.24   corr(weekend move, to Mon 08:00) +0.22
+
+  last 6 weekends:
+       sun    wk    r1    r4  mon8
+2026-09-20 -0.22  0.34  0.07  0.97
+2026-09-27  0.96 -0.58 -1.18 -2.08
+2026-10-04  1.68  0.66  0.88  0.45
+2026-10-11  1.23  0.13  0.15  0.55
+2026-10-18 -0.61  0.69  1.52  1.88
+2026-10-25 -1.42  0.27 -0.65 -0.30
+
+  continuation trade (go with the weekend move at the reopen), 0.11% round-trip cost:
+    |wk|>1% hold 4h            n 118  +0.431%  t +3.1  win 58%  H1 +0.625 H2 +0.238   | long-only (weekend up) n 67 +0.244% t +1.6
+    |wk|>1% hold to Mon 08:00  n 118  +0.533%  t +2.5  win 62%  H1 +0.721 H2 +0.344   | long-only (weekend up) n 67 +0.573% t +2.5
+    |wk|>2% hold 4h            n  54  +0.474%  t +1.8  win 57%  H1 +0.658 H2 +0.290   | long-only (weekend up) n 26 +0.357% t +1.2
+    |wk|>2% hold to Mon 08:00  n  54  +0.539%  t +1.4  win 61%  H1 +0.625 H2 +0.453   | long-only (weekend up) n 26 +0.555% t +1.3

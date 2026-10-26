@@ -1,0 +1,22 @@
+
+== out-of-hours spread 2.0 pts (US cash hours 1 pt)
+  Asia 00-07       n 242    +0.4 pts/trade  t +0.2  win 74%  H1 -1.2 H2 +2.0  total +93
+  London 07-13:30  n 271    +2.1 pts/trade  t +0.9  win 72%  H1 +4.0 H2 +0.3  total +582
+  US 13:30-16      n  63   +22.7 pts/trade  t +3.6  win 84%  H1 +18.5 H2 +26.8  total +1431
+  US lunch 16-19   n  45    -4.4 pts/trade  t -0.9  win 73%  H1 -7.9 H2 -1.1  total -200
+  US late 19-20    n  21   +16.6 pts/trade  t +4.1  win 100%  H1 +16.8 H2 +16.3  total +348
+  evening 20-24    n  80    +7.2 pts/trade  t +1.4  win 80%  H1 +7.1 H2 +7.3  total +575
+  registered v1.1 (US hrs, no lunch)   n  84   +21.2/trade  t +4.3  H1 +20.5 H2 +21.9  total +1780 pts  (= £1,780 at £1/pt)
+  v1.1 + Asia + London                 n 579    +3.2/trade  t +2.2  H1 +2.6 H2 +3.9  total +1875 pts  (= £1,875 at £1/pt)
+  all hours except lunch               n 655    +3.9/trade  t +2.6  H1 +3.1 H2 +4.7  total +2553 pts  (= £2,553 at £1/pt)
+
+== out-of-hours spread 4.0 pts (US cash hours 1 pt)
+  Asia 00-07       n 242    -0.8 pts/trade  t -0.4  win 73%  H1 -2.2 H2 +0.6  total -194
+  London 07-13:30  n 269    +0.7 pts/trade  t +0.3  win 70%  H1 +3.6 H2 -2.1  total +199
+  US 13:30-16      n  63   +22.7 pts/trade  t +3.6  win 84%  H1 +18.5 H2 +26.8  total +1431
+  US lunch 16-19   n  45    -4.4 pts/trade  t -0.9  win 73%  H1 -7.9 H2 -1.1  total -200
+  US late 19-20    n  21   +16.6 pts/trade  t +4.1  win 100%  H1 +17.0 H2 +16.2  total +348
+  evening 20-24    n  79    +5.5 pts/trade  t +1.0  win 78%  H1 +7.0 H2 +3.9  total +432
+  registered v1.1 (US hrs, no lunch)   n  84   +21.2/trade  t +4.3  H1 +20.5 H2 +21.9  total +1780 pts  (= £1,780 at £1/pt)
+  v1.1 + Asia + London                 n 578    +2.1/trade  t +1.4  H1 +2.0 H2 +2.3  total +1238 pts  (= £1,238 at £1/pt)
+  all hours except lunch               n 653    +2.7/trade  t +1.8  H1 +2.5 H2 +3.0  total +1778 pts  (= £1,778 at £1/pt)
