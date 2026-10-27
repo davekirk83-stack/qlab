@@ -1,0 +1,22 @@
+{
+ "equity": 2000.0,
+ "shadow_equity": 2000.0,
+ "sym": {
+  "BTCUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "ETHUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  }
+ },
+ "closed": 0,
+ "closed_shadow": 0,
+ "started": "2026-10-27",
+ "spec": "AO saucer trend, BTC/ETH 3h (doc 145c)"
+}
