@@ -1,0 +1,18 @@
+BTC+ETH  BASE  DEV  n 290 win   37% PF 1.42 mean +0.71% total   +20.7% | random median    +6.7%, beats  94%
+               HOLD n 155 win   34% PF 1.70 mean +0.97% total   +15.0% | random median    +8.7%, beats  83%
+BTC+ETH  STOP  DEV  n 302 win   26% PF 1.52 mean +0.64% total   +19.4% | random median    -1.7%, beats 100%
+               HOLD n 160 win   21% PF 1.37 mean +0.41% total    +6.5% | random median    +1.2%, beats  75%
+BTC+ETH  DAILY DEV  n 216 win   36% PF 1.36 mean +0.62% total   +13.4% | random median    +3.9%, beats  87%
+               HOLD n 120 win   31% PF 1.85 mean +1.23% total   +14.8% | random median    +7.7%, beats  85%
+BTC+ETH  BOTH  DEV  n 225 win   24% PF 1.47 mean +0.58% total   +13.2% | random median    -1.7%, beats  98%
+               HOLD n 123 win   21% PF 1.71 mean +0.75% total    +9.2% | random median    +2.1%, beats  95%
+10 coins BASE  DEV  n1410 win   32% PF 1.13 mean +0.35% total   +49.3% | random median   +29.6%, beats  72%
+               HOLD n 575 win   35% PF 1.18 mean +0.36% total   +20.6% | random median   -16.9%, beats 100%
+10 coins STOP  DEV  n1467 win   21% PF 1.13 mean +0.25% total   +36.0% | random median   -12.3%, beats  95%
+               HOLD n 595 win   24% PF 1.14 mean +0.21% total   +12.4% | random median    -5.0%, beats  92%
+10 coins DAILY DEV  n 964 win   32% PF 1.25 mean +0.68% total   +65.5% | random median   +34.2%, beats  85%
+               HOLD n 403 win   34% PF 1.22 mean +0.47% total   +19.0% | random median    -9.3%, beats  99%
+10 coins BOTH  DEV  n1008 win   20% PF 1.23 mean +0.45% total   +45.0% | random median    +2.5%, beats  98%
+               HOLD n 415 win   23% PF 1.12 mean +0.19% total    +7.8% | random median    -5.7%, beats  90%
+
+total = sum of trade returns x 10 (% of capital at 10% per entry, no compounding). Trials: 8.

@@ -1,0 +1,13 @@
+RECONCILE BTC 3h 2023-01-01..2024-11-25 (Skyrexio: 107 trades, 43% win, PF 3.36, +28.4%): ours n105 win 43% PF 2.46 total +19.4% | BTC buy&hold +462%
+AC strategy 3h, BTC+ETH
+  DEV  n 380 win   35% PF 1.30 mean +0.57% total   +21.8% | random median    +9.4%, beats  88%
+  HOLD n 204 win   28% PF 1.35 mean +0.52% total   +10.7% | random median   +11.0%, beats  47%
+AC strategy 3h, 10 coins
+  DEV  n1697 win   32% PF 1.32 mean +0.84% total  +142.2% | random median   +38.6%, beats 100%
+  HOLD n 760 win   28% PF 0.90 mean -0.24% total   -18.0% | random median   -23.1%, beats  65%
+Reversal bar 4h, ETH only (total at 10%/trade; author sized 50%)
+  DEV  n 592 win   34% PF 0.68 mean -0.27% total   -15.9% | random median   -18.1%, beats  73%
+  HOLD n 274 win   29% PF 0.76 mean -0.21% total    -5.6% | random median    -6.2%, beats  54%
+Reversal bar 4h, 10 coins (total at 10%/trade; author sized 50%)
+  DEV  n5973 win   34% PF 0.62 mean -0.39% total  -234.1% | random median  -197.2%, beats   1%
+  HOLD n2970 win   31% PF 0.62 mean -0.35% total  -103.9% | random median   -82.7%, beats   0%
