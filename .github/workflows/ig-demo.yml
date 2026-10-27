@@ -11,6 +11,12 @@ on:
     - cron: "25 17 * * 1-5"   # 17:25 UTC (was 17:55, fired ~27 min late): second half 18:00-21:00; runs to a fixed 21:00 UTC and flattens at the end
     - cron: "10 13 * * 1-5"   # backup for the first half (GitHub skipped/delayed 13:10 on 26 Oct); exits at once if a session is already running
     - cron: "55 17 * * 1-5"   # backup for the second half
+    # US WINTER TIME (from Mon 2 Nov 2026 to March): the same four, one hour later. GitHub cron is UTC-only, so both sets stay;
+    # whichever fires second finds a session running and exits. Session END times are computed in New York time below.
+    - cron: "40 13 * * 1-5"
+    - cron: "25 18 * * 1-5"
+    - cron: "10 14 * * 1-5"
+    - cron: "55 18 * * 1-5"
 permissions:
   contents: write
   actions: read
@@ -39,8 +45,9 @@ jobs:
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${OTHERS:-0}" -gt 0 ]; then echo "another demo session is already running — this one exits"; exit 0; fi
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            case "${{ github.event.schedule }}" in "40 12 * * 1-5"|"10 13 * * 1-5") END="16:05";; *) END="21:00";; esac
-            ARGS=$(( ($(date -u -d "today $END" +%s) - $(date -u +%s)) / 60 ))
+            # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
+            case "${{ github.event.schedule }}" in "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="12:05";; *) END="17:00";; esac
+            ARGS=$(( ($(TZ=America/New_York date -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
             DRY=""
           elif [ -f runs/ig_demo/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_demo/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_demo/trigger.txt); fi

@@ -54,7 +54,7 @@ def calibrate_dshare():
         thr, src = P7.DSHARE, f"calibration failed ({e}); registered threshold"
     return thr, src
 STATE = f"{OUT}/state.json"; TRADES = f"{OUT}/trades.csv"
-US_OPEN, US_CLOSE = 13*60+30, 20*60
+US_OPEN, US_CLOSE = P7.US_OPEN, P7.US_CLOSE   # New York local minutes (DST-proof, 27 Oct 2026)
 BAR = 5
 
 
@@ -154,13 +154,13 @@ class Runner:
     def decide(self):
         if not self.dry: self.resolve_pending()
         d = P7.features(self.bars); i = len(d) - 1; row = d.iloc[i]; ts = d.index[i]
-        mins = ts.hour*60 + ts.minute
+        nyt = P7.ny(ts); mins = nyt.hour*60 + nyt.minute
         if self.pos:
             self.manage(d, i); return
         s = int(row.sig)
         if s == 0 or np.isnan(row.atr): return
         if not (US_OPEN <= mins < US_CLOSE): log(f"bar {ts:%H:%M} sig {s} outside US hours — skipped"); return
-        if V11 and ts.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the 16-18 UTC lunch window — skipped (v1.1)"); return
+        if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return
         st = self.state
         if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return
         if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return

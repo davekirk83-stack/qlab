@@ -22,7 +22,7 @@ START, SLOTS, LEV, NCTRL = 2000.0, 12, 3.0, 5
 INSTR = {  # name: (5-min csv, spread pts, point, UTC hours for NEW episodes or None)
     "WALLST": (f"{ROOT}/data_ig_cache/USA30IDXUSD_5m.csv", 2.0, "USA30IDXUSD", None),
     "DAX":    (f"{ROOT}/data_ig_cache/DEUIDXEUR_5m.csv", 1.2, "DEUIDXEUR", None),
-    "NQ":     (f"{ROOT}/data_nq_cache/nq_5m.csv", 1.0, None, (13, 20)),
+    "NQ":     (f"{ROOT}/data_nq_cache/nq_5m.csv", 1.0, None, (9, 16)),   # New York local hours (= 13-20 UTC in summer)
 }
 
 def pull(name):
@@ -46,7 +46,8 @@ def hours_gate(hours):
     def ind(d, sym=None):
         ema, lob, hib, a, allow = _orig_ind(d, sym)
         if hours is None: return ema, lob, hib, a, allow
-        h = d.index.hour; return ema, lob, hib, a, allow & ((h >= hours[0]) & (h < hours[1]))
+        ix = d.index if d.index.tz is not None else d.index.tz_localize("UTC")
+        h = ix.tz_convert("America/New_York").hour; return ema, lob, hib, a, allow & ((h >= hours[0]) & (h < hours[1]))
     return ind
 
 def shadow(b, closed, rng):

@@ -98,15 +98,23 @@ def manage(O, H, L, C, cost, atr, i, s, n, stop_pts=None):
     return None
 
 
-US_OPEN, US_CLOSE = 13*60+30, 20*60   # UTC minutes; the IG candidate (doc 100 Phase 0): entries only in US cash hours
+NY = "America/New_York"
+def ny(ts):
+    """A bar time (UTC, naive or aware) as New York local time."""
+    t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t
+    return t.tz_convert(NY)
+# Session rules are in NEW YORK LOCAL time (27 Oct 2026, before the 1 Nov US clock change). Every bar the books have traded so
+# far is in US summer time, when these equal the original UTC rules (13:30-20:00 and 16:00-18:59 UTC), so no past result changes.
+US_OPEN, US_CLOSE = 9*60+30, 16*60   # New York minutes; the IG candidate (doc 100 Phase 0): entries only in US cash hours
 # v1.1 (doc 108, 21 Oct 2026): no entries 16:00-18:59 UTC (US lunch: 45 trades, -166 pts over the year) and the stop is
 # max(45, 1.5 ATR20) — 14 of the 29 US-hours stops hit on the very next bar when ATR was ~57 and 45 pts was under one ATR.
-V11_SKIP_HOURS = (16, 17, 18); V11_STOP_ATR = 1.5
+V11_SKIP_HOURS = (12, 13, 14); V11_STOP_ATR = 1.5   # New York hours (US lunch)
 
 
 def replay(d, start, flatten, us_hours=False, v11=False):
     O, H, L, C, cost, atr, sig, day = d.open.values, d.high.values, d.low.values, d.close.values, d.cost.values, d.atr.values, d.sig.values, d.day.values
     n = len(C); idx = d.index; rng = np.random.default_rng(7)
+    nyi = (idx if idx.tz is not None else idx.tz_localize("UTC")).tz_convert(NY); nymin = nyi.hour*60 + nyi.minute; nyh = nyi.hour
     t0 = np.searchsorted(idx, pd.Timestamp(start, tz="UTC"))
     trades, shadow, open_tr = [], [], None; last_exit = -10**9; cur = None; ntr = 0; dpl = 0.0
     for i in range(max(t0, 300), n - 1):
@@ -114,8 +122,8 @@ def replay(d, start, flatten, us_hours=False, v11=False):
         s = int(sig[i])
         if s == 0 or np.isnan(atr[i]) or i < last_exit + COOL or ntr >= MAXT or dpl <= -LOSSCAP: continue
         if flatten == 1 or (flatten == 2 and s == 1): continue
-        if us_hours and not (US_OPEN <= idx[i].hour*60 + idx[i].minute < US_CLOSE): continue
-        if v11 and idx[i].hour in V11_SKIP_HOURS: continue
+        if us_hours and not (US_OPEN <= nymin[i] < US_CLOSE): continue
+        if v11 and nyh[i] in V11_SKIP_HOURS: continue
         sp = max(STOP, V11_STOP_ATR*atr[i]) if v11 else STOP
         r = manage(O, H, L, C, cost, atr, i, s, n, sp)
         if r is None: open_tr = {"opened": str(idx[i]), "side": s, "entry": float(O[i+1]), "bars_so_far": int(n-1-i)}; break

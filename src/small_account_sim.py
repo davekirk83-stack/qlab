@@ -10,12 +10,12 @@ sys.path.insert(0, "/home/claude/qlab/src"); import paperbook7 as P7, paperbook6
 MARGIN = 0.05; FUND_NIGHT = 0.00018
 # ---------------- Ignition trades with timestamps
 bars = pd.read_csv("/home/claude/qlab/data_nq_cache/nq_5m.csv", index_col=0); bars.index = pd.to_datetime(bars.index, utc=True)
-d = P7.features(bars); m = d.index.hour*60 + d.index.minute; d["cost"] = np.where((m >= P7.US_OPEN) & (m < P7.US_CLOSE), 0.5, 1.0)
+d = P7.features(bars); _ny = (d.index if d.index.tz is not None else d.index.tz_localize('UTC')).tz_convert(P7.NY); m = _ny.hour*60 + _ny.minute; d["cost"] = np.where((m >= P7.US_OPEN) & (m < P7.US_CLOSE), 0.5, 1.0)
 O, H, L, C, cost, atr, sig, day, idx = d.open.values, d.high.values, d.low.values, d.close.values, d.cost.values, d.atr.values, d.sig.values, d.day.values, d.index
 ign = []; last = -10**9; cur = None; ntr = 0; dpl = 0
 for i in range(300, len(C)-1):
     if day[i] != cur: cur = day[i]; ntr = 0; dpl = 0
-    s = int(sig[i]); t = idx[i]; mm = t.hour*60 + t.minute
+    s = int(sig[i]); t = P7.ny(idx[i]); mm = t.hour*60 + t.minute
     if s == 0 or np.isnan(atr[i]) or i < last + P7.COOL or ntr >= P7.MAXT or dpl <= -P7.LOSSCAP: continue
     if not (P7.US_OPEN <= mm < P7.US_CLOSE) or t.hour in P7.V11_SKIP_HOURS: continue
     sp = max(P7.STOP, P7.V11_STOP_ATR*atr[i]); r = P7.manage(O, H, L, C, cost, atr, i, s, len(C), sp)

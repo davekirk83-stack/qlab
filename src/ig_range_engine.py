@@ -16,11 +16,15 @@ import os, json, time, datetime as dt, traceback
 import numpy as np, pandas as pd
 import paperbook6 as P6
 
+def _nyh(ts):
+    t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t
+    return t.tz_convert("America/New_York").hour
+
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); OUT = "runs/ig_demo"
 STATE = f"{OUT}/range_state.json"; TRADES = f"{OUT}/range_trades.csv"
 RANGE_SIZE = float(os.environ.get("IG_RANGE_SIZE", "1.0"))     # full-ladder £/pt; each rung = max(min size, frac x this)
 INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW episodes (None = all hours)
-    "NQ":     dict(epics=["IX.D.NASDAQ.CASH.IP"], search="US Tech 100", cache=f"{ROOT}/data_nq_cache/nq_5m.csv", hours=(13, 20)),
+    "NQ":     dict(epics=["IX.D.NASDAQ.CASH.IP"], search="US Tech 100", cache=f"{ROOT}/data_nq_cache/nq_5m.csv", hours=(9, 16)),   # New York local hours (= 13-20 UTC in summer)
     "WALLST": dict(epics=["IX.D.DOW.DAILY.IP", "IX.D.DOW.CASH.IP"], search="Wall Street", cache=f"{ROOT}/data_ig_cache/USA30IDXUSD_5m.csv", hours=None),
     "DAX":    dict(epics=["IX.D.DAX.DAILY.IP", "IX.D.DAX.CASH.IP"], search="Germany 40", cache=f"{ROOT}/data_ig_cache/DEUIDXEUR_5m.csv", hours=None),
 }
@@ -164,7 +168,7 @@ class RangeEngine:
                     lot["tgt"], lot["brk"] = tgt, brk
         # entries
         for side in ("L", "S"):
-            if hours and not (hours[0] <= ts.hour < hours[1]): continue
+            if hours and not (hours[0] <= _nyh(ts) < hours[1]): continue
             if not ok or (P6.LONGS_OFF and side == "L"):
                 self.cancel_orders(name, side); continue
             ct = st["cool"].get(side)
