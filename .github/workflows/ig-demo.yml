@@ -7,10 +7,10 @@ on:
   push:
     paths: ["runs/ig_demo/trigger.txt"]
   schedule:
-    - cron: "10 13 * * 1-5"   # 13:10 UTC: first half of the US session; runs to a fixed 16:05 UTC (v1.1 takes no entries 16-18 UTC) whatever the cron delay (observed ~33 min)
-    - cron: "55 17 * * 1-5"   # 17:55 UTC: second half 18:00-21:00; runs to a fixed 21:00 UTC and flattens at the end
-    - cron: "40 13 * * 1-5"   # backup for the first half (GitHub skipped/delayed 13:10 on 26 Oct); exits at once if a session is already running
-    - cron: "25 18 * * 1-5"   # backup for the second half
+    - cron: "40 12 * * 1-5"   # 12:40 UTC (was 13:10; moved 27 Oct because GitHub fired it ~40 min late two days running): first half of the US session; runs to a fixed 16:05 UTC (v1.1 takes no entries 16-18 UTC) whatever the cron delay (observed ~33 min)
+    - cron: "25 17 * * 1-5"   # 17:25 UTC (was 17:55, fired ~27 min late): second half 18:00-21:00; runs to a fixed 21:00 UTC and flattens at the end
+    - cron: "10 13 * * 1-5"   # backup for the first half (GitHub skipped/delayed 13:10 on 26 Oct); exits at once if a session is already running
+    - cron: "55 17 * * 1-5"   # backup for the second half
 permissions:
   contents: write
   actions: read
@@ -39,7 +39,7 @@ jobs:
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${OTHERS:-0}" -gt 0 ]; then echo "another demo session is already running — this one exits"; exit 0; fi
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            case "${{ github.event.schedule }}" in "10 13 * * 1-5"|"40 13 * * 1-5") END="16:05";; *) END="21:00";; esac
+            case "${{ github.event.schedule }}" in "40 12 * * 1-5"|"10 13 * * 1-5") END="16:05";; *) END="21:00";; esac
             ARGS=$(( ($(date -u -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
             DRY=""
