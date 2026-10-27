@@ -1,0 +1,6 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-27', exit_px=3.2806973, exit_reason='target', ret=0.034583, pnl=5.26 WHERE sym='EGLDUSD' AND opened='2026-10-26' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-27', exit_px=2.07797004, exit_reason='target', ret=0.036032, pnl=5.48 WHERE sym='MORPHOUSD' AND opened='2026-10-26' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('CROUSD','2026-10-27',0.05295,0.04627714,0.05406214,0.00222429,50.92,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('FLRUSD','2026-10-27',0.006033,0.00542229,0.00613479,0.00020357,50.92,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ILVUSD','2026-10-27',3.0293,2.54081429,3.11071429,0.16282857,50.92,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-27',2036.94,11,1,3,3,0,'3 signals, 3 taken, 0 dropped, 2 closed, 11 open');

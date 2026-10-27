@@ -1,0 +1,12 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-10-27', 1979.3167, 12, 103);
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'DBA', 'L', '2026-10-23 14:00:00+00:00', '2026-10-26 13:45:00+00:00', -0.010324, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'WEAT', 'L', '2026-10-22 19:45:00+00:00', '2026-10-26 13:45:00+00:00', -0.008858, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'SPY', 'L', '2026-10-23 19:45:00+00:00', '2026-10-26 13:45:00+00:00', 0.003541, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'IWM', 'L', '2026-10-21 18:45:00+00:00', '2026-10-26 13:45:00+00:00', 0.003025, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'IWM', 'S', '2026-10-26 13:45:00+00:00', '2026-10-26 14:00:00+00:00', -0.004618, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'DIA', 'L', '2026-10-23 20:00:00+00:00', '2026-10-26 14:00:00+00:00', 0.003634, 'sold');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'XLI', 'S', '2026-10-26 13:45:00+00:00', '2026-10-26 14:15:00+00:00', -0.005028, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'XLY', 'L', '2026-10-23 19:45:00+00:00', '2026-10-26 13:45:00+00:00', 0.008950, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'XLY', 'S', '2026-10-26 13:45:00+00:00', '2026-10-26 14:00:00+00:00', -0.008586, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'UUP', 'S', '2026-10-23 13:45:00+00:00', '2026-10-26 13:45:00+00:00', -0.002574, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-27', 'FXE', 'L', '2026-10-23 19:45:00+00:00', '2026-10-26 13:45:00+00:00', -0.002042, 'break');
