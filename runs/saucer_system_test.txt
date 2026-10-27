@@ -1,0 +1,6 @@
+BTCUSD all 2021-10-17→2026-10-26 | saucer n227 win 36% PF 1.48 mean/trade +0.64% total +14.5% of capital | random entries same filter: median PF 1.16, total median +4.7%, saucer beats 90% of draws | buy&hold +26%
+BTCUSD H1  2021-10-17→2024-04-21 | saucer n105 win 40% PF 1.86 mean/trade +1.32% total +13.9% of capital | random entries same filter: median PF 1.48, total median +7.6%, saucer beats 81% of draws | buy&hold +2%
+BTCUSD H2  2024-04-21→2026-10-26 | saucer n120 win 32% PF 1.08 mean/trade +0.09% total +1.0% of capital | random entries same filter: median PF 0.77, total median -3.5%, saucer beats 88% of draws | buy&hold +26%
+ETHUSD all 2021-10-17→2026-10-26 | saucer n218 win 36% PF 1.52 mean/trade +0.97% total +21.2% of capital | random entries same filter: median PF 1.36, total median +14.0%, saucer beats 76% of draws | buy&hold -44%
+ETHUSD H1  2021-10-17→2024-04-21 | saucer n105 win 41% PF 1.38 mean/trade +0.70% total +7.4% of capital | random entries same filter: median PF 1.15, total median +3.0%, saucer beats 80% of draws | buy&hold -24%
+ETHUSD H2  2024-04-21→2026-10-26 | saucer n110 win 33% PF 1.74 mean/trade +1.36% total +15.0% of capital | random entries same filter: median PF 1.56, total median +10.8%, saucer beats 76% of draws | buy&hold -26%
