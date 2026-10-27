@@ -1,12 +1,83 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-22:25:30 account CFD balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0}
-22:25:30 account SPREADBET balance {'balance': 9943.77, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 9943.77}
-22:25:30 IX.D.NASDAQ.CASH.IP | US Tech 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 5 PERCENTAGE | bands [(0, 355, 5), (355, 1775, 5), (1775, 2840, 5)] | bid 29328.1 offer 29330.3 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-22:25:32 IX.D.DOW.DAILY.IP | Wall Street | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 6.0} | marginFactor 5 PERCENTAGE | bands [(0, 156, 5), (156, 780, 5), (780, 1248, 5)] | bid 52349.9 offer 52355.2 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR', 'USD', 'AUD']
-22:25:35 IX.D.DAX.DAILY.IP | Germany 40 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 8.0} | marginFactor 5 PERCENTAGE | bands [(0, 322, 5), (322, 1610, 5), (1610, 2576, 5)] | bid 25380.1 offer 25387.8 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR', 'AUD']
-22:25:37 IX.D.FTSE.DAILY.IP | FTSE 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 8.0} | marginFactor 5 PERCENTAGE | bands [(0, 491, 5), (491, 982, 5), (982, 2946, 5)] | bid 10742.6 offer 10747.0 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR']
-22:25:39 IX.D.SPTRD.DAILY.IP | US 500 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 1255, 5), (1255, 6275, 5), (6275, 10040, 5)] | bid 7681.75 offer 7682.45 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-22:25:41 CS.D.EURUSD.TODAY.IP | EUR/USD | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 2.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 578, 3.33), (578, 2890, 3.33), (2890, 4624, 3.33)] | bid 11173.3 offer 11174.8 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'EUR', 'GBP']
-22:25:43 CS.D.GBPUSD.TODAY.IP | GBP/USD | expiry DFB | minSize {'unit': 'PERCENTAGE', 'value': 0.03} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 500, 3.33), (500, 2500, 3.33), (2500, 4000, 3.33)] | bid 13340.0 offer 13342.4 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-22:25:46 CS.D.USCGC.TODAY.IP | Spot Gold | expiry DFB | minSize {'unit': 'POINTS', 'value': 1.0} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 2300, 5), (2300, 4600, 5), (4600, 6900, 5)] | bid 4014.34 offer 4014.84 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-22:25:48 CC.D.LCO.USS.IP | Oil - Brent Crude | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 6.0} | marginFactor 10 PERCENTAGE | bands [(0, 420, 10), (420, 1050, 10), (1050, 1470, 10)] | bid 11048.2 offer 11056.0 | valueOfOnePip None onePipMeans None | status EDITS_ONLY | ccy ['GBP', 'EUR', 'USD']
+13:52:14 delta-share threshold 0.0500 (percentile-matched on 524 IG bars); registered 0.05
+13:52:33 history 300 bars to 2026-10-27 13:52:00+00:00
+13:52:33 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+13:52:33 streaming IX.D.NASDAQ.CASH.IP
+13:52:33 ls status: CONNECTING
+13:52:34 ls status: CONNECTED:WS-STREAMING
+13:52:34 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+13:52:34 CHART IX.D.NASDAQ.CASH.IP subscribed
+13:52:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29381.3', 'OFR': '29382.5'}
+13:52:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29381.2', 'OFR': '29382.4'}
+13:52:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29381.7', 'OFR': '29382.9'}
+13:52:35 stream subscribed on CHART via Z6FARW
+13:52:35 trading session on Z6FARW
+13:52:35 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.25 GBP/pt, status TRADEABLE
+13:52:37 [range] NQ: using the runner's own 300 IG bars
+13:52:37 [range] NQ: cache 67864 bars offset -151.4 to IG level, REST 300 bars to 2026-10-27 13:52:00+00:00
+13:52:37 [range] NQ: containment median 0.860 over 22624 15-min bars
+13:52:37 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
+13:55:00 bar 13:50 o 29381.9 h 29403.0 l 29363.2 c 29396.8 ticks 1784 delta -55
+14:00:00 [range] NQ 13:45 c 29413.0 ema 29366.5 band 29223.1-29509.8 atr 71.7 regime off L 0 S 0 orders 0
+14:00:00 bar 13:55 o 29397.6 h 29423.0 l 29381.8 c 29413.0 ticks 3737 delta +111
+14:05:00 bar 14:00 o 29413.8 h 29416.2 l 29363.9 c 29398.4 ticks 3772 delta +2
+14:10:00 bar 14:05 o 29398.1 h 29407.8 l 29373.2 c 29379.4 ticks 3769 delta -53
+14:15:00 [range] NQ 14:00 c 29361.0 ema 29365.9 band 29231.2-29500.7 atr 67.4 regime off L 0 S 0 orders 0
+14:15:00 bar 14:10 o 29378.9 h 29384.4 l 29345.8 c 29361.0 ticks 3724 delta -16
+14:20:00 bar 14:15 o 29361.5 h 29373.0 l 29334.8 c 29350.3 ticks 3700 delta +28
+14:25:00 bar 14:20 o 29350.4 h 29398.4 l 29341.3 c 29390.5 ticks 3655 delta +115
+14:30:00 [range] NQ 14:15 c 29447.1 ema 29373.7 band 29238.6-29508.7 atr 67.5 regime ON L 0 S 0 orders 0
+14:30:00 [range] NQ LIMIT BUY rung 0 0.02/pt at 29258.9 placed (DIAAAAYQ5BC8SB4)
+14:30:01 [range] NQ LIMIT BUY rung 1 0.04/pt at 29242.0 placed (DIAAAAYQ5BUVLBV)
+14:30:01 [range] NQ LIMIT BUY rung 2 0.04/pt at 29221.7 placed (DIAAAAYQ5CMKJAL)
+14:30:02 [range] NQ LIMIT BUY rung 3 0.04/pt at 29201.5 placed (DIAAAAYQ5CJ8GBX)
+14:30:02 [range] NQ LIMIT SELL rung 0 0.02/pt at 29488.5 placed (DIAAAAYQ5B4CWBK)
+14:30:02 [range] NQ LIMIT SELL rung 1 0.04/pt at 29505.4 placed (DIAAAAYQ5CD4VBS)
+14:30:03 [range] NQ LIMIT SELL rung 2 0.04/pt at 29525.6 placed (DIAAAAYQ5CHQ8BW)
+14:30:03 [range] NQ LIMIT SELL rung 3 0.04/pt at 29545.9 placed (DIAAAAYQ5CQQQBC)
+14:30:03 bar 14:25 o 29390.3 h 29447.3 l 29383.4 c 29447.1 ticks 3631 delta +71
+14:35:00 bar 14:30 o 29447.2 h 29509.2 l 29445.6 c 29491.1 ticks 3616 delta +72
+14:40:00 bar 14:35 o 29490.6 h 29511.2 l 29453.1 c 29486.2 ticks 3658 delta -4
+14:45:00 [range] NQ LIMIT rung 0 filled at 29488.5
+14:45:00 [range] NQ LIMIT rung 1 filled at 29505.4
+14:45:00 [range] NQ 14:30 c 29473.0 ema 29383.1 band 29249.5-29516.7 atr 66.8 regime ON L 0 S 2 orders 6
+14:45:02 [range] NQ LIMIT BUY rung 0 0.02/pt at 29269.6 placed (DIAAAAYQ5DGS8A6)
+14:45:02 [range] NQ LIMIT BUY rung 1 0.04/pt at 29252.9 placed (DIAAAAYQ5EAWFB6)
+14:45:03 [range] NQ LIMIT BUY rung 2 0.04/pt at 29232.8 placed (DIAAAAYQ5EDSQBL)
+14:45:04 [range] NQ LIMIT BUY rung 3 0.04/pt at 29212.8 placed (DIAAAAYQ5ERUPBU)
+14:45:05 [range] NQ LIMIT SELL rung 2 0.04/pt at 29533.4 placed (DIAAAAYQ5EUTFAW)
+14:45:05 [range] NQ LIMIT SELL rung 3 0.04/pt at 29553.5 placed (DIAAAAYQ5EGD6BG)
+14:45:05 bar 14:40 o 29486.5 h 29500.2 l 29471.5 c 29473.0 ticks 3694 delta -64
+14:50:00 bar 14:45 o 29472.1 h 29518.0 l 29469.4 c 29503.4 ticks 3652 delta -32
+14:55:00 bar 14:50 o 29503.3 h 29536.1 l 29501.1 c 29531.6 ticks 3678 delta +18
+15:00:00 [range] NQ LIMIT rung 2 filled at 29533.4
+15:00:00 [range] NQ LIMIT rung 3 filled at 29553.5
+15:00:00 [range] NQ 14:45 c 29549.7 ema 29399.0 band 29259.0-29539.0 atr 70.0 regime ON L 0 S 4 orders 4
+15:00:04 [range] NQ LIMIT BUY rung 0 0.02/pt at 29280.0 placed (DIAAAAYQ5GBKFAS)
+15:00:04 [range] NQ LIMIT BUY rung 1 0.04/pt at 29262.5 placed (DIAAAAYQ5G2BRA2)
+15:00:05 [range] NQ LIMIT BUY rung 2 0.04/pt at 29241.5 placed (DIAAAAYQ5GJ95BJ)
+15:00:06 [range] NQ LIMIT BUY rung 3 0.04/pt at 29220.5 placed (DIAAAAYQ5GKAXBJ)
+15:00:06 bar 14:55 o 29531.8 h 29555.9 l 29527.5 c 29549.7 ticks 3637 delta +51
+15:05:00 bar 15:00 o 29549.5 h 29582.8 l 29548.3 c 29570.8 ticks 3565 delta +5
+15:10:00 bar 15:05 o 29571.0 h 29577.3 l 29557.6 c 29558.5 ticks 3544 delta +48
+15:15:00 [range] NQ 15:00 c 29586.2 ema 29416.8 band 29276.8-29556.9 atr 70.0 regime off L 0 S 4 orders 4
+15:15:02 [range] NQ EPISODE S closed (regime): 4 lots, -9.08 GBP (day -9.1)
+15:15:04 bar 15:10 o 29558.7 h 29588.7 l 29550.4 c 29586.2 ticks 3522 delta +60
+15:20:00 bar 15:15 o 29586.5 h 29602.9 l 29577.3 c 29591.9 ticks 3528 delta +12
+15:25:00 bar 15:20 o 29591.6 h 29614.7 l 29588.2 c 29606.5 ticks 3430 delta +98
+15:30:00 [range] NQ 15:15 c 29607.8 ema 29435.0 band 29294.8-29575.2 atr 70.1 regime off L 0 S 0 orders 0
+15:30:00 bar 15:25 o 29606.6 h 29615.6 l 29598.4 c 29607.8 ticks 3215 delta +17
+15:35:00 bar 15:30 o 29608.0 h 29610.8 l 29583.4 c 29586.6 ticks 3319 delta -41
+15:40:00 bar 15:35 o 29586.9 h 29619.2 l 29580.6 c 29608.6 ticks 3370 delta +56
+15:45:00 [range] NQ 15:30 c 29655.8 ema 29456.0 band 29309.5-29602.5 atr 73.2 regime off L 0 S 0 orders 0
+15:45:00 bar 15:40 o 29608.8 h 29656.3 l 29605.6 c 29655.8 ticks 3155 delta +183
+15:45:00 SIGNAL BUY at bar 15:40 close 29655.8 atr 38.7 ign 1.31 dshare +0.058
+15:45:01 FILLED BUY 0.25/pt at 29654.7 (paper would assume next open) stop 29596.6 (58.1 pts) limit +348.7
+15:50:00 bar 15:45 o 29655.3 h 29663.1 l 29641.8 c 29657.9 ticks 3197 delta +45
+15:55:00 bar 15:50 o 29657.8 h 29673.9 l 29655.8 c 29662.9 ticks 3118 delta +86
+15:55:00 stop -> 29655.9 (BE/trail)
+16:00:00 [range] NQ 15:45 c 29682.1 ema 29477.6 band 29334.2-29621.0 atr 71.7 regime off L 0 S 0 orders 0
+16:00:00 bar 15:55 o 29662.8 h 29685.4 l 29662.4 c 29682.1 ticks 3073 delta +97
+16:04:15 CLOSED session_end at 29697.5 -> +42.8 pts (day +33.7, trades 2)
+16:04:15 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+16:04:15 done; ticks 101535 bars 325
