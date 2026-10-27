@@ -1,0 +1,12 @@
+BTCUSD: n 8306 saucers, right direction after 4h 45.7%, mean -0.000%
+ETHUSD: n 8341 saucers, right direction after 4h 46.1%, mean -0.002%
+RSI (dir-adj)                            | BTC Q1..Q5 win% 48 46 46 44 44 | ETH Q1..Q5 win% 49 46 46 47 43 | CONSISTENT
+MACD hist agrees (dir-adj, /ATR)         | BTC Q1..Q5 win% 45 45 47 47 44 | ETH Q1..Q5 win% 46 45 48 46 45 | CONSISTENT
+distance from EMA20 (ATR, dir-adj)       | BTC Q1..Q5 win% 49 46 46 42 45 | ETH Q1..Q5 win% 50 45 47 45 44 | CONSISTENT
+trend strength EMA20-50 (ATR, dir-adj)   | BTC Q1..Q5 win% 49 45 45 46 44 | ETH Q1..Q5 win% 48 47 44 47 45 | CONSISTENT
+above/below EMA200 (dir-adj, %)          | BTC Q1..Q5 win% 49 45 45 46 44 | ETH Q1..Q5 win% 48 47 45 46 45 | CONSISTENT
+volume vs 20-bar avg                     | BTC Q1..Q5 win% 45 46 47 44 46 | ETH Q1..Q5 win% 48 46 46 48 43 | mixed
+Bollinger width vs norm                  | BTC Q1..Q5 win% 46 45 46 44 47 | ETH Q1..Q5 win% 48 45 44 46 47 | mixed
+prior 4h move (dir-adj, %)               | BTC Q1..Q5 win% 47 46 45 44 45 | ETH Q1..Q5 win% 48 47 44 46 46 | CONSISTENT
+AO size (ATR)                            | BTC Q1..Q5 win% 48 48 44 45 43 | ETH Q1..Q5 win% 49 47 45 44 45 | CONSISTENT
+hour UTC                                 | BTC Q1..Q5 win% 45 46 50 46 42 | ETH Q1..Q5 win% 44 49 48 46 44 | mixed
