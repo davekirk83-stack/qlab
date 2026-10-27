@@ -12,7 +12,7 @@
 //   SAUCER   Bill Williams' AO saucer inside the Alligator/fractal trend and EMA100; buy stop above the signal bar, pyramid to 5,
 //            exit all on the trend flip. Tested on 3h: beats random entries in every period; holdout PF 1.70 BTC+ETH, 1.22 on 10 coins.
 //            v9.1 daily filter (on by default): new entries only while yesterday's daily close is above the daily jaw. No stop (a stop
-//            at the signal-bar low halved the profit in testing). Untested on other timeframes.
+//            at the signal-bar low halved the profit in testing). Runs on its own 3h engine on ANY chart (15m/1h/4h); 4h selectable.
 //   BLOCK    last three days of the month (the one calendar effect that survived out of sample); weekend on non-crypto charts.
 // Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
 // the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
@@ -49,6 +49,7 @@ bool  showSauc  = input.bool(true, "Show the saucer trend system", group=gA)
 bool  saucDaily = input.bool(true, "Daily filter (v9.1): yesterday's daily close above the daily jaw", group=gA)
 int   saucMax   = input.int(5, "Max entries (pyramid)", minval=1, maxval=5, group=gA)
 bool  showTeeth = input.bool(false, "Plot the Alligator teeth", group=gA)
+string saucTf   = input.timeframe("180", "Engine timeframe (runs on this whatever chart you use; 3h tested best, 4h BTC/ETH only)", group=gA)
 
 string gP = "Panel"
 string panelPos  = input.string("Top Right", "Position", options=["Top Right","Top Left","Bottom Right","Bottom Left"], group=gP)
@@ -430,65 +431,75 @@ if not na(tgtLn) and (targetHit or (not liveLong and not liveShort))
     tgtLb := na
     invLb := na
 
-// ------------------------------------------------ SAUCER TREND (docs 145c / 145d) ------------------------------------------------
-// Same rules as paper books 9 and 10. Trend: up when price closes above the latest up fractal while that fractal is above the
-// Alligator teeth; down when it closes below the latest down fractal while that fractal is below the teeth.
-float sMp    = hl2
-float sAO    = ta.sma(sMp, 5) - ta.sma(sMp, 34)
-float sTeeth = ta.rma(sMp, 8)[5]
-float sEma   = ta.ema(close, 100)
-bool  fUp    = high[2] == ta.highest(high, 5)
-bool  fDn    = low[2] == ta.lowest(low, 5)
-var float sLu = na
-var float sLd = na
-var int sState = 0
-float luPrev = sLu
-float ldPrev = sLd
-if not na(luPrev) and close > luPrev and luPrev > sTeeth
-    sState := 1
-else if not na(ldPrev) and close < ldPrev and ldPrev < sTeeth
-    sState := -1
-if fUp
-    sLu := high[2]
-if fDn
-    sLd := low[2]
-bool dailyOk = request.security(syminfo.tickerid, "D", close[1] > ta.rma(hl2, 13)[9], lookahead=barmerge.lookahead_on)
-var float sPend = na
-var int   sOpen = 0
-var float sAvg  = na
-bool sigNow  = false
-bool fillNow = false
-bool exitNow = false
-if sState == -1 and sOpen > 0
-    exitNow := true
-    sOpen := 0
-    sAvg := na
-if sState == -1
-    sPend := na
-if not na(sPend) and sState == 1
-    if high > sPend and sOpen < saucMax
-        float fillPx = math.max(sPend, close[1])
-        sAvg := na(sAvg) ? fillPx : (sAvg * sOpen + fillPx) / (sOpen + 1)
-        sOpen += 1
-        fillNow := true
-        sPend := na
-    else if sAO < sAO[1]
-        sPend := na
-    else if high < sPend
-        sPend := high
-bool sElig = sState == 1 and close > sEma and (dailyOk or not saucDaily)
-if sElig and sAO > 0 and sAO[1] > 0 and sAO[2] > 0 and sAO[2] > sAO[1] and sAO > sAO[1]
-    sPend := high
-    sigNow := true
-plot(showSauc and showTeeth ? sTeeth : na, "Alligator teeth", color=color.new(#e91e63, 30))
+// ------------------------------------------------ SAUCER TREND (docs 145c / 145d / 145e) ------------------------------------------------
+// Same rules as paper books 9 and 10, computed on its OWN timeframe (default 3h) whatever chart you are on, so it can sit on a
+// 15m / 1h / 4h chart. Only completed engine bars are used (no repaint): an event shows on the first chart bar after that
+// engine bar closes. Tested: 3h works (all coins); 4h works on BTC/ETH only; 15m and 1h lose money (doc 145e).
+saucEngine(bool useDaily, int maxN) =>
+    float mp = hl2
+    float ao = ta.sma(mp, 5) - ta.sma(mp, 34)
+    float teeth = ta.rma(mp, 8)[5]
+    float ema = ta.ema(close, 100)
+    bool fU = high[2] == ta.highest(high, 5)
+    bool fD = low[2] == ta.lowest(low, 5)
+    var float lu = na
+    var float ld = na
+    var int st = 0
+    float luP = lu
+    float ldP = ld
+    if not na(luP) and close > luP and luP > teeth
+        st := 1
+    else if not na(ldP) and close < ldP and ldP < teeth
+        st := -1
+    if fU
+        lu := high[2]
+    if fD
+        ld := low[2]
+    bool dok = request.security(syminfo.tickerid, "D", close[1] > ta.rma(hl2, 13)[9], lookahead=barmerge.lookahead_on)
+    var float pend = na
+    var int nOpen = 0
+    var float avg = na
+    bool sig = false
+    bool fill = false
+    bool ex = false
+    if st == -1 and nOpen > 0
+        ex := true
+        nOpen := 0
+        avg := na
+    if st == -1
+        pend := na
+    if not na(pend) and st == 1
+        if high > pend and nOpen < maxN
+            float px = math.max(pend, close[1])
+            avg := na(avg) ? px : (avg * nOpen + px) / (nOpen + 1)
+            nOpen += 1
+            fill := true
+            pend := na
+        else if ao < ao[1]
+            pend := na
+        else if high < pend
+            pend := high
+    bool elig = st == 1 and close > ema and (dok or not useDaily)
+    if elig and ao > 0 and ao[1] > 0 and ao[2] > 0 and ao[2] > ao[1] and ao > ao[1]
+        pend := high
+        sig := true
+    [sig[1], fill[1], ex[1], pend[1], nOpen[1], avg[1], ld[1], st[1], dok[1], close[1] > ema[1], teeth[1]]
+
+[sSig, sFill, sExit, sPend, sOpen, sAvg, sLd, sState, dailyOk, aboveEma, sTeeth] = request.security(syminfo.tickerid, saucTf, saucEngine(saucDaily, saucMax), lookahead=barmerge.lookahead_on)
+bool htfNew  = ta.change(time(saucTf)) != 0
+bool sigNow  = htfNew and sSig
+bool fillNow = htfNew and sFill
+bool exitNow = htfNew and sExit
+plot(showSauc and showTeeth ? sTeeth : na, "Alligator teeth (engine timeframe)", color=color.new(#e91e63, 30))
 plot(showSauc and not na(sPend) ? sPend : na, "Saucer buy stop", color=color.new(cUp, 0), style=plot.style_circles, linewidth=2)
-plot(showSauc and sOpen > 0 ? sLd : na, "Saucer exit line (close below = exit all)", color=color.new(cWarn, 20), style=plot.style_linebr)
+plot(showSauc and sOpen > 0 ? sLd : na, "Saucer exit line (engine bar closing below = exit all)", color=color.new(cWarn, 20), style=plot.style_linebr)
 plotshape(showSauc and sigNow, "Saucer signal", style=shape.triangleup, location=location.belowbar, color=color.new(cUp, 30), size=size.tiny, text="S", textcolor=color.new(cUp, 30))
 plotshape(showSauc and fillNow and sOpen == 1, "Saucer buy", style=shape.labelup, location=location.belowbar, color=color.new(cUp, 0), size=size.tiny, text="SAUCER BUY", textcolor=color.white)
 plotshape(showSauc and fillNow and sOpen > 1, "Saucer add", style=shape.labelup, location=location.belowbar, color=color.new(cUp, 30), size=size.tiny, text="ADD", textcolor=color.white)
 plotshape(showSauc and exitNow, "Saucer exit", style=shape.labeldown, location=location.abovebar, color=color.new(cWarn, 0), size=size.tiny, text="SAUCER EXIT", textcolor=color.white)
-string tfNote = timeframe.period == "180" ? "" : " (tested on 3h)"
-string saucTxt = not showSauc ? "off" : sState == -1 ? "trend DOWN - stand aside" + tfNote : sState == 0 ? "no trend yet" : sOpen > 0 ? "IN " + str.tostring(sOpen) + "/" + str.tostring(saucMax) + " - avg " + str.tostring(sAvg, format.mintick) + " - exit on close < " + str.tostring(sLd, format.mintick) + tfNote : not na(sPend) ? "BUY STOP " + str.tostring(sPend, format.mintick) + tfNote : close <= sEma ? "trend up, below EMA100 - wait" + tfNote : saucDaily and not dailyOk ? "trend up, daily filter OFF - no new entries" + tfNote : "trend up - waiting for a saucer" + tfNote
+string tfName = saucTf == "180" ? "3h" : saucTf == "240" ? "4h" : saucTf == "60" ? "1h" : saucTf
+string tfNote = " [" + tfName + (saucTf == "180" or saucTf == "240" ? "]" : " - UNTESTED/LOSES]")
+string saucTxt = not showSauc ? "off" : sState == -1 ? "trend DOWN - stand aside" + tfNote : sState == 0 ? "no trend yet" + tfNote : sOpen > 0 ? "IN " + str.tostring(sOpen) + "/" + str.tostring(saucMax) + " - avg " + str.tostring(sAvg, format.mintick) + " - exit on close < " + str.tostring(sLd, format.mintick) + tfNote : not na(sPend) ? "BUY STOP " + str.tostring(sPend, format.mintick) + tfNote : not aboveEma ? "trend up, below EMA100 - wait" + tfNote : saucDaily and not dailyOk ? "trend up, daily filter OFF - no new entries" + tfNote : "trend up - waiting for a saucer" + tfNote
 color saucCol = not showSauc or sState == 0 ? cMute : sState == -1 ? cDn : sOpen > 0 or not na(sPend) ? cUp : cHead
 
 // ------------------------------------------------ PANEL (2 x 9) ------------------------------------------------

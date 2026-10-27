@@ -1,0 +1,4 @@
+15min BTC+ETH  BASE  DEV  n 4067 win  24% PF 0.53 mean -0.32% total  -131.9% | random  -128.1%, beats  36%
+                     HOLD n 1831 win  22% PF 0.61 mean -0.25% total   -45.0% | random   -47.7%, beats  76%
+15min BTC+ETH  DAILY DEV  n 1998 win  24% PF 0.63 mean -0.24% total   -48.7% | random   -55.7%, beats  86%
+                     HOLD n 1033 win  26% PF 0.92 mean -0.05% total    -4.8% | random   -13.3%, beats  98%

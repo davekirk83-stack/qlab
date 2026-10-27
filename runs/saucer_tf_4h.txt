@@ -1,0 +1,8 @@
+4h    BTC+ETH  BASE  DEV  n  224 win  38% PF 1.93 mean +1.90% total   +42.5% | random   +23.5%, beats  90%
+                     HOLD n  103 win  34% PF 1.30 mean +0.53% total    +5.4% | random    +2.3%, beats  70%
+4h    BTC+ETH  DAILY DEV  n  172 win  39% PF 2.21 mean +2.38% total   +40.9% | random   +23.1%, beats  96%
+                     HOLD n   86 win  33% PF 1.39 mean +0.70% total    +6.0% | random    +3.7%, beats  66%
+4h    10 coins BASE  DEV  n 1052 win  33% PF 1.58 mean +1.80% total  +189.5% | random  +109.6%, beats 100%
+                     HOLD n  387 win  31% PF 0.82 mean -0.44% total   -17.1% | random   -22.1%, beats  64%
+4h    10 coins DAILY DEV  n  761 win  34% PF 1.71 mean +2.26% total  +171.8% | random   +89.7%, beats 100%
+                     HOLD n  296 win  29% PF 0.81 mean -0.51% total   -15.0% | random   -17.5%, beats  58%
