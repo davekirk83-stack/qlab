@@ -1,0 +1,70 @@
+{
+ "equity": 2000.0,
+ "shadow_equity": 2000.0,
+ "sym": {
+  "BTCUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "ETHUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "SOLUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "XRPUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "DOGEUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "ADAUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "LINKUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "AVAXUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "LTCUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  },
+  "DOTUSD": {
+   "since": "2026-10-27 18:00:00+00:00",
+   "pos": [],
+   "shadow": [],
+   "pend": null
+  }
+ },
+ "closed": 0,
+ "closed_shadow": 0,
+ "started": "2026-10-27",
+ "spec": "AO saucer trend v9.1, 10 coins + daily filter, 3h (doc 145d)"
+}
