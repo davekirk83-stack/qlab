@@ -22,6 +22,7 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from ig_range_engine import RangeEngine
+from event_blackout import in_blackout
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
 from trading_ig import IGService, IGStreamService
 from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
@@ -160,6 +161,7 @@ class Runner:
         s = int(row.sig)
         if s == 0 or np.isnan(row.atr): return
         if not (US_OPEN <= mins < US_CLOSE): log(f"bar {ts:%H:%M} sig {s} outside US hours — skipped"); return
+        if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return
         if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return
         st = self.state
         if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return

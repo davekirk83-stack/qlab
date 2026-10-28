@@ -15,6 +15,7 @@ Governors are shared with Ignition through the runner's state (8 trades/day, -20
 import os, json, time, datetime as dt, traceback
 import numpy as np, pandas as pd
 import paperbook6 as P6
+from event_blackout import in_blackout
 
 def _nyh(ts):
     t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t
@@ -169,7 +170,8 @@ class RangeEngine:
         # entries
         for side in ("L", "S"):
             if hours and not (hours[0] <= _nyh(ts) < hours[1]): continue
-            if not ok or (P6.LONGS_OFF and side == "L"):
+            if not ok or (P6.LONGS_OFF and side == "L") or in_blackout(utcnow(), pd.Timedelta(minutes=20)):
+                if in_blackout(utcnow(), pd.Timedelta(minutes=20)) and st["orders"]: log(name, "FOMC blackout — entry orders cancelled (doc 154)")
                 self.cancel_orders(name, side); continue
             ct = st["cool"].get(side)
             if ct and ts < pd.Timestamp(ct) + pd.Timedelta(hours=P6.COOLDOWN_H): continue
