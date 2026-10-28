@@ -1,0 +1,10 @@
+BASE every eligible stock-day in a trending Nasdaq: n89910 avg -0.172R win 29%  by year 2023: +0.066R n2365 | 2024: -0.266R n21169 | 2025: -0.114R n36125 | 2026: -0.196R n30251
+CONTROL random daily order: median -0.215R/trade (5-95%: -0.288 to -0.124)
+K1 rank by 1-month return: n1157 win 29% avg -0.02R total -11% of capital (0.5% risk/trade) maxDD -84%
+    by year 2023: +0.78R n35 (+14%) | 2024: +0.12R n443 (+27%) | 2025: -0.17R n406 (-34%) | 2026: -0.14R n273 (-18%)
+    beats random order 100%
+K2 rank by 3-month return: n1161 win 31% avg +0.13R total +77% of capital (0.5% risk/trade) maxDD -50%
+    by year 2023: +1.25R n24 (+15%) | 2024: +0.17R n460 (+40%) | 2025: +0.06R n415 (+12%) | 2026: +0.07R n262 (+9%)
+    beats random order 100%
+one random-order portfolio for scale: n1187 win 32% avg -0.03R total -19% of capital (0.5% risk/trade) maxDD -78%
+    by year 2023: +0.75R n29 (+11%) | 2024: -0.21R n469 (-49%) | 2025: +0.16R n401 (+33%) | 2026: -0.09R n288 (-13%)
