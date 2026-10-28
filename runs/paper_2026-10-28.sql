@@ -1,0 +1,9 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=0.01264779, exit_reason='target', ret=0.033616, pnl=5.11 WHERE sym='RAREUSD' AND opened='2026-10-25' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=9.95693679, exit_reason='target', ret=0.035894, pnl=5.45 WHERE sym='NMRUSD' AND opened='2026-10-26' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=0.02566344, exit_reason='target', ret=0.037538, pnl=5.7 WHERE sym='PNGUSD' AND opened='2026-10-26' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=0.17142349, exit_reason='target', ret=0.021877, pnl=3.32 WHERE sym='XLMUSD' AND opened='2026-10-26' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=0.05405133, exit_reason='target', ret=0.020595, pnl=3.15 WHERE sym='CROUSD' AND opened='2026-10-27' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=0.00613356, exit_reason='target', ret=0.016465, pnl=2.52 WHERE sym='FLRUSD' AND opened='2026-10-27' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-28', exit_px=3.11009214, exit_reason='target', ret=0.026465, pnl=4.04 WHERE sym='ILVUSD' AND opened='2026-10-27' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ASMUSD','2026-10-28',0.00527,0.00460143,0.00538143,0.00022286,51.66,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-28',2066.24,5,1,1,1,0,'1 signals, 1 taken, 0 dropped, 7 closed, 5 open');
