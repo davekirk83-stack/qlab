@@ -1,0 +1,25 @@
+V0 doc 151 definition
+  REAL  n  222 win  27% avg -0.14R (PF 0.81) -1.23%/trade, >=5R 2.7%, median -1.03R, sum -31R
+  by year 2023: -0.18R n7 | 2024: -0.09R n62 | 2025: +0.07R n85 | 2026: -0.44R n68
+  R1 random (eligible stock-days, same entry/stop/management): median +0.14R/trade; setup beats 8%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.07R/trade; setup beats 4%
+V1 top-1% leaders
+  REAL  n  122 win  23% avg -0.04R (PF 0.94) -1.11%/trade, >=5R 4.1%, median -1.03R, sum -5R
+  by year 2023: -0.08R n5 | 2024: -0.25R n38 | 2025: +0.66R n39 | 2026: -0.53R n40
+  R1 random (eligible stock-days, same entry/stop/management): median +0.18R/trade; setup beats 22%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.09R/trade; setup beats 24%
+V2 higher lows + tightening
+  REAL  n   96 win  33% avg -0.08R (PF 0.89) -0.02%/trade, >=5R 1.0%, median -1.04R, sum -7R
+  by year 2023: +0.57R n3 | 2024: +0.01R n28 | 2025: +0.16R n38 | 2026: -0.57R n27
+  R1 random (eligible stock-days, same entry/stop/management): median +0.21R/trade; setup beats 18%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.21R/trade; setup beats 10%
+V3 surfing rising 10/20 MAs
+  REAL  n  168 win  28% avg -0.07R (PF 0.90) -0.60%/trade, >=5R 3.0%, median -1.03R, sum -12R
+  by year 2023: -0.08R n5 | 2024: -0.26R n51 | 2025: +0.46R n62 | 2026: -0.53R n50
+  R1 random (eligible stock-days, same entry/stop/management): median +0.16R/trade; setup beats 16%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.14R/trade; setup beats 4%
+V4 all of V1-V3
+  REAL  n   48 win  29% avg +0.16R (PF 1.23) -0.49%/trade, >=5R 2.1%, median -1.04R, sum +7R
+  by year 2023: +0.78R n2 | 2024: -0.51R n18 | 2025: +1.46R n14 | 2026: -0.39R n14
+  R1 random (eligible stock-days, same entry/stop/management): median +0.26R/trade; setup beats 42%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.12R/trade; setup beats 52%
