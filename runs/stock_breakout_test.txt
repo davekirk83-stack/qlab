@@ -1,0 +1,10 @@
+499 stocks
+TT + breakout, 20MA exit
+  DEV  n 5754 win  25% PF 0.83 mean -0.32% (-0.20R) median hold 9d | random template days -0.23%/trade (beats 1%) | random any day -0.17%/trade (beats 0%)
+  HOLD n 2499 win  24% PF 0.75 mean -0.50% (-0.33R) median hold 8d | random template days -0.19%/trade (beats 0%) | random any day -0.05%/trade (beats 0%)
+TT + breakout, 10MA exit
+  DEV  n 5754 win  28% PF 0.75 mean -0.39% (-0.23R) median hold 8d | random template days -0.25%/trade (beats 0%) | random any day -0.21%/trade (beats 0%)
+  HOLD n 2499 win  28% PF 0.79 mean -0.37% (-0.26R) median hold 7d | random template days -0.22%/trade (beats 1%) | random any day -0.08%/trade (beats 0%)
+Breakout, no template, 20MA
+  DEV  n22732 win  27% PF 0.89 mean -0.20% (-0.11R) median hold 12d | random template days -0.30%/trade (beats 100%) | random any day -0.21%/trade (beats 67%)
+  HOLD n10186 win  27% PF 0.87 mean -0.25% (-0.16R) median hold 10d | random template days -0.32%/trade (beats 95%) | random any day -0.12%/trade (beats 0%)

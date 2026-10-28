@@ -1,0 +1,7 @@
+499 stocks
+B: TT + pivot buy-stop, 20MA exit
+  DEV  n55506 win  17% PF 0.75 mean -0.33% (+0.08R) median hold 4d | random template days -0.25%/trade (beats 0%) | random any day -0.15%/trade (beats 0%)
+  HOLD n31018 win  16% PF 0.70 mean -0.44% (+0.07R) median hold 4d | random template days -0.29%/trade (beats 0%) | random any day -0.03%/trade (beats 0%)
+B: TT + pivot buy-stop, 10MA exit
+  DEV  n55506 win  22% PF 0.71 mean -0.35% (+0.07R) median hold 4d | random template days -0.26%/trade (beats 0%) | random any day -0.18%/trade (beats 0%)
+  HOLD n31018 win  21% PF 0.69 mean -0.41% (+0.09R) median hold 4d | random template days -0.29%/trade (beats 0%) | random any day -0.08%/trade (beats 0%)
