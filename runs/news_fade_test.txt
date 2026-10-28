@@ -1,0 +1,8 @@
+BTC wait 15m: trades 69 of 96 events | win 35% avg -0.34R median -0.44R | target size 1.1R (median) | FOMC -0.37R n24 CPI -0.32R n45
+   random entry time (same side/stop/target): median -0.79R, rule beats 96% | same trigger WITH the spike: -0.21R
+BTC wait 30m: trades 70 of 96 events | win 33% avg -0.36R median -0.94R | target size 1.4R (median) | FOMC -0.36R n25 CPI -0.36R n45
+   random entry time (same side/stop/target): median -0.80R, rule beats 90% | same trigger WITH the spike: -0.24R
+NQ wait 15m: trades 66 of 96 events | win 65% avg +0.58R median +0.30R | target size 1.4R (median) | FOMC +0.30R n22 CPI +0.72R n44
+   random entry time (same side/stop/target): median +0.40R, rule beats 68% | same trigger WITH the spike: -0.19R
+NQ wait 30m: trades 61 of 96 events | win 62% avg +0.40R median +0.30R | target size 1.6R (median) | FOMC +0.33R n18 CPI +0.43R n43
+   random entry time (same side/stop/target): median +0.34R, rule beats 64% | same trigger WITH the spike: -0.13R
