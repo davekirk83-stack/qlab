@@ -1,0 +1,14 @@
+BTC S1 death-cross 4h: n157 win 27% mean -1.03% total -162% | 2022: +14% (n25) 2025-26: -26% (n38) other: -149% (n94)
+   random shorts same regime/exits: median -0.70%/trade, setup beats 16%
+BTC S3 breakdown daily: n38 win 39% mean -0.46% total -17% | 2018: +6% (n9) 2022: -12% (n9) 2025-26: +19% (n6) other: -30% (n14)
+   random shorts same regime/exits: median -0.95%/trade, setup beats 66%
+BTC S2 trend-down daily (episodes): n71 win 28% mean -2.13% total -151% | 2018: +6% (n19) 2022: +9% (n10) 2025-26: -9% (n11) other: -157% (n31)
+   random same-length shorts while below SMA200: median -1.42%/episode, setup beats 33%
+BTC price change for scale: 2018 -73% 2022 -65% 2025-26 -13%
+ETH S1 death-cross 4h: n154 win 36% mean -0.96% total -147% | 2022: +14% (n19) 2025-26: -44% (n44) other: -118% (n91)
+   random shorts same regime/exits: median -0.80%/trade, setup beats 38%
+ETH S3 breakdown daily: n35 win 43% mean +3.26% total +114% | 2018: +72% (n8) 2022: +42% (n8) 2025-26: +48% (n7) other: -49% (n12)
+   random shorts same regime/exits: median +1.19%/trade, setup beats 88%
+ETH S2 trend-down daily (episodes): n51 win 31% mean -1.89% total -97% | 2018: +58% (n4) 2022: -7% (n10) 2025-26: +5% (n10) other: -152% (n27)
+   random same-length shorts while below SMA200: median -2.59%/episode, setup beats 60%
+ETH price change for scale: 2018 -83% 2022 -68% 2025-26 -28%
