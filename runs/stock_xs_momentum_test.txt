@@ -1,0 +1,13 @@
+months 260, eligible stocks median 1199
+DEV 2006-2018
+  top-20 momentum                           -12.6%/yr, Sharpe -0.27, maxDD -88%
+  top-20 momentum, cash when SPY < 200d      -1.8%/yr, Sharpe 0.05, maxDD -57%
+  equal-weight universe                      +9.2%/yr, Sharpe 0.60, maxDD -53%
+  SPY                                        +8.1%/yr, Sharpe 0.63, maxDD -51%
+  momentum minus universe: -18.8%/yr, t=-3.32, positive months 40%
+HOLD 2019-2026
+  top-20 momentum                            -0.6%/yr, Sharpe 0.22, maxDD -70%
+  top-20 momentum, cash when SPY < 200d     -11.5%/yr, Sharpe -0.10, maxDD -84%
+  equal-weight universe                     +10.4%/yr, Sharpe 0.58, maxDD -31%
+  SPY                                       +16.0%/yr, Sharpe 1.00, maxDD -24%
+  momentum minus universe: -1.9%/yr, t=-0.15, positive months 55%
