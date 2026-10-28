@@ -1,0 +1,29 @@
+Q-BO Qullamaggie breakout (QQQ filter, half off day 3 + breakeven, rest SMA10)
+  REAL  n  222 win  27% avg -0.14R (PF 0.81) -1.23%/trade, >=5R 2.7%, median -1.03R, sum -31R
+  by year 2023: -0.18R n7 | 2024: -0.09R n62 | 2025: +0.07R n85 | 2026: -0.44R n68
+  R1 random (eligible stock-days, same entry/stop/management): median +0.14R/trade; setup beats 8%
+  R2 random (top-2% leaders, same entry/stop/management): median +0.07R/trade; setup beats 4%
+Q-BO variant: rest on SMA20
+  REAL  n  220 win  26% avg -0.05R (PF 0.94) -1.33%/trade, >=5R 2.7%, median -1.03R, sum -11R
+  by year 2023: -0.35R n7 | 2024: -0.23R n62 | 2025: +0.46R n83 | 2026: -0.47R n68
+  R1 random (eligible stock-days, same entry/stop/management): median +0.14R/trade; setup beats 16%
+Q-EP episodic pivot (no market filter)
+  REAL  n   84 win  32% avg +0.15R (PF 1.23) +1.07%/trade, >=5R 3.6%, median -1.02R, sum +13R
+  by year 2023: +3.06R n1 | 2024: +0.72R n17 | 2025: +0.14R n32 | 2026: -0.21R n34
+  R1 random (eligible stock-days, same entry/stop/management): median -0.14R/trade; setup beats 78%
+Q-EP variant: with QQQ filter
+  REAL  n   42 win  31% avg +0.03R (PF 1.04) -0.64%/trade, >=5R 2.4%, median -1.02R, sum +1R
+  by year 2023: +3.06R n1 | 2024: -0.60R n5 | 2025: +0.35R n22 | 2026: -0.47R n14
+  R1 random (eligible stock-days, same entry/stop/management): median -0.23R/trade; setup beats 74%
+MV Minervini VCP pivot (SPY filter, half at +20%, breakeven at +2R, rest SMA50)
+  REAL  n 1537 win  29% avg +0.09R (PF 1.14) +0.45%/trade, >=5R 2.0%, median -0.74R, sum +132R
+  by year 2023: +1.15R n60 | 2024: +0.10R n719 | 2025: +0.06R n366 | 2026: -0.08R n392
+  R1 random (eligible stock-days, same entry/stop/management): median -0.13R/trade; setup beats 100%
+DIAG Q-BO without the market filter
+  REAL  n  453 win  30% avg -0.16R (PF 0.77) -0.55%/trade, >=5R 2.2%, median -1.03R, sum -74R
+  by year 2023: -0.01R n12 | 2024: -0.18R n98 | 2025: -0.01R n139 | 2026: -0.27R n204
+  R1 random (eligible stock-days, same entry/stop/management): median -0.02R/trade; setup beats 12%
+DIAG Q-BO without the partial sale
+  REAL  n  220 win  16% avg -0.20R (PF 0.78) -2.52%/trade, >=5R 4.1%, median -1.05R, sum -44R
+  by year 2023: -0.44R n7 | 2024: -0.08R n61 | 2025: +0.14R n84 | 2026: -0.70R n68
+  R1 random (eligible stock-days, same entry/stop/management): median +0.11R/trade; setup beats 14%
