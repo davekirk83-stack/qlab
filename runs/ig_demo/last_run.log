@@ -1,104 +1,81 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-13:34:57 delta-share threshold 0.0500 (percentile-matched on 629 IG bars); registered 0.05
-13:35:16 history 300 bars to 2026-10-28 13:35:00+00:00
-13:35:16 ls status: CONNECTING
-13:35:16 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-13:35:16 streaming IX.D.NASDAQ.CASH.IP
-13:35:17 ls status: CONNECTED:WS-STREAMING
-13:35:17 CHART IX.D.NASDAQ.CASH.IP subscribed
-13:35:17 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-13:35:17 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29767.1', 'OFR': '29768.3'}
-13:35:17 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29767.3', 'OFR': '29768.5'}
-13:35:17 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29767.6', 'OFR': '29768.8'}
-13:35:17 stream subscribed on CHART via Z6FARW
-13:35:17 trading session on Z6FARW
-13:35:18 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.25 GBP/pt, status TRADEABLE
-13:35:20 [range] NQ: using the runner's own 300 IG bars
-13:35:20 [range] NQ: cache 68131 bars offset +88.4 to IG level, REST 300 bars to 2026-10-28 13:35:00+00:00
-13:35:20 [range] NQ: containment median 0.860 over 22713 15-min bars
-13:35:20 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
-13:40:00 bar 13:35 o 29767.7 h 29773.3 l 29718.2 c 29741.7 ticks 3479 delta +38
-13:45:00 [range] NQ 13:30 c 29718.6 ema 29760.0 band 29680.5-29839.5 atr 39.8 regime off L 0 S 0 orders 0
-13:45:00 bar 13:40 o 29741.2 h 29741.2 l 29701.2 c 29718.6 ticks 3635 delta -57
-13:50:00 bar 13:45 o 29718.4 h 29718.4 l 29610.9 c 29628.7 ticks 3611 delta -155
-13:55:00 bar 13:50 o 29628.9 h 29676.9 l 29628.0 c 29674.4 ticks 3714 delta +114
-14:00:00 [range] NQ 13:45 c 29702.9 ema 29754.6 band 29663.3-29845.8 atr 45.6 regime off L 0 S 0 orders 0
-14:00:00 bar 13:55 o 29674.3 h 29709.2 l 29655.5 c 29702.9 ticks 3670 delta +40
-14:05:00 bar 14:00 o 29702.8 h 29717.8 l 29665.2 c 29715.7 ticks 3698 delta -32
-14:10:00 bar 14:05 o 29716.2 h 29716.8 l 29660.2 c 29661.5 ticks 3690 delta +38
-14:15:00 [range] NQ 14:00 c 29676.7 ema 29747.1 band 29649.8-29844.5 atr 48.7 regime ON L 0 S 0 orders 0
-14:15:01 [range] NQ LIMIT BUY rung 0 0.02/pt at 29664.4 placed (DIAAAAYRMPU58BL)
-14:15:01 [range] NQ LIMIT BUY rung 1 0.04/pt at 29652.3 placed (DIAAAAYRMN9RCAJ)
-14:15:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29637.7 placed (DIAAAAYRMPUL9BD)
-14:15:02 [range] NQ LIMIT BUY rung 3 0.04/pt at 29623.1 placed (DIAAAAYRMMXNKBW)
-14:15:02 [range] NQ LIMIT SELL rung 0 0.02/pt at 29829.9 placed (DIAAAAYRMPE92A8)
-14:15:03 [range] NQ LIMIT SELL rung 1 0.04/pt at 29842.0 placed (DIAAAAYRMPG5CBV)
-14:15:03 [range] NQ LIMIT SELL rung 2 0.04/pt at 29856.6 placed (DIAAAAYRMN4HDAN)
-14:15:03 [range] NQ LIMIT SELL rung 3 0.04/pt at 29871.2 placed (DIAAAAYRMNPDFB4)
-14:15:03 bar 14:10 o 29661.7 h 29685.9 l 29637.7 c 29676.7 ticks 3709 delta -17
-14:20:00 bar 14:15 o 29676.9 h 29688.7 l 29659.9 c 29688.2 ticks 3693 delta +43
-14:25:00 bar 14:20 o 29688.3 h 29688.9 l 29644.6 c 29674.0 ticks 3658 delta -74
-14:30:00 [range] NQ LIMIT rung 0 filled at 29664.4
-14:30:00 [range] NQ LIMIT rung 1 filled at 29652.3
-14:30:00 [range] NQ 14:15 c 29687.3 ema 29741.4 band 29642.1-29840.8 atr 49.7 regime ON L 2 S 0 orders 6
-14:30:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29629.7 placed (DIAAAAYRMPLQTBC)
-14:30:03 [range] NQ LIMIT BUY rung 3 0.04/pt at 29614.8 placed (DIAAAAYRMPXV4BS)
-14:30:04 [range] NQ LIMIT SELL rung 0 0.02/pt at 29825.9 placed (DIAAAAYRMPTLXBE)
-14:30:05 [range] NQ LIMIT SELL rung 1 0.04/pt at 29838.3 placed (DIAAAAYRMP2STBM)
-14:30:05 [range] NQ LIMIT SELL rung 2 0.04/pt at 29853.2 placed (DIAAAAYRMP7SJBF)
-14:30:06 [range] NQ LIMIT SELL rung 3 0.04/pt at 29868.1 placed (DIAAAAYRMQADFBN)
-14:30:06 bar 14:25 o 29673.7 h 29696.9 l 29654.9 c 29687.3 ticks 3575 delta +7
-14:35:00 bar 14:30 o 29687.4 h 29707.8 l 29668.2 c 29679.2 ticks 3620 delta -56
-14:40:00 bar 14:35 o 29679.3 h 29687.4 l 29653.1 c 29659.6 ticks 3665 delta +45
-14:45:00 [range] NQ 14:30 c 29669.1 ema 29734.6 band 29633.7-29835.4 atr 50.4 regime ON L 2 S 0 orders 6
-14:45:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29621.1 placed (DIAAAAYRMRE6GB4)
-14:45:03 [range] NQ LIMIT BUY rung 3 0.04/pt at 29605.9 placed (DIAAAAYRMR9J5AX)
-14:45:04 [range] NQ LIMIT SELL rung 0 0.02/pt at 29820.3 placed (DIAAAAYRMQWVQBH)
-14:45:05 [range] NQ LIMIT SELL rung 1 0.04/pt at 29832.9 placed (DIAAAAYRMRDWTA2)
-14:45:06 [range] NQ LIMIT SELL rung 2 0.04/pt at 29848.0 placed (DIAAAAYRMQGNSBZ)
-14:45:07 [range] NQ LIMIT SELL rung 3 0.04/pt at 29863.2 placed (DIAAAAYRMQJVBBV)
-14:45:07 bar 14:40 o 29659.5 h 29683.6 l 29652.7 c 29669.1 ticks 3652 delta +62
-14:50:00 bar 14:45 o 29668.6 h 29680.3 l 29655.5 c 29658.3 ticks 3656 delta +26
-14:55:00 bar 14:50 o 29658.4 h 29671.9 l 29639.3 c 29647.0 ticks 3557 delta +57
-15:00:00 [range] NQ 14:45 c 29650.3 ema 29726.5 band 29620.7-29832.4 atr 52.9 regime ON L 2 S 0 orders 6
-15:00:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29607.4 placed (DIAAAAYRMS6XDAX)
-15:00:03 [range] NQ LIMIT BUY rung 3 0.04/pt at 29591.5 placed (DIAAAAYRMSHPRBC)
-15:00:04 [range] NQ LIMIT SELL rung 0 0.02/pt at 29816.5 placed (DIAAAAYRMQXLBBH)
-15:00:04 [range] NQ LIMIT SELL rung 1 0.04/pt at 29829.8 placed (DIAAAAYRMRK2UAG)
-15:00:05 [range] NQ LIMIT SELL rung 2 0.04/pt at 29845.6 placed (DIAAAAYRMRYFNAY)
-15:00:06 [range] NQ LIMIT SELL rung 3 0.04/pt at 29861.5 placed (DIAAAAYRMSHQABC)
-15:00:06 bar 14:55 o 29646.9 h 29657.7 l 29630.5 c 29650.3 ticks 3498 delta -28
-15:05:00 bar 15:00 o 29650.2 h 29688.0 l 29648.6 c 29684.9 ticks 3572 delta +108
-15:10:00 bar 15:05 o 29685.7 h 29695.8 l 29669.1 c 29685.4 ticks 3426 delta +38
-15:15:00 [range] NQ 15:00 c 29699.3 ema 29723.9 band 29615.8-29832.0 atr 54.1 regime ON L 2 S 0 orders 6
-15:15:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29602.3 placed (DIAAAAYRMTBDAA2)
-15:15:03 [range] NQ LIMIT BUY rung 3 0.04/pt at 29586.1 placed (DIAAAAYRMSPA2A8)
-15:15:03 bar 15:10 o 29685.1 h 29705.7 l 29679.8 c 29699.3 ticks 3388 delta +56
-15:20:00 bar 15:15 o 29699.2 h 29700.9 l 29681.3 c 29687.6 ticks 3389 delta -45
-15:25:00 bar 15:20 o 29688.0 h 29707.6 l 29687.6 c 29692.9 ticks 3259 delta +45
-15:30:00 [range] NQ 15:15 c 29677.9 ema 29719.6 band 29614.4-29824.7 atr 52.6 regime ON L 2 S 0 orders 6
-15:30:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29601.3 placed (DIAAAAYRMTNFLBE)
-15:30:03 [range] NQ LIMIT SELL rung 0 0.02/pt at 29808.9 placed (DIAAAAYRMSMERBH)
-15:30:04 [range] NQ LIMIT SELL rung 1 0.04/pt at 29822.1 placed (DIAAAAYRMUD49BD)
-15:30:05 [range] NQ LIMIT SELL rung 2 0.04/pt at 29837.9 placed (DIAAAAYRMTSW2A8)
-15:30:05 [range] NQ LIMIT SELL rung 3 0.04/pt at 29853.6 placed (DIAAAAYRMSMESBH)
-15:30:05 bar 15:25 o 29692.8 h 29696.9 l 29677.8 c 29677.9 ticks 3372 delta -2
-15:35:00 bar 15:30 o 29677.4 h 29695.5 l 29675.2 c 29689.8 ticks 3505 delta +13
-15:40:00 bar 15:35 o 29689.5 h 29709.1 l 29681.3 c 29706.8 ticks 3341 delta +9
-15:45:00 [range] NQ 15:30 c 29704.9 ema 29718.2 band 29614.8-29821.5 atr 51.7 regime ON L 2 S 0 orders 6
-15:45:02 [range] NQ LIMIT SELL rung 0 0.02/pt at 29806.0 placed (DIAAAAYRMUHFCAY)
-15:45:03 [range] NQ LIMIT SELL rung 1 0.04/pt at 29818.9 placed (DIAAAAYRMTZ7PB3)
-15:45:04 [range] NQ LIMIT SELL rung 2 0.04/pt at 29834.4 placed (DIAAAAYRMTQ6ZBK)
-15:45:05 [range] NQ LIMIT SELL rung 3 0.04/pt at 29849.9 placed (DIAAAAYRMUHFDAY)
-15:45:05 bar 15:40 o 29706.3 h 29707.7 l 29692.9 c 29704.9 ticks 3184 delta +16
-15:50:00 bar 15:45 o 29705.2 h 29715.2 l 29681.9 c 29684.4 ticks 3306 delta -22
-15:55:00 bar 15:50 o 29684.7 h 29694.9 l 29673.2 c 29679.9 ticks 3194 delta +8
-16:00:00 [range] NQ 15:45 c 29694.6 ema 29715.9 band 29609.8-29822.0 atr 53.0 regime ON L 2 S 0 orders 6
-16:00:02 [range] NQ LIMIT BUY rung 2 0.04/pt at 29596.6 placed (DIAAAAYRMUW4DA8)
-16:00:02 [range] NQ LIMIT BUY rung 3 0.04/pt at 29580.7 placed (DIAAAAYRMU28JAL)
-16:00:03 [range] NQ LIMIT SELL rung 3 0.04/pt at 29851.2 placed (DIAAAAYRMVBTVB3)
-16:00:03 bar 15:55 o 29680.6 h 29704.0 l 29678.6 c 29694.6 ticks 3111 delta +55
-16:05:00 bar 16:00 o 29694.9 h 29712.1 l 29691.1 c 29708.1 ticks 3162 delta +66
-16:05:00 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-16:05:00 ls status: DISCONNECTED
-16:05:00 done; ticks 113842 bars 329
+18:02:16 delta-share threshold 0.0493 (percentile-matched on 689 IG bars); registered 0.05
+18:02:34 history 300 bars to 2026-10-28 18:02:00+00:00
+18:02:34 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+18:02:34 streaming IX.D.NASDAQ.CASH.IP
+18:02:34 ls status: CONNECTING
+18:02:35 ls status: CONNECTED:WS-STREAMING
+18:02:35 CHART IX.D.NASDAQ.CASH.IP subscribed
+18:02:35 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+18:02:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
+18:02:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
+18:02:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '29717.7', 'OFR': '29718.9'}
+18:02:35 stream subscribed on CHART via Z6FARW
+18:02:35 trading session on Z6FARW
+18:02:35 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.25 GBP/pt, status TRADEABLE
+18:02:37 [range] NQ: using the runner's own 300 IG bars
+18:02:37 [range] NQ: cache 68131 bars offset +47.7 to IG level, REST 300 bars to 2026-10-28 18:02:00+00:00
+18:02:37 [range] NQ: containment median 0.860 over 22713 15-min bars
+18:02:37 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
+18:05:00 bar 18:00 o 29718.3 h 29725.2 l 29681.4 c 29683.5 ticks 1783 delta -56
+18:10:00 bar 18:05 o 29682.5 h 29697.7 l 29647.7 c 29661.7 ticks 3685 delta -55
+18:15:00 [range] NQ EPISODE L closed (sold_or_stop): 2 lots, +3.57 GBP (day +3.6)
+18:15:00 [range] NQ 18:00 c 29663.9 ema 29693.1 band 29606.1-29780.2 atr 43.5 regime off L 0 S 0 orders 0
+18:15:00 bar 18:10 o 29661.8 h 29683.3 l 29651.4 c 29663.9 ticks 3635 delta +79
+18:20:00 bar 18:15 o 29664.0 h 29669.8 l 29631.1 c 29657.3 ticks 3622 delta -16
+18:25:00 bar 18:20 o 29657.2 h 29675.9 l 29643.0 c 29660.1 ticks 3646 delta +46
+18:30:00 [range] NQ 18:15 c 29703.9 ema 29694.2 band 29602.8-29785.6 atr 45.7 regime off L 0 S 0 orders 0
+18:30:00 bar 18:25 o 29660.0 h 29711.4 l 29660.0 c 29703.9 ticks 3615 delta +61
+18:35:00 bar 18:30 o 29703.8 h 29765.7 l 29641.6 c 29734.8 ticks 3697 delta -73
+18:40:00 bar 18:35 o 29734.6 h 29848.2 l 29729.2 c 29759.6 ticks 3722 delta -50
+18:45:00 [range] NQ 18:30 c 29790.6 ema 29703.4 band 29590.0-29816.7 atr 56.7 regime ON L 0 S 0 orders 0
+18:45:00 bar 18:40 o 29760.0 h 29852.1 l 29740.5 c 29790.6 ticks 3723 delta -99
+18:50:00 bar 18:45 o 29790.9 h 29798.0 l 29714.2 c 29778.4 ticks 3678 delta -12
+18:55:00 bar 18:50 o 29778.8 h 29811.6 l 29707.6 c 29764.3 ticks 3759 delta +15
+19:00:00 [range] NQ 18:45 c 29749.6 ema 29707.8 band 29580.6-29834.9 atr 63.6 regime ON L 0 S 0 orders 0
+19:00:01 [range] NQ LIMIT SELL rung 0 0.02/pt at 29815.9 placed (DIAAAAYRNA37WAS)
+19:00:01 [range] NQ LIMIT SELL rung 1 0.04/pt at 29831.8 placed (DIAAAAYRM9W96A8)
+19:00:01 [range] NQ LIMIT SELL rung 2 0.04/pt at 29850.8 placed (DIAAAAYRNAY2HBH)
+19:00:02 [range] NQ LIMIT SELL rung 3 0.04/pt at 29869.9 placed (DIAAAAYRNAR52B4)
+19:00:02 bar 18:55 o 29763.9 h 29764.8 l 29684.4 c 29749.6 ticks 3770 delta -54
+19:05:00 bar 19:00 o 29748.8 h 29817.1 l 29727.5 c 29790.1 ticks 3807 delta -103
+19:10:00 bar 19:05 o 29790.6 h 29800.4 l 29700.0 c 29739.5 ticks 3717 delta -107
+19:15:00 [range] NQ LIMIT rung 0 filled at 29815.9
+19:15:00 [range] NQ 19:00 c 29728.6 ema 29709.7 band 29566.0-29853.5 atr 71.9 regime ON L 0 S 1 orders 3
+19:15:02 [range] NQ LIMIT SELL rung 1 0.04/pt at 29849.9 placed (DIAAAAYRNB86VBF)
+19:15:02 [range] NQ LIMIT SELL rung 2 0.04/pt at 29871.5 placed (DIAAAAYRNBYXYAJ)
+19:15:03 [range] NQ LIMIT SELL rung 3 0.04/pt at 29893.0 placed (DIAAAAYRNAJYRBN)
+19:15:03 bar 19:10 o 29738.7 h 29741.3 l 29667.2 c 29728.6 ticks 3707 delta -27
+19:20:00 bar 19:15 o 29728.3 h 29739.8 l 29673.5 c 29738.2 ticks 3709 delta +59
+19:25:00 bar 19:20 o 29738.0 h 29747.4 l 29687.2 c 29697.8 ticks 3730 delta -88
+19:30:01 [range] NQ EPISODE S closed (sold_or_stop): 1 lots, +2.12 GBP (day +5.7)
+19:30:01 [range] NQ 19:15 c 29721.4 ema 29710.9 band 29562.6-29859.2 atr 74.1 regime ON L 0 S 0 orders 3
+19:30:01 bar 19:25 o 29697.9 h 29724.3 l 29679.4 c 29721.4 ticks 3737 delta -13
+19:35:00 bar 19:30 o 29721.2 h 29746.7 l 29696.7 c 29735.6 ticks 3711 delta -27
+19:40:00 bar 19:35 o 29734.4 h 29749.1 l 29708.7 c 29727.9 ticks 3680 delta -6
+19:45:00 [range] NQ 19:30 c 29757.2 ema 29715.3 band 29561.0-29869.6 atr 77.1 regime ON L 0 S 0 orders 3
+19:45:00 bar 19:40 o 29728.1 h 29765.6 l 29721.1 c 29757.2 ticks 3713 delta -61
+19:50:00 bar 19:45 o 29756.8 h 29792.2 l 29749.4 c 29789.4 ticks 3596 delta +88
+19:55:00 bar 19:50 o 29789.7 h 29836.7 l 29776.7 c 29802.3 ticks 3543 delta +37
+20:00:00 [range] NQ 19:45 c 29833.0 ema 29726.5 band 29562.3-29890.7 atr 82.1 regime ON L 0 S 0 orders 3
+20:00:00 bar 19:55 o 29802.1 h 29840.6 l 29776.2 c 29833.0 ticks 3554 delta -14
+20:05:00 bar 20:00 o 29834.3 h 30015.3 l 29831.0 c 29880.0 ticks 3725 delta +63
+20:10:00 bar 20:05 o 29880.4 h 29886.3 l 29794.7 c 29812.4 ticks 3787 delta -49
+20:15:00 [range] NQ LIMIT rung 1 filled at 29849.9
+20:15:00 [range] NQ LIMIT rung 2 filled at 29871.5
+20:15:00 [range] NQ LIMIT rung 3 filled at 29893.0
+20:15:00 [range] NQ 20:00 c 29745.8 ema 29728.3 band 29528.7-29927.9 atr 99.8 regime ON L 0 S 3 orders 0
+20:15:02 bar 20:10 o 29811.9 h 29813.0 l 29745.3 c 29745.8 ticks 3708 delta +40
+20:20:00 bar 20:15 o 29746.7 h 29770.5 l 29697.7 c 29701.7 ticks 3701 delta -53
+20:25:00 bar 20:20 o 29701.3 h 29719.8 l 29680.8 c 29687.5 ticks 3418 delta +22
+20:30:00 [range] NQ EPISODE S closed (sold_or_stop): 3 lots, +17.18 GBP (day +22.9)
+20:30:00 [range] NQ 20:15 c 29624.9 ema 29718.5 band 29509.1-29927.8 atr 104.7 regime ON L 0 S 0 orders 0
+20:30:00 bar 20:25 o 29687.7 h 29698.0 l 29616.7 c 29624.9 ticks 3573 delta -97
+20:35:00 bar 20:30 o 29625.3 h 29644.3 l 29617.5 c 29631.2 ticks 3100 delta -2
+20:40:00 bar 20:35 o 29629.5 h 29632.5 l 29574.0 c 29578.2 ticks 3574 delta -54
+20:45:00 [range] NQ 20:30 c 29568.1 ema 29704.1 band 29486.2-29922.1 atr 109.0 regime ON L 0 S 0 orders 0
+20:45:00 bar 20:40 o 29578.1 h 29584.0 l 29538.1 c 29568.1 ticks 3573 delta -39
+20:50:00 bar 20:45 o 29568.4 h 29575.0 l 29519.9 c 29529.0 ticks 3557 delta -33
+20:55:00 bar 20:50 o 29529.5 h 29576.2 l 29515.0 c 29561.3 ticks 3240 delta +68
+20:59:16 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+20:59:16 done; ticks 135735 bars 334
