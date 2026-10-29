@@ -1,0 +1,324 @@
+BTC daily 9/26/52/26 LONG  H1  
+     dev: n 12 win  67% mean +25.9% CAGR +38.9% (compounded per trade) maxDD -10% median hold 24 bars | random-entry same regime +10.4% (beats 100%) | B&H CAGR +73%
+     hold: n 10 win  40% mean  +2.7% CAGR  +4.9% (compounded per trade) maxDD -12% median hold 17 bars | random-entry same regime +3.4% (beats 40%) | B&H CAGR +52%
+BTC daily 9/26/52/26 LONG  H1+W
+     dev: n  6 win  67% mean +35.5% CAGR +24.2% (compounded per trade) maxDD -7% median hold 26 bars | random-entry same regime +7.6% (beats 100%) | B&H CAGR +73%
+     hold: n  5 win  40% mean  +6.2% CAGR  +6.4% (compounded per trade) maxDD -6% median hold 11 bars | random-entry same regime +2.5% (beats 74%) | B&H CAGR +52%
+BTC daily 9/26/52/26 LONG  H2  
+     dev: n 12 win  42% mean  +4.1% CAGR  +5.1% (compounded per trade) maxDD -24% median hold 14 bars | random-entry same regime +10.4% (beats 14%) | B&H CAGR +73%
+     hold: n  6 win  50% mean +10.3% CAGR +14.3% (compounded per trade) maxDD -9% median hold 25 bars | random-entry same regime +3.1% (beats 90%) | B&H CAGR +52%
+BTC daily 9/26/52/26 LONG  H2+W
+     dev: n  3 win  33% mean  +8.7% CAGR  +2.4% (compounded per trade) maxDD -17% median hold 13 bars | random-entry same regime +5.1% (beats 61%) | B&H CAGR +73%
+     hold: n  2 win   0% mean  -4.8% CAGR  -2.6% (compounded per trade) maxDD -6% median hold 12 bars | random-entry same regime +0.6% (beats 8%) | B&H CAGR +52%
+BTC daily 9/26/52/26 LONG  H3  
+     dev: n  4 win  25% mean  -2.8% CAGR  -1.5% (compounded per trade) maxDD -11% median hold 6 bars | random-entry same regime +7.0% (beats 11%) | B&H CAGR +73%
+     hold: n  1 win   0% mean  -2.8% CAGR  -0.8% (compounded per trade) maxDD 0% median hold 2 bars | random-entry same regime -0.6% (beats 32%) | B&H CAGR +52%
+BTC daily 9/26/52/26 LONG  H3+W
+     dev: n  1 win   0% mean  -9.3% CAGR  -1.3% (compounded per trade) maxDD 0% median hold 11 bars | random-entry same regime -1.3% (beats 16%) | B&H CAGR +73%
+     hold: n0
+BTC daily 9/26/52/26 SHORT H1  
+     dev: n 11 win  45% mean  +7.4% CAGR +10.1% (compounded per trade) maxDD -6% median hold 17 bars | random-entry same regime -0.8% (beats 100%) | B&H CAGR +73%
+     hold: n  4 win   0% mean  -5.0% CAGR  -5.3% (compounded per trade) maxDD -17% median hold 8 bars | random-entry same regime -2.6% (beats 13%) | B&H CAGR +52%
+BTC daily 9/26/52/26 SHORT H1+W
+     dev: n  6 win  33% mean  +7.1% CAGR  +5.1% (compounded per trade) maxDD -2% median hold 12 bars | random-entry same regime -1.8% (beats 97%) | B&H CAGR +73%
+     hold: n0
+BTC daily 9/26/52/26 SHORT H2  
+     dev: n 16 win  44% mean  -1.5% CAGR  -5.4% (compounded per trade) maxDD -54% median hold 10 bars | random-entry same regime -0.8% (beats 36%) | B&H CAGR +73%
+     hold: n 15 win  13% mean  -2.9% CAGR -12.1% (compounded per trade) maxDD -32% median hold 2 bars | random-entry same regime -2.1% (beats 22%) | B&H CAGR +52%
+BTC daily 9/26/52/26 SHORT H2+W
+     dev: n  2 win  50% mean  -5.5% CAGR  -1.6% (compounded per trade) maxDD 0% median hold 12 bars | random-entry same regime -2.6% (beats 25%) | B&H CAGR +73%
+     hold: n  2 win   0% mean -12.3% CAGR  -6.9% (compounded per trade) maxDD -5% median hold 2 bars | random-entry same regime -2.7% (beats 0%) | B&H CAGR +52%
+BTC daily 9/26/52/26 SHORT H3  
+     dev: n  5 win   0% mean -12.8% CAGR  -9.0% (compounded per trade) maxDD -46% median hold 8 bars | random-entry same regime -1.8% (beats 0%) | B&H CAGR +73%
+     hold: n  3 win   0% mean  -2.7% CAGR  -2.1% (compounded per trade) maxDD -4% median hold 1 bars | random-entry same regime -2.5% (beats 46%) | B&H CAGR +52%
+BTC daily 9/26/52/26 SHORT H3+W
+     dev: n  1 win   0% mean -11.0% CAGR  -1.6% (compounded per trade) maxDD 0% median hold 16 bars | random-entry same regime -2.1% (beats 12%) | B&H CAGR +73%
+     hold: n0
+BTC daily 20/60/120/30 LONG  H1  
+     dev: n  6 win  67% mean +68.9% CAGR +28.3% (compounded per trade) maxDD -8% median hold 39 bars | random-entry same regime +19.1% (beats 98%) | B&H CAGR +73%
+     hold: n  5 win  20% mean  +0.2% CAGR  -0.5% (compounded per trade) maxDD -11% median hold 43 bars | random-entry same regime +1.5% (beats 43%) | B&H CAGR +52%
+BTC daily 20/60/120/30 LONG  H1+W
+     dev: n0
+     hold: n  3 win  33% mean  +3.8% CAGR  +2.4% (compounded per trade) maxDD -11% median hold 43 bars | random-entry same regime +0.0% (beats 66%) | B&H CAGR +52%
+BTC daily 20/60/120/30 LONG  H2  
+     dev: n  7 win  57% mean +18.0% CAGR +12.9% (compounded per trade) maxDD -2% median hold 17 bars | random-entry same regime +22.5% (beats 37%) | B&H CAGR +73%
+     hold: n  7 win  43% mean  +8.5% CAGR +13.7% (compounded per trade) maxDD -3% median hold 54 bars | random-entry same regime +3.3% (beats 86%) | B&H CAGR +52%
+BTC daily 20/60/120/30 LONG  H2+W
+     dev: n  1 win   0% mean  -1.6% CAGR  -0.2% (compounded per trade) maxDD 0% median hold 1 bars | random-entry same regime +0.5% (beats 45%) | B&H CAGR +73%
+     hold: n  4 win  25% mean +10.3% CAGR  +8.8% (compounded per trade) maxDD -3% median hold 19 bars | random-entry same regime +1.0% (beats 90%) | B&H CAGR +52%
+BTC daily 20/60/120/30 LONG  H3  
+     dev: n  2 win 100% mean +55.3% CAGR +10.9% (compounded per trade) maxDD 0% median hold 88 bars | random-entry same regime +6.7% (beats 92%) | B&H CAGR +73%
+     hold: n0
+BTC daily 20/60/120/30 LONG  H3+W
+     dev: n0
+     hold: n0
+BTC daily 20/60/120/30 SHORT H1  
+     dev: n  6 win  33% mean  -3.5% CAGR  -4.5% (compounded per trade) maxDD -25% median hold 28 bars | random-entry same regime -4.1% (beats 57%) | B&H CAGR +73%
+     hold: n  4 win   0% mean  -9.3% CAGR  -9.8% (compounded per trade) maxDD -29% median hold 5 bars | random-entry same regime -3.6% (beats 0%) | B&H CAGR +52%
+BTC daily 20/60/120/30 SHORT H1+W
+     dev: n  3 win   0% mean -12.8% CAGR  -5.4% (compounded per trade) maxDD -19% median hold 19 bars | random-entry same regime -3.8% (beats 14%) | B&H CAGR +73%
+     hold: n0
+BTC daily 20/60/120/30 SHORT H2  
+     dev: n 10 win  40% mean  +3.5% CAGR  +3.7% (compounded per trade) maxDD -11% median hold 38 bars | random-entry same regime -4.0% (beats 96%) | B&H CAGR +73%
+     hold: n  3 win   0% mean  -9.2% CAGR  -7.4% (compounded per trade) maxDD -21% median hold 43 bars | random-entry same regime -3.7% (beats 2%) | B&H CAGR +52%
+BTC daily 20/60/120/30 SHORT H2+W
+     dev: n  3 win  33% mean  -2.5% CAGR  -1.1% (compounded per trade) maxDD -11% median hold 43 bars | random-entry same regime -3.8% (beats 56%) | B&H CAGR +73%
+     hold: n0
+BTC daily 20/60/120/30 SHORT H3  
+     dev: n  1 win 100% mean  +6.8% CAGR  +0.9% (compounded per trade) maxDD 0% median hold 59 bars | random-entry same regime -5.0% (beats 84%) | B&H CAGR +73%
+     hold: n0
+BTC daily 20/60/120/30 SHORT H3+W
+     dev: n0
+     hold: n0
+BTC weekly 9/26/52/26 LONG  H1  
+     dev: n0
+     hold: n  2 win 100% mean +48.1% CAGR +21.8% (compounded per trade) maxDD 0% median hold 32 bars | random-entry same regime +18.7% (beats 94%) | B&H CAGR +51%
+BTC weekly 9/26/52/26 LONG  H2  
+     dev: n0
+     hold: n0
+BTC weekly 9/26/52/26 LONG  H3  
+     dev: n0
+     hold: n0
+BTC weekly 9/26/52/26 SHORT H1  
+     dev: n0
+     hold: n0
+BTC weekly 9/26/52/26 SHORT H2  
+     dev: n  2 win   0% mean -25.1% CAGR  -7.6% (compounded per trade) maxDD -34% median hold 4 bars | random-entry same regime -5.9% (beats 11%) | B&H CAGR +72%
+     hold: n0
+BTC weekly 9/26/52/26 SHORT H3  
+     dev: n0
+     hold: n0
+BTC weekly 20/60/120/30 LONG  H1  
+     dev: n0
+     hold: n0
+BTC weekly 20/60/120/30 LONG  H2  
+     dev: n  1 win 100% mean +208.6% CAGR +16.3% (compounded per trade) maxDD 0% median hold 45 bars | random-entry same regime -20.7% (beats 94%) | B&H CAGR +72%
+     hold: n0
+BTC weekly 20/60/120/30 LONG  H3  
+     dev: n0
+     hold: n0
+BTC weekly 20/60/120/30 SHORT H1  
+     dev: n0
+     hold: n0
+BTC weekly 20/60/120/30 SHORT H2  
+     dev: n  1 win   0% mean -11.0% CAGR  -1.5% (compounded per trade) maxDD 0% median hold 1 bars | random-entry same regime -17.9% (beats 64%) | B&H CAGR +72%
+     hold: n0
+BTC weekly 20/60/120/30 SHORT H3  
+     dev: n0
+     hold: n0
+ETH daily 9/26/52/26 LONG  H1  
+     dev: n 11 win  64% mean +47.3% CAGR +57.1% (compounded per trade) maxDD -20% median hold 11 bars | random-entry same regime +33.2% (beats 88%) | B&H CAGR +98%
+     hold: n 11 win  36% mean  +5.7% CAGR +12.5% (compounded per trade) maxDD -13% median hold 4 bars | random-entry same regime -0.1% (beats 99%) | B&H CAGR +20%
+ETH daily 9/26/52/26 LONG  H1+W
+     dev: n  5 win  40% mean  +7.9% CAGR  +3.6% (compounded per trade) maxDD -21% median hold 11 bars | random-entry same regime +40.4% (beats 16%) | B&H CAGR +98%
+     hold: n0
+ETH daily 9/26/52/26 LONG  H2  
+     dev: n 13 win  62% mean +48.6% CAGR +74.8% (compounded per trade) maxDD -7% median hold 27 bars | random-entry same regime +31.6% (beats 98%) | B&H CAGR +98%
+     hold: n  9 win  44% mean  +7.2% CAGR +13.0% (compounded per trade) maxDD -22% median hold 20 bars | random-entry same regime -0.5% (beats 100%) | B&H CAGR +20%
+ETH daily 9/26/52/26 LONG  H2+W
+     dev: n  4 win  50% mean +24.3% CAGR +12.5% (compounded per trade) maxDD -1% median hold 27 bars | random-entry same regime +39.9% (beats 36%) | B&H CAGR +98%
+     hold: n0
+ETH daily 9/26/52/26 LONG  H3  
+     dev: n  4 win  50% mean +50.6% CAGR +17.6% (compounded per trade) maxDD -5% median hold 16 bars | random-entry same regime +39.9% (beats 61%) | B&H CAGR +98%
+     hold: n  3 win  67% mean  -0.8% CAGR  -0.9% (compounded per trade) maxDD -12% median hold 5 bars | random-entry same regime -0.6% (beats 48%) | B&H CAGR +20%
+ETH daily 9/26/52/26 LONG  H3+W
+     dev: n  1 win   0% mean  -3.0% CAGR  -0.5% (compounded per trade) maxDD 0% median hold 18 bars | random-entry same regime +8.1% (beats 28%) | B&H CAGR +98%
+     hold: n0
+ETH daily 9/26/52/26 SHORT H1  
+     dev: n  5 win  40% mean  +3.0% CAGR  +1.4% (compounded per trade) maxDD -12% median hold 26 bars | random-entry same regime -0.3% (beats 68%) | B&H CAGR +98%
+     hold: n  3 win   0% mean  -4.1% CAGR  -3.2% (compounded per trade) maxDD -9% median hold 17 bars | random-entry same regime -3.4% (beats 42%) | B&H CAGR +20%
+ETH daily 9/26/52/26 SHORT H1+W
+     dev: n  2 win 100% mean +17.2% CAGR  +4.6% (compounded per trade) maxDD 0% median hold 30 bars | random-entry same regime -2.0% (beats 92%) | B&H CAGR +98%
+     hold: n0
+ETH daily 9/26/52/26 SHORT H2  
+     dev: n 17 win  41% mean  -1.4% CAGR  -5.3% (compounded per trade) maxDD -43% median hold 8 bars | random-entry same regime +0.3% (beats 26%) | B&H CAGR +98%
+     hold: n 10 win  30% mean  -3.1% CAGR  -8.2% (compounded per trade) maxDD -21% median hold 2 bars | random-entry same regime -2.7% (beats 42%) | B&H CAGR +20%
+ETH daily 9/26/52/26 SHORT H2+W
+     dev: n  3 win   0% mean  -4.7% CAGR  -2.2% (compounded per trade) maxDD -2% median hold 1 bars | random-entry same regime -1.1% (beats 36%) | B&H CAGR +98%
+     hold: n0
+ETH daily 9/26/52/26 SHORT H3  
+     dev: n  4 win   0% mean  -4.0% CAGR  -2.5% (compounded per trade) maxDD -13% median hold 4 bars | random-entry same regime -0.0% (beats 34%) | B&H CAGR +98%
+     hold: n  3 win  67% mean  -1.4% CAGR  -1.2% (compounded per trade) maxDD -7% median hold 1 bars | random-entry same regime -3.4% (beats 73%) | B&H CAGR +20%
+ETH daily 9/26/52/26 SHORT H3+W
+     dev: n  1 win   0% mean  -2.9% CAGR  -0.4% (compounded per trade) maxDD 0% median hold 20 bars | random-entry same regime -3.9% (beats 54%) | B&H CAGR +98%
+     hold: n0
+ETH daily 20/60/120/30 LONG  H1  
+     dev: n  3 win  33% mean +90.2% CAGR +17.8% (compounded per trade) maxDD -12% median hold 39 bars | random-entry same regime +70.9% (beats 58%) | B&H CAGR +98%
+     hold: n  4 win  25% mean  +1.3% CAGR  +0.6% (compounded per trade) maxDD -12% median hold 42 bars | random-entry same regime -1.2% (beats 66%) | B&H CAGR +20%
+ETH daily 20/60/120/30 LONG  H1+W
+     dev: n0
+     hold: n0
+ETH daily 20/60/120/30 LONG  H2  
+     dev: n  3 win  33% mean  -6.6% CAGR  -3.1% (compounded per trade) maxDD -8% median hold 9 bars | random-entry same regime +70.9% (beats 7%) | B&H CAGR +98%
+     hold: n  6 win  17% mean  -2.7% CAGR  -4.7% (compounded per trade) maxDD -26% median hold 27 bars | random-entry same regime -0.1% (beats 24%) | B&H CAGR +20%
+ETH daily 20/60/120/30 LONG  H2+W
+     dev: n0
+     hold: n0
+ETH daily 20/60/120/30 LONG  H3  
+     dev: n  3 win  33% mean  -3.7% CAGR  -1.7% (compounded per trade) maxDD -6% median hold 4 bars | random-entry same regime +70.9% (beats 8%) | B&H CAGR +98%
+     hold: n  2 win   0% mean  -3.4% CAGR  -1.8% (compounded per trade) maxDD -6% median hold 22 bars | random-entry same regime -3.5% (beats 51%) | B&H CAGR +20%
+ETH daily 20/60/120/30 LONG  H3+W
+     dev: n0
+     hold: n0
+ETH daily 20/60/120/30 SHORT H1  
+     dev: n  4 win  50% mean  +5.2% CAGR  -7.1% (compounded per trade) maxDD -73% median hold 60 bars | random-entry same regime -2.3% (beats 75%) | B&H CAGR +98%
+     hold: n  3 win  67% mean  +4.9% CAGR  +2.9% (compounded per trade) maxDD -14% median hold 47 bars | random-entry same regime -2.7% (beats 74%) | B&H CAGR +20%
+ETH daily 20/60/120/30 SHORT H1+W
+     dev: n  1 win   0% mean -68.5% CAGR -16.0% (compounded per trade) maxDD 0% median hold 42 bars | random-entry same regime -6.4% (beats 2%) | B&H CAGR +98%
+     hold: n  1 win 100% mean  +4.9% CAGR  +1.3% (compounded per trade) maxDD 0% median hold 47 bars | random-entry same regime -4.5% (beats 79%) | B&H CAGR +20%
+ETH daily 20/60/120/30 SHORT H2  
+     dev: n  2 win  50% mean  -0.9% CAGR  -0.4% (compounded per trade) maxDD 0% median hold 27 bars | random-entry same regime -4.3% (beats 57%) | B&H CAGR +98%
+     hold: n  4 win  25% mean  -1.8% CAGR  -2.3% (compounded per trade) maxDD -15% median hold 6 bars | random-entry same regime -1.0% (beats 46%) | B&H CAGR +20%
+ETH daily 20/60/120/30 SHORT H2+W
+     dev: n0
+     hold: n  2 win   0% mean  -0.5% CAGR  -0.3% (compounded per trade) maxDD -1% median hold 1 bars | random-entry same regime -3.8% (beats 63%) | B&H CAGR +20%
+ETH daily 20/60/120/30 SHORT H3  
+     dev: n  1 win   0% mean  -7.4% CAGR  -1.2% (compounded per trade) maxDD 0% median hold 3 bars | random-entry same regime -6.4% (beats 46%) | B&H CAGR +98%
+     hold: n0
+ETH daily 20/60/120/30 SHORT H3+W
+     dev: n0
+     hold: n0
+ETH weekly 9/26/52/26 LONG  H1  
+     dev: n0
+     hold: n  1 win 100% mean +30.8% CAGR  +7.3% (compounded per trade) maxDD 0% median hold 21 bars | random-entry same regime -0.1% (beats 80%) | B&H CAGR +18%
+ETH weekly 9/26/52/26 LONG  H2  
+     dev: n0
+     hold: n0
+ETH weekly 9/26/52/26 LONG  H3  
+     dev: n0
+     hold: n0
+ETH weekly 9/26/52/26 SHORT H1  
+     dev: n0
+     hold: n0
+ETH weekly 9/26/52/26 SHORT H2  
+     dev: n0
+     hold: n0
+ETH weekly 9/26/52/26 SHORT H3  
+     dev: n0
+     hold: n0
+ETH weekly 20/60/120/30 LONG  H1  
+     dev: n0
+     hold: n0
+ETH weekly 20/60/120/30 LONG  H2  
+     dev: n  1 win 100% mean +241.2% CAGR +20.3% (compounded per trade) maxDD 0% median hold 26 bars | random-entry same regime +13.0% (beats 93%) | B&H CAGR +95%
+     hold: n0
+ETH weekly 20/60/120/30 LONG  H3  
+     dev: n0
+     hold: n0
+ETH weekly 20/60/120/30 SHORT H1  
+     dev: n0
+     hold: n  1 win   0% mean -26.4% CAGR  -7.7% (compounded per trade) maxDD 0% median hold 9 bars | random-entry same regime -13.6% (beats 19%) | B&H CAGR +18%
+ETH weekly 20/60/120/30 SHORT H2  
+     dev: n0
+     hold: n0
+ETH weekly 20/60/120/30 SHORT H3  
+     dev: n0
+     hold: n0
+SPY daily 9/26/52/26 LONG  H1  
+     dev: n 33 win  39% mean  +0.7% CAGR  +1.5% (compounded per trade) maxDD -12% median hold 20 bars | random-entry same regime +0.4% (beats 82%) | B&H CAGR +8%
+     hold: n 12 win  58% mean  +1.5% CAGR  +2.1% (compounded per trade) maxDD -7% median hold 26 bars | random-entry same regime +0.5% (beats 89%) | B&H CAGR +17%
+SPY daily 9/26/52/26 LONG  H1+W
+     dev: n 29 win  38% mean  +0.7% CAGR  +1.3% (compounded per trade) maxDD -12% median hold 20 bars | random-entry same regime +0.4% (beats 78%) | B&H CAGR +8%
+     hold: n 12 win  58% mean  +1.5% CAGR  +2.1% (compounded per trade) maxDD -7% median hold 26 bars | random-entry same regime +0.5% (beats 89%) | B&H CAGR +17%
+SPY daily 9/26/52/26 LONG  H2  
+     dev: n 13 win  46% mean  +1.1% CAGR  +0.9% (compounded per trade) maxDD -7% median hold 18 bars | random-entry same regime +0.4% (beats 80%) | B&H CAGR +8%
+     hold: n 11 win  55% mean  +1.0% CAGR  +1.3% (compounded per trade) maxDD -6% median hold 26 bars | random-entry same regime +0.4% (beats 76%) | B&H CAGR +17%
+SPY daily 9/26/52/26 LONG  H2+W
+     dev: n  9 win  22% mean  +0.2% CAGR  +0.1% (compounded per trade) maxDD -11% median hold 8 bars | random-entry same regime +0.3% (beats 47%) | B&H CAGR +8%
+     hold: n  9 win  56% mean  +1.1% CAGR  +1.1% (compounded per trade) maxDD -6% median hold 28 bars | random-entry same regime +0.5% (beats 76%) | B&H CAGR +17%
+SPY daily 9/26/52/26 LONG  H3  
+     dev: n  7 win  43% mean  +2.8% CAGR  +1.2% (compounded per trade) maxDD -4% median hold 11 bars | random-entry same regime +0.2% (beats 97%) | B&H CAGR +8%
+     hold: n  4 win  25% mean  -1.5% CAGR  -0.8% (compounded per trade) maxDD -3% median hold 2 bars | random-entry same regime +0.4% (beats 10%) | B&H CAGR +17%
+SPY daily 9/26/52/26 LONG  H3+W
+     dev: n  4 win  25% mean  +2.1% CAGR  +0.5% (compounded per trade) maxDD -4% median hold 3 bars | random-entry same regime -0.0% (beats 86%) | B&H CAGR +8%
+     hold: n  4 win  25% mean  -1.5% CAGR  -0.8% (compounded per trade) maxDD -3% median hold 2 bars | random-entry same regime +0.4% (beats 10%) | B&H CAGR +17%
+SPY daily 9/26/52/26 SHORT H1  
+     dev: n 17 win  29% mean  -1.4% CAGR  -1.6% (compounded per trade) maxDD -21% median hold 10 bars | random-entry same regime -0.8% (beats 22%) | B&H CAGR +8%
+     hold: n  5 win  40% mean  -1.7% CAGR  -1.1% (compounded per trade) maxDD -11% median hold 6 bars | random-entry same regime -2.0% (beats 55%) | B&H CAGR +17%
+SPY daily 9/26/52/26 SHORT H1+W
+     dev: n  4 win  50% mean  -0.9% CAGR  -0.2% (compounded per trade) maxDD -6% median hold 8 bars | random-entry same regime -1.0% (beats 57%) | B&H CAGR +8%
+     hold: n0
+SPY daily 9/26/52/26 SHORT H2  
+     dev: n 25 win  28% mean  -1.1% CAGR  -1.8% (compounded per trade) maxDD -25% median hold 8 bars | random-entry same regime -0.7% (beats 32%) | B&H CAGR +8%
+     hold: n 10 win  10% mean  -2.1% CAGR  -2.6% (compounded per trade) maxDD -18% median hold 6 bars | random-entry same regime -1.8% (beats 42%) | B&H CAGR +17%
+SPY daily 9/26/52/26 SHORT H2+W
+     dev: n  3 win  67% mean  +1.1% CAGR  +0.2% (compounded per trade) maxDD 0% median hold 12 bars | random-entry same regime -1.1% (beats 94%) | B&H CAGR +8%
+     hold: n  1 win   0% mean  -2.0% CAGR  -0.3% (compounded per trade) maxDD 0% median hold 1 bars | random-entry same regime -1.5% (beats 43%) | B&H CAGR +17%
+SPY daily 9/26/52/26 SHORT H3  
+     dev: n 11 win  18% mean  +0.7% CAGR  +0.4% (compounded per trade) maxDD -10% median hold 4 bars | random-entry same regime -0.9% (beats 90%) | B&H CAGR +8%
+     hold: n  2 win   0% mean  -2.7% CAGR  -0.7% (compounded per trade) maxDD -2% median hold 3 bars | random-entry same regime -1.9% (beats 40%) | B&H CAGR +17%
+SPY daily 9/26/52/26 SHORT H3+W
+     dev: n  1 win   0% mean  -0.6% CAGR  -0.0% (compounded per trade) maxDD 0% median hold 2 bars | random-entry same regime -1.0% (beats 60%) | B&H CAGR +8%
+     hold: n0
+SPY weekly 9/26/52/26 LONG  H1  
+     dev: n  3 win  33% mean  +7.1% CAGR  +1.1% (compounded per trade) maxDD -9% median hold 35 bars | random-entry same regime +3.4% (beats 66%) | B&H CAGR +8%
+     hold: n  2 win 100% mean +29.5% CAGR  +6.7% (compounded per trade) maxDD 0% median hold 74 bars | random-entry same regime +7.6% (beats 98%) | B&H CAGR +17%
+SPY weekly 9/26/52/26 LONG  H2  
+     dev: n  3 win 100% mean  +3.2% CAGR  +0.6% (compounded per trade) maxDD 0% median hold 2 bars | random-entry same regime +3.4% (beats 50%) | B&H CAGR +8%
+     hold: n0
+SPY weekly 9/26/52/26 LONG  H3  
+     dev: n0
+     hold: n0
+SPY weekly 9/26/52/26 SHORT H1  
+     dev: n  1 win 100% mean +32.1% CAGR  +1.9% (compounded per trade) maxDD 0% median hold 41 bars | random-entry same regime -1.6% (beats 86%) | B&H CAGR +8%
+     hold: n0
+SPY weekly 9/26/52/26 SHORT H2  
+     dev: n  3 win   0% mean  -8.0% CAGR  -1.7% (compounded per trade) maxDD -13% median hold 5 bars | random-entry same regime +8.4% (beats 0%) | B&H CAGR +8%
+     hold: n  3 win  33% mean  -1.1% CAGR  -0.4% (compounded per trade) maxDD -1% median hold 11 bars | random-entry same regime -5.5% (beats 92%) | B&H CAGR +17%
+SPY weekly 9/26/52/26 SHORT H3  
+     dev: n0
+     hold: n  1 win   0% mean  -4.7% CAGR  -0.6% (compounded per trade) maxDD 0% median hold 10 bars | random-entry same regime -4.9% (beats 55%) | B&H CAGR +17%
+QQQ daily 9/26/52/26 LONG  H1  
+     dev: n 37 win  41% mean  -0.1% CAGR  -0.3% (compounded per trade) maxDD -14% median hold 21 bars | random-entry same regime +0.3% (beats 25%) | B&H CAGR +11%
+     hold: n 10 win  60% mean  +3.2% CAGR  +3.7% (compounded per trade) maxDD -9% median hold 22 bars | random-entry same regime +3.0% (beats 55%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 LONG  H1+W
+     dev: n 33 win  39% mean  -0.3% CAGR  -0.6% (compounded per trade) maxDD -13% median hold 20 bars | random-entry same regime +0.2% (beats 16%) | B&H CAGR +11%
+     hold: n  8 win  50% mean  +1.8% CAGR  +1.6% (compounded per trade) maxDD -11% median hold 17 bars | random-entry same regime +3.0% (beats 18%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 LONG  H2  
+     dev: n 20 win  45% mean  +1.5% CAGR  +1.9% (compounded per trade) maxDD -10% median hold 8 bars | random-entry same regime +0.1% (beats 97%) | B&H CAGR +11%
+     hold: n 12 win  25% mean  -1.1% CAGR  -1.8% (compounded per trade) maxDD -24% median hold 12 bars | random-entry same regime +2.8% (beats 2%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 LONG  H2+W
+     dev: n 15 win  33% mean  +0.7% CAGR  +0.6% (compounded per trade) maxDD -10% median hold 8 bars | random-entry same regime +0.1% (beats 76%) | B&H CAGR +11%
+     hold: n  9 win  22% mean  -1.8% CAGR  -2.2% (compounded per trade) maxDD -16% median hold 12 bars | random-entry same regime +2.9% (beats 2%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 LONG  H3  
+     dev: n  4 win  50% mean  +1.5% CAGR  +0.4% (compounded per trade) maxDD -4% median hold 20 bars | random-entry same regime -0.4% (beats 88%) | B&H CAGR +11%
+     hold: n  3 win   0% mean  -2.1% CAGR  -0.8% (compounded per trade) maxDD -3% median hold 2 bars | random-entry same regime +2.6% (beats 6%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 LONG  H3+W
+     dev: n  3 win  33% mean  -0.5% CAGR  -0.1% (compounded per trade) maxDD -4% median hold 7 bars | random-entry same regime -0.5% (beats 49%) | B&H CAGR +11%
+     hold: n  3 win   0% mean  -2.1% CAGR  -0.8% (compounded per trade) maxDD -3% median hold 2 bars | random-entry same regime +2.6% (beats 6%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 SHORT H1  
+     dev: n 15 win  13% mean  -1.9% CAGR  -2.0% (compounded per trade) maxDD -29% median hold 9 bars | random-entry same regime +0.2% (beats 2%) | B&H CAGR +11%
+     hold: n  3 win  33% mean  -3.5% CAGR  -1.4% (compounded per trade) maxDD -10% median hold 6 bars | random-entry same regime -2.0% (beats 34%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 SHORT H1+W
+     dev: n  1 win   0% mean  -0.2% CAGR  -0.0% (compounded per trade) maxDD 0% median hold 18 bars | random-entry same regime -1.2% (beats 68%) | B&H CAGR +11%
+     hold: n  1 win   0% mean  -6.1% CAGR  -0.8% (compounded per trade) maxDD 0% median hold 9 bars | random-entry same regime -1.9% (beats 21%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 SHORT H2  
+     dev: n 30 win  20% mean  -1.6% CAGR  -3.3% (compounded per trade) maxDD -39% median hold 4 bars | random-entry same regime -0.4% (beats 2%) | B&H CAGR +11%
+     hold: n 14 win  29% mean  -1.7% CAGR  -3.3% (compounded per trade) maxDD -23% median hold 8 bars | random-entry same regime -1.6% (beats 43%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 SHORT H2+W
+     dev: n  2 win   0% mean  -2.6% CAGR  -0.4% (compounded per trade) maxDD -3% median hold 12 bars | random-entry same regime -0.9% (beats 19%) | B&H CAGR +11%
+     hold: n0
+QQQ daily 9/26/52/26 SHORT H3  
+     dev: n 11 win   9% mean  -1.5% CAGR  -1.1% (compounded per trade) maxDD -14% median hold 3 bars | random-entry same regime +0.3% (beats 10%) | B&H CAGR +11%
+     hold: n  3 win   0% mean  -3.3% CAGR  -1.3% (compounded per trade) maxDD -7% median hold 4 bars | random-entry same regime -2.0% (beats 35%) | B&H CAGR +22%
+QQQ daily 9/26/52/26 SHORT H3+W
+     dev: n0
+     hold: n0
+QQQ weekly 9/26/52/26 LONG  H1  
+     dev: n  7 win  71% mean +11.6% CAGR  +4.5% (compounded per trade) maxDD -15% median hold 36 bars | random-entry same regime +3.8% (beats 94%) | B&H CAGR +11%
+     hold: n  3 win  67% mean +18.1% CAGR  +5.9% (compounded per trade) maxDD -0% median hold 31 bars | random-entry same regime +6.9% (beats 88%) | B&H CAGR +22%
+QQQ weekly 9/26/52/26 LONG  H2  
+     dev: n  1 win   0% mean  -2.7% CAGR  -0.2% (compounded per trade) maxDD 0% median hold 1 bars | random-entry same regime +0.8% (beats 34%) | B&H CAGR +11%
+     hold: n0
+QQQ weekly 9/26/52/26 LONG  H3  
+     dev: n0
+     hold: n0
+QQQ weekly 9/26/52/26 SHORT H1  
+     dev: n0
+     hold: n0
+QQQ weekly 9/26/52/26 SHORT H2  
+     dev: n  4 win  25% mean  -4.1% CAGR  -1.1% (compounded per trade) maxDD -7% median hold 1 bars | random-entry same regime +0.4% (beats 26%) | B&H CAGR +11%
+     hold: n0
+QQQ weekly 9/26/52/26 SHORT H3  
+     dev: n  1 win   0% mean -12.0% CAGR  -0.8% (compounded per trade) maxDD 0% median hold 10 bars | random-entry same regime -5.5% (beats 19%) | B&H CAGR +11%
+     hold: n0
