@@ -1,0 +1,2 @@
+INSERT OR REPLACE INTO pb4_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-10-29', 1981.2598, 2002.5840, 3, 1, 1);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-10-29', 'LINKUSD', '2026-10-22 08:00:00+00:00', '2026-10-28 20:00:00+00:00', 0.008613, 'trail', 1);

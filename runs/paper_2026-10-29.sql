@@ -1,0 +1,16 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-29', exit_px=0.01419537, exit_reason='target', ret=0.038985, pnl=5.92 WHERE sym='DRIFTUSD' AND opened='2026-10-25' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-29', exit_px=0.00266875, exit_reason='target', ret=0.019182, pnl=2.91 WHERE sym='SWFTCUSD' AND opened='2026-10-26' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('CTXUSD','2026-10-29',0.4983,0.46330714,0.50413214,0.01166429,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('FLOWUSD','2026-10-29',0.02518,0.02006071,0.02603321,0.00170643,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('HBARUSD','2026-10-29',0.07332,0.06152143,0.07528643,0.00393286,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ICPUSD','2026-10-29',2.5206,2.08705714,2.59285714,0.14451429,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ILVUSD','2026-10-29',2.978,2.51949286,3.05441786,0.15283571,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('IMXUSD','2026-10-29',0.13344,0.10846929,0.13760179,0.00832357,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('JASMYUSD','2026-10-29',0.00371,0.00279286,0.00386286,0.00030571,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('JTOUSD','2026-10-29',0.3956,0.30309286,0.41101786,0.03083571,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('KSMUSD','2026-10-29',3.6036,2.94797143,3.71287143,0.21854286,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('PRIMEUSD','2026-10-29',0.166,0.12117357,0.17347107,0.01494214,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('RLCUSD','2026-10-29',0.5007,0.33098571,0.52898571,0.05657143,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('UMAUSD','2026-10-29',0.34147,0.29693071,0.34889321,0.01484643,51.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('VETUSD','2026-10-29',0.006028,0.00463471,0.00626021,0.00046443,51.88,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-29',2075.08,16,1,14,13,1,'14 signals, 13 taken, 1 dropped, 2 closed, 16 open');
