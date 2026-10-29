@@ -1,0 +1,572 @@
+//@version=6
+// MARKET ADVISORY V22 — V21 plus yesterday's high/low with tested probabilities (doc 161, 29 Oct 2026).
+//   DAY      PDH/PDL lines. BTC 2021-26: opening in the top third of yesterday's range -> PDH taken 74% (first 70%); bottom third -> PDL 72%
+//            (first 70%); middle -> each ~43%. They are TARGETS, not support/resistance: a first touch rejects LESS often than a random level
+//            (52-56% vs 58-60%), so don't fade them. Weekly H/L and the midnight open were tested too and added nothing (not drawn).
+// MARKET ADVISORY V21 — V20 plus the AO saucer trend system (docs 145c/145d, 27 Oct 2026).
+// MARKET ADVISORY V20 — rebuilt from tested parts only (DK Operations, Capital section, doc 115, 22 Oct 2026).
+// Every line on the panel has a number behind it from the five-year BTC record (docs 44, 68, 91, 105, 108):
+//   REGIME   containment switch — share of closes inside EMA20 ± 2 ATR over 50 bars vs its own median. The switch every book runs on.
+//   LADDER   Range v3 bids (+0.30 / +0.05 / -0.25 / -0.55 ATR off the band) and the single mid-EMA exit. +0.21%/episode, t 63, 72% win.
+//   TARGETS  NY: nearest side of the overnight (Asia+London) range first (77%; 96% from the bottom fifth), far side second.
+//            London: nearest Asia extreme first (London takes an Asia extreme 89%). A London extreme is swept in NY 95% of days.
+//            First 30-min NY move retraces the open 81%. Weekend midpoint revisited 74% of weeks.
+//   WEEK     weekend H/L and the Sunday-close rule (lower third -> low first 80%, upper third -> high first 85%).
+//   IGN      expansion bar (range >= 1.25x prior 20) with EMA20/50 agreement — Ignition without delta: a TAG, not a signal.
+//   SAUCER   Bill Williams' AO saucer inside the Alligator/fractal trend and EMA100; buy stop above the signal bar, pyramid to 5,
+//            exit all on the trend flip. Tested on 3h: beats random entries in every period; holdout PF 1.70 BTC+ETH, 1.22 on 10 coins.
+//            v9.1 daily filter (on by default): new entries only while yesterday's daily close is above the daily jaw. No stop (a stop
+//            at the signal-bar low halved the profit in testing). Runs on its own 3h engine on ANY chart (15m/1h/4h); 4h selectable.
+//   BLOCK    last three days of the month (the one calendar effect that survived out of sample); weekend on non-crypto charts.
+// Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
+// the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
+// Works on any symbol and intraday timeframe: everything is ATR- and session-relative. Advisory only — no orders.
+indicator("Market Advisory V22", shorttitle="MktAdv22", overlay=true, max_lines_count=200, max_labels_count=200)
+
+// ------------------------------------------------ INPUTS ------------------------------------------------
+string gR = "Regime & ladder"
+int   emaLen     = input.int(20, "Mid EMA", minval=5, group=gR)
+int   atrLen     = input.int(14, "ATR", minval=5, group=gR)
+float bandMult   = input.float(2.0, "Band (ATR)", step=0.1, group=gR)
+int   contWin    = input.int(50, "Containment window", minval=20, group=gR)
+int   medLook    = input.int(1000, "Median lookback (bars)", minval=200, maxval=2000, group=gR)
+bool  showLadder = input.bool(true, "Draw ladder when in RANGE", group=gR)
+float breakATR   = input.float(1.5, "Break beyond band (ATR)", step=0.1, group=gR)
+
+string gS = "Sessions (UTC, as the study defines them)"
+string asiaSes     = input.session("0000-0700", "Asia", group=gS)
+string londonSes   = input.session("0700-1300", "London", group=gS)
+string nySes       = input.session("1300-2000", "New York", group=gS)
+bool  showSessions = input.bool(true, "Session lines and tags", group=gS)
+bool  showTargets  = input.bool(true, "Session target lines (T1 / T2)", group=gS)
+bool  showWeekend  = input.bool(true, "Weekend H/L and midpoint (crypto)", group=gS)
+int   keepLabels   = input.int(30, "Keep last N tags", minval=5, maxval=100, group=gS)
+float tagGap       = input.float(0.8, "Tag distance from the bar (ATR)", minval=0.1, step=0.1, group=gS)
+
+string gI = "Expansion tag"
+bool  showIgn      = input.bool(true, "Tag expansion bars", group=gI)
+float ignMult      = input.float(1.25, "Range >= x prior-20 average", step=0.05, group=gI)
+bool  ignSkipLunch = input.bool(true, "Skip 16:00-18:59 UTC (US lunch, doc 108)", group=gI)
+
+string gA = "Saucer trend (docs 145c / 145d)"
+bool  showSauc  = input.bool(true, "Show the saucer trend system", group=gA)
+bool  saucDaily = input.bool(true, "Daily filter (v9.1): yesterday's daily close above the daily jaw", group=gA)
+int   saucMax   = input.int(5, "Max entries (pyramid)", minval=1, maxval=5, group=gA)
+bool  showTeeth = input.bool(false, "Plot the Alligator teeth", group=gA)
+string saucTf   = input.timeframe("180", "Engine timeframe (runs on this whatever chart you use; 3h tested best, 4h BTC/ETH only)", group=gA)
+
+string gD = "Yesterday's high / low (doc 161)"
+bool  showPD = input.bool(true, "Draw PDH / PDL and show the day read", group=gD)
+
+string gP = "Panel"
+string panelPos  = input.string("Top Right", "Position", options=["Top Right","Top Left","Bottom Right","Bottom Left"], group=gP)
+string panelSize = input.string("Small", "Text", options=["Tiny","Small","Normal"], group=gP)
+
+// ------------------------------------------------ HELPERS ------------------------------------------------
+pos() => panelPos == "Top Left" ? position.top_left : panelPos == "Bottom Right" ? position.bottom_right : panelPos == "Bottom Left" ? position.bottom_left : position.top_right
+sz()  => panelSize == "Tiny" ? size.tiny : panelSize == "Normal" ? size.normal : size.small
+color cUp   = #26a69a
+color cDn   = #ef5350
+color cMute = #8b949e
+color cHead = #e6edf3
+color cWarn = #ff9800
+color cLdn  = #fdd835
+color cNy   = #26c6da
+color cAsia = #ff7eb6
+color cWk   = #b388ff
+var label[] tags = array.new_label()
+float atrTag = ta.atr(14)   // computed every bar at global scope, so the tag offset is consistent
+tag(int x, float y, string t, color c, bool above) =>
+    float yOff = above ? y + tagGap * atrTag : y - tagGap * atrTag
+    label lb = label.new(x, yOff, t, style=above ? label.style_label_down : label.style_label_up, color=color.new(c, 20), textcolor=color.white, size=size.tiny)
+    array.push(tags, lb)
+    if array.size(tags) > keepLabels
+        label.delete(array.shift(tags))
+setln(line ln, int x0, float y0, int x1, float y1) =>
+    line.set_xy1(ln, x0, y0)
+    line.set_xy2(ln, x1, y1)
+
+// ------------------------------------------------ REGIME ------------------------------------------------
+float atr     = ta.atr(atrLen)
+float mid     = ta.ema(close, emaLen)
+float hiB     = mid + bandMult * atr
+float loB     = mid - bandMult * atr
+float inside  = close <= hiB and close >= loB ? 1.0 : 0.0
+float contain = ta.sma(inside, contWin)
+float contMed = ta.percentile_nearest_rank(contain, medLook, 50)
+bool  inRange = contain > contMed
+bool  brokeUp = close > hiB + breakATR * atr
+bool  brokeDn = close < loB - breakATR * atr
+string regime = inRange ? "RANGE" : "TREND"
+bool  regimeFlip = inRange != inRange[1]
+
+// ladder rungs (Range v3): bids below the lower band for longs, above the upper band for shorts
+float b1 = loB + 0.30 * atr
+float b2 = loB + 0.05 * atr
+float b3 = loB - 0.25 * atr
+float b4 = loB - 0.55 * atr
+float a1 = hiB - 0.30 * atr
+float a2 = hiB - 0.05 * atr
+float a3 = hiB + 0.25 * atr
+float a4 = hiB + 0.55 * atr
+float lo48 = ta.lowest(low, 48)
+float hi48 = ta.highest(high, 48)
+int lowTouched  = (lo48 < b1 ? 1 : 0) + (lo48 < b2 ? 1 : 0) + (lo48 < b3 ? 1 : 0) + (lo48 < b4 ? 1 : 0)
+int highTouched = (hi48 > a1 ? 1 : 0) + (hi48 > a2 ? 1 : 0) + (hi48 > a3 ? 1 : 0) + (hi48 > a4 ? 1 : 0)
+bool newLongRung     = inRange and low < b1 and low[1] >= b1
+bool newShortRung    = inRange and high > a1 and high[1] <= a1
+bool midHitFromBelow = inRange and high >= mid and close[1] < mid[1]
+bool midHitFromAbove = inRange and low <= mid and close[1] > mid[1]
+
+var line lb1 = na
+var line lb2 = na
+var line lb3 = na
+var line lb4 = na
+var line la1 = na
+var line la2 = na
+var line la3 = na
+var line la4 = na
+var line lmid = na
+var label[] rungLb = array.new_label()
+if barstate.islast and array.size(rungLb) == 0
+    for i = 0 to 7
+        array.push(rungLb, label.new(bar_index, close, "", style=label.style_label_left, color=color.new(#0d1117, 30), textcolor=cHead, size=size.tiny))
+if barstate.islast
+    if na(lmid)
+        lmid := line.new(bar_index, mid, bar_index, mid, color=color.new(cHead, 30), width=2)
+        lb1 := line.new(bar_index, b1, bar_index, b1, color=color.new(cUp, 40))
+        lb2 := line.new(bar_index, b2, bar_index, b2, color=color.new(cUp, 40))
+        lb3 := line.new(bar_index, b3, bar_index, b3, color=color.new(cUp, 40))
+        lb4 := line.new(bar_index, b4, bar_index, b4, color=color.new(cUp, 40))
+        la1 := line.new(bar_index, a1, bar_index, a1, color=color.new(cDn, 40))
+        la2 := line.new(bar_index, a2, bar_index, a2, color=color.new(cDn, 40))
+        la3 := line.new(bar_index, a3, bar_index, a3, color=color.new(cDn, 40))
+        la4 := line.new(bar_index, a4, bar_index, a4, color=color.new(cDn, 40))
+    bool on = showLadder and inRange
+    int x0 = bar_index - 12
+    int x1 = bar_index + 6
+    setln(lmid, x0, mid, x1, mid)
+    setln(lb1, x0, on ? b1 : na, x1, on ? b1 : na)
+    setln(lb2, x0, on ? b2 : na, x1, on ? b2 : na)
+    setln(lb3, x0, on ? b3 : na, x1, on ? b3 : na)
+    setln(lb4, x0, on ? b4 : na, x1, on ? b4 : na)
+    setln(la1, x0, on ? a1 : na, x1, on ? a1 : na)
+    setln(la2, x0, on ? a2 : na, x1, on ? a2 : na)
+    setln(la3, x0, on ? a3 : na, x1, on ? a3 : na)
+    setln(la4, x0, on ? a4 : na, x1, on ? a4 : na)
+    // rung labels: Range v3 bid sizes 15 / 25 / 30 / 30 % of the intended position, at +0.30 / +0.05 / -0.25 / -0.55 ATR off the band
+    float[] rungPx = array.from(b1, b2, b3, b4, a1, a2, a3, a4)
+    string[] rungTx = array.from("BUY 1  15%", "BUY 2  25%", "BUY 3  30%", "BUY 4  30%", "SELL 1  15%", "SELL 2  25%", "SELL 3  30%", "SELL 4  30%")
+    for i = 0 to 7
+        label lr = array.get(rungLb, i)
+        label.set_xy(lr, x1, on ? array.get(rungPx, i) : na)
+        label.set_text(lr, on ? array.get(rungTx, i) + "  " + str.tostring(array.get(rungPx, i), format.mintick) : "")
+        label.set_textcolor(lr, i < 4 ? cUp : cDn)
+plot(hiB, "Upper band", color=color.new(cMute, 70))
+plot(loB, "Lower band", color=color.new(cMute, 70))
+plot(mid, "Mid EMA", color=color.new(cHead, 60))
+
+// ------------------------------------------------ SESSIONS ------------------------------------------------
+bool intraday  = timeframe.isintraday
+bool inAsia    = intraday and not na(time(timeframe.period, asiaSes, "UTC"))
+bool inLdn     = intraday and not na(time(timeframe.period, londonSes, "UTC"))
+bool inNy      = intraday and not na(time(timeframe.period, nySes, "UTC"))
+bool asiaStart = inAsia and not inAsia[1]
+bool ldnStart  = inLdn and not inLdn[1]
+bool nyStart   = inNy and not inNy[1]
+var float aH = na
+var float aL = na
+var float lH = na
+var float lL = na
+var float nH = na
+var float nL = na
+var float nyOpen = na
+var float ldnOpen = na
+var int ldnBar = na
+var int aBar = na
+var int nyBar = na
+if asiaStart
+    aH := high
+    aL := low
+    aBar := bar_index
+else if inAsia
+    aH := math.max(aH, high)
+    aL := math.min(aL, low)
+if ldnStart
+    lH := high
+    lL := low
+    ldnBar := bar_index
+    ldnOpen := open
+else if inLdn
+    lH := math.max(lH, high)
+    lL := math.min(lL, low)
+if nyStart
+    nH := high
+    nL := low
+    nyOpen := open
+    nyBar := bar_index
+else if inNy
+    nH := math.max(nH, high)
+    nL := math.min(nL, low)
+
+// NY lean from the open's position in the overnight (Asia + London) range — doc 105 B
+float ovH = math.max(nz(aH, high), nz(lH, high))
+float ovL = math.min(nz(aL, low), nz(lL, low))
+float nyPos = not na(nyOpen) and ovH > ovL ? (nyOpen - ovL) / (ovH - ovL) : na
+string nyLean = na(nyPos) ? "-" : nyPos < 0.2 ? "LOW first 96%" : nyPos > 0.8 ? "HIGH first ~90%" : nyPos < 0.5 ? "LOW first 77%" : "HIGH first 77%"
+
+// Session targets: T1 = nearest extreme of the prior range, T2 = far side
+var float t1 = na
+var float t2 = na
+var string t1Name = "-"
+var string t2Name = "-"
+var int tBar = na
+if nyStart and not na(nyPos)
+    bool lowNear = nyPos < 0.5
+    t1 := lowNear ? ovL : ovH
+    t2 := lowNear ? ovH : ovL
+    t1Name := lowNear ? "T1 overnight LOW" : "T1 overnight HIGH"
+    t2Name := lowNear ? "T2 overnight HIGH" : "T2 overnight LOW"
+    tBar := bar_index
+if ldnStart and not na(aH) and aH > aL
+    bool lowNearL = (ldnOpen - aL) < (aH - ldnOpen)
+    t1 := lowNearL ? aL : aH
+    t2 := lowNearL ? aH : aL
+    t1Name := lowNearL ? "T1 Asia LOW" : "T1 Asia HIGH"
+    t2Name := lowNearL ? "T2 Asia HIGH" : "T2 Asia LOW"
+    tBar := bar_index
+// sweeps during NY of the London extremes; during London of the Asia extremes
+bool sweptLdnH  = inNy and not na(lH) and high > lH and high[1] <= lH
+bool sweptLdnL  = inNy and not na(lL) and low < lL and low[1] >= lL
+bool sweptAsiaH = inLdn and not na(aH) and high > aH and high[1] <= aH
+bool sweptAsiaL = inLdn and not na(aL) and low < aL and low[1] >= aL
+bool sweepBar = sweptLdnH or sweptLdnL or sweptAsiaH or sweptAsiaL   // a sweep tag will be drawn this bar; target tags fold into it
+bool t1Hit = not na(t1) and (t1 >= close[1] ? high >= t1 : low <= t1)
+bool t2Hit = not na(t2) and (t2 >= close[1] ? high >= t2 : low <= t2)
+var bool t1Done = false
+var bool t2Done = false
+if nyStart or ldnStart
+    t1Done := false
+    t2Done := false
+bool t1Now = t1Hit and not t1Done
+bool t2Now = t2Hit and not t2Done
+if t1Now
+    t1Done := true
+    if showTargets and not sweepBar
+        tag(bar_index, t1, "T1 hit", cHead, t1 >= close)
+if t2Now
+    t2Done := true
+    if showTargets and not sweepBar
+        tag(bar_index, t2, "T2 hit", cHead, t2 >= close)
+var line t1Ln = na
+var line t2Ln = na
+if showTargets and (nyStart or ldnStart) and not na(t1)
+    if not na(t1Ln)
+        line.delete(t1Ln)
+        line.delete(t2Ln)
+    t1Ln := line.new(bar_index, t1, bar_index + 1, t1, color=color.new(cHead, 20), width=2, style=line.style_dashed)
+    t2Ln := line.new(bar_index, t2, bar_index + 1, t2, color=color.new(cHead, 60), width=1, style=line.style_dashed)
+if showTargets and not na(t1Ln) and (inNy or inLdn)
+    setln(t1Ln, tBar, t1, bar_index + 1, t1)
+    setln(t2Ln, tBar, t2, bar_index + 1, t2)
+
+var string lastEvent = "-"
+if nyStart
+    lastEvent := "LDN standing - NY sweeps 95%"
+if sweptLdnH
+    lastEvent := "NY took LDN high"
+if sweptLdnL
+    lastEvent := "NY took LDN low"
+if sweptAsiaH
+    lastEvent := "LDN took ASIA high"
+if sweptAsiaL
+    lastEvent := "LDN took ASIA low"
+
+var line ldnHiLn = na
+var line ldnLoLn = na
+var line asiaHiLn = na
+var line asiaLoLn = na
+if showSessions and ldnStart
+    if not na(ldnHiLn)
+        line.delete(ldnHiLn)
+        line.delete(ldnLoLn)
+    ldnHiLn := line.new(bar_index, high, bar_index + 1, high, color=color.new(cLdn, 40), style=line.style_dotted)
+    ldnLoLn := line.new(bar_index, low, bar_index + 1, low, color=color.new(cLdn, 40), style=line.style_dotted)
+if showSessions and asiaStart
+    if not na(asiaHiLn)
+        line.delete(asiaHiLn)
+        line.delete(asiaLoLn)
+    asiaHiLn := line.new(bar_index, high, bar_index + 1, high, color=color.new(cAsia, 50), style=line.style_dotted)
+    asiaLoLn := line.new(bar_index, low, bar_index + 1, low, color=color.new(cAsia, 50), style=line.style_dotted)
+if showSessions and not na(ldnHiLn) and not na(lH)
+    setln(ldnHiLn, ldnBar, lH, bar_index + 1, lH)
+    setln(ldnLoLn, ldnBar, lL, bar_index + 1, lL)
+if showSessions and not na(asiaHiLn) and not na(aH)
+    setln(asiaHiLn, aBar, aH, bar_index + 1, aH)
+    setln(asiaLoLn, aBar, aL, bar_index + 1, aL)
+// one small tag per session start and per sweep — highs above the bar, lows below
+if showSessions and nyStart
+    tag(bar_index, high, "NY - " + nyLean, cNy, true)   // session tags always ABOVE the bar; sweeps of lows go below
+if showSessions and ldnStart
+    tag(bar_index, high, "LDN", cLdn, true)
+if showSessions and asiaStart
+    tag(bar_index, high, "ASIA", cAsia, true)
+string tgtSuffix = t1Now ? " = T1" : t2Now ? " = T2" : ""
+if showSessions and (sweptLdnH or sweptAsiaH)
+    tag(bar_index, high, (sweptLdnH ? "LDN H swept" : "ASIA H swept") + tgtSuffix, cWarn, true)
+if showSessions and (sweptLdnL or sweptAsiaL)
+    tag(bar_index, low, (sweptLdnL ? "LDN L swept" : "ASIA L swept") + tgtSuffix, cWarn, false)
+
+// ------------------------------------------------ WEEKEND LEVELS (crypto) ------------------------------------------------
+int dowU = dayofweek(time, "UTC")
+bool weekend = dowU == dayofweek.saturday or dowU == dayofweek.sunday
+bool wkStart = weekend and not weekend[1]
+bool wkEnd   = not weekend and weekend[1]
+var float wH = na
+var float wL = na
+var float wkHeldH = na
+var float wkHeldL = na
+var string weekLean = "-"
+var bool wkHighGone = false
+var bool wkLowGone = false
+if wkStart
+    wH := high
+    wL := low
+else if weekend
+    wH := math.max(wH, high)
+    wL := math.min(wL, low)
+if wkEnd
+    wkHeldH := wH
+    wkHeldL := wL
+    wkHighGone := false
+    wkLowGone := false
+    float p = wH > wL ? (close[1] - wL) / (wH - wL) : 0.5
+    weekLean := p < 0.333 ? "LOW first 80%" : p > 0.667 ? "HIGH first 85%" : "coin flip"
+if not weekend and not na(wkHeldH)
+    if high > wkHeldH and not wkHighGone
+        wkHighGone := true
+        if showWeekend
+            tag(bar_index, high, "WKND H taken", cWk, true)
+    if low < wkHeldL and not wkLowGone
+        wkLowGone := true
+        if showWeekend
+            tag(bar_index, low, "WKND L taken", cWk, false)
+float wkMid = (wkHeldH + wkHeldL) / 2.0
+plot(showWeekend and not weekend ? wkHeldH : na, "Weekend high", color=color.new(cWk, 40), style=plot.style_linebr)
+plot(showWeekend and not weekend ? wkHeldL : na, "Weekend low", color=color.new(cWk, 40), style=plot.style_linebr)
+plot(showWeekend and not weekend ? wkMid : na, "Weekend midpoint (74%)", color=color.new(cWk, 70), style=plot.style_linebr)
+string weekText = na(wkHeldH) ? "-" : wkHighGone and wkLowGone ? "both taken" : wkHighGone ? "H taken - L 54% later - mid 74%" : wkLowGone ? "L taken - H open" : weekLean
+
+// ------------------------------------------------ EXPANSION TAG (Ignition without delta) ------------------------------------------------
+float rng   = high - low
+float ign   = rng / ta.sma(rng[1], 20)
+bool  emaUp = ta.ema(close, 20) > ta.ema(close, 50)
+int   hourU = hour(time, "UTC")
+bool  lunch = ignSkipLunch and hourU >= 16 and hourU <= 18
+bool  ignLong  = showIgn and barstate.isconfirmed and ign >= ignMult and close > open and emaUp and not lunch
+bool  ignShort = showIgn and barstate.isconfirmed and ign >= ignMult and close < open and not emaUp and not lunch
+plotshape(ignLong, "Expansion up", style=shape.diamond, location=location.belowbar, color=color.new(cUp, 0), size=size.tiny)
+plotshape(ignShort, "Expansion down", style=shape.diamond, location=location.abovebar, color=color.new(cDn, 0), size=size.tiny)
+var string lastIgn = "-"
+if ignLong
+    lastIgn := "UP x" + str.tostring(ign, "#.0")
+if ignShort
+    lastIgn := "DOWN x" + str.tostring(ign, "#.0")
+
+// ------------------------------------------------ BLOCKS ------------------------------------------------
+bool monthEnd = dayofmonth(time + 3 * 86400000, "UTC") <= 3   // inside the last three days of the month
+bool indexWeekend = weekend and syminfo.type != "crypto"
+string block = monthEnd ? "MONTH-END (last 3 days)" : indexWeekend ? "WEEKEND" : "-"
+
+// ------------------------------------------------ ADVISORY STATE ------------------------------------------------
+// LONG / SHORT come only from the range ladder (the tested edge). In TREND the panel says LEAN with the direction of the
+// EMA20/50 — untested as an entry, so a lean, not a call. CAUTION when the band is broken or a block is on.
+bool  trendUp  = ta.ema(close, 20) > ta.ema(close, 50)
+bool  recentLongRung  = inRange and ta.barssince(low < b1) <= 12 and close < mid
+bool  recentShortRung = inRange and ta.barssince(high > a1) <= 12 and close > mid
+bool  caution = (brokeUp or brokeDn) or monthEnd or indexWeekend
+int   advState = caution ? 9 : recentLongRung ? 2 : recentShortRung ? -2 : (not inRange ? (trendUp ? 1 : -1) : 0)
+string advText = advState == 9 ? "CAUTION" : advState == 2 ? "LONG" : advState == -2 ? "SHORT" : advState == 1 ? "LEAN LONG" : advState == -1 ? "LEAN SHORT" : "NEUTRAL"
+color  advCol  = advState == 9 ? cWarn : advState == 2 ? cUp : advState == -2 ? cDn : advState == 1 ? color.new(cUp, 30) : advState == -1 ? color.new(cDn, 30) : cMute
+string advWhy  = advState == 9 ? (brokeUp ? "band broken upward" : brokeDn ? "band broken downward" : monthEnd ? "month-end block" : "weekend") : advState == 2 ? "ladder rung hit, below mid - target mid " + str.tostring(mid, format.mintick) : advState == -2 ? "ladder rung hit, above mid - target mid " + str.tostring(mid, format.mintick) : advState == 1 ? "trend regime, EMA20 > EMA50 - longs on expansion bars only" : advState == -1 ? "trend regime, EMA20 < EMA50 - shorts on expansion bars only" : "range, no rung touched yet"
+bool newLong    = advState == 2 and advState[1] != 2 and barstate.isconfirmed
+bool newShort   = advState == -2 and advState[1] != -2 and barstate.isconfirmed
+bool newCaution = advState == 9 and advState[1] != 9 and barstate.isconfirmed
+plotshape(newLong, "LONG", style=shape.circle, location=location.belowbar, color=color.new(cUp, 0), size=size.small, text="LONG", textcolor=color.new(cUp, 0))
+plotshape(newShort, "SHORT", style=shape.circle, location=location.abovebar, color=color.new(cDn, 0), size=size.small, text="SHORT", textcolor=color.new(cDn, 0))
+plotshape(newCaution, "CAUTION", style=shape.xcross, location=location.abovebar, color=color.new(cWarn, 0), size=size.small, text="CAUTION", textcolor=color.new(cWarn, 0))
+
+// ------------------------------------------------ TRADE MARKERS: entry, target, invalidation ------------------------------------------------
+// On a new LONG: BUY marker at the first rung, TARGET line at the mid EMA, INVALID line 1.5 ATR under the band (the break exit).
+// Lines follow the mid EMA while the call is live and are removed when the mid is hit or the state ends.
+var line tgtLn = na
+var line invLn = na
+var label tgtLb = na
+var label invLb = na
+bool liveLong  = advState == 2
+bool liveShort = advState == -2
+if newLong or newShort
+    if not na(tgtLn)
+        line.delete(tgtLn)
+        line.delete(invLn)
+        label.delete(tgtLb)
+        label.delete(invLb)
+    float invLvl = newLong ? loB - breakATR * atr : hiB + breakATR * atr
+    tgtLn := line.new(bar_index, mid, bar_index + 1, mid, color=color.new(cHead, 0), width=2)
+    invLn := line.new(bar_index, invLvl, bar_index + 1, invLvl, color=color.new(cWarn, 0), width=1, style=line.style_dashed)
+    tgtLb := label.new(bar_index + 1, mid, "TARGET " + str.tostring(mid, format.mintick), style=label.style_label_left, color=color.new(cHead, 20), textcolor=color.black, size=size.tiny)
+    invLb := label.new(bar_index + 1, invLvl, "INVALID " + str.tostring(invLvl, format.mintick), style=label.style_label_left, color=color.new(cWarn, 20), textcolor=color.white, size=size.tiny)
+    tag(bar_index, newLong ? low : high, newLong ? "BUY " + str.tostring(b1, format.mintick) : "SELL " + str.tostring(a1, format.mintick), newLong ? cUp : cDn, newShort)
+if not na(tgtLn) and (liveLong or liveShort)
+    float invNow = liveLong ? loB - breakATR * atr : hiB + breakATR * atr
+    setln(tgtLn, line.get_x1(tgtLn), mid, bar_index + 1, mid)
+    setln(invLn, line.get_x1(invLn), invNow, bar_index + 1, invNow)
+    label.set_xy(tgtLb, bar_index + 1, mid)
+    label.set_text(tgtLb, "TARGET " + str.tostring(mid, format.mintick))
+    label.set_xy(invLb, bar_index + 1, invNow)
+    label.set_text(invLb, "INVALID " + str.tostring(invNow, format.mintick))
+bool targetHit = not na(tgtLn) and ((liveLong and high >= mid) or (liveShort and low <= mid))
+if not na(tgtLn) and (targetHit or (not liveLong and not liveShort))
+    if targetHit
+        tag(bar_index, mid, "TARGET HIT", cHead, liveLong)
+    line.delete(tgtLn)
+    line.delete(invLn)
+    label.delete(tgtLb)
+    label.delete(invLb)
+    tgtLn := na
+    invLn := na
+    tgtLb := na
+    invLb := na
+
+// ------------------------------------------------ SAUCER TREND (docs 145c / 145d / 145e) ------------------------------------------------
+// Same rules as paper books 9 and 10, computed on its OWN timeframe (default 3h) whatever chart you are on, so it can sit on a
+// 15m / 1h / 4h chart. Only completed engine bars are used (no repaint): an event shows on the first chart bar after that
+// engine bar closes. Tested: 3h works (all coins); 4h works on BTC/ETH only; 15m and 1h lose money (doc 145e).
+saucEngine(bool useDaily, int maxN) =>
+    float mp = hl2
+    float ao = ta.sma(mp, 5) - ta.sma(mp, 34)
+    float teeth = ta.rma(mp, 8)[5]
+    float ema = ta.ema(close, 100)
+    bool fU = high[2] == ta.highest(high, 5)
+    bool fD = low[2] == ta.lowest(low, 5)
+    var float lu = na
+    var float ld = na
+    var int st = 0
+    float luP = lu
+    float ldP = ld
+    if not na(luP) and close > luP and luP > teeth
+        st := 1
+    else if not na(ldP) and close < ldP and ldP < teeth
+        st := -1
+    if fU
+        lu := high[2]
+    if fD
+        ld := low[2]
+    bool dok = request.security(syminfo.tickerid, "D", close[1] > ta.rma(hl2, 13)[9], lookahead=barmerge.lookahead_on)
+    var float pend = na
+    var int nOpen = 0
+    var float avg = na
+    bool sig = false
+    bool fill = false
+    bool ex = false
+    if st == -1 and nOpen > 0
+        ex := true
+        nOpen := 0
+        avg := na
+    if st == -1
+        pend := na
+    if not na(pend) and st == 1
+        if high > pend and nOpen < maxN
+            float px = math.max(pend, close[1])
+            avg := na(avg) ? px : (avg * nOpen + px) / (nOpen + 1)
+            nOpen += 1
+            fill := true
+            pend := na
+        else if ao < ao[1]
+            pend := na
+        else if high < pend
+            pend := high
+    bool elig = st == 1 and close > ema and (dok or not useDaily)
+    if elig and ao > 0 and ao[1] > 0 and ao[2] > 0 and ao[2] > ao[1] and ao > ao[1]
+        pend := high
+        sig := true
+    [sig[1], fill[1], ex[1], pend[1], nOpen[1], avg[1], ld[1], st[1], dok[1], close[1] > ema[1], teeth[1]]
+
+[sSig, sFill, sExit, sPend, sOpen, sAvg, sLd, sState, dailyOk, aboveEma, sTeeth] = request.security(syminfo.tickerid, saucTf, saucEngine(saucDaily, saucMax), lookahead=barmerge.lookahead_on)
+bool htfNew  = ta.change(time(saucTf)) != 0
+bool sigNow  = htfNew and sSig
+bool fillNow = htfNew and sFill
+bool exitNow = htfNew and sExit
+plot(showSauc and showTeeth ? sTeeth : na, "Alligator teeth (engine timeframe)", color=color.new(#e91e63, 30))
+plot(showSauc and not na(sPend) ? sPend : na, "Saucer buy stop", color=color.new(cUp, 0), style=plot.style_circles, linewidth=2)
+plot(showSauc and sOpen > 0 ? sLd : na, "Saucer exit line (engine bar closing below = exit all)", color=color.new(cWarn, 20), style=plot.style_linebr)
+plotshape(showSauc and sigNow, "Saucer signal", style=shape.triangleup, location=location.belowbar, color=color.new(cUp, 30), size=size.tiny, text="S", textcolor=color.new(cUp, 30))
+plotshape(showSauc and fillNow and sOpen == 1, "Saucer buy", style=shape.labelup, location=location.belowbar, color=color.new(cUp, 0), size=size.tiny, text="SAUCER BUY", textcolor=color.white)
+plotshape(showSauc and fillNow and sOpen > 1, "Saucer add", style=shape.labelup, location=location.belowbar, color=color.new(cUp, 30), size=size.tiny, text="ADD", textcolor=color.white)
+plotshape(showSauc and exitNow, "Saucer exit", style=shape.labeldown, location=location.abovebar, color=color.new(cWarn, 0), size=size.tiny, text="SAUCER EXIT", textcolor=color.white)
+string tfName = saucTf == "180" ? "3h" : saucTf == "240" ? "4h" : saucTf == "60" ? "1h" : saucTf
+string tfNote = " [" + tfName + (saucTf == "180" or saucTf == "240" ? "]" : " - UNTESTED/LOSES]")
+string saucTxt = not showSauc ? "off" : sState == -1 ? "trend DOWN - stand aside" + tfNote : sState == 0 ? "no trend yet" + tfNote : sOpen > 0 ? "IN " + str.tostring(sOpen) + "/" + str.tostring(saucMax) + " - avg " + str.tostring(sAvg, format.mintick) + " - exit on close < " + str.tostring(sLd, format.mintick) + tfNote : not na(sPend) ? "BUY STOP " + str.tostring(sPend, format.mintick) + tfNote : not aboveEma ? "trend up, below EMA100 - wait" + tfNote : saucDaily and not dailyOk ? "trend up, daily filter OFF - no new entries" + tfNote : "trend up - waiting for a saucer" + tfNote
+color saucCol = not showSauc or sState == 0 ? cMute : sState == -1 ? cDn : sOpen > 0 or not na(sPend) ? cUp : cHead
+
+// ------------------------------------------------ YESTERDAY'S HIGH / LOW (doc 161) ------------------------------------------------
+float pdh = request.security(syminfo.tickerid, "D", high[1], lookahead=barmerge.lookahead_on)
+float pdl = request.security(syminfo.tickerid, "D", low[1], lookahead=barmerge.lookahead_on)
+float dOpen = request.security(syminfo.tickerid, "D", open, lookahead=barmerge.lookahead_on)
+float dHigh = request.security(syminfo.tickerid, "D", high, lookahead=barmerge.lookahead_off)
+float dLow  = request.security(syminfo.tickerid, "D", low, lookahead=barmerge.lookahead_off)
+float dPos  = pdh > pdl ? (dOpen - pdl) / (pdh - pdl) : 0.5
+bool  pdhTaken = dHigh > pdh
+bool  pdlTaken = dLow < pdl
+plot(showPD ? pdh : na, "PDH", color=color.new(#2196F3, 20), style=plot.style_stepline)
+plot(showPD ? pdl : na, "PDL", color=color.new(#F44336, 20), style=plot.style_stepline)
+string dayTxt = not showPD ? "off" : (pdhTaken and pdlTaken) ? "both taken" : dPos > 2.0/3 ? (pdhTaken ? "PDH taken (74% day) - PDL 22%" : "aims PDH " + str.tostring(pdh, format.mintick) + " (74%, first 70%)") : dPos < 1.0/3 ? (pdlTaken ? "PDL taken (72% day) - PDH 22%" : "aims PDL " + str.tostring(pdl, format.mintick) + " (72%, first 70%)") : (pdhTaken ? "PDH taken - PDL ~43%" : pdlTaken ? "PDL taken - PDH ~43%" : "mid-range: PDH / PDL ~43% each")
+color dayCol = dPos > 2.0/3 ? cUp : dPos < 1.0/3 ? cDn : cHead
+
+// ------------------------------------------------ PANEL (2 x 9) ------------------------------------------------
+var table panel = table.new(pos(), 2, 15, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
+row(int r, string k, string v, color c) =>
+    table.cell(panel, 0, r, k, text_color=cMute, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, r, v, text_color=c, text_size=sz(), text_halign=text.align_right)
+if barstate.islast
+    table.cell(panel, 0, 0, "MKT ADVISORY V22", text_color=cHead, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
+    // THE READ — one plain-English line from the tested parts (no score: the V19 score was indistinguishable from random)
+    string readTxt = inRange ? (brokeUp or brokeDn ? "RANGE BROKEN - stand aside until the band is back" : lowTouched > 0 ? "LONG - buy the lower rungs, sell at the mid EMA (72% win)" : highTouched > 0 ? "SHORT - sell the upper rungs, cover at the mid EMA (72% win)" : close < mid ? "RANGE - wait for a long rung below " + str.tostring(b1, format.mintick) : "RANGE - wait for a short rung above " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - no ladder; expansion bars up only" : "TREND DOWN - no ladder; expansion bars down only")
+    color readCol = inRange ? (brokeUp or brokeDn ? cWarn : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead) : (trendUp ? cUp : cDn)
+    table.cell(panel, 0, 1, "ADVISORY", text_color=cHead, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 1, 1, advText, text_color=advCol, text_size=panelSize == "Tiny" ? size.small : size.normal, text_halign=text.align_right)
+    row(2, "  why", advWhy, cMute)
+    row(3, "READ", readTxt, readCol)
+    string sessTxt = inNy ? (na(nyPos) ? "NY" : nyPos < 0.5 ? "NY aims LOW first (" + (nyPos < 0.2 ? "96%" : "77%") + ") then the high" : "NY aims HIGH first (" + (nyPos > 0.8 ? "~90%" : "77%") + ") then the low") : inLdn ? "LDN - takes an Asia extreme 89%, nearest first" : inAsia ? "ASIA - sets the box; London rests inside it" : "off hours - levels carry to the next session"
+    row(4, "SESSION READ", sessTxt, inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    row(5, "REGIME", regime + "  " + str.tostring(contain, "0.00") + (inRange ? " > " : " < ") + str.tostring(contMed, "0.00") + (inRange ? "  (inside its band more than usual)" : "  (breaking out more than usual)"), inRange ? cUp : cWarn)
+    string ladderTxt = not inRange ? "off (trend)" : brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "long " + str.tostring(lowTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : highTouched > 0 ? "short " + str.tostring(highTouched) + "/4 - exit mid " + str.tostring(mid, format.mintick) : "waiting for a rung"
+    row(6, "LADDER", ladderTxt, not inRange ? cMute : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead)
+    row(7, "SESSION", inNy ? "NEW YORK - " + nyLean : inLdn ? "LONDON" : inAsia ? "ASIA" : "off hours", inNy ? cNy : inLdn ? cLdn : inAsia ? cAsia : cMute)
+    string tgtTxt = na(t1) or not (inNy or inLdn) ? "-" : (t1Done ? "T1 done - " : "T1 " + str.tostring(t1, format.mintick) + " - ") + (t2Done ? "T2 done" : "T2 " + str.tostring(t2, format.mintick))
+    row(8, "TARGETS", tgtTxt, cHead)
+    row(9, "LAST EVENT", lastEvent, lastEvent == "-" ? cMute : cWarn)
+    row(10, "WEEK", weekText, cWk)
+    row(11, "EXPANSION", lastIgn, lastIgn == "-" ? cMute : str.startswith(lastIgn, "UP") ? cUp : cDn)
+    row(12, "BLOCK", block, block == "-" ? cMute : cWarn)
+    row(13, "SAUCER", saucTxt, saucCol)
+    row(14, "DAY", dayTxt, dayCol)
+
+// ------------------------------------------------ ALERTS ------------------------------------------------
+alertcondition(newLong, "ADVISORY LONG", "MktAdv22 LONG {{ticker}} {{interval}}")
+alertcondition(newShort, "ADVISORY SHORT", "MktAdv22 SHORT {{ticker}} {{interval}}")
+alertcondition(newCaution, "ADVISORY CAUTION", "MktAdv22 CAUTION {{ticker}} {{interval}}")
+alertcondition(targetHit, "TARGET HIT", "MktAdv22 target (mid EMA) hit {{ticker}} {{interval}}")
+alertcondition(regimeFlip, "Regime flip", "MktAdv22 regime flip {{ticker}} {{interval}}")
+alertcondition(newLongRung, "Long ladder rung", "MktAdv22 first long rung touched {{ticker}} {{interval}}")
+alertcondition(newShortRung, "Short ladder rung", "MktAdv22 first short rung touched {{ticker}} {{interval}}")
+alertcondition(midHitFromBelow or midHitFromAbove, "Mid EMA reached", "MktAdv22 mid EMA (ladder exit) {{ticker}} {{interval}}")
+alertcondition(t1Hit, "Session target 1 hit", "MktAdv22 T1 hit {{ticker}} {{interval}}")
+alertcondition(sweptLdnH or sweptLdnL, "London extreme swept", "MktAdv22 London extreme swept in NY {{ticker}}")
+alertcondition(ignLong or ignShort, "Expansion bar", "MktAdv22 expansion bar {{ticker}} {{interval}}")
+alertcondition(showSauc and sigNow, "Saucer signal", "MktAdv22 saucer signal - buy stop set {{ticker}} {{interval}}")
+alertcondition(showSauc and fillNow, "Saucer buy / add", "MktAdv22 saucer buy stop filled {{ticker}} {{interval}}")
+alertcondition(showSauc and exitNow, "Saucer exit", "MktAdv22 saucer trend flipped down - exit all {{ticker}} {{interval}}")
+alertcondition(showPD and pdhTaken and not pdhTaken[1], "PDH taken", "MktAdv22 yesterday's high taken {{ticker}}")
+alertcondition(showPD and pdlTaken and not pdlTaken[1], "PDL taken", "MktAdv22 yesterday's low taken {{ticker}}")

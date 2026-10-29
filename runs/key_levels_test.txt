@@ -1,0 +1,11 @@
+DAILY (1831 days): PDH taken 47%, PDL taken 44%, both 12%, neither 20%
+   open in bottom third   n 562: PDH 22% PDL 72% | first: H 12% L 70%
+   middle                 n 616: PDH 43% PDL 43% | first: H 37% L 38%
+   top third              n 653: PDH 74% PDL 22% | first: H 70% L 12%
+   opens outside range    n   0: PDH nan% PDL nan% | first: H nan% L nan%
+   first touch of PDH: back on the approach side 4h later 52% (n863) vs placebo level 58%
+   first touch of PDL: back on the approach side 4h later 56% (n812) vs placebo level 60%
+WEEKLY (261 weeks): PWH taken 51%, PWL taken 44%, both 10%
+   first touch of PWH: back on the approach side 4h later 52% (n132) vs placebo 52%
+   first touch of PWL: back on the approach side 4h later 52% (n116) vs placebo 56%
+MIDNIGHT OPEN (814 NY sessions opening >0.5% away): traded back to MO by 16:00 45% vs placebo same distance the other way 42%
