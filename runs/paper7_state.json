@@ -1,13 +1,18 @@
 {
  "started": "2026-10-19",
- "equity": 2496.76,
- "shadow_equity": 1740.25,
- "closed": 24,
- "closed_shadow": 120,
+ "equity": 2508.3,
+ "shadow_equity": 1722.56,
+ "closed": 25,
+ "closed_shadow": 125,
  "spec": "Ignition v1 (doc 92)",
- "open": null,
- "last_bar": "2026-10-28 23:55:00+00:00",
- "last_booked": "2026-10-29",
+ "open": {
+  "opened": "2026-10-29 23:35:00+00:00",
+  "side": -1,
+  "entry": 28945.038500000002,
+  "bars_so_far": 4
+ },
+ "last_bar": "2026-10-29 23:55:00+00:00",
+ "last_booked": "2026-10-30",
  "halt": null,
  "us_hours": {
   "equity": 2400.24,

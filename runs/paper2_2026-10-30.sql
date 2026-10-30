@@ -1,0 +1,12 @@
+INSERT OR REPLACE INTO pb2_equity (d, equity, open_positions, closed_total) VALUES ('2026-10-30', 1982.6764, 0, 587);
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'DOTUSD', 'L', '2026-10-29 18:15:00+00:00', '2026-10-29 18:30:00+00:00', -0.009185, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'DOTUSD', 'S', '2026-10-29 16:00:00+00:00', '2026-10-29 18:30:00+00:00', 0.022338, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'HBARUSD', 'S', '2026-10-29 15:00:00+00:00', '2026-10-29 18:30:00+00:00', 0.021980, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'HBARUSD', 'L', '2026-10-29 18:15:00+00:00', '2026-10-29 20:30:00+00:00', -0.046961, 'stop');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'INJUSD', 'L', '2026-10-29 20:00:00+00:00', '2026-10-29 20:15:00+00:00', -0.003922, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'LTCUSD', 'L', '2026-10-29 18:30:00+00:00', '2026-10-29 20:30:00+00:00', -0.028358, 'break');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'QNTUSD', 'S', '2026-10-29 16:00:00+00:00', '2026-10-29 18:30:00+00:00', 0.031348, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'QNTUSD', 'L', '2026-10-29 17:30:00+00:00', '2026-10-29 20:30:00+00:00', -0.046961, 'stop');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'STRKUSD', 'L', '2026-10-29 18:15:00+00:00', '2026-10-29 18:30:00+00:00', -0.011682, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'XRPUSD', 'L', '2026-10-29 18:30:00+00:00', '2026-10-29 20:15:00+00:00', -0.007805, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-30', 'ZROUSD', 'L', '2026-10-30 01:30:00+00:00', '2026-10-30 01:45:00+00:00', -0.011915, 'regime');

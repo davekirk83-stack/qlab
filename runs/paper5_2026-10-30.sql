@@ -1,0 +1,5 @@
+INSERT OR REPLACE INTO pb5_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-10-30', 2000.0000, 2000.0000, 0, 0, 0);
+CREATE TABLE IF NOT EXISTS pb5_v11_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+INSERT OR REPLACE INTO pb5_v11_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-10-30', 1974.0764, 1975.7450, 0, 1, 1);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-10-30', 'ZECUSD@v11', '2026-10-28 00:00:00+00:00', '2026-10-29 20:00:00+00:00', -0.086412, 'stop', 0);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-10-30', 'FETUSD@v11', '2026-10-28 00:00:00+00:00', '2026-10-29 20:00:00+00:00', -0.080850, 'stop', 1);
