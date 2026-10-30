@@ -1,65 +1,66 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-13:36:51 delta-share threshold 0.0482 (percentile-matched on 870 IG bars); registered 0.05
-13:37:09 history 300 bars to 2026-10-30 13:37:00+00:00
-13:37:09 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-13:37:09 streaming IX.D.NASDAQ.CASH.IP
-13:37:09 ls status: CONNECTING
-13:37:10 ls status: CONNECTED:WS-STREAMING
-13:37:10 CHART IX.D.NASDAQ.CASH.IP subscribed
-13:37:10 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-13:37:10 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28564.2', 'OFR': '28565.4'}
-13:37:10 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28564.4', 'OFR': '28565.6'}
-13:37:10 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28564.2', 'OFR': '28565.4'}
-13:37:10 stream subscribed on CHART via Z6FARW
-13:37:10 trading session on Z6FARW
-13:37:11 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.25 GBP/pt, status TRADEABLE
-13:37:13 [range] NQ: using the runner's own 300 IG bars
-13:37:13 [range] NQ: cache 68665 bars offset -187.7 to IG level, REST 300 bars to 2026-10-30 13:37:00+00:00
-13:37:13 [range] NQ: containment median 0.860 over 22891 15-min bars
-13:37:13 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
-13:40:00 bar 13:35 o 28564.8 h 28659.1 l 28562.9 c 28655.1 ticks 2119 delta +72
-13:45:00 [range] NQ 13:30 c 28600.3 ema 28699.9 band 28598.3-28801.6 atr 50.8 regime off L 0 S 0 orders 0
-13:45:00 bar 13:40 o 28655.4 h 28655.4 l 28581.6 c 28600.3 ticks 3721 delta -21
-13:50:00 bar 13:45 o 28599.6 h 28642.4 l 28572.3 c 28607.8 ticks 3730 delta +30
-13:55:00 bar 13:50 o 28608.6 h 28655.2 l 28596.8 c 28652.3 ticks 3723 delta -7
-14:00:00 [range] NQ 13:45 c 28696.1 ema 28699.6 band 28583.4-28815.8 atr 58.1 regime off L 0 S 0 orders 0
-14:00:00 bar 13:55 o 28652.6 h 28712.7 l 28606.4 c 28696.1 ticks 3715 delta +87
-14:05:00 bar 14:00 o 28695.3 h 28711.8 l 28639.7 c 28668.6 ticks 3726 delta -66
-14:10:00 bar 14:05 o 28668.4 h 28675.6 l 28609.6 c 28610.9 ticks 3723 delta -49
-14:15:00 [range] NQ 14:00 c 28532.2 ema 28683.6 band 28546.6-28820.7 atr 68.5 regime off L 0 S 0 orders 0
-14:15:00 bar 14:10 o 28610.4 h 28610.9 l 28531.4 c 28532.2 ticks 3681 delta -189
-14:15:00 SIGNAL SELL at bar 14:10 close 28532.2 atr 45.5 ign 1.75 dshare -0.051
-14:15:00 FILLED SELL 0.25/pt at 28533.1 (paper would assume next open) stop 28601.3 (68.2 pts) limit +409.2
-14:20:00 bar 14:15 o 28531.7 h 28557.4 l 28527.1 c 28535.7 ticks 3733 delta -79
-14:25:00 bar 14:20 o 28535.9 h 28550.3 l 28469.4 c 28477.9 ticks 3653 delta -149
-14:25:00 stop -> 28514.9 (BE/trail)
-14:29:16 tx: US Tech 100 open 28533.1 close 28514.9 P&L £4.55
-14:29:16 CLOSED ig_limit at 28514.9 -> +18.2 pts (day +18.2, trades 1)
-14:30:00 [range] NQ 14:15 c 28525.3 ema 28668.6 band 28522.6-28814.6 atr 73.0 regime off L 0 S 0 orders 0
-14:30:00 bar 14:25 o 28478.7 h 28530.7 l 28468.4 c 28525.3 ticks 3624 delta +54
-14:35:00 bar 14:30 o 28524.9 h 28566.2 l 28518.4 c 28544.9 ticks 3644 delta -22
-14:40:00 bar 14:35 o 28545.2 h 28654.7 l 28543.9 c 28636.9 ticks 3669 delta +33
-14:45:00 [range] NQ 14:30 c 28644.0 ema 28666.2 band 28502.4-28830.0 atr 81.9 regime off L 0 S 0 orders 0
-14:45:00 bar 14:40 o 28636.6 h 28685.6 l 28612.2 c 28644.0 ticks 3722 delta -120
-14:50:00 bar 14:45 o 28643.6 h 28681.9 l 28626.6 c 28656.6 ticks 3700 delta -24
-14:55:00 bar 14:50 o 28656.5 h 28664.2 l 28610.6 c 28639.6 ticks 3715 delta -65
-15:00:00 [range] NQ 14:45 c 28634.3 ema 28663.2 band 28493.5-28832.9 atr 84.8 regime off L 0 S 0 orders 0
-15:00:00 bar 14:55 o 28639.2 h 28641.5 l 28606.9 c 28634.3 ticks 3727 delta -157
-15:05:00 bar 15:00 o 28634.5 h 28648.5 l 28577.1 c 28578.8 ticks 3674 delta -158
-15:10:00 bar 15:05 o 28579.6 h 28622.7 l 28578.0 c 28615.5 ticks 3710 delta -82
-15:15:00 [range] NQ 15:00 c 28565.4 ema 28653.9 band 28482.0-28825.7 atr 85.9 regime off L 0 S 0 orders 0
-15:15:00 bar 15:10 o 28615.2 h 28627.9 l 28565.1 c 28565.4 ticks 3650 delta -128
-15:20:00 bar 15:15 o 28564.7 h 28590.9 l 28561.6 c 28563.6 ticks 3657 delta -57
-15:25:00 bar 15:20 o 28563.4 h 28611.6 l 28552.3 c 28573.3 ticks 3610 delta -176
-15:30:00 [range] NQ 15:15 c 28557.3 ema 28644.7 band 28470.3-28819.1 atr 87.2 regime off L 0 S 0 orders 0
-15:30:00 bar 15:25 o 28573.4 h 28589.1 l 28556.4 c 28557.3 ticks 3666 delta -176
-15:35:00 bar 15:30 o 28557.0 h 28558.6 l 28526.7 c 28537.6 ticks 3577 delta -123
-15:40:00 bar 15:35 o 28537.3 h 28540.5 l 28500.3 c 28504.3 ticks 3493 delta -201
-15:45:00 [range] NQ 15:30 c 28484.7 ema 28629.4 band 28450.2-28808.7 atr 89.6 regime off L 0 S 0 orders 0
-15:45:00 bar 15:40 o 28504.2 h 28506.6 l 28469.7 c 28484.7 ticks 3394 delta -74
-15:50:00 bar 15:45 o 28484.3 h 28513.9 l 28470.6 c 28507.5 ticks 3475 delta -57
-15:55:00 bar 15:50 o 28507.9 h 28522.3 l 28495.5 c 28502.7 ticks 3595 delta -141
-16:00:00 [range] NQ 15:45 c 28525.5 ema 28619.5 band 28436.7-28802.4 atr 91.4 regime off L 0 S 0 orders 0
-16:00:00 bar 15:55 o 28502.5 h 28529.1 l 28498.7 c 28525.5 ticks 3542 delta -76
-16:04:51 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-16:04:51 done; ticks 116295 bars 328
+17:58:28 delta-share threshold 0.0482 (percentile-matched on 928 IG bars); registered 0.05
+17:58:48 history 300 bars to 2026-10-30 17:58:00+00:00
+17:58:48 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+17:58:48 streaming IX.D.NASDAQ.CASH.IP
+17:58:48 ls status: CONNECTING
+17:58:49 ls status: CONNECTED:WS-STREAMING
+17:58:49 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+17:58:49 CHART IX.D.NASDAQ.CASH.IP subscribed
+17:58:49 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28251.6', 'OFR': '28252.8'}
+17:58:49 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28251.8', 'OFR': '28253'}
+17:58:49 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28252.1', 'OFR': '28253.3'}
+17:58:49 stream subscribed on CHART via Z6FARW
+17:58:49 trading session on Z6FARW
+17:58:49 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.25 GBP/pt, status TRADEABLE
+17:58:52 [range] NQ: using the runner's own 300 IG bars
+17:58:52 [range] NQ: cache 68665 bars offset -296.2 to IG level, REST 300 bars to 2026-10-30 17:58:00+00:00
+17:58:52 [range] NQ: containment median 0.860 over 22891 15-min bars
+17:58:52 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
+18:00:00 [range] NQ 17:45 c 28250.9 ema 28487.4 band 28327.5-28647.3 atr 80.0 regime off L 0 S 0 orders 0
+18:00:00 bar 17:55 o 28252.2 h 28261.6 l 28249.2 c 28253.0 ticks 798 delta -19
+18:05:00 bar 18:00 o 28253.1 h 28253.1 l 28215.2 c 28226.1 ticks 3463 delta -163
+18:10:00 bar 18:05 o 28225.9 h 28244.7 l 28223.4 c 28228.9 ticks 3467 delta -39
+18:15:00 [range] NQ 18:00 c 28218.9 ema 28461.9 band 28319.6-28604.1 atr 71.1 regime off L 0 S 0 orders 0
+18:15:00 bar 18:10 o 28229.1 h 28255.7 l 28212.2 c 28218.9 ticks 3456 delta -66
+18:20:00 bar 18:15 o 28218.8 h 28220.2 l 28171.9 c 28184.2 ticks 3339 delta -179
+18:20:00 bar 18:15 sig -1 in the US lunch window (12-15 New York) — skipped (v1.1)
+18:25:00 bar 18:20 o 28184.9 h 28190.9 l 28146.4 c 28187.5 ticks 3532 delta -38
+18:45:51 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+18:45:51 [range] NQ 18:15 c 28162.1 ema 28433.3 band 28291.3-28575.4 atr 71.0 regime off L 0 S 0 orders 0
+18:45:51 bar 18:25 o 28186.9 h 28188.5 l 28152.5 c 28162.1 ticks 3514 delta -42
+18:45:51 bar 18:30 o 28161.9 h 28161.9 l 28161.9 c 28161.9 ticks 1 delta -1
+18:50:00 bar 18:45 o 28161.6 h 28178.7 l 28099.9 c 28130.2 ticks 14161 delta -235
+18:55:00 bar 18:50 o 28130.1 h 28130.6 l 28090.9 c 28123.8 ticks 3520 delta -40
+19:00:00 [range] NQ 18:45 c 28181.1 ema 28385.9 band 28248.5-28523.3 atr 68.7 regime off L 0 S 0 orders 0
+19:00:00 bar 18:55 o 28123.9 h 28200.8 l 28119.2 c 28181.1 ticks 3557 delta +21
+19:05:00 bar 19:00 o 28180.6 h 28190.2 l 28142.4 c 28165.4 ticks 3633 delta -99
+19:10:00 bar 19:05 o 28165.9 h 28233.3 l 28163.8 c 28231.9 ticks 3596 delta -16
+19:30:58 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+19:30:58 [range] NQ 19:00 c 28252.5 ema 28373.2 band 28231.6-28514.8 atr 70.8 regime off L 0 S 0 orders 0
+19:30:58 bar 19:10 o 28231.7 h 28260.7 l 28223.0 c 28252.5 ticks 3645 delta +17
+19:30:58 bar 19:15 o 28253.0 h 28253.0 l 28253.0 c 28253.0 ticks 1 delta +1
+19:35:00 bar 19:30 o 28252.7 h 28289.9 l 28184.0 c 28255.5 ticks 14608 delta -26
+19:40:00 bar 19:35 o 28255.1 h 28298.2 l 28241.3 c 28275.3 ticks 3695 delta -3
+19:45:00 [range] NQ 19:30 c 28274.3 ema 28353.4 band 28216.6-28490.3 atr 68.4 regime off L 0 S 0 orders 0
+19:45:00 bar 19:40 o 28275.0 h 28290.6 l 28249.5 c 28274.3 ticks 3709 delta -15
+19:50:00 bar 19:45 o 28273.9 h 28332.8 l 28273.5 c 28327.2 ticks 3654 delta +30
+19:55:00 bar 19:50 o 28327.1 h 28431.1 l 28327.1 c 28411.8 ticks 3668 delta +58
+20:00:00 [range] NQ 19:45 c 28387.8 ema 28356.7 band 28204.9-28508.5 atr 75.9 regime off L 0 S 0 orders 0
+20:00:00 bar 19:55 o 28412.0 h 28413.6 l 28336.2 c 28387.8 ticks 3695 delta -9
+20:05:00 bar 20:00 o 28388.8 h 28442.4 l 28378.0 c 28400.1 ticks 3654 delta +138
+20:10:00 bar 20:05 o 28399.9 h 28409.4 l 28391.7 c 28402.7 ticks 3405 delta +65
+20:15:00 [range] NQ 20:00 c 28414.7 ema 28362.2 band 28208.6-28515.8 atr 76.8 regime off L 0 S 0 orders 0
+20:15:00 bar 20:10 o 28402.8 h 28423.6 l 28381.5 c 28414.7 ticks 3438 delta +64
+20:20:00 bar 20:15 o 28414.9 h 28419.9 l 28393.6 c 28406.0 ticks 2595 delta -3
+20:25:00 bar 20:20 o 28406.1 h 28411.1 l 28386.6 c 28388.6 ticks 2401 delta -9
+20:30:00 [range] NQ 20:15 c 28404.5 ema 28366.2 band 28225.2-28507.3 atr 70.5 regime off L 0 S 0 orders 0
+20:30:00 bar 20:25 o 28388.1 h 28405.5 l 28386.6 c 28404.5 ticks 2288 delta -4
+20:35:00 bar 20:30 o 28404.6 h 28410.2 l 28386.0 c 28388.8 ticks 2084 delta -44
+20:40:00 bar 20:35 o 28388.9 h 28399.7 l 28380.3 c 28396.8 ticks 2294 delta +42
+20:45:00 [range] NQ 20:30 c 28407.2 ema 28370.1 band 28234.0-28506.3 atr 68.1 regime off L 0 S 0 orders 0
+20:45:00 bar 20:40 o 28395.9 h 28416.5 l 28393.6 c 28407.2 ticks 2364 delta +20
+20:50:00 bar 20:45 o 28407.3 h 28410.8 l 28398.4 c 28398.4 ticks 1872 delta -46
+20:55:00 bar 20:50 o 28398.1 h 28400.0 l 28379.6 c 28380.7 ticks 1823 delta +13
+20:59:29 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+20:59:29 done; ticks 125981 bars 331
