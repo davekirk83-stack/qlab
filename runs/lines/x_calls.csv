@@ -10,5 +10,6 @@ logged_utc,account,price_at_call,call,resolve_by,outcome
 2026-10-23T13:58,DK,81670,"NYO: pop to London high then big flush, deeper than 80k into the high 70s (78,700 bid/15 Oct low), then reversal",2026-10-26 Asia open,
 2026-10-24T15:37,Kingfisher,79349,"Brace yourselves - almost all flow is toxic (toxscore 99-100 BTC/ETH/BNB, seller heavy)",2026-10-25 Asia,"WRONG direction / RIGHT level - posted ~20 min and 220 pts from the low 79,128; BTC 80,800 by 01:00; reframed at 01:15 as \"most reverted, nice fishing trip\""
 2026-10-26T10:55,DK,80390,"NYO 13:30: pop up for ~5 min then heavy down (toward weekend low 79,180 / below; liq peak 74k)",2026-10-26 NY close,
-2026-10-27T22:33,DK,80870,"Today's rise to 81.2k was a short squeeze before the move lower",2026-10-29 close,
+2026-10-27T22:33,DK,80870,"Today's rise to 81.2k was a short squeeze before the move lower",2026-10-29 close,HIT: squeezed to 81,890 on 29 Oct then fell to 76,301 by 30 Oct 02:00
 2026-10-28T17:40,Claude,80598,"FOMC: hold; first move a down-wick through 80.27k toward 79.7-79.9k, then reclaim; 82.6k unlikely tonight",2026-10-29 00:00,
+2026-10-30T08:15,Claude,77917,"Post-Binance-hack: bounce attempt today into 78.6-79.5k likely fails while withdrawals stay shut; retest of 76.3k more likely than reclaim of 80k. Flips bullish if Binance reopens withdrawals with clean reserves",2026-11-01 00:00,
