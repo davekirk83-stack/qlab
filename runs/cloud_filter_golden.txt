@@ -1,0 +1,7 @@
+
+GOLDEN CROSS 4h confirmed, hold 12 (27 coins)
+  dev: UNFILTERED n771 mean +0.903% sum +696.1% | KEPT n228 mean +0.567% sum +129.3% | REMOVED n543 mean +1.044% sum +566.7% (t -0.8)
+     long  by state: above n228 +0.567% | inside n119 -0.035% | below n424 +1.347%
+  hold: UNFILTERED n611 mean +1.059% sum +646.7% | KEPT n181 mean +1.895% sum +343.0% | REMOVED n430 mean +0.706% sum +303.8% (t +1.5)
+     long  by state: above n181 +1.895% | inside n109 +0.319% | below n321 +0.838%
+done

@@ -1,0 +1,13 @@
+
+SAUCER book 9 (BTC+ETH 3h, no daily filter)
+  dev: UNFILTERED n279 mean +0.855% sum +238.5% | KEPT n166 mean +0.469% sum +77.8% | REMOVED n113 mean +1.422% sum +160.7% (t -1.2)
+     long  by state: above n166 +0.469% | inside n45 +0.878% | below n68 +1.783%
+  hold: UNFILTERED n155 mean +0.970% sum +150.4% | KEPT n80 mean +1.146% sum +91.7% | REMOVED n75 mean +0.782% sum +58.7% (t +0.3)
+     long  by state: above n80 +1.146% | inside n38 +1.751% | below n37 -0.213%
+
+SAUCER book 10 (10 coins 3h, daily-jaw filter)
+  dev: UNFILTERED n927 mean +0.872% sum +808.6% | KEPT n635 mean +1.206% sum +765.7% | REMOVED n292 mean +0.147% sum +42.8% (t +1.3)
+     long  by state: above n635 +1.206% | inside n168 -0.123% | below n124 +0.512%
+  hold: UNFILTERED n403 mean +0.472% sum +190.3% | KEPT n260 mean +0.644% sum +167.5% | REMOVED n143 mean +0.159% sum +22.8% (t +0.6)
+     long  by state: above n260 +0.644% | inside n84 +0.614% | below n59 -0.489%
+done

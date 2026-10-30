@@ -1,0 +1,9 @@
+
+STOCK book 11 MV (Minervini VCP, SPY filter) — R per trade
+  all: UNFILTERED n1537 mean +0.086R sum +132.2R | KEPT n1428 mean +0.106R sum +151.3R | REMOVED n109 mean -0.176R sum -19.1R (t +1.9)
+     long  by state: above n1428 +0.106R | inside n88 -0.164R | below n21 -0.224R
+
+STOCK book 11 EP (episodic pivot, QQQ filter) — R per trade
+  all: UNFILTERED n42 mean +0.029R sum +1.2R | KEPT n9 mean +0.847R sum +7.6R | REMOVED n33 mean -0.194R sum -6.4R (t +1.3)
+     long  by state: above n9 +0.847R | inside n7 -0.155R | below n26 -0.205R
+done

@@ -1,0 +1,9 @@
+
+RANGE LADDER v3 (27 coins, per-episode return)
+  dev: UNFILTERED n47559 mean +0.163% sum +7745.5% | KEPT n20623 mean +0.169% sum +3488.1% | REMOVED n26936 mean +0.158% sum +4257.4% (t +1.1)
+     short by state: above n8354 +0.214% | inside n3218 +0.108% | below n11818 +0.141%
+     long  by state: above n8805 +0.206% | inside n3374 +0.150% | below n11990 +0.134%
+  hold: UNFILTERED n35768 mean +0.200% sum +7155.5% | KEPT n15359 mean +0.218% sum +3347.9% | REMOVED n20409 mean +0.187% sum +3807.6% (t +2.7)
+     short by state: above n5163 +0.196% | inside n2381 +0.156% | below n10055 +0.198%
+     long  by state: above n5304 +0.257% | inside n2589 +0.150% | below n10276 +0.198%
+done
