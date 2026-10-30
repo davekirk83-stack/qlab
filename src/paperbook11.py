@@ -28,9 +28,13 @@ THE REGISTERED RULES (identical to doc 151; any change voids the run and restart
              averages below -0.5R.
 
 Emits runs/paper11_<date>.sql (tables pb11_equity, pb11_trades).
+LABELLED VARIANT (doc 165, DK 30 Oct "Sure"): each real entry is tagged with the daily Ichimoku cloud state (prior close above the cloud);
+cloud_equity compounds only the tagged-above trades, from 30 Oct 2026 (tables pb11_cloud, pb11_trade_cloud). The registered rules are
+unchanged. Approximation: slots freed by skipped trades are not re-used. Scored on MV; EP reported but too sparse to judge.
 """
 import warnings; warnings.filterwarnings("ignore")
-import os, json, time, hashlib, urllib.request, numpy as np, pandas as pd
+import os, sys, json, time, hashlib, urllib.request, numpy as np, pandas as pd
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); from cloud_gate import cloud_above
 from concurrent.futures import ThreadPoolExecutor
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); RUNS = f"{ROOT}/runs"; STATE = f"{RUNS}/paper11_state.json"
 COST, FIN, RISK, MAXOPEN, START = 0.002, 0.065, 0.005, 10, 2000.0
@@ -83,7 +87,8 @@ def indicators(D, spy):
         X[s] = pd.DataFrame({"O": o, "H": h, "L": l, "C": c, "m10": m10, "m50": m50, "adr": P(adr), "piv": P(h.rolling(10).max()),
                              "plo": P(l.rolling(10).min()), "v50": P(v.rolling(50).mean()), "rs": P(rs[s].reindex(d.index)),
                              "mv": P(vcp).fillna(False), "el": P(el).fillna(False), "gap": o / c.shift(1) - 1,
-                             "r60": c.shift(1) / c.shift(61) - 1, "sok": sok.reindex(d.index).fillna(False)})
+                             "r60": c.shift(1) / c.shift(61) - 1, "sok": sok.reindex(d.index).fillna(False),
+                             "cloud": cloud_above(d)})
     return X
 
 def entry_day(hb, x, day, pivot):
@@ -163,6 +168,8 @@ if __name__ == "__main__":
                     B[key] += B[key] * (RISK / p["risk"]) * r
                     B["closed" if side == "pos" else "closed_shadow"] += 1
                     closed_rows.append((book, side == "shadow", p, r, R))
+                    if side == "pos" and p.get("cloud") is True:
+                        B.setdefault("cloud_equity", START); B["cloud_equity"] += B["cloud_equity"] * (RISK / p["risk"]) * r; B["closed_cloud"] = B.get("closed_cloud", 0) + 1
             if fl in (1, 2): continue
             cands = []
             for s, x in X.items():
@@ -180,9 +187,11 @@ if __name__ == "__main__":
                 if book == "EP" and (v1 < 0.5 * float(x.at[day, "v50"]) or (e - stop) / e > float(x.at[day, "adr"])): continue
                 p = open_pos(book, s, day, x, e, stop, later, "real")
                 if p is None: continue
+                p["cloud"] = bool(x.at[day, "cloud"])
                 if p["w"] > 0: B["pos"].append(p)
                 else:
                     r_, R_ = result(p, x); B["equity"] += B["equity"] * (RISK / p["risk"]) * r_; B["closed"] += 1; closed_rows.append((book, False, p, r_, R_))
+                    if p["cloud"]: B.setdefault("cloud_equity", START); B["cloud_equity"] += B["cloud_equity"] * (RISK / p["risk"]) * r_; B["closed_cloud"] = B.get("closed_cloud", 0) + 1
                 held.add(s); print(f"  {book} OPEN {s} @ {e:.2f} stop {p['stop']:.2f} ({100*p['risk']:.1f}% risk)", flush=True)
                 # shadow: a pseudo-random eligible stock the same day, same mechanics
                 for k in range(25):
@@ -204,6 +213,15 @@ if __name__ == "__main__":
         B = st[book]
         lines.append(f"INSERT OR REPLACE INTO pb11_equity VALUES ('{d}', '{book}', {B['equity']:.4f}, {B['shadow_equity']:.4f}, {len(B['pos'])}, {B['closed']}, {B['closed_shadow']});")
         print(f"  {book}: equity ${B['equity']:,.2f} / shadow ${B['shadow_equity']:,.2f}; open {len(B['pos'])} ({', '.join(p['sym'] for p in B['pos'])}); closed {B['closed']}", flush=True)
+    lines.append("CREATE TABLE IF NOT EXISTS pb11_cloud (d TEXT, book TEXT, cloud_equity REAL, closed_cloud INTEGER, PRIMARY KEY (d, book));")
+    lines.append("CREATE TABLE IF NOT EXISTS pb11_trade_cloud (book TEXT, sym TEXT, opened TEXT, cloud INTEGER, PRIMARY KEY (book, sym, opened));")
+    for book in ("MV", "EP"):
+        B = st[book]; B.setdefault("cloud_equity", START); B.setdefault("closed_cloud", 0)
+        lines.append(f"INSERT OR REPLACE INTO pb11_cloud VALUES ('{d}', '{book}', {B['cloud_equity']:.4f}, {B['closed_cloud']});")
+        for p in B["pos"]:
+            if "cloud" in p: lines.append(f"INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('{book}', '{p['sym']}', '{p['opened']}', {1 if p['cloud'] else 0});")
+        print(f"  {book} cloud variant (doc 165): equity ${B['cloud_equity']:,.2f}, {B['closed_cloud']} closed", flush=True)
     for book, sh, p, r, R in closed_rows:
+        if not sh and "cloud" in p: lines.append(f"INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('{book}', '{p['sym']}', '{p['opened']}', {1 if p['cloud'] else 0});")
         lines.append(f"INSERT INTO pb11_trades VALUES ('{d}', '{book}', '{p['sym']}', '{p['opened']}', '{p.get('closed','')}', {r:.6f}, {R:.4f}, '{p.get('how','')}', {1 if sh else 0});")
     out = f"{RUNS}/paper11_{d}.sql"; open(out, "w").write("\n".join(lines)); print(f"  SQL -> {out} ({len(lines)} statements)", flush=True)

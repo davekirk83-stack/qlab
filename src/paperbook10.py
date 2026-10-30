@@ -36,6 +36,9 @@ THE REGISTERED CONFIGURATION
   Any change to the above voids the run and restarts the clock.
 
 Emits SQL to runs/paper10_<date>.sql (tables pb10_equity, pb10_trades).
+LABELLED VARIANT (doc 165, DK 30 Oct "Sure"): each real entry is tagged with the daily Ichimoku cloud state (prior day's close above the
+cloud); cloud_equity compounds only the tagged-above trades, from 30 Oct 2026 (tables pb10_cloud, pb10_trade_cloud). It does not change
+the registered book. Approximation: slots freed by skipped trades are not re-used.
 """
 import warnings; warnings.filterwarnings("ignore")
 import os, json, hashlib
@@ -90,6 +93,21 @@ def daily_ok(sym, d15, idx3):
     return ok.reindex(idx3.floor("1D")).fillna(False).values.astype(bool)
 
 
+def cloud_ok(sym, d15, idx3):
+    """Doc 165 labelled variant: True at each 3h bar if the previous completed UTC day closed above the daily Ichimoku cloud."""
+    from cloud_gate import cloud_above
+    f = f"/home/claude/qlab/data_daily/{sym}.csv"; dy = None
+    if os.path.exists(f):
+        try:
+            dy = pd.read_csv(f); dy["t"] = pd.to_datetime(dy.t, unit="ms", utc=True)
+            dy = dy.set_index("t").sort_index()[["high", "low", "close"]].astype(float)
+        except Exception:
+            dy = None
+    if dy is None or len(dy) < 90:
+        dy = d15.resample("1D").agg({"high": "max", "low": "min", "close": "last"}).dropna()
+    return cloud_above(dy).reindex(idx3.floor("1D")).fillna(False).values.astype(bool)
+
+
 def draw(key):
     return int(hashlib.sha256(key.encode()).hexdigest(), 16) % 10**6 / 10**6
 
@@ -107,7 +125,7 @@ if __name__ == "__main__":
     for s in SYMS:
         d = PB.refresh(s)
         if d is None or len(d) < 600: print(f"  {s}: no data"); continue
-        d3 = bars3h(d); ao, ema, state, H, L, C = build(d3); idx = d3.index; dok = daily_ok(s, d, idx)
+        d3 = bars3h(d); ao, ema, state, H, L, C = build(d3); idx = d3.index; dok = daily_ok(s, d, idx); cok = cloud_ok(s, d, idx)
         rec = st["sym"].setdefault(s, {"since": None, "pos": [], "shadow": [], "pend": None})
         if rec["since"] is None:
             rec["since"] = str(idx[-2]); print(f"  {s}: first run — watermark {idx[-2]}, nothing traded"); continue
@@ -116,14 +134,14 @@ if __name__ == "__main__":
             t = str(idx[i])
             if (state[i] == -1 or flatten in (1, 2)) and (rec["pos"] or rec["shadow"]):
                 how = "halt" if flatten in (1, 2) else "trend_flip"
-                for p in rec["pos"]: closed.append((s, p["opened"], t, (C[i]*(1-COST))/p["entry"] - 1, how, False))
+                for p in rec["pos"]: closed.append((s, p["opened"], t, (C[i]*(1-COST))/p["entry"] - 1, how, False, p.get("cloud")))
                 for p in rec["shadow"]: closed_sh.append((s, p["opened"], t, (C[i]*(1-COST))/p["entry"] - 1, how, True))
                 rec["pos"], rec["shadow"], rec["pend"] = [], [], None
             if flatten in (1, 2): continue
             pd_ = rec["pend"]
             if pd_ is not None and state[i] == 1:
                 if H[i] > pd_ and len(rec["pos"]) < MAXN:
-                    rec["pos"].append({"opened": t, "entry": max(pd_, C[i-1]) * (1 + COST)}); rec["pend"] = None
+                    rec["pos"].append({"opened": t, "entry": max(pd_, C[i-1]) * (1 + COST), "cloud": bool(cok[i])}); rec["pend"] = None
                 elif ao[i] < ao[i-1]: rec["pend"] = None
                 elif H[i] < pd_: rec["pend"] = float(H[i])
             if state[i] != 1 or C[i] <= ema[i] or not dok[i]: continue
@@ -135,6 +153,9 @@ if __name__ == "__main__":
         print(f"  {s}: bars to {idx[-2]}, trend {'UP' if state[-2] == 1 else 'DOWN' if state[-2] == -1 else 'none'}, "
               f"{len(rec['pos'])} open / {len(rec['shadow'])} shadow open, pending stop {rec['pend']}", flush=True)
     for c in closed: st["equity"] += st["equity"] * FRAC * c[3]
+    st.setdefault("cloud_equity", START); st.setdefault("closed_cloud", 0)     # doc 165 labelled variant, from 30 Oct 2026
+    for c in closed:
+        if c[6] is True: st["cloud_equity"] += st["cloud_equity"] * FRAC * c[3]; st["closed_cloud"] += 1
     for c in closed_sh: st["shadow_equity"] += st["shadow_equity"] * FRAC * c[3]
     st["closed"] += len(closed); st["closed_shadow"] += len(closed_sh)
     open_n = sum(len(v["pos"]) for v in st["sym"].values())
@@ -144,6 +165,12 @@ if __name__ == "__main__":
              "CREATE TABLE IF NOT EXISTS pb10_trades (d TEXT, sym TEXT, opened TEXT, closed TEXT, ret REAL, how TEXT, shadow INTEGER);",
              f"INSERT OR REPLACE INTO pb10_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) "
              f"VALUES ('{today}', {st['equity']:.4f}, {st['shadow_equity']:.4f}, {open_n}, {st['closed']}, {st['closed_shadow']});"]
+    lines.append("CREATE TABLE IF NOT EXISTS pb10_cloud (d TEXT PRIMARY KEY, cloud_equity REAL, closed_cloud INTEGER);")
+    lines.append(f"INSERT OR REPLACE INTO pb10_cloud VALUES ('{today}', {st['cloud_equity']:.4f}, {st['closed_cloud']});")
+    lines.append("CREATE TABLE IF NOT EXISTS pb10_trade_cloud (sym TEXT, opened TEXT, cloud INTEGER, PRIMARY KEY (sym, opened));")
+    for c in closed:
+        if c[6] is not None: lines.append(f"INSERT OR REPLACE INTO pb10_trade_cloud VALUES ('{c[0]}', '{c[1]}', {1 if c[6] else 0});")
+    print(f"  cloud variant (doc 165): equity ${st['cloud_equity']:,.2f}, {st['closed_cloud']} closed", flush=True)
     for c in closed + closed_sh:
         lines.append("INSERT INTO pb10_trades (d, sym, opened, closed, ret, how, shadow) "
                      f"VALUES ('{today}', '{c[0]}', '{c[1]}', '{c[2]}', {c[3]:.6f}, '{c[4]}', {1 if c[5] else 0});")
