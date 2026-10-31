@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS pb10_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+CREATE TABLE IF NOT EXISTS pb10_trades (d TEXT, sym TEXT, opened TEXT, closed TEXT, ret REAL, how TEXT, shadow INTEGER);
+INSERT OR REPLACE INTO pb10_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-10-31', 2000.0000, 2000.0000, 0, 0, 0);
+CREATE TABLE IF NOT EXISTS pb10_cloud (d TEXT PRIMARY KEY, cloud_equity REAL, closed_cloud INTEGER);
+INSERT OR REPLACE INTO pb10_cloud VALUES ('2026-10-31', 2000.0000, 0);
+CREATE TABLE IF NOT EXISTS pb10_trade_cloud (sym TEXT, opened TEXT, cloud INTEGER, PRIMARY KEY (sym, opened));

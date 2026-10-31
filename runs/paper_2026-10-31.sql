@@ -1,0 +1,15 @@
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=3.05380697, exit_reason='target', ret=0.025251, pnl=3.93 WHERE sym='ILVUSD' AND opened='2026-10-29' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.52887992, exit_reason='target', ret=0.05607, pnl=8.73 WHERE sym='RLCUSD' AND opened='2026-10-29' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.00371715, exit_reason='target', ret=0.040865, pnl=6.23 WHERE sym='ANKRUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.01305107, exit_reason='target', ret=0.03551, pnl=5.41 WHERE sym='AUDIOUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.28912431, exit_reason='target', ret=0.046584, pnl=7.1 WHERE sym='CRVUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.02105154, exit_reason='target', ret=0.041019, pnl=6.25 WHERE sym='CVCUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.18196681, exit_reason='target', ret=0.058166, pnl=8.87 WHERE sym='EIGENUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.00489902, exit_reason='target', ret=0.048831, pnl=7.44 WHERE sym='HFTUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.02390415, exit_reason='target', ret=0.046382, pnl=7.07 WHERE sym='OGNUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.23359613, exit_reason='target', ret=0.042631, pnl=6.5 WHERE sym='RADUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.00139047, exit_reason='target', ret=0.05238, pnl=7.98 WHERE sym='RSRUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-10-31', exit_px=0.09031086, exit_reason='target', ret=0.049916, pnl=7.61 WHERE sym='SAFEUSD' AND opened='2026-10-30' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('APEUSD','2026-10-31',0.11306,0.08625071,0.11752821,0.00893643,52.88,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('BERAUSD','2026-10-31',0.13896,0.09974786,0.14549536,0.01307071,52.88,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-10-31',2115.32,17,1,4,2,2,'4 signals, 2 taken, 2 dropped, 12 closed, 17 open');

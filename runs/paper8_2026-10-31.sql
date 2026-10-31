@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS pb8_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+CREATE TABLE IF NOT EXISTS pb8_trades (id INTEGER PRIMARY KEY AUTOINCREMENT, d TEXT, sym TEXT, side TEXT, opened TEXT, closed TEXT, ret REAL, how TEXT);
+INSERT OR REPLACE INTO pb8_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-10-31', 2021.5730, 1998.2674, 0, 41, 205);
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'WALLST', 'L', '2026-10-30 01:00:00+00:00', '2026-10-30 05:00:00+00:00', 0.000848, 'sold');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'WALLST', 'S', '2026-10-30 06:15:00+00:00', '2026-10-30 08:00:00+00:00', 0.000893, 'sold');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'WALLST', 'L', '2026-10-30 13:30:00+00:00', '2026-10-30 15:30:00+00:00', -0.003917, 'regime');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'DAX', 'L', '2026-10-30 01:00:00+00:00', '2026-10-30 01:15:00+00:00', -0.001429, 'regime');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'DAX', 'L', '2026-10-30 07:45:00+00:00', '2026-10-30 08:30:00+00:00', 0.002126, 'sold');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'DAX', 'L', '2026-10-30 16:00:00+00:00', '2026-10-30 18:00:00+00:00', -0.001835, 'regime');
+INSERT INTO pb8_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-10-31', 'NQ', 'L', '2026-10-30 14:00:00+00:00', '2026-10-30 14:30:00+00:00', 0.004670, 'sold');

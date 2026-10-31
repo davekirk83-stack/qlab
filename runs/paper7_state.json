@@ -1,31 +1,26 @@
 {
  "started": "2026-10-19",
- "equity": 2508.3,
- "shadow_equity": 1722.56,
- "closed": 25,
- "closed_shadow": 125,
+ "equity": 2561.26,
+ "shadow_equity": 1659.53,
+ "closed": 30,
+ "closed_shadow": 150,
  "spec": "Ignition v1 (doc 92)",
- "open": {
-  "opened": "2026-10-29 23:35:00+00:00",
-  "side": -1,
-  "entry": 28945.038500000002,
-  "bars_so_far": 4
- },
- "last_bar": "2026-10-29 23:55:00+00:00",
- "last_booked": "2026-10-30",
+ "open": null,
+ "last_bar": "2026-10-30 20:10:00+00:00",
+ "last_booked": "2026-10-31",
  "halt": null,
  "us_hours": {
-  "equity": 2400.24,
-  "shadow_equity": 2038.01,
-  "closed": 11,
+  "equity": 2424.74,
+  "shadow_equity": 2072.19,
+  "closed": 13,
   "open": null
  },
  "v11": {
   "started": "2026-10-22",
   "spec": "Ignition v1.1 (doc 108): US hours, no 16-18 UTC entries, stop max(45, 1.5 ATR)",
-  "equity": 2125.84,
-  "shadow_equity": 2034.2,
-  "closed": 7,
+  "equity": 2149.36,
+  "shadow_equity": 2001.27,
+  "closed": 8,
   "open": null
  }
 }
