@@ -1,20 +1,30 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-14:31:12 delta-share threshold 0.0483 (percentile-matched on 992 IG bars); registered 0.05
-14:31:30 history 299 bars to 2026-10-30 20:59:00+00:00
-14:31:30 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-14:31:30 streaming IX.D.NASDAQ.CASH.IP
-14:31:30 ls status: CONNECTING
-14:31:31 ls status: CONNECTED:WS-STREAMING
-14:31:31 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-14:31:31 CHART IX.D.NASDAQ.CASH.IP subscribed
-14:31:31 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
-14:31:31 stream subscribed on CHART via Z6FARW
-14:31:31 trading session on Z6FARW
-14:31:32 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status EDITS_ONLY
-14:31:34 [range] NQ: using the runner's own 299 IG bars
-14:31:34 [range] NQ: cache 68858 bars offset -6.1 to IG level, REST 299 bars to 2026-10-30 20:59:00+00:00
-14:31:34 [range] NQ: containment median 0.860 over 22956 15-min bars
-14:31:34 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
-14:31:34 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
-14:34:12 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-14:34:12 done; ticks 1 bars 299
+20:42:42 delta-share threshold 0.0483 (percentile-matched on 992 IG bars); registered 0.05
+20:43:01 history 299 bars to 2026-10-30 20:59:00+00:00
+20:43:01 ls status: CONNECTING
+20:43:01 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+20:43:01 streaming IX.D.NASDAQ.CASH.IP
+20:43:02 ls status: CONNECTED:WS-STREAMING
+20:43:02 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+20:43:02 CHART IX.D.NASDAQ.CASH.IP subscribed
+20:43:02 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
+20:43:02 stream subscribed on CHART via Z6FARW
+20:43:02 trading session on Z6FARW
+20:43:02 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status EDITS_ONLY
+20:43:04 [range] NQ: using the runner's own 299 IG bars
+20:43:04 [range] NQ: cache 68858 bars offset -6.1 to IG level, REST 299 bars to 2026-10-30 20:59:00+00:00
+20:43:04 [range] NQ: containment median 0.860 over 22956 15-min bars
+20:43:19 [range] US500 history throttled — waiting 15 s
+20:43:35 [range] US500 history throttled — waiting 15 s
+20:44:07 [range] US500: cache 67702 bars offset -1.0 to IG level, REST 300 bars to 2026-10-30 21:00:00+00:00
+20:44:07 [range] US500: containment median 0.880 over 22577 15-min bars
+20:44:27 [range] FTSE history throttled — waiting 15 s
+20:44:42 [range] FTSE history throttled — waiting 15 s
+20:45:16 [range] FTSE: cache 67881 bars offset -0.2 to IG level, REST 300 bars to 2026-10-30 21:00:00+00:00
+20:45:16 [range] FTSE: containment median 0.880 over 22657 15-min bars
+20:45:16 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt'}
+20:45:16 streaming IX.D.SPTRD.DAILY.IP
+20:45:16 streaming IX.D.FTSE.DAILY.IP
+20:45:16 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
+20:45:16 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+20:45:16 done; ticks 1 bars 299

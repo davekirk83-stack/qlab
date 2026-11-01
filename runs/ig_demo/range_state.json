@@ -28,5 +28,23 @@
   },
   "cool": {},
   "orders": {}
+ },
+ "US500": {
+  "since": null,
+  "pos": {
+   "L": null,
+   "S": null
+  },
+  "cool": {},
+  "orders": {}
+ },
+ "FTSE": {
+  "since": null,
+  "pos": {
+   "L": null,
+   "S": null
+  },
+  "cool": {},
+  "orders": {}
  }
 }
