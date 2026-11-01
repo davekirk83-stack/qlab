@@ -1,0 +1,12 @@
+trades in the window: IGN 69, RNG 209, NEWS 12, RUS 206, RFT 286, RDX 261, SIDE 135
+
+BOOK 13 + NEW ENGINES — 12 months Nov 2025 - Oct 2026, £500, 5x exposure cap (backtest, not a forecast)
+  book 13 as registered        end £805 (+61%) maxDD -12% | months up 9/12 median £+19 worst £-41 | trades 24/month | IGN £+136 RNG £+162 NEWS £+7
+  + US 500 ladder              end £1,054 (+111%) maxDD -11% | months up 9/12 median £+40 worst £-37 | trades 40/month | IGN £+124 RNG £+188 NEWS £+8 RUS £+234
+  + FTSE ladder                end £1,070 (+114%) maxDD -11% | months up 9/12 median £+37 worst £-28 | trades 47/month | IGN £+147 RNG £+176 NEWS £+6 RFT £+240
+  + Germany 40 ladder          end £892 (+78%) maxDD -14% | months up 10/12 median £+47 worst £-45 | trades 45/month | IGN £+115 RNG £+164 NEWS £+7 RDX £+107
+  + NY side (Nasdaq)           end £822 (+64%) maxDD -17% | months up 8/12 median £+10 worst £-52 | trades 33/month | IGN £+83 RNG £+133 NEWS £+4 SIDE £+102
+  + US 500 + FTSE              end £1,381 (+176%) maxDD -10% | months up 11/12 median £+58 worst £-12 | trades 63/month | IGN £+107 RNG £+202 NEWS £+7 RUS £+263 RFT £+302
+  + US 500 + FTSE + side       end £1,211 (+142%) maxDD -14% | months up 9/12 median £+43 worst £-33 | trades 71/month | IGN £+62 RNG £+143 NEWS £+6 RUS £+199 RFT £+263 SIDE £+37
+  + all four                   end £1,290 (+158%) maxDD -14% | months up 9/12 median £+57 worst £-54 | trades 90/month | IGN £+92 RNG £+166 NEWS £+8 RUS £+201 RFT £+261 RDX £+118 SIDE £-57
+done
