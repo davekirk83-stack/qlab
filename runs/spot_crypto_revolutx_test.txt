@@ -1,0 +1,17 @@
+PER-TRADE, long only, Revolut X costs (0% maker / 0.09% taker + 0.10% slippage per taker fill)
+  CVD  all: n   240 (   36/yr) mean +0.792% win 34% | last 12m: n   42 mean +0.436% win 26%
+  GC   all: n  1001 (  212/yr) mean +1.194% win 50% | last 12m: n  195 mean +3.424% win 58%
+  RNG  all: n 44195 ( 8805/yr) mean +0.184% win 72% | last 12m: n10161 mean +0.179% win 72%
+  SAU  all: n  1367 (  276/yr) mean +0.538% win 32% | last 12m: n  205 mean -0.113% win 32%
+
+£500 SPOT POOL, last 12 months (10% of equity per trade, max 10 open, no leverage)
+  Range v3 longs only      trades 10161 (847/month) end £2,887 (+477%) maxDD -7% | months up 12/12 | median month £+180, worst £+47
+  Saucer only              trades   205 (17/month) end £517 (+3%) maxDD -11% | months up 4/10 | median month £-6, worst £-25
+  Golden cross only        trades   195 (16/month) end £690 (+38%) maxDD -9% | months up 4/8 | median month £+10, worst £-33
+  CVD only                 trades    42 (4/month) end £509 (+2%) maxDD -2% | months up 4/10 | median month £-1, worst £-2
+  ALL FOUR                 trades 10603 (884/month) end £2,323 (+365%) maxDD -10% | months up 11/12 | median month £+109, worst £-89
+  Range + saucer + CVD     trades 10408 (867/month) end £2,249 (+350%) maxDD -8% | months up 11/12 | median month £+125, worst £-24
+
+ALL FOUR over the full history (2020-01 -> 2026-10): £500 -> £134,626, maxDD -23%, months up 59/75
+  £ by year (compounding from £500): 2020:+74 2021:+84 2022:+570 2023:+1,051 2024:+6,647 2025:+25,342 2026:+100,358
+done
