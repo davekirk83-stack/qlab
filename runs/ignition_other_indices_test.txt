@@ -1,0 +1,9 @@
+IGNITION v1.1 ON IG INDEX MARKETS — Nov 2025 to Oct 2026 (NQ median 5-min ATR 35.3 pts; 8.8% of NQ bars clear the 0.05 delta share)
+US Tech 100 (reference)      scale x1.00 dshare>= trades/month  5.8 avg hold 22 min | dev n 34 +0.311R (t +2.4) win 88% | random +0.067R edge +0.243R || hold n 35 +0.387R (t +3.2) win 91% | random +0.115R edge +0.272R
+US 500 — US hours            scale x0.18 dshare>= trades/month  5.5 avg hold 31 min | dev n 24 +0.247R (t +1.9) win 88% | random +0.098R edge +0.149R || hold n 42 -0.015R (t -0.2) win 76% | random -0.012R edge -0.004R
+Wall Street — US hours       scale x1.32 dshare>= trades/month  0.9 avg hold 23 min | dev n4 || hold n  7 -0.576R (t -2.8) win 43% | random +0.050R edge -0.626R
+Germany 40 — US hours        scale x0.57 dshare>= trades/month  4.2 avg hold 40 min | dev n 41 -0.056R (t -0.3) win 66% | random +0.052R edge -0.108R || hold n  9 -0.039R (t -0.3) win 78% | random +0.038R edge -0.077R
+Germany 40 — own session     scale x0.57 dshare>= trades/month  7.7 avg hold 26 min | dev n 72 -0.069R (t -1.0) win 75% | random +0.009R edge -0.078R || hold n 20 -0.134R (t -0.8) win 70% | random -0.014R edge -0.120R
+FTSE 100 — US hours          scale x0.21 dshare>= trades/month 10.1 avg hold 33 min | dev n 57 +0.142R (t +1.1) win 77% | random +0.032R edge +0.110R || hold n 64 -0.196R (t -2.3) win 66% | random +0.047R edge -0.244R
+FTSE 100 — own session       scale x0.21 dshare>= trades/month 21.2 avg hold 23 min | dev n140 -0.014R (t -0.2) win 73% | random -0.024R edge +0.009R || hold n115 +0.051R (t +0.6) win 75% | random -0.003R edge +0.054R
+done
