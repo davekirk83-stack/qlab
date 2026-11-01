@@ -1,0 +1,24 @@
+A — RANGE v3 LADDER (return on margin per episode and per margin-hour; vs time-matched random)
+  US Tech 100  own session    15 ep/month, hold  1.0h, return on margin +1.01%/ep = +1.009% per margin-hour | dev n  87 +0.037%/ep vs random +0.005% win 69% || hold n  97 +0.063%/ep vs random -0.009% win 65%
+  US Tech 100  all hours      40 ep/month, hold  2.3h, return on margin +0.85%/ep = +0.370% per margin-hour | dev n 238 +0.018%/ep vs random -0.010% win 71% || hold n 248 +0.066%/ep vs random +0.014% win 72%
+  US 500       own session    17 ep/month, hold  0.9h, return on margin +1.27%/ep = +1.376% per margin-hour | dev n  90 +0.084%/ep vs random -0.018% win 71% || hold n 119 +0.048%/ep vs random -0.015% win 76%
+  US 500       all hours      44 ep/month, hold  2.5h, return on margin +0.72%/ep = +0.284% per margin-hour | dev n 237 +0.031%/ep vs random -0.032% win 71% || hold n 285 +0.040%/ep vs random -0.004% win 77%
+  Wall Street  own session    15 ep/month, hold  1.1h, return on margin +0.12%/ep = +0.104% per margin-hour | dev n  79 -0.001%/ep vs random -0.004% win 58% || hold n 104 +0.011%/ep vs random +0.004% win 62%
+  Wall Street  all hours      41 ep/month, hold  2.7h, return on margin +0.09%/ep = +0.033% per margin-hour | dev n 221 -0.010%/ep vs random -0.006% win 68% || hold n 268 +0.017%/ep vs random -0.003% win 71%
+  Germany 40   own session    22 ep/month, hold  1.2h, return on margin +0.51%/ep = +0.427% per margin-hour | dev n 130 +0.022%/ep vs random +0.012% win 69% || hold n 131 +0.028%/ep vs random -0.002% win 64%
+  Germany 40   all hours      46 ep/month, hold  2.8h, return on margin +0.38%/ep = +0.133% per margin-hour | dev n 263 +0.005%/ep vs random -0.000% win 70% || hold n 283 +0.031%/ep vs random -0.005% win 72%
+  FTSE 100     own session    24 ep/month, hold  1.0h, return on margin +0.76%/ep = +0.794% per margin-hour | dev n 139 +0.022%/ep vs random -0.011% win 67% || hold n 147 +0.053%/ep vs random -0.020% win 73%
+  FTSE 100     all hours      46 ep/month, hold  2.0h, return on margin +0.52%/ep = +0.255% per margin-hour | dev n 256 +0.008%/ep vs random -0.019% win 68% || hold n 298 +0.042%/ep vs random -0.016% win 78%
+  Gold: no data yet
+  EUR/USD: no data yet
+  GBP/USD: no data yet
+  USD/JPY: no data yet
+  Oil (WTI): no data yet
+
+B — NEW YORK 'SIDE' CONTINUATION (R per trade; vs the same entry on random days)
+C — OVERNIGHT DRIFT (per night, after funding and spread)
+  B US Tech 100  11.6 trades/month | dev n 79 +0.275R win 25% vs random +0.124R || hold n 60 +0.324R win 33% vs random -0.093R
+  C US Tech 100  dev overnight -0.057%/night (up 49%) vs intraday -0.060%/day || hold overnight +0.007%/night (up 54%) vs intraday +0.026%/day
+  B US 500       14.2 trades/month | dev n 77 -0.083R win 30% vs random -0.035R || hold n 93 +0.355R win 31% vs random +0.050R
+  C US 500       dev overnight -0.074%/night (up 51%) vs intraday +0.037%/day || hold overnight +0.002%/night (up 55%) vs intraday -0.019%/day
+done
