@@ -10,7 +10,9 @@ PRACTITIONER RULES (FXOpen, MQL5 trend-line guides, capital.com break-retest): l
   a decisive close through it; wait for price to come back and HOLD (confirmation candle) - do not enter on the touch; stop beyond the
   retest swing / confirmation candle; target the next swing high / resistance; check the higher-timeframe trend first; trade the
   break on a higher timeframe and refine the entry lower.
-ARMS (all with the lookahead fixed: a pivot is usable only from its confirmation bar):
+ARMS (all with the lookahead fixed: a pivot is usable only from its confirmation bar).
+CORRECTION 31 Oct (before any registration): structure.major_pivots also tests prominence against the NEXT 60 bars, so even the
+'confirmed' pivot carried lookahead. causal_highs() now dates each pivot to the bar its 2-ATR right-hand drop actually completed.
   A3 AS REGISTERED (>=3 touches after the two anchors); A the same on >=3 points in total: entry at the first-touch close above the line; stop line - 0.4 ATR; hold 40 bars, no target.
   P  PRACTITIONER: after the touch, enter on the first bar (within 5) that closes above the line, above its open and above the prior
      bar's high; void if a close falls 0.4 ATR under the line first. Stop = lowest low since the break - 0.2 ATR, at least 1 ATR below
@@ -23,7 +25,7 @@ CONTROL (point-in-time): random bars of the same symbol and timeframe (HTF-up ba
   5 per trade.  Trials: 3 arms x 4 universes = 12 (rule 179)."""
 import sys, os, glob, json, numpy as np, pandas as pd
 sys.path.insert(0, "/home/claude/qlab-git/src"); os.chdir("/home/claude/qlab")
-import structure as ST, patterns_proper as PP
+import structure as ST
 from levels_general import CLEAN_ETF
 SPLIT = pd.Timestamp("2025-01-01"); RNG = np.random.default_rng(31)
 OUT = open("runs/retest_faithful_test.txt", "w")
@@ -38,11 +40,22 @@ def htf_flag(d, tf):
     ok = (dy.close > dy.close.ewm(span=50, adjust=False).mean()).shift(1)
     return ok.reindex(d.index.floor("1D")).fillna(False).values.astype(bool)
 
+def causal_highs(d, prominence=2.0, window=5):
+    """Pivot highs with the bar at which each is truly KNOWN. structure.major_pivots checks prominence against the NEXT 60 bars, so a
+    pivot is only confirmed once its right-hand drop of `prominence` x ATR has actually happened (and `window` bars have passed)."""
+    H, L = d.high.values, d.low.values; a = ST.atr(d).bfill().values; n = len(H); out = []
+    for i in range(window, n - window):
+        if H[i] != H[i - window:i + window + 1].max(): continue
+        if H[i] - L[max(0, i - 60):i].min() <= prominence * a[i]: continue
+        drop = np.flatnonzero(H[i] - np.minimum.accumulate(L[i:min(n, i + 60)]) > prominence * a[i])
+        if not len(drop): continue
+        out.append((i, max(i + window, i + int(drop[0]))))
+    return out
+
 def setups(d):
     H, L, C, O = d.high.values, d.low.values, d.close.values, d.open.values; n = len(C)
     a = ST.atr(d).bfill().values
-    try: _, highs = PP.confirmed_pivots(d)
-    except Exception: return [], a
+    highs = causal_highs(d)
     out = []
     for ai in range(len(highs) - 1):
         for bi in range(ai + 1, min(ai + 6, len(highs))):
