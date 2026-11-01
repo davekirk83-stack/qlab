@@ -1,0 +1,23 @@
+{
+ "keltner_v1": {
+  "high": 2123.55,
+  "last_month": "2026-11",
+  "profit": 0.0,
+  "gold": 0.0,
+  "reserve": 0.0
+ },
+ "range_v2": {
+  "high": 2022.1444,
+  "last_month": "2026-11",
+  "profit": 0.0,
+  "gold": 0.0,
+  "reserve": 0.0
+ },
+ "etf_v3": {
+  "high": 1945.7654,
+  "last_month": "2026-11",
+  "profit": 0.0,
+  "gold": 0.0,
+  "reserve": 0.0
+ }
+}
