@@ -21,7 +21,10 @@ THE REGISTERED RULES (any change voids the run and restarts the clock)
 Backtest (doc 169, Nov 2025 - Oct 2026, £500): with the 5x exposure cap £805 (+61%, maxDD -12%, worst month -£41); uncapped it was
 £938 (+88%) but peaked at 11x exposure. IGN alone £718 (+44%, maxDD -2%);
 with Ignition and Range at half their backtest edge, +18%. Ignition v1.1 was fitted on that year: plan on a third to a half.
-Emits runs/paper13_<date>.sql (pb13_equity, pb13_trades).
+Emits runs/paper13_<date>.sql (pb13_equity, pb13_trades, pb13_v2).
+VARIANT v2 (doc 175, DK 1 Nov "Excellent"): the same pool plus the Range ladder on the US 500 (New York hours) and the FTSE 100 (London
+hours), 15% of equity as margin per episode, from 1 Nov 2026; data topped up from Dukascopy into data_ig_cache/. Backtest (12 months,
+5x cap): £500 -> £1,381, maxDD -10%, 11/12 months up, worst month -£12, ~63 trades a month. Reported beside book 13 (pb13_v2).
 """
 import warnings; warnings.filterwarnings("ignore")
 import os, sys, json, numpy as np, pandas as pd
@@ -83,6 +86,22 @@ def trades():
         o, cl = pd.Timestamp(c[2]), pd.Timestamp(c[3]); o = o.tz_localize("UTC") if o.tzinfo is None else o; cl = cl.tz_localize("UTC") if cl.tzinfo is None else cl
         if o < START or blackout(o): continue
         T.append(("RNG", o, cl, dict(ret=float(c[4]) - max(0, (cl.normalize() - o.normalize()).days) * FUND_NIGHT, side=c[1])))
+    # doc 175 variant (v2): the same ladder on the US 500 (New York hours) and the FTSE 100 (London hours)
+    for eng, f, sp, tz, h0, h1 in (("RUS", "USA500IDXUSD", 0.4, "America/New_York", 9.5, 16), ("RFT", "GBRIDXGBP", 1.0, "Europe/London", 8, 16.5)):
+        path = f"{ROOT}/data_ig_cache/{f}_5m.csv"
+        if not os.path.exists(path): print(f"  {eng}: no data file", flush=True); continue
+        d5 = pd.read_csv(path, index_col=0); d5.index = pd.to_datetime(d5.index, utc=True); d5 = d5[~d5.index.duplicated()].sort_index()
+        b2 = pd.DataFrame({"open": d5.open.resample("15min").first(), "high": d5.high.resample("15min").max(), "low": d5.low.resample("15min").min(), "close": d5.close.resample("15min").last()}).dropna()
+        px = float(b2.close.median()); P6.MK, P6.TAKER, P6.SLIP = sp / 2 / px, sp / 2 / px, sp * 0.5 / px
+        def ind(dd, sym=None, tz=tz, h0=h0, h1=h1):
+            ema, lob, hib, a, allow = P8._orig_ind(dd, sym); tt = dd.index.tz_convert(tz); hh = tt.hour + tt.minute / 60
+            return ema, lob, hib, a, allow & ((hh >= h0) & (hh < h1))
+        P6.indicators = ind; P6._MED = {}
+        cl2, _ = P6.step(eng, b2, {}, str(b2.index[250]), [10**6]); P6.indicators = P8._orig_ind
+        for c in cl2:
+            o, cl = pd.Timestamp(c[2]), pd.Timestamp(c[3]); o = o.tz_localize("UTC") if o.tzinfo is None else o; cl = cl.tz_localize("UTC") if cl.tzinfo is None else cl
+            if o < START or blackout(o): continue
+            T.append((eng, o, cl, dict(ret=float(c[4]) - max(0, (cl.normalize() - o.normalize()).days) * FUND_NIGHT, side=c[1])))
     for TT in FOMC_T + CPI_T:
         if TT < START or TT + pd.Timedelta(hours=4) > last_bar: continue
         w = bars[(bars.index >= TT - pd.Timedelta(hours=2)) & (bars.index < TT + pd.Timedelta(hours=5))]
@@ -105,7 +124,7 @@ def pool(T, engs, r_ign=0.02, rng_frac=0.15, r_news=0.01):
         k = 0.5 if eq < 0.9 * hi else 1.0
         used = sum(p["m"] for p in open_); used_e = sum(p["m"] for p in open_ if p["eng"] == eng)
         if eng == "IGN": stake = eq * r_ign * k / pl["stop"]; m = stake * pl["px"] * MARGIN; pnl = stake * pl["pts"]
-        elif eng == "RNG": m = eq * rng_frac * k; pnl = m / MARGIN * pl["ret"]
+        elif eng in ("RNG", "RUS", "RFT"): m = eq * rng_frac * k; pnl = m / MARGIN * pl["ret"]
         else: stake = eq * r_news * k / pl["risk"]; m = stake * pl["e"] * MARGIN; pnl = eq * r_news * k * pl["R"]
         room = min(0.60 * eq - used, 0.40 * eq - used_e)
         if room <= 0: continue
@@ -119,15 +138,25 @@ def pool(T, engs, r_ign=0.02, rng_frac=0.15, r_news=0.01):
 
 if __name__ == "__main__":
     today = pd.Timestamp.utcnow().strftime("%Y-%m-%d")
+    import subprocess
+    y = (pd.Timestamp.utcnow() - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+    for ins in ("USA500IDXUSD", "GBRIDXGBP"):                   # top up the v2 markets from Dukascopy (incremental)
+        try: subprocess.run([sys.executable, f"{os.path.dirname(os.path.abspath(__file__))}/pull_duka.py", ins, "1000", "2026-10-30", y], timeout=1500, check=False)
+        except Exception as e: print(f"  pull {ins}: {e}", flush=True)
     T, last_bar = trades()
     now = last_bar
     done = [t for t in T if t[2] <= now]
     eq, mdd, rows, op = pool(done, {"IGN", "RNG", "NEWS"}); eqI, mddI, _, _ = pool(done, {"IGN"})
+    eq2, mdd2, rows2, _ = pool(done, {"IGN", "RNG", "NEWS", "RUS", "RFT"})   # doc 175 variant v2
     print(f"paper book v13 (combined IG book) — {today} — bars to {last_bar} — equity £{eq:,.2f} (maxDD {100*mdd:.1f}%) "
           f"vs Ignition alone £{eqI:,.2f}", flush=True)
     for e in ("IGN", "RNG", "NEWS"):
         rr = [p for p in rows if p["eng"] == e]; print(f"  {e}: {len(rr)} closed, £{sum(p['pnl'] for p in rr):+.2f}", flush=True)
-    lines = ["CREATE TABLE IF NOT EXISTS pb13_equity (d TEXT PRIMARY KEY, equity REAL, ignition_alone REAL, max_dd REAL, closed_total INTEGER);",
+    print(f"  v2 (+ US 500 and FTSE ladders, doc 175): £{eq2:,.2f} (maxDD {100*mdd2:.1f}%), {len(rows2)} closed — "
+          + ", ".join(f"{e} £{sum(p['pnl'] for p in rows2 if p['eng'] == e):+.2f}" for e in ("IGN", "RNG", "NEWS", "RUS", "RFT")), flush=True)
+    lines = ["CREATE TABLE IF NOT EXISTS pb13_v2 (d TEXT PRIMARY KEY, equity REAL, max_dd REAL, closed_total INTEGER);",
+             f"INSERT OR REPLACE INTO pb13_v2 VALUES ('{today}', {eq2:.4f}, {mdd2:.4f}, {len(rows2)});",
+             "CREATE TABLE IF NOT EXISTS pb13_equity (d TEXT PRIMARY KEY, equity REAL, ignition_alone REAL, max_dd REAL, closed_total INTEGER);",
              "CREATE TABLE IF NOT EXISTS pb13_trades (d TEXT, eng TEXT, opened TEXT, closed TEXT, pnl REAL, margin REAL);",
              f"INSERT OR REPLACE INTO pb13_equity VALUES ('{today}', {eq:.4f}, {eqI:.4f}, {mdd:.4f}, {len(rows)});",
              f"DELETE FROM pb13_trades;"]

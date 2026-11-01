@@ -19,6 +19,11 @@ on:
     - cron: "55 18 * * 1-5"
     # CPI MORNINGS (doc 171, book 13 news fade): start at 8:15 New York so the runner has the pre-release bars and the 8:30 release.
     # Fires every weekday but exits at once unless today is a CPI date in runs/event_blackouts.json and it is the 8am NY hour.
+    # LONDON MORNING (doc 175, from Mon 2 Nov 2026): the FTSE ladder trades 08:00-16:30 London, so the first session of the day starts at
+    # 07:55 London and runs on to 12:05 New York — it covers the FTSE session AND Ignition's first half; the later first-half crons then
+    # find it running and exit. Both DST variants are listed; the wrong one exits at once.
+    - cron: "55 7 * * 1-5"
+    - cron: "55 6 * * 1-5"
     - cron: "15 12 * * 1-5"
     - cron: "15 13 * * 1-5"
 permissions:
@@ -42,7 +47,7 @@ jobs:
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
-          IG_RANGE_INSTR: "NQ"    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
+          IG_RANGE_INSTR: "NQ,US500,FTSE"   # doc 175: the ladder on US Tech 100 + US 500 (NY hours) + FTSE 100 (London hours)    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)
           IG_SIZE: "0.01"         # doc 137: Ignition at ~2% risk of a £1,000 account (stop 45-90 pts)   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |
@@ -50,13 +55,16 @@ jobs:
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${OTHERS:-0}" -gt 0 ]; then echo "another demo session is already running — this one exits"; exit 0; fi
           if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "55 7 * * 1-5" ] || [ "${{ github.event.schedule }}" = "55 6 * * 1-5" ]; then
+              LH=$(TZ=Europe/London date +%H); case "$LH" in 07|08) ;; *) echo "not 7-8am London (the other DST cron) — exit"; exit 0;; esac
+            fi
             if [ "${{ github.event.schedule }}" = "15 12 * * 1-5" ] || [ "${{ github.event.schedule }}" = "15 13 * * 1-5" ]; then
               TODAY=$(TZ=America/New_York date +%F); NYH=$(TZ=America/New_York date +%H)
               python3 -c "import json,sys; sys.exit(0 if '$TODAY' in json.load(open('runs/event_blackouts.json')).get('cpi', []) else 1)" || { echo "not a CPI morning — exit"; exit 0; }
               case "$NYH" in 08|09) ;; *) echo "CPI morning but not 8-9am New York (the other DST cron) — exit"; exit 0;; esac
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
-            case "${{ github.event.schedule }}" in "15 12 * * 1-5"|"15 13 * * 1-5") END="12:05";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="12:05";; *) END="17:00";; esac
+            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5"|"15 12 * * 1-5"|"15 13 * * 1-5") END="12:05";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="12:05";; *) END="17:00";; esac
             ARGS=$(( ($(TZ=America/New_York date -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
             DRY=""

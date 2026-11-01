@@ -218,9 +218,9 @@ class Runner:
         self.check_closed_by_ig()
 
     def open_notional(self):
-        """£ exposure of every open position on the epic (all three engines share it): size x level. Used for the 5x cap (DK 1 Nov)."""
+        """£ exposure of every open position on the account (all engines, all markets): size x level, £ per point spread bets. Used for the 5x cap (DK 1 Nov)."""
         if self.dry: return 0.0
-        try: return float(sum(float(x['position']['size']) * float(x['position']['level']) for x in self.ig.fetch_open_positions()['positions'] if x['market']['epic'] == EPIC))
+        try: return float(sum(float(x['position']['size']) * float(x['position']['level']) for x in self.ig.fetch_open_positions()['positions']))   # every market (doc 175: US 500 and FTSE ladders too)
         except Exception as e: log('open_notional:', e); return 0.0
 
     def check_closed_by_ig(self):

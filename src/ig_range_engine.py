@@ -21,6 +21,13 @@ def _nyh(ts):
     t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t
     return t.tz_convert("America/New_York").hour
 
+def _in_hours(ts, hours):
+    """hours: None (all), (h0, h1) in New York hours, or (tz, h0, h1) with fractional local hours (doc 175: the FTSE trades London hours)."""
+    if not hours: return True
+    if len(hours) == 2: return hours[0] <= _nyh(ts) < hours[1]
+    t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t; t = t.tz_convert(hours[0])
+    return hours[1] <= t.hour + t.minute / 60 < hours[2]
+
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); OUT = "runs/ig_demo"
 STATE = f"{OUT}/range_state.json"; TRADES = f"{OUT}/range_trades.csv"
 RANGE_SIZE = float(os.environ.get("IG_RANGE_SIZE", "1.0"))     # full-ladder £/pt; each rung = max(min size, frac x this)
@@ -28,6 +35,9 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
     "NQ":     dict(epics=["IX.D.NASDAQ.CASH.IP"], search="US Tech 100", cache=f"{ROOT}/data_nq_cache/nq_5m.csv", hours=(9, 16)),   # New York local hours (= 13-20 UTC in summer)
     "WALLST": dict(epics=["IX.D.DOW.DAILY.IP", "IX.D.DOW.CASH.IP"], search="Wall Street", cache=f"{ROOT}/data_ig_cache/USA30IDXUSD_5m.csv", hours=None),
     "DAX":    dict(epics=["IX.D.DAX.DAILY.IP", "IX.D.DAX.CASH.IP"], search="Germany 40", cache=f"{ROOT}/data_ig_cache/DEUIDXEUR_5m.csv", hours=None),
+    # doc 175 (DK 1 Nov "Excellent"): the ladder in each market's own cash session — US 500 in New York hours, FTSE 100 in London hours
+    "US500":  dict(epics=["IX.D.SPTRD.DAILY.IP", "IX.D.SPTRD.CASH.IP"], search="US 500", cache=f"{ROOT}/data_ig_cache/USA500IDXUSD_5m.csv", hours=("America/New_York", 9.5, 16)),
+    "FTSE":   dict(epics=["IX.D.FTSE.DAILY.IP", "IX.D.FTSE.CASH.IP"], search="FTSE 100", cache=f"{ROOT}/data_ig_cache/GBRIDXGBP_5m.csv", hours=("Europe/London", 8, 16.5)),
 }
 MAXT, LOSSCAP = 8, 200.0
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
@@ -176,7 +186,7 @@ class RangeEngine:
         day_ok = self.book.day_ok() if self.book else True
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         for side in ("L", "S"):
-            if hours and not (hours[0] <= _nyh(ts) < hours[1]): continue
+            if not _in_hours(ts, hours): continue
             if not ok or (P6.LONGS_OFF and side == "L") or in_blackout(utcnow(), pd.Timedelta(minutes=20)):
                 if in_blackout(utcnow(), pd.Timedelta(minutes=20)) and st["orders"]: log(name, "FOMC blackout — entry orders cancelled (doc 154)")
                 self.cancel_orders(name, side); continue
