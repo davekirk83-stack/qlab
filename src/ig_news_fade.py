@@ -34,8 +34,9 @@ def live_signal(bars, T, now_ts):
     return ("wait",)
 
 class NewsFade:
-    def __init__(self, ig, epic, expiry, ccy, dry, state, book, min_size, log):
+    def __init__(self, ig, epic, expiry, ccy, dry, state, book, min_size, log, notional_fn=None):
         self.ig, self.epic, self.expiry, self.ccy, self.dry, self.book, self.min, self.log = ig, epic, expiry, ccy, dry, book, min_size, log
+        self.notional_fn = notional_fn
         self.st = state.setdefault("news", {}); self.ev = events()
     def active(self, now):
         return [T for T in self.ev if T - pd.Timedelta(minutes=5) <= now < T + HOLD]
@@ -55,6 +56,8 @@ class NewsFade:
         if risk <= 0 or (target - entry) * side <= 0: e["done"] = True; self.log(f"news fade {key}: degenerate levels, no trade"); return
         if not self.book.day_ok(): e["done"] = True; self.log(f"news fade {key}: book daily stop reached, no trade"); return
         size = self.book.news_size(risk, self.min); d = "BUY" if side == 1 else "SELL"
+        size = self.book.cap(size, entry, self.notional_fn() if self.notional_fn else 0.0, self.min)
+        if size <= 0: e["done"] = True; self.log(f"news fade {key}: skipped — book exposure at the 5x cap"); return
         self.log(f"news fade {key}: SIGNAL {d} at {entry:.1f} stop {stop:.1f} target {target:.1f} ({risk:.1f} pts risk) {size}/pt")
         e["done"] = True
         if self.dry: return

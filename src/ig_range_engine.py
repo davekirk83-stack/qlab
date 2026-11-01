@@ -57,11 +57,12 @@ def to15(b5):
 
 
 class RangeEngine:
-    def __init__(self, ig, ccy, dry, gov, rest_history, primary=None, book=None):
+    def __init__(self, ig, ccy, dry, gov, rest_history, primary=None, book=None, notional_fn=None):
         """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame;
         primary: (epic, DataFrame) of 5-min bars the runner already holds, so that epic needs no second history call."""
         self.ig, self.ccy, self.dry, self.gov, self.rest, self.primary = ig, ccy, dry, gov, rest_history, primary or (None, None)
         self.book = book   # ig_book.BookEquity (doc 171): ladder sized from the £500 book's current equity
+        self.notional_fn = notional_fn   # open £ exposure on the epic, for the 5x cap (DK 1 Nov)
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
         self.mkt, self.bars5, self.bars15 = {}, {}, {}
         for name, m in INSTR.items():
@@ -173,6 +174,7 @@ class RangeEngine:
         approach = "L" if (C[i] - lo_b[i]) <= (hi_b[i] - C[i]) else "S"
         full = self.book.range_full(C[i]) if self.book else RANGE_SIZE
         day_ok = self.book.day_ok() if self.book else True
+        onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         for side in ("L", "S"):
             if hours and not (hours[0] <= _nyh(ts) < hours[1]): continue
             if not ok or (P6.LONGS_OFF and side == "L") or in_blackout(utcnow(), pd.Timedelta(minutes=20)):
@@ -190,12 +192,16 @@ class RangeEngine:
                 if k in tried: continue
                 price = round(float(lo_b[i] + off*a[i]) if side == "L" else float(hi_b[i] - off*a[i]), 1)
                 size = max(mk["min"], round(frac*full, 2)); key = f"{side}{k}"
+                if self.book:
+                    have = st["orders"].get(key); base = onot - (have["size"] * have["price"] if have else 0.0)
+                    size = self.book.cap(size, price, base, mk["min"])
+                    if size <= 0: self.cancel_orders(name, side, k); continue
                 beyond = (C[i] <= price) if side == "L" else (C[i] >= price)
                 if beyond: self.cancel_orders(name, side, k); self.fill_market(name, side, k, size, price, ts)
                 else: limits.append((abs(C[i] - price), k, size, price, key))
             keep = {x[1] for x in sorted(limits)[:2]} if side == approach else set()
             for _, k, size, price, key in limits:
-                if k in keep: self.place_limit(name, side, k, size, price, key)
+                if k in keep: self.place_limit(name, side, k, size, price, key); onot += size * price
                 else: self.cancel_orders(name, side, k)
         self.save()
 

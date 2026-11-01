@@ -2,12 +2,14 @@
 BookEquity keeps that virtual equity in runs/ig_demo/book_eq.json, independent of the demo account's real (large) balance:
   - every closed Ignition trade, range episode and news-fade trade adds its £ P&L;
   - rule 186: size from CURRENT book equity; risk halved while equity is >10% below its high, restored at a new high;
-  - a day whose realised loss reaches -4% of the day's opening equity takes no further entries (doc 169 pool rule).
+  - a day whose realised loss reaches -4% of the day's opening equity takes no further entries (doc 169 pool rule);
+  - total open exposure (stake x price over all positions) never above 5 x book equity (DK 1 Nov: 5x maximum).
 DEMO ONLY (CAP-021 as amended 20 Oct). Nothing here can reach a live account."""
 import os, json, datetime as dt
 OUT = "runs/ig_demo"; F = f"{OUT}/book_eq.json"
 START_EQ = float(os.environ.get("IG_BOOK_START_EQ", "500"))
 R_IGN, RNG_MARGIN, R_NEWS, MARGIN = 0.02, 0.15, 0.01, 0.05
+MAX_LEV = 5.0   # DK 1 Nov 16:02: "happy with 2x but if you are confident in using 5x sensibly then that's fine (but no more)"
 
 class BookEquity:
     def __init__(self):
@@ -34,4 +36,10 @@ class BookEquity:
     def range_full(self, price):
         """full-ladder £/pt so that the whole ladder's notional is 15% of equity as margin at 5%"""
         return self.eq * RNG_MARGIN * self.k / MARGIN / max(price, 1.0)
+    def cap(self, size, price, open_notional, min_size):
+        """Scale a new position so total open exposure stays <= 5 x book equity; 0 if what is left is under a quarter of the size or the minimum."""
+        room = MAX_LEV * self.eq - open_notional
+        if room <= 0 or price <= 0: return 0.0
+        s = min(size, round(room / price, 2))
+        return s if (s >= min_size and s >= 0.25 * size) else 0.0
     def save(self): json.dump(self.s, open(F, "w"), indent=1)

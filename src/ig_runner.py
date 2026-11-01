@@ -105,13 +105,13 @@ class Runner:
         self.pos = None; self.recover_position()
         if RANGE:
             try:
-                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history, primary=(EPIC, self.bars), book=self.beq)
+                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history, primary=(EPIC, self.bars), book=self.beq, notional_fn=self.open_notional)
                 extra = [e for e in self.engine.epic2name if e not in self.epics]; self.epics += extra
                 if extra: self.subscribe(extra)
             except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
         self.news = None
         if os.environ.get("IG_NEWS", "1") == "1":
-            try: self.news = NewsFade(self.ig, EPIC, self.expiry, self.ccy, dry, self.state, self.beq, self.min_size, log)
+            try: self.news = NewsFade(self.ig, EPIC, self.expiry, self.ccy, dry, self.state, self.beq, self.min_size, log, notional_fn=self.open_notional)
             except Exception: log("news fade failed to start:", traceback.format_exc())
         log(f"book 13 rehearsal: book equity £{self.beq.eq:,.2f} (risk x{self.beq.k}), news events loaded {len(self.news.ev) if self.news else 0}")
 
@@ -188,6 +188,8 @@ class Runner:
         stop_pts = round(max(P7.STOP, P7.V11_STOP_ATR*row.atr), 1) if V11 else P7.STOP
         log(f"SIGNAL {direction} at bar {ts:%H:%M} close {row.close:.1f} atr {row.atr:.1f} ign {row.ign:.2f} dshare {row.dshare:+.3f}")
         size = self.beq.ign_size(stop_pts, self.min_size)
+        size = self.beq.cap(size, float(row.close), self.open_notional(), self.min_size)
+        if size <= 0: log(f"SIGNAL {direction} skipped — book exposure already at the 5x cap"); return
         if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts, size {size}/pt on book £{self.beq.eq:,.2f})"); return
         r = self.ig.create_open_position(currency_code=self.ccy, direction=direction, epic=EPIC, expiry=self.expiry, force_open=True, guaranteed_stop=False,
                                          level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=size,
@@ -214,6 +216,12 @@ class Runner:
                 if r.get("dealStatus", "ACCEPTED") == "ACCEPTED": p["stop"] = new_stop; log(f"stop -> {new_stop:.1f} ({'BE/trail' if p['be'] else 'init'})")
             except Exception as e: log("update stop:", e)
         self.check_closed_by_ig()
+
+    def open_notional(self):
+        """£ exposure of every open position on the epic (all three engines share it): size x level. Used for the 5x cap (DK 1 Nov)."""
+        if self.dry: return 0.0
+        try: return float(sum(float(x['position']['size']) * float(x['position']['level']) for x in self.ig.fetch_open_positions()['positions'] if x['market']['epic'] == EPIC))
+        except Exception as e: log('open_notional:', e); return 0.0
 
     def check_closed_by_ig(self):
         if not self.pos: return

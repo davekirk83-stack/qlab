@@ -8,7 +8,8 @@ THE REGISTERED RULES (any change voids the run and restarts the clock)
   engines   IGN  Ignition v1.1 on US Tech 100 (paperbook7 engine, US hours, no 12-15 NY entries, stop max(45, 1.5 ATR)) — risk 2%
             RNG  Range v3 on US Tech 100, NY hours (paperbook8 'NQ' engine, mid-EMA exit, ladder) — 15% of equity as margin per episode
             NEWS News-day fade on US Tech 100 after CPI (8:30 NY) and FOMC (2pm NY) releases, 15-minute wait (doc 156 rules) — risk 1%
-  pool      start £500 on 1 Nov 2026; each trade sizes off current realised equity; total margin <= 60% of equity (a trade is scaled to
+  pool      start £500 on 1 Nov 2026; each trade sizes off current realised equity; TOTAL OPEN EXPOSURE <= 5 x EQUITY (DK 1 Nov 16:02,
+            amended before any trade; a trade is scaled to fit); total margin <= 60% of equity (a trade is scaled to
             fit, skipped if under a quarter of its size); one engine <= 40% of equity in margin; risk halved while equity is >10% below
             its high; a day whose realised loss reaches -4% takes no further entries; Fed blackout (30 min before to 60 min after a
             statement) on IGN and RNG entries — NEWS is the registered exception.
@@ -17,7 +18,8 @@ THE REGISTERED RULES (any change voids the run and restarts the clock)
   replay    the whole book is REPLAYED from 1 Nov 2026 every run (book 7's anti-leak pattern) — reproducible by construction.
   compare   reported beside "Ignition alone" at the same 2% risk (does pooling add?); verdict after 3 months: PASS if the pool beats
             Ignition alone with a max drawdown no worse than -15%, and is positive in at least 2 of 3 months.
-Backtest (doc 169, Nov 2025 - Oct 2026, £500): IGN alone £718 (+44%, maxDD -2%); this book £938 (+88%, maxDD -12%, 10/12 months up);
+Backtest (doc 169, Nov 2025 - Oct 2026, £500): with the 5x exposure cap £805 (+61%, maxDD -12%, worst month -£41); uncapped it was
+£938 (+88%) but peaked at 11x exposure. IGN alone £718 (+44%, maxDD -2%);
 with Ignition and Range at half their backtest edge, +18%. Ignition v1.1 was fitted on that year: plan on a third to a half.
 Emits runs/paper13_<date>.sql (pb13_equity, pb13_trades).
 """
@@ -27,6 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import paperbook7 as P7, paperbook6 as P6, paperbook8 as P8
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); RUNS = f"{ROOT}/runs"
 START = pd.Timestamp(os.environ.get("PB13_START", "2026-11-01"), tz="UTC"); EQ0 = 500.0; MARGIN = 0.05; FUND_NIGHT = 0.00018
+MAX_LEV = 5.0   # DK 1 Nov 16:02: "I'm happy with 2x but if you are confident in using 5x sensibly then that's fine (but no more)"
 EV = json.load(open(f"{RUNS}/event_blackouts.json"))
 FOMC_T = [pd.Timestamp(d + " 14:00", tz="America/New_York").tz_convert("UTC") for d in EV["fomc"]]
 CPI_T = [pd.Timestamp(d + " 08:30", tz="America/New_York").tz_convert("UTC") for d in EV.get("cpi", [])]
@@ -107,6 +110,8 @@ def pool(T, engs, r_ign=0.02, rng_frac=0.15, r_news=0.01):
         room = min(0.60 * eq - used, 0.40 * eq - used_e)
         if room <= 0: continue
         f = min(1.0, room / m) if m > 0 else 1.0
+        nroom = MAX_LEV * eq - used / MARGIN                     # total open exposure (notional) <= 5 x equity
+        f = min(f, nroom / (m / MARGIN)) if m > 0 else f
         if f < 0.25: continue
         open_.append(dict(eng=eng, to=to, tc=tc, m=m * f, pnl=pnl * f, x=pl))
     settle(pd.Timestamp.utcnow())
