@@ -1,0 +1,17 @@
+trades in the window: IGN 69, RNG 209, NEWS 12, MV 438, MVx 40, ETF 103
+
+COMBINED IG BOOK — 12 months Nov 2025 - Oct 2026, start £500 (backtest, not a forecast)
+  A  Ignition alone                      end £718 (+44%) maxDD -2% | months up 10/12, worst month -1.5% | IGN £+218 (n69)
+  B  + Range NQ (doc 137 plan)           end £925 (+85%) maxDD -12% | months up 9/12, worst month -4.2% | IGN £+233 (n69) RNG £+192 (n209)
+  C  + News fade                         end £938 (+88%) maxDD -12% | months up 10/12, worst month -4.2% | IGN £+236 (n69) RNG £+195 (n209) NEWS £+7 (n12)
+  D  + Minervini (cloud)                 end £926 (+85%) maxDD -14% | months up 11/12, worst month -7.3% | IGN £+215 (n69) RNG £+178 (n209) NEWS £+11 (n12) MV £+22 (n88)
+  E  + ETF retest  = FULL                end £674 (+35%) maxDD -15% | months up 6/12, worst month -7.3% | IGN £+86 (n46) RNG £+105 (n201) NEWS £+14 (n12) MV £+44 (n88) ETF £-75 (n64)
+  E' full, Minervini without the cloud   end £592 (+18%) maxDD -17% | months up 6/12, worst month -8.1% | IGN £+64 (n41) RNG £+88 (n179) NEWS £+18 (n12) MV £+8 (n90) MVx £-26 (n37) ETF £-59 (n65)
+  F  daily engines only (MV+ETF)         end £473 (-5%) maxDD -19% | months up 4/12, worst month -9.2% | MV £+33 (n88) ETF £-60 (n68)
+
+Sensitivity (FULL book): risk per Ignition trade, and Ignition's per-trade result cut in half
+  Ignition risk 1%: end £658 (+32%) maxDD -16% months up 7/12
+  Ignition risk 2%: end £674 (+35%) maxDD -15% months up 6/12
+  B halved     (Ignition and Range at HALF their backtest edge): end £589 (+18%) maxDD -14% months up 7/12
+  FULL halved  (Ignition and Range at HALF their backtest edge): end £570 (+14%) maxDD -19% months up 6/12
+done

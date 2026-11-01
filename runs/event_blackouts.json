@@ -1,2 +1,31 @@
-{"note": "FOMC statement days (2pm New York). Blackout: no new entries 30 min before to 60 min after. Source: federalreserve.gov FOMC calendar. Add 2027 when published.",
- "fomc": ["2026-10-28", "2026-12-09"]}
+{
+ "note": "FOMC statement days (2pm New York). Blackout: no new entries 30 min before to 60 min after. Source: federalreserve.gov FOMC calendar (2027 tentative schedule, press release 5 Sep 2025). CPI dates: bls.gov CPI release schedule (8:30am New York).",
+ "fomc": [
+  "2026-10-28",
+  "2026-12-09",
+  "2027-01-27",
+  "2027-03-17",
+  "2027-04-28",
+  "2027-06-09",
+  "2027-07-28",
+  "2027-09-15",
+  "2027-10-27",
+  "2027-12-08"
+ ],
+ "cpi": [
+  "2026-11-10",
+  "2026-12-10",
+  "2027-01-13",
+  "2027-02-11",
+  "2027-03-10",
+  "2027-04-13",
+  "2027-05-12",
+  "2027-06-10",
+  "2027-07-14",
+  "2027-08-11",
+  "2027-09-14",
+  "2027-10-14",
+  "2027-11-10",
+  "2027-12-10"
+ ]
+}
