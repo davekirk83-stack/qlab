@@ -16,6 +16,9 @@ What it does (one GitHub Actions job per half-session, see .github/workflows/ig-
 State between jobs: runs/ig_demo/state.json (committed by the job). An open position is recovered from IG at start.
 v1.1 (doc 108, from Mon 26 Oct 2026): no entries 16:00-18:59 UTC; stop = max(45, 1.5 x ATR20).
 Second engine (doc 116, from Mon 26 Oct 2026): Range v3-IDX in src/ig_range_engine.py on US Tech 100 / Wall Street / Germany 40 — set IG_RANGE=0 to disable.
+BOOK 13 REHEARSAL (doc 171, from Mon 2 Nov 2026): the demo trades as the £500 combined book — Ignition risks 2% of BOOK equity (ig_book.py),
+the range ladder uses 15% of book equity as margin and rests only its two nearest rungs, a third engine fades CPI/FOMC releases
+(ig_news_fade.py, 1% risk), risk halves below -10% from the book's high and a -4% day stops new entries. IG_NEWS=0 disables the fade.
 """
 import os, sys, json, time, math, datetime as dt, traceback
 import numpy as np, pandas as pd
@@ -23,6 +26,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import paperbook7 as P7
 from ig_range_engine import RangeEngine
 from event_blackout import in_blackout
+from ig_book import BookEquity
+from ig_news_fade import NewsFade
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
 from trading_ig import IGService, IGStreamService
 from lightstreamer.client import Subscription, SubscriptionListener, LightstreamerClient, ClientListener
@@ -91,7 +96,8 @@ class Runner:
             self.ig.switch_account(self.acc, True)
         self.session_acc = self.acc; log("trading session on", self.session_acc)
         mkt = self.ig.fetch_market_by_epic(EPIC)
-        self.size = max(SIZE, float(mkt["dealingRules"]["minDealSize"]["value"])); self.expiry = mkt["instrument"]["expiry"]; cc = [c["code"] for c in mkt["instrument"]["currencies"]]; self.ccy = "GBP" if "GBP" in cc else cc[0]
+        self.min_size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.beq = BookEquity()
+        self.size = max(SIZE, self.min_size); self.expiry = mkt["instrument"]["expiry"]; cc = [c["code"] for c in mkt["instrument"]["currencies"]]; self.ccy = "GBP" if "GBP" in cc else cc[0]
         log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
         self.state = json.load(open(STATE)) if os.path.exists(STATE) else {}
         today = utcnow().strftime("%Y-%m-%d")
@@ -99,10 +105,15 @@ class Runner:
         self.pos = None; self.recover_position()
         if RANGE:
             try:
-                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history, primary=(EPIC, self.bars))
+                self.engine = RangeEngine(self.ig, self.ccy, dry, self.state, self.rest_history, primary=(EPIC, self.bars), book=self.beq)
                 extra = [e for e in self.engine.epic2name if e not in self.epics]; self.epics += extra
                 if extra: self.subscribe(extra)
             except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
+        self.news = None
+        if os.environ.get("IG_NEWS", "1") == "1":
+            try: self.news = NewsFade(self.ig, EPIC, self.expiry, self.ccy, dry, self.state, self.beq, self.min_size, log)
+            except Exception: log("news fade failed to start:", traceback.format_exc())
+        log(f"book 13 rehearsal: book equity £{self.beq.eq:,.2f} (risk x{self.beq.k}), news events loaded {len(self.news.ev) if self.news else 0}")
 
 
     # ---------------------------------------------------------------- data
@@ -150,6 +161,9 @@ class Runner:
             f.write(f"{c['ts'].isoformat()},{c['open']:.2f},{c['high']:.2f},{c['low']:.2f},{c['close']:.2f},{c['vol']},{c['delta']},{row.spread.iloc[0]:.2f}\n")
         try: self.decide()
         except Exception: log("decide error:", traceback.format_exc())
+        if self.news:
+            try: self.news.on_bar(self.bars[["open", "high", "low", "close"]], pd.Timestamp(c["ts"]) + pd.Timedelta(minutes=BAR)); self.save()
+            except Exception: log("news fade error:", traceback.format_exc())
 
     # ---------------------------------------------------------------- strategy
     def decide(self):
@@ -166,21 +180,23 @@ class Runner:
         st = self.state
         if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return
         if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return
+        if not self.beq.day_ok(): log("book daily stop (-4%) reached — no new Ignition entries"); return
         self.open(s, row, ts)
 
     def open(self, s, row, ts):
         direction = "BUY" if s == 1 else "SELL"; tgt = round(P7.TGT_ATR*row.atr, 1)
         stop_pts = round(max(P7.STOP, P7.V11_STOP_ATR*row.atr), 1) if V11 else P7.STOP
         log(f"SIGNAL {direction} at bar {ts:%H:%M} close {row.close:.1f} atr {row.atr:.1f} ign {row.ign:.2f} dshare {row.dshare:+.3f}")
-        if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts)"); return
+        size = self.beq.ign_size(stop_pts, self.min_size)
+        if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts, size {size}/pt on book £{self.beq.eq:,.2f})"); return
         r = self.ig.create_open_position(currency_code=self.ccy, direction=direction, epic=EPIC, expiry=self.expiry, force_open=True, guaranteed_stop=False,
-                                         level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=self.size,
+                                         level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=size,
                                          stop_distance=stop_pts, stop_level=None, trailing_stop=False, trailing_stop_increment=None)
         if r.get("dealStatus") != "ACCEPTED": log("order rejected:", r.get("reason"), r); return
         self.pos = {"deal_id": r["dealId"], "side": s, "entry": float(r["level"]), "paper_entry": float(row.close), "atr": float(row.atr), "opened": str(ts),
-                    "bar_i": len(self.bars) - 1, "best": float(r["level"]), "be": False, "stop": float(r["level"]) - s*stop_pts, "bars": 0}
+                    "bar_i": len(self.bars) - 1, "best": float(r["level"]), "be": False, "stop": float(r["level"]) - s*stop_pts, "bars": 0, "size": size}
         self.state["ntr"] += 1; self.save()
-        log(f"FILLED {direction} {self.size}/pt at {self.pos['entry']} (paper would assume next open) stop {self.pos['stop']:.1f} ({stop_pts} pts) limit +{tgt}")
+        log(f"FILLED {direction} {size}/pt at {self.pos['entry']} (paper would assume next open) stop {self.pos['stop']:.1f} ({stop_pts} pts) limit +{tgt}")
 
     def manage(self, d, i):
         p = self.pos; s = p["side"]; H, L, C = d.high.values, d.low.values, d.close.values
@@ -231,7 +247,7 @@ class Runner:
     def close(self, how):
         p = self.pos
         if self.dry: log("dry run — would close", how); self.pos = None; return
-        r = self.ig.close_open_position(deal_id=p["deal_id"], direction="SELL" if p["side"] == 1 else "BUY", epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=self.size)
+        r = self.ig.close_open_position(deal_id=p["deal_id"], direction="SELL" if p["side"] == 1 else "BUY", epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=p.get("size", self.size))
         lvl = float(r.get("level") or np.nan)
         self.book(lvl, how)
 
@@ -253,6 +269,7 @@ class Runner:
                         if ln.startswith(pend["opened"]) and ",nan,nan," in ln:
                             f = ln.split(","); f[5] = f"{cl:.2f}"; f[6] = f"{pts:.2f}"; f[7] = how; lines[k] = ",".join(f)
                     open(TRADES, "w").write("\n".join(lines) + "\n")
+                    self.beq.add(pts*pend.get("size", self.size), "ignition")
                     self.state["dpl"] += pts; self.state["pending_exit"] = None; self.save(); log(f"pending exit resolved: {how} at {cl} -> {pts:+.1f} pts"); return
             pend["tries"] = pend.get("tries", 0) + 1
             if pend["tries"] >= 6: self.state["pending_exit"] = None; log("pending exit: not found after 6 tries")
@@ -261,7 +278,8 @@ class Runner:
 
     def book(self, lvl, how):
         p = self.pos; s = p["side"]; pts = s*(lvl - p["entry"]) if not np.isnan(lvl) else np.nan
-        if np.isnan(lvl): self.state["pending_exit"] = {"opened": p["opened"], "entry": p["entry"], "side": s, "tries": 0}
+        if np.isnan(lvl): self.state["pending_exit"] = {"opened": p["opened"], "entry": p["entry"], "side": s, "tries": 0, "size": p.get("size", self.size)}
+        else: self.beq.add(pts*p.get("size", self.size), "ignition")
         hdr = not os.path.exists(TRADES)
         with open(TRADES, "a") as f:
             if hdr: f.write("opened,closed,side,paper_entry,ig_entry,ig_exit,pts,how,bars\n")
@@ -272,11 +290,19 @@ class Runner:
 
     def recover_position(self):
         try:
+            other = set()                                  # range lots and news-fade positions share the epic: never adopt them
+            try:
+                rs = json.load(open(f"{OUT}/range_state.json"))
+                for v in rs.values():
+                    for pp in (v.get("pos") or {}).values():
+                        if pp: other |= {l.get("deal_id") for l in pp.get("lots", [])}
+            except Exception: pass
+            other |= {v["pos"]["deal_id"] for v in self.state.get("news", {}).values() if v.get("pos")}
             for x in self.ig.fetch_open_positions()["positions"]:
-                if x["market"]["epic"] == EPIC:
+                if x["market"]["epic"] == EPIC and x["position"]["dealId"] not in other:
                     p = x["position"]; s = 1 if p["direction"] == "BUY" else -1
                     self.pos = {"deal_id": p["dealId"], "side": s, "entry": float(p["level"]), "paper_entry": np.nan, "atr": float(self.state.get("last_atr", 30.0)), "opened": p.get("createdDateUTC", ""),
-                                "bar_i": 0, "best": float(p["level"]), "be": False, "stop": float(p["stopLevel"] or 0), "bars": int(self.state.get("open_bars", 0))}
+                                "bar_i": 0, "best": float(p["level"]), "be": False, "stop": float(p["stopLevel"] or 0), "bars": int(self.state.get("open_bars", 0)), "size": float(p["size"])}
                     log("recovered open position", self.pos["deal_id"])
         except Exception as e: log("recover:", e)
 

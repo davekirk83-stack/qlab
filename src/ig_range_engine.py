@@ -57,10 +57,11 @@ def to15(b5):
 
 
 class RangeEngine:
-    def __init__(self, ig, ccy, dry, gov, rest_history, primary=None):
+    def __init__(self, ig, ccy, dry, gov, rest_history, primary=None, book=None):
         """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame;
         primary: (epic, DataFrame) of 5-min bars the runner already holds, so that epic needs no second history call."""
         self.ig, self.ccy, self.dry, self.gov, self.rest, self.primary = ig, ccy, dry, gov, rest_history, primary or (None, None)
+        self.book = book   # ig_book.BookEquity (doc 171): ladder sized from the £500 book's current equity
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
         self.mkt, self.bars5, self.bars15 = {}, {}, {}
         for name, m in INSTR.items():
@@ -167,24 +168,35 @@ class RangeEngine:
                             if r.get("dealStatus", "ACCEPTED") != "ACCEPTED": log(name, "update lot:", r.get("reason")); continue
                         except Exception as ex: log(name, "update lot:", ex); continue
                     lot["tgt"], lot["brk"] = tgt, brk
-        # entries
+        # entries — doc 171: ladder size from book equity (15% of equity as margin), and only the TWO nearest rungs on the side price is
+        # approaching rest as working orders (IG reserves margin against every working order; doc 137)
+        approach = "L" if (C[i] - lo_b[i]) <= (hi_b[i] - C[i]) else "S"
+        full = self.book.range_full(C[i]) if self.book else RANGE_SIZE
+        day_ok = self.book.day_ok() if self.book else True
         for side in ("L", "S"):
             if hours and not (hours[0] <= _nyh(ts) < hours[1]): continue
             if not ok or (P6.LONGS_OFF and side == "L") or in_blackout(utcnow(), pd.Timedelta(minutes=20)):
                 if in_blackout(utcnow(), pd.Timedelta(minutes=20)) and st["orders"]: log(name, "FOMC blackout — entry orders cancelled (doc 154)")
                 self.cancel_orders(name, side); continue
+            if not day_ok:
+                if st["orders"]: log(name, "book daily stop (-4%) reached — entry orders cancelled")
+                self.cancel_orders(name, side); continue
             ct = st["cool"].get(side)
             if ct and ts < pd.Timestamp(ct) + pd.Timedelta(hours=P6.COOLDOWN_H): continue
             p = st["pos"].get(side)
             if p is None and (self.gov["ntr"] >= MAXT or self.gov["dpl"] <= -LOSSCAP): continue
-            tried = set(p["tried"]) if p else set(); s = 1 if side == "L" else -1
+            tried = set(p["tried"]) if p else set(); limits = []
             for k, (frac, off) in enumerate(P6.BID):
                 if k in tried: continue
                 price = round(float(lo_b[i] + off*a[i]) if side == "L" else float(hi_b[i] - off*a[i]), 1)
-                size = max(mk["min"], round(frac*RANGE_SIZE, 2)); key = f"{side}{k}"
+                size = max(mk["min"], round(frac*full, 2)); key = f"{side}{k}"
                 beyond = (C[i] <= price) if side == "L" else (C[i] >= price)
                 if beyond: self.cancel_orders(name, side, k); self.fill_market(name, side, k, size, price, ts)
-                else: self.place_limit(name, side, k, size, price, key)
+                else: limits.append((abs(C[i] - price), k, size, price, key))
+            keep = {x[1] for x in sorted(limits)[:2]} if side == approach else set()
+            for _, k, size, price, key in limits:
+                if k in keep: self.place_limit(name, side, k, size, price, key)
+                else: self.cancel_orders(name, side, k)
         self.save()
 
     # ------------------------------------------------------------------ orders and fills
@@ -301,6 +313,7 @@ class RangeEngine:
             if hdr: w.writerow(["instr", "side", "opened", "closed", "lots", "gbp", "how", "detail"])
             w.writerow([name, side, p["open"], ts.isoformat(), n, f"{gbp:.2f}", how, json.dumps(p["closed"])])
         self.gov["dpl"] += gbp; st["pos"][side] = None; st["cool"][side] = str(ts)
+        if self.book: self.book.add(gbp, "range")
         log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (day {self.gov['dpl']:+.1f})")
 
     def end_of_job(self):
