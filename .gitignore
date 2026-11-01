@@ -16,3 +16,5 @@ __pycache__/
 !runs/ig_demo/*.csv
 !data_ig_cache/
 !data_ig_cache/*.csv
+!data_rx_cache/
+!data_rx_cache/*.csv.gz
