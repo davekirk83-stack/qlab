@@ -42,22 +42,34 @@
   "since": "2026-11-02 14:00:00+00:00",
   "pos": {
    "L": null,
-   "S": null
+   "S": {
+    "open": "2026-11-02 18:00:00+00:00",
+    "lots": [],
+    "tried": [
+     0,
+     1
+    ],
+    "closed": [
+     {
+      "k": 0,
+      "px": 10737.0,
+      "exit": 10783.5,
+      "sz": 0.04,
+      "pts": -46.5,
+      "how": "regime"
+     },
+     {
+      "k": 1,
+      "px": 10739.5,
+      "exit": 10783.5,
+      "sz": 0.04,
+      "pts": -44.0,
+      "how": "regime"
+     }
+    ]
+   }
   },
   "cool": {},
-  "orders": {
-   "S0": {
-    "deal_id": "DIAAAAYSFNWPCBJ",
-    "ref": "RGFTSES0021400",
-    "price": 10737.0,
-    "size": 0.04
-   },
-   "S1": {
-    "deal_id": "DIAAAAYSFM9P6BG",
-    "ref": "RGFTSES1021400",
-    "price": 10739.5,
-    "size": 0.04
-   }
-  }
+  "orders": {}
  }
 }
