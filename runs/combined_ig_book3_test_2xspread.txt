@@ -1,0 +1,10 @@
+trades in the window: IGN 69, RNG 209, NEWS 12, RUS 206, RFT 286, RDX 261, SIDE 135, REU 263, RGB 282, RJY 462
+
+BOOK 13 v2 + FX LADDERS — 12 months Nov 2025 - Oct 2026, £500, 5x exposure cap on true notional (backtest, not a forecast)
+  v2 (book 13 + US 500 + FTSE)   end £1,381 (+176%) maxDD -10% | months up 11/12 median £+58 worst £-12 | trades 63/month | IGN £+107 RNG £+202 NEWS £+7 RUS £+263 RFT £+302
+  + EUR/USD                      end £1,342 (+168%) maxDD -9% | months up 10/12 median £+59 worst £-7 | trades 80/month | IGN £+125 RNG £+167 NEWS £+8 RUS £+252 RFT £+294 REU £-5
+  + GBP/USD                      end £1,379 (+176%) maxDD -10% | months up 12/12 median £+49 worst £+8 | trades 81/month | IGN £+90 RNG £+206 NEWS £+8 RUS £+264 RFT £+282 RGB £+29
+  + USD/JPY                      end £1,342 (+168%) maxDD -10% | months up 10/12 median £+62 worst £-20 | trades 96/month | IGN £+114 RNG £+209 NEWS £+6 RUS £+206 RFT £+287 RJY £+20
+  + GBP/USD + USD/JPY            end £1,412 (+182%) maxDD -10% | months up 12/12 median £+64 worst £+3 | trades 110/month | IGN £+109 RNG £+229 NEWS £+8 RUS £+222 RFT £+290 RGB £+13 RJY £+41
+  + all three FX                 end £1,308 (+162%) maxDD -10% | months up 11/12 median £+58 worst £-0 | trades 118/month | IGN £+111 RNG £+180 NEWS £+8 RUS £+217 RFT £+283 REU £-35 RGB £+14 RJY £+31
+done

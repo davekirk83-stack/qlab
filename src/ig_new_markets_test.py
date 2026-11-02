@@ -26,7 +26,7 @@ MK = {  # name: (file, IG spread pts in session, margin, own session tz and hour
     "FTSE 100": ("data_ign/GBRIDXGBP_5m.csv", 1.0, 0.05, ("Europe/London", 8, 16.5)),
     "Gold": ("data_ign/XAUUSD_5m.csv", 0.3, 0.05, ("America/New_York", 8.33, 13.5)),
     "EUR/USD": ("data_ign/EURUSD_5m.csv", 0.00006, 0.0333, ("Europe/London", 7, 17)),
-    "GBP/USD": ("data_ign/GBPUSD_5m.csv", 0.0009, 0.0333, ("Europe/London", 7, 17)),
+    "GBP/USD": ("data_ign/GBPUSD_5m.csv", 0.00009, 0.0333, ("Europe/London", 7, 17)),
     "USD/JPY": ("data_ign/USDJPY_5m.csv", 0.007, 0.0333, ("Europe/London", 0, 17)),
     "Oil (WTI)": ("data_ign/LIGHTCMDUSD_5m.csv", 0.03, 0.10, ("America/New_York", 9, 14.5)),
 }
