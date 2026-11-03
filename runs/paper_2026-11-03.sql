@@ -1,0 +1,13 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-03', exit_px=0.0379067, exit_reason='target', ret=0.064582, pnl=10.29 WHERE sym='LCXUSD' AND opened='2026-11-02' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ADAUSD','2026-11-03',0.18698,0.15775143,0.19185143,0.00974286,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('AEROUSD','2026-11-03',0.59204,0.43574214,0.61808964,0.05209929,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('CHZUSD','2026-11-03',0.011702,0.00973807,0.01202932,0.00065464,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ENSUSD','2026-11-03',4.71,3.91328571,4.84278571,0.26557143,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('FETUSD','2026-11-03',0.15384,0.11762786,0.15987536,0.01207071,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('IOUSD','2026-11-03',0.12239,0.09293214,0.12729964,0.00981929,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('LPTUSD','2026-11-03',1.35,1.10967857,1.39005357,0.08010714,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('MANAUSD','2026-11-03',0.0712,0.05937143,0.07317143,0.00394286,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('SANDUSD','2026-11-03',0.0437,0.03465714,0.04520714,0.00301429,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ZETACHAINUSD','2026-11-03',0.0345,0.02770714,0.03563214,0.00226429,53.35,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ZETAUSD','2026-11-03',0.03453,0.02782071,0.03564821,0.00223643,53.35,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-03',2133.84,33,1,11,11,0,'11 signals, 11 taken, 0 dropped, 1 closed, 33 open');
