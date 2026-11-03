@@ -1,43 +1,44 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-18:11:47 delta-share threshold 0.0489 (percentile-matched on 1132 IG bars); registered 0.05
-18:12:06 history 300 bars to 2026-11-02 18:12:00+00:00
-18:12:06 ls status: CONNECTING
-18:12:06 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-18:12:06 streaming IX.D.NASDAQ.CASH.IP
-18:12:07 ls status: CONNECTED:WS-STREAMING
-18:12:07 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-18:12:07 CHART IX.D.NASDAQ.CASH.IP subscribed
-18:12:07 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28431.6', 'OFR': '28432.8'}
-18:12:07 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28431.3', 'OFR': '28432.5'}
-18:12:07 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28430.3', 'OFR': '28431.5'}
-18:12:07 stream subscribed on CHART via Z6FARW
-18:12:07 trading session on Z6FARW
-18:12:08 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-18:12:10 [range] NQ: using the runner's own 300 IG bars
-18:12:10 [range] NQ: cache 68920 bars offset +39.1 to IG level, REST 300 bars to 2026-11-02 18:12:00+00:00
-18:12:10 [range] NQ: containment median 0.860 over 22976 15-min bars
-18:12:25 [range] US500 history throttled — waiting 15 s
-18:12:40 [range] US500 history throttled — waiting 15 s
-18:13:13 [range] US500: cache 67764 bars offset -0.3 to IG level, REST 300 bars to 2026-11-02 18:13:00+00:00
-18:13:13 [range] US500: containment median 0.880 over 22597 15-min bars
-18:13:33 [range] FTSE history throttled — waiting 15 s
-18:13:48 [range] FTSE history throttled — waiting 15 s
-18:14:21 [range] FTSE: cache 67953 bars offset -35.1 to IG level, REST 300 bars to 2026-11-02 18:14:00+00:00
-18:14:22 [range] FTSE: containment median 0.880 over 22681 15-min bars
-18:14:22 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt'}
-18:14:22 streaming IX.D.SPTRD.DAILY.IP
-18:14:22 streaming IX.D.FTSE.DAILY.IP
-18:14:22 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
-18:14:22 CHART IX.D.SPTRD.DAILY.IP subscribed
-18:14:22 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-18:14:22 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
-18:14:22 CHART IX.D.FTSE.DAILY.IP subscribed
-18:15:00 [range] NQ 18:00 c 28434.7 ema 28510.0 band 28342.5-28677.5 atr 83.7 regime off L 0 S 0 orders 0
-18:15:00 bar 18:10 o 28432.2 h 28453.8 l 28415.2 c 28421.2 ticks 2159 delta -52
-18:15:00 [range] FTSE LIMIT rung 0 filled at 10737.0
-18:15:00 [range] FTSE LIMIT rung 1 filled at 10739.5
-18:15:00 [range] FTSE 18:00 c 10781.4 ema 10754.3 band 10727.6-10781.1 atr 13.4 regime off L 0 S 2 orders 0
-18:15:01 [range] FTSE step error: Traceback (most recent call last):
+07:59:57 delta-share threshold 0.0500 (percentile-matched on 1312 IG bars); registered 0.05
+08:00:15 history 300 bars to 2026-11-03 08:00:00+00:00
+08:00:15 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+08:00:15 streaming IX.D.NASDAQ.CASH.IP
+08:00:15 ls status: CONNECTING
+08:00:16 ls status: CONNECTED:WS-STREAMING
+08:00:16 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+08:00:16 CHART IX.D.NASDAQ.CASH.IP subscribed
+08:00:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28018', 'OFR': '28020.2'}
+08:00:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28017.2', 'OFR': '28019.4'}
+08:00:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28017.7', 'OFR': '28019.9'}
+08:00:16 stream subscribed on CHART via Z6FARW
+08:00:16 trading session on Z6FARW
+08:00:16 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+08:00:18 [range] NQ: using the runner's own 300 IG bars
+08:00:18 [range] NQ: cache 68920 bars offset -455.9 to IG level, REST 300 bars to 2026-11-03 08:00:00+00:00
+08:00:18 [range] NQ: containment median 0.860 over 22976 15-min bars
+08:00:33 [range] US500 history throttled — waiting 15 s
+08:00:48 [range] US500 history throttled — waiting 15 s
+08:01:20 [range] US500: cache 67764 bars offset -68.3 to IG level, REST 300 bars to 2026-11-03 08:01:00+00:00
+08:01:20 [range] US500: containment median 0.880 over 22597 15-min bars
+08:01:39 [range] FTSE history throttled — waiting 15 s
+08:01:54 [range] FTSE history throttled — waiting 15 s
+08:02:27 [range] FTSE: cache 67953 bars offset -7.6 to IG level, REST 299 bars to 2026-11-03 08:02:00+00:00
+08:02:27 [range] FTSE: containment median 0.880 over 22681 15-min bars
+08:02:27 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt'}
+08:02:27 streaming IX.D.SPTRD.DAILY.IP
+08:02:27 streaming IX.D.FTSE.DAILY.IP
+08:02:27 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
+08:02:27 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+08:02:27 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
+08:02:27 CHART IX.D.SPTRD.DAILY.IP subscribed
+08:02:27 CHART IX.D.FTSE.DAILY.IP subscribed
+08:05:00 bar 08:00 o 28019.1 h 28036.0 l 27980.0 c 27988.9 ticks 3543 delta -98
+08:10:00 bar 08:05 o 27989.0 h 28022.5 l 27980.9 c 28008.8 ticks 3441 delta -53
+08:15:00 [range] US500 08:00 c 7535.2 ema 7528.3 band 7514.6-7542.0 atr 6.8 regime off L 0 S 0 orders 0
+08:15:00 [range] NQ 08:00 c 28014.3 ema 27985.2 band 27892.8-28077.5 atr 46.2 regime off L 0 S 0 orders 0
+08:15:01 bar 08:10 o 28008.6 h 28017.5 l 27995.8 c 28014.3 ticks 3516 delta -58
+08:15:01 [range] FTSE 08:00 c 10723.2 ema 10721.2 band 10698.6-10743.9 atr 11.3 regime off L 0 S 0 orders 0
+08:15:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -49,14 +50,12 @@ munch is not present in the environment. See https://trading-ig.readthedocs.io/e
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-18:15:01 [range] US500 18:00 c 7614.8 ema 7616.9 band 7589.2-7644.6 atr 13.9 regime off L 0 S 0 orders 0
-18:20:00 bar 18:15 o 28421.3 h 28450.7 l 28414.9 c 28438.4 ticks 3806 delta -14
-18:25:00 bar 18:20 o 28437.9 h 28440.3 l 28412.4 c 28424.2 ticks 3806 delta -32
-18:30:00 [range] NQ 18:15 c 28399.8 ema 28499.5 band 28335.3-28663.7 atr 82.1 regime off L 0 S 0 orders 0
-18:30:00 bar 18:25 o 28424.4 h 28426.3 l 28396.7 c 28399.8 ticks 3779 delta -103
-18:30:01 [range] US500 18:15 c 7608.1 ema 7616.1 band 7588.2-7643.9 atr 13.9 regime off L 0 S 0 orders 0
-18:30:01 [range] FTSE 18:15 c 10783.9 ema 10757.2 band 10732.1-10782.3 atr 12.5 regime off L 0 S 0 orders 0
-18:30:01 [range] FTSE step error: Traceback (most recent call last):
+08:20:00 bar 08:15 o 28014.4 h 28027.0 l 27992.1 c 28001.3 ticks 3426 delta -90
+08:25:00 bar 08:20 o 28001.5 h 28016.5 l 27994.3 c 28007.6 ticks 3262 delta -8
+08:30:00 [range] NQ 08:15 c 28012.1 ema 27987.8 band 27893.2-28082.3 atr 47.3 regime off L 0 S 0 orders 0
+08:30:00 bar 08:25 o 28007.3 h 28015.3 l 27996.1 c 28012.1 ticks 3315 delta -73
+08:30:00 [range] FTSE 08:15 c 10719.1 ema 10721.0 band 10697.1-10745.0 atr 12.0 regime off L 0 S 0 orders 0
+08:30:00 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -68,13 +67,11 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-18:35:00 bar 18:30 o 28399.5 h 28406.2 l 28368.0 c 28372.2 ticks 3735 delta +69
-18:40:00 bar 18:35 o 28371.7 h 28398.7 l 28367.2 c 28387.0 ticks 3700 delta +24
-18:45:00 [range] NQ 18:30 c 28344.6 ema 28484.8 band 28324.7-28644.9 atr 80.1 regime off L 0 S 0 orders 0
-18:45:00 bar 18:40 o 28386.9 h 28388.0 l 28323.4 c 28344.6 ticks 3568 delta -144
-18:45:01 [range] US500 18:30 c 7598.2 ema 7614.4 band 7587.0-7641.7 atr 13.7 regime off L 0 S 0 orders 0
-18:45:02 [range] FTSE 18:30 c 10779.9 ema 10759.3 band 10735.2-10783.5 atr 12.1 regime off L 0 S 0 orders 0
-18:45:02 [range] FTSE step error: Traceback (most recent call last):
+08:30:01 [range] US500 08:15 c 7532.0 ema 7528.6 band 7514.3-7542.9 atr 7.1 regime off L 0 S 0 orders 0
+08:35:00 bar 08:30 o 28012.9 h 28023.9 l 27996.9 c 28000.3 ticks 3331 delta -119
+08:40:00 bar 08:35 o 28000.1 h 28017.3 l 27982.3 c 27986.5 ticks 3325 delta -125
+08:45:00 [range] FTSE 08:30 c 10694.7 ema 10718.5 band 10690.9-10746.1 atr 13.8 regime off L 0 S 0 orders 0
+08:45:00 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -86,13 +83,15 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-18:50:00 bar 18:45 o 28344.2 h 28357.7 l 28323.0 c 28350.9 ticks 3556 delta -24
-18:55:00 bar 18:50 o 28350.6 h 28355.5 l 28315.0 c 28334.4 ticks 3653 delta +73
-19:00:00 [range] NQ 18:45 c 28300.5 ema 28467.2 band 28318.3-28616.1 atr 74.4 regime off L 0 S 0 orders 0
-19:00:00 bar 18:55 o 28334.3 h 28342.9 l 28295.5 c 28300.5 ticks 3638 delta -100
-19:00:02 [range] US500 18:45 c 7594.6 ema 7612.5 band 7587.6-7637.4 atr 12.4 regime off L 0 S 0 orders 0
-19:00:02 [range] FTSE 18:45 c 10784.6 ema 10761.7 band 10739.1-10784.4 atr 11.3 regime off L 0 S 0 orders 0
-19:00:02 [range] FTSE step error: Traceback (most recent call last):
+08:45:00 [range] NQ 08:30 c 27994.8 ema 27988.4 band 27891.2-28085.7 atr 48.6 regime off L 0 S 0 orders 0
+08:45:00 bar 08:40 o 27986.3 h 27998.5 l 27976.3 c 27994.8 ticks 3277 delta -25
+08:45:01 [range] US500 08:30 c 7527.4 ema 7528.5 band 7513.5-7543.5 atr 7.5 regime off L 0 S 0 orders 0
+08:50:00 bar 08:45 o 27994.9 h 27999.5 l 27974.5 c 27982.5 ticks 3056 delta -118
+08:55:00 bar 08:50 o 27982.6 h 28017.3 l 27979.8 c 28012.5 ticks 3239 delta -47
+09:00:00 [range] NQ 08:45 c 28028.4 ema 27992.2 band 27891.6-28092.8 atr 50.3 regime off L 0 S 0 orders 0
+09:00:00 bar 08:55 o 28012.6 h 28030.4 l 28002.8 c 28028.4 ticks 3192 delta -40
+09:00:01 [range] FTSE 08:45 c 10694.9 ema 10716.3 band 10687.3-10745.2 atr 14.5 regime off L 0 S 0 orders 0
+09:00:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -104,13 +103,13 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-19:05:00 bar 19:00 o 28300.4 h 28303.0 l 28264.3 c 28277.5 ticks 3695 delta -91
-19:10:00 bar 19:05 o 28277.7 h 28282.8 l 28244.5 c 28267.7 ticks 3702 delta -42
-19:15:00 [range] NQ 19:00 c 28276.9 ema 28449.1 band 28304.4-28593.8 atr 72.3 regime off L 0 S 0 orders 0
-19:15:00 bar 19:10 o 28267.8 h 28282.8 l 28250.7 c 28276.9 ticks 3716 delta -28
-19:15:01 [range] US500 19:00 c 7588.8 ema 7610.2 band 7585.7-7634.8 atr 12.3 regime off L 0 S 0 orders 0
-19:15:01 [range] FTSE 19:00 c 10780.9 ema 10763.6 band 10741.2-10785.9 atr 11.2 regime off L 0 S 0 orders 0
-19:15:01 [range] FTSE step error: Traceback (most recent call last):
+09:00:01 [range] US500 08:45 c 7532.4 ema 7528.9 band 7513.1-7544.7 atr 7.9 regime off L 0 S 0 orders 0
+09:05:00 bar 09:00 o 28028.5 h 28033.4 l 28003.1 c 28032.5 ticks 3625 delta -29
+09:10:00 bar 09:05 o 28032.4 h 28076.5 l 28030.1 c 28061.5 ticks 3717 delta -69
+09:15:00 [range] NQ 09:00 c 28051.6 ema 27997.9 band 27895.4-28100.3 atr 51.2 regime off L 0 S 0 orders 0
+09:15:00 bar 09:10 o 28061.4 h 28076.1 l 28050.4 c 28051.6 ticks 3149 delta -133
+09:15:01 [range] FTSE 09:00 c 10718.6 ema 10716.5 band 10685.1-10747.9 atr 15.7 regime off L 0 S 0 orders 0
+09:15:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -122,14 +121,14 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-19:20:00 bar 19:15 o 28276.7 h 28282.3 l 28226.6 c 28233.6 ticks 3639 delta -129
-19:25:00 bar 19:20 o 28233.9 h 28237.6 l 28179.1 c 28187.9 ticks 3653 delta -185
-19:25:00 bar 19:20 sig -1 in the US lunch window (12-15 New York) — skipped (v1.1)
-19:30:00 [range] NQ 19:15 c 28213.1 ema 28426.6 band 28280.5-28572.7 atr 73.0 regime off L 0 S 0 orders 0
-19:30:00 bar 19:25 o 28187.6 h 28220.9 l 28140.4 c 28213.1 ticks 3723 delta -87
-19:30:01 [range] US500 19:15 c 7576.6 ema 7607.0 band 7582.5-7631.6 atr 12.3 regime off L 0 S 0 orders 0
-19:30:01 [range] FTSE 19:15 c 10770.1 ema 10764.2 band 10740.6-10787.7 atr 11.8 regime off L 0 S 0 orders 0
-19:30:01 [range] FTSE step error: Traceback (most recent call last):
+09:15:01 [range] US500 09:00 c 7537.0 ema 7529.7 band 7513.2-7546.1 atr 8.2 regime off L 0 S 0 orders 0
+09:20:00 bar 09:15 o 28051.9 h 28081.0 l 28049.5 c 28075.4 ticks 2575 delta +7
+09:25:00 bar 09:20 o 28075.1 h 28080.6 l 28055.4 c 28065.3 ticks 2853 delta -125
+09:30:00 [range] NQ 09:15 c 28053.2 ema 28003.2 band 27902.8-28103.5 atr 50.2 regime off L 0 S 0 orders 0
+09:30:00 bar 09:25 o 28065.5 h 28075.7 l 28045.6 c 28053.2 ticks 2681 delta -147
+09:30:01 [range] US500 09:15 c 7534.8 ema 7530.2 band 7513.8-7546.5 atr 8.2 regime off L 0 S 0 orders 0
+09:30:01 [range] FTSE 09:15 c 10704.8 ema 10715.4 band 10682.9-10747.8 atr 16.2 regime off L 0 S 0 orders 0
+09:30:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -141,13 +140,13 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-19:35:00 bar 19:30 o 28213.3 h 28230.7 l 28159.4 c 28180.9 ticks 3725 delta -119
-19:40:00 bar 19:35 o 28180.7 h 28190.8 l 28110.7 c 28124.8 ticks 3729 delta -223
-19:40:00 bar 19:35 sig -1 in the US lunch window (12-15 New York) — skipped (v1.1)
-19:45:00 [range] NQ 19:30 c 28136.4 ema 28399.0 band 28244.8-28553.2 atr 77.1 regime off L 0 S 0 orders 0
-19:45:00 bar 19:40 o 28125.2 h 28142.6 l 28098.7 c 28136.4 ticks 3775 delta +11
-19:45:01 [range] FTSE 19:30 c 10767.7 ema 10764.5 band 10741.4-10787.6 atr 11.6 regime off L 0 S 0 orders 0
-19:45:01 [range] FTSE step error: Traceback (most recent call last):
+09:35:00 bar 09:30 o 28053.1 h 28059.2 l 28036.9 c 28049.9 ticks 2580 delta -134
+09:40:00 bar 09:35 o 28050.1 h 28073.5 l 28042.8 c 28065.8 ticks 2497 delta -25
+09:45:00 [range] NQ 09:30 c 28081.8 ema 28010.6 band 27907.3-28114.0 atr 51.7 regime off L 0 S 0 orders 0
+09:45:00 bar 09:40 o 28065.7 h 28088.0 l 28059.0 c 28081.8 ticks 2512 delta -26
+09:45:01 [range] US500 09:30 c 7539.7 ema 7531.1 band 7514.0-7548.1 atr 8.5 regime off L 0 S 0 orders 0
+09:45:01 [range] FTSE 09:30 c 10698.2 ema 10713.8 band 10679.9-10747.6 atr 16.9 regime off L 0 S 0 orders 0
+09:45:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -159,14 +158,10 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-19:45:01 [range] US500 19:30 c 7566.5 ema 7603.2 band 7577.3-7629.0 atr 12.9 regime off L 0 S 0 orders 0
-19:50:00 bar 19:45 o 28137.1 h 28146.8 l 28063.7 c 28073.6 ticks 3721 delta -105
-19:55:00 bar 19:50 o 28073.7 h 28134.8 l 28050.3 c 28126.4 ticks 3735 delta +53
-20:00:00 [range] NQ 19:45 c 28182.7 ema 28378.4 band 28213.6-28543.2 atr 82.4 regime off L 0 S 0 orders 0
-20:00:00 bar 19:55 o 28127.2 h 28187.5 l 28100.7 c 28182.7 ticks 3739 delta -3
-20:00:01 [range] US500 19:45 c 7575.9 ema 7600.6 band 7572.9-7628.3 atr 13.9 regime off L 0 S 0 orders 0
-20:00:01 [range] FTSE 19:45 c 10773.7 ema 10765.4 band 10741.2-10789.5 atr 12.1 regime off L 0 S 0 orders 0
-20:00:01 [range] FTSE step error: Traceback (most recent call last):
+09:50:00 bar 09:45 o 28081.6 h 28086.4 l 28071.2 c 28078.3 ticks 2476 delta -130
+09:55:00 bar 09:50 o 28078.5 h 28101.2 l 28073.2 c 28092.3 ticks 2403 delta -69
+10:00:00 [range] FTSE 09:45 c 10709.3 ema 10713.3 band 10678.3-10748.4 atr 17.5 regime off L 0 S 0 orders 0
+10:00:00 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -178,12 +173,13 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-20:05:00 bar 20:00 o 28182.8 h 28229.4 l 28142.6 c 28179.6 ticks 3785 delta -5
-20:10:00 bar 20:05 o 28179.9 h 28212.9 l 28164.1 c 28171.1 ticks 3747 delta -39
-20:15:00 [range] NQ 20:00 c 28124.9 ema 28354.2 band 28181.1-28527.4 atr 86.6 regime off L 0 S 0 orders 0
-20:15:00 bar 20:10 o 28171.2 h 28178.5 l 28119.5 c 28124.9 ticks 3740 delta -116
-20:15:01 [range] FTSE 20:00 c 10765.9 ema 10765.4 band 10742.6-10788.3 atr 11.4 regime off L 0 S 0 orders 0
-20:15:01 [range] FTSE step error: Traceback (most recent call last):
+10:00:00 [range] NQ 09:45 c 28105.5 ema 28019.7 band 27915.6-28123.7 atr 52.0 regime off L 0 S 0 orders 0
+10:00:01 bar 09:55 o 28092.1 h 28109.0 l 28088.9 c 28105.5 ticks 2180 delta +2
+10:00:01 [range] US500 09:45 c 7543.6 ema 7532.3 band 7515.1-7549.4 atr 8.6 regime off L 0 S 0 orders 0
+10:05:00 bar 10:00 o 28105.3 h 28131.5 l 28099.3 c 28130.0 ticks 2445 delta -33
+10:10:00 bar 10:05 o 28130.1 h 28130.6 l 28113.0 c 28118.0 ticks 2225 delta -167
+10:15:00 [range] FTSE 10:00 c 10711.9 ema 10713.2 band 10678.4-10748.0 atr 17.4 regime off L 0 S 0 orders 0
+10:15:00 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -195,14 +191,14 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-20:15:01 [range] US500 20:00 c 7567.0 ema 7597.4 band 7568.1-7626.6 atr 14.6 regime off L 0 S 0 orders 0
-20:20:00 bar 20:15 o 28125.0 h 28176.6 l 28120.4 c 28172.2 ticks 3738 delta +32
-20:25:00 bar 20:20 o 28171.4 h 28189.0 l 28145.2 c 28172.6 ticks 3798 delta -128
-20:30:00 [range] NQ 20:15 c 28125.5 ema 28332.5 band 28154.0-28510.9 atr 89.2 regime off L 0 S 0 orders 0
-20:30:00 bar 20:25 o 28172.8 h 28177.5 l 28110.7 c 28125.5 ticks 3775 delta -129
-20:30:01 [range] US500 20:15 c 7566.0 ema 7594.4 band 7564.1-7624.7 atr 15.1 regime off L 0 S 0 orders 0
-20:30:01 [range] FTSE 20:15 c 10766.5 ema 10765.5 band 10742.2-10788.9 atr 11.7 regime off L 0 S 0 orders 0
-20:30:01 [range] FTSE step error: Traceback (most recent call last):
+10:15:00 [range] NQ 10:00 c 28129.6 ema 28030.1 band 27927.1-28133.2 atr 51.5 regime off L 0 S 0 orders 0
+10:15:00 bar 10:10 o 28117.7 h 28139.7 l 28109.8 c 28129.6 ticks 2254 delta -190
+10:15:01 [range] US500 10:00 c 7544.0 ema 7533.4 band 7516.4-7550.3 atr 8.5 regime off L 0 S 0 orders 0
+10:20:00 bar 10:15 o 28129.2 h 28142.7 l 28118.7 c 28127.8 ticks 2461 delta -247
+10:25:00 bar 10:20 o 28128.0 h 28128.0 l 28105.3 c 28109.1 ticks 2413 delta -129
+10:30:00 [range] US500 10:15 c 7540.3 ema 7534.0 band 7517.1-7550.9 atr 8.5 regime off L 0 S 0 orders 0
+10:30:01 [range] FTSE 10:15 c 10711.5 ema 10713.0 band 10679.2-10746.8 atr 16.9 regime off L 0 S 0 orders 0
+10:30:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -214,12 +210,14 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-20:35:00 bar 20:30 o 28126.4 h 28126.4 l 28013.1 c 28043.3 ticks 3746 delta -36
-20:40:00 bar 20:35 o 28042.8 h 28050.3 l 27997.8 c 28002.8 ticks 3727 delta -57
-20:45:00 [range] NQ 20:30 c 28007.5 ema 28301.5 band 28109.3-28493.7 atr 96.1 regime off L 0 S 0 orders 0
-20:45:00 bar 20:40 o 28002.9 h 28022.1 l 27965.7 c 28007.5 ticks 3712 delta -102
-20:45:01 [range] FTSE 20:30 c 10765.4 ema 10765.5 band 10742.7-10788.3 atr 11.4 regime off L 0 S 0 orders 0
-20:45:01 [range] FTSE step error: Traceback (most recent call last):
+10:30:01 [range] NQ 10:15 c 28105.2 ema 28037.3 band 27934.9-28139.7 atr 51.2 regime off L 0 S 0 orders 0
+10:30:01 bar 10:25 o 28109.3 h 28116.1 l 28101.6 c 28105.2 ticks 2106 delta -118
+10:35:00 bar 10:30 o 28105.1 h 28118.5 l 28096.5 c 28109.3 ticks 2251 delta -141
+10:40:00 bar 10:35 o 28109.2 h 28113.5 l 28103.7 c 28104.2 ticks 1984 delta -130
+10:45:00 [range] NQ 10:30 c 28101.5 ema 28043.4 band 27946.8-28140.0 atr 48.3 regime off L 0 S 0 orders 0
+10:45:00 bar 10:40 o 28104.1 h 28105.8 l 28095.5 c 28101.5 ticks 1976 delta -32
+10:45:01 [range] FTSE 10:30 c 10705.4 ema 10712.3 band 10679.9-10744.7 atr 16.2 regime off L 0 S 0 orders 0
+10:45:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -231,14 +229,14 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-20:45:01 [range] US500 20:30 c 7549.6 ema 7590.1 band 7557.8-7622.5 atr 16.2 regime off L 0 S 0 orders 0
-20:50:00 bar 20:45 o 28007.2 h 28073.2 l 28002.1 c 28065.7 ticks 3757 delta -57
-20:55:00 bar 20:50 o 28066.0 h 28071.7 l 27971.7 c 28038.9 ticks 3740 delta -130
-21:00:00 [range] NQ 20:45 c 27999.4 ema 28272.7 band 28076.2-28469.2 atr 98.3 regime off L 0 S 0 orders 0
-21:00:00 bar 20:55 o 28038.6 h 28038.8 l 27967.1 c 27999.4 ticks 3711 delta -35
-21:00:01 [range] US500 20:45 c 7544.6 ema 7585.8 band 7551.9-7619.7 atr 16.9 regime off L 0 S 0 orders 0
-21:00:01 [range] FTSE 20:45 c 10765.3 ema 10765.5 band 10741.0-10790.0 atr 12.3 regime off L 0 S 0 orders 0
-21:00:01 [range] FTSE step error: Traceback (most recent call last):
+10:45:01 [range] US500 10:30 c 7539.4 ema 7534.5 band 7518.5-7550.6 atr 8.0 regime off L 0 S 0 orders 0
+10:50:00 bar 10:45 o 28101.3 h 28107.1 l 28096.6 c 28100.6 ticks 1901 delta -47
+10:55:00 bar 10:50 o 28100.5 h 28103.6 l 28086.1 c 28088.5 ticks 1836 delta -118
+11:00:00 [range] NQ 10:45 c 28103.1 ema 28049.1 band 27960.5-28137.7 atr 44.3 regime off L 0 S 0 orders 0
+11:00:00 bar 10:55 o 28088.3 h 28103.8 l 28084.0 c 28103.1 ticks 1860 delta -20
+11:00:01 [range] US500 10:45 c 7540.0 ema 7535.1 band 7520.1-7550.0 atr 7.5 regime off L 0 S 0 orders 0
+11:00:01 [range] FTSE 10:45 c 10707.2 ema 10711.8 band 10680.1-10743.5 atr 15.9 regime off L 0 S 0 orders 0
+11:00:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -250,13 +248,13 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-21:05:00 bar 21:00 o 28001.4 h 28069.0 l 28001.4 c 28054.5 ticks 2562 delta -10
-21:10:00 bar 21:05 o 28054.4 h 28088.9 l 28037.7 c 28083.1 ticks 3072 delta +42
-21:15:00 [range] NQ 21:00 c 28088.2 ema 28255.2 band 28053.5-28456.8 atr 100.8 regime off L 0 S 0 orders 0
-21:15:00 bar 21:10 o 28082.5 h 28106.4 l 28074.7 c 28088.2 ticks 2503 delta -91
-21:15:00 [range] US500 21:00 c 7554.1 ema 7582.8 band 7549.3-7616.2 atr 16.7 regime off L 0 S 0 orders 0
-21:15:01 [range] FTSE 21:00 c 10773.9 ema 10766.3 band 10742.1-10790.5 atr 12.1 regime off L 0 S 0 orders 0
-21:15:01 [range] FTSE step error: Traceback (most recent call last):
+11:05:00 bar 11:00 o 28103.6 h 28110.0 l 28095.0 c 28102.8 ticks 2494 delta -116
+11:10:00 bar 11:05 o 28103.0 h 28116.3 l 28095.6 c 28115.2 ticks 2134 delta -24
+11:15:00 [range] US500 11:00 c 7537.3 ema 7535.3 band 7520.7-7549.8 atr 7.3 regime off L 0 S 0 orders 0
+11:15:01 [range] NQ 11:00 c 28087.5 ema 28052.8 band 27965.1-28140.4 atr 43.8 regime off L 0 S 0 orders 0
+11:15:01 bar 11:10 o 28115.3 h 28119.0 l 28087.3 c 28087.5 ticks 2322 delta -178
+11:15:01 [range] FTSE 11:00 c 10703.8 ema 10711.1 band 10679.2-10742.9 atr 15.9 regime off L 0 S 0 orders 0
+11:15:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -268,13 +266,12 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-21:20:00 bar 21:15 o 28088.4 h 28113.2 l 28085.7 c 28101.7 ticks 2081 delta +31
-21:25:00 bar 21:20 o 28101.9 h 28104.4 l 28088.4 c 28097.7 ticks 1547 delta +5
-21:30:00 [range] NQ 21:15 c 28091.6 ema 28239.6 band 28049.6-28429.6 atr 95.0 regime off L 0 S 0 orders 0
-21:30:00 bar 21:25 o 28097.9 h 28111.6 l 28087.0 c 28091.6 ticks 1598 delta -10
-21:30:01 [range] US500 21:15 c 7557.5 ema 7580.4 band 7548.8-7612.0 atr 15.8 regime off L 0 S 0 orders 0
-21:30:01 [range] FTSE 21:15 c 10776.4 ema 10767.3 band 10744.5-10790.1 atr 11.4 regime off L 0 S 0 orders 0
-21:30:01 [range] FTSE step error: Traceback (most recent call last):
+11:20:00 bar 11:15 o 28087.3 h 28101.8 l 28069.3 c 28077.6 ticks 2365 delta -77
+11:25:00 bar 11:20 o 28077.5 h 28080.1 l 28067.5 c 28073.3 ticks 1978 delta -10
+11:30:00 [range] NQ 11:15 c 28086.3 ema 28055.9 band 27972.3-28139.6 atr 41.8 regime ON L 0 S 0 orders 0
+11:30:00 bar 11:25 o 28073.5 h 28088.8 l 28072.3 c 28086.3 ticks 2203 delta +45
+11:30:01 [range] FTSE 11:15 c 10698.5 ema 10709.9 band 10677.3-10742.5 atr 16.3 regime off L 0 S 0 orders 0
+11:30:01 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -286,13 +283,14 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-21:35:00 bar 21:30 o 28092.6 h 28111.9 l 28043.2 c 28086.5 ticks 3455 delta +37
-21:40:00 bar 21:35 o 28086.4 h 28101.7 l 28051.0 c 28089.6 ticks 3322 delta +36
-21:45:00 [range] NQ 21:30 c 28104.9 ema 28226.8 band 28037.0-28416.5 atr 94.9 regime off L 0 S 0 orders 0
-21:45:00 bar 21:40 o 28090.1 h 28113.6 l 28085.9 c 28104.9 ticks 3019 delta -21
-21:45:01 [range] US500 21:30 c 7558.7 ema 7578.3 band 7547.0-7609.6 atr 15.6 regime off L 0 S 0 orders 0
-21:45:02 [range] FTSE 21:30 c 10777.1 ema 10768.2 band 10746.5-10789.9 atr 10.8 regime off L 0 S 0 orders 0
-21:45:02 [range] FTSE step error: Traceback (most recent call last):
+11:30:02 [range] US500 11:15 c 7535.0 ema 7535.2 band 7521.1-7549.4 atr 7.1 regime off L 0 S 0 orders 0
+11:35:00 bar 11:30 o 28086.2 h 28093.6 l 28076.2 c 28082.3 ticks 2345 delta -79
+11:40:00 bar 11:35 o 28082.6 h 28084.1 l 28067.0 c 28074.1 ticks 2081 delta -57
+11:45:00 [range] US500 11:30 c 7534.9 ema 7535.2 band 7521.7-7548.7 atr 6.8 regime off L 0 S 0 orders 0
+11:45:01 [range] NQ 11:30 c 28077.0 ema 28058.0 band 27978.5-28137.4 atr 39.7 regime ON L 0 S 0 orders 0
+11:45:01 bar 11:40 o 28074.3 h 28078.8 l 28067.3 c 28077.0 ticks 2031 delta -65
+11:45:02 [range] FTSE 11:30 c 10695.1 ema 10708.5 band 10679.4-10737.5 atr 14.5 regime off L 0 S 0 orders 0
+11:45:02 [range] FTSE step error: Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
     try: self.step(name)
          ^^^^^^^^^^^^^^^
@@ -304,7 +302,148 @@ TypeError: 'BookEquity' object is not callable
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'BookEquity' object is not callable
 
-21:50:00 bar 21:45 o 28105.0 h 28109.1 l 28089.2 c 28093.1 ticks 2518 delta -22
-21:55:00 bar 21:50 o 28092.6 h 28097.1 l 28070.6 c 28078.1 ticks 2229 delta -65
-21:59:48 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-21:59:48 done; ticks 217957 bars 344
+11:50:00 bar 11:45 o 28077.6 h 28079.1 l 28065.6 c 28069.3 ticks 1997 delta -55
+11:55:00 bar 11:50 o 28069.5 h 28078.1 l 28038.5 c 28039.1 ticks 2075 delta -81
+12:00:00 [range] FTSE 11:45 c 10687.6 ema 10706.5 band 10677.0-10735.9 atr 14.7 regime off L 0 S 0 orders 0
+12:00:00 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+12:00:00 [range] US500 11:45 c 7531.5 ema 7534.9 band 7521.5-7548.3 atr 6.7 regime ON L 0 S 0 orders 0
+12:00:01 [range] NQ 11:45 c 28048.5 ema 28057.1 band 27976.3-28137.8 atr 40.4 regime ON L 0 S 0 orders 0
+12:00:01 bar 11:55 o 28039.0 h 28054.3 l 28035.2 c 28048.5 ticks 2131 delta +37
+12:05:00 bar 12:00 o 28048.3 h 28048.3 l 27983.8 c 28034.5 ticks 3098 delta +26
+12:10:00 bar 12:05 o 28034.6 h 28040.3 l 28025.5 c 28027.0 ticks 2521 delta -29
+12:15:00 [range] US500 12:00 c 7530.4 ema 7534.4 band 7521.2-7547.7 atr 6.6 regime ON L 0 S 0 orders 0
+12:15:01 [range] NQ 12:00 c 28033.0 ema 28054.8 band 27971.0-28138.5 atr 41.9 regime ON L 0 S 0 orders 0
+12:15:01 bar 12:10 o 28027.1 h 28052.1 l 28009.9 c 28033.0 ticks 2731 delta -181
+12:15:01 [range] FTSE 12:00 c 10683.7 ema 10704.3 band 10677.7-10730.9 atr 13.3 regime off L 0 S 0 orders 0
+12:15:01 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+12:20:00 bar 12:15 o 28032.5 h 28065.4 l 28024.6 c 28054.9 ticks 2980 delta -72
+12:25:00 bar 12:20 o 28054.8 h 28099.3 l 28054.8 c 28094.4 ticks 3011 delta -197
+12:30:00 [range] FTSE 12:15 c 10689.9 ema 10702.9 band 10676.9-10728.9 atr 13.0 regime off L 0 S 0 orders 0
+12:30:00 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+12:30:00 [range] NQ 12:15 c 28105.5 ema 28059.6 band 27971.5-28147.6 atr 44.0 regime ON L 0 S 0 orders 0
+12:30:00 bar 12:25 o 28094.1 h 28110.9 l 28077.3 c 28105.5 ticks 2872 delta -144
+12:30:01 [range] US500 12:15 c 7540.7 ema 7535.0 band 7521.4-7548.7 atr 6.8 regime ON L 0 S 0 orders 0
+12:35:00 bar 12:30 o 28105.6 h 28119.0 l 28086.6 c 28103.1 ticks 2856 delta -82
+12:40:00 bar 12:35 o 28103.0 h 28117.9 l 28087.3 c 28117.5 ticks 2597 delta -59
+12:45:00 [range] US500 12:30 c 7540.9 ema 7535.6 band 7522.8-7548.4 atr 6.4 regime ON L 0 S 0 orders 0
+12:45:01 [range] NQ 12:30 c 28091.6 ema 28062.6 band 27980.4-28144.8 atr 41.1 regime ON L 0 S 0 orders 0
+12:45:02 bar 12:40 o 28117.8 h 28117.9 l 28091.0 c 28091.6 ticks 2524 delta -164
+12:45:02 [range] FTSE 12:30 c 10690.8 ema 10701.8 band 10677.6-10726.0 atr 12.1 regime off L 0 S 0 orders 0
+12:45:02 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+12:50:00 bar 12:45 o 28091.8 h 28113.4 l 28072.4 c 28091.0 ticks 2789 delta -249
+12:55:00 bar 12:50 o 28090.8 h 28111.4 l 28077.8 c 28092.9 ticks 2790 delta -212
+13:00:00 [range] FTSE 12:45 c 10692.3 ema 10700.9 band 10677.8-10723.9 atr 11.5 regime off L 0 S 0 orders 0
+13:00:00 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+13:00:01 [range] NQ 12:45 c 28098.9 ema 28066.1 band 27983.1-28149.1 atr 41.5 regime ON L 0 S 0 orders 0
+13:00:01 bar 12:55 o 28093.0 h 28108.5 l 28087.9 c 28098.9 ticks 2478 delta -122
+13:00:01 [range] US500 12:45 c 7539.6 ema 7536.0 band 7523.1-7548.8 atr 6.4 regime ON L 0 S 0 orders 0
+13:05:00 bar 13:00 o 28098.3 h 28100.1 l 28067.3 c 28075.1 ticks 2886 delta -118
+13:10:00 bar 13:05 o 28074.8 h 28097.8 l 28070.3 c 28077.9 ticks 2871 delta -73
+13:15:00 [range] NQ 13:00 c 28076.3 ema 28067.1 band 27986.7-28147.5 atr 40.2 regime ON L 0 S 0 orders 0
+13:15:00 bar 13:10 o 28078.0 h 28084.1 l 28071.4 c 28076.3 ticks 2563 delta -9
+13:15:01 [range] US500 13:00 c 7531.7 ema 7535.6 band 7522.7-7548.4 atr 6.4 regime ON L 0 S 0 orders 0
+13:15:01 [range] FTSE 13:00 c 10683.7 ema 10699.2 band 10676.9-10721.6 atr 11.2 regime off L 0 S 0 orders 0
+13:15:01 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+13:20:00 bar 13:15 o 28076.0 h 28099.4 l 28073.0 c 28095.0 ticks 3114 delta -34
+13:25:00 bar 13:20 o 28095.8 h 28104.5 l 28081.5 c 28099.3 ticks 3153 delta -87
+13:30:00 [range] NQ 13:15 c 28224.0 ema 28082.0 band 27983.2-28180.8 atr 49.4 regime ON L 0 S 0 orders 0
+13:30:00 bar 13:25 o 28099.1 h 28239.6 l 28090.3 c 28224.0 ticks 3670 delta -160
+13:30:01 [range] FTSE 13:15 c 10710.8 ema 10700.3 band 10675.3-10725.3 atr 12.5 regime off L 0 S 0 orders 0
+13:30:01 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+13:30:01 [range] US500 13:15 c 7557.9 ema 7537.7 band 7521.6-7553.8 atr 8.0 regime ON L 0 S 0 orders 0
+13:35:00 bar 13:30 o 28223.6 h 28296.1 l 28220.3 c 28232.6 ticks 3811 delta -151
+13:40:00 bar 13:35 o 28232.5 h 28256.3 l 28196.5 c 28221.8 ticks 3778 delta -108
+13:45:00 [range] FTSE 13:30 c 10724.1 ema 10702.6 band 10675.5-10729.7 atr 13.6 regime off L 0 S 0 orders 0
+13:45:00 [range] FTSE step error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
+    try: self.step(name)
+         ^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
+    self.close_side(name, side, how); continue
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
+    if not p["lots"]: self.book(name, side, how)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'BookEquity' object is not callable
+
+13:45:01 [range] NQ 13:30 c 28204.3 ema 28093.7 band 27986.4-28200.9 atr 53.6 regime ON L 0 S 0 orders 0
+13:45:01 bar 13:40 o 28222.0 h 28235.8 l 28196.3 c 28204.3 ticks 3781 delta -119
+13:45:01 [range] US500 13:30 c 7557.3 ema 7539.6 band 7521.4-7557.7 atr 9.1 regime ON L 0 S 0 orders 0
+13:50:00 bar 13:45 o 28204.0 h 28216.4 l 28176.8 c 28207.1 ticks 3711 delta -51
