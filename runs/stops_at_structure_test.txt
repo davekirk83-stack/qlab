@@ -1,0 +1,62 @@
+STOPS AT STRUCTURE — Coinbase hourly Nov 2023 - Nov 2026 (dev = first half, holdout = second half)
+
+BTC-USD  (5695 races, 3800 level touches, 3353 control touches)
+  A race dev : up first 54.5% vs distance null 52.8% -> excess +1.7pp (+-1.7)
+      heavier side above   n1123: up 54.9% vs null 53.0% -> +1.8pp
+      heavier side below   n 716: up 53.2% vs null 53.5% -> -0.2pp
+      nearest above is swing n 890: excess +5.5pp
+      nearest above is day   n1829: excess -0.1pp
+  A race hold: up first 51.6% vs distance null 49.9% -> excess +1.7pp (+-1.6)
+      heavier side above   n1094: up 48.6% vs null 49.3% -> -0.7pp
+      heavier side below   n1149: up 54.9% vs null 50.7% -> +4.2pp
+      nearest above is swing n1060: excess +4.0pp
+      nearest above is day   n1916: excess +0.5pp
+  B sweep dev : touch bar closes back 51.4% (control 53.2%) | 12h reversal return -0.029% (control +0.173%)
+      swing n  686: closes back 49.9% | 12h -0.072%
+      day   n 1023: closes back 52.5% | 12h +0.015%
+      week  n  132: closes back 50.8% | 12h -0.144%
+  B sweep hold: touch bar closes back 50.1% (control 52.3%) | 12h reversal return -0.046% (control +0.087%)
+      swing n  733: closes back 49.1% | 12h -0.048%
+      day   n 1078: closes back 50.2% | 12h -0.044%
+      week  n  148: closes back 54.1% | 12h -0.055%
+
+ETH-USD  (4905 races, 3838 level touches, 3528 control touches)
+  A race dev : up first 53.0% vs distance null 51.9% -> excess +1.0pp (+-1.8)
+      heavier side above   n 916: up 50.7% vs null 49.4% -> +1.3pp
+      heavier side below   n 708: up 51.4% vs null 54.3% -> -2.8pp
+      nearest above is swing n 891: excess -1.3pp
+      nearest above is day   n1558: excess +2.3pp
+  A race hold: up first 53.9% vs distance null 49.6% -> excess +4.2pp (+-1.8)
+      heavier side above   n 828: up 49.4% vs null 49.0% -> +0.4pp
+      heavier side below   n 878: up 59.8% vs null 50.0% -> +9.8pp
+      nearest above is swing n 947: excess +2.1pp
+      nearest above is day   n1509: excess +5.6pp
+  B sweep dev : touch bar closes back 51.6% (control 59.3%) | 12h reversal return -0.016% (control +0.324%)
+      swing n  711: closes back 50.6% | 12h -0.077%
+      day   n 1058: closes back 51.2% | 12h +0.013%
+      week  n  141: closes back 58.9% | 12h +0.066%
+  B sweep hold: touch bar closes back 51.0% (control 55.9%) | 12h reversal return -0.251% (control -0.154%)
+      swing n  721: closes back 50.5% | 12h -0.214%
+      day   n 1063: closes back 52.5% | 12h -0.216%
+      week  n  144: closes back 42.4% | 12h -0.697%
+
+SOL-USD  (3876 races, 3769 level touches, 3566 control touches)
+  A race dev : up first 46.9% vs distance null 49.5% -> excess -2.6pp (+-2.3)
+      heavier side above   n 589: up 49.6% vs null 48.6% -> +0.9pp
+      heavier side below   n 462: up 43.7% vs null 49.9% -> -6.2pp
+      nearest above is swing n 644: excess +0.6pp
+      nearest above is day   n 935: excess -4.8pp
+  A race hold: up first 52.1% vs distance null 50.3% -> excess +1.8pp (+-1.9)
+      heavier side above   n 775: up 51.9% vs null 50.6% -> +1.2pp
+      heavier side below   n 822: up 53.3% vs null 49.2% -> +4.1pp
+      nearest above is swing n 823: excess +5.7pp
+      nearest above is day   n1474: excess -0.3pp
+  B sweep dev : touch bar closes back 49.1% (control 55.6%) | 12h reversal return -0.219% (control +0.547%)
+      swing n  663: closes back 46.8% | 12h -0.420%
+      day   n 1032: closes back 50.6% | 12h -0.103%
+      week  n  133: closes back 49.6% | 12h -0.125%
+  B sweep hold: touch bar closes back 49.4% (control 55.9%) | 12h reversal return +0.007% (control +0.352%)
+      swing n  723: closes back 47.9% | 12h -0.002%
+      day   n 1069: closes back 49.6% | 12h -0.000%
+      week  n  149: closes back 55.0% | 12h +0.104%
+done
