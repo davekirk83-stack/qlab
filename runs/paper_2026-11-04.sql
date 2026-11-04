@@ -1,0 +1,15 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.00086268, exit_reason='target', ret=0.020724, pnl=3.3 WHERE sym='DEGENUSD' AND opened='2026-11-02' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.04399656, exit_reason='target', ret=0.053347, pnl=8.5 WHERE sym='STRKUSD' AND opened='2026-11-02' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.61796602, exit_reason='target', ret=0.043582, pnl=6.97 WHERE sym='AEROUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=4.84181716, exit_reason='target', ret=0.027781, pnl=4.45 WHERE sym='ENSUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.15984338, exit_reason='target', ret=0.038816, pnl=6.21 WHERE sym='FETUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=1.38977556, exit_reason='target', ret=0.029258, pnl=4.68 WHERE sym='LPTUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.07315679, exit_reason='target', ret=0.027278, pnl=4.37 WHERE sym='MANAUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.0451981, exit_reason='target', ret=0.034075, pnl=5.45 WHERE sym='SANDUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.03562502, exit_reason='target', ret=0.032403, pnl=5.19 WHERE sym='ZETACHAINUSD' AND opened='2026-11-03' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-04', exit_px=0.03564108, exit_reason='target', ret=0.031971, pnl=5.12 WHERE sym='ZETAUSD' AND opened='2026-11-03' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('A8USD','2026-11-04',0.003749,0.00290986,0.00388886,0.00027971,54.7,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('L3USD','2026-11-04',0.002,0.001475,0.0020875,0.000175,54.7,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('MANTLEUSD','2026-11-04',0.4632,0.40298571,0.47323571,0.02007143,54.7,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('MNDEUSD','2026-11-04',0.02337,0.02191286,0.02361286,0.00048571,54.7,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-04',2188.07,27,1,4,4,0,'4 signals, 4 taken, 0 dropped, 10 closed, 27 open');
