@@ -1,0 +1,24 @@
+PART 1 — RANGE v3 LADDER WITH A BREAK FILTER (own session, IG costs; episode returns are on the episode's intended size)
+
+US Tech 100: 160 heavy down-break bars, 265 heavy up-break bars, 14654 break bars in all
+  F0 baseline                  dev n100 sum  +2.54% mean +0.025% stop/break  12% worst -1.83% || hold n100 sum  +5.79% mean +0.058% stop/break  11% worst -1.05%
+  F1 heavy break, 4h           dev n 71 sum  +1.45% mean +0.020% stop/break  10% worst -1.83% || hold n 86 sum  +5.36% mean +0.062% stop/break   9% worst -1.05%
+  F2 any break, 4h             dev n 45 sum  -1.70% mean -0.038% stop/break  16% worst -1.83% || hold n 43 sum  +3.38% mean +0.079% stop/break   7% worst -1.05%
+  F3 heavy break, rest of day  dev n 65 sum  +1.43% mean +0.022% stop/break  11% worst -1.83% || hold n 82 sum  +5.11% mean +0.062% stop/break  10% worst -1.05%
+
+US 500: 819 heavy down-break bars, 655 heavy up-break bars, 14396 break bars in all
+  F0 baseline                  dev n 90 sum  +7.57% mean +0.084% stop/break  10% worst -0.61% || hold n119 sum  +5.71% mean +0.048% stop/break   8% worst -1.06%
+  F1 heavy break, 4h           dev n 57 sum  +3.55% mean +0.062% stop/break   9% worst -0.61% || hold n 78 sum  +3.61% mean +0.046% stop/break   8% worst -1.15%
+  F2 any break, 4h             dev n 46 sum  +2.94% mean +0.064% stop/break  11% worst -0.61% || hold n 60 sum  +3.11% mean +0.052% stop/break  10% worst -1.15%
+  F3 heavy break, rest of day  dev n 54 sum  +3.68% mean +0.068% stop/break   9% worst -0.61% || hold n 67 sum  +3.77% mean +0.056% stop/break   9% worst -1.15%
+
+FTSE 100: 734 heavy down-break bars, 672 heavy up-break bars, 15187 break bars in all
+  F0 baseline                  dev n139 sum  +2.99% mean +0.022% stop/break   6% worst -0.44% || hold n147 sum  +7.84% mean +0.053% stop/break   4% worst -0.59%
+  F1 heavy break, 4h           dev n 96 sum  +1.68% mean +0.017% stop/break   7% worst -0.44% || hold n112 sum  +6.18% mean +0.055% stop/break   4% worst -0.59%
+  F2 any break, 4h             dev n 76 sum  +0.99% mean +0.013% stop/break   8% worst -0.44% || hold n 84 sum  +4.10% mean +0.049% stop/break   4% worst -0.61%
+  F3 heavy break, rest of day  dev n 86 sum  +2.11% mean +0.025% stop/break   7% worst -0.44% || hold n 96 sum  +5.57% mean +0.058% stop/break   3% worst -0.59%
+
+PART 2 — IGNITION v1.1, US Tech 100, US hours: trades whose breakout goes THROUGH a prior-day / prior-week level vs the rest
+  dev : through a level n  5 +0.111R win 100% | the rest n 47 +0.164R win 81% | gap -0.054R | through a WEEK level n3 +0.180R
+  hold: through a level n  8 +0.191R win 75% | the rest n 52 +0.252R win 87% | gap -0.061R | through a WEEK level n3 -0.500R
+done
