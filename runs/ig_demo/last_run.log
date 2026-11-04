@@ -1,246 +1,211 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-13:58:56 delta-share threshold 0.0500 (percentile-matched on 1648 IG bars); registered 0.05
-13:59:15 history 300 bars to 2026-11-04 13:59:00+00:00
-13:59:15 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-13:59:15 streaming IX.D.NASDAQ.CASH.IP
-13:59:15 ls status: CONNECTING
-13:59:16 ls status: CONNECTED:WS-STREAMING
-13:59:16 CHART IX.D.NASDAQ.CASH.IP subscribed
-13:59:16 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-13:59:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28284.8', 'OFR': '28287'}
-13:59:16 stream subscribed on CHART via Z6FARW
-13:59:16 trading session on Z6FARW
-13:59:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28284.6', 'OFR': '28286.8'}
-13:59:16 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28284.5', 'OFR': '28286.7'}
-13:59:16 demo account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-13:59:18 [range] NQ: using the runner's own 300 IG bars
-13:59:18 [range] NQ: cache 69454 bars offset +26.1 to IG level, REST 300 bars to 2026-11-04 13:59:00+00:00
-13:59:18 [range] NQ: containment median 0.860 over 23154 15-min bars
-13:59:33 [range] US500 history throttled — waiting 15 s
-13:59:48 [range] US500 history throttled — waiting 15 s
-14:00:00 bar 13:55 o 28285.9 h 28290.6 l 28274.8 c 28282.1 ticks 526 delta -15
-14:00:00 on_tick error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 339, in onItemUpdate
-    if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)}, self.epic)
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 143, in on_tick
-    if cur is not None: self.close_bar(epic)
-                        ^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 164, in close_bar
-    if self.news:
-       ^^^^^^^^^
-AttributeError: 'Runner' object has no attribute 'news'
-
-14:00:21 [range] US500: cache 68298 bars offset +7.0 to IG level, REST 300 bars to 2026-11-04 14:00:00+00:00
-14:00:21 [range] US500: containment median 0.880 over 22775 15-min bars
-14:00:41 [range] FTSE history throttled — waiting 15 s
-14:00:56 [range] FTSE history throttled — waiting 15 s
-14:01:29 [range] FTSE: cache 68487 bars offset +67.6 to IG level, REST 299 bars to 2026-11-04 14:01:00+00:00
-14:01:29 [range] FTSE: containment median 0.880 over 22859 15-min bars
-14:01:29 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt'}
-14:01:29 streaming IX.D.SPTRD.DAILY.IP
-14:01:29 streaming IX.D.FTSE.DAILY.IP
-14:01:29 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
-14:01:30 CHART IX.D.SPTRD.DAILY.IP subscribed
-14:01:30 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-14:01:30 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
-14:01:30 CHART IX.D.FTSE.DAILY.IP subscribed
-14:05:00 bar 14:00 o 28281.8 h 28282.1 l 28229.0 c 28263.1 ticks 3725 delta -33
-14:10:00 bar 14:05 o 28262.4 h 28292.5 l 28258.4 c 28284.8 ticks 3738 delta +90
-14:15:00 [range] NQ 14:00 c 28285.2 ema 28302.3 band 28134.1-28470.5 atr 84.1 regime ON L 0 S 0 orders 0
-14:15:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28159.3 placed (DIAAAAYSUDA46BZ)
-14:15:01 [range] NQ LIMIT BUY rung 1 0.01/pt at 28138.3 placed (DIAAAAYSUDMA6BL)
-14:15:01 bar 14:10 o 28285.0 h 28291.8 l 28251.0 c 28285.2 ticks 3790 delta -52
-14:15:01 [range] US500 14:00 c 7656.8 ema 7635.3 band 7609.0-7661.6 atr 13.1 regime off L 0 S 0 orders 0
-14:15:02 [range] FTSE 14:00 c 10833.7 ema 10781.4 band 10750.2-10812.6 atr 15.6 regime off L 0 S 0 orders 0
-14:15:02 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-14:20:00 bar 14:15 o 28285.0 h 28318.7 l 28281.7 c 28310.7 ticks 3521 delta -39
-14:25:00 bar 14:20 o 28310.8 h 28339.0 l 28310.2 c 28320.2 ticks 3516 delta -82
-14:30:00 [range] NQ 14:15 c 28302.9 ema 28302.3 band 28133.6-28471.0 atr 84.3 regime ON L 0 S 0 orders 2
-14:30:01 [range] NQ LIMIT SELL rung 0 0.01/pt at 28445.7 placed (DIAAAAYSUERDNB2)
-14:30:02 [range] NQ LIMIT SELL rung 1 0.01/pt at 28466.8 placed (DIAAAAYSUFHBHAF)
-14:30:02 bar 14:25 o 28320.1 h 28340.7 l 28286.7 c 28302.9 ticks 3681 delta +31
-14:30:02 [range] US500 14:15 c 7654.3 ema 7637.1 band 7610.6-7663.6 atr 13.2 regime off L 0 S 0 orders 0
-14:30:03 [range] FTSE 14:15 c 10837.0 ema 10786.7 band 10756.4-10817.0 atr 15.1 regime off L 0 S 0 orders 0
-14:30:03 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-14:35:00 bar 14:30 o 28302.4 h 28423.9 l 28276.0 c 28276.0 ticks 3826 delta -50
-14:40:00 bar 14:35 o 28276.3 h 28522.2 l 28276.3 c 28522.1 ticks 3816 delta +124
-14:45:00 [range] NQ LIMIT rung 0 filled at 28445.7
-14:45:00 [range] NQ LIMIT rung 1 filled at 28466.8
-14:45:00 [range] NQ 14:30 c 28676.5 ema 28338.0 band 28118.0-28558.0 atr 110.0 regime ON L 0 S 2 orders 0
-14:45:02 [range] NQ FILLED MARKET SELL rung 2 0.02/pt at 28683.6
-14:45:02 [range] NQ FILLED MARKET SELL rung 3 0.02/pt at 28675.5
-14:45:02 bar 14:40 o 28521.8 h 28678.1 l 28515.2 c 28676.5 ticks 3717 delta +147
-14:45:02 [range] FTSE 14:30 c 10833.0 ema 10791.1 band 10758.1-10824.1 atr 16.5 regime off L 0 S 0 orders 0
-14:45:02 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-14:45:03 [range] US500 14:30 c 7702.0 ema 7643.3 band 7610.4-7676.2 atr 16.4 regime off L 0 S 0 orders 0
-14:50:00 bar 14:45 o 28675.2 h 28732.3 l 28640.3 c 28691.0 ticks 3759 delta +15
-14:55:00 bar 14:50 o 28690.7 h 28690.7 l 28599.3 c 28606.7 ticks 3726 delta +20
-15:00:30 [range] US500 14:45 c 7697.1 ema 7648.4 band 7613.9-7682.9 atr 17.2 regime off L 0 S 0 orders 0
-15:00:31 [range] FTSE 14:45 c 10828.2 ema 10794.6 band 10761.6-10827.7 atr 16.5 regime off L 0 S 0 orders 0
-15:00:31 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-15:16:09 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-15:16:09 [range] NQ 14:45 c 28684.1 ema 28370.9 band 28130.9-28611.0 atr 120.0 regime ON L 0 S 4 orders 0
-15:16:09 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-15:16:10 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-15:16:10 [range] NQ update lot: ATTACHED_ORDER_LEVEL_ERROR
-15:16:10 [range] NQ update lot: ATTACHED_ORDER_LEVEL_ERROR
-15:16:11 bar 14:55 o 28606.6 h 28684.7 l 28559.0 c 28684.1 ticks 3742 delta +12
-15:16:11 bar 15:00 o 28684.0 h 28684.0 l 28684.0 c 28684.0 ticks 1 delta +1
-15:20:00 bar 15:15 o 28682.5 h 28832.8 l 28656.5 c 28757.7 ticks 14992 delta +34
-15:25:00 bar 15:20 o 28757.3 h 28775.7 l 28649.5 c 28665.4 ticks 3695 delta -107
-15:30:31 [range] US500 15:15 c 7688.7 ema 7652.2 band 7614.5-7690.0 atr 18.9 regime off L 0 S 0 orders 0
-15:30:31 [range] FTSE 15:15 c 10822.2 ema 10797.3 band 10761.8-10832.7 atr 17.7 regime off L 0 S 0 orders 0
-15:30:31 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-15:46:07 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-15:46:07 [range] NQ 15:15 c 28681.2 ema 28427.5 band 28164.1-28690.9 atr 131.7 regime ON L 0 S 4 orders 0
-15:46:07 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-15:46:08 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-15:46:09 bar 15:25 o 28665.1 h 28681.6 l 28608.2 c 28681.2 ticks 3762 delta +126
-15:46:09 bar 15:30 o 28680.1 h 28680.1 l 28680.1 c 28680.1 ticks 1 delta +1
-15:50:00 bar 15:45 o 28681.6 h 28704.5 l 28492.0 c 28496.5 ticks 15048 delta -140
-15:55:00 bar 15:50 o 28496.6 h 28515.3 l 28433.9 c 28493.5 ticks 3761 delta +39
-16:16:05 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-16:16:05 [range] NQ 15:45 c 28492.7 ema 28455.4 band 28198.4-28712.5 atr 128.5 regime ON L 0 S 4 orders 0
-16:16:06 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-16:16:06 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-16:16:06 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-16:16:06 [range] NQ update lot: {"errorCode":"error.service.marketdata.position.details.null.error"}
-16:16:07 bar 15:55 o 28493.3 h 28542.1 l 28455.7 c 28492.7 ticks 3805 delta -37
-16:16:07 [range] FTSE 15:45 c 10851.7 ema 10802.4 band 10764.1-10840.8 atr 19.2 regime off L 0 S 0 orders 0
-16:16:07 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-16:16:07 bar 16:00 o 28492.9 h 28492.9 l 28492.9 c 28492.9 ticks 1 delta +1
-16:16:46 [range] US500 sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-16:16:46 [range] US500 15:45 c 7683.2 ema 7655.2 band 7613.5-7696.9 atr 20.8 regime off L 0 S 0 orders 0
-16:20:00 bar 16:15 o 28492.4 h 28537.8 l 28344.3 c 28500.7 ticks 15110 delta -20
-16:25:00 bar 16:20 o 28501.2 h 28502.9 l 28393.3 c 28404.3 ticks 3760 delta -116
-16:30:00 [range] NQ step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 162, in step
-    self.sync(name)
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 287, in sync
-    if not p["lots"]: self.book(name, side, "sold_or_stop")
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-16:30:00 bar 16:25 o 28404.1 h 28419.8 l 28340.4 c 28385.5 ticks 3760 delta -86
-16:30:01 [range] US500 16:15 c 7665.4 ema 7656.2 band 7613.6-7698.7 atr 21.3 regime off L 0 S 0 orders 0
-16:30:01 [range] FTSE 16:15 c 10834.5 ema 10805.5 band 10766.1-10844.8 atr 19.7 regime off L 0 S 0 orders 0
-16:30:01 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-16:35:00 bar 16:30 o 28384.8 h 28469.5 l 28381.1 c 28462.5 ticks 3704 delta +44
-16:40:00 bar 16:35 o 28462.3 h 28477.2 l 28419.1 c 28455.9 ticks 3805 delta +33
-16:45:00 [range] NQ 16:30 c 28551.5 ema 28461.5 band 28201.9-28721.0 atr 129.8 regime ON L 0 S 0 orders 0
-16:45:00 bar 16:40 o 28454.7 h 28559.7 l 28441.8 c 28551.5 ticks 3732 delta -74
-16:45:01 [range] US500 16:30 c 7694.6 ema 7659.8 band 7615.4-7704.2 atr 22.2 regime off L 0 S 0 orders 0
-16:45:01 [range] FTSE 16:30 c 10869.0 ema 10811.5 band 10769.1-10854.0 atr 21.2 regime off L 0 S 0 orders 0
-16:45:01 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-16:50:00 bar 16:45 o 28550.7 h 28571.7 l 28528.8 c 28559.7 ticks 3715 delta +69
-16:55:00 bar 16:50 o 28559.9 h 28643.2 l 28548.6 c 28632.0 ticks 3686 delta +50
-17:00:00 [range] NQ 16:45 c 28624.0 ema 28477.0 band 28210.9-28743.0 atr 133.0 regime ON L 0 S 0 orders 0
-17:00:00 bar 16:55 o 28632.1 h 28655.5 l 28607.7 c 28624.0 ticks 3675 delta -45
-17:00:01 [range] US500 16:45 c 7709.3 ema 7664.5 band 7618.9-7710.1 atr 22.8 regime off L 0 S 0 orders 0
-17:00:01 [range] FTSE 16:45 c 10866.6 ema 10816.8 band 10774.2-10859.4 atr 21.3 regime off L 0 S 0 orders 0
-17:00:01 [range] FTSE step error: Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 149, in on_bar5
-    try: self.step(name)
-         ^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 172, in step
-    self.close_side(name, side, how); continue
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_range_engine.py", line 320, in close_side
-    if not p["lots"]: self.book(name, side, how)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: 'BookEquity' object is not callable
-
-17:04:57 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-17:04:57 done; ticks 204997 bars 330
+18:09:42 delta-share threshold 0.0500 (percentile-matched on 1764 IG bars); registered 0.05
+18:10:01 history 300 bars to 2026-11-04 18:09:00+00:00
+18:10:01 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+18:10:01 streaming IX.D.NASDAQ.CASH.IP
+18:10:01 ls status: CONNECTING
+18:10:02 ls status: CONNECTED:WS-STREAMING
+18:10:03 CHART IX.D.NASDAQ.CASH.IP subscribed
+18:10:03 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28597.4', 'OFR': '28598.6'}
+18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28597.9', 'OFR': '28599.1'}
+18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28598.6', 'OFR': '28599.8'}
+18:10:03 stream subscribed on CHART via Z6FARW
+18:10:03 trading session on Z6FARW
+18:10:03 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+18:10:05 [range] NQ: using the runner's own 300 IG bars
+18:10:05 [range] NQ: cache 69454 bars offset +55.8 to IG level, REST 300 bars to 2026-11-04 18:09:00+00:00
+18:10:05 [range] NQ: containment median 0.860 over 23154 15-min bars
+18:10:20 [range] US500 history throttled — waiting 15 s
+18:10:35 [range] US500 history throttled — waiting 15 s
+18:11:08 [range] US500: cache 68298 bars offset +60.0 to IG level, REST 300 bars to 2026-11-04 18:11:00+00:00
+18:11:08 [range] US500: containment median 0.880 over 22775 15-min bars
+18:11:28 [range] FTSE history throttled — waiting 15 s
+18:11:43 [range] FTSE history throttled — waiting 15 s
+18:12:16 [range] FTSE: cache 68487 bars offset +203.6 to IG level, REST 300 bars to 2026-11-04 18:12:00+00:00
+18:12:16 [range] FTSE: containment median 0.880 over 22859 15-min bars
+18:12:36 [range] GBPUSD history throttled — waiting 15 s
+18:12:51 [range] GBPUSD history throttled — waiting 15 s
+18:13:25 [range] GBPUSD: cache 73364 bars offset +109.7 to IG level, REST 300 bars to 2026-11-04 18:13:00+00:00
+18:13:25 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
+18:13:45 [range] USDJPY history throttled — waiting 15 s
+18:14:00 [range] USDJPY history throttled — waiting 15 s
+18:14:33 [range] USDJPY: cache 73266 bars offset +73.9 to IG level, REST 300 bars to 2026-11-04 18:14:00+00:00
+18:14:33 [range] USDJPY: containment median 0.900 over 24425 15-min bars
+18:14:33 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
+18:14:33 streaming IX.D.SPTRD.DAILY.IP
+18:14:33 streaming IX.D.FTSE.DAILY.IP
+18:14:33 streaming CS.D.GBPUSD.TODAY.IP
+18:14:33 streaming CS.D.USDJPY.TODAY.IP
+18:14:33 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
+18:14:34 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
+18:14:34 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+18:14:34 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
+18:14:34 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
+18:14:34 CHART IX.D.SPTRD.DAILY.IP subscribed
+18:14:34 CHART IX.D.FTSE.DAILY.IP subscribed
+18:14:34 CHART CS.D.GBPUSD.TODAY.IP subscribed
+18:14:34 CHART CS.D.USDJPY.TODAY.IP subscribed
+18:15:00 [range] NQ 18:00 c 28598.7 ema 28519.6 band 28226.2-28813.0 atr 146.7 regime ON L 0 S 0 orders 0
+18:15:00 bar 18:10 o 28598.0 h 28600.9 l 28570.5 c 28598.7 ticks 3713 delta +84
+18:15:00 [range] USDJPY: first bar 18:00 — watermark adopted, no trade (paperbook6 rule)
+18:15:01 [range] US500 18:00 c 7707.7 ema 7686.2 band 7645.1-7727.4 atr 20.6 regime ON L 0 S 0 orders 0
+18:15:01 [range] US500 LIMIT SELL rung 0 0.04/pt at 7721.2 placed (DIAAAAYSVARDMA3)
+18:15:01 [range] US500 LIMIT SELL rung 1 0.05/pt at 7726.3 placed (DIAAAAYSVAYPUBY)
+18:15:02 [range] FTSE 18:00 c 10866.2 ema 10849.5 band 10810.0-10889.0 atr 19.8 regime off L 0 S 0 orders 0
+18:15:02 [range] FTSE EPISODE S closed (cap): 2 lots, -3.62 GBP (day -3.6)
+18:15:02 [range] GBPUSD: first bar 18:00 — watermark adopted, no trade (paperbook6 rule)
+18:20:00 bar 18:15 o 28599.2 h 28599.3 l 28560.9 c 28588.9 ticks 3725 delta +57
+18:25:00 bar 18:20 o 28589.2 h 28596.9 l 28549.2 c 28570.1 ticks 3739 delta +109
+18:30:00 [range] NQ 18:15 c 28569.3 ema 28524.3 band 28248.6-28800.1 atr 137.9 regime ON L 0 S 0 orders 0
+18:30:00 bar 18:25 o 28570.4 h 28589.5 l 28553.6 c 28569.3 ticks 3707 delta +107
+18:30:01 [range] US500 18:15 c 7706.4 ema 7688.2 band 7648.8-7727.5 atr 19.7 regime ON L 0 S 0 orders 2
+18:30:01 [range] USDJPY 18:15 c 15843.6 ema 15837.0 band 15815.0-15859.0 atr 11.0 regime ON L 0 S 0 orders 0
+18:30:02 [range] FTSE 18:15 c 10865.2 ema 10851.0 band 10811.4-10890.6 atr 19.8 regime off L 0 S 0 orders 0
+18:30:02 [range] GBPUSD 18:15 c 13468.8 ema 13475.4 band 13458.8-13492.1 atr 8.3 regime off L 0 S 0 orders 0
+18:35:00 bar 18:30 o 28569.5 h 28574.5 l 28549.1 c 28561.9 ticks 3763 delta +59
+18:40:00 bar 18:35 o 28561.8 h 28561.8 l 28528.6 c 28538.8 ticks 3706 delta +60
+18:45:00 [range] NQ 18:30 c 28525.1 ema 28524.4 band 28258.4-28790.4 atr 133.0 regime ON L 0 S 0 orders 0
+18:45:00 bar 18:40 o 28538.6 h 28543.4 l 28518.4 c 28525.1 ticks 3695 delta -11
+18:45:01 [range] USDJPY 18:30 c 15839.9 ema 15837.2 band 15815.8-15858.7 atr 10.7 regime ON L 0 S 0 orders 0
+18:45:01 [range] GBPUSD 18:30 c 13464.2 ema 13474.4 band 13457.6-13491.1 atr 8.4 regime off L 0 S 0 orders 0
+18:45:02 [range] US500 18:30 c 7702.2 ema 7689.5 band 7651.0-7728.0 atr 19.2 regime ON L 0 S 0 orders 2
+18:45:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7722.2 placed (DIAAAAYSVCJXSBK)
+18:45:03 [range] FTSE 18:30 c 10872.1 ema 10853.0 band 10815.9-10890.1 atr 18.6 regime off L 0 S 0 orders 0
+18:50:00 bar 18:45 o 28525.0 h 28525.0 l 28489.9 c 28510.7 ticks 3702 delta -46
+18:55:00 bar 18:50 o 28510.6 h 28519.3 l 28481.9 c 28481.9 ticks 3667 delta -67
+19:00:01 [range] NQ 18:45 c 28486.9 ema 28520.8 band 28279.2-28762.5 atr 120.8 regime ON L 0 S 0 orders 0
+19:00:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28315.4 placed (DIAAAAYSVECZCB4)
+19:00:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28285.2 placed (DIAAAAYSVDJ83BP)
+19:00:02 bar 18:55 o 28482.0 h 28497.4 l 28471.2 c 28486.9 ticks 3628 delta +36
+19:00:03 [range] US500 18:45 c 7697.3 ema 7690.2 band 7655.0-7725.5 atr 17.6 regime ON L 0 S 0 orders 2
+19:00:04 [range] US500 LIMIT SELL rung 0 0.04/pt at 7720.2 placed (DIAAAAYSVEAEWA3)
+19:00:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7724.6 placed (DIAAAAYSVEKY8BU)
+19:00:05 [range] USDJPY 18:45 c 15840.1 ema 15837.5 band 15816.3-15858.7 atr 10.6 regime ON L 0 S 0 orders 0
+19:00:06 [range] GBPUSD 18:45 c 13464.0 ema 13473.4 band 13457.2-13489.5 atr 8.1 regime off L 0 S 0 orders 0
+19:00:06 [range] FTSE 18:45 c 10879.1 ema 10855.5 band 10820.8-10890.2 atr 17.4 regime off L 0 S 0 orders 0
+19:05:00 bar 19:00 o 28487.0 h 28540.8 l 28472.4 c 28530.8 ticks 3647 delta +101
+19:10:00 bar 19:05 o 28530.5 h 28578.1 l 28528.2 c 28569.8 ticks 3584 delta +8
+19:15:00 [range] NQ 19:00 c 28549.5 ema 28523.6 band 28290.0-28757.2 atr 116.8 regime ON L 0 S 0 orders 2
+19:15:01 bar 19:10 o 28569.4 h 28584.8 l 28545.1 c 28549.5 ticks 3637 delta -49
+19:15:02 [range] US500 19:00 c 7706.4 ema 7691.8 band 7656.9-7726.7 atr 17.4 regime ON L 0 S 0 orders 2
+19:15:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7721.4 placed (DIAAAAYSVFFBUBF)
+19:15:03 [range] US500 LIMIT SELL rung 1 0.05/pt at 7725.8 placed (DIAAAAYSVE73NBC)
+19:15:04 [range] GBPUSD 19:00 c 13465.8 ema 13472.7 band 13456.3-13489.0 atr 8.2 regime off L 0 S 0 orders 0
+19:15:04 [range] USDJPY 19:00 c 15840.9 ema 15837.8 band 15817.8-15857.8 atr 10.0 regime ON L 0 S 0 orders 0
+19:15:05 [range] FTSE 19:00 c 10891.3 ema 10858.9 band 10826.7-10891.1 atr 16.1 regime off L 0 S 0 orders 0
+19:20:00 bar 19:15 o 28549.6 h 28558.1 l 28534.4 c 28542.7 ticks 3701 delta -13
+19:25:00 bar 19:20 o 28542.8 h 28548.3 l 28506.9 c 28511.6 ticks 3661 delta -51
+19:30:00 [range] NQ 19:15 c 28518.7 ema 28523.1 band 28320.8-28725.4 atr 101.1 regime ON L 0 S 0 orders 0
+19:30:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28351.2 placed (DIAAAAYSVFWYDBG)
+19:30:01 [range] NQ LIMIT BUY rung 1 0.01/pt at 28325.9 placed (DIAAAAYSVGMWMBT)
+19:30:01 bar 19:25 o 28511.5 h 28537.5 l 28506.8 c 28518.7 ticks 3688 delta -16
+19:30:02 [range] USDJPY 19:15 c 15839.4 ema 15838.0 band 15819.4-15856.5 atr 9.3 regime ON L 0 S 0 orders 0
+19:30:02 [range] US500 19:15 c 7703.0 ema 7692.9 band 7661.7-7724.0 atr 15.6 regime ON L 0 S 0 orders 2
+19:30:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7719.3 placed (DIAAAAYSVGSA8BR)
+19:30:04 [range] US500 LIMIT SELL rung 1 0.05/pt at 7723.2 placed (DIAAAAYSVF3B5BC)
+19:30:05 [range] GBPUSD 19:15 c 13466.5 ema 13472.1 band 13456.3-13487.8 atr 7.9 regime off L 0 S 0 orders 0
+19:30:06 [range] FTSE 19:15 c 10892.3 ema 10862.1 band 10833.7-10890.5 atr 14.2 regime off L 0 S 0 orders 0
+19:35:00 bar 19:30 o 28518.8 h 28523.3 l 28479.0 c 28482.7 ticks 3680 delta -62
+19:40:00 bar 19:35 o 28482.5 h 28514.1 l 28481.6 c 28500.3 ticks 3617 delta -63
+19:45:00 [range] NQ 19:30 c 28499.6 ema 28520.9 band 28339.9-28701.8 atr 90.5 regime ON L 0 S 0 orders 2
+19:45:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28367.0 placed (DIAAAAYSVGWT5BC)
+19:45:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28344.4 placed (DIAAAAYSVH8AQAM)
+19:45:02 bar 19:40 o 28501.7 h 28514.7 l 28491.7 c 28499.6 ticks 3551 delta -19
+19:45:03 [range] GBPUSD 19:30 c 13463.9 ema 13471.3 band 13456.4-13486.2 atr 7.5 regime off L 0 S 0 orders 0
+19:45:03 [range] FTSE 19:30 c 10887.1 ema 10864.5 band 10836.2-10892.7 atr 14.1 regime off L 0 S 0 orders 0
+19:45:04 [range] USDJPY 19:30 c 15847.7 ema 15838.9 band 15821.2-15856.6 atr 8.9 regime ON L 0 S 0 orders 0
+19:45:05 [range] US500 19:30 c 7703.3 ema 7693.8 band 7665.6-7722.1 atr 14.1 regime ON L 0 S 0 orders 2
+19:45:06 [range] US500 LIMIT SELL rung 0 0.04/pt at 7717.9 placed (DIAAAAYSVGCATA2)
+19:45:07 [range] US500 LIMIT SELL rung 1 0.05/pt at 7721.4 placed (DIAAAAYSVHZ6FBR)
+19:50:00 bar 19:45 o 28499.7 h 28513.1 l 28463.1 c 28494.6 ticks 3643 delta -69
+19:55:00 bar 19:50 o 28494.4 h 28496.6 l 28471.8 c 28484.7 ticks 3562 delta -34
+20:00:00 [range] GBPUSD 19:45 c 13467.7 ema 13470.9 band 13456.4-13485.5 atr 7.3 regime off L 0 S 0 orders 0
+20:00:01 [range] NQ 19:45 c 28462.7 ema 28515.3 band 28355.0-28675.6 atr 80.2 regime ON L 0 S 0 orders 2
+20:00:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28379.1 placed (DIAAAAYSVHWQMAK)
+20:00:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28359.0 placed (DIAAAAYSVJ4G6BW)
+20:00:03 bar 19:55 o 28484.6 h 28495.1 l 28460.2 c 28462.7 ticks 3512 delta -150
+20:00:04 [range] US500 19:45 c 7696.6 ema 7694.1 band 7669.4-7718.9 atr 12.4 regime ON L 0 S 0 orders 2
+20:00:05 [range] US500 LIMIT SELL rung 0 0.04/pt at 7715.1 placed (DIAAAAYSVH5PLBY)
+20:00:06 [range] US500 LIMIT SELL rung 1 0.05/pt at 7718.2 placed (DIAAAAYSVHWQRAK)
+20:00:07 [range] USDJPY 19:45 c 15848.5 ema 15839.8 band 15821.7-15857.9 atr 9.1 regime ON L 0 S 0 orders 0
+20:00:07 [range] FTSE 19:45 c 10886.1 ema 10866.5 band 10840.0-10893.0 atr 13.2 regime off L 0 S 0 orders 0
+20:05:00 bar 20:00 o 28462.6 h 28487.1 l 28462.6 c 28469.2 ticks 3649 delta -71
+20:10:00 bar 20:05 o 28469.1 h 28477.8 l 28456.6 c 28460.8 ticks 3510 delta -74
+20:15:00 [range] NQ 20:00 c 28458.1 ema 28509.9 band 28368.8-28650.9 atr 70.5 regime ON L 0 S 0 orders 2
+20:15:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28390.0 placed (DIAAAAYSVJT7LAF)
+20:15:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28372.3 placed (DIAAAAYSVKHXVBB)
+20:15:02 bar 20:10 o 28460.9 h 28472.4 l 28443.2 c 28458.1 ticks 3589 delta -125
+20:15:02 [range] US500 20:00 c 7697.1 ema 7694.4 band 7673.4-7715.4 atr 10.5 regime ON L 0 S 0 orders 2
+20:15:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7712.2 placed (DIAAAAYSVKELYBU)
+20:15:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7714.8 placed (DIAAAAYSVKJYYBK)
+20:15:05 [range] GBPUSD 20:00 c 13471.8 ema 13471.0 band 13456.9-13485.2 atr 7.1 regime off L 0 S 0 orders 0
+20:15:06 [range] FTSE 20:00 c 10883.3 ema 10868.1 band 10847.5-10888.8 atr 10.3 regime off L 0 S 0 orders 0
+20:15:07 [range] USDJPY 20:00 c 15849.6 ema 15840.7 band 15824.0-15857.5 atr 8.4 regime ON L 0 S 0 orders 0
+20:20:00 bar 20:15 o 28458.3 h 28506.2 l 28456.6 c 28502.3 ticks 3631 delta -35
+20:25:00 bar 20:20 o 28502.4 h 28517.6 l 28471.1 c 28474.5 ticks 3538 delta -120
+20:30:00 [range] NQ 20:15 c 28483.2 ema 28507.3 band 28375.6-28639.0 atr 65.8 regime ON L 0 S 0 orders 2
+20:30:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28395.4 placed (DIAAAAYSVLBPZAJ)
+20:30:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28378.9 placed (DIAAAAYSVK9WUBQ)
+20:30:03 bar 20:25 o 28474.7 h 28489.2 l 28469.4 c 28483.2 ticks 3594 delta -48
+20:30:03 [range] US500 20:15 c 7702.2 ema 7695.1 band 7676.1-7714.2 atr 9.5 regime ON L 0 S 0 orders 2
+20:30:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7713.7 placed (DIAAAAYSVL7UFBR)
+20:30:05 [range] GBPUSD 20:15 c 13473.6 ema 13471.3 band 13457.5-13485.0 atr 6.9 regime off L 0 S 0 orders 0
+20:30:06 [range] FTSE 20:15 c 10882.6 ema 10869.5 band 10850.2-10888.8 atr 9.7 regime off L 0 S 0 orders 0
+20:30:07 [range] USDJPY 20:15 c 15847.7 ema 15841.4 band 15824.8-15858.0 atr 8.3 regime ON L 0 S 0 orders 0
+20:35:00 bar 20:30 o 28483.1 h 28525.1 l 28482.8 c 28500.7 ticks 3663 delta -49
+20:40:00 bar 20:35 o 28500.4 h 28526.0 l 28431.3 c 28440.2 ticks 3642 delta -92
+20:45:01 [range] NQ 20:30 c 28431.3 ema 28500.1 band 28369.9-28630.2 atr 65.1 regime ON L 0 S 0 orders 2
+20:45:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28389.5 placed (DIAAAAYSVLUTXAK)
+20:45:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28373.2 placed (DIAAAAYSVMGM8BV)
+20:45:03 bar 20:40 o 28440.0 h 28457.1 l 28425.5 c 28431.3 ticks 3705 delta -57
+20:45:03 [range] USDJPY 20:30 c 15844.7 ema 15841.7 band 15826.6-15856.8 atr 7.6 regime ON L 0 S 0 orders 0
+20:45:04 [range] US500 20:30 c 7695.8 ema 7695.2 band 7676.1-7714.3 atr 9.6 regime ON L 0 S 0 orders 2
+20:45:05 [range] FTSE 20:30 c 10892.1 ema 10871.7 band 10852.8-10890.6 atr 9.4 regime off L 0 S 0 orders 0
+20:45:05 [range] GBPUSD 20:30 c 13473.9 ema 13471.5 band 13459.9-13483.1 atr 5.8 regime off L 0 S 0 orders 0
+20:50:00 bar 20:45 o 28431.0 h 28465.6 l 28422.3 c 28458.8 ticks 3667 delta -27
+20:55:00 bar 20:50 o 28458.7 h 28459.7 l 28391.2 c 28409.1 ticks 3609 delta -197
+20:55:00 SIGNAL SELL at bar 20:50 close 28409.1 atr 37.4 ign 1.83 dshare -0.055
+20:55:00 FILLED SELL 0.09/pt at 28388.0 (paper would assume next open) stop 28444.1 (56.1 pts) limit +336.5
+20:59:35 tx: US Tech 100 open 28388.0 close 28444.1 P&L £-5.05
+20:59:35 CLOSED ig_stop at 28444.1 -> -56.1 pts (day -59.7, trades 2)
+21:00:00 [range] FTSE 20:45 c 10899.5 ema 10874.3 band 10855.2-10893.4 atr 9.5 regime off L 0 S 0 orders 0
+21:00:01 [range] NQ LIMIT rung 0 filled at 28389.5
+21:00:01 [range] NQ 20:45 c 28438.1 ema 28494.2 band 28365.9-28622.5 atr 64.2 regime ON L 1 S 0 orders 1
+21:00:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28369.1 placed (DIAAAAYSVNXMAB4)
+21:00:03 [range] NQ LIMIT BUY rung 2 0.02/pt at 28349.8 placed (DIAAAAYSVN75HBL)
+21:00:03 bar 20:55 o 28408.7 h 28454.8 l 28381.3 c 28438.1 ticks 3587 delta -121
+21:00:03 [range] US500 20:45 c 7690.5 ema 7694.7 band 7675.2-7714.3 atr 9.8 regime ON L 0 S 0 orders 2
+21:00:04 [range] US500 LIMIT BUY rung 0 0.04/pt at 7678.1 placed (DIAAAAYSVPM2GBR)
+21:00:04 [range] US500 LIMIT BUY rung 1 0.05/pt at 7675.7 placed (DIAAAAYSVN9JJBQ)
+21:00:05 [range] USDJPY 20:45 c 15844.2 ema 15842.0 band 15827.7-15856.2 atr 7.1 regime ON L 0 S 0 orders 0
+21:00:06 [range] GBPUSD 20:45 c 13472.5 ema 13471.6 band 13460.6-13482.6 atr 5.5 regime off L 0 S 0 orders 0
+21:05:00 bar 21:00 o 28439.3 h 28495.2 l 28438.6 c 28454.2 ticks 3457 delta -77
+21:10:00 bar 21:05 o 28454.3 h 28466.9 l 28436.7 c 28460.4 ticks 3186 delta -18
+21:15:00 [range] NQ EPISODE L closed (sold_or_stop): 1 lots, +1.05 GBP (day -58.7)
+21:15:00 [range] NQ 21:00 c 28500.1 ema 28494.8 band 28363.8-28625.7 atr 65.5 regime ON L 0 S 0 orders 2
+21:15:01 bar 21:10 o 28460.5 h 28507.9 l 28460.4 c 28500.1 ticks 3157 delta -83
+21:15:01 [range] USDJPY 21:00 c 15844.2 ema 15842.2 band 15828.9-15855.5 atr 6.7 regime ON L 0 S 0 orders 0
+21:15:02 [range] US500 21:00 c 7701.6 ema 7695.4 band 7674.9-7715.9 atr 10.2 regime ON L 0 S 0 orders 2
+21:15:02 [range] FTSE 21:00 c 10906.4 ema 10877.4 band 10858.0-10896.7 atr 9.7 regime off L 0 S 0 orders 0
+21:15:05 [range] GBPUSD 21:00 c 13472.9 ema 13471.7 band 13461.0-13482.5 atr 5.4 regime off L 0 S 0 orders 0
+21:20:00 bar 21:15 o 28500.3 h 28518.0 l 28487.7 c 28492.7 ticks 2853 delta +49
+21:25:00 bar 21:20 o 28493.0 h 28518.2 l 28489.9 c 28507.2 ticks 2471 delta +27
+21:30:00 [range] NQ 21:15 c 28504.2 ema 28495.7 band 28369.5-28621.8 atr 63.1 regime ON L 0 S 0 orders 2
+21:30:00 bar 21:25 o 28506.6 h 28511.4 l 28502.2 c 28504.2 ticks 1807 delta -27
+21:30:01 [range] GBPUSD 21:15 c 13470.8 ema 13471.6 band 13461.3-13482.0 atr 5.2 regime off L 0 S 0 orders 0
+21:30:01 [range] USDJPY 21:15 c 15843.9 ema 15842.3 band 15829.8-15854.8 atr 6.3 regime ON L 0 S 0 orders 0
+21:30:02 [range] US500 21:15 c 7705.1 ema 7696.3 band 7676.6-7716.0 atr 9.8 regime ON L 0 S 0 orders 2
+21:30:03 [range] FTSE 21:15 c 10908.0 ema 10880.3 band 10862.1-10898.5 atr 9.1 regime off L 0 S 0 orders 0
+21:35:00 bar 21:30 o 28503.9 h 28506.2 l 28489.1 c 28499.9 ticks 2030 delta -10
+21:40:00 bar 21:35 o 28499.6 h 28511.4 l 28494.9 c 28502.0 ticks 1893 delta +1
+21:45:01 [range] NQ 21:30 c 28510.8 ema 28497.1 band 28377.6-28616.6 atr 59.8 regime ON L 0 S 0 orders 2
+21:45:01 bar 21:40 o 28501.9 h 28513.3 l 28499.6 c 28510.8 ticks 1982 delta +32
+21:45:02 [range] USDJPY 21:30 c 15842.2 ema 15842.3 band 15830.4-15854.2 atr 6.0 regime ON L 0 S 0 orders 0
+21:45:02 [range] GBPUSD 21:30 c 13470.0 ema 13471.5 band 13461.6-13481.4 atr 5.0 regime off L 0 S 0 orders 0
+21:45:03 [range] US500 21:30 c 7703.6 ema 7697.0 band 7678.2-7715.8 atr 9.4 regime ON L 0 S 0 orders 2
+21:45:04 [range] FTSE 21:30 c 10906.4 ema 10882.8 band 10865.5-10900.0 atr 8.6 regime off L 0 S 0 orders 0
+21:50:00 bar 21:45 o 28510.6 h 28514.2 l 28503.8 c 28503.8 ticks 1466 delta -62
+21:55:00 bar 21:50 o 28503.4 h 28510.8 l 28494.3 c 28502.4 ticks 1761 delta +7
+21:59:45 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+21:59:45 done; ticks 217042 bars 345
