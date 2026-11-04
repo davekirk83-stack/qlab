@@ -1,0 +1,26 @@
+SWEEP-BAR VOLUME — does a big-volume sweep reverse and a quiet one break? Returns from the touch-bar close, % per trade before costs
+
+BTC-USD  (vol-ratio quintile cuts [0.99, 1.81, 2.82, 4.69]; 3787 touches)
+  dev  vol Q1: closes back  62% | FADE n 226 12h -0.09% 24h -0.10% (ctl +0.04%) | BREAK n 141 12h -0.04% 24h -0.18% (ctl -0.26%)
+  dev  vol Q3: closes back  51% | FADE n 186 12h -0.03% 24h -0.35% (ctl +0.19%) | BREAK n 181 12h -0.01% 24h -0.50% (ctl +0.00%)
+  dev  vol Q5: closes back  43% | FADE n 156 12h +0.07% 24h +0.75% (ctl +0.54%) | BREAK n 210 12h +0.23% 24h -0.02% (ctl +0.08%)
+  hold vol Q1: closes back  67% | FADE n 224 12h +0.00% 24h +0.09% (ctl +0.31%) | BREAK n 110 12h +0.04% 24h -0.13% (ctl -0.19%)
+  hold vol Q3: closes back  47% | FADE n 176 12h +0.23% 24h +0.29% (ctl -0.03%) | BREAK n 199 12h +0.24% 24h +0.10% (ctl +0.04%)
+  hold vol Q5: closes back  41% | FADE n 161 12h -0.27% 24h -0.38% (ctl +0.12%) | BREAK n 232 12h +0.06% 24h +0.44% (ctl +0.14%)
+
+ETH-USD  (vol-ratio quintile cuts [1.2, 1.88, 2.83, 4.71]; 3825 touches)
+  dev  vol Q1: closes back  62% | FADE n 234 12h +0.01% 24h +0.01% (ctl +0.23%) | BREAK n 146 12h -0.23% 24h -0.57% (ctl -0.73%)
+  dev  vol Q3: closes back  51% | FADE n 194 12h -0.12% 24h +0.41% (ctl +0.21%) | BREAK n 186 12h +0.04% 24h -0.48% (ctl -0.49%)
+  dev  vol Q5: closes back  47% | FADE n 178 12h +1.18% 24h +3.04% (ctl +0.17%) | BREAK n 202 12h +1.51% 24h +0.27% (ctl +1.17%)
+  hold vol Q1: closes back  66% | FADE n 281 12h +0.08% 24h +0.30% (ctl +0.15%) | BREAK n 147 12h -0.08% 24h -0.15% (ctl -0.62%)
+  hold vol Q3: closes back  52% | FADE n 199 12h -0.18% 24h -0.28% (ctl +0.13%) | BREAK n 184 12h -0.06% 24h +0.27% (ctl -0.04%)
+  hold vol Q5: closes back  30% | FADE n 114 12h -0.67% 24h -1.02% (ctl -1.05%) | BREAK n 260 12h +1.24% 24h +1.83% (ctl +1.61%)
+
+SOL-USD  (vol-ratio quintile cuts [1.07, 1.61, 2.34, 3.93]; 3756 touches)
+  dev  vol Q1: closes back  61% | FADE n 221 12h -0.32% 24h -0.12% (ctl +0.60%) | BREAK n 144 12h -0.02% 24h -0.11% (ctl -1.33%)
+  dev  vol Q3: closes back  48% | FADE n 175 12h +0.13% 24h +0.20% (ctl +0.21%) | BREAK n 187 12h +0.49% 24h +0.10% (ctl -0.12%)
+  dev  vol Q5: closes back  41% | FADE n 148 12h -1.19% 24h -0.79% (ctl -1.23%) | BREAK n 214 12h -0.38% 24h -0.76% (ctl -0.74%)
+  hold vol Q1: closes back  68% | FADE n 260 12h +0.06% 24h +0.18% (ctl +0.67%) | BREAK n 122 12h -0.11% 24h +0.13% (ctl -0.85%)
+  hold vol Q3: closes back  45% | FADE n 159 12h -0.68% 24h -0.74% (ctl -0.26%) | BREAK n 197 12h +0.23% 24h -0.01% (ctl -0.09%)
+  hold vol Q5: closes back  43% | FADE n 207 12h -0.01% 24h +0.05% (ctl -0.20%) | BREAK n 272 12h -0.11% 24h -0.25% (ctl -0.26%)
+done
