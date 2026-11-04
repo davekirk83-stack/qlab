@@ -37,8 +37,8 @@ jobs:
       - run: pip install -q trading-ig pandas numpy
       - name: Run (LIVE account; secrets never printed)
         env:
-          IG_USERNAME: ${{ secrets.IG_USERNAME_LIVE }}
-          IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME_LIVE || secrets.IG_USERNAME }}   # DK 4 Nov: live login is in IG_USERNAME / IG_PASSWORD
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE || secrets.IG_PASSWORD }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}
           IG_MODE: live
           IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-04-IG-SPREADBET-500
