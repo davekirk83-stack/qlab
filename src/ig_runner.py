@@ -36,7 +36,8 @@ EPIC = os.environ.get("IG_EPIC", "IX.D.NASDAQ.CASH.IP")   # US Tech 100, daily f
 SIZE = float(os.environ.get("IG_SIZE", "1.0"))               # £ per point on the demo (doc 99 sizing)
 V11 = os.environ.get("IG_V11", "1") == "1"                   # Ignition v1.1 (doc 108)
 RANGE = os.environ.get("IG_RANGE", "1") == "1"               # Range v3-IDX engine (doc 116)
-OUT = "runs/ig_demo"; os.makedirs(OUT, exist_ok=True)
+from ig_mode import OUT, LIVE, ACC_TYPE   # doc 185: demo by default; live only with the CAP-021 confirmation
+os.makedirs(OUT, exist_ok=True)
 
 
 def calibrate_dshare():
@@ -74,11 +75,11 @@ class Runner:
         self.end = end_utc; self.dry = dry
         u, p, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
         # ONE session. Step 1: on the CFD demo account, open the price stream and confirm the subscription.
-        self.ig = IGService(u, p, k, acc_type="demo", return_dataframe=False)
+        self.ig = IGService(u, p, k, acc_type=ACC_TYPE, return_dataframe=False)
         sess = self.ig.create_session(); self.ls_endpoint = sess.get("lightstreamerEndpoint"); cur = sess.get("currentAccountId")
         accs = self.ig.fetch_accounts()["accounts"]
         sb = [a for a in accs if a["accountType"] == "SPREADBET"]; cfd = [a for a in accs if a["accountType"] == "CFD"]
-        if not sb: raise RuntimeError("no SPREADBET demo account")
+        if not sb: raise RuntimeError(f"no SPREADBET {ACC_TYPE} account")
         self.acc = sb[0]["accountId"]
         want_px = cfd[0]["accountId"] if (cfd and os.environ.get("IG_STREAM_VIA_CFD", "0") == "1") else self.acc
         if cur != want_px: self.ig.switch_account(want_px, False); cur = want_px
@@ -94,11 +95,11 @@ class Runner:
         # Step 2: switch the REST session to the spread-bet account for orders
         if cur != self.acc:
             self.ig.switch_account(self.acc, True)
-        self.session_acc = self.acc; log("trading session on", self.session_acc)
+        self.session_acc = self.acc; log("trading session on", self.session_acc if not LIVE else "live spread-bet account (id not logged: public repo)")
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.min_size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.beq = BookEquity()
         self.size = max(SIZE, self.min_size); self.expiry = mkt["instrument"]["expiry"]; cc = [c["code"] for c in mkt["instrument"]["currencies"]]; self.ccy = "GBP" if "GBP" in cc else cc[0]
-        log(f"demo account {self.acc}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
+        log(f"{ACC_TYPE.upper()} account {self.acc if not LIVE else '(hidden)'}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
         self.state = json.load(open(STATE)) if os.path.exists(STATE) else {}
         today = utcnow().strftime("%Y-%m-%d")
         if self.state.get("day") != today: self.state = {"day": today, "ntr": 0, "dpl": 0.0, "last_exit_bar": None}
@@ -190,6 +191,8 @@ class Runner:
         size = self.beq.ign_size(stop_pts, self.min_size)
         size = self.beq.cap(size, float(row.close), self.open_notional(), self.min_size)
         if size <= 0: log(f"SIGNAL {direction} skipped — book exposure already at the 5x cap"); return
+        if LIVE and size * stop_pts > 0.02 * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than 2% at risk
+            log(f"SIGNAL {direction} skipped — {size}/pt x {stop_pts} pts = £{size*stop_pts:.2f} at risk > 2% of book £{self.beq.eq:,.2f}"); return
         if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts, size {size}/pt on book £{self.beq.eq:,.2f})"); return
         r = self.ig.create_open_position(currency_code=self.ccy, direction=direction, epic=EPIC, expiry=self.expiry, force_open=True, guaranteed_stop=False,
                                          level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=size,
@@ -363,6 +366,7 @@ class Runner:
 
 def order_test(r):
     """DEMO ONLY: open the minimum position with stop/limit attached, move the stop, close at market. Proves the order path."""
+    if LIVE: log("order test refused on the LIVE account"); return
     d = P7.features(r.bars); row = d.iloc[-1]; atr = float(row.atr) if not np.isnan(row.atr) else 30.0
     for a in r.ig.fetch_accounts()["accounts"]:
         log("account", a["accountId"], a["accountType"], a.get("currency"), "balance", a.get("balance"), "preferred", a.get("preferred"), "status", a.get("status"))
@@ -393,7 +397,7 @@ if __name__ == "__main__":
     try:
         if "--tx" in sys.argv:
             u, p_, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-            ig = IGService(u, p_, k, acc_type="demo", return_dataframe=False); sess = ig.create_session()
+            ig = IGService(u, p_, k, acc_type=ACC_TYPE, return_dataframe=False); sess = ig.create_session()
             sb = [a for a in ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
             if sb and sess.get("currentAccountId") != sb[0]["accountId"]: ig.switch_account(sb[0]["accountId"], True)
             now = utcnow(); tx = ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M:%S"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=100)
@@ -405,10 +409,10 @@ if __name__ == "__main__":
             sys.exit(0)
         if "--markets" in sys.argv:
             u, p_, k = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-            ig = IGService(u, p_, k, acc_type="demo", return_dataframe=False); sess = ig.create_session()
+            ig = IGService(u, p_, k, acc_type=ACC_TYPE, return_dataframe=False); sess = ig.create_session()
             sb = [a for a in ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
             if sb and sess.get("currentAccountId") != sb[0]["accountId"]: ig.switch_account(sb[0]["accountId"], True)
-            for a in ig.fetch_accounts()["accounts"]: log("account", a["accountType"], "balance", a.get("balance"))
+            for a in ig.fetch_accounts()["accounts"]: log("account", a["accountType"], "balance", a.get("balance") if not LIVE else "(hidden on live)")
             epics = ["IX.D.NASDAQ.CASH.IP", "IX.D.DOW.DAILY.IP", "IX.D.DAX.DAILY.IP", "IX.D.FTSE.DAILY.IP", "IX.D.SPTRD.DAILY.IP", "CS.D.EURUSD.TODAY.IP", "CS.D.GBPUSD.TODAY.IP", "CS.D.USCGC.TODAY.IP", "CC.D.LCO.USS.IP"]
             with open(f"{OUT}/markets.txt", "w") as f:
                 for e in epics:

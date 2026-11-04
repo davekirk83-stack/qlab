@@ -28,7 +28,8 @@ def _in_hours(ts, hours):
     t = pd.Timestamp(ts); t = t.tz_localize("UTC") if t.tzinfo is None else t; t = t.tz_convert(hours[0])
     return hours[1] <= t.hour + t.minute / 60 < hours[2]
 
-ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); OUT = "runs/ig_demo"
+ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
+from ig_mode import OUT
 STATE = f"{OUT}/range_state.json"; TRADES = f"{OUT}/range_trades.csv"
 RANGE_SIZE = float(os.environ.get("IG_RANGE_SIZE", "1.0"))     # full-ladder £/pt; each rung = max(min size, frac x this)
 INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW episodes (None = all hours)

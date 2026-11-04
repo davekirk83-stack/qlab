@@ -4,7 +4,9 @@ trigger = the first 5-minute bar after the wait that CLOSES beyond the previous 
 spike side of P -> trade AGAINST the spike at market; stop X (+0.02%), limit P; flat 4 hours after the release. No trade if price closes
 back through P first, or if the trigger already passed before this runner saw it. Risk 1% of book equity (ig_book). DEMO ONLY."""
 import os, json, datetime as dt, numpy as np, pandas as pd
-ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab"); OUT = "runs/ig_demo"; TRADES = f"{OUT}/news_trades.csv"
+ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
+from ig_mode import OUT
+TRADES = f"{OUT}/news_trades.csv"
 W, HOLD = pd.Timedelta(minutes=15), pd.Timedelta(hours=4)
 
 def events():

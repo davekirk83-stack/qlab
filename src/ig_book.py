@@ -6,7 +6,8 @@ BookEquity keeps that virtual equity in runs/ig_demo/book_eq.json, independent o
   - total open exposure (stake x price over all positions) never above 5 x book equity (DK 1 Nov: 5x maximum).
 DEMO ONLY (CAP-021 as amended 20 Oct). Nothing here can reach a live account."""
 import os, json, datetime as dt
-OUT = "runs/ig_demo"; F = f"{OUT}/book_eq.json"
+from ig_mode import OUT, LIVE, MIN_ONLY, FLOOR   # doc 185: the same book runs the live £500 account (runs/ig_live)
+F = f"{OUT}/book_eq.json"
 START_EQ = float(os.environ.get("IG_BOOK_START_EQ", "500"))
 R_IGN, RNG_MARGIN, R_NEWS, MARGIN = 0.02, 0.15, 0.01, 0.05
 MAX_LEV = 5.0   # DK 1 Nov 16:02: "happy with 2x but if you are confident in using 5x sensibly then that's fine (but no more)"
@@ -22,19 +23,25 @@ class BookEquity:
     def _roll(self):
         today = dt.datetime.now(dt.timezone.utc).date().isoformat()
         if self.s.get("day") != today: self.s["day"] = today; self.s["day_open"] = self.s["eq"]; self.save()
+    def floor_hit(self):
+        """doc 93 / 185: live book at -15% from its start -> no new entries (back to paper)"""
+        return LIVE and self.s["eq"] <= FLOOR * START_EQ
     def day_ok(self):
-        self._roll(); return self.s["eq"] > self.s["day_open"] * 0.96
+        self._roll(); return self.s["eq"] > self.s["day_open"] * 0.96 and not self.floor_hit()
     def add(self, gbp, src):
         if gbp is None or gbp != gbp: return
         self._roll(); self.s["eq"] = round(self.s["eq"] + float(gbp), 4); self.s["hi"] = max(self.s["hi"], self.s["eq"])
         self.s["log"] = (self.s.get("log", []) + [[dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), src, round(float(gbp), 2), self.s["eq"]]])[-500:]
         self.save()
     def ign_size(self, stop_pts, min_size):
+        if MIN_ONLY: return min_size
         return max(min_size, round(self.eq * R_IGN * self.k / max(stop_pts, 1.0), 2))
     def news_size(self, risk_pts, min_size):
+        if MIN_ONLY: return min_size
         return max(min_size, round(self.eq * R_NEWS * self.k / max(risk_pts, 1.0), 2))
     def range_full(self, price):
         """full-ladder £/pt so that the whole ladder's notional is 15% of equity as margin at 5%"""
+        if MIN_ONLY: return 0.0   # every rung at the market minimum
         return self.eq * RNG_MARGIN * self.k / MARGIN / max(price, 1.0)
     def cap(self, size, price, open_notional, min_size):
         """Scale a new position so total open exposure stays <= 5 x book equity; 0 if what is left is under a quarter of the size or the minimum."""
