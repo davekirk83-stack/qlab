@@ -39,6 +39,10 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
     # doc 175 (DK 1 Nov "Excellent"): the ladder in each market's own cash session — US 500 in New York hours, FTSE 100 in London hours
     "US500":  dict(epics=["IX.D.SPTRD.DAILY.IP", "IX.D.SPTRD.CASH.IP"], search="US 500", cache=f"{ROOT}/data_ig_cache/USA500IDXUSD_5m.csv", hours=("America/New_York", 9.5, 16)),
     "FTSE":   dict(epics=["IX.D.FTSE.DAILY.IP", "IX.D.FTSE.CASH.IP"], search="FTSE 100", cache=f"{ROOT}/data_ig_cache/GBRIDXGBP_5m.csv", hours=("Europe/London", 8, 16.5)),
+    # doc 175 part 3 / doc 186 (DK 4 Nov 17:56 "Yes why not"): FX ladders on the DEMO. IG spread-bet FX is quoted in pips (GBP/USD 13473.5,
+    # USD/JPY 15400.5), so the caches are Dukascopy x10000 / x100. FX margin 3.33%. unit = £ notional per £1/pt (GBP/USD: £10,000; USD/JPY ~ price).
+    "GBPUSD": dict(epics=["CS.D.GBPUSD.TODAY.IP"], search="GBP/USD", cache=f"{ROOT}/data_ig_cache/GBPUSD_IG_5m.csv", hours=("Europe/London", 7, 17), margin=0.0333, unit=lambda p: 10000.0),
+    "USDJPY": dict(epics=["CS.D.USDJPY.TODAY.IP"], search="USD/JPY", cache=f"{ROOT}/data_ig_cache/USDJPY_IG_5m.csv", hours=("Europe/London", 0, 17), margin=0.0333, unit=lambda p: p),
 }
 MAXT, LOSSCAP = 8, 200.0
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
@@ -94,7 +98,7 @@ class RangeEngine:
                 log("search", m["search"], "->", [(x.get("epic"), x.get("instrumentName")) for x in ms][:8])
                 for r in ms:
                     e = r.get("epic", "")
-                    if e.startswith("IX.") and (e.endswith(".DAILY.IP") or e.endswith(".CASH.IP")): out.append(e)
+                    if (e.startswith("IX.") and (e.endswith(".DAILY.IP") or e.endswith(".CASH.IP"))) or (e.startswith("CS.D.") and e.endswith(".TODAY.IP")): out.append(e)
             except Exception as ex: log("search", m["search"], f"{type(ex).__name__}: {ex!r}"[:200])
             return out
         cands = list(m["epics"]); searched = False
@@ -102,7 +106,7 @@ class RangeEngine:
             e = cands.pop(0); time.sleep(1.5)
             try:
                 mk = retry(lambda: self.ig.fetch_market_by_epic(e), f"market {e}"); ins, rules = mk["instrument"], mk["dealingRules"]
-                if ins.get("type") not in (None, "INDICES"): continue
+                if ins.get("type") not in (None, "INDICES", "CURRENCIES"): continue
                 cc = [c["code"] for c in ins.get("currencies", [])]
                 if cc and self.ccy not in cc: continue
                 return e, dict(epic=e, name=ins["name"], expiry=ins["expiry"], min=float(rules["minDealSize"]["value"]),
@@ -183,7 +187,8 @@ class RangeEngine:
         # entries — doc 171: ladder size from book equity (15% of equity as margin), and only the TWO nearest rungs on the side price is
         # approaching rest as working orders (IG reserves margin against every working order; doc 137)
         approach = "L" if (C[i] - lo_b[i]) <= (hi_b[i] - C[i]) else "S"
-        full = self.beq.range_full(C[i]) if self.beq else RANGE_SIZE
+        m_ = INSTR[name]; u_ = m_.get("unit", lambda p: p)(float(C[i]))
+        full = (self.beq.range_full(u_) * 0.05 / m_.get("margin", 0.05)) if self.beq else RANGE_SIZE   # FX: same 15% of equity as margin, at 3.33%
         day_ok = self.beq.day_ok() if self.beq else True
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         for side in ("L", "S"):
