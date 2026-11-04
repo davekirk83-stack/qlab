@@ -71,7 +71,7 @@ class RangeEngine:
         """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame;
         primary: (epic, DataFrame) of 5-min bars the runner already holds, so that epic needs no second history call."""
         self.ig, self.ccy, self.dry, self.gov, self.rest, self.primary = ig, ccy, dry, gov, rest_history, primary or (None, None)
-        self.book = book   # ig_book.BookEquity (doc 171): ladder sized from the £500 book's current equity
+        self.beq = book   # ig_book.BookEquity (renamed 4 Nov: 'self.book' shadowed the book() method -> every close crashed) (doc 171): ladder sized from the £500 book's current equity
         self.notional_fn = notional_fn   # open £ exposure on the epic, for the 5x cap (DK 1 Nov)
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
         self.mkt, self.bars5, self.bars15 = {}, {}, {}
@@ -182,8 +182,8 @@ class RangeEngine:
         # entries — doc 171: ladder size from book equity (15% of equity as margin), and only the TWO nearest rungs on the side price is
         # approaching rest as working orders (IG reserves margin against every working order; doc 137)
         approach = "L" if (C[i] - lo_b[i]) <= (hi_b[i] - C[i]) else "S"
-        full = self.book.range_full(C[i]) if self.book else RANGE_SIZE
-        day_ok = self.book.day_ok() if self.book else True
+        full = self.beq.range_full(C[i]) if self.beq else RANGE_SIZE
+        day_ok = self.beq.day_ok() if self.beq else True
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         for side in ("L", "S"):
             if not _in_hours(ts, hours): continue
@@ -202,9 +202,9 @@ class RangeEngine:
                 if k in tried: continue
                 price = round(float(lo_b[i] + off*a[i]) if side == "L" else float(hi_b[i] - off*a[i]), 1)
                 size = max(mk["min"], round(frac*full, 2)); key = f"{side}{k}"
-                if self.book:
+                if self.beq:
                     have = st["orders"].get(key); base = onot - (have["size"] * have["price"] if have else 0.0)
-                    size = self.book.cap(size, price, base, mk["min"])
+                    size = self.beq.cap(size, price, base, mk["min"])
                     if size <= 0: self.cancel_orders(name, side, k); continue
                 beyond = (C[i] <= price) if side == "L" else (C[i] >= price)
                 if beyond: self.cancel_orders(name, side, k); self.fill_market(name, side, k, size, price, ts)
@@ -329,7 +329,7 @@ class RangeEngine:
             if hdr: w.writerow(["instr", "side", "opened", "closed", "lots", "gbp", "how", "detail"])
             w.writerow([name, side, p["open"], ts.isoformat(), n, f"{gbp:.2f}", how, json.dumps(p["closed"])])
         self.gov["dpl"] += gbp; st["pos"][side] = None; st["cool"][side] = str(ts)
-        if self.book: self.book.add(gbp, "range")
+        if self.beq: self.beq.add(gbp, "range")
         log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (day {self.gov['dpl']:+.1f})")
 
     def end_of_job(self):
