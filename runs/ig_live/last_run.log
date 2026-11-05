@@ -1,11 +1,84 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-17:35:36 account SPREADBET balance (hidden on live)
-17:35:36 IX.D.NASDAQ.CASH.IP | US Tech 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 5 PERCENTAGE | bands [(0, 355, 5), (355, 1775, 5), (1775, 2840, 5)] | bid 28597.4 offer 28598.4 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'EUR', 'GBP', 'AUD']
-17:35:38 IX.D.DOW.DAILY.IP | Wall Street | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 10.0} | marginFactor 5 PERCENTAGE | bands [(0, 156, 5), (156, 780, 5), (780, 1248, 5)] | bid 53276.5 offer 53278.9 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'AUD', 'USD', 'EUR']
-17:35:40 IX.D.DAX.DAILY.IP | Germany 40 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 5.0} | marginFactor 5 PERCENTAGE | bands [(0, 322, 5), (322, 1610, 5), (1610, 2576, 5)] | bid 26568.7 offer 26571.8 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'AUD', 'EUR']
-17:35:42 IX.D.FTSE.DAILY.IP | FTSE 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 5 PERCENTAGE | bands [(0, 325, 5), (325, 1950, 5), (1950, 3250, 5)] | bid 10871.6 offer 10873.8 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR']
-17:35:45 IX.D.SPTRD.DAILY.IP | US 500 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 1255, 5), (1255, 6275, 5), (6275, 10040, 5)] | bid 7704.2 offer 7704.7 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'EUR', 'GBP']
-17:35:47 CS.D.EURUSD.TODAY.IP | EUR/USD | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 2.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 578, 3.33), (578, 2890, 3.33), (2890, 4624, 3.33)] | bid 11235.5 offer 11236.4 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'GBP', 'EUR']
-17:35:49 CS.D.GBPUSD.TODAY.IP | GBP/USD | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 500, 3.33), (500, 2500, 3.33), (2500, 4000, 3.33)] | bid 13473.5 offer 13475.0 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-17:35:51 CS.D.USCGC.TODAY.IP | Spot Gold | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 2300, 5), (2300, 4600, 5), (4600, 6900, 5)] | bid 4068.48 offer 4068.98 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-17:35:53 CC.D.LCO.USS.IP | Oil - Brent Crude | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 6.0} | marginFactor 10 PERCENTAGE | bands [(0, 420, 10), (420, 1050, 10), (1050, 1470, 10)] | bid 9333.6 offer 9338.8 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR', 'USD']
+18:02:46 delta-share threshold 0.0439 (tail-ratio default (0 IG bars, <500)); registered 0.05
+18:03:05 history 300 bars to 2026-11-05 18:03:00+00:00
+18:03:05 stream user KT5F1 endpoint https://apd.marketdatasystems.com
+18:03:05 streaming IX.D.NASDAQ.CASH.IP
+18:03:05 ls status: CONNECTING
+18:03:05 ls status: CONNECTED:WS-STREAMING
+18:03:06 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+18:03:06 CHART IX.D.NASDAQ.CASH.IP subscribed
+18:03:06 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26716.6', 'OFR': '26717.6'}
+18:03:06 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26715.3', 'OFR': '26716.3'}
+18:03:06 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26714.7', 'OFR': '26715.7'}
+18:03:06 stream subscribed on CHART via KT5F1
+18:03:06 trading session on live spread-bet account (id not logged: public repo)
+18:03:06 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+18:03:08 [range] NQ: using the runner's own 300 IG bars
+18:03:08 [range] NQ: cache 69697 bars offset -192.9 to IG level, REST 300 bars to 2026-11-05 18:03:00+00:00
+18:03:08 [range] NQ: containment median 0.860 over 23235 15-min bars
+18:03:08 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt'}
+18:03:08 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 0
+18:05:00 bar 18:00 o 26717.1 h 26748.2 l 26698.4 c 26736.6 ticks 1353 delta +36
+18:10:00 bar 18:05 o 26735.7 h 26796.9 l 26699.8 c 26796.9 ticks 3656 delta -56
+18:15:00 [range] NQ: first bar 18:00 — watermark adopted, no trade (paperbook6 rule)
+18:15:00 bar 18:10 o 26797.1 h 26891.3 l 26796.6 c 26855.3 ticks 3693 delta -7
+18:20:00 bar 18:15 o 26855.4 h 26868.9 l 26763.6 c 26797.9 ticks 3662 delta -30
+18:25:00 bar 18:20 o 26797.8 h 26804.4 l 26722.5 c 26754.9 ticks 3595 delta +31
+18:30:00 [range] NQ 18:15 c 26802.0 ema 27227.5 band 26799.3-27655.7 atr 214.1 regime off L 0 S 0 orders 0
+18:30:00 bar 18:25 o 26754.6 h 26849.2 l 26750.5 c 26802.0 ticks 3675 delta -37
+18:35:00 bar 18:30 o 26801.6 h 26818.9 l 26756.0 c 26764.6 ticks 3663 delta -35
+18:40:00 bar 18:35 o 26765.6 h 26804.6 l 26741.4 c 26798.2 ticks 3610 delta +0
+18:45:00 [range] NQ 18:30 c 26783.2 ema 27185.2 band 26786.3-27584.2 atr 199.5 regime off L 0 S 0 orders 0
+18:45:00 bar 18:40 o 26798.0 h 26818.2 l 26741.2 c 26783.2 ticks 3646 delta -40
+18:50:00 bar 18:45 o 26781.8 h 26819.8 l 26750.2 c 26786.0 ticks 3635 delta +5
+18:55:00 bar 18:50 o 26785.4 h 26818.2 l 26742.0 c 26801.5 ticks 3622 delta -60
+19:00:00 [range] NQ 18:45 c 26841.1 ema 27152.4 band 26787.9-27517.0 atr 182.3 regime off L 0 S 0 orders 0
+19:00:00 bar 18:55 o 26801.2 h 26845.1 l 26785.7 c 26841.1 ticks 3589 delta -37
+19:05:00 bar 19:00 o 26839.9 h 26841.3 l 26748.0 c 26754.7 ticks 3585 delta -53
+19:10:00 bar 19:05 o 26753.9 h 26816.6 l 26718.0 c 26804.3 ticks 3592 delta +20
+19:15:00 [range] NQ 19:00 c 26911.5 ema 27129.5 band 26767.5-27491.5 atr 181.0 regime off L 0 S 0 orders 0
+19:15:00 bar 19:10 o 26804.5 h 26920.9 l 26787.1 c 26911.5 ticks 3632 delta +144
+19:20:00 bar 19:15 o 26911.8 h 26966.7 l 26868.3 c 26879.5 ticks 3686 delta +80
+19:25:00 bar 19:20 o 26877.5 h 26894.3 l 26786.2 c 26789.5 ticks 3636 delta -26
+19:30:00 [range] NQ 19:15 c 26789.5 ema 27097.1 band 26765.2-27429.0 atr 165.9 regime off L 0 S 0 orders 0
+19:30:00 bar 19:25 o 26789.6 h 26801.4 l 26768.5 c 26789.5 ticks 3547 delta -21
+19:35:00 bar 19:30 o 26789.3 h 26836.2 l 26774.2 c 26826.6 ticks 3608 delta -50
+19:40:00 bar 19:35 o 26827.7 h 26871.6 l 26798.3 c 26868.8 ticks 3559 delta -13
+19:45:00 [range] NQ 19:30 c 26967.6 ema 27084.8 band 26771.4-27398.2 atr 156.7 regime off L 0 S 0 orders 0
+19:45:00 bar 19:40 o 26869.8 h 26987.4 l 26851.6 c 26967.6 ticks 3616 delta -26
+19:50:00 bar 19:45 o 26967.2 h 27058.4 l 26960.3 c 27006.3 ticks 3641 delta +87
+19:55:00 bar 19:50 o 27007.5 h 27063.9 l 27001.8 c 27015.2 ticks 3606 delta +52
+20:00:00 [range] NQ 19:45 c 27000.1 ema 27076.7 band 26780.4-27373.0 atr 148.2 regime off L 0 S 0 orders 0
+20:00:00 bar 19:55 o 27015.3 h 27016.6 l 26956.4 c 27000.1 ticks 3590 delta -16
+20:05:00 bar 20:00 o 27000.7 h 27003.2 l 26886.5 c 26891.6 ticks 3607 delta -55
+20:10:00 bar 20:05 o 26891.7 h 26895.7 l 26774.8 c 26781.1 ticks 3548 delta -156
+20:15:00 [range] NQ 20:00 c 26792.1 ema 27049.6 band 26742.9-27356.3 atr 153.3 regime off L 0 S 0 orders 0
+20:15:00 bar 20:10 o 26781.3 h 26809.1 l 26737.9 c 26792.1 ticks 3603 delta -7
+20:20:00 bar 20:15 o 26792.0 h 26828.7 l 26759.7 c 26810.2 ticks 3661 delta +99
+20:25:00 bar 20:20 o 26809.9 h 26843.1 l 26777.3 c 26819.4 ticks 3651 delta +43
+20:30:00 [range] NQ 20:15 c 26774.5 ema 27023.4 band 26721.5-27325.3 atr 151.0 regime off L 0 S 0 orders 0
+20:30:00 bar 20:25 o 26818.8 h 26832.1 l 26754.9 c 26774.5 ticks 3602 delta -4
+20:35:00 bar 20:30 o 26773.4 h 26841.3 l 26681.7 c 26797.8 ticks 3721 delta +11
+20:40:00 bar 20:35 o 26795.8 h 26799.0 l 26707.6 c 26744.1 ticks 3665 delta +17
+20:45:00 [range] NQ 20:30 c 26730.1 ema 26995.5 band 26690.2-27300.8 atr 152.7 regime off L 0 S 0 orders 0
+20:45:01 bar 20:40 o 26745.1 h 26770.5 l 26715.4 c 26730.1 ticks 3638 delta -26
+20:50:00 bar 20:45 o 26730.5 h 26804.7 l 26711.2 c 26752.3 ticks 3669 delta -75
+20:55:00 bar 20:50 o 26750.1 h 26814.9 l 26717.3 c 26781.9 ticks 3715 delta -17
+21:00:00 [range] NQ 20:45 c 26642.5 ema 26961.9 band 26647.2-27276.5 atr 157.3 regime off L 0 S 0 orders 0
+21:00:00 bar 20:55 o 26781.8 h 26785.0 l 26606.0 c 26642.5 ticks 3679 delta -17
+21:05:00 bar 21:00 o 26638.6 h 26638.6 l 26513.6 c 26582.9 ticks 3556 delta -76
+21:10:00 bar 21:05 o 26580.2 h 26607.1 l 26510.9 c 26589.2 ticks 3414 delta +78
+21:15:00 [range] NQ 21:00 c 26584.3 ema 26925.9 band 26612.4-27239.4 atr 156.7 regime off L 0 S 0 orders 0
+21:15:00 bar 21:10 o 26589.8 h 26626.4 l 26552.5 c 26584.3 ticks 3137 delta +67
+21:20:00 bar 21:15 o 26584.1 h 26602.0 l 26535.4 c 26557.1 ticks 2736 delta -54
+21:25:00 bar 21:20 o 26557.0 h 26560.8 l 26495.4 c 26517.9 ticks 2551 delta -37
+21:30:00 [range] NQ 21:15 c 26549.4 ema 26890.0 band 26570.7-27209.3 atr 159.7 regime off L 0 S 0 orders 0
+21:30:00 bar 21:25 o 26518.4 h 26579.5 l 26462.2 c 26549.4 ticks 2721 delta +73
+21:35:00 bar 21:30 o 26549.2 h 26584.2 l 26530.0 c 26573.6 ticks 2079 delta +139
+21:40:00 bar 21:35 o 26572.8 h 26605.1 l 26565.5 c 26573.3 ticks 1802 delta +92
+21:45:00 [range] NQ 21:30 c 26521.0 ema 26854.9 band 26550.9-27158.8 atr 152.0 regime off L 0 S 0 orders 0
+21:45:00 bar 21:40 o 26573.2 h 26576.3 l 26519.7 c 26521.0 ticks 1759 delta -143
+21:50:00 bar 21:45 o 26521.1 h 26550.8 l 26489.5 c 26523.3 ticks 2094 delta +60
+21:55:00 bar 21:50 o 26522.5 h 26536.4 l 26500.5 c 26506.4 ticks 1628 delta +60
+21:59:46 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+21:59:46 done; ticks 164443 bars 346
