@@ -40,3 +40,7 @@ DK 08:51: "For our books, are there any tweaks or improvements you would make no
   2. A £500 deposit. Revolut X balances were all zero on 5 Nov.
   3. A trading API key, held only in DK's GitHub secrets.
   4. A Revolut X live runner with the IG-style guards, proven in dry-run first.
+
+## CAP-021 AMENDED for Revolut X — DK "Yes", 5 Nov 2026 09:12
+> CAP-021 amended for Revolut X: a live book of £500 may run the Range long book (spot, long only) on DK's Revolut X account through DK's own GitHub automation, key held only in DK's GitHub secrets, switched on and off by DK. Limits: 10% of the book per episode, at most 10 open, −15% from start or two negative weeks → back to paper. No leverage, no other crypto venues.
+Next: Claude builds the Revolut X runner (dry-run first); DK deposits £500 and creates the trading key when the runner is ready.
