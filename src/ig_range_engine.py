@@ -81,6 +81,7 @@ class RangeEngine:
         """ig: IGService on the spread-bet demo; gov: the runner's daily state dict (ntr, dpl); rest_history(epic, res, n) -> 5-min DataFrame;
         primary: (epic, DataFrame) of 5-min bars the runner already holds, so that epic needs no second history call."""
         self.ig, self.ccy, self.dry, self.gov, self.rest, self.primary = ig, ccy, dry, gov, rest_history, primary or (None, None)
+        self.disabled = set()   # instruments with no IG history this session: no new episodes (doc 189)
         self.beq = book   # ig_book.BookEquity (renamed 4 Nov: 'self.book' shadowed the book() method -> every close crashed) (doc 171): ladder sized from the £500 book's current equity
         self.notional_fn = notional_fn   # open £ exposure on the epic, for the 5x cap (DK 1 Nov)
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
@@ -128,13 +129,20 @@ class RangeEngine:
             if epic == self.primary[0] and self.primary[1] is not None and len(self.primary[1]): r = self.primary[1][["open", "high", "low", "close"]].copy(); log(f"{name}: using the runner's own {len(r)} IG bars")
             else: time.sleep(2); r = retry(lambda: self.rest(epic, "5Min", 300), f"{name} history")[["open", "high", "low", "close"]]
         except Exception as ex: log(name, "rest history", f"{type(ex).__name__}: {ex!r}"[:200]); r = pd.DataFrame()
+        f = f"{OUT}/bars_{name}_{utcnow():%Y-%m-%d}.csv"
+        if not len(r) and os.path.exists(f):   # doc 189: IG's history allowance ran out on 5 Nov 14:03 — fall back to today's own logged IG bars
+            t = pd.read_csv(f, header=None, names="ts,open,high,low,close,vol,delta,spread".split(",")); t.index = pd.to_datetime(t.ts, utc=True)
+            r = t[["open", "high", "low", "close"]]; log(f"{name}: no REST history — using {len(r)} of today's own IG bars to align the cache")
+        if not len(r):
+            # without IG's own prices the cache cannot be aligned to IG's level (offsets ran +38 to +100 pips on 5 Nov), and a ladder on the
+            # wrong level fills at market off-band (USD/JPY 5 Nov 14:15). Sit this instrument out for the session.
+            self.disabled.add(name); log(f"{name}: no IG history to align to — DISABLED for this session (no orders)")
         if len(c) and len(r):
             j = c.index.searchsorted(r.index[0]); k = min(max(j - 1, 0), len(c) - 1)
             off = float(r.close.iloc[0] - c.close.iloc[k]); c = c + off; c = c[c.index < r.index[0]]
             log(f"{name}: cache {len(c)} bars offset {off:+.1f} to IG level, REST {len(r)} bars to {r.index[-1]}")
         b5 = pd.concat([c, r]).sort_index(); b5 = b5[~b5.index.duplicated(keep="last")]
         # today's own 5-min bars logged by an earlier job
-        f = f"{OUT}/bars_{name}_{utcnow():%Y-%m-%d}.csv"
         if os.path.exists(f):
             t = pd.read_csv(f, header=None, names="ts,open,high,low,close,vol,delta,spread".split(",")); t.index = pd.to_datetime(t.ts, utc=True)
             b5 = pd.concat([b5, t[["open", "high", "low", "close"]]]); b5 = b5[~b5.index.duplicated(keep="last")].sort_index()
@@ -207,7 +215,7 @@ class RangeEngine:
             ct = st["cool"].get(side)
             if ct and ts < pd.Timestamp(ct) + pd.Timedelta(hours=P6.COOLDOWN_H): continue
             p = st["pos"].get(side)
-            if p is None and (self.gov.get(NTR(name), 0) >= MAXT or self.gov.get(DPL, 0.0) <= -LOSSCAP): continue
+            if p is None and (name in self.disabled or self.gov.get(NTR(name), 0) >= MAXT or self.gov.get(DPL, 0.0) <= -LOSSCAP): continue
             tried = set(p["tried"]) if p else set(); limits = []
             for k, (frac, off) in enumerate(P6.BID):
                 if k in tried: continue

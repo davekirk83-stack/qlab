@@ -50,3 +50,11 @@ The 8-a-day limit is ours (from AuclairsDad's governor design), not IG's. Igniti
 
 ## LIVE — DK switched it on, 5 Nov 2026 ~16:26 London
 DK created the repo variable IG_LIVE_ENABLED=true (after the link route failed; done via Settings → Secrets and variables → Actions → Variables → New repository variable). Today's earlier live crons (13:53, 14:24, 14:33, 14:58 UTC) had skipped. First live session: run 42080396125, started 18:02 UTC, in progress, minimum stakes, to 22:00 UK. Review scheduled 22:20 (trig_01VBQRmyarMjV8qJvsNkQy5M). Context: Nasdaq futures −4.7% on the day; BTC $81,131 (4 Nov) → $75,568 (5 Nov 15:53).
+
+## First live session review + demo faults found (5 Nov 22:20)
+LIVE (run 42080396125, 18:02–22:00 UK): logged in to the live spread-bet account, US Tech 100 TRADEABLE at min £0.01/pt, streamed all session, ladder seeded from the runner's own IG bars; no Ignition signal, no ladder episode (NQ chopped 26,500–27,060; ladder regime off) — no orders, book £500.00, no errors. The "MARKET subscription error 21 Invalid group" line is harmless (the CHART feed is what's used).
+DEMO faults, fixed (commit below):
+1. IG's historical-data allowance ran out on the demo at 14:03 (error.public-api.exceeded-account-historical-data-allowance) — 5 ladder markets x 300 bars x several jobs a day. With no IG history the Dukascopy cache could not be aligned to IG's level (offsets ran +38 to +100 pips today), and the USD/JPY ladder sold at market ~60 pips off its band at 14:15. Fix: fall back to today's own logged IG bars; if none, the instrument is DISABLED for that session (no new episodes). Stub-tested both paths. Live is unaffected (its one ladder uses the runner's own bars).
+2. 'Runner' object has no attribute 'news' on the first tick (08:15, 18:05): the stream can tick before __init__ sets it. Fixed with a class default.
+3. USD/JPY "working order rejected: ATTACHED_ORDER_LEVEL_ERROR" once (08:30) — attached stop/limit level refused; to investigate.
+FX SPREADS on the demo, London hours today: GBP/USD mean 1.33 pips (median 1.40) vs 0.9 assumed; USD/JPY 1.00 vs 0.7 assumed — both ~45-50% wider. The FX ladders were cost-sensitive (doc 182); re-test at these spreads before any live use.

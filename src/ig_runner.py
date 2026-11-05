@@ -70,6 +70,7 @@ def log(*a): print(utcnow().strftime("%H:%M:%S"), *a, flush=True)
 
 
 class Runner:
+    news = None   # doc 189: the stream's first tick can arrive before __init__ sets this (5 Nov 08:15 and 18:05 on_tick errors)
     def __init__(self, end_utc, dry):
         thr, src = calibrate_dshare(); P7.DSHARE = thr; log(f"delta-share threshold {thr:.4f} ({src}); registered 0.05")
         self.end = end_utc; self.dry = dry
