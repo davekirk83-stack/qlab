@@ -4,10 +4,11 @@
  "dpl": 25.700000000000728,
  "last_exit_bar": 323,
  "news": {},
- "dpl_rng": -7.229900000000015,
+ "dpl_rng": -17.869900000000015,
  "ntr_NQ": 1,
  "ntr_USDJPY": 1,
  "last_atr": 124.19500000000116,
  "open_bars": 2,
- "ntr_US500": 1
+ "ntr_US500": 1,
+ "ntr_FTSE": 1
 }
