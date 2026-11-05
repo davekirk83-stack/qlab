@@ -1,211 +1,273 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-18:09:42 delta-share threshold 0.0500 (percentile-matched on 1764 IG bars); registered 0.05
-18:10:01 history 300 bars to 2026-11-04 18:09:00+00:00
-18:10:01 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-18:10:01 streaming IX.D.NASDAQ.CASH.IP
-18:10:01 ls status: CONNECTING
-18:10:02 ls status: CONNECTED:WS-STREAMING
-18:10:03 CHART IX.D.NASDAQ.CASH.IP subscribed
-18:10:03 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28597.4', 'OFR': '28598.6'}
-18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28597.9', 'OFR': '28599.1'}
-18:10:03 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28598.6', 'OFR': '28599.8'}
-18:10:03 stream subscribed on CHART via Z6FARW
-18:10:03 trading session on Z6FARW
-18:10:03 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-18:10:05 [range] NQ: using the runner's own 300 IG bars
-18:10:05 [range] NQ: cache 69454 bars offset +55.8 to IG level, REST 300 bars to 2026-11-04 18:09:00+00:00
-18:10:05 [range] NQ: containment median 0.860 over 23154 15-min bars
-18:10:20 [range] US500 history throttled — waiting 15 s
-18:10:35 [range] US500 history throttled — waiting 15 s
-18:11:08 [range] US500: cache 68298 bars offset +60.0 to IG level, REST 300 bars to 2026-11-04 18:11:00+00:00
-18:11:08 [range] US500: containment median 0.880 over 22775 15-min bars
-18:11:28 [range] FTSE history throttled — waiting 15 s
-18:11:43 [range] FTSE history throttled — waiting 15 s
-18:12:16 [range] FTSE: cache 68487 bars offset +203.6 to IG level, REST 300 bars to 2026-11-04 18:12:00+00:00
-18:12:16 [range] FTSE: containment median 0.880 over 22859 15-min bars
-18:12:36 [range] GBPUSD history throttled — waiting 15 s
-18:12:51 [range] GBPUSD history throttled — waiting 15 s
-18:13:25 [range] GBPUSD: cache 73364 bars offset +109.7 to IG level, REST 300 bars to 2026-11-04 18:13:00+00:00
-18:13:25 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
-18:13:45 [range] USDJPY history throttled — waiting 15 s
-18:14:00 [range] USDJPY history throttled — waiting 15 s
-18:14:33 [range] USDJPY: cache 73266 bars offset +73.9 to IG level, REST 300 bars to 2026-11-04 18:14:00+00:00
-18:14:33 [range] USDJPY: containment median 0.900 over 24425 15-min bars
-18:14:33 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
-18:14:33 streaming IX.D.SPTRD.DAILY.IP
-18:14:33 streaming IX.D.FTSE.DAILY.IP
-18:14:33 streaming CS.D.GBPUSD.TODAY.IP
-18:14:33 streaming CS.D.USDJPY.TODAY.IP
-18:14:33 book 13 rehearsal: book equity £500.00 (risk x1.0), news events loaded 24
-18:14:34 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
-18:14:34 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-18:14:34 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
-18:14:34 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
-18:14:34 CHART IX.D.SPTRD.DAILY.IP subscribed
-18:14:34 CHART IX.D.FTSE.DAILY.IP subscribed
-18:14:34 CHART CS.D.GBPUSD.TODAY.IP subscribed
-18:14:34 CHART CS.D.USDJPY.TODAY.IP subscribed
-18:15:00 [range] NQ 18:00 c 28598.7 ema 28519.6 band 28226.2-28813.0 atr 146.7 regime ON L 0 S 0 orders 0
-18:15:00 bar 18:10 o 28598.0 h 28600.9 l 28570.5 c 28598.7 ticks 3713 delta +84
-18:15:00 [range] USDJPY: first bar 18:00 — watermark adopted, no trade (paperbook6 rule)
-18:15:01 [range] US500 18:00 c 7707.7 ema 7686.2 band 7645.1-7727.4 atr 20.6 regime ON L 0 S 0 orders 0
-18:15:01 [range] US500 LIMIT SELL rung 0 0.04/pt at 7721.2 placed (DIAAAAYSVARDMA3)
-18:15:01 [range] US500 LIMIT SELL rung 1 0.05/pt at 7726.3 placed (DIAAAAYSVAYPUBY)
-18:15:02 [range] FTSE 18:00 c 10866.2 ema 10849.5 band 10810.0-10889.0 atr 19.8 regime off L 0 S 0 orders 0
-18:15:02 [range] FTSE EPISODE S closed (cap): 2 lots, -3.62 GBP (day -3.6)
-18:15:02 [range] GBPUSD: first bar 18:00 — watermark adopted, no trade (paperbook6 rule)
-18:20:00 bar 18:15 o 28599.2 h 28599.3 l 28560.9 c 28588.9 ticks 3725 delta +57
-18:25:00 bar 18:20 o 28589.2 h 28596.9 l 28549.2 c 28570.1 ticks 3739 delta +109
-18:30:00 [range] NQ 18:15 c 28569.3 ema 28524.3 band 28248.6-28800.1 atr 137.9 regime ON L 0 S 0 orders 0
-18:30:00 bar 18:25 o 28570.4 h 28589.5 l 28553.6 c 28569.3 ticks 3707 delta +107
-18:30:01 [range] US500 18:15 c 7706.4 ema 7688.2 band 7648.8-7727.5 atr 19.7 regime ON L 0 S 0 orders 2
-18:30:01 [range] USDJPY 18:15 c 15843.6 ema 15837.0 band 15815.0-15859.0 atr 11.0 regime ON L 0 S 0 orders 0
-18:30:02 [range] FTSE 18:15 c 10865.2 ema 10851.0 band 10811.4-10890.6 atr 19.8 regime off L 0 S 0 orders 0
-18:30:02 [range] GBPUSD 18:15 c 13468.8 ema 13475.4 band 13458.8-13492.1 atr 8.3 regime off L 0 S 0 orders 0
-18:35:00 bar 18:30 o 28569.5 h 28574.5 l 28549.1 c 28561.9 ticks 3763 delta +59
-18:40:00 bar 18:35 o 28561.8 h 28561.8 l 28528.6 c 28538.8 ticks 3706 delta +60
-18:45:00 [range] NQ 18:30 c 28525.1 ema 28524.4 band 28258.4-28790.4 atr 133.0 regime ON L 0 S 0 orders 0
-18:45:00 bar 18:40 o 28538.6 h 28543.4 l 28518.4 c 28525.1 ticks 3695 delta -11
-18:45:01 [range] USDJPY 18:30 c 15839.9 ema 15837.2 band 15815.8-15858.7 atr 10.7 regime ON L 0 S 0 orders 0
-18:45:01 [range] GBPUSD 18:30 c 13464.2 ema 13474.4 band 13457.6-13491.1 atr 8.4 regime off L 0 S 0 orders 0
-18:45:02 [range] US500 18:30 c 7702.2 ema 7689.5 band 7651.0-7728.0 atr 19.2 regime ON L 0 S 0 orders 2
-18:45:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7722.2 placed (DIAAAAYSVCJXSBK)
-18:45:03 [range] FTSE 18:30 c 10872.1 ema 10853.0 band 10815.9-10890.1 atr 18.6 regime off L 0 S 0 orders 0
-18:50:00 bar 18:45 o 28525.0 h 28525.0 l 28489.9 c 28510.7 ticks 3702 delta -46
-18:55:00 bar 18:50 o 28510.6 h 28519.3 l 28481.9 c 28481.9 ticks 3667 delta -67
-19:00:01 [range] NQ 18:45 c 28486.9 ema 28520.8 band 28279.2-28762.5 atr 120.8 regime ON L 0 S 0 orders 0
-19:00:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28315.4 placed (DIAAAAYSVECZCB4)
-19:00:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28285.2 placed (DIAAAAYSVDJ83BP)
-19:00:02 bar 18:55 o 28482.0 h 28497.4 l 28471.2 c 28486.9 ticks 3628 delta +36
-19:00:03 [range] US500 18:45 c 7697.3 ema 7690.2 band 7655.0-7725.5 atr 17.6 regime ON L 0 S 0 orders 2
-19:00:04 [range] US500 LIMIT SELL rung 0 0.04/pt at 7720.2 placed (DIAAAAYSVEAEWA3)
-19:00:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7724.6 placed (DIAAAAYSVEKY8BU)
-19:00:05 [range] USDJPY 18:45 c 15840.1 ema 15837.5 band 15816.3-15858.7 atr 10.6 regime ON L 0 S 0 orders 0
-19:00:06 [range] GBPUSD 18:45 c 13464.0 ema 13473.4 band 13457.2-13489.5 atr 8.1 regime off L 0 S 0 orders 0
-19:00:06 [range] FTSE 18:45 c 10879.1 ema 10855.5 band 10820.8-10890.2 atr 17.4 regime off L 0 S 0 orders 0
-19:05:00 bar 19:00 o 28487.0 h 28540.8 l 28472.4 c 28530.8 ticks 3647 delta +101
-19:10:00 bar 19:05 o 28530.5 h 28578.1 l 28528.2 c 28569.8 ticks 3584 delta +8
-19:15:00 [range] NQ 19:00 c 28549.5 ema 28523.6 band 28290.0-28757.2 atr 116.8 regime ON L 0 S 0 orders 2
-19:15:01 bar 19:10 o 28569.4 h 28584.8 l 28545.1 c 28549.5 ticks 3637 delta -49
-19:15:02 [range] US500 19:00 c 7706.4 ema 7691.8 band 7656.9-7726.7 atr 17.4 regime ON L 0 S 0 orders 2
-19:15:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7721.4 placed (DIAAAAYSVFFBUBF)
-19:15:03 [range] US500 LIMIT SELL rung 1 0.05/pt at 7725.8 placed (DIAAAAYSVE73NBC)
-19:15:04 [range] GBPUSD 19:00 c 13465.8 ema 13472.7 band 13456.3-13489.0 atr 8.2 regime off L 0 S 0 orders 0
-19:15:04 [range] USDJPY 19:00 c 15840.9 ema 15837.8 band 15817.8-15857.8 atr 10.0 regime ON L 0 S 0 orders 0
-19:15:05 [range] FTSE 19:00 c 10891.3 ema 10858.9 band 10826.7-10891.1 atr 16.1 regime off L 0 S 0 orders 0
-19:20:00 bar 19:15 o 28549.6 h 28558.1 l 28534.4 c 28542.7 ticks 3701 delta -13
-19:25:00 bar 19:20 o 28542.8 h 28548.3 l 28506.9 c 28511.6 ticks 3661 delta -51
-19:30:00 [range] NQ 19:15 c 28518.7 ema 28523.1 band 28320.8-28725.4 atr 101.1 regime ON L 0 S 0 orders 0
-19:30:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28351.2 placed (DIAAAAYSVFWYDBG)
-19:30:01 [range] NQ LIMIT BUY rung 1 0.01/pt at 28325.9 placed (DIAAAAYSVGMWMBT)
-19:30:01 bar 19:25 o 28511.5 h 28537.5 l 28506.8 c 28518.7 ticks 3688 delta -16
-19:30:02 [range] USDJPY 19:15 c 15839.4 ema 15838.0 band 15819.4-15856.5 atr 9.3 regime ON L 0 S 0 orders 0
-19:30:02 [range] US500 19:15 c 7703.0 ema 7692.9 band 7661.7-7724.0 atr 15.6 regime ON L 0 S 0 orders 2
-19:30:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7719.3 placed (DIAAAAYSVGSA8BR)
-19:30:04 [range] US500 LIMIT SELL rung 1 0.05/pt at 7723.2 placed (DIAAAAYSVF3B5BC)
-19:30:05 [range] GBPUSD 19:15 c 13466.5 ema 13472.1 band 13456.3-13487.8 atr 7.9 regime off L 0 S 0 orders 0
-19:30:06 [range] FTSE 19:15 c 10892.3 ema 10862.1 band 10833.7-10890.5 atr 14.2 regime off L 0 S 0 orders 0
-19:35:00 bar 19:30 o 28518.8 h 28523.3 l 28479.0 c 28482.7 ticks 3680 delta -62
-19:40:00 bar 19:35 o 28482.5 h 28514.1 l 28481.6 c 28500.3 ticks 3617 delta -63
-19:45:00 [range] NQ 19:30 c 28499.6 ema 28520.9 band 28339.9-28701.8 atr 90.5 regime ON L 0 S 0 orders 2
-19:45:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28367.0 placed (DIAAAAYSVGWT5BC)
-19:45:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28344.4 placed (DIAAAAYSVH8AQAM)
-19:45:02 bar 19:40 o 28501.7 h 28514.7 l 28491.7 c 28499.6 ticks 3551 delta -19
-19:45:03 [range] GBPUSD 19:30 c 13463.9 ema 13471.3 band 13456.4-13486.2 atr 7.5 regime off L 0 S 0 orders 0
-19:45:03 [range] FTSE 19:30 c 10887.1 ema 10864.5 band 10836.2-10892.7 atr 14.1 regime off L 0 S 0 orders 0
-19:45:04 [range] USDJPY 19:30 c 15847.7 ema 15838.9 band 15821.2-15856.6 atr 8.9 regime ON L 0 S 0 orders 0
-19:45:05 [range] US500 19:30 c 7703.3 ema 7693.8 band 7665.6-7722.1 atr 14.1 regime ON L 0 S 0 orders 2
-19:45:06 [range] US500 LIMIT SELL rung 0 0.04/pt at 7717.9 placed (DIAAAAYSVGCATA2)
-19:45:07 [range] US500 LIMIT SELL rung 1 0.05/pt at 7721.4 placed (DIAAAAYSVHZ6FBR)
-19:50:00 bar 19:45 o 28499.7 h 28513.1 l 28463.1 c 28494.6 ticks 3643 delta -69
-19:55:00 bar 19:50 o 28494.4 h 28496.6 l 28471.8 c 28484.7 ticks 3562 delta -34
-20:00:00 [range] GBPUSD 19:45 c 13467.7 ema 13470.9 band 13456.4-13485.5 atr 7.3 regime off L 0 S 0 orders 0
-20:00:01 [range] NQ 19:45 c 28462.7 ema 28515.3 band 28355.0-28675.6 atr 80.2 regime ON L 0 S 0 orders 2
-20:00:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28379.1 placed (DIAAAAYSVHWQMAK)
-20:00:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28359.0 placed (DIAAAAYSVJ4G6BW)
-20:00:03 bar 19:55 o 28484.6 h 28495.1 l 28460.2 c 28462.7 ticks 3512 delta -150
-20:00:04 [range] US500 19:45 c 7696.6 ema 7694.1 band 7669.4-7718.9 atr 12.4 regime ON L 0 S 0 orders 2
-20:00:05 [range] US500 LIMIT SELL rung 0 0.04/pt at 7715.1 placed (DIAAAAYSVH5PLBY)
-20:00:06 [range] US500 LIMIT SELL rung 1 0.05/pt at 7718.2 placed (DIAAAAYSVHWQRAK)
-20:00:07 [range] USDJPY 19:45 c 15848.5 ema 15839.8 band 15821.7-15857.9 atr 9.1 regime ON L 0 S 0 orders 0
-20:00:07 [range] FTSE 19:45 c 10886.1 ema 10866.5 band 10840.0-10893.0 atr 13.2 regime off L 0 S 0 orders 0
-20:05:00 bar 20:00 o 28462.6 h 28487.1 l 28462.6 c 28469.2 ticks 3649 delta -71
-20:10:00 bar 20:05 o 28469.1 h 28477.8 l 28456.6 c 28460.8 ticks 3510 delta -74
-20:15:00 [range] NQ 20:00 c 28458.1 ema 28509.9 band 28368.8-28650.9 atr 70.5 regime ON L 0 S 0 orders 2
-20:15:01 [range] NQ LIMIT BUY rung 0 0.01/pt at 28390.0 placed (DIAAAAYSVJT7LAF)
-20:15:02 [range] NQ LIMIT BUY rung 1 0.01/pt at 28372.3 placed (DIAAAAYSVKHXVBB)
-20:15:02 bar 20:10 o 28460.9 h 28472.4 l 28443.2 c 28458.1 ticks 3589 delta -125
-20:15:02 [range] US500 20:00 c 7697.1 ema 7694.4 band 7673.4-7715.4 atr 10.5 regime ON L 0 S 0 orders 2
-20:15:03 [range] US500 LIMIT SELL rung 0 0.04/pt at 7712.2 placed (DIAAAAYSVKELYBU)
-20:15:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7714.8 placed (DIAAAAYSVKJYYBK)
-20:15:05 [range] GBPUSD 20:00 c 13471.8 ema 13471.0 band 13456.9-13485.2 atr 7.1 regime off L 0 S 0 orders 0
-20:15:06 [range] FTSE 20:00 c 10883.3 ema 10868.1 band 10847.5-10888.8 atr 10.3 regime off L 0 S 0 orders 0
-20:15:07 [range] USDJPY 20:00 c 15849.6 ema 15840.7 band 15824.0-15857.5 atr 8.4 regime ON L 0 S 0 orders 0
-20:20:00 bar 20:15 o 28458.3 h 28506.2 l 28456.6 c 28502.3 ticks 3631 delta -35
-20:25:00 bar 20:20 o 28502.4 h 28517.6 l 28471.1 c 28474.5 ticks 3538 delta -120
-20:30:00 [range] NQ 20:15 c 28483.2 ema 28507.3 band 28375.6-28639.0 atr 65.8 regime ON L 0 S 0 orders 2
-20:30:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28395.4 placed (DIAAAAYSVLBPZAJ)
-20:30:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28378.9 placed (DIAAAAYSVK9WUBQ)
-20:30:03 bar 20:25 o 28474.7 h 28489.2 l 28469.4 c 28483.2 ticks 3594 delta -48
-20:30:03 [range] US500 20:15 c 7702.2 ema 7695.1 band 7676.1-7714.2 atr 9.5 regime ON L 0 S 0 orders 2
-20:30:05 [range] US500 LIMIT SELL rung 1 0.05/pt at 7713.7 placed (DIAAAAYSVL7UFBR)
-20:30:05 [range] GBPUSD 20:15 c 13473.6 ema 13471.3 band 13457.5-13485.0 atr 6.9 regime off L 0 S 0 orders 0
-20:30:06 [range] FTSE 20:15 c 10882.6 ema 10869.5 band 10850.2-10888.8 atr 9.7 regime off L 0 S 0 orders 0
-20:30:07 [range] USDJPY 20:15 c 15847.7 ema 15841.4 band 15824.8-15858.0 atr 8.3 regime ON L 0 S 0 orders 0
-20:35:00 bar 20:30 o 28483.1 h 28525.1 l 28482.8 c 28500.7 ticks 3663 delta -49
-20:40:00 bar 20:35 o 28500.4 h 28526.0 l 28431.3 c 28440.2 ticks 3642 delta -92
-20:45:01 [range] NQ 20:30 c 28431.3 ema 28500.1 band 28369.9-28630.2 atr 65.1 regime ON L 0 S 0 orders 2
-20:45:02 [range] NQ LIMIT BUY rung 0 0.01/pt at 28389.5 placed (DIAAAAYSVLUTXAK)
-20:45:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28373.2 placed (DIAAAAYSVMGM8BV)
-20:45:03 bar 20:40 o 28440.0 h 28457.1 l 28425.5 c 28431.3 ticks 3705 delta -57
-20:45:03 [range] USDJPY 20:30 c 15844.7 ema 15841.7 band 15826.6-15856.8 atr 7.6 regime ON L 0 S 0 orders 0
-20:45:04 [range] US500 20:30 c 7695.8 ema 7695.2 band 7676.1-7714.3 atr 9.6 regime ON L 0 S 0 orders 2
-20:45:05 [range] FTSE 20:30 c 10892.1 ema 10871.7 band 10852.8-10890.6 atr 9.4 regime off L 0 S 0 orders 0
-20:45:05 [range] GBPUSD 20:30 c 13473.9 ema 13471.5 band 13459.9-13483.1 atr 5.8 regime off L 0 S 0 orders 0
-20:50:00 bar 20:45 o 28431.0 h 28465.6 l 28422.3 c 28458.8 ticks 3667 delta -27
-20:55:00 bar 20:50 o 28458.7 h 28459.7 l 28391.2 c 28409.1 ticks 3609 delta -197
-20:55:00 SIGNAL SELL at bar 20:50 close 28409.1 atr 37.4 ign 1.83 dshare -0.055
-20:55:00 FILLED SELL 0.09/pt at 28388.0 (paper would assume next open) stop 28444.1 (56.1 pts) limit +336.5
-20:59:35 tx: US Tech 100 open 28388.0 close 28444.1 P&L £-5.05
-20:59:35 CLOSED ig_stop at 28444.1 -> -56.1 pts (day -59.7, trades 2)
-21:00:00 [range] FTSE 20:45 c 10899.5 ema 10874.3 band 10855.2-10893.4 atr 9.5 regime off L 0 S 0 orders 0
-21:00:01 [range] NQ LIMIT rung 0 filled at 28389.5
-21:00:01 [range] NQ 20:45 c 28438.1 ema 28494.2 band 28365.9-28622.5 atr 64.2 regime ON L 1 S 0 orders 1
-21:00:03 [range] NQ LIMIT BUY rung 1 0.01/pt at 28369.1 placed (DIAAAAYSVNXMAB4)
-21:00:03 [range] NQ LIMIT BUY rung 2 0.02/pt at 28349.8 placed (DIAAAAYSVN75HBL)
-21:00:03 bar 20:55 o 28408.7 h 28454.8 l 28381.3 c 28438.1 ticks 3587 delta -121
-21:00:03 [range] US500 20:45 c 7690.5 ema 7694.7 band 7675.2-7714.3 atr 9.8 regime ON L 0 S 0 orders 2
-21:00:04 [range] US500 LIMIT BUY rung 0 0.04/pt at 7678.1 placed (DIAAAAYSVPM2GBR)
-21:00:04 [range] US500 LIMIT BUY rung 1 0.05/pt at 7675.7 placed (DIAAAAYSVN9JJBQ)
-21:00:05 [range] USDJPY 20:45 c 15844.2 ema 15842.0 band 15827.7-15856.2 atr 7.1 regime ON L 0 S 0 orders 0
-21:00:06 [range] GBPUSD 20:45 c 13472.5 ema 13471.6 band 13460.6-13482.6 atr 5.5 regime off L 0 S 0 orders 0
-21:05:00 bar 21:00 o 28439.3 h 28495.2 l 28438.6 c 28454.2 ticks 3457 delta -77
-21:10:00 bar 21:05 o 28454.3 h 28466.9 l 28436.7 c 28460.4 ticks 3186 delta -18
-21:15:00 [range] NQ EPISODE L closed (sold_or_stop): 1 lots, +1.05 GBP (day -58.7)
-21:15:00 [range] NQ 21:00 c 28500.1 ema 28494.8 band 28363.8-28625.7 atr 65.5 regime ON L 0 S 0 orders 2
-21:15:01 bar 21:10 o 28460.5 h 28507.9 l 28460.4 c 28500.1 ticks 3157 delta -83
-21:15:01 [range] USDJPY 21:00 c 15844.2 ema 15842.2 band 15828.9-15855.5 atr 6.7 regime ON L 0 S 0 orders 0
-21:15:02 [range] US500 21:00 c 7701.6 ema 7695.4 band 7674.9-7715.9 atr 10.2 regime ON L 0 S 0 orders 2
-21:15:02 [range] FTSE 21:00 c 10906.4 ema 10877.4 band 10858.0-10896.7 atr 9.7 regime off L 0 S 0 orders 0
-21:15:05 [range] GBPUSD 21:00 c 13472.9 ema 13471.7 band 13461.0-13482.5 atr 5.4 regime off L 0 S 0 orders 0
-21:20:00 bar 21:15 o 28500.3 h 28518.0 l 28487.7 c 28492.7 ticks 2853 delta +49
-21:25:00 bar 21:20 o 28493.0 h 28518.2 l 28489.9 c 28507.2 ticks 2471 delta +27
-21:30:00 [range] NQ 21:15 c 28504.2 ema 28495.7 band 28369.5-28621.8 atr 63.1 regime ON L 0 S 0 orders 2
-21:30:00 bar 21:25 o 28506.6 h 28511.4 l 28502.2 c 28504.2 ticks 1807 delta -27
-21:30:01 [range] GBPUSD 21:15 c 13470.8 ema 13471.6 band 13461.3-13482.0 atr 5.2 regime off L 0 S 0 orders 0
-21:30:01 [range] USDJPY 21:15 c 15843.9 ema 15842.3 band 15829.8-15854.8 atr 6.3 regime ON L 0 S 0 orders 0
-21:30:02 [range] US500 21:15 c 7705.1 ema 7696.3 band 7676.6-7716.0 atr 9.8 regime ON L 0 S 0 orders 2
-21:30:03 [range] FTSE 21:15 c 10908.0 ema 10880.3 band 10862.1-10898.5 atr 9.1 regime off L 0 S 0 orders 0
-21:35:00 bar 21:30 o 28503.9 h 28506.2 l 28489.1 c 28499.9 ticks 2030 delta -10
-21:40:00 bar 21:35 o 28499.6 h 28511.4 l 28494.9 c 28502.0 ticks 1893 delta +1
-21:45:01 [range] NQ 21:30 c 28510.8 ema 28497.1 band 28377.6-28616.6 atr 59.8 regime ON L 0 S 0 orders 2
-21:45:01 bar 21:40 o 28501.9 h 28513.3 l 28499.6 c 28510.8 ticks 1982 delta +32
-21:45:02 [range] USDJPY 21:30 c 15842.2 ema 15842.3 band 15830.4-15854.2 atr 6.0 regime ON L 0 S 0 orders 0
-21:45:02 [range] GBPUSD 21:30 c 13470.0 ema 13471.5 band 13461.6-13481.4 atr 5.0 regime off L 0 S 0 orders 0
-21:45:03 [range] US500 21:30 c 7703.6 ema 7697.0 band 7678.2-7715.8 atr 9.4 regime ON L 0 S 0 orders 2
-21:45:04 [range] FTSE 21:30 c 10906.4 ema 10882.8 band 10865.5-10900.0 atr 8.6 regime off L 0 S 0 orders 0
-21:50:00 bar 21:45 o 28510.6 h 28514.2 l 28503.8 c 28503.8 ticks 1466 delta -62
-21:55:00 bar 21:50 o 28503.4 h 28510.8 l 28494.3 c 28502.4 ticks 1761 delta +7
-21:59:45 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-21:59:45 done; ticks 217042 bars 345
+08:10:11 delta-share threshold 0.0500 (percentile-matched on 2034 IG bars); registered 0.05
+08:10:30 history 300 bars to 2026-11-05 08:10:00+00:00
+08:10:30 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+08:10:30 streaming IX.D.NASDAQ.CASH.IP
+08:10:30 ls status: CONNECTING
+08:10:31 ls status: CONNECTED:WS-STREAMING
+08:10:31 CHART IX.D.NASDAQ.CASH.IP subscribed
+08:10:31 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+08:10:31 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28202.7', 'OFR': '28204.9'}
+08:10:31 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28202.5', 'OFR': '28204.7'}
+08:10:31 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28202.1', 'OFR': '28204.3'}
+08:10:31 stream subscribed on CHART via Z6FARW
+08:10:31 trading session on Z6FARW
+08:10:31 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+08:10:33 [range] NQ: using the runner's own 300 IG bars
+08:10:33 [range] NQ: cache 69454 bars offset +38.0 to IG level, REST 300 bars to 2026-11-05 08:10:00+00:00
+08:10:33 [range] NQ: containment median 0.860 over 23154 15-min bars
+08:10:48 [range] US500 history throttled — waiting 15 s
+08:11:03 [range] US500 history throttled — waiting 15 s
+08:11:36 [range] US500: cache 68298 bars offset +108.8 to IG level, REST 300 bars to 2026-11-05 08:11:00+00:00
+08:11:36 [range] US500: containment median 0.880 over 22775 15-min bars
+08:11:56 [range] FTSE history throttled — waiting 15 s
+08:12:11 [range] FTSE history throttled — waiting 15 s
+08:12:46 [range] FTSE: cache 68487 bars offset +310.3 to IG level, REST 300 bars to 2026-11-05 08:12:00+00:00
+08:12:46 [range] FTSE: containment median 0.880 over 22859 15-min bars
+08:13:07 [range] GBPUSD history throttled — waiting 15 s
+08:13:22 [range] GBPUSD history throttled — waiting 15 s
+08:13:55 [range] GBPUSD: cache 73364 bars offset +99.8 to IG level, REST 300 bars to 2026-11-05 08:13:00+00:00
+08:13:55 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
+08:14:15 [range] USDJPY history throttled — waiting 15 s
+08:14:30 [range] USDJPY history throttled — waiting 15 s
+08:15:00 bar 08:10 o 28203.8 h 28218.5 l 28186.4 c 28200.0 ticks 2739 delta -96
+08:15:00 on_tick error: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 342, in onItemUpdate
+    if self.name == runner.feed: runner.on_tick({"BID": u.getValue(self.bidf), "OFR": u.getValue(self.ofrf)}, self.epic)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 144, in on_tick
+    if cur is not None: self.close_bar(epic)
+                        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 165, in close_bar
+    if self.news:
+       ^^^^^^^^^
+AttributeError: 'Runner' object has no attribute 'news'
+
+08:15:03 [range] USDJPY: cache 73266 bars offset +37.8 to IG level, REST 300 bars to 2026-11-05 08:15:00+00:00
+08:15:03 [range] USDJPY: containment median 0.900 over 24425 15-min bars
+08:15:03 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
+08:15:03 streaming IX.D.SPTRD.DAILY.IP
+08:15:03 streaming IX.D.FTSE.DAILY.IP
+08:15:03 streaming CS.D.GBPUSD.TODAY.IP
+08:15:03 streaming CS.D.USDJPY.TODAY.IP
+08:15:03 book 13 rehearsal: book equity £492.38 (risk x1.0), news events loaded 24
+08:15:03 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+08:15:03 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
+08:15:03 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
+08:15:03 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
+08:15:03 CHART IX.D.SPTRD.DAILY.IP subscribed
+08:15:03 CHART IX.D.FTSE.DAILY.IP subscribed
+08:15:03 CHART CS.D.GBPUSD.TODAY.IP subscribed
+08:15:03 CHART CS.D.USDJPY.TODAY.IP subscribed
+08:20:00 bar 08:15 o 28199.2 h 28252.5 l 28197.6 c 28244.9 ticks 2763 delta +19
+08:25:00 bar 08:20 o 28245.0 h 28254.7 l 28227.9 c 28249.8 ticks 2599 delta -47
+08:30:00 [range] NQ 08:15 c 28250.0 ema 28174.3 band 28059.1-28289.6 atr 57.6 regime ON L 0 S 0 orders 0
+08:30:00 [range] NQ EPISODE S closed (cap): 4 lots, +4.75 GBP (day +4.7)
+08:30:00 bar 08:25 o 28250.0 h 28260.8 l 28232.7 c 28250.0 ticks 2640 delta -4
+08:30:01 [range] US500 08:15 c 7689.4 ema 7680.3 band 7665.2-7695.3 atr 7.5 regime ON L 0 S 0 orders 0
+08:30:01 [range] USDJPY 08:15 c 15820.6 ema 15800.7 band 15779.8-15821.6 atr 10.4 regime ON L 0 S 0 orders 0
+08:30:02 [range] USDJPY FILLED MARKET SELL rung 0 0.04/pt at 15821.0
+08:30:02 [range] USDJPY working order rejected: ATTACHED_ORDER_LEVEL_ERROR
+08:30:03 [range] USDJPY LIMIT SELL rung 2 0.04/pt at 15824.2 placed (DIAAAAYSZQPU7BH)
+08:30:03 [range] FTSE 08:15 c 10930.5 ema 10939.0 band 10903.9-10974.0 atr 17.5 regime off L 0 S 0 orders 0
+08:30:04 [range] GBPUSD 08:15 c 13476.1 ema 13485.7 band 13471.3-13500.2 atr 7.2 regime ON L 0 S 0 orders 0
+08:30:04 [range] GBPUSD LIMIT BUY rung 0 0.03/pt at 13473.4 placed (DIAAAAYSZQ9BVBR)
+08:30:04 [range] GBPUSD LIMIT BUY rung 1 0.06/pt at 13471.6 placed (DIAAAAYSZQMAEBT)
+08:35:00 bar 08:30 o 28250.5 h 28261.3 l 28228.0 c 28252.1 ticks 2688 delta -70
+08:40:00 bar 08:35 o 28252.4 h 28268.1 l 28234.5 c 28236.9 ticks 2672 delta -142
+08:45:00 [range] NQ 08:30 c 28225.7 ema 28179.2 band 28062.1-28296.4 atr 58.6 regime ON L 0 S 0 orders 0
+08:45:00 bar 08:40 o 28237.0 h 28251.1 l 28223.2 c 28225.7 ticks 2447 delta -41
+08:45:00 [range] US500 08:30 c 7684.5 ema 7680.7 band 7665.2-7696.2 atr 7.7 regime ON L 0 S 0 orders 0
+08:45:01 [range] FTSE 08:30 c 10924.4 ema 10937.6 band 10901.2-10974.0 atr 18.2 regime off L 0 S 0 orders 0
+08:45:02 [range] USDJPY LIMIT rung 2 filled at 15824.2
+08:45:02 [range] USDJPY 08:30 c 15822.9 ema 15802.8 band 15782.3-15823.3 atr 10.3 regime ON L 0 S 2 orders 0
+08:45:03 [range] GBPUSD LIMIT rung 0 filled at 13473.4
+08:45:03 [range] GBPUSD LIMIT rung 1 filled at 13471.6
+08:45:03 [range] GBPUSD 08:30 c 13476.0 ema 13484.8 band 13469.4-13500.2 atr 7.7 regime ON L 2 S 0 orders 0
+08:50:00 bar 08:45 o 28225.5 h 28239.0 l 28211.1 c 28223.5 ticks 2524 delta +2
+08:55:00 bar 08:50 o 28223.3 h 28231.3 l 28207.1 c 28225.5 ticks 2454 delta -62
+09:00:00 [range] NQ 08:45 c 28246.2 ema 28185.6 band 28071.7-28299.5 atr 57.0 regime ON L 0 S 0 orders 0
+09:00:00 bar 08:55 o 28225.4 h 28246.9 l 28218.4 c 28246.2 ticks 2427 delta +75
+09:00:01 [range] GBPUSD 08:45 c 13480.5 ema 13484.4 band 13468.4-13500.4 atr 8.0 regime ON L 2 S 0 orders 0
+09:00:02 [range] US500 08:45 c 7686.7 ema 7681.2 band 7666.2-7696.3 atr 7.5 regime ON L 0 S 0 orders 0
+09:00:03 [range] FTSE 08:45 c 10919.6 ema 10935.9 band 10898.0-10973.7 atr 18.9 regime off L 0 S 0 orders 0
+09:00:04 [range] USDJPY 08:45 c 15825.8 ema 15805.0 band 15785.1-15824.9 atr 10.0 regime ON L 0 S 2 orders 0
+09:05:00 bar 09:00 o 28246.3 h 28258.1 l 28187.7 c 28215.9 ticks 3713 delta -21
+09:10:00 bar 09:05 o 28216.4 h 28218.6 l 28173.2 c 28178.8 ticks 3794 delta -154
+09:15:00 [range] NQ 09:00 c 28166.8 ema 28183.8 band 28064.6-28303.0 atr 59.6 regime ON L 0 S 0 orders 0
+09:15:00 bar 09:10 o 28179.1 h 28191.5 l 28165.0 c 28166.8 ticks 3741 delta +35
+09:15:01 [range] US500 09:00 c 7683.4 ema 7681.4 band 7666.5-7696.4 atr 7.5 regime ON L 0 S 0 orders 0
+09:15:01 [range] FTSE 09:00 c 10938.3 ema 10936.1 band 10896.5-10975.7 atr 19.8 regime off L 0 S 0 orders 0
+09:15:02 [range] USDJPY 09:00 c 15824.3 ema 15806.8 band 15787.7-15826.0 atr 9.6 regime ON L 0 S 2 orders 0
+09:15:03 [range] GBPUSD 09:00 c 13472.0 ema 13483.2 band 13466.0-13500.5 atr 8.6 regime ON L 2 S 0 orders 0
+09:20:00 bar 09:15 o 28167.3 h 28198.2 l 28165.5 c 28197.2 ticks 3702 delta +36
+09:25:00 bar 09:20 o 28197.3 h 28217.3 l 28150.5 c 28158.3 ticks 3711 delta +25
+09:30:00 [range] FTSE 09:15 c 10917.9 ema 10934.4 band 10892.8-10975.9 atr 20.8 regime off L 0 S 0 orders 0
+09:30:01 [range] NQ 09:15 c 28156.9 ema 28181.3 band 28059.2-28303.3 atr 61.0 regime ON L 0 S 0 orders 0
+09:30:01 bar 09:25 o 28158.2 h 28175.4 l 28152.2 c 28156.9 ticks 2146 delta +62
+09:30:01 [range] USDJPY 09:15 c 15827.0 ema 15808.8 band 15789.5-15828.0 atr 9.6 regime ON L 0 S 2 orders 0
+09:30:02 [range] GBPUSD 09:15 c 13473.4 ema 13482.3 band 13464.6-13499.9 atr 8.8 regime ON L 2 S 0 orders 0
+09:30:04 [range] US500 09:15 c 7683.1 ema 7681.6 band 7666.3-7696.9 atr 7.7 regime ON L 0 S 0 orders 0
+09:35:00 bar 09:30 o 28157.0 h 28202.9 l 28151.1 c 28197.6 ticks 2430 delta +26
+09:40:00 bar 09:35 o 28198.0 h 28247.7 l 28198.0 c 28242.7 ticks 3295 delta +103
+09:45:00 [range] NQ 09:30 c 28245.3 ema 28187.4 band 28059.2-28315.5 atr 64.1 regime ON L 0 S 0 orders 0
+09:45:00 bar 09:40 o 28242.5 h 28255.3 l 28237.7 c 28245.3 ticks 3138 delta -44
+09:45:01 [range] US500 09:30 c 7689.8 ema 7682.4 band 7667.1-7697.7 atr 7.7 regime ON L 0 S 0 orders 0
+09:45:01 [range] USDJPY 09:30 c 15830.9 ema 15810.9 band 15792.0-15829.7 atr 9.4 regime ON L 0 S 2 orders 0
+09:45:02 [range] GBPUSD 09:30 c 13466.5 ema 13480.8 band 13462.6-13498.9 atr 9.1 regime ON L 2 S 0 orders 0
+09:45:03 [range] FTSE 09:30 c 10921.1 ema 10933.1 band 10892.2-10974.0 atr 20.4 regime off L 0 S 0 orders 0
+09:50:00 bar 09:45 o 28245.1 h 28276.1 l 28235.5 c 28272.9 ticks 2457 delta -27
+09:55:00 bar 09:50 o 28273.9 h 28309.4 l 28262.7 c 28306.2 ticks 2366 delta -34
+10:00:00 [range] NQ 09:45 c 28306.0 ema 28198.7 band 28063.9-28333.4 atr 67.4 regime ON L 0 S 0 orders 0
+10:00:00 bar 09:55 o 28306.3 h 28314.2 l 28291.1 c 28306.0 ticks 2106 delta -36
+10:00:01 [range] US500 09:45 c 7697.8 ema 7683.8 band 7667.7-7700.0 atr 8.1 regime ON L 0 S 0 orders 0
+10:00:01 [range] FTSE 09:45 c 10907.5 ema 10930.7 band 10889.0-10972.3 atr 20.8 regime off L 0 S 0 orders 0
+10:00:02 [range] USDJPY 09:45 c 15832.5 ema 15812.9 band 15795.4-15830.5 atr 8.8 regime off L 0 S 2 orders 0
+10:00:03 [range] USDJPY EPISODE S closed (regime): 2 lots, -0.79 GBP (day +4.0)
+10:00:03 [range] GBPUSD 09:45 c 13464.0 ema 13479.2 band 13461.3-13497.1 atr 8.9 regime ON L 2 S 0 orders 0
+10:00:04 [range] GBPUSD LIMIT BUY rung 2 0.07/pt at 13459.1 placed (DIAAAAYSZXRPRBW)
+10:00:05 [range] GBPUSD LIMIT BUY rung 3 0.07/pt at 13456.4 placed (DIAAAAYSZXPBTBC)
+10:05:00 bar 10:00 o 28305.9 h 28306.3 l 28255.1 c 28263.3 ticks 2629 delta -125
+10:10:00 bar 10:05 o 28262.9 h 28286.4 l 28249.3 c 28272.8 ticks 2359 delta -81
+10:15:00 [range] US500 10:00 c 7694.9 ema 7684.9 band 7668.4-7701.4 atr 8.2 regime ON L 0 S 0 orders 0
+10:15:01 [range] NQ 10:00 c 28280.0 ema 28206.4 band 28069.5-28343.3 atr 68.5 regime ON L 0 S 0 orders 0
+10:15:01 bar 10:10 o 28272.0 h 28297.2 l 28262.3 c 28280.0 ticks 2060 delta -8
+10:15:01 [range] GBPUSD 10:00 c 13464.5 ema 13477.8 band 13459.6-13496.0 atr 9.1 regime ON L 2 S 0 orders 2
+10:15:03 [range] USDJPY 10:00 c 15831.6 ema 15814.7 band 15798.4-15831.0 atr 8.2 regime off L 0 S 0 orders 0
+10:15:04 [range] FTSE 10:00 c 10890.2 ema 10926.8 band 10883.7-10969.9 atr 21.6 regime off L 0 S 0 orders 0
+10:20:00 bar 10:15 o 28279.8 h 28292.3 l 28276.6 c 28279.9 ticks 1758 delta +16
+10:25:00 bar 10:20 o 28279.5 h 28299.5 l 28274.5 c 28295.9 ticks 2062 delta +32
+10:30:00 [range] FTSE 10:15 c 10889.6 ema 10923.3 band 10880.0-10966.5 atr 21.6 regime off L 0 S 0 orders 0
+10:30:01 [range] USDJPY 10:15 c 15839.0 ema 15817.0 band 15800.6-15833.4 atr 8.2 regime off L 0 S 0 orders 0
+10:30:01 [range] GBPUSD 10:15 c 13463.9 ema 13476.5 band 13458.4-13494.5 atr 9.0 regime ON L 2 S 0 orders 0
+10:30:03 [range] GBPUSD LIMIT BUY rung 2 0.07/pt at 13456.2 placed (DIAAAAYSZYT8MA3)
+10:30:03 [range] GBPUSD LIMIT BUY rung 3 0.07/pt at 13453.5 placed (DIAAAAYSZYQCBBC)
+10:30:03 [range] NQ 10:15 c 28305.9 ema 28215.9 band 28082.4-28349.4 atr 66.8 regime ON L 0 S 0 orders 0
+10:30:04 bar 10:25 o 28296.1 h 28316.2 l 28295.6 c 28305.9 ticks 2348 delta -8
+10:30:04 [range] US500 10:15 c 7698.8 ema 7686.2 band 7669.7-7702.7 atr 8.3 regime ON L 0 S 0 orders 0
+10:35:00 bar 10:30 o 28305.5 h 28322.1 l 28291.0 c 28315.4 ticks 2258 delta -8
+10:40:00 bar 10:35 o 28315.3 h 28316.7 l 28284.3 c 28288.8 ticks 1893 delta -87
+10:45:00 [range] NQ 10:30 c 28315.3 ema 28225.3 band 28100.5-28350.2 atr 62.4 regime ON L 0 S 0 orders 0
+10:45:00 bar 10:40 o 28288.7 h 28322.0 l 28284.3 c 28315.3 ticks 2002 delta +78
+10:45:01 [range] USDJPY 10:30 c 15840.3 ema 15819.2 band 15803.3-15835.1 atr 7.9 regime off L 0 S 0 orders 0
+10:45:01 [range] GBPUSD 10:30 c 13460.5 ema 13474.9 band 13457.3-13492.6 atr 8.8 regime ON L 2 S 0 orders 2
+10:45:04 [range] FTSE 10:30 c 10900.3 ema 10921.1 band 10878.7-10963.5 atr 21.2 regime off L 0 S 0 orders 0
+10:45:04 [range] US500 10:30 c 7700.8 ema 7687.6 band 7672.1-7703.1 atr 7.8 regime ON L 0 S 0 orders 0
+10:50:00 bar 10:45 o 28315.5 h 28325.7 l 28293.0 c 28306.2 ticks 2212 delta -94
+10:55:00 bar 10:50 o 28305.3 h 28322.1 l 28297.6 c 28317.2 ticks 2034 delta -76
+11:00:00 [range] FTSE 10:45 c 10908.8 ema 10919.9 band 10876.8-10963.0 atr 21.5 regime off L 0 S 0 orders 0
+11:00:01 [range] USDJPY 10:45 c 15838.0 ema 15821.0 band 15807.0-15835.0 atr 7.0 regime off L 0 S 0 orders 0
+11:00:01 [range] NQ 10:45 c 28306.2 ema 28233.0 band 28113.7-28352.4 atr 59.7 regime ON L 0 S 0 orders 0
+11:00:02 bar 10:55 o 28316.9 h 28324.7 l 28304.9 c 28306.2 ticks 1914 delta -102
+11:00:02 [range] GBPUSD 10:45 c 13462.1 ema 13473.7 band 13457.3-13490.1 atr 8.2 regime ON L 2 S 0 orders 0
+11:00:04 [range] GBPUSD LIMIT BUY rung 2 0.07/pt at 13455.3 placed (DIAAAAYSZ2992BR)
+11:00:04 [range] GBPUSD LIMIT BUY rung 3 0.07/pt at 13452.8 placed (DIAAAAYSZ2XDHBU)
+11:00:04 [range] US500 10:45 c 7702.0 ema 7689.0 band 7674.1-7703.9 atr 7.5 regime ON L 0 S 0 orders 0
+11:05:00 bar 11:00 o 28306.1 h 28322.0 l 28296.8 c 28298.3 ticks 2243 delta -27
+11:10:00 bar 11:05 o 28298.2 h 28303.6 l 28281.2 c 28291.4 ticks 2179 delta -75
+11:15:00 [range] NQ 11:00 c 28301.7 ema 28239.6 band 28123.3-28355.8 atr 58.1 regime ON L 0 S 0 orders 0
+11:15:00 bar 11:10 o 28291.2 h 28304.7 l 28281.9 c 28301.7 ticks 2023 delta -29
+11:15:01 [range] GBPUSD 11:00 c 13458.3 ema 13472.3 band 13455.7-13488.8 atr 8.3 regime ON L 2 S 0 orders 2
+11:15:03 [range] FTSE 11:00 c 10914.8 ema 10919.4 band 10877.9-10960.9 atr 20.8 regime off L 0 S 0 orders 0
+11:15:03 [range] US500 11:00 c 7705.3 ema 7690.5 band 7676.0-7705.1 atr 7.3 regime ON L 0 S 0 orders 0
+11:15:25 [range] USDJPY 11:00 c 15835.2 ema 15822.4 band 15808.8-15835.9 atr 6.8 regime off L 0 S 0 orders 0
+11:20:00 bar 11:15 o 28301.4 h 28302.4 l 28281.1 c 28284.6 ticks 1999 delta -99
+11:25:00 bar 11:20 o 28285.3 h 28308.5 l 28282.2 c 28287.1 ticks 1969 delta -65
+11:30:00 [range] NQ 11:15 c 28281.6 ema 28243.6 band 28127.0-28360.2 atr 58.3 regime ON L 0 S 0 orders 0
+11:30:00 bar 11:25 o 28287.3 h 28299.6 l 28264.5 c 28281.6 ticks 2040 delta -10
+11:30:00 [range] FTSE 11:15 c 10914.5 ema 10919.0 band 10882.6-10955.3 atr 18.2 regime off L 0 S 0 orders 0
+11:30:01 [range] USDJPY 11:15 c 15834.3 ema 15823.5 band 15810.7-15836.3 atr 6.4 regime off L 0 S 0 orders 0
+11:30:01 [range] GBPUSD 11:15 c 13457.8 ema 13470.9 band 13454.3-13487.4 atr 8.3 regime ON L 2 S 0 orders 0
+11:30:03 [range] GBPUSD LIMIT BUY rung 2 0.07/pt at 13452.3 placed (DIAAAAYSZ4P8NBV)
+11:30:03 [range] GBPUSD LIMIT BUY rung 3 0.07/pt at 13449.8 placed (DIAAAAYSZ4WQAAW)
+11:30:03 [range] US500 11:15 c 7702.3 ema 7691.7 band 7677.5-7705.8 atr 7.1 regime ON L 0 S 0 orders 0
+11:35:00 bar 11:30 o 28281.7 h 28321.7 l 28281.2 c 28311.7 ticks 1981 delta +9
+11:40:00 bar 11:35 o 28311.5 h 28313.2 l 28297.4 c 28302.1 ticks 1807 delta -83
+11:45:00 [range] US500 11:30 c 7704.6 ema 7692.9 band 7679.7-7706.1 atr 6.6 regime ON L 0 S 0 orders 0
+11:45:01 [range] FTSE 11:30 c 10909.7 ema 10918.1 band 10884.3-10951.8 atr 16.9 regime off L 0 S 0 orders 0
+11:45:01 [range] NQ 11:30 c 28303.3 ema 28249.3 band 28137.1-28361.4 atr 56.1 regime ON L 0 S 0 orders 0
+11:45:01 bar 11:40 o 28302.3 h 28305.8 l 28292.4 c 28303.3 ticks 1654 delta -64
+11:45:02 [range] GBPUSD LIMIT rung 2 filled at 13452.3
+11:45:02 [range] GBPUSD 11:30 c 13455.0 ema 13469.4 band 13454.0-13484.8 atr 7.7 regime ON L 3 S 0 orders 1
+11:45:04 [range] USDJPY 11:30 c 15838.7 ema 15825.0 band 15813.0-15836.9 atr 6.0 regime off L 0 S 0 orders 0
+11:50:00 bar 11:45 o 28303.4 h 28320.1 l 28302.2 c 28307.5 ticks 1811 delta +3
+11:55:00 bar 11:50 o 28307.4 h 28341.0 l 28302.9 c 28337.5 ticks 2054 delta +62
+12:00:00 [range] NQ 11:45 c 28318.9 ema 28255.9 band 28147.2-28364.6 atr 54.3 regime ON L 0 S 0 orders 0
+12:00:00 bar 11:55 o 28337.7 h 28338.5 l 28304.3 c 28318.9 ticks 1585 delta -35
+12:00:01 [range] FTSE 11:45 c 10913.6 ema 10917.6 band 10885.0-10950.3 atr 16.3 regime off L 0 S 0 orders 0
+12:00:01 [range] GBPUSD 11:45 c 13454.7 ema 13468.0 band 13452.5-13483.5 atr 7.7 regime ON L 3 S 0 orders 0
+12:00:03 [range] US500 11:45 c 7707.3 ema 7694.3 band 7681.4-7707.1 atr 6.4 regime ON L 0 S 0 orders 0
+12:00:03 [range] USDJPY 11:45 c 15837.4 ema 15826.1 band 15814.4-15837.9 atr 5.9 regime off L 0 S 0 orders 0
+12:05:00 bar 12:00 o 28318.7 h 28318.9 l 28276.0 c 28306.2 ticks 3230 delta -68
+12:10:00 bar 12:05 o 28305.9 h 28316.6 l 28282.7 c 28292.2 ticks 2690 delta +14
+12:15:00 [range] FTSE 12:00 c 10907.5 ema 10916.7 band 10882.6-10950.7 atr 17.0 regime off L 0 S 0 orders 0
+12:15:01 [range] US500 12:00 c 7708.5 ema 7695.6 band 7682.8-7708.4 atr 6.4 regime ON L 0 S 0 orders 0
+12:15:02 [range] NQ 12:00 c 28300.7 ema 28260.2 band 28151.8-28368.6 atr 54.2 regime ON L 0 S 0 orders 0
+12:15:02 bar 12:10 o 28291.7 h 28309.0 l 28287.0 c 28300.7 ticks 2589 delta -71
+12:15:03 [range] GBPUSD EPISODE L closed (sold_or_stop): 3 lots, +0.72 GBP (day +4.7)
+12:15:03 [range] GBPUSD 12:00 c 13472.2 ema 13468.4 band 13449.4-13487.3 atr 9.5 regime ON L 0 S 0 orders 0
+12:15:03 [range] GBPUSD LIMIT SELL rung 0 0.03/pt at 13484.5 placed (DIAAAAYSZ8WBLB2)
+12:15:04 [range] GBPUSD LIMIT SELL rung 1 0.06/pt at 13486.8 placed (DIAAAAYSZ8HLVBL)
+12:15:04 [range] USDJPY 12:00 c 15840.2 ema 15827.5 band 15816.0-15838.9 atr 5.7 regime off L 0 S 0 orders 0
+12:20:00 bar 12:15 o 28300.4 h 28301.2 l 28266.5 c 28267.9 ticks 2525 delta -113
+12:25:00 bar 12:20 o 28267.8 h 28269.7 l 28237.7 c 28248.0 ticks 2662 delta -56
+12:30:00 [range] FTSE 12:15 c 10894.4 ema 10914.6 band 10880.2-10948.9 atr 17.2 regime off L 0 S 0 orders 0
+12:30:01 [range] NQ 12:15 c 28243.5 ema 28258.6 band 28146.8-28370.4 atr 55.9 regime ON L 0 S 0 orders 0
+12:30:02 bar 12:25 o 28247.9 h 28268.3 l 28240.1 c 28243.5 ticks 2577 delta -3
+12:30:02 [range] US500 12:15 c 7698.3 ema 7695.9 band 7682.0-7709.7 atr 6.9 regime ON L 0 S 0 orders 0
+12:30:03 [range] USDJPY 12:15 c 15840.3 ema 15828.7 band 15817.4-15840.0 atr 5.6 regime off L 0 S 0 orders 0
+12:30:03 [range] GBPUSD 12:15 c 13471.5 ema 13468.7 band 13448.9-13488.4 atr 9.9 regime ON L 0 S 0 orders 2
+12:30:04 [range] GBPUSD LIMIT SELL rung 0 0.03/pt at 13485.5 placed (DIAAAAYSZ87QPBV)
+12:30:05 [range] GBPUSD LIMIT SELL rung 1 0.06/pt at 13487.9 placed (DIAAAAYSZ9P4WAK)
+12:35:00 bar 12:30 o 28244.4 h 28259.5 l 28212.2 c 28218.8 ticks 2766 delta -120
+12:40:00 bar 12:35 o 28219.0 h 28219.0 l 28201.5 c 28206.0 ticks 2550 delta -8
+12:45:00 [range] NQ 12:30 c 28195.8 ema 28252.6 band 28143.5-28361.7 atr 54.6 regime ON L 0 S 0 orders 0
+12:45:00 bar 12:40 o 28206.1 h 28210.5 l 28185.2 c 28195.8 ticks 2694 delta -36
+12:45:01 [range] FTSE 12:30 c 10901.0 ema 10913.3 band 10880.8-10945.8 atr 16.3 regime off L 0 S 0 orders 0
+12:45:01 [range] USDJPY 12:30 c 15845.8 ema 15830.3 band 15818.4-15842.3 atr 6.0 regime off L 0 S 0 orders 0
+12:45:02 [range] US500 12:30 c 7694.4 ema 7695.7 band 7681.6-7709.8 atr 7.0 regime ON L 0 S 0 orders 0
+12:45:02 [range] GBPUSD 12:30 c 13469.5 ema 13468.7 band 13449.0-13488.5 atr 9.9 regime ON L 0 S 0 orders 2
+12:50:00 bar 12:45 o 28195.9 h 28208.4 l 28183.2 c 28196.3 ticks 2815 delta -43
+12:55:00 bar 12:50 o 28195.8 h 28196.2 l 28169.4 c 28189.8 ticks 2651 delta -63
+13:00:00 [range] FTSE 12:45 c 10915.9 ema 10913.5 band 10882.0-10945.1 atr 15.8 regime off L 0 S 0 orders 0
+13:00:01 [range] US500 12:45 c 7700.2 ema 7696.2 band 7682.3-7710.0 atr 6.9 regime ON L 0 S 0 orders 0
+13:00:01 [range] USDJPY 12:45 c 15840.8 ema 15831.3 band 15819.5-15843.2 atr 5.9 regime off L 0 S 0 orders 0
+13:00:02 [range] NQ 12:45 c 28203.7 ema 28247.9 band 28142.8-28353.1 atr 52.6 regime ON L 0 S 0 orders 0
+13:00:02 bar 12:55 o 28190.0 h 28206.1 l 28171.3 c 28203.7 ticks 2798 delta +20
+13:00:02 [range] GBPUSD 12:45 c 13466.8 ema 13468.6 band 13449.0-13488.1 atr 9.8 regime ON L 0 S 0 orders 2
+13:05:00 bar 13:00 o 28203.6 h 28234.0 l 28168.4 c 28231.4 ticks 3204 delta +36
+13:10:00 bar 13:05 o 28231.6 h 28235.8 l 28173.8 c 28179.2 ticks 3296 delta +34
+13:15:00 [range] NQ 13:00 c 28199.4 ema 28243.3 band 28143.5-28343.2 atr 49.9 regime ON L 0 S 0 orders 0
+13:15:00 bar 13:10 o 28179.3 h 28202.6 l 28170.1 c 28199.4 ticks 3132 delta +30
+13:15:01 [range] US500 13:00 c 7698.0 ema 7696.3 band 7682.4-7710.2 atr 7.0 regime ON L 0 S 0 orders 0
+13:15:01 [range] FTSE 13:00 c 10914.5 ema 10913.6 band 10881.7-10945.5 atr 15.9 regime off L 0 S 0 orders 0
+13:15:02 [range] GBPUSD 13:00 c 13459.8 ema 13467.7 band 13447.8-13487.7 atr 10.0 regime ON L 0 S 0 orders 0
+13:15:02 [range] USDJPY 13:00 c 15845.0 ema 15832.6 band 15820.8-15844.5 atr 5.9 regime off L 0 S 0 orders 0
+13:20:00 bar 13:15 o 28199.3 h 28231.3 l 28187.8 c 28212.2 ticks 3639 delta -65
+13:25:00 bar 13:20 o 28211.9 h 28230.2 l 28205.9 c 28219.9 ticks 3522 delta -28
+13:30:00 [range] GBPUSD 13:15 c 13460.0 ema 13467.0 band 13446.6-13487.3 atr 10.2 regime ON L 0 S 0 orders 0
+13:30:00 [range] NQ 13:15 c 28225.6 ema 28241.6 band 28146.4-28336.8 atr 47.6 regime ON L 0 S 0 orders 0
+13:30:01 bar 13:25 o 28220.2 h 28233.8 l 28216.0 c 28225.6 ticks 3287 delta -109
+13:30:01 [range] USDJPY 13:15 c 15846.6 ema 15834.0 band 15821.8-15846.1 atr 6.1 regime off L 0 S 0 orders 0
+13:30:01 [range] FTSE 13:15 c 10906.4 ema 10912.9 band 10881.9-10944.0 atr 15.5 regime off L 0 S 0 orders 0
+13:30:02 [range] US500 13:15 c 7702.1 ema 7696.9 band 7683.3-7710.4 atr 6.8 regime ON L 0 S 0 orders 0
+13:35:00 bar 13:30 o 28225.9 h 28228.8 l 28178.5 c 28195.7 ticks 3595 delta -65
+13:40:00 bar 13:35 o 28195.8 h 28230.0 l 28186.2 c 28223.8 ticks 3694 delta +42
+13:45:00 [range] NQ 13:30 c 28242.4 ema 28241.7 band 28144.9-28338.6 atr 48.4 regime ON L 0 S 0 orders 0
+13:45:00 bar 13:40 o 28223.3 h 28247.0 l 28213.7 c 28242.4 ticks 3621 delta -15
+13:45:01 [range] US500 13:30 c 7704.2 ema 7697.6 band 7683.9-7711.2 atr 6.8 regime ON L 0 S 0 orders 0
+13:45:01 [range] USDJPY 13:30 c 15848.4 ema 15835.3 band 15822.9-15847.7 atr 6.2 regime off L 0 S 0 orders 0
+13:45:02 [range] FTSE 13:30 c 10918.0 ema 10913.4 band 10882.8-10944.0 atr 15.3 regime ON L 0 S 0 orders 0
+13:45:02 [range] FTSE LIMIT SELL rung 0 0.04/pt at 10939.4 placed (DIAAAAYS2EX87BL)
+13:45:02 [range] FTSE LIMIT SELL rung 1 0.04/pt at 10943.3 placed (DIAAAAYS2E2YUAL)
+13:45:03 [range] GBPUSD 13:30 c 13460.0 ema 13466.3 band 13445.8-13486.8 atr 10.3 regime ON L 0 S 0 orders 0
+13:50:00 bar 13:45 o 28242.7 h 28251.4 l 28210.2 c 28214.0 ticks 3441 delta -161
+13:55:00 bar 13:50 o 28214.4 h 28223.2 l 28190.3 c 28206.7 ticks 3502 delta -42
+14:00:00 [range] US500 13:45 c 7696.0 ema 7697.4 band 7683.1-7711.7 atr 7.1 regime ON L 0 S 0 orders 0
+14:00:01 [range] FTSE 13:45 c 10912.6 ema 10913.3 band 10882.7-10944.0 atr 15.3 regime ON L 0 S 0 orders 2
+14:00:01 [range] FTSE LIMIT BUY rung 0 0.04/pt at 10887.3 placed (DIAAAAYS2GK7SBR)
+14:00:01 [range] FTSE LIMIT BUY rung 1 0.04/pt at 10883.5 placed (DIAAAAYS2FX9NBF)
+14:00:02 [range] NQ 13:45 c 28182.8 ema 28236.1 band 28132.8-28339.4 atr 51.7 regime ON L 0 S 0 orders 0
+14:00:03 bar 13:55 o 28206.5 h 28213.2 l 28164.5 c 28182.8 ticks 3394 delta -70
+14:00:03 [range] USDJPY 13:45 c 15840.2 ema 15835.8 band 15823.1-15848.5 atr 6.3 regime off L 0 S 0 orders 0
+14:00:04 [range] GBPUSD 13:45 c 13462.8 ema 13466.0 band 13444.8-13487.1 atr 10.6 regime ON L 0 S 0 orders 0
