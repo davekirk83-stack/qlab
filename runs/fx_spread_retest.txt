@@ -1,0 +1,5 @@
+A — RANGE v3 LADDER (return on margin per episode and per margin-hour; vs time-matched random)
+  GBP/USD @0.9 own session    24 ep/month, hold  1.1h, return on margin +0.39%/ep = +0.357% per margin-hour | dev n 134 +0.012%/ep vs random -0.008% win 66% || hold n 148 +0.014%/ep vs random -0.012% win 68%
+  GBP/USD @1.35 own session    24 ep/month, hold  1.1h, return on margin +0.29%/ep = +0.259% per margin-hour | dev n 134 +0.008%/ep vs random -0.015% win 66% || hold n 148 +0.011%/ep vs random -0.018% win 68%
+  USD/JPY @0.7 own session    38 ep/month, hold  1.3h, return on margin +0.30%/ep = +0.236% per margin-hour | dev n 228 +0.012%/ep vs random -0.007% win 69% || hold n 234 +0.008%/ep vs random -0.003% win 67%
+  USD/JPY @1.0 own session    38 ep/month, hold  1.3h, return on margin +0.24%/ep = +0.188% per margin-hour | dev n 228 +0.010%/ep vs random -0.009% win 69% || hold n 234 +0.006%/ep vs random -0.008% win 66%
