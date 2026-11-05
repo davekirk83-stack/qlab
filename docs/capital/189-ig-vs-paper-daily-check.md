@@ -47,3 +47,6 @@ Next: Claude builds the Revolut X runner (dry-run first); DK deposits £500 and 
 
 ## Fix 2 — separate daily trade counts, DK "8 per book?" (5 Nov 09:13)
 The 8-a-day limit is ours (from AuclairsDad's governor design), not IG's. Ignition's busiest day in a year of v1.1 was 3 trades (61 one-trade days, 9 two, 1 three) — the limit is a runaway fuse, not a return driver. Claude suggested 4 per engine; DK asked for 8 per book. Done on the demo under IG_GOV_SPLIT=1: Ignition keeps its own 8 ("ntr"), each ladder market has its own 8 ("ntr_<market>"). Live unchanged until the demo shows fixes 1 and 2 working.
+
+## LIVE — DK switched it on, 5 Nov 2026 ~16:26 London
+DK created the repo variable IG_LIVE_ENABLED=true (after the link route failed; done via Settings → Secrets and variables → Actions → Variables → New repository variable). Today's earlier live crons (13:53, 14:24, 14:33, 14:58 UTC) had skipped. First live session: run 42080396125, started 18:02 UTC, in progress, minimum stakes, to 22:00 UK. Review scheduled 22:20 (trig_01VBQRmyarMjV8qJvsNkQy5M). Context: Nasdaq futures −4.7% on the day; BTC $81,131 (4 Nov) → $75,568 (5 Nov 15:53).
