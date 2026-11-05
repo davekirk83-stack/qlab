@@ -1,0 +1,7 @@
+INSERT OR REPLACE INTO pb4_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-05', 1948.9136, 2050.9134, 1, 8, 8);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'INJUSD', '2026-10-22 12:00:00+00:00', '2026-11-04 12:00:00+00:00', 0.014294, 'trail', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'QNTUSD', '2026-11-02 20:00:00+00:00', '2026-11-04 08:00:00+00:00', -0.035967, 'trail', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'ZECUSD', '2026-10-30 16:00:00+00:00', '2026-11-04 08:00:00+00:00', -0.056843, 'trail', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'LINKUSD', '2026-11-02 20:00:00+00:00', '2026-11-04 12:00:00+00:00', -0.017223, 'trail', 1);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'QNTUSD', '2026-11-02 20:00:00+00:00', '2026-11-04 08:00:00+00:00', -0.035967, 'trail', 1);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-05', 'SOLUSD', '2026-11-02 08:00:00+00:00', '2026-11-04 04:00:00+00:00', 0.010508, 'trail', 1);

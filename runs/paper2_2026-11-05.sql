@@ -1,0 +1,15 @@
+INSERT OR REPLACE INTO pb2_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-05', 2123.6581, 23, 825);
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'AEROUSD', 'L', '2026-11-04 12:00:00+00:00', '2026-11-04 15:00:00+00:00', 0.025442, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'AEROUSD', 'S', '2026-11-04 11:30:00+00:00', '2026-11-04 20:30:00+00:00', 0.009427, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'AVAXUSD', 'S', '2026-11-04 05:30:00+00:00', '2026-11-04 08:00:00+00:00', -0.001166, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'DOTUSD', 'L', '2026-11-04 00:00:00+00:00', '2026-11-04 07:45:00+00:00', 0.007640, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'DOTUSD', 'S', '2026-11-04 05:45:00+00:00', '2026-11-04 08:15:00+00:00', -0.011324, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'FETUSD', 'S', '2026-11-05 03:15:00+00:00', '2026-11-05 07:00:00+00:00', 0.018783, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'FILUSD', 'S', '2026-11-04 14:30:00+00:00', '2026-11-04 15:00:00+00:00', -0.029986, 'break');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'NEARUSD', 'S', '2026-11-04 05:30:00+00:00', '2026-11-04 08:00:00+00:00', -0.032425, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'QNTUSD', 'S', '2026-11-04 04:45:00+00:00', '2026-11-04 10:45:00+00:00', -0.012914, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'QNTUSD', 'L', '2026-11-05 01:15:00+00:00', '2026-11-05 03:30:00+00:00', 0.023400, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'STRKUSD', 'L', '2026-11-04 21:45:00+00:00', '2026-11-05 06:45:00+00:00', 0.030850, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'UNIUSD', 'S', '2026-11-04 05:30:00+00:00', '2026-11-04 07:45:00+00:00', -0.023696, 'regime');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'ZROUSD', 'S', '2026-11-04 06:30:00+00:00', '2026-11-04 14:00:00+00:00', 0.025283, 'sold');
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-05', 'ZROUSD', 'L', '2026-11-04 14:00:00+00:00', '2026-11-05 02:00:00+00:00', 0.015888, 'cap');
