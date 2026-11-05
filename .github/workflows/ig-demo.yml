@@ -48,6 +48,7 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
           IG_RANGE_INSTR: "NQ,US500,FTSE,GBPUSD,USDJPY"   # doc 186 (DK 4 Nov): + GBP/USD and USD/JPY ladders, London hours. doc 175: the ladder on US Tech 100 + US 500 (NY hours) + FTSE 100 (London hours)    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
+          IG_GOV_SPLIT: "1"   # doc 189: Ignition daily cap in points, ladders in £ (demo first)
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)
           IG_SIZE: "0.01"         # doc 137: Ignition at ~2% risk of a £1,000 account (stop 45-90 pts)   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |

@@ -175,14 +175,29 @@ class Runner:
             self.manage(d, i); return
         s = int(row.sig)
         if s == 0 or np.isnan(row.atr): return
-        if not (US_OPEN <= mins < US_CLOSE): log(f"bar {ts:%H:%M} sig {s} outside US hours — skipped"); return
-        if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return
-        if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return
-        st = self.state
-        if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return
-        if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return
-        if not self.beq.day_ok(): log("book daily stop (-4%) reached — no new Ignition entries"); return
+        why = self.gate(s, row, ts, i, nyt, mins)
+        self.sig_log(ts, s, row, why or "taken")
+        if why: return
         self.open(s, row, ts)
+
+    def gate(self, s, row, ts, i, nyt, mins):
+        """reason a signal is not taken, or None (doc 189: every signal is written to signals.csv for the daily paper-vs-IG check)"""
+        if not (US_OPEN <= mins < US_CLOSE): return "outside_us_hours"
+        if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return "fomc_blackout"
+        if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return "lunch"
+        st = self.state
+        if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return "governor"
+        if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return "cooloff"
+        if not self.beq.day_ok(): log("book daily stop (-4%) reached — no new Ignition entries"); return "book_day_stop"
+        return None
+
+    def sig_log(self, ts, s, row, what):
+        f = f"{OUT}/signals.csv"; new = not os.path.exists(f)
+        try:
+            with open(f, "a") as fh:
+                if new: fh.write("bar,side,close,atr,ign,dshare,what,logged\n")
+                fh.write(f"{pd.Timestamp(ts).isoformat()},{s},{row.close:.2f},{row.atr:.2f},{row.ign:.3f},{row.dshare:+.4f},{what},{utcnow().isoformat()}\n")
+        except Exception as e: log("signal log:", e)
 
     def open(self, s, row, ts):
         direction = "BUY" if s == 1 else "SELL"; tgt = round(P7.TGT_ATR*row.atr, 1)

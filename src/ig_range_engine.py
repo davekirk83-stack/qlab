@@ -45,6 +45,9 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
     "USDJPY": dict(epics=["CS.D.USDJPY.TODAY.IP"], search="USD/JPY", cache=f"{ROOT}/data_ig_cache/USDJPY_IG_5m.csv", hours=("Europe/London", 0, 17), margin=0.0333, unit=lambda p: p),
 }
 MAXT, LOSSCAP = 8, 200.0
+# doc 189 (DK 5 Nov "1 and 3 yes"): the shared daily loss figure mixed Ignition POINTS with ladder POUNDS. With IG_GOV_SPLIT=1 the
+# ladders keep their own £ figure ("dpl_rng", cap £200/day) and Ignition's "dpl" stays in points (cap 200 pts, as on paper). Demo first.
+DPL = "dpl_rng" if os.environ.get("IG_GOV_SPLIT", "0") == "1" else "dpl"
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
 # Wall Street / Germany 40 ladders, which lock margin for 2-3 h per episode and add overnight funding.
 _ONLY = [x.strip() for x in os.environ.get("IG_RANGE_INSTR", "").split(",") if x.strip()]
@@ -202,7 +205,7 @@ class RangeEngine:
             ct = st["cool"].get(side)
             if ct and ts < pd.Timestamp(ct) + pd.Timedelta(hours=P6.COOLDOWN_H): continue
             p = st["pos"].get(side)
-            if p is None and (self.gov["ntr"] >= MAXT or self.gov["dpl"] <= -LOSSCAP): continue
+            if p is None and (self.gov["ntr"] >= MAXT or self.gov.get(DPL, 0.0) <= -LOSSCAP): continue
             tried = set(p["tried"]) if p else set(); limits = []
             for k, (frac, off) in enumerate(P6.BID):
                 if k in tried: continue
@@ -334,9 +337,9 @@ class RangeEngine:
             w = _csv.writer(f)
             if hdr: w.writerow(["instr", "side", "opened", "closed", "lots", "gbp", "how", "detail"])
             w.writerow([name, side, p["open"], ts.isoformat(), n, f"{gbp:.2f}", how, json.dumps(p["closed"])])
-        self.gov["dpl"] += gbp; st["pos"][side] = None; st["cool"][side] = str(ts)
+        self.gov[DPL] = self.gov.get(DPL, 0.0) + gbp; st["pos"][side] = None; st["cool"][side] = str(ts)
         if self.beq: self.beq.add(gbp, "range")
-        log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (day {self.gov['dpl']:+.1f})")
+        log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (ladders today {self.gov.get(DPL, 0.0):+.2f} {self.ccy})")
 
     def end_of_job(self):
         for name in self.mkt:
