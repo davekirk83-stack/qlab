@@ -1,0 +1,24 @@
+XAU/USD 5-min 02 Nov 2025 - 30 Oct 2026: 69559 bars, 2386 15M zones (demand 1182, supply 1204)
+
+Net of 0.5 pt spread + 0.1 pt stop slippage. R = net points / risk (entry to stop).
+  PRIMARY: trend + zone + sweep + 5M CHoCH       dev n  38 mean -0.184R win  58% tgt  76% med RR 0.10 risk 12.0pt || hold n  37 mean +0.051R win  57% tgt  97% med RR 0.05 risk 13.8pt
+    same, only trades with target >= 1R away     dev n   1 mean -1.048R win   0% tgt   0% med RR 1.24 risk 12.5pt || hold none
+  ALT: trend + zone + sweep, sweep bar closes back dev n  57 mean -0.288R win  46% tgt  65% med RR 0.25 risk 5.3pt || hold n  59 mean -0.412R win  34% tgt  63% med RR 0.20 risk 4.3pt
+  CONTROL A: no trend filter (zone + sweep + CHoCH) dev n 220 mean -0.055R win  61% tgt  90% med RR 0.05 risk 15.6pt || hold n 209 mean -0.056R win  56% tgt  86% med RR 0.07 risk 13.5pt
+  CONTROL B: trend + zone, enter on first touch  dev n 155 mean -0.154R win  57% tgt  75% med RR 0.18 risk 9.8pt || hold n 154 mean -0.195R win  45% tgt  78% med RR 0.10 risk 7.9pt
+
+  primary gross (before costs) mean -0.027R; median risk 13.02 pt = 0.292% of price; spread is 0.04R of a median trade
+  longs: n41 mean -0.102R
+  shorts: n34 mean -0.029R
+
+ADDENDUM (added after the first result, flagged as such): the nearest 15M swing is usually almost at the entry (median target 0.05-0.10R),
+which no scalper would take. Same engine, target = the nearest 15M swing at least X R away:
+  PRIMARY, nearest swing >= 0.5R away            dev n  34 mean -0.262R win  44% tgt  44% med RR 0.60 risk 13.7pt || hold n  34 mean +0.017R win  65% tgt  62% med RR 0.59 risk 13.6pt
+  CONTROL A (no trend), nearest swing >= 0.5R    dev n 189 mean -0.125R win  56% tgt  53% med RR 0.56 risk 15.8pt || hold n 185 mean +0.010R win  63% tgt  61% med RR 0.58 risk 13.4pt
+  PRIMARY, nearest swing >= 1.0R away            dev n  33 mean -0.086R win  42% tgt  39% med RR 1.11 risk 13.0pt || hold n  32 mean -0.234R win  41% tgt  31% med RR 1.07 risk 13.8pt
+  CONTROL A (no trend), nearest swing >= 1.0R    dev n 169 mean -0.152R win  41% tgt  35% med RR 1.08 risk 15.9pt || hold n 164 mean -0.079R win  48% tgt  37% med RR 1.07 risk 13.5pt
+  PRIMARY, nearest swing >= 1.5R away            dev n  30 mean -0.242R win  33% tgt  17% med RR 1.62 risk 13.7pt || hold n  31 mean -0.170R win  39% tgt  26% med RR 1.58 risk 13.8pt
+  CONTROL A (no trend), nearest swing >= 1.5R    dev n 158 mean -0.224R win  34% tgt  20% med RR 1.58 risk 15.4pt || hold n 156 mean -0.055R win  44% tgt  28% med RR 1.57 risk 13.3pt
+  PRIMARY, nearest swing >= 2.0R away            dev n  29 mean -0.135R win  34% tgt  17% med RR 2.12 risk 13.0pt || hold n  31 mean -0.070R win  39% tgt  19% med RR 2.06 risk 13.8pt
+  CONTROL A (no trend), nearest swing >= 2.0R    dev n 151 mean -0.323R win  28% tgt  12% med RR 2.08 risk 15.3pt || hold n 151 mean -0.026R win  40% tgt  21% med RR 2.08 risk 12.8pt
+done
