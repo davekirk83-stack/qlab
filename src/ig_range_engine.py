@@ -47,7 +47,9 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
 MAXT, LOSSCAP = 8, 200.0
 # doc 189 (DK 5 Nov "1 and 3 yes"): the shared daily loss figure mixed Ignition POINTS with ladder POUNDS. With IG_GOV_SPLIT=1 the
 # ladders keep their own £ figure ("dpl_rng", cap £200/day) and Ignition's "dpl" stays in points (cap 200 pts, as on paper). Demo first.
-DPL = "dpl_rng" if os.environ.get("IG_GOV_SPLIT", "0") == "1" else "dpl"
+SPLIT = os.environ.get("IG_GOV_SPLIT", "0") == "1"
+DPL = "dpl_rng" if SPLIT else "dpl"
+def NTR(name): return f"ntr_{name}" if SPLIT else "ntr"   # doc 189 fix 2 (DK 5 Nov "8 per book?"): each ladder market its own 8/day, Ignition keeps "ntr"
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
 # Wall Street / Germany 40 ladders, which lock margin for 2-3 h per episode and add overnight funding.
 _ONLY = [x.strip() for x in os.environ.get("IG_RANGE_INSTR", "").split(",") if x.strip()]
@@ -205,7 +207,7 @@ class RangeEngine:
             ct = st["cool"].get(side)
             if ct and ts < pd.Timestamp(ct) + pd.Timedelta(hours=P6.COOLDOWN_H): continue
             p = st["pos"].get(side)
-            if p is None and (self.gov["ntr"] >= MAXT or self.gov.get(DPL, 0.0) <= -LOSSCAP): continue
+            if p is None and (self.gov.get(NTR(name), 0) >= MAXT or self.gov.get(DPL, 0.0) <= -LOSSCAP): continue
             tried = set(p["tried"]) if p else set(); limits = []
             for k, (frac, off) in enumerate(P6.BID):
                 if k in tried: continue
@@ -262,7 +264,7 @@ class RangeEngine:
     def add_lot(self, name, side, k, px, size, deal_id, ts):
         st = self.st[name]; p = st["pos"].get(side)
         if p is None:
-            p = {"open": str(ts), "lots": [], "tried": [], "closed": []}; st["pos"][side] = p; self.gov["ntr"] += 1
+            p = {"open": str(ts), "lots": [], "tried": [], "closed": []}; st["pos"][side] = p; self.gov[NTR(name)] = self.gov.get(NTR(name), 0) + 1
         p["tried"].append(k); p["lots"].append({"deal_id": deal_id, "px": float(px), "sz": float(size), "k": k, "tgt": 0, "brk": 0})
 
     def sync(self, name):

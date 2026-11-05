@@ -44,3 +44,6 @@ DK 08:51: "For our books, are there any tweaks or improvements you would make no
 ## CAP-021 AMENDED for Revolut X — DK "Yes", 5 Nov 2026 09:12
 > CAP-021 amended for Revolut X: a live book of £500 may run the Range long book (spot, long only) on DK's Revolut X account through DK's own GitHub automation, key held only in DK's GitHub secrets, switched on and off by DK. Limits: 10% of the book per episode, at most 10 open, −15% from start or two negative weeks → back to paper. No leverage, no other crypto venues.
 Next: Claude builds the Revolut X runner (dry-run first); DK deposits £500 and creates the trading key when the runner is ready.
+
+## Fix 2 — separate daily trade counts, DK "8 per book?" (5 Nov 09:13)
+The 8-a-day limit is ours (from AuclairsDad's governor design), not IG's. Ignition's busiest day in a year of v1.1 was 3 trades (61 one-trade days, 9 two, 1 three) — the limit is a runaway fuse, not a return driver. Claude suggested 4 per engine; DK asked for 8 per book. Done on the demo under IG_GOV_SPLIT=1: Ignition keeps its own 8 ("ntr"), each ladder market has its own 8 ("ntr_<market>"). Live unchanged until the demo shows fixes 1 and 2 working.
