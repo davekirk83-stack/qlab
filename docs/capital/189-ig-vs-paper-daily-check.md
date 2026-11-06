@@ -59,3 +59,6 @@ DEMO faults, fixed (commit below):
 3. USD/JPY "working order rejected: ATTACHED_ORDER_LEVEL_ERROR" once (08:30) — attached stop/limit level refused; to investigate.
 FX SPREADS on the demo, London hours today: GBP/USD mean 1.33 pips (median 1.40) vs 0.9 assumed; USD/JPY 1.00 vs 0.7 assumed — both ~45-50% wider. The FX ladders were cost-sensitive (doc 182); re-test at these spreads before any live use.
 FX RE-TEST at the real demo spreads (same doc 175 engine and split; runs/fx_spread_retest.txt): GBP/USD at 1.35 pips +0.29% on margin per episode (was +0.39% at 0.9), still positive and ahead of random in both halves (dev +0.008% vs −0.015%, hold +0.011% vs −0.018%); USD/JPY at 1.0 +0.24%/ep (was +0.30%), dev +0.010% vs −0.009%, hold +0.006% vs −0.008%. Both still pass, about a quarter less profitable. Demo continues; live decision at the 16 Nov review.
+
+## Weekend flatten — DK "Yes", 6 Nov 02:28
+Ignition was always flat at each session end, but ladder positions could be held over the weekend on their IG stop/limit — a weekend gap (e.g. an Iran escalation; NYT 5 Nov: US/Israel strike plans ready) can jump a stop. Now: the last job on Friday (after 15:00 New York) closes every open ladder position at market (exit reason "weekend") after cancelling working orders. Applies to demo AND live. Stub-tested: closes, books, clears state.

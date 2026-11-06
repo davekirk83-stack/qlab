@@ -12,6 +12,7 @@ How the ladder is placed on IG (per instrument, per side, at each 15-minute bar 
   - regime switch and 48-bar cap close the side's lots at MARKET during a job; working orders are cancelled at job end.
 Governors are shared with Ignition through the runner's state (8 trades/day, -200 £/day). State: runs/ig_demo/range_state.json.
 """
+from zoneinfo import ZoneInfo
 import os, json, time, datetime as dt, traceback
 import numpy as np, pandas as pd
 import paperbook6 as P6
@@ -352,8 +353,13 @@ class RangeEngine:
         log(f"{name} EPISODE {side} closed ({how}): {n} lots, {gbp:+.2f} {self.ccy} (ladders today {self.gov.get(DPL, 0.0):+.2f} {self.ccy})")
 
     def end_of_job(self):
+        ny = utcnow().astimezone(ZoneInfo("America/New_York"))
+        weekend = ny.weekday() == 4 and ny.hour >= 15   # doc 189 (DK 6 Nov "Yes"): no ladder positions held over the weekend (gap risk)
         for name in self.mkt:
-            for side in ("L", "S"): self.cancel_orders(name, side)
-        self.save(); log("working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job")
+            for side in ("L", "S"):
+                self.cancel_orders(name, side)
+                if weekend and (self.st.get(name, {}).get("pos") or {}).get(side):
+                    log(f"{name} {side}: Friday close — flattening before the weekend"); self.close_side(name, side, "weekend")
+        self.save(); log("working orders cancelled; " + ("all ladder positions closed for the weekend" if weekend else "positions left to IG's limit (mid) and stop (break) until the next job"))
 
     def save(self): json.dump(self.st, open(STATE, "w"), indent=1)
