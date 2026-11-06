@@ -1,0 +1,23 @@
+TREND-DAY TOOLS — net of IG costs; R per trade; random-direction control alongside
+
+US Tech 100
+  A trend-day pullback   dev n 39 -0.192R (ctl +0.128) win 26% || hold n 59 +0.054R (ctl -0.266) win 24%
+  B ORB volatile days    dev n 33 +0.037R (ctl -0.077) win 45% || hold n 15 -0.279R (ctl -0.133) win 20%
+  B0 ORB all days        dev n 96 +0.029R (ctl -0.040) win 50% || hold n 97 -0.085R (ctl -0.051) win 43%
+  C mean-rev big move    dev n 14 -0.513R (ctl +0.179) win 29% || hold n 18 -0.237R (ctl -0.013) win 44%
+  C2 same, VIX>=20       dev n  5 -0.367R (ctl +0.319) win 40% || hold n  1 -1.010R (ctl +1.084) win 0%
+
+US 500
+  A trend-day pullback   dev n 49 -0.079R (ctl -0.179) win 29% || hold n 55 -0.236R (ctl -0.361) win 24%
+  B ORB volatile days    dev n 42 +0.098R (ctl -0.149) win 52% || hold n 26 -0.138R (ctl -0.144) win 38%
+  B0 ORB all days        dev n114 +0.019R (ctl -0.159) win 47% || hold n125 -0.070R (ctl -0.079) win 40%
+  C mean-rev big move    dev n 13 +0.064R (ctl -0.172) win 54% || hold n 17 +0.203R (ctl +0.188) win 65%
+  C2 same, VIX>=20       dev n  3 -0.246R (ctl +0.712) win 33% || hold n  1 +0.594R (ctl +0.594) win 100%
+
+FTSE 100
+  A trend-day pullback   dev n 53 +0.057R (ctl -0.172) win 26% || hold n 61 +0.252R (ctl -0.052) win 25%
+  B ORB volatile days    dev n 49 +0.122R (ctl -0.081) win 47% || hold n 29 +0.132R (ctl -0.150) win 48%
+  B0 ORB all days        dev n112 +0.047R (ctl +0.042) win 40% || hold n128 -0.096R (ctl -0.070) win 40%
+  C mean-rev big move    dev n 20 +0.019R (ctl +0.311) win 55% || hold n 19 -0.012R (ctl +0.152) win 53%
+  C2 same, VIX>=20       dev n  5 -0.050R (ctl +0.139) win 60% || hold n  2 -0.066R (ctl -0.066) win 50%
+done
