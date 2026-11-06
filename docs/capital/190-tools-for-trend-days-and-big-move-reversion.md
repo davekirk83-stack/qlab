@@ -35,3 +35,7 @@ Ladder episode P&L sum, dev / hold:
 - US 500: +7.57 / +5.71 -> S1 +5.85 / +4.51 (worse), but its worst episode improves (-0.61 -> -0.42, -1.06 -> -0.42).
 S1 improves profit in both halves on 2 of 3 markets (including the live one) and cuts the worst episode on all three, with ~30% fewer episodes (less margin tied up). Unlike doc 181 (pausing after level breaks: worse 6/6), this pause is keyed to abnormal bars and only blocks the side that fights the move. Candidate for the demo; awaiting DK.
 Second layer (headlines): planned — a news watch that flags market-moving headlines and scheduled releases into the engines' calendar.
+
+## DK's direction, 6 Nov 17:49–17:51
+"you're doing the 'rapid test kill off' thing I've warned you about. You're not trying to solve it or apply new thinking or techniques to behaviours which we know exist." / "We know that markets spike and drop erratically. This is predictable." / "Sounds good. Do some testing on Sunday morning."
+Agreed plan (Sunday 8 Nov, scheduled 09:07): (1) volatility forecast — when spike/trend days occur; (2) spike shape and a spike-and-snap-back engine (climax signature, scale-in ladder, stop beyond the extreme, staged profits); (3) continuation — follow 3-sigma moves where they persist (oil, crypto) and a staged trend-day engine. Descriptive study first, then build, iterate on the development half, judge once on the holdout. The one-shot verdicts above are working notes, not closures.
