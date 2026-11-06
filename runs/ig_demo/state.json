@@ -1,14 +1,9 @@
 {
- "day": "2026-11-05",
- "ntr": 2,
- "dpl": 25.700000000000728,
- "last_exit_bar": 323,
+ "day": "2026-11-06",
+ "ntr": 0,
+ "dpl": 0.0,
+ "last_exit_bar": null,
  "news": {},
- "dpl_rng": -17.869900000000015,
- "ntr_NQ": 1,
  "ntr_USDJPY": 1,
- "last_atr": 124.19500000000116,
- "open_bars": 2,
- "ntr_US500": 1,
- "ntr_FTSE": 1
+ "dpl_rng": -2.8679999999999564
 }
