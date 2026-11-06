@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-04",
+ "since": "2026-11-05",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -13,7 +13,21 @@
  "EP": {
   "equity": 2000.0,
   "shadow_equity": 2000.0,
-  "pos": [],
+  "pos": [
+   {
+    "sym": "WRBY",
+    "opened": "2026-11-05",
+    "entry": 26.3897618367314,
+    "stop": 24.830957800021732,
+    "risk": 0.05906851476544959,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "real",
+    "cloud": false
+   }
+  ],
   "shadow": [],
   "closed": 0,
   "closed_shadow": 0

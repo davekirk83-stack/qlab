@@ -1,0 +1,4 @@
+INSERT OR REPLACE INTO pb5_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-06', 2000.0000, 2000.0000, 0, 0, 0);
+CREATE TABLE IF NOT EXISTS pb5_v11_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+INSERT OR REPLACE INTO pb5_v11_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-06', 1953.1759, 1975.7450, 1, 2, 1);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-06', 'ETHUSD@v11', '2026-11-05 08:00:00+00:00', '2026-11-05 12:00:00+00:00', -0.070583, 'stop', 0);

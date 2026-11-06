@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS pb9_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+CREATE TABLE IF NOT EXISTS pb9_trades (d TEXT, sym TEXT, opened TEXT, closed TEXT, ret REAL, how TEXT, shadow INTEGER);
+INSERT OR REPLACE INTO pb9_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-06', 1990.5494, 2000.0000, 0, 1, 0);
+INSERT INTO pb9_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-06', 'ETHUSD', '2026-11-04 09:00:00+00:00', '2026-11-06 03:00:00+00:00', -0.047253, 'trend_flip', 0);
