@@ -1,0 +1,21 @@
+SHOCK PAUSE on the Range v3 ladder (doc 190, DK 6 Nov 17:48: 'we don't want to be fighting developments in the news blindly')
+Shock = a 15-min bar whose range >= 3x the mean range of the previous 96 bars. S1: no rungs AGAINST the shock for 2h. S2: no rungs either side for 2h. S3: S1 for 4h.
+
+US Tech 100: 487 shock bars in the year
+  S0 baseline          dev n100 sum  +2.56% worst -1.83% || hold n100 sum  +5.79% worst -1.05%
+  S1 no fading, 2h     dev n 63 sum  +7.72% worst -1.60% || hold n 67 sum  +8.61% worst -1.05%
+  S2 no rungs, 2h      dev n 55 sum  +4.51% worst -1.60% || hold n 58 sum  +4.62% worst -1.05%
+  S3 no fading, 4h     dev n 55 sum  +6.23% worst -1.60% || hold n 62 sum  +7.53% worst -1.05%
+
+US 500: 489 shock bars in the year
+  S0 baseline          dev n 90 sum  +7.57% worst -0.61% || hold n119 sum  +5.71% worst -1.06%
+  S1 no fading, 2h     dev n 60 sum  +5.85% worst -0.42% || hold n 92 sum  +4.51% worst -0.42%
+  S2 no rungs, 2h      dev n 54 sum  +4.49% worst -0.42% || hold n 88 sum  +3.82% worst -0.42%
+  S3 no fading, 4h     dev n 57 sum  +5.29% worst -0.42% || hold n 83 sum  +3.33% worst -0.42%
+
+FTSE 100: 342 shock bars in the year
+  S0 baseline          dev n139 sum  +2.99% worst -0.44% || hold n147 sum  +7.84% worst -0.59%
+  S1 no fading, 2h     dev n118 sum  +3.28% worst -0.49% || hold n118 sum  +9.81% worst -0.59%
+  S2 no rungs, 2h      dev n110 sum  +1.36% worst -0.49% || hold n108 sum  +8.20% worst -0.59%
+  S3 no fading, 4h     dev n114 sum  +4.04% worst -0.49% || hold n115 sum  +8.72% worst -0.59%
+done
