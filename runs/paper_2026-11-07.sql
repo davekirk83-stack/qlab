@@ -1,0 +1,6 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-07', exit_px=0.0089832, exit_reason='time', ret=-0.026406, pnl=-3.99 WHERE sym='COOKIEUSD' AND opened='2026-10-22' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-07', exit_px=0.05488902, exit_reason='time', ret=-0.235682, pnl=-35.63 WHERE sym='MINAUSD' AND opened='2026-10-22' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-07', exit_px=6.11645504, exit_reason='target', ret=0.052536, pnl=8.01 WHERE sym='FARMUSD' AND opened='2026-10-30' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-07', exit_px=0.00292174, exit_reason='target', ret=0.075931, pnl=12.76 WHERE sym='VOXELUSD' AND opened='2026-11-05' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('GODSUSD','2026-11-07',0.02,0.01822143,0.02029643,0.00059286,54.91,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-07',2196.48,14,1,2,1,1,'2 signals, 1 taken, 1 dropped, 4 closed, 14 open');

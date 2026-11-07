@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-05",
+ "since": "2026-11-06",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -23,12 +23,113 @@
     "w": 1.0,
     "legs": [],
     "be": false,
+    "n": 1,
+    "kind": "real",
+    "cloud": false
+   },
+   {
+    "sym": "BRUN",
+    "opened": "2026-11-06",
+    "entry": 6.235358166364443,
+    "stop": 5.744248874596145,
+    "risk": 0.07876200190351566,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "real",
+    "cloud": false
+   },
+   {
+    "sym": "CIFR",
+    "opened": "2026-11-06",
+    "entry": 6.354854755765317,
+    "stop": 5.655520405728051,
+    "risk": 0.11004725944409804,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "real",
+    "cloud": false
+   },
+   {
+    "sym": "COHR",
+    "opened": "2026-11-06",
+    "entry": 193.32000732421875,
+    "stop": 179.0399932861328,
+    "risk": 0.07386723306986429,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "real",
+    "cloud": false
+   },
+   {
+    "sym": "HUT",
+    "opened": "2026-11-06",
+    "entry": 51.6901847121914,
+    "stop": 47.008872315585705,
+    "risk": 0.09056482236755455,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
     "n": 0,
     "kind": "real",
     "cloud": false
    }
   ],
-  "shadow": [],
+  "shadow": [
+   {
+    "sym": "OPY",
+    "opened": "2026-11-06",
+    "entry": 91.60656700077843,
+    "stop": 88.97692908531509,
+    "risk": 0.02870577952605722,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "shadow"
+   },
+   {
+    "sym": "STGW",
+    "opened": "2026-11-06",
+    "entry": 11.140000343322754,
+    "stop": 10.779999732971191,
+    "risk": 0.03231603224925793,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "shadow"
+   },
+   {
+    "sym": "WING",
+    "opened": "2026-11-06",
+    "entry": 164.53557431560017,
+    "stop": 158.48706990923276,
+    "risk": 0.0367610738986185,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "shadow"
+   },
+   {
+    "sym": "MYRG",
+    "opened": "2026-11-06",
+    "entry": 263.10007116524395,
+    "stop": 250.35640531080213,
+    "risk": 0.04843657319437958,
+    "w": 1.0,
+    "legs": [],
+    "be": false,
+    "n": 0,
+    "kind": "shadow"
+   }
+  ],
   "closed": 0,
   "closed_shadow": 0
  }
