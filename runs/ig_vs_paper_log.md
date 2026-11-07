@@ -28,3 +28,17 @@ Day: ig_demo both 1 / paper-only-while-live 1 / IG-only 1, slippage mean -4.1 pt
 Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/1, no fills.
 
 Flag: ig_live missed the 15:05 NY SELL that paper took (runner live, its feed gave no signal).
+
+## 2026-11-06 (NY day) — checked 2026-11-07
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-06 New York
+  no Ignition signal on either feed — agree
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-06 New York
+  no Ignition signal on either feed — agree
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 0, no fills. ig_live both 0 / paper-only-while-live 0 / IG-only 0, no fills.
+
+Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/1, no fills.
