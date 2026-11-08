@@ -94,3 +94,9 @@ in the bottom 30% of the bar, versus the same wick bars without them, forward 4h
 - Mirror (big buyers in upper wicks at highs, short): >= 50 BTC 2022-23 +57 vs +14, 2024-26 +13 vs +16.
 No consistent exhaustion signal on Binance spot: more often the big aggressor was informed, not trapped. The Hyperliquid version
 (who is opening vs closing, net positioning) can't be tested on history; a forward recorder is the only way to check it.
+
+## Decision 8 Nov — capitulation-day book parked until the IG book can carry it
+DK: "save this until our IG stack is large enough." At IG's £0.01/pt minimum the 3 rungs with a 15% stop risk ~£96 per episode at
+NDX ~26,600 (≈ £110 with a gap allowance); within the 2%-per-trade rule that needs a live book of about **£5,500** (it scales with the
+index). A weekly scheduled task (Sundays 18:47) checks runs/ig_live/book_eq.json and tells DK when the book gets there; deploying it
+then still needs his say-so under CAP-021.
