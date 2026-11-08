@@ -63,8 +63,10 @@ Trigger: index −3% on the day with VIX +25%. Rungs at the day's low, −3%, �
 ## Useful but small
 
 - **Thesis stops on Ignition** (`src/thesis_stop_test.py`): exit if after 2 bars there's < 0.25 ATR follow-through and the close is
-  back through the signal bar's midpoint. Average loss −47 → −36 pts (dev), −59 → −46 (hold); total roughly unchanged (dev +17,
-  hold −105 pts over a year). Ignition's break-even move already does most of this job. Worth it for live only as a variance cut.
+  back through the signal bar's midpoint. CORRECTED 8 Nov after DK queried it: the average loss falls (−53 → −41 pts) only because
+  3 trades that would have WON become small losses (losses 10 → 13); the worst trade (−77) and the worst run (−136 pts) are unchanged and
+  the total is 88 pts lower over the year. Not a gain in this form. Next: target the big losers directly (e.g. a tighter stop when the
+  signal bar's delta share is weak).
 - **Absorption** only means something at stress lows: delta z <= −2.5 with a close in the top 40% at a stress 4h low → +44 to +56bp
   over 4h (n46 dev / n36 hold) vs +26 to +35bp for the stress lows themselves. Too few cases to double size on (tested: no gain).
 - **Long/short crowding**: see 3; and the 7 Nov study (>= 74% long: higher 30 days later 6/9, but median −9% first).
@@ -100,3 +102,15 @@ DK: "save this until our IG stack is large enough." At IG's £0.01/pt minimum th
 NDX ~26,600 (≈ £110 with a gap allowance); within the 2%-per-trade rule that needs a live book of about **£5,500** (it scales with the
 index). A weekly scheduled task (Sundays 18:47) checks runs/ig_live/book_eq.json and tells DK when the book gets there; deploying it
 then still needs his say-so under CAP-021.
+
+## 8 Nov — demo deployment (DK: "Yes also run the demos if they are worthy of further investigation")
+- **Spike continuation engine** on the DEMO for US Tech 100 and US 500 (`src/ig_spike_engine.py`, `IG_SPIKE=NQ,US500` in ig-demo.yml).
+  Reuses the range engine's IG-aligned 15-min bars; 2% of the £500 book at risk; own 8 trades/day per market; one position per market;
+  closes at 2h, the cash close or the job end. Refuses to run on the live account. Replayed through Sep 2025 – Nov 2026 in dry mode it
+  reproduces the backtest trade for trade (differences: ~1 pt cost each, and 5 overlapping signals it skips while a trade is open).
+- **Shock pause** on the demo ladders for US Tech 100 and FTSE 100 (`IG_SHOCK_PAUSE=NQ,FTSE`); not US 500, where doc 190 found it cut the
+  total as well as the worst episode.
+- **10:00 big-day switch: NOT deployed.** Tested on the ladder (`runs/bigday_ladder_test.txt`): it changes almost nothing (US Tech 100
+  +2.56/+5.79% → +2.66/+5.84%; US 500 and FTSE mixed) because the ladder's own regime switch already sits out most big days. Its value is
+  as context for reads and for the spike/Ignition side, which already only fire on big bars.
+- Review with the live book in the week of 16 Nov.

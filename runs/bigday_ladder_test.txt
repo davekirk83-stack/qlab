@@ -1,0 +1,19 @@
+BIG-DAY SWITCH on the Range v3 ladder — % of the ladder budget, dev / hold
+
+US Tech 100: big days 17 of 252 sessions
+  S0 baseline      dev n100 sum  +2.56% worst -1.83% || hold n100 sum  +5.79% worst -1.05%
+  S1 shock pause   dev n 63 sum  +7.72% worst -1.60% || hold n 67 sum  +8.61% worst -1.05%
+  BIG day switch   dev n 99 sum  +2.66% worst -1.83% || hold n 98 sum  +5.84% worst -1.05%
+  S1 + BIG         dev n 61 sum  +7.46% worst -1.60% || hold n 64 sum  +8.31% worst -1.05%
+
+US 500: big days 21 of 256 sessions
+  S0 baseline      dev n 90 sum  +7.57% worst -0.61% || hold n119 sum  +5.71% worst -1.06%
+  S1 shock pause   dev n 60 sum  +5.85% worst -0.42% || hold n 92 sum  +4.51% worst -0.42%
+  BIG day switch   dev n 87 sum  +7.28% worst -0.61% || hold n115 sum  +5.86% worst -1.06%
+  S1 + BIG         dev n 57 sum  +5.58% worst -0.42% || hold n 87 sum  +4.62% worst -0.42%
+
+FTSE 100: big days 28 of 256 sessions
+  S0 baseline      dev n139 sum  +2.99% worst -0.44% || hold n147 sum  +7.84% worst -0.59%
+  S1 shock pause   dev n118 sum  +3.28% worst -0.49% || hold n118 sum  +9.81% worst -0.59%
+  BIG day switch   dev n136 sum  +3.30% worst -0.44% || hold n140 sum  +7.00% worst -0.59%
+  S1 + BIG         dev n114 sum  +3.43% worst -0.49% || hold n111 sum  +9.22% worst -0.59%

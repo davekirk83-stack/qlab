@@ -111,6 +111,12 @@ class Runner:
                 extra = [e for e in self.engine.epic2name if e not in self.epics]; self.epics += extra
                 if extra: self.subscribe(extra)
             except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
+        self.spike = None
+        if os.environ.get("IG_SPIKE", "") and not LIVE and self.engine:   # doc 191: spike continuation engine, DEMO ONLY
+            try:
+                from ig_spike_engine import SpikeEngine
+                self.spike = SpikeEngine(self.ig, self.ccy, dry, self.state, self.engine, self.beq, self.open_notional, [x.strip() for x in os.environ["IG_SPIKE"].split(",")])
+            except Exception: log("spike engine failed to start:", traceback.format_exc()); self.spike = None
         self.news = None
         if os.environ.get("IG_NEWS", "1") == "1":
             try: self.news = NewsFade(self.ig, EPIC, self.expiry, self.ccy, dry, self.state, self.beq, self.min_size, log, notional_fn=self.open_notional)
@@ -155,6 +161,9 @@ class Runner:
         if self.engine:
             try: self.engine.on_bar5(epic, c)
             except Exception: log("range engine error:", traceback.format_exc())
+        if getattr(self, "spike", None):
+            try: self.spike.on_bar5(epic, c)
+            except Exception: log("spike engine error:", traceback.format_exc())
         if epic != EPIC: return
         log(f"bar {c['ts']:%H:%M} o {c['open']:.1f} h {c['high']:.1f} l {c['low']:.1f} c {c['close']:.1f} ticks {c['vol']} delta {c['delta']:+.0f}")
         row = pd.DataFrame([dict(open=c["open"], high=c["high"], low=c["low"], close=c["close"], vol=c["vol"], delta=c["delta"], spread=c["spread_sum"]/max(c["vol"], 1))], index=[pd.Timestamp(c["ts"])])
@@ -374,6 +383,9 @@ class Runner:
                 for e, c in list(self.cur.items()):
                     if c and (utcnow() - c["ts"]).total_seconds() > BAR*60 + 20: self.close_bar(e)
         if self.pos: self.close("session_end")
+        if getattr(self, "spike", None):
+            try: self.spike.end_of_job()
+            except Exception: log("spike engine end:", traceback.format_exc())
         if self.engine:
             try: self.engine.end_of_job()
             except Exception: log("range engine end:", traceback.format_exc())

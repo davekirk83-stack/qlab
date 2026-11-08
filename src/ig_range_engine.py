@@ -50,7 +50,20 @@ MAXT, LOSSCAP = 8, 200.0
 # ladders keep their own £ figure ("dpl_rng", cap £200/day) and Ignition's "dpl" stays in points (cap 200 pts, as on paper). Demo first.
 SPLIT = os.environ.get("IG_GOV_SPLIT", "0") == "1"
 DPL = "dpl_rng" if SPLIT else "dpl"
-def NTR(name): return f"ntr_{name}" if SPLIT else "ntr"   # doc 189 fix 2 (DK 5 Nov "8 per book?"): each ladder market its own 8/day, Ignition keeps "ntr"
+def NTR(name): return f"ntr_{name}" if SPLIT else "ntr"
+# doc 190 S1 / doc 191 (DK 8 Nov "run the demos"): SHOCK PAUSE — no new rungs AGAINST an abnormal 15-min bar (range >= 3x the mean of the
+# previous 96 bars) for 2 hours (the shock bar + 8). Improved US Tech 100 and FTSE 100 in both halves; on US 500 it cut the worst episode but
+# also the total, so it is not listed there by default. Demo only unless set in the live workflow.
+SHOCK = {x.strip() for x in os.environ.get("IG_SHOCK_PAUSE", "").split(",") if x.strip()}
+def shock_block(d, i):
+    """-> (block_longs, block_shorts) at bar i of the 15-min frame d"""
+    rng = (d.high - d.low).values; ref = pd.Series(rng).rolling(96).mean().shift(1).values; O, C = d.open.values, d.close.values
+    bl = bs = False
+    for j in range(max(0, i - 8), i + 1):
+        if np.isfinite(ref[j]) and ref[j] > 0 and rng[j] >= 3 * ref[j]:
+            if C[j] < O[j]: bl = True
+            elif C[j] > O[j]: bs = True
+    return bl, bs   # doc 189 fix 2 (DK 5 Nov "8 per book?"): each ladder market its own 8/day, Ignition keeps "ntr"
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
 # Wall Street / Germany 40 ladders, which lock margin for 2-3 h per episode and add overnight funding.
 _ONLY = [x.strip() for x in os.environ.get("IG_RANGE_INSTR", "").split(",") if x.strip()]
@@ -205,8 +218,12 @@ class RangeEngine:
         full = (self.beq.range_full(u_) * 0.05 / m_.get("margin", 0.05)) if self.beq else RANGE_SIZE   # FX: same 15% of equity as margin, at 3.33%
         day_ok = self.beq.day_ok() if self.beq else True
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
+        blk = shock_block(d, i) if name in SHOCK else (False, False)
         for side in ("L", "S"):
             if not _in_hours(ts, hours): continue
+            if blk[0 if side == "L" else 1]:
+                if st["orders"] or not st["pos"].get(side): log(f"{name}: shock pause — no {'long' if side == 'L' else 'short'} rungs against an abnormal bar (doc 190 S1)")
+                self.cancel_orders(name, side); continue
             if not ok or (P6.LONGS_OFF and side == "L") or in_blackout(utcnow(), pd.Timedelta(minutes=20)):
                 if in_blackout(utcnow(), pd.Timedelta(minutes=20)) and st["orders"]: log(name, "FOMC blackout — entry orders cancelled (doc 154)")
                 self.cancel_orders(name, side); continue
