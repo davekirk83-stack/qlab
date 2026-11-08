@@ -1,0 +1,5 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-08', exit_px=0.00388808, exit_reason='target', ret=0.03689, pnl=6.05 WHERE sym='A8USD' AND opened='2026-11-04' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ARKMUSD','2026-11-08',0.09882,0.07858286,0.10219286,0.00674571,55.06,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ORCAUSD','2026-11-08',1.353,1.05171429,1.40321429,0.10042857,55.06,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('ZORAUSD','2026-11-08',0.005053,0.00389607,0.00524582,0.00038564,55.06,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-08',2202.53,16,1,6,3,3,'6 signals, 3 taken, 3 dropped, 1 closed, 16 open');
