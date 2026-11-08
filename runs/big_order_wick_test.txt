@@ -1,0 +1,7 @@
+taker orders on 40 days: 27,691,032; >=10 BTC 5402, >=20 BTC 1475, >=30 BTC 638
+  Q>= 5 BTC LOW wick, big SELL orders -> long    event n 141 15m   -5.3bp/ 52% 60m  -38.0bp/ 41% 240m  -52.7bp/ 40% || without n 291 15m   -0.9bp/ 48% 60m   -8.5bp/ 44% 240m  -38.6bp/ 34%
+  Q>= 5 BTC HIGH wick, big BUY orders -> short   event n  36 15m   +4.1bp/ 67% 60m  +14.6bp/ 58% 240m  +49.8bp/ 75% || without n 132 15m   +0.2bp/ 55% 60m   +3.2bp/ 53% 240m  +55.3bp/ 73%
+  Q>=10 BTC LOW wick, big SELL orders -> long    event n  70 15m   -3.9bp/ 50% 60m  -44.7bp/ 39% 240m  -46.9bp/ 43% || without n 362 15m   -2.0bp/ 49% 60m  -13.0bp/ 44% 240m  -42.5bp/ 35%
+  Q>=10 BTC HIGH wick, big BUY orders -> short   event n  16 15m   +6.5bp/ 81% 60m   -2.6bp/ 50% 240m  +25.4bp/ 75% || without n 152 15m   +0.5bp/ 55% 60m   +6.5bp/ 55% 240m  +57.1bp/ 73%
+  Q>=20 BTC LOW wick, big SELL orders -> long    event n  29 15m   +5.9bp/ 55% 60m  -19.4bp/ 45% 240m   -4.8bp/ 55% || without n 403 15m   -2.9bp/ 49% 60m  -18.0bp/ 43% 240m  -46.0bp/ 35%
+  Q>=20 BTC HIGH wick, big BUY orders -> short   event n   6 15m   -5.7bp/ 67% 60m  -14.1bp/ 33% 240m  +68.5bp/100% || without n 162 15m   +1.3bp/ 57% 60m   +6.4bp/ 55% 240m  +53.6bp/ 72%

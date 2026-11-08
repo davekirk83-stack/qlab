@@ -4,7 +4,7 @@ outer 30% of the bar. Control: same kind of bar on the same days without such an
 import glob, numpy as np, pandas as pd
 OUT = open("runs/big_order_wick_test.txt", "w")
 def log(s): print(s, flush=True); OUT.write(s + "\n")
-O = pd.concat([pd.read_parquet(f) for f in glob.glob("data_long/bigorders_*.parquet")]).drop_duplicates()
+O = pd.concat([pd.read_parquet(f) for f in glob.glob("data_long/bigorders_*.parquet") + glob.glob("data_long/bigorders_days/*.parquet")]).drop_duplicates()
 O["ts"] = pd.to_datetime(O.t, unit="ms", utc=True).dt.floor("1min")
 days = sorted(set(O.ts.dt.floor("D"))); SPLIT = pd.Timestamp("2024-01-01", tz="UTC")
 m = pd.read_parquet("data_long/btc_1m.parquet"); C = m.close
