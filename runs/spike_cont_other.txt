@@ -1,0 +1,30 @@
+
+[US 500] abnormal 15-min bars: 108 on 262 sessions (up 47, down 61)
+  next 2h: extends beyond the extreme median 0.39 spike-ranges (>=0.5 in 42%); retraces >=50% of the spike bar in 66%, fully in 31%
+    closed in its last 20% (no wick)   n 63: snap>=50%  48%  extends>=0.5  51%
+    closed with a wick (<60%)          n 18: snap>=50% 100%  extends>=0.5  39%
+    next bar pulls back                n 44: snap>=50%  86%  extends>=0.5  16%
+    next bar extends >0.25             n 36: snap>=50%  36%  extends>=0.5  78%
+    first hour                         n 52: snap>=50%  69%  extends>=0.5  40%
+    after first hour                   n 56: snap>=50%  62%  extends>=0.5  43%
+    far from VWAP (>1 range)           n 21: snap>=50%  62%  extends>=0.5  38%
+    near VWAP (<0.5)                   n 53: snap>=50%  70%  extends>=0.5  42%
+    UP spikes                          n 47: snap>=50%  64%  extends>=0.5  32%
+    DOWN spikes                        n 61: snap>=50%  67%  extends>=0.5  49%
+US 500    CONT (0.25, next-bar stop, 1x target): n 34 +0.27R win  53% pts    +236
+US 500    CONT (0.25, midpoint stop, 1x target): n 34 +0.12R win  59% pts    +196
+
+[FTSE 100] abnormal 15-min bars: 63 on 262 sessions (up 34, down 29)
+  next 2h: extends beyond the extreme median 0.34 spike-ranges (>=0.5 in 35%); retraces >=50% of the spike bar in 57%, fully in 17%
+    closed in its last 20% (no wick)   n 47: snap>=50%  49%  extends>=0.5  40%
+    closed with a wick (<60%)          n  5: snap>=50%  80%  extends>=0.5   0%
+    next bar pulls back                n 25: snap>=50%  80%  extends>=0.5  12%
+    next bar extends >0.25             n 15: snap>=50%  33%  extends>=0.5  73%
+    first hour                         n 31: snap>=50%  61%  extends>=0.5  32%
+    after first hour                   n 32: snap>=50%  53%  extends>=0.5  38%
+    far from VWAP (>1 range)           n 14: snap>=50%  43%  extends>=0.5  64%
+    near VWAP (<0.5)                   n 38: snap>=50%  61%  extends>=0.5  29%
+    UP spikes                          n 34: snap>=50%  56%  extends>=0.5  32%
+    DOWN spikes                        n 29: snap>=50%  59%  extends>=0.5  38%
+FTSE 100  CONT (0.25, next-bar stop, 1x target): n 15 -0.13R win  33% pts      -4
+FTSE 100  CONT (0.25, midpoint stop, 1x target): n 15 -0.00R win  47% pts      +9

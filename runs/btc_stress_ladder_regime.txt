@@ -1,0 +1,14 @@
+Stress ladder (K2 gap0.5 TP3 SL8) split by daily regime (yesterday's close vs 99-day SMMA):
+  BELOW line dev: n169 mean +0.02% win 75% total +3%
+  BELOW line hold: n 78 mean +0.08% win 72% total +6%
+  ABOVE line dev: n216 mean +0.26% win 77% total +55%
+  ABOVE line hold: n153 mean +0.12% win 67% total +18%
+
+Stress ladder episodes 2024+ by crowd positioning at the first rung (Binance share of accounts net long):
+  least long third  share 34-57%: n 77 mean +0.16% win 71% stops 2
+  middle            share 57-66%: n 77 mean +0.09% win 65% stops 5
+  most long third   share 66-79%: n 77 mean +0.06% win 70% stops 5
+By top-trader POSITION ratio (big accounts' long/short by size):
+  tops least long   ratio 0.70-1.42: n 77 mean +0.26% win 71%
+  middle            ratio 1.42-1.83: n 77 mean -0.09% win 64%
+  tops most long    ratio 1.84-2.72: n 77 mean +0.13% win 71%

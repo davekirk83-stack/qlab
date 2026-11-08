@@ -1,0 +1,13 @@
+STOP RAID vs RAID + DISPLACEMENT — R per trade after costs (target 2R, stop beyond the sweep)
+  BTC 15m      raid only (any close back)   dev n15439 -0.408R win  35% || hold n11389 -0.518R win  34%
+  BTC 15m      raid + DISPLACEMENT          dev n 3112 -0.237R win  39% || hold n 2296 -0.236R win  39%
+  BTC gross    raid only (any close back)   dev n15439 -0.043R win  37% || hold n11389 -0.030R win  36%
+  BTC gross    raid + DISPLACEMENT          dev n 3112 -0.036R win  43% || hold n 2296 +0.011R win  43%
+  BTC maker    raid only (any close back)   dev n15439 -0.116R win  37% || hold n11389 -0.127R win  36%
+  BTC maker    raid + DISPLACEMENT          dev n 3112 -0.076R win  42% || hold n 2296 -0.038R win  42%
+  NQ A 2020-21 raid only (any close back)   dev n 1189 -0.177R win  32% || hold n    0 +nanR win nan%
+  NQ A 2020-21 raid + DISPLACEMENT          dev n  184 -0.170R win  36% || hold n    0 +nanR win nan%
+  NQ B 2025-26 raid only (any close back)   dev n  710 -0.067R win  35% || hold n    0 +nanR win nan%
+  NQ B 2025-26 raid + DISPLACEMENT          dev n  117 -0.188R win  34% || hold n    0 +nanR win nan%
+  BTC stress   raid only (any close back)   dev n 1692 -0.293R win  37% || hold n 1346 -0.347R win  36%
+  BTC stress   raid + DISPLACEMENT          dev n  405 -0.197R win  41% || hold n  305 -0.159R win  44%

@@ -1,0 +1,13 @@
+BTC 1h, 61 TA-Lib patterns. Unconditional 24h drift: dev +18.4bp, hold +8.4bp (long side)
+
+[plain] patterns with >=30 cases in each half: 33; positive at 4h AND 24h in BOTH halves: 5
+   MORNINGSTAR          dev n   65 4h   +3.7 24h   +0.5bp (43%) || hold n   49 4h   +9.0 24h  +30.8bp (61%)
+   MATCHINGLOW          dev n  640 4h   +4.3 24h   +1.8bp (50%) || hold n  446 4h   +2.5 24h  +17.9bp (56%)
+   SHOOTINGSTAR         dev n  181 4h   +8.3 24h  +22.8bp (49%) || hold n  114 4h   +1.5 24h  +11.5bp (58%)
+   HAMMER               dev n  891 4h   +2.0 24h  +13.1bp (54%) || hold n  721 4h   +3.6 24h   +3.1bp (54%)
+   BELTHOLD             dev n 4676 4h   +2.2 24h   +5.4bp (48%) || hold n 3915 4h   +0.7 24h   +1.3bp (50%)
+
+[at 24h extreme] patterns with >=30 cases in each half: 15; positive at 4h AND 24h in BOTH halves: 1
+   SHORTLINE            dev n   38 4h  +15.9 24h  +72.2bp (71%) || hold n   40 4h   +4.3 24h  +30.9bp (57%)
+
+[extreme after stress] patterns with >=30 cases in each half: 9; positive at 4h AND 24h in BOTH halves: 0

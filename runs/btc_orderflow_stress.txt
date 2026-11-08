@@ -1,0 +1,34 @@
+STRESS-CONDITIONED order flow. stress = 24h move beyond k x the 30-day median absolute 24h move.
+
+ k = 2.0  (down-stress bars 25908, up-stress 30704)
+  base: any 4h low in stress   signal dev n  2408 15m   +3.6bp/ 57% 60m  +14.5bp/ 60% 240m  +23.3bp/ 59% || hold n  2036 15m   +1.4bp/ 56% 60m   +5.3bp/ 56% 240m  +17.0bp/ 60%
+  base: any 4h low in stress   base   dev n 14317 15m   +1.4bp/ 56% 60m   +4.6bp/ 57% 240m   +5.9bp/ 56% || hold n 11688 15m   +0.1bp/ 54% 60m   +0.5bp/ 54% 240m   +2.1bp/ 54%
+  A absorption, stress -> long signal dev n   210 15m   +2.0bp/ 54% 60m   +3.1bp/ 57% 240m   -0.3bp/ 53% || hold n   169 15m   +3.2bp/ 54% 60m   +4.9bp/ 53% 240m  +15.6bp/ 58%
+  A absorption, stress -> long base   dev n  2408 15m   +3.6bp/ 57% 60m  +14.5bp/ 60% 240m  +23.3bp/ 59% || hold n  2036 15m   +1.4bp/ 56% 60m   +5.3bp/ 56% 240m  +17.0bp/ 60%
+  A2 absorption z<=-2.5        signal dev n    73 15m  +15.8bp/ 62% 60m   +4.6bp/ 58% 240m  +22.4bp/ 56% || hold n    66 15m  +10.6bp/ 55% 60m  +10.9bp/ 55% 240m  +19.7bp/ 55%
+  A2 absorption z<=-2.5        base   dev n  2408 15m   +3.6bp/ 57% 60m  +14.5bp/ 60% 240m  +23.3bp/ 59% || hold n  2036 15m   +1.4bp/ 56% 60m   +5.3bp/ 56% 240m  +17.0bp/ 60%
+  E delta exhaustion, stress   signal dev n   437 15m   +5.7bp/ 57% 60m  +31.1bp/ 62% 240m  +28.1bp/ 60% || hold n   381 15m   -1.8bp/ 53% 60m   +0.8bp/ 55% 240m  +12.6bp/ 57%
+  E delta exhaustion, stress   base   dev n  2408 15m   +3.6bp/ 57% 60m  +14.5bp/ 60% 240m  +23.3bp/ 59% || hold n  2036 15m   +1.4bp/ 56% 60m   +5.3bp/ 56% 240m  +17.0bp/ 60%
+  E' NO exhaustion (selling growing) signal dev n  1772 15m   +2.9bp/ 57% 60m  +13.7bp/ 59% 240m  +24.0bp/ 59% || hold n  1476 15m   +2.7bp/ 57% 60m   +8.2bp/ 58% 240m  +20.6bp/ 61%
+  E' NO exhaustion (selling growing) base   dev n  2408 15m   +3.6bp/ 57% 60m  +14.5bp/ 60% 240m  +23.3bp/ 59% || hold n  2036 15m   +1.4bp/ 56% 60m   +5.3bp/ 56% 240m  +17.0bp/ 60%
+  base: any 4h high in up-stress -> short signal dev n  3123 15m   -0.9bp/ 54% 60m   +2.2bp/ 57% 240m   -4.1bp/ 56% || hold n  2266 15m   +0.0bp/ 54% 60m   +0.8bp/ 55% 240m   -1.9bp/ 54%
+  base: any 4h high in up-stress -> short base   dev n 15784 15m   -0.1bp/ 56% 60m   -0.2bp/ 56% 240m   -3.8bp/ 54% || hold n 12320 15m   +0.2bp/ 55% 60m   +0.2bp/ 54% 240m   +1.3bp/ 53%
+  A absorption at high, up-stress signal dev n   186 15m   -0.3bp/ 53% 60m   +3.9bp/ 59% 240m   -6.0bp/ 55% || hold n   117 15m   -0.2bp/ 52% 60m  -10.9bp/ 51% 240m  -13.9bp/ 55%
+  A absorption at high, up-stress base   dev n  3123 15m   -0.9bp/ 54% 60m   +2.2bp/ 57% 240m   -4.1bp/ 56% || hold n  2266 15m   +0.0bp/ 54% 60m   +0.8bp/ 55% 240m   -1.9bp/ 54%
+
+ k = 3.0  (down-stress bars 12473, up-stress 15772)
+  base: any 4h low in stress   signal dev n  1258 15m   +5.4bp/ 56% 60m  +19.9bp/ 59% 240m  +35.1bp/ 59% || hold n  1012 15m   +1.3bp/ 54% 60m   +7.4bp/ 56% 240m  +26.1bp/ 60%
+  base: any 4h low in stress   base   dev n 14317 15m   +1.4bp/ 56% 60m   +4.6bp/ 57% 240m   +5.9bp/ 56% || hold n 11688 15m   +0.1bp/ 54% 60m   +0.5bp/ 54% 240m   +2.1bp/ 54%
+  A absorption, stress -> long signal dev n   117 15m   +8.3bp/ 57% 60m  +10.7bp/ 57% 240m  +31.4bp/ 62% || hold n    89 15m   +3.8bp/ 52% 60m   +6.9bp/ 54% 240m  +14.3bp/ 53%
+  A absorption, stress -> long base   dev n  1258 15m   +5.4bp/ 56% 60m  +19.9bp/ 59% 240m  +35.1bp/ 59% || hold n  1012 15m   +1.3bp/ 54% 60m   +7.4bp/ 56% 240m  +26.1bp/ 60%
+  A2 absorption z<=-2.5        signal dev n    46 15m  +26.9bp/ 63% 60m  +17.0bp/ 59% 240m  +56.1bp/ 61% || hold n    36 15m  +18.7bp/ 56% 60m  +22.2bp/ 56% 240m  +44.2bp/ 56%
+  A2 absorption z<=-2.5        base   dev n  1258 15m   +5.4bp/ 56% 60m  +19.9bp/ 59% 240m  +35.1bp/ 59% || hold n  1012 15m   +1.3bp/ 54% 60m   +7.4bp/ 56% 240m  +26.1bp/ 60%
+  E delta exhaustion, stress   signal dev n   235 15m   +8.5bp/ 54% 60m  +40.7bp/ 59% 240m  +38.2bp/ 54% || hold n   180 15m   -2.6bp/ 54% 60m   +0.9bp/ 56% 240m  +29.4bp/ 61%
+  E delta exhaustion, stress   base   dev n  1258 15m   +5.4bp/ 56% 60m  +19.9bp/ 59% 240m  +35.1bp/ 59% || hold n  1012 15m   +1.3bp/ 54% 60m   +7.4bp/ 56% 240m  +26.1bp/ 60%
+  E' NO exhaustion (selling growing) signal dev n   927 15m   +4.5bp/ 56% 60m  +19.7bp/ 59% 240m  +39.0bp/ 61% || hold n   762 15m   +2.8bp/ 55% 60m   +9.6bp/ 57% 240m  +26.5bp/ 60%
+  E' NO exhaustion (selling growing) base   dev n  1258 15m   +5.4bp/ 56% 60m  +19.9bp/ 59% 240m  +35.1bp/ 59% || hold n  1012 15m   +1.3bp/ 54% 60m   +7.4bp/ 56% 240m  +26.1bp/ 60%
+  base: any 4h high in up-stress -> short signal dev n  1726 15m   -0.7bp/ 53% 60m   +2.5bp/ 56% 240m   -9.3bp/ 55% || hold n  1113 15m   -0.3bp/ 53% 60m   +1.6bp/ 55% 240m   +3.9bp/ 55%
+  base: any 4h high in up-stress -> short base   dev n 15784 15m   -0.1bp/ 56% 60m   -0.2bp/ 56% 240m   -3.8bp/ 54% || hold n 12320 15m   +0.2bp/ 55% 60m   +0.2bp/ 54% 240m   +1.3bp/ 53%
+  A absorption at high, up-stress signal dev n    99 15m   -3.6bp/ 48% 60m   -1.7bp/ 57% 240m  -15.1bp/ 58% || hold n    65 15m   +0.1bp/ 48% 60m  -14.7bp/ 51% 240m  -12.7bp/ 54%
+  A absorption at high, up-stress base   dev n  1726 15m   -0.7bp/ 53% 60m   +2.5bp/ 56% 240m   -9.3bp/ 55% || hold n  1113 15m   -0.3bp/ 53% 60m   +1.6bp/ 55% 240m   +3.9bp/ 55%
+done

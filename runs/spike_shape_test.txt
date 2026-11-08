@@ -1,0 +1,35 @@
+SPIKE SHAPE — US Tech 100, abnormal 15-min bars (>= 3x the prior-5-session mean 15-min range), cash session
+
+[A 2020-21 development] abnormal 15-min bars: 138 on 369 sessions (up 48, down 90)
+  next 2h: extends beyond the extreme median 0.46 spike-ranges (>=0.5 in 47%); retraces >=50% of the spike bar in 67%, fully in 33%
+    closed in its last 20% (no wick)   n 88: snap>=50%  60%  extends>=0.5  52%
+    closed with a wick (<60%)          n 19: snap>=50%  95%  extends>=0.5  21%
+    next bar pulls back                n 66: snap>=50%  86%  extends>=0.5  23%
+    next bar extends >0.25             n 46: snap>=50%  41%  extends>=0.5  76%
+    first hour                         n 68: snap>=50%  66%  extends>=0.5  49%
+    after first hour                   n 70: snap>=50%  69%  extends>=0.5  46%
+    far from VWAP (>1 range)           n 29: snap>=50%  76%  extends>=0.5  38%
+    near VWAP (<0.5)                   n 75: snap>=50%  68%  extends>=0.5  51%
+    UP spikes                          n 48: snap>=50%  71%  extends>=0.5  56%
+    DOWN spikes                        n 90: snap>=50%  66%  extends>=0.5  42%
+
+[B 2025-26 holdout] abnormal 15-min bars: 112 on 275 sessions (up 48, down 64)
+  next 2h: extends beyond the extreme median 0.41 spike-ranges (>=0.5 in 44%); retraces >=50% of the spike bar in 62%, fully in 29%
+    closed in its last 20% (no wick)   n 77: snap>=50%  51%  extends>=0.5  48%
+    closed with a wick (<60%)          n 13: snap>=50% 100%  extends>=0.5  38%
+    next bar pulls back                n 43: snap>=50%  86%  extends>=0.5  23%
+    next bar extends >0.25             n 44: snap>=50%  36%  extends>=0.5  77%
+    first hour                         n 69: snap>=50%  64%  extends>=0.5  48%
+    after first hour                   n 43: snap>=50%  60%  extends>=0.5  37%
+    far from VWAP (>1 range)           n 15: snap>=50%  80%  extends>=0.5  40%
+    near VWAP (<0.5)                   n 71: snap>=50%  68%  extends>=0.5  42%
+    UP spikes                          n 48: snap>=50%  56%  extends>=0.5  33%
+    DOWN spikes                        n 64: snap>=50%  67%  extends>=0.5  52%
+
+ENGINES (R = multiples of the initial risk, after costs)
+  A SNAP fade after climax signature   n 46 mean -0.16R win 57% total -7.4R
+  A SNAP as a 2-rung ladder            n 46 mean -0.11R win 50% total -4.9R
+  A CONT follow-through                n 62 mean +0.37R win 47% total +22.9R
+  B SNAP fade after climax signature   n 31 mean +0.06R win 71% total +1.8R
+  B SNAP as a 2-rung ladder            n 31 mean +0.06R win 58% total +1.8R
+  B CONT follow-through                n 63 mean +0.00R win 44% total +0.0R

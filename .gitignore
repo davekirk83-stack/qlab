@@ -18,3 +18,4 @@ __pycache__/
 !data_ig_cache/*.csv
 !data_rx_cache/
 !data_rx_cache/*.csv.gz
+data_long/

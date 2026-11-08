@@ -1,0 +1,16 @@
+
+[A 2020-21] 349 sessions, big days 17%
+  first-30-min range vs normal   (0.0, 0.8]     2% (n136)  (0.8, 1.2]     8% (n121)  (1.2, 1.6]    28% (n47)  (1.6, 2.2]    66% (n29)  (2.2, 99.0]   94% (n16)
+  overnight gap (x mean range)   (0.0, 0.1]     5% (n60)  (0.1, 0.25]   12% (n74)  (0.25, 0.5]   13% (n100)  (0.5, 99.0]   30% (n115)
+  yesterday's range vs normal    (0.0, 0.8]     8% (n133)  (0.8, 1.2]    12% (n117)  (1.2, 1.6]    19% (n54)  (1.6, 99.0]   56% (n45)
+  prior VIX close                (0, 16]       22% (n18)  (16, 20]       7% (n57)  (20, 25]      14% (n107)  (25, 30]      19% (n84)  (30, 99]      25% (n83)
+  5-day compression              (0.0, 0.8]     7% (n99)  (0.8, 1.0]    14% (n85)  (1.0, 1.2]    11% (n80)  (1.2, 99.0]   38% (n85)
+  RULE 'first 30 min >= 1.6x normal OR gap >= 0.5x range': flags 39% of sessions, catches 83% of big days; P(big | flagged) 36% vs 5% otherwise
+
+[B 2025-26] 153 sessions, big days 12%
+  first-30-min range vs normal   (0.0, 0.8]     2% (n47)  (0.8, 1.2]     8% (n59)  (1.2, 1.6]    17% (n35)  (1.6, 2.2]    50% (n10)  (2.2, 99.0]  100% (n2)
+  overnight gap (x mean range)   (0.0, 0.1]     8% (n24)  (0.1, 0.25]    3% (n37)  (0.25, 0.5]   10% (n29)  (0.5, 99.0]   21% (n63)
+  yesterday's range vs normal    (0.0, 0.8]     4% (n52)  (0.8, 1.2]    14% (n58)  (1.2, 1.6]    18% (n33)  (1.6, 99.0]   30% (n10)
+  prior VIX close                (0, 16]        8% (n51)  (16, 20]      14% (n88)  (20, 25]      25% (n8)  (25, 30]       0% (n4)  (30, 99]      50% (n2)
+  5-day compression              (0.0, 0.8]     7% (n28)  (0.8, 1.0]     7% (n56)  (1.0, 1.2]    16% (n37)  (1.2, 99.0]   22% (n32)
+  RULE 'first 30 min >= 1.6x normal OR gap >= 0.5x range': flags 44% of sessions, catches 79% of big days; P(big | flagged) 22% vs 5% otherwise

@@ -1,0 +1,14 @@
+IGNITION v1.1 with thesis stops — points per trade after spread
+  baseline           dev n 39 total    +622 pts mean +15.9 avg loss -46.8 win  87% thesis-exits 0 || hold n 45 total    +939 pts mean +20.9 avg loss -59.0 win  89% thesis-exits 0
+  TS k=2 x=0.00    dev n 39 total    +622 pts mean +15.9 avg loss -46.8 win  87% thesis-exits 0 || hold n 45 total    +903 pts mean +20.1 avg loss -50.7 win  87% thesis-exits 2
+  TS k=2 x=0.25    dev n 40 total    +639 pts mean +16.0 avg loss -36.1 win  85% thesis-exits 2 || hold n 45 total    +834 pts mean +18.5 avg loss -45.8 win  84% thesis-exits 3
+  TS k=2 x=0.50    dev n 40 total    +639 pts mean +16.0 avg loss -36.1 win  85% thesis-exits 2 || hold n 45 total    +861 pts mean +19.1 avg loss -42.0 win  84% thesis-exits 4
+  TS k=3 x=0.00    dev n 39 total    +622 pts mean +15.9 avg loss -46.8 win  87% thesis-exits 0 || hold n 45 total    +939 pts mean +20.9 avg loss -59.0 win  89% thesis-exits 0
+  TS k=3 x=0.25    dev n 40 total    +637 pts mean +15.9 avg loss -36.5 win  85% thesis-exits 2 || hold n 45 total    +820 pts mean +18.2 avg loss -49.6 win  84% thesis-exits 2
+  TS k=3 x=0.50    dev n 40 total    +600 pts mean +15.0 avg loss -35.1 win  82% thesis-exits 3 || hold n 45 total    +820 pts mean +18.2 avg loss -49.6 win  84% thesis-exits 2
+  TS k=4 x=0.00    dev n 39 total    +622 pts mean +15.9 avg loss -46.8 win  87% thesis-exits 0 || hold n 45 total    +893 pts mean +19.8 avg loss -52.5 win  87% thesis-exits 1
+  TS k=4 x=0.25    dev n 39 total    +646 pts mean +16.6 avg loss -41.9 win  87% thesis-exits 1 || hold n 45 total    +820 pts mean +18.2 avg loss -47.7 win  84% thesis-exits 2
+  TS k=4 x=0.50    dev n 39 total    +646 pts mean +16.6 avg loss -41.9 win  87% thesis-exits 1 || hold n 45 total    +820 pts mean +18.2 avg loss -47.7 win  84% thesis-exits 2
+  TS k=6 x=0.00    dev n 39 total    +622 pts mean +15.9 avg loss -46.8 win  87% thesis-exits 0 || hold n 45 total    +939 pts mean +20.9 avg loss -59.0 win  89% thesis-exits 0
+  TS k=6 x=0.25    dev n 39 total    +641 pts mean +16.4 avg loss -43.0 win  87% thesis-exits 1 || hold n 45 total    +939 pts mean +20.9 avg loss -59.0 win  89% thesis-exits 0
+  TS k=6 x=0.50    dev n 39 total    +641 pts mean +16.4 avg loss -43.0 win  87% thesis-exits 1 || hold n 45 total    +939 pts mean +20.9 avg loss -59.0 win  89% thesis-exits 0

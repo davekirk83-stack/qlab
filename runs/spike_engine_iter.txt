@@ -1,0 +1,23 @@
+
+SNAP — development grid (A), holdout (B) printed alongside but not used to choose
+  (0.5, 0.0)             A n 29 -0.40R win  45% pts    -466 || B n 19 -0.22R win  53% pts    -259
+  (0.5, 0.1)             A n 29 -0.35R win  48% pts    -567 || B n 19 -0.10R win  63% pts    -173
+  (0.5, 0.25)            A n 29 -0.13R win  66% pts    -206 || B n 19 -0.02R win  74% pts     -63
+  (0.75, 0.0)            A n 50 -0.16R win  60% pts    -340 || B n 30 -0.16R win  57% pts     -88
+  (0.75, 0.1)            A n 50 -0.12R win  64% pts    -387 || B n 30 -0.03R win  63% pts     -60
+  (0.75, 0.25)           A n 50 -0.03R win  70% pts     -80 || B n 30 -0.03R win  67% pts    -129
+  (1.0, 0.0)             A n 59 -0.03R win  61% pts    +182 || B n 34 -0.19R win  44% pts     -29
+  (1.0, 0.1)             A n 59 -0.00R win  64% pts    +137 || B n 34 -0.05R win  50% pts     +12
+  (1.0, 0.25)            A n 59 +0.07R win  69% pts    +510 || B n 34 -0.04R win  53% pts     -59
+  CHOSEN on A: (1.0, 0.25) -> holdout B n 34 -0.04R win  53% pts     -59
+
+CONT — development grid (A), holdout (B) printed alongside but not used to choose
+  (0.1, 'mid', 0.5)      A n 61 +0.16R win  67% pts    +544 || B n 55 -0.01R win  58% pts    +334
+  (0.1, 'mid', 1.0)      A n 61 +0.20R win  52% pts    +712 || B n 55 +0.07R win  49% pts   +1410
+  (0.1, 'nextbar', 0.5)  A n 61 +0.23R win  57% pts    +521 || B n 55 -0.12R win  45% pts    -249
+  (0.1, 'nextbar', 1.0)  A n 61 +0.37R win  43% pts    +673 || B n 55 -0.02R win  38% pts    +608
+  (0.25, 'mid', 0.5)     A n 42 +0.03R win  62% pts    +111 || B n 40 +0.07R win  65% pts    +738
+  (0.25, 'mid', 1.0)     A n 42 +0.07R win  48% pts    +247 || B n 40 +0.20R win  55% pts   +1825
+  (0.25, 'nextbar', 0.5) A n 42 +0.19R win  55% pts    +230 || B n 40 +0.06R win  55% pts    +330
+  (0.25, 'nextbar', 1.0) A n 42 +0.38R win  40% pts    +388 || B n 40 +0.19R win  45% pts   +1099
+  CHOSEN on A: (0.25, 'nextbar', 1.0) -> holdout B n 40 +0.19R win  45% pts   +1099

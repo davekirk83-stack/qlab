@@ -1,0 +1,21 @@
+BTC STRESS SNAP-BACK LADDER — returns per episode as % of the episode budget, after 0.10% costs
+Development grid (2020-2023 only is used to choose; holdout shown alongside but NOT used to choose):
+  K2.0 gap0.5% TP3% SL8%  dev n385 mean +0.15% win  76% worst   -7.2% total    +58% || hold n231 mean +0.10% win  69% worst   -7.2% total    +24%
+  K2.0 gap1.0% TP3% SL8%  dev n387 mean +0.15% win  77% worst   -6.4% total    +58% || hold n229 mean +0.18% win  69% worst   -6.3% total    +40%
+  K3.0 gap1.0% TP3% SL8%  dev n241 mean +0.14% win  76% worst   -6.3% total    +35% || hold n132 mean +0.25% win  73% worst   -6.5% total    +33%
+  K2.5 gap0.5% TP3% SL8%  dev n297 mean +0.13% win  75% worst   -7.1% total    +38% || hold n179 mean +0.18% win  72% worst   -7.2% total    +32%
+  K3.0 gap0.5% TP3% SL8%  dev n241 mean +0.13% win  76% worst   -7.1% total    +32% || hold n129 mean +0.22% win  73% worst   -7.2% total    +28%
+  K2.0 gap0.5% TP3% SL12%  dev n364 mean +0.10% win  78% worst  -11.1% total    +38% || hold n224 mean +0.15% win  69% worst  -10.6% total    +34%
+  K2.0 gap1.0% TP3% SL12%  dev n367 mean +0.10% win  79% worst  -10.4% total    +36% || hold n221 mean +0.19% win  69% worst  -10.3% total    +42%
+  K2.0 gap0.5% TP2% SL8%  dev n443 mean +0.09% win  82% worst   -7.2% total    +38% || hold n255 mean +0.13% win  76% worst   -7.2% total    +34%
+
+CHOSEN on development: K2.0 gap0.5% TP3% SL8%
+  plain          dev n385 mean +0.15% win  76% worst   -7.2% total    +58% || hold n231 mean +0.10% win  69% worst   -7.2% total    +24%
+  absorption x2  dev n385 mean +0.15% win  76% worst   -8.5% total    +59% || hold n231 mean +0.09% win  69% worst   -7.9% total    +21%
+  CONTROL random non-stress 4h lows (seed 0) dev n490 mean +0.08% win  68% worst   -7.2% total    +38% || hold n368 mean -0.13% win  62% worst   -7.3% total    -48%
+  CONTROL random non-stress 4h lows (seed 1) dev n503 mean -0.01% win  68% worst   -7.2% total     -6% || hold n358 mean -0.13% win  61% worst   -7.2% total    -48%
+  CONTROL random non-stress 4h lows (seed 2) dev n498 mean -0.06% win  66% worst   -7.2% total    -27% || hold n346 mean -0.07% win  62% worst   -7.1% total    -26%
+
+  exits (chosen, all years): {'tp': 345, 'time': 216, 'stop': 55}; median hours held 25.2
+  by year: 2020:+16%(n81) 2021:+46%(n121) 2022:-27%(n105) 2023:+23%(n78) 2024:+26%(n87) 2025:+7%(n77) 2026:-10%(n67)
+done

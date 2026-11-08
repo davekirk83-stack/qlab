@@ -1,0 +1,19 @@
+BTC ORDER FLOW — true taker delta, Binance spot 1m, 2020-01-01 to 2026-11-07
+bp = basis points (100bp = 1%). Each cell: mean forward return / % of cases right. 'base' = same place (a 4h low or high) without the order-flow condition.
+  A absorption at 4h LOW -> long signal dev n   777 15m   -0.1bp/ 50% 60m   +2.4bp/ 55% 240m   -3.6bp/ 55% || hold n   488 15m   -2.1bp/ 50% 60m   -2.7bp/ 51% 240m   -0.1bp/ 54%
+  A absorption at 4h LOW -> long base   dev n 14317 15m   +1.4bp/ 56% 60m   +4.6bp/ 57% 240m   +5.9bp/ 56% || hold n 11688 15m   +0.1bp/ 54% 60m   +0.5bp/ 54% 240m   +2.1bp/ 54%
+  A absorption at 4h HIGH -> short signal dev n   618 15m   -3.1bp/ 50% 60m   -2.8bp/ 54% 240m  -10.3bp/ 54% || hold n   371 15m   -2.2bp/ 50% 60m   +3.2bp/ 58% 240m   -5.8bp/ 51%
+  A absorption at 4h HIGH -> short base   dev n 15784 15m   -0.1bp/ 56% 60m   -0.2bp/ 56% 240m   -3.8bp/ 54% || hold n 12320 15m   +0.2bp/ 55% 60m   +0.2bp/ 54% 240m   +1.3bp/ 53%
+  B CVD bull divergence -> long signal dev n  1120 15m   +1.6bp/ 56% 60m   +2.7bp/ 56% 240m   +5.0bp/ 55% || hold n  1138 15m   -0.8bp/ 54% 60m   -1.7bp/ 55% 240m   -7.1bp/ 52%
+  B CVD bull divergence -> long base   dev n 14317 15m   +1.4bp/ 56% 60m   +4.6bp/ 57% 240m   +5.9bp/ 56% || hold n 11688 15m   +0.1bp/ 54% 60m   +0.5bp/ 54% 240m   +2.1bp/ 54%
+  B CVD bear divergence -> short signal dev n  1546 15m   -2.2bp/ 53% 60m   -4.0bp/ 54% 240m  -12.4bp/ 55% || hold n  1305 15m   -0.1bp/ 55% 60m   +0.7bp/ 55% 240m   +0.6bp/ 55%
+  B CVD bear divergence -> short base   dev n 15784 15m   -0.1bp/ 56% 60m   -0.2bp/ 56% 240m   -3.8bp/ 54% || hold n 12320 15m   +0.2bp/ 55% 60m   +0.2bp/ 54% 240m   +1.3bp/ 53%
+  C climax wick at LOW -> long signal dev n   952 15m   +2.5bp/ 60% 60m   +3.3bp/ 58% 240m   +4.2bp/ 57% || hold n   532 15m   -2.5bp/ 53% 60m   -8.0bp/ 50% 240m  -11.5bp/ 49%
+  C climax wick at LOW -> long base   dev n  3134 15m   +1.6bp/ 56% 60m   +4.4bp/ 58% 240m   +6.5bp/ 58% || hold n  2403 15m   +1.7bp/ 58% 60m   -0.9bp/ 54% 240m   +0.0bp/ 55%
+  C climax wick at HIGH -> short signal dev n   665 15m   +1.3bp/ 57% 60m   -6.2bp/ 56% 240m  -12.4bp/ 53% || hold n   422 15m   -1.1bp/ 55% 60m   -2.0bp/ 53% 240m   -2.9bp/ 51%
+  C climax wick at HIGH -> short base   dev n  2951 15m   -1.7bp/ 54% 60m   -4.3bp/ 55% 240m   -4.3bp/ 55% || hold n  2411 15m   +0.1bp/ 55% 60m   +0.5bp/ 55% 240m   -0.6bp/ 53%
+  D stacked BUYING -> long     signal dev n   174 15m   +5.5bp/ 52% 60m   +8.7bp/ 44% 240m  +13.4bp/ 51% || hold n   871 15m   -0.3bp/ 47% 60m   -2.1bp/ 45% 240m   -1.8bp/ 47%
+  D stacked BUYING -> long     base   dev n  7381 15m   +0.8bp/ 49% 60m   +1.0bp/ 48% 240m   +2.1bp/ 49% || hold n  6900 15m   -0.4bp/ 47% 60m   -0.5bp/ 49% 240m   -0.2bp/ 49%
+  D stacked SELLING -> short   signal dev n   187 15m   -1.5bp/ 36% 60m   -5.2bp/ 41% 240m  -11.4bp/ 40% || hold n  1011 15m   -0.5bp/ 45% 60m   -0.4bp/ 46% 240m   -0.5bp/ 46%
+  D stacked SELLING -> short   base   dev n  7381 15m   -1.2bp/ 45% 60m   -3.5bp/ 46% 240m   -6.2bp/ 46% || hold n  6934 15m   -0.7bp/ 46% 60m   -1.0bp/ 47% 240m   -2.6bp/ 47%
+done

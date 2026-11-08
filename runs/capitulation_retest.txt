@@ -1,0 +1,18 @@
+
+NDX
+  trigger -4% & VIX +40%: chosen TP3% SL10% on dev -> dev n 2 mean  +1.0% win 100% worst  +1.0% || hold n 8 mean  +1.5% win 100% worst  +1.0%
+  trigger -3% & VIX +25%: chosen TP8% SL15% on dev -> dev n10 mean  +1.0% win  70% worst -11.6% || hold n16 mean  +2.4% win  81% worst -14.1%
+  trigger -2.5% & VIX +20%: chosen TP8% SL15% on dev -> dev n19 mean  +1.1% win  74% worst -12.8% || hold n25 mean  +1.8% win  76% worst -14.1%
+  fixed TP5 SL15 on -3%/VIX+25%: dev n10 mean  +0.3% win  80% worst -11.6% || hold n17 mean  +2.2% win  94% worst -14.1%; latest triggers: 2025-04-03, 2025-10-10, 2026-06-05
+
+GSPC
+  trigger -4% & VIX +40%: chosen TP3% SL10% on dev -> dev none || hold n 6 mean  +1.4% win 100% worst  +1.0%
+  trigger -3% & VIX +25%: chosen TP8% SL10% on dev -> dev n 8 mean  +1.4% win  75% worst  -7.7% || hold n12 mean  -0.9% win  42% worst  -7.1%
+  trigger -2.5% & VIX +20%: chosen TP8% SL15% on dev -> dev n14 mean  +1.6% win  71% worst -12.0% || hold n19 mean  +0.8% win  68% worst -12.1%
+  fixed TP5 SL15 on -3%/VIX+25%: dev n 8 mean  -0.4% win  75% worst -12.1% || hold n12 mean  +1.6% win  83% worst -12.1%; latest triggers: 2020-06-11, 2020-09-03, 2025-04-03
+
+RUT
+  trigger -4% & VIX +40%: chosen TP3% SL10% on dev -> dev none || hold n 6 mean  +1.0% win 100% worst  +1.0%
+  trigger -3% & VIX +25%: chosen TP8% SL15% on dev -> dev n10 mean  +1.7% win  70% worst -12.1% || hold n22 mean  +2.3% win  82% worst -12.1%
+  trigger -2.5% & VIX +20%: chosen TP3% SL15% on dev -> dev n18 mean  +0.7% win  89% worst -12.1% || hold n37 mean  +0.6% win  92% worst -12.1%
+  fixed TP5 SL15 on -3%/VIX+25%: dev n10 mean  +0.8% win  70% worst -12.1% || hold n23 mean  +1.0% win  83% worst -12.1%; latest triggers: 2025-04-03, 2025-10-10, 2026-06-05
