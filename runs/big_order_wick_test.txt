@@ -1,7 +1,13 @@
-taker orders on 40 days: 27,691,032; >=10 BTC 5402, >=20 BTC 1475, >=30 BTC 638
-  Q>= 5 BTC LOW wick, big SELL orders -> long    event n 141 15m   -5.3bp/ 52% 60m  -38.0bp/ 41% 240m  -52.7bp/ 40% || without n 291 15m   -0.9bp/ 48% 60m   -8.5bp/ 44% 240m  -38.6bp/ 34%
-  Q>= 5 BTC HIGH wick, big BUY orders -> short   event n  36 15m   +4.1bp/ 67% 60m  +14.6bp/ 58% 240m  +49.8bp/ 75% || without n 132 15m   +0.2bp/ 55% 60m   +3.2bp/ 53% 240m  +55.3bp/ 73%
-  Q>=10 BTC LOW wick, big SELL orders -> long    event n  70 15m   -3.9bp/ 50% 60m  -44.7bp/ 39% 240m  -46.9bp/ 43% || without n 362 15m   -2.0bp/ 49% 60m  -13.0bp/ 44% 240m  -42.5bp/ 35%
-  Q>=10 BTC HIGH wick, big BUY orders -> short   event n  16 15m   +6.5bp/ 81% 60m   -2.6bp/ 50% 240m  +25.4bp/ 75% || without n 152 15m   +0.5bp/ 55% 60m   +6.5bp/ 55% 240m  +57.1bp/ 73%
-  Q>=20 BTC LOW wick, big SELL orders -> long    event n  29 15m   +5.9bp/ 55% 60m  -19.4bp/ 45% 240m   -4.8bp/ 55% || without n 403 15m   -2.9bp/ 49% 60m  -18.0bp/ 43% 240m  -46.0bp/ 35%
-  Q>=20 BTC HIGH wick, big BUY orders -> short   event n   6 15m   -5.7bp/ 67% 60m  -14.1bp/ 33% 240m  +68.5bp/100% || without n 162 15m   +1.3bp/ 57% 60m   +6.4bp/ 55% 240m  +53.6bp/ 72%
+stress days with order data: 490 (2022-01-05 .. 2026-10-29); taker orders >= 20 BTC: 32910
+  Q>=10 LOW wick + big SELL orders -> long  2022-23 event n 785 15m   -3.8/ 51% 60m  -10.2/ 52% 240m  -23.4/ 53% || without n1011 15m   -1.6/ 55% 60m   -4.3/ 54% 240m   -9.1/ 51%
+  Q>=10 LOW wick + big SELL orders -> long  2024-26 event n 488 15m   +0.3/ 53% 60m   -4.8/ 52% 240m  -12.2/ 49% || without n1906 15m   -0.7/ 51% 60m   -5.6/ 49% 240m  -16.2/ 47%
+  Q>=10 HIGH wick + big BUY orders -> short 2022-23 event n 423 15m   +5.0/ 62% 60m   +2.0/ 59% 240m  +17.8/ 59% || without n 827 15m   +6.3/ 63% 60m  +12.8/ 64% 240m  +14.6/ 59%
+  Q>=10 HIGH wick + big BUY orders -> short 2024-26 event n 171 15m   +1.0/ 60% 60m   -1.3/ 55% 240m   +0.3/ 52% || without n1398 15m   -0.3/ 55% 60m   +1.7/ 54% 240m  +18.1/ 59%
+  Q>=20 LOW wick + big SELL orders -> long  2022-23 event n 413 15m   -4.6/ 50% 60m  -16.4/ 49% 240m  -34.0/ 50% || without n1383 15m   -2.0/ 55% 60m   -4.0/ 54% 240m   -9.7/ 53%
+  Q>=20 LOW wick + big SELL orders -> long  2024-26 event n 233 15m   -0.7/ 54% 60m   +3.8/ 53% 240m   -8.1/ 52% || without n2161 15m   -0.5/ 51% 60m   -6.5/ 49% 240m  -16.2/ 47%
+  Q>=20 HIGH wick + big BUY orders -> short 2022-23 event n 183 15m   +6.0/ 61% 60m   +5.2/ 58% 240m  +27.9/ 61% || without n1067 15m   +5.9/ 63% 60m   +9.8/ 63% 240m  +13.6/ 59%
+  Q>=20 HIGH wick + big BUY orders -> short 2024-26 event n  81 15m   +0.2/ 57% 60m   -4.8/ 48% 240m   -3.0/ 51% || without n1488 15m   -0.2/ 55% 60m   +1.7/ 54% 240m  +17.2/ 58%
+  Q>=50 LOW wick + big SELL orders -> long  2022-23 event n 117 15m   +1.9/ 55% 60m  -17.3/ 50% 240m  -30.9/ 50% || without n1679 15m   -2.9/ 53% 60m   -6.1/ 53% 240m  -14.2/ 52%
+  Q>=50 LOW wick + big SELL orders -> long  2024-26 event n  51 15m  +10.8/ 53% 60m   +0.5/ 51% 240m  -24.4/ 49% || without n2343 15m   -0.7/ 52% 60m   -5.6/ 50% 240m  -15.2/ 47%
+  Q>=50 HIGH wick + big BUY orders -> short 2022-23 event n  53 15m  +19.2/ 70% 60m  +14.4/ 72% 240m  +56.9/ 68% || without n1197 15m   +5.3/ 62% 60m   +8.9/ 62% 240m  +13.9/ 58%
+  Q>=50 HIGH wick + big BUY orders -> short 2024-26 event n  22 15m   +9.0/ 59% 60m   +4.8/ 41% 240m  +12.5/ 64% || without n1547 15m   -0.3/ 55% 60m   +1.3/ 54% 240m  +16.2/ 58%

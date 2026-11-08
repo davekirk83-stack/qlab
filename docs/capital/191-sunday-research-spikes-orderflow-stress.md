@@ -85,3 +85,12 @@ Trigger: index −3% on the day with VIX +25%. Rungs at the day's low, −3%, �
 3. Revolut X: build the runner with the stress snap-back ladder + 99-line filter, dry-run first.
 4. Fill the 2021-25 Dukascopy gap slowly in the background to recheck 1 and 2 on a third period.
 5. Hyperliquid forward recorder for big orders and net positioning (no history available).
+
+## Addendum — big orders "trapped in the wicks" (`src/big_order_wick_test2.py`, `runs/big_order_wick_test.txt`)
+490 BTC stress days 2022 – Oct 2026, 32,910 taker orders >= 20 BTC (Binance spot). Wick bars at 4h lows that contain big sell orders
+in the bottom 30% of the bar, versus the same wick bars without them, forward 4h (bp, long side):
+- >= 20 BTC: 2022-23 −34 vs −10 (big sellers were RIGHT — price kept falling); 2024-26 −8 vs −16 (slightly better than without).
+- >= 50 BTC: 2022-23 −31 vs −14; 2024-26 −24 vs −15.
+- Mirror (big buyers in upper wicks at highs, short): >= 50 BTC 2022-23 +57 vs +14, 2024-26 +13 vs +16.
+No consistent exhaustion signal on Binance spot: more often the big aggressor was informed, not trapped. The Hyperliquid version
+(who is opening vs closing, net positioning) can't be tested on history; a forward recorder is the only way to check it.
