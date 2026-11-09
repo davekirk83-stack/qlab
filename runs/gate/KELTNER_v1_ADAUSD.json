@@ -1,0 +1,21 @@
+{
+ "book": "KELTNER v1 ADAUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 8,
+ "dev_R": 0.156,
+ "hold_n": 2,
+ "hold_per_year": 2,
+ "hold_R": 0.154,
+ "t": 89.27,
+ "h1": NaN,
+ "h2": NaN,
+ "win": 1.0,
+ "maxdd_R": 0.0,
+ "random_p95": null,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "IGNITION v1.1 US Tech 100",
+ "note": "",
+ "data": "2025-10-15..2026-11-08",
+ "holdout_from": "2026-06-05",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 48,
+ "dev_R": 0.239,
+ "hold_n": 39,
+ "hold_per_year": 92,
+ "hold_R": 0.138,
+ "t": 1.29,
+ "h1": 0.299,
+ "h2": -0.015,
+ "win": 0.62,
+ "maxdd_R": -2.2,
+ "random_p95": 0.278,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

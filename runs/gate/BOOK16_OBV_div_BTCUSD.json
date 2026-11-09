@@ -1,0 +1,21 @@
+{
+ "book": "BOOK16 OBV div BTCUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 23,
+ "dev_R": 0.036,
+ "hold_n": 9,
+ "hold_per_year": 9,
+ "hold_R": 0.053,
+ "t": 0.77,
+ "h1": 0.166,
+ "h2": -0.038,
+ "win": 0.44,
+ "maxdd_R": -0.5,
+ "random_p95": null,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

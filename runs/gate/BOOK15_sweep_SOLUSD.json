@@ -1,0 +1,21 @@
+{
+ "book": "BOOK15 sweep SOLUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 317,
+ "dev_R": -0.021,
+ "hold_n": 89,
+ "hold_per_year": 89,
+ "hold_R": -0.168,
+ "t": -1.04,
+ "h1": -0.158,
+ "h2": -0.179,
+ "win": 0.29,
+ "maxdd_R": -28.3,
+ "random_p95": 0.227,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

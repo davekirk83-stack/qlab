@@ -1,0 +1,21 @@
+{
+ "book": "SPIKE US 500",
+ "note": "",
+ "data": "2025-11-03..2026-11-06",
+ "holdout_from": "2026-06-12",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 19,
+ "dev_R": 0.438,
+ "hold_n": 8,
+ "hold_per_year": 20,
+ "hold_R": 0.079,
+ "t": 0.16,
+ "h1": -0.511,
+ "h2": 0.668,
+ "win": 0.5,
+ "maxdd_R": -2.1,
+ "random_p95": null,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

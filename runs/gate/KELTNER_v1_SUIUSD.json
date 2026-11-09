@@ -1,0 +1,21 @@
+{
+ "book": "KELTNER v1 SUIUSD",
+ "note": "",
+ "data": "2023-05-18..2026-10-26",
+ "holdout_from": "2025-10-26",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 4,
+ "dev_R": 0.16,
+ "hold_n": 2,
+ "hold_per_year": 2,
+ "hold_R": 0.157,
+ "t": 96.9,
+ "h1": NaN,
+ "h2": NaN,
+ "win": 1.0,
+ "maxdd_R": 0.0,
+ "random_p95": null,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

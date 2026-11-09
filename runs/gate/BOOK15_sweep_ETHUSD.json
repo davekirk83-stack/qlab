@@ -1,0 +1,21 @@
+{
+ "book": "BOOK15 sweep ETHUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 334,
+ "dev_R": -0.145,
+ "hold_n": 78,
+ "hold_per_year": 78,
+ "hold_R": 0.096,
+ "t": 0.5,
+ "h1": 0.153,
+ "h2": 0.04,
+ "win": 0.35,
+ "maxdd_R": -6.9,
+ "random_p95": 0.207,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

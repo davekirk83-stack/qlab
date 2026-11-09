@@ -1,0 +1,21 @@
+{
+ "book": "SPIKE US Tech 100",
+ "note": "",
+ "data": "2025-10-15..2026-11-06",
+ "holdout_from": "2026-06-04",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 17,
+ "dev_R": 0.292,
+ "hold_n": 18,
+ "hold_per_year": 43,
+ "hold_R": -0.079,
+ "t": -0.29,
+ "h1": -0.12,
+ "h2": -0.038,
+ "win": 0.33,
+ "maxdd_R": -6.4,
+ "random_p95": 0.594,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

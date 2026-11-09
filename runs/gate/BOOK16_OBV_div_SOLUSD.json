@@ -1,0 +1,21 @@
+{
+ "book": "BOOK16 OBV div SOLUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 21,
+ "dev_R": 0.137,
+ "hold_n": 5,
+ "hold_per_year": 5,
+ "hold_R": -0.305,
+ "t": -1.66,
+ "h1": -0.217,
+ "h2": -0.363,
+ "win": 0.4,
+ "maxdd_R": -1.6,
+ "random_p95": null,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

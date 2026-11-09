@@ -1,0 +1,21 @@
+{
+ "book": "ORB Gold London",
+ "note": "",
+ "data": "2026-04-15..2026-10-21",
+ "holdout_from": "2026-08-06",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 74,
+ "dev_R": 0.136,
+ "hold_n": 46,
+ "hold_per_year": 224,
+ "hold_R": -0.033,
+ "t": -0.17,
+ "h1": 0.137,
+ "h2": -0.203,
+ "win": 0.35,
+ "maxdd_R": -8.0,
+ "random_p95": 0.351,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
