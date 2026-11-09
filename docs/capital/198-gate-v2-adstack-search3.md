@@ -56,3 +56,17 @@ Intraday books (Ignition, gold, spike) have ~1 year of data: no month-of-year te
 | IBS low close, 8 markets | FAILED | n9348 0.00 | 14/27 | 0.00 |
 Note: for long-only daily books the random-entry benchmark also earns the market's drift (2026 was a strong year), so "beats random" is hard.
 Robustness (src/robustness_daily.py): trend 25/27 nearby settings positive; RSI(2) 24/24.
+
+## Daily books combined (src/portfolio_daily.py), 2001-2026, risk-balanced
+Monthly correlation: RSI(2)-Double 7s 0.69 (same idea); every other pair 0.04-0.08 (independent).
+Combined: 60% of months positive, 18 of 26 years; worst 12 months -38 ATR vs -134 for the worst single book. 2022 -20, 2023 +11, 2024 +27,
+2025 +54, 2026 so far -4.
+
+## Market search 6 (src/market_search_6.py)
+| Idea | v2 | All trades | Years positive | Last 5 years |
+|---|---|---|---|---|
+| Halloween: long 7 indices Nov-Apr only (Bouman & Jacobsen 2002) | WEAK (passes the multiple-testing t: 3.56 vs 3.54; random benchmark n/a) | n668 +0.48 ATR | 19/27 | +0.79 |
+| Same, every month (comparison) | WEAK | n1305 +0.15 | 14/27 | +0.44 |
+| NR7 breakout (Crabel), 12 markets | FAILED | n7511 -0.06 | 8/27 | |
+| Pre-holiday, 4 US indices | FAILED | n1084 -0.03 | 10/27 | |
+| FX month-end rebalancing (Melvin & Prins) | FAILED | n727 0.00 | 11/23 | |
