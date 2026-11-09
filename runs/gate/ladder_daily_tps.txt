@@ -1,0 +1,18 @@
+TPS ladder, 7 indices + gold (IG)            episodes 1558 (60/yr) mean +0.188% of budget t +5.03 win 89% worst -19.4% | years + 21/26 | last 5y +0.240% | last year +0.421%
+same entry, ALL-IN at once (no ladder)       episodes 1558 (60/yr) mean +0.276% of budget t +4.94 win 70% worst -19.5% | years + 20/26 | last 5y +0.435% | last year +0.717%
+TPS without kill rules                       episodes 1558 (60/yr) mean +0.184% of budget t +4.50 win 89% worst -29.6% | years + 21/26 | last 5y +0.240% | last year +0.421%
+TPS ladder, 10 coins spot (Revolut X)        episodes  295 (59/yr) mean +1.182% of budget t +3.28 win 89% worst -22.7% | years + 3/5 | last 5y +1.182% | last year +0.116%
+coins, ALL-IN at once                        episodes  300 (60/yr) mean +0.433% of budget t +0.87 win 61% worst -31.3% | years + 3/5 | last 5y +0.433% | last year +0.135%
+TPS indices, RSI<30                          episodes 1833 (70/yr) mean +0.181% of budget t +5.33 win 90% worst -19.4% | years + 20/26 | last 5y +0.234% | last year +0.392%
+TPS indices, RSI<20                          episodes 1280 (49/yr) mean +0.203% of budget t +4.64 win 91% worst -19.4% | years + 21/26 | last 5y +0.265% | last year +0.414%
+TPS indices, max 20 days                     episodes 1558 (60/yr) mean +0.184% of budget t +4.84 win 89% worst -19.4% | years + 21/26 | last 5y +0.240% | last year +0.421%
+TPS coins, RSI<20                            episodes  243 (49/yr) mean +1.323% of budget t +3.35 win 91% worst -18.5% | years + 3/5 | last 5y +1.323% | last year +0.649%
+TPS coins, RSI<30                            episodes  348 (70/yr) mean +0.831% of budget t +2.61 win 86% worst -22.7% | years + 2/5 | last 5y +0.831% | last year -0.356%
+TPS coins, kill at -10%                      episodes  298 (60/yr) mean +1.102% of budget t +3.11 win 89% worst -16.2% | years + 3/5 | last 5y +1.102% | last year -0.265%
+TPS coins, no kill rules                     episodes  293 (59/yr) mean +1.449% of budget t +4.31 win 90% worst -26.3% | years + 4/5 | last 5y +1.449% | last year +0.722%
+TPS coins, max 20 days                       episodes  295 (59/yr) mean +1.170% of budget t +3.24 win 89% worst -22.7% | years + 3/5 | last 5y +1.170% | last year +0.116%
+TPS indices, kill at -10%                    episodes 1559 (60/yr) mean +0.189% of budget t +5.35 win 89% worst -16.1% | years + 21/26 | last 5y +0.240% | last year +0.421%
+TPS indices, max 45 days                     episodes 1558 (60/yr) mean +0.188% of budget t +5.03 win 89% worst -19.4% | years + 21/26 | last 5y +0.240% | last year +0.421%
+TPS coins, max 45 days                       episodes  295 (59/yr) mean +1.182% of budget t +3.28 win 89% worst -22.7% | years + 3/5 | last 5y +1.182% | last year +0.116%
+TPS indices, kill at -20%                    episodes 1558 (60/yr) mean +0.184% of budget t +4.57 win 89% worst -27.7% | years + 21/26 | last 5y +0.240% | last year +0.421%
+TPS coins, kill at -20%                      episodes  294 (59/yr) mean +1.462% of budget t +4.40 win 90% worst -22.7% | years + 4/5 | last 5y +1.462% | last year +0.722%
