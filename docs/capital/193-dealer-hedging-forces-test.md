@@ -15,3 +15,7 @@ price/VIX data, so those were tested (`src/dealer_flow_test.py`, `runs/dealer_fl
 What carries over: (1) expiry Fridays are slightly quieter — mildly good for the range ladder, bad for breakout engines (to check when
 the books have enough expiry-day trades); (2) VIX spikes revert — the same family as the capitulation-retest book (doc 191).
 The vanna and charm "mechanical flows" do not show up in index prices at these horizons without the positioning data itself.
+
+**Standing instruction (DK 9 Nov 17:17):** "If any of these new details are borne out in our testing then use them to refine the relevant
+books etc." Applies to docs 191-193 findings: refine demo and paper books directly when forward evidence supports them; changes to the
+live IG or live Revolut X books still go to DK under CAP-021. First check: the review on Monday 16 Nov (scheduled).
