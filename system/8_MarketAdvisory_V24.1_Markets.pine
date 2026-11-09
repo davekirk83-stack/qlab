@@ -1,4 +1,6 @@
 //@version=6
+// MARKET ADVISORY V24.1 — adds the order-flow read from the separate Delta/CVD script (DK 9 Nov: one indicator): a FLOW panel row
+//            (this bar's net buying or selling, the day's CVD direction) and the tested STRESS LOW mark on the price chart (doc 191).
 // MARKET ADVISORY V24 — V23 with a compact panel for phones and the yearly levels (DK 7-9 Nov 2026). Signal logic and alerts unchanged.
 //   PANEL    "Compact" (default): about half the width and 8-12 rows — short values, duplicate rows merged (LADDER into READ, SESSION into
 //            SESSION READ, the ADVISORY 'why' dropped), and rows that would only show "-" are hidden. "Full" keeps the V23 layout.
@@ -37,7 +39,7 @@
 // Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
 // the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
 // Works on any symbol and intraday timeframe: everything is ATR- and session-relative. Advisory only — no orders.
-indicator("Market Advisory V24 Markets", shorttitle="MktAdv24 Mkts", overlay=true, max_lines_count=200, max_labels_count=200)
+indicator("Market Advisory V24.1 Markets", shorttitle="MktAdv24.1 Mkts", overlay=true, max_lines_count=200, max_labels_count=200)
 
 // ------------------------------------------------ INPUTS ------------------------------------------------
 string gM = "Market profile (V23)"
@@ -91,6 +93,10 @@ string gY = "Yearly levels (V24)"
 bool  showYear  = input.bool(true, "Last year's high / low and this year's high / low", group=gY)
 bool  showQtr   = input.bool(false, "Last quarter's high / low", group=gY)
 bool  showYrRow = input.bool(true, "Panel row: last weekly close vs last year's low", group=gY)
+string gF = "Order flow (V24.1, doc 191)"
+bool  showFlow   = input.bool(true, "Panel row: net buying / selling and the day's CVD", group=gF, tooltip="Estimated from 1-minute pieces: volume x (close - open) / (high - low). Agrees in direction with Binance's true taker delta ~74% of the time.")
+bool  showStress = input.bool(true, "Mark STRESS LOW on the chart", group=gF, tooltip="A new 4-hour low while price has fallen >= 3x its normal 24h move in the last 24h. Doc 191: +0.26 to +0.35% over the next 4h, right ~60% of the time, in 2020-23 and 2024-26 (BTC).")
+float flStressK  = input.float(3.0, "Stress: 24h move at least x its 30-day median", step=0.25, group=gF)
 
 // ------------------------------------------------ HELPERS ------------------------------------------------
 pos() => panelPos == "Top Left" ? position.top_left : panelPos == "Bottom Right" ? position.bottom_right : panelPos == "Bottom Left" ? position.bottom_left : position.top_right
@@ -596,6 +602,31 @@ if asiaStart
     asiaRev := "-"
     asiaShort := "-"
 
+// ------------------------------------------------ ORDER FLOW (V24.1) ------------------------------------------------
+[flO, flH, flL, flC, flV] = request.security_lower_tf(syminfo.tickerid, "1", [open, high, low, close, volume])
+float flD = 0.0
+int flN = array.size(flC)
+if flN > 0
+    for flI = 0 to flN - 1
+        float flHi = array.get(flH, flI)
+        float flLo = array.get(flL, flI)
+        flD += flHi > flLo ? array.get(flV, flI) * (array.get(flC, flI) - array.get(flO, flI)) / (flHi - flLo) : 0.0
+else
+    flD := high > low ? volume * (close - open) / (high - low) : 0.0
+var float flCvd = 0.0
+flCvd := ta.change(time("D")) != 0 ? flD : flCvd + flD
+int   flBars4h = math.max(1, int(math.round(4 * 3600 / timeframe.in_seconds())))
+int   flBars1d = math.max(1, int(math.round(86400 / timeframe.in_seconds())))
+float flTyp = request.security(syminfo.tickerid, "D", ta.median(math.abs(close / close[1] - 1), 30)[1], lookahead=barmerge.lookahead_on)
+float flR24 = close / close[flBars1d] - 1
+bool  flStressDn = not na(flTyp) and flR24 <= -flStressK * flTyp
+bool  stressLow = barstate.isconfirmed and low <= ta.lowest(low, flBars4h) and flStressDn
+plotshape(showStress and stressLow, "STRESS LOW (doc 191)", style=shape.diamond, location=location.belowbar, color=color.new(#ffd54f, 0), size=size.tiny, text="STRESS LOW", textcolor=#ffd54f)
+float flShare = volume > 0 ? 100 * flD / volume : na
+bool  flCvdUp = flCvd > flCvd[4]
+string flowTxt = na(flShare) ? "-" : (flD >= 0 ? "BUY +" : "SELL ") + str.tostring(math.abs(flShare), "#") + "% | CVD " + (flCvdUp ? "rising" : "falling") + (flStressDn ? " | STRESS" : "")
+color flowCol = flStressDn ? #ffd54f : flD >= 0 ? cUp : cDn
+
 // ------------------------------------------------ YEARLY LEVELS (V24) ------------------------------------------------
 float pyH = request.security(syminfo.tickerid, "12M", high[1], lookahead=barmerge.lookahead_on)
 float pyL = request.security(syminfo.tickerid, "12M", low[1], lookahead=barmerge.lookahead_on)
@@ -646,7 +677,7 @@ addRow(int r, bool show, string k, string v, color c) =>
 if barstate.islast and panelMode == "Compact"
     table.clear(panel, 0, 0, 1, 19)
     color advColC = advState == 9 ? cWarn : advState > 0 ? cUp : advState < 0 ? cDn : cHead
-    table.cell(panel, 0, 0, "V24 " + syminfo.ticker + " " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 0, 0, "V24.1 " + syminfo.ticker + " " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, advText, text_color=advColC, text_size=sz(), text_halign=text.align_right)
     string readC = not cashOn ? "cash closed - ladder off" : inRange ? (brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "LONG " + str.tostring(lowTouched) + "/4 > " + str.tostring(mid, format.mintick) + (isBtc ? " (72%)" : "") : highTouched > 0 ? "SHORT " + str.tostring(highTouched) + "/4 > " + str.tostring(mid, format.mintick) + (isBtc ? " (72%)" : "") : close < mid ? "long rung < " + str.tostring(b1, format.mintick) : "short rung > " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - exp. up only" : "TREND DN - exp. down only")
     color readColC = inRange ? (brokeUp or brokeDn ? cWarn : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead) : (trendUp ? cUp : cDn)
@@ -669,9 +700,10 @@ if barstate.islast and panelMode == "Compact"
     r := addRow(r, showSauc, "SAUCER", sauC, saucCol)
     r := addRow(r, isBtc and showAsiaRev, "ASIA REV", asiaShort, cAsia)
     r := addRow(r, true, "BLOCK", block, cWarn)
+    r := addRow(r, showFlow, "FLOW", flowTxt, flowCol)
     r := addRow(r, showYrRow, "YEAR", yrTxt, yrCol)
 if barstate.islast and panelMode == "Full"
-    table.cell(panel, 0, 0, isBtc ? "MKT ADVISORY V24 - BTC" : "MKT ADVISORY V24 - MARKETS", text_color=cHead, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 0, 0, isBtc ? "MKT ADVISORY V24.1 - BTC" : "MKT ADVISORY V24.1 - MARKETS", text_color=cHead, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
     // THE READ — one plain-English line from the tested parts (no score: the V19 score was indistinguishable from random)
     string readTxt = not cashOn ? "OUTSIDE THE CASH SESSION - ladder off (own session only, doc 175)" : inRange ? (brokeUp or brokeDn ? "RANGE BROKEN - stand aside until the band is back" : lowTouched > 0 ? "LONG - buy the lower rungs, sell at the mid EMA (72% win)" : highTouched > 0 ? "SHORT - sell the upper rungs, cover at the mid EMA (72% win)" : close < mid ? "RANGE - wait for a long rung below " + str.tostring(b1, format.mintick) : "RANGE - wait for a short rung above " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - no ladder; expansion bars up only" : "TREND DOWN - no ladder; expansion bars down only")
@@ -697,22 +729,24 @@ if barstate.islast and panelMode == "Full"
     row(15, "LEVEL", lvlTxt, lvlCol)
     row(16, "ASIA REVISIT", isBtc and showAsiaRev ? asiaRev : "-", cAsia)
     row(17, "YEAR", showYrRow ? yrTxt : "-", yrCol)
+    row(18, "FLOW", showFlow ? flowTxt : "-", flowCol)
 
 // ------------------------------------------------ ALERTS ------------------------------------------------
-alertcondition(newLong, "ADVISORY LONG", "MktAdv24 LONG {{ticker}} {{interval}}")
-alertcondition(newShort, "ADVISORY SHORT", "MktAdv24 SHORT {{ticker}} {{interval}}")
-alertcondition(newCaution, "ADVISORY CAUTION", "MktAdv24 CAUTION {{ticker}} {{interval}}")
-alertcondition(targetHit, "TARGET HIT", "MktAdv24 target (mid EMA) hit {{ticker}} {{interval}}")
-alertcondition(regimeFlip, "Regime flip", "MktAdv24 regime flip {{ticker}} {{interval}}")
-alertcondition(newLongRung, "Long ladder rung", "MktAdv24 first long rung touched {{ticker}} {{interval}}")
-alertcondition(newShortRung, "Short ladder rung", "MktAdv24 first short rung touched {{ticker}} {{interval}}")
-alertcondition(midHitFromBelow or midHitFromAbove, "Mid EMA reached", "MktAdv24 mid EMA (ladder exit) {{ticker}} {{interval}}")
-alertcondition(t1Hit, "Session target 1 hit", "MktAdv24 T1 hit {{ticker}} {{interval}}")
-alertcondition(sweptLdnH or sweptLdnL, "London extreme swept", "MktAdv24 London extreme swept in NY {{ticker}}")
-alertcondition(ignLong or ignShort, "Expansion bar", "MktAdv24 expansion bar {{ticker}} {{interval}}")
-alertcondition(showSauc and sigNow, "Saucer signal", "MktAdv24 saucer signal - buy stop set {{ticker}} {{interval}}")
-alertcondition(showSauc and fillNow, "Saucer buy / add", "MktAdv24 saucer buy stop filled {{ticker}} {{interval}}")
-alertcondition(showSauc and exitNow, "Saucer exit", "MktAdv24 saucer trend flipped down - exit all {{ticker}} {{interval}}")
-alertcondition(showPD and pdhTaken and not pdhTaken[1], "PDH taken", "MktAdv24 yesterday's high taken {{ticker}}")
-alertcondition(showPD and pdlTaken and not pdlTaken[1], "PDL taken", "MktAdv24 yesterday's low taken {{ticker}}")
-alertcondition(lvlHeavy, "Heavy-volume level break", "MktAdv24 heavy-volume level break - follow-through more likely {{ticker}} {{interval}}")
+alertcondition(newLong, "ADVISORY LONG", "MktAdv24.1 LONG {{ticker}} {{interval}}")
+alertcondition(newShort, "ADVISORY SHORT", "MktAdv24.1 SHORT {{ticker}} {{interval}}")
+alertcondition(newCaution, "ADVISORY CAUTION", "MktAdv24.1 CAUTION {{ticker}} {{interval}}")
+alertcondition(targetHit, "TARGET HIT", "MktAdv24.1 target (mid EMA) hit {{ticker}} {{interval}}")
+alertcondition(regimeFlip, "Regime flip", "MktAdv24.1 regime flip {{ticker}} {{interval}}")
+alertcondition(newLongRung, "Long ladder rung", "MktAdv24.1 first long rung touched {{ticker}} {{interval}}")
+alertcondition(newShortRung, "Short ladder rung", "MktAdv24.1 first short rung touched {{ticker}} {{interval}}")
+alertcondition(midHitFromBelow or midHitFromAbove, "Mid EMA reached", "MktAdv24.1 mid EMA (ladder exit) {{ticker}} {{interval}}")
+alertcondition(t1Hit, "Session target 1 hit", "MktAdv24.1 T1 hit {{ticker}} {{interval}}")
+alertcondition(sweptLdnH or sweptLdnL, "London extreme swept", "MktAdv24.1 London extreme swept in NY {{ticker}}")
+alertcondition(ignLong or ignShort, "Expansion bar", "MktAdv24.1 expansion bar {{ticker}} {{interval}}")
+alertcondition(showSauc and sigNow, "Saucer signal", "MktAdv24.1 saucer signal - buy stop set {{ticker}} {{interval}}")
+alertcondition(showSauc and fillNow, "Saucer buy / add", "MktAdv24.1 saucer buy stop filled {{ticker}} {{interval}}")
+alertcondition(showSauc and exitNow, "Saucer exit", "MktAdv24.1 saucer trend flipped down - exit all {{ticker}} {{interval}}")
+alertcondition(showPD and pdhTaken and not pdhTaken[1], "PDH taken", "MktAdv24.1 yesterday's high taken {{ticker}}")
+alertcondition(showPD and pdlTaken and not pdlTaken[1], "PDL taken", "MktAdv24.1 yesterday's low taken {{ticker}}")
+alertcondition(showStress and stressLow, "STRESS LOW", "MktAdv24.1 STRESS LOW - new 4h low inside a down-stress move (doc 191) {{ticker}} {{interval}}")
+alertcondition(lvlHeavy, "Heavy-volume level break", "MktAdv24.1 heavy-volume level break - follow-through more likely {{ticker}} {{interval}}")
