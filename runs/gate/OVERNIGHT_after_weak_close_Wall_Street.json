@@ -1,0 +1,21 @@
+{
+ "book": "OVERNIGHT after weak close Wall Street",
+ "note": "",
+ "data": "2026-04-15..2026-11-08",
+ "holdout_from": "2026-08-17",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 12,
+ "dev_R": -1.953,
+ "hold_n": 24,
+ "hold_per_year": 106,
+ "hold_R": -0.07,
+ "t": -0.08,
+ "h1": -0.336,
+ "h2": 0.196,
+ "win": 0.42,
+ "maxdd_R": -17.3,
+ "random_p95": 2.49,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

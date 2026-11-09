@@ -1,0 +1,17 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 229,
+ "mean_all": 0.159,
+ "t_all": 1.2,
+ "t_needed": 3.5,
+ "wf_positive": 0.67,
+ "wf_windows": 6,
+ "holdout_mean": 0.297,
+ "failed_checks": [
+  "full-sample t >= 3.50 (N=110)",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 98,
+ "random_p95": 0.447,
+ "book": "v2 NOISEBAND US Tech 100"
+}

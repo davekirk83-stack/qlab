@@ -1,0 +1,21 @@
+{
+ "book": "OVERNIGHT every night US Tech 100",
+ "note": "",
+ "data": "2025-10-15..2026-11-08",
+ "holdout_from": "2026-06-05",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 145,
+ "dev_R": 0.214,
+ "hold_n": 98,
+ "hold_per_year": 231,
+ "hold_R": -0.265,
+ "t": -0.44,
+ "h1": -0.128,
+ "h2": -0.402,
+ "win": 0.51,
+ "maxdd_R": -66.1,
+ "random_p95": -0.107,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

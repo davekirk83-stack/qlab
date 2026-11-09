@@ -1,0 +1,1 @@
+WEAK    v2 GOLD London breakout of Asian range       all n  104 +1.779 ATR t +2.15 (need 3.51) | walk-forward 83% of 6 | last year n45 1.508 | random95 1.332 | fails: full-sample t >= 3.51 (N=113)

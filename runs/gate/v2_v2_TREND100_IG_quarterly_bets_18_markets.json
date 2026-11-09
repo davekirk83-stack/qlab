@@ -1,0 +1,19 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 1021,
+ "mean_all": 0.493,
+ "t_all": 1.98,
+ "t_needed": 3.5,
+ "wf_positive": 0.59,
+ "wf_windows": 27,
+ "holdout_mean": -1.941,
+ "failed_checks": [
+  "full-sample t >= 3.50 (N=112)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 40,
+ "random_p95": 1.94,
+ "book": "v2 TREND100 IG quarterly bets 18 markets"
+}

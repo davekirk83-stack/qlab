@@ -1,0 +1,21 @@
+{
+ "book": "GOLD London breakout of Asian range",
+ "note": "",
+ "data": "2026-04-15..2026-10-21",
+ "holdout_from": "2026-08-06",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 59,
+ "dev_R": 1.986,
+ "hold_n": 45,
+ "hold_per_year": 219,
+ "hold_R": 1.508,
+ "t": 1.12,
+ "h1": 3.521,
+ "h2": -0.418,
+ "win": 0.42,
+ "maxdd_R": -35.3,
+ "random_p95": 1.022,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

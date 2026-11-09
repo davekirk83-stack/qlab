@@ -1,0 +1,16 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 104,
+ "mean_all": 1.779,
+ "t_all": 2.15,
+ "t_needed": 3.51,
+ "wf_positive": 0.83,
+ "wf_windows": 6,
+ "holdout_mean": 1.508,
+ "failed_checks": [
+  "full-sample t >= 3.51 (N=113)"
+ ],
+ "holdout_n": 45,
+ "random_p95": 1.332,
+ "book": "v2 GOLD London breakout of Asian range"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "OVERNIGHT every night Wall Street",
+ "note": "",
+ "data": "2026-04-15..2026-11-08",
+ "holdout_from": "2026-08-17",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 81,
+ "dev_R": 0.285,
+ "hold_n": 55,
+ "hold_per_year": 242,
+ "hold_R": 1.056,
+ "t": 1.35,
+ "h1": 0.689,
+ "h2": 1.41,
+ "win": 0.53,
+ "maxdd_R": -19.5,
+ "random_p95": 1.383,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

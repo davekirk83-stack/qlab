@@ -207,3 +207,85 @@ def judge_pool(name, items, holdout_days=365, note="", n_random=100):
     json.dump(res, open(f"{OUT}/{name.replace(' ', '_').replace('/', '-')}.json", "w"), indent=1, default=str)
     t.to_csv(f"{OUT}/{name.replace(' ', '_').replace('/', '-')}_trades.csv", index=False)
     return res
+
+
+# ======================= GATE v2 (9 Nov 2026 late, DK: "check online for other recognised testing systems") =======================
+# Adds the recognised checks the v1 gate lacked (sources: Pardo / walk-forward analysis; Bailey & Lopez de Prado, Deflated Sharpe /
+# multiple testing; White 2000 Reality Check / Masters permutation tests -> our random-entry benchmark; cost stress):
+#   WF   walk-forward consistency: the whole history cut into 6 equal time windows (daily books: calendar years); >= 60% must be positive.
+#   MT   multiple-testing: every book name ever judged is logged in runs/gate/registry.json; the full-sample t must beat the Sidak-adjusted
+#        threshold for that many trials (two-sided 5%): N=20 -> 3.0, N=60 -> 3.3. One lucky year can no longer pass.
+#   COST the full-sample mean must stay > 0 with costs x 1.5.
+#   Kept from v1: look-ahead detector, gate-side fills, one position, holdout (last year) mean > 0, beats random-entry 95th percentile.
+#   TESTED = all of the above. WEAK = full-sample mean > 0, holdout mean > 0 and WF >= 50%, but fails another check. FAILED = otherwise.
+from statistics import NormalDist
+
+def _registry(name):
+    f = f"{OUT}/registry.json"
+    reg = json.load(open(f)) if os.path.exists(f) else []
+    if name not in reg: reg.append(name); json.dump(reg, open(f, "w"), indent=0)
+    return len(reg)
+
+def v2(name, trades, cut, p95, lookahead_ok, daily=False, cost_mult_trades=None):
+    t = pd.DataFrame(trades).sort_values("t")
+    N = _registry(name); tstar = NormalDist().inv_cdf(1 - (1 - (1 - 0.05) ** (1 / N)) / 2)
+    full_m = t.R.mean(); full_t = full_m / t.R.std(ddof=1) * np.sqrt(len(t)) if len(t) > 2 else 0.0
+    hold = t[t.t >= cut]; hm = hold.R.mean() if len(hold) else np.nan
+    if daily: wins = t.groupby(t.t.dt.year).R.sum()
+    else:
+        edges = pd.date_range(t.t.min(), t.t.max(), periods=7); wins = t.groupby(pd.cut(t.t, edges, include_lowest=True)).R.sum()
+    wf = float((wins > 0).mean()) if len(wins) else 0.0
+    cost_ok = None
+    if cost_mult_trades is not None and len(cost_mult_trades): cost_ok = bool(pd.DataFrame(cost_mult_trades).R.mean() > 0)
+    beats = p95 is not None and hm > p95
+    checks = {"look-ahead": lookahead_ok, f"full-sample t >= {tstar:.2f} (N={N})": full_t >= tstar, "holdout mean > 0": bool(hm > 0),
+              "walk-forward >= 60% windows positive": wf >= 0.6, "beats random 95th pct": beats, "costs x1.5 still positive": bool(cost_ok)}
+    if all(checks.values()): label = "TESTED"
+    elif lookahead_ok and full_m > 0 and hm > 0 and wf >= 0.5: label = "WEAK"
+    else: label = "FAILED"
+    return {"label_v2": label, "n_all": int(len(t)), "mean_all": round(float(full_m), 3), "t_all": round(float(full_t), 2), "t_needed": round(tstar, 2),
+            "wf_positive": round(wf, 2), "wf_windows": int(len(wins)), "holdout_mean": None if np.isnan(hm) else round(float(hm), 3),
+            "failed_checks": [k for k, v in checks.items() if not v]}
+
+def judge2(name, items, daily=False, holdout_days=365, n_random=60):
+    """items: list of (market, df, signals_fn, kwargs). Works for one market or many. Returns v2 verdict dict."""
+    T, T15, ok_all, p_list = [], [], True, []
+    for mkt, df, fn, kw in items:
+        ok, _ = lookahead_check(fn, df, n_cuts=8); ok_all &= ok
+        sig = fn(df); tr = simulate(df, sig, kw.get("manage"), kw.get("flat_at_session_end", False))
+        d15 = df.copy(); d15["cost"] = d15["cost"] * 1.5
+        tr15 = simulate(d15, sig, kw.get("manage"), kw.get("flat_at_session_end", False))
+        span = df.index[-1] - df.index[0]
+        cut = df.index[-1] - pd.Timedelta(days=holdout_days) if span >= pd.Timedelta(days=730) else df.index[0] + 0.6 * span
+        for x in tr: x["mkt"] = mkt; x["cut"] = cut
+        T += tr; T15 += tr15
+        ht = [x for x in tr if x["t"] >= cut]
+        if len(ht) >= 5:
+            mb = int(np.nanmedian([x["bars"] for x in ht])) + 1
+            p = random_benchmark(df[df.index >= cut], ht, max(mb, 1), kw.get("manage"), kw.get("flat_at_session_end", False), n_runs=n_random)
+            if p is not None: p_list.append((p, len(ht)))
+    if not T: return {"book": name, "label_v2": "FAILED", "failed_checks": ["no trades"]}
+    p95 = sum(p * n for p, n in p_list) / sum(n for _, n in p_list) if p_list else None
+    tt = pd.DataFrame(T); hold_mask = tt.t >= tt.cut
+    t2 = [dict(x, t=x["t"] if not hold_mask.iloc[k] else x["t"]) for k, x in enumerate(T)]
+    cut_global = tt.cut.min()
+    res = v2(name, [{"t": x["t"], "R": x["R"]} for x in T], cut_global if len(items) == 1 else tt.cut.min(), p95, ok_all, daily, [{"R": x["R"]} for x in T15])
+    # holdout per market (each market's own last year)
+    res["holdout_mean"] = round(float(tt[hold_mask].R.mean()), 3) if hold_mask.any() else None
+    res["holdout_n"] = int(hold_mask.sum()); res["random_p95"] = None if p95 is None else round(p95, 3); res["book"] = name
+    if res["holdout_mean"] is None or res["holdout_mean"] <= 0:
+        if "holdout mean > 0" not in res["failed_checks"]: res["failed_checks"].append("holdout mean > 0")
+        if res["label_v2"] != "FAILED": res["label_v2"] = "FAILED"
+    else:
+        res["failed_checks"] = [c for c in res["failed_checks"] if c != "holdout mean > 0"]
+        if res["label_v2"] == "FAILED" and ok_all and res["mean_all"] > 0 and res["wf_positive"] >= 0.5: res["label_v2"] = "WEAK"
+        if not res["failed_checks"]: res["label_v2"] = "TESTED"
+    if res["random_p95"] is not None and res["holdout_mean"] is not None and res["holdout_mean"] <= res["random_p95"] and "beats random 95th pct" not in res["failed_checks"]:
+        res["failed_checks"].append("beats random 95th pct"); res["label_v2"] = "WEAK" if res["label_v2"] == "TESTED" else res["label_v2"]
+    json.dump(res, open(f"{OUT}/v2_{name.replace(' ', '_').replace('/', '-')}.json", "w"), indent=1, default=str)
+    return res
+
+def line2(r):
+    return (f"{r['label_v2']:7s} {r['book']:44s} all n{r.get('n_all',0):5d} {r.get('mean_all',0):+.3f} ATR t {r.get('t_all',0):+.2f} (need {r.get('t_needed')}) | "
+            f"walk-forward {r.get('wf_positive',0):.0%} of {r.get('wf_windows',0)} | last year n{r.get('holdout_n',0)} {r.get('holdout_mean')} | random95 {r.get('random_p95')} | "
+            f"fails: {', '.join(r.get('failed_checks', [])) or '-'}")

@@ -1,0 +1,21 @@
+{
+ "book": "OVERNIGHT every night US 500",
+ "note": "",
+ "data": "2025-11-02..2026-11-08",
+ "holdout_from": "2026-06-13",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 149,
+ "dev_R": -0.134,
+ "hold_n": 102,
+ "hold_per_year": 252,
+ "hold_R": -0.339,
+ "t": -0.75,
+ "h1": -0.473,
+ "h2": -0.206,
+ "win": 0.54,
+ "maxdd_R": -50.5,
+ "random_p95": -0.119,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

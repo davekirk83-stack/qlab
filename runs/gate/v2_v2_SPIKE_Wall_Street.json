@@ -1,0 +1,16 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 19,
+ "mean_all": 0.858,
+ "t_all": 1.8,
+ "t_needed": 3.5,
+ "wf_positive": 0.67,
+ "wf_windows": 6,
+ "holdout_mean": 1.514,
+ "failed_checks": [
+  "full-sample t >= 3.50 (N=109)"
+ ],
+ "holdout_n": 10,
+ "random_p95": 0.894,
+ "book": "v2 SPIKE Wall Street"
+}

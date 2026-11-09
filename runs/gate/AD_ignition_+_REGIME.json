@@ -1,0 +1,21 @@
+{
+ "book": "AD ignition + REGIME",
+ "note": "",
+ "data": "2025-10-15..2026-11-08",
+ "holdout_from": "2026-06-05",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 312,
+ "dev_R": 0.174,
+ "hold_n": 197,
+ "hold_per_year": 464,
+ "hold_R": -0.024,
+ "t": -0.2,
+ "h1": -0.214,
+ "h2": 0.164,
+ "win": 0.52,
+ "maxdd_R": -33.4,
+ "random_p95": 0.093,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

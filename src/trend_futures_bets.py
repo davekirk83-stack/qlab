@@ -15,10 +15,11 @@ def prep(k, basis=0.025):
     d["carry_long"] = d.close * b; d["carry_short"] = -d.close * b; d["roll_every"] = 63
     return d
 items = [(k, prep(k), M.trend_signals, {"manage": M.trend_manage}) for k in SPREAD]
-r = G.judge_pool("TREND100 IG quarterly bets 18 markets", items); print(G.line(r), "| by market", r.get("by_market"), flush=True)
-t = pd.read_csv(f"{G.OUT}/TREND100_IG_quarterly_bets_18_markets_trades.csv", parse_dates=["t"]); t["y"] = t.t.dt.year
-g = t.groupby("y").agg(n=("R", "size"), sum=("R", "sum"), mean=("R", "mean"))
-print(g.round(2).to_string()); print("positive years", int((g["sum"] > 0).sum()), "of", len(g))
-for lab, s in (("2000-2025 (dev)", t[t.y <= 2025]), ("last 5 years 2022-26", t[t.y >= 2022]), ("all", t)):
-    print(f"{lab}: n{len(s)} mean {s.R.mean():+.3f} ATR/trade, t {s.R.mean()/s.R.std()*np.sqrt(len(s)):+.2f}, ex-2020 {s[s.y != 2020].R.mean():+.3f}")
-open(f"{G.OUT}/trend_futures_bets.txt", "w").write(G.line(r) + "\n" + g.round(2).to_string() + "\n")
+if __name__ == "__main__":
+    r = G.judge_pool("TREND100 IG quarterly bets 18 markets", items); print(G.line(r), "| by market", r.get("by_market"), flush=True)
+    t = pd.read_csv(f"{G.OUT}/TREND100_IG_quarterly_bets_18_markets_trades.csv", parse_dates=["t"]); t["y"] = t.t.dt.year
+    g = t.groupby("y").agg(n=("R", "size"), sum=("R", "sum"), mean=("R", "mean"))
+    print(g.round(2).to_string()); print("positive years", int((g["sum"] > 0).sum()), "of", len(g))
+    for lab, s in (("2000-2025 (dev)", t[t.y <= 2025]), ("last 5 years 2022-26", t[t.y >= 2022]), ("all", t)):
+        print(f"{lab}: n{len(s)} mean {s.R.mean():+.3f} ATR/trade, t {s.R.mean()/s.R.std()*np.sqrt(len(s)):+.2f}, ex-2020 {s[s.y != 2020].R.mean():+.3f}")
+    open(f"{G.OUT}/trend_futures_bets.txt", "w").write(G.line(r) + "\n" + g.round(2).to_string() + "\n")

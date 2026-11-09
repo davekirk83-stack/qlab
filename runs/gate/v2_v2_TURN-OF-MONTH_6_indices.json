@@ -1,0 +1,18 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 1868,
+ "mean_all": 0.072,
+ "t_all": 1.92,
+ "t_needed": 3.5,
+ "wf_positive": 0.48,
+ "wf_windows": 27,
+ "holdout_mean": 0.584,
+ "failed_checks": [
+  "full-sample t >= 3.50 (N=111)",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 68,
+ "random_p95": 0.796,
+ "book": "v2 TURN-OF-MONTH 6 indices"
+}

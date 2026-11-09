@@ -1,0 +1,5 @@
+WEAK    v2 IGNITION v1.1 US hours                    all n   87 +0.327 ATR t +2.32 (need 3.49) | walk-forward 83% of 6 | last year n39 0.297 | random95 0.267 | fails: full-sample t >= 3.49 (N=108)
+WEAK    v2 SPIKE Wall Street                         all n   19 +0.858 ATR t +1.80 (need 3.5) | walk-forward 67% of 6 | last year n10 1.514 | random95 0.894 | fails: full-sample t >= 3.50 (N=109)
+WEAK    v2 NOISEBAND US Tech 100                     all n  229 +0.159 ATR t +1.20 (need 3.5) | walk-forward 67% of 6 | last year n98 0.297 | random95 0.447 | fails: full-sample t >= 3.50 (N=110), beats random 95th pct
+FAILED  v2 TURN-OF-MONTH 6 indices                   all n 1868 +0.072 ATR t +1.92 (need 3.5) | walk-forward 48% of 27 | last year n68 0.584 | random95 0.796 | fails: full-sample t >= 3.50 (N=111), walk-forward >= 60% windows positive, beats random 95th pct
+FAILED  v2 TREND100 IG quarterly bets 18 markets     all n 1021 +0.493 ATR t +1.98 (need 3.5) | walk-forward 59% of 27 | last year n40 -1.941 | random95 1.94 | fails: full-sample t >= 3.50 (N=112), holdout mean > 0, walk-forward >= 60% windows positive, beats random 95th pct

@@ -1,0 +1,26 @@
+{
+ "book": "OVERNIGHT every night pooled",
+ "note": "",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "markets": 3,
+ "holdout_from": "per market",
+ "dev_n": 375,
+ "dev_R": 0.091,
+ "hold_n": 255,
+ "hold_per_year": 255,
+ "hold_R": -0.01,
+ "t": -0.03,
+ "h1": -0.307,
+ "h2": 0.285,
+ "win": 0.53,
+ "maxdd_R": -91.8,
+ "random_p95": 0.172,
+ "by_market": {
+  "US 500": -0.339,
+  "US Tech 100": -0.265,
+  "Wall Street": 1.056
+ },
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

@@ -1,0 +1,26 @@
+{
+ "book": "OVERNIGHT after weak close pooled",
+ "note": "",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "markets": 3,
+ "holdout_from": "per market",
+ "dev_n": 77,
+ "dev_R": 0.464,
+ "hold_n": 88,
+ "hold_per_year": 88,
+ "hold_R": -0.327,
+ "t": -0.59,
+ "h1": -0.807,
+ "h2": 0.154,
+ "win": 0.55,
+ "maxdd_R": -75.8,
+ "random_p95": 0.975,
+ "by_market": {
+  "US 500": -1.166,
+  "US Tech 100": 0.32,
+  "Wall Street": -0.07
+ },
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
