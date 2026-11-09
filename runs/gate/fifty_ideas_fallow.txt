@@ -1,0 +1,24 @@
+1 Connors R3: RSI(3) falls 3 days, <10, above 200MA              | month: +94.4->+71.3 kept 253/339 | weekday: +94.4->+60.4 kept 253/339 | vix: +94.4->+66.1 kept 251/339
+      => run every signal (no switch helps out of sample)
+2 Cumulative RSI(2) 2-day sum < 35, above 200MA                  | month: +177.4->+124.9 kept 842/1143 | weekday: +177.4->+112.5 kept 1000/1143 | vix: +177.4->+150.5 kept 935/1143
+      => run every signal (no switch helps out of sample)
+4 Double 5s: 5-day low close above 200MA, exit 5-day high        | month: +143.8->+102.8 kept 1413/2213 | weekday: +143.8->+103.7 kept 1752/2213 | vix: +143.8->+87.3 kept 1362/2213
+      => run every signal (no switch helps out of sample)
+5 Close below lower Bollinger(20,2), above 200MA, exit at 20MA   | month: +123.3->+73.0 kept 271/434 | weekday: +123.3->+81.4 kept 239/434 | vix: +123.3->+41.3 kept 334/434
+      => run every signal (no switch helps out of sample)
+7 Williams %R(2) < -90 above 200MA, exit close > prior high      | month: +215.4->+199.5 kept 1305/1776 | weekday: +215.4->+178.1 kept 1435/1776 | vix: +215.4->+215.4 kept 1776/1776
+      => run every signal (no switch helps out of sample)
+12 Weekly RSI(2) < 10 above 40-week MA, hold 5 days              | month: +65.3->+36.7 kept 172/189 | weekday: +65.3->+65.3 kept 189/189 | vix: +65.3->+65.3 kept 189/189
+      => run every signal (no switch helps out of sample)
+14 Turnaround Tuesday: Monday down > 1% -> buy Monday close, sel | month: +146.2->+129.8 kept 815/922 | weekday: +146.2->+146.2 kept 922/922 | vix: +146.2->+133.0 kept 867/922
+      => run every signal (no switch helps out of sample)
+21 Absolute momentum: long index only while 12m return > 0 (mont | month: +206.3->+146.4 kept 369/669 | weekday: +206.3->+209.1 kept 513/669 ADOPT Wed | vix: +206.3->+98.1 kept 616/669
+      => weekday off: Wed (+206.3 -> +209.1)
+37 Santa rally: last 5 trading days of Dec + first 2 of Jan      | month: +72.2->+72.2 kept 122/122 | weekday: +72.2->+72.2 kept 122/122 | vix: +72.2->+61.7 kept 103/122
+      => run every signal (no switch helps out of sample)
+39 Turn of the quarter: last day of quarter -> 3rd day           | month: +111.6->+89.4 kept 397/481 | weekday: +111.6->+82.8 kept 455/481 | vix: +111.6->+83.7 kept 462/481
+      => run every signal (no switch helps out of sample)
+40 Gold seasonal: long gold in Jan, Aug, Sep only                | month: +64.6->+38.0 kept 92/100 | weekday: +64.6->+68.0 kept 96/100 ADOPT Thu | vix: +64.6->+2.2 kept 86/100
+      => weekday off: Thu (+64.6 -> +68.0)
+47 US strong close (top 10% of range, +1%) -> DAX/FTSE next open | month: +63.1->+63.6 kept 660/752 ADOPT Aug,Mar | weekday: +63.1->+63.1 kept 752/752 | vix: +63.1->+59.4 kept 683/752
+      => month off: Aug, Mar (+63.1 -> +63.6)

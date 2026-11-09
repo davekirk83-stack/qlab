@@ -79,3 +79,11 @@ Random-entry permutation test (200 runs, same markets/counts/exits), costs x1.5,
 | FAIL | Williams %R(2), Double 5s, absolute momentum (< 60% of years) | | | | | |
 | FAIL | Weekly RSI(2) (last year -0.48) | | | | | |
 | FAIL | Gold Jan/Aug/Sep (does not beat random gold longs: gold rose) | | | | | |
+
+## Fallow periods for the 12 candidates (`src/fifty_ideas_fallow.py`, `runs/gate/fifty_ideas_fallow.txt`), DK 23:21
+Same per-condition walk-forward test as doc 201 (month / weekday / VIX band, chosen only from earlier years, adopted only if it raises the
+out-of-sample total and keeps >= 50% of trades). Result: **no meaningful switch** for any of them. Skipping each idea's historically bad
+months, weekdays or VIX levels cut the out-of-sample total in almost every case (e.g. turn of the quarter +112 -> +83 to +89; Bollinger dip
++123 -> +41 to +81; cumulative RSI(2) +177 -> +113 to +151). The three that technically 'adopt' gain under 1.5% (absolute momentum skip
+Wednesdays +206 -> +209; gold seasonal skip Thursdays +65 -> +68; US close -> Europe skip Mar/Aug +63.1 -> +63.6) — too small to trust; not used.
+These are short-hold dip-buys and calendar effects: their bad patches don't repeat, so they run every signal.
