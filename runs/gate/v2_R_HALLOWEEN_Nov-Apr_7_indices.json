@@ -1,0 +1,16 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 668,
+ "mean_all": 0.482,
+ "t_all": 3.56,
+ "t_needed": 3.54,
+ "wf_positive": 0.7,
+ "wf_windows": 27,
+ "holdout_mean": 0.743,
+ "failed_checks": [
+  "beats random 95th pct"
+ ],
+ "holdout_n": 19,
+ "random_p95": null,
+ "book": "R HALLOWEEN Nov-Apr 7 indices"
+}

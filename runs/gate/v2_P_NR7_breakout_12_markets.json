@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 7511,
+ "mean_all": -0.055,
+ "t_all": -9.11,
+ "t_needed": 3.53,
+ "wf_positive": 0.3,
+ "wf_windows": 27,
+ "holdout_mean": -0.128,
+ "failed_checks": [
+  "full-sample t >= 3.53 (N=125)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 272,
+ "random_p95": 0.153,
+ "book": "P NR7 breakout 12 markets"
+}

@@ -8,7 +8,7 @@
  "wf_windows": 26,
  "holdout_mean": 0.274,
  "failed_checks": [
-  "full-sample t >= 3.53 (N=123)",
+  "full-sample t >= 3.53 (N=124)",
   "beats random 95th pct"
  ],
  "holdout_n": 106,

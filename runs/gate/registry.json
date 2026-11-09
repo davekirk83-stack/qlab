@@ -122,5 +122,10 @@
 "L GAP FADE 3 US indices",
 "M TIME-SERIES MOMENTUM 12m 18 markets",
 "N DOUBLE 7s 8 markets",
-"O IBS low close 8 markets"
+"O IBS low close 8 markets",
+"P NR7 breakout 12 markets",
+"Q PRE-HOLIDAY 4 US indices",
+"R HALLOWEEN Nov-Apr 7 indices",
+"R2 every month (comparison) 7 indices",
+"S FX month-end rebalancing 3 pairs"
 ]

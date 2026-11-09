@@ -1,0 +1,18 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 1305,
+ "mean_all": 0.147,
+ "t_all": 1.51,
+ "t_needed": 3.54,
+ "wf_positive": 0.52,
+ "wf_windows": 27,
+ "holdout_mean": 0.55,
+ "failed_checks": [
+  "full-sample t >= 3.54 (N=128)",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 43,
+ "random_p95": 2.26,
+ "book": "R2 every month (comparison) 7 indices"
+}

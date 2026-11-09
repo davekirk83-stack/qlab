@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 727,
+ "mean_all": 0.001,
+ "t_all": 0.02,
+ "t_needed": 3.54,
+ "wf_positive": 0.48,
+ "wf_windows": 23,
+ "holdout_mean": -0.209,
+ "failed_checks": [
+  "full-sample t >= 3.54 (N=129)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 33,
+ "random_p95": 0.502,
+ "book": "S FX month-end rebalancing 3 pairs"
+}
