@@ -1,0 +1,21 @@
+{
+ "book": "LASTHALFHOUR US Tech 100",
+ "note": "",
+ "data": "2025-10-15..2026-11-06",
+ "holdout_from": "2026-06-04",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 147,
+ "dev_R": -0.127,
+ "hold_n": 102,
+ "hold_per_year": 242,
+ "hold_R": -0.01,
+ "t": -0.05,
+ "h1": 0.235,
+ "h2": -0.256,
+ "win": 0.48,
+ "maxdd_R": -30.2,
+ "random_p95": 0.466,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

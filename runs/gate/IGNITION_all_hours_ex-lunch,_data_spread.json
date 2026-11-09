@@ -1,0 +1,21 @@
+{
+ "book": "IGNITION all hours ex-lunch, data spread",
+ "note": "",
+ "data": "2025-10-15..2026-11-08",
+ "holdout_from": "2026-06-05",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 434,
+ "dev_R": 0.229,
+ "hold_n": 285,
+ "hold_per_year": 672,
+ "hold_R": 0.055,
+ "t": 0.52,
+ "h1": -0.113,
+ "h2": 0.221,
+ "win": 0.56,
+ "maxdd_R": -29.8,
+ "random_p95": 0.111,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

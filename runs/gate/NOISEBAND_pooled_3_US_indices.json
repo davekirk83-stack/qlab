@@ -1,0 +1,26 @@
+{
+ "book": "NOISEBAND pooled 3 US indices",
+ "note": "",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "markets": 3,
+ "holdout_from": "per market",
+ "dev_n": 379,
+ "dev_R": -0.067,
+ "hold_n": 336,
+ "hold_per_year": 336,
+ "hold_R": 0.008,
+ "t": 0.07,
+ "h1": -0.131,
+ "h2": 0.147,
+ "win": 0.23,
+ "maxdd_R": -41.4,
+ "random_p95": 0.117,
+ "by_market": {
+  "US 500": -0.144,
+  "US Tech 100": 0.297,
+  "Wall Street": -0.042
+ },
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

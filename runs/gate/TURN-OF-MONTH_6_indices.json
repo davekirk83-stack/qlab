@@ -1,0 +1,29 @@
+{
+ "book": "TURN-OF-MONTH 6 indices",
+ "note": "",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "markets": 6,
+ "holdout_from": "per market",
+ "dev_n": 1800,
+ "dev_R": 0.053,
+ "hold_n": 68,
+ "hold_per_year": 68,
+ "hold_R": 0.584,
+ "t": 2.98,
+ "h1": 0.595,
+ "h2": 0.573,
+ "win": 0.6,
+ "maxdd_R": -14.0,
+ "random_p95": 0.376,
+ "by_market": {
+  "DAX": 0.415,
+  "DJI": 0.974,
+  "FTSE": 0.432,
+  "NDX": 0.412,
+  "RUT": 0.586,
+  "SPX": 0.715
+ },
+ "label": "TESTED",
+ "reason": "all conditions met"
+}

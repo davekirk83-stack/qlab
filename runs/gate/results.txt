@@ -1,39 +1,39 @@
 THE GATE — doc 196
-FAILED  SPIKE US Tech 100                  holdout 2026-06-04+: n  18 (43/yr) -0.079R t -0.29 halves -0.120/-0.038 win 33% maxDD -6.4R random95 0.594 | dev n17 0.292 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  SPIKE US 500                       holdout 2026-06-12+: n   8 (20/yr) +0.079R t +0.16 halves -0.511/+0.668 win 50% maxDD -2.1R random95 None | dev n19 0.438 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-WEAK    SPIKE Wall Street                  holdout 2026-08-16+: n  10 (45/yr) +0.457R t +1.44 halves +0.403/+0.511 win 70% maxDD -1.0R random95 0.507 | dev n9 0.567 | look-ahead ok | n<50, t<2, not above random 95th pct
-FAILED  ORB Gold London                    holdout 2026-08-06+: n  46 (224/yr) -0.033R t -0.17 halves +0.137/-0.203 win 35% maxDD -8.0R random95 0.351 | dev n74 0.136 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  IGNITION v1.1 US Tech 100          holdout 2026-06-05+: n  39 (92/yr) +0.138R t +1.29 halves +0.299/-0.015 win 62% maxDD -2.2R random95 0.278 | dev n48 0.239 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  BOOK15 sweep BTCUSD                holdout 2025-10-30+: n  88 (88/yr) -0.093R t -0.51 halves +0.016/-0.202 win 28% maxDD -20.2R random95 0.184 | dev n313 -0.073 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  BOOK16 OBV div BTCUSD              holdout 2025-10-30+: n   9 (9/yr) +0.053R t +0.77 halves +0.166/-0.038 win 44% maxDD -0.5R random95 None | dev n23 0.036 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-WEAK    BOOK15 sweep ETHUSD                holdout 2025-10-30+: n  78 (78/yr) +0.096R t +0.50 halves +0.153/+0.040 win 35% maxDD -6.9R random95 0.207 | dev n334 -0.145 | look-ahead ok | t<2, not above random 95th pct
-FAILED  BOOK16 OBV div ETHUSD              holdout 2025-10-30+: n   3 (3/yr) +0.111R t +0.18 halves +nan/+nan win 67% maxDD 0.0R random95 None | dev n28 0.301 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  BOOK15 sweep SOLUSD                holdout 2025-10-30+: n  89 (89/yr) -0.168R t -1.04 halves -0.158/-0.179 win 29% maxDD -28.3R random95 0.227 | dev n317 -0.021 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  BOOK16 OBV div SOLUSD              holdout 2025-10-30+: n   5 (5/yr) -0.305R t -1.66 halves -0.217/-0.363 win 40% maxDD -1.6R random95 None | dev n21 0.137 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 AAVEUSD                 holdout 2025-10-26+: n   1 (1/yr) +0.155R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n15 0.079 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 ADAUSD                  holdout 2025-10-30+: n   2 (2/yr) +0.154R t +89.27 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n8 0.156 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 AEROUSD                 holdout n0 dev n3 -0.23 | no holdout trades
-FAILED  KELTNER v1 ARBUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.157R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n9 -0.012 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 AVAXUSD                 holdout 2025-10-30+: n   2 (2/yr) -0.429R t -0.73 halves +nan/+nan win 50% maxDD 0.0R random95 None | dev n8 -0.236 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 BTCUSD                  holdout 2025-10-30+: n   1 (1/yr) -1.026R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n5 -0.156 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 DOGEUSD                 holdout 2025-10-30+: n   1 (1/yr) -1.015R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n10 0.104 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 DOTUSD                  holdout 2025-10-30+: n   3 (3/yr) -0.003R t -0.02 halves +nan/+nan win 67% maxDD -0.3R random95 None | dev n9 0.11 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 ETHUSD                  holdout 2025-10-30+: n   1 (1/yr) -1.016R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n6 0.152 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 FETUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.152R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n9 -0.147 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 FILUSD                  holdout n0 dev n9 -0.132 | no holdout trades
-FAILED  KELTNER v1 HBARUSD                 holdout n0 dev n7 -0.011 | no holdout trades
-FAILED  KELTNER v1 ICPUSD                  holdout n0 dev n14 -0.043 | no holdout trades
-FAILED  KELTNER v1 INJUSD                  holdout n0 dev n7 -0.001 | no holdout trades
-FAILED  KELTNER v1 LINKUSD                 holdout 2025-10-30+: n   1 (1/yr) +0.154R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n8 0.008 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 LTCUSD                  holdout 2025-10-30+: n   1 (1/yr) +0.149R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n7 -0.012 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 NEARUSD                 holdout n0 dev n8 -0.363 | no holdout trades
-FAILED  KELTNER v1 ONDOUSD                 holdout n0 dev n1 0.159 | no holdout trades
-FAILED  KELTNER v1 QNTUSD                  holdout n0 dev n9 0.156 | no holdout trades
-FAILED  KELTNER v1 SOLUSD                  holdout 2025-10-30+: n   1 (1/yr) -1.014R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n7 -0.175 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 STRKUSD                 holdout n0 dev n3 -0.028 | no holdout trades
-FAILED  KELTNER v1 SUIUSD                  holdout 2025-10-26+: n   2 (2/yr) +0.157R t +96.90 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n4 0.16 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 UNIUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.156R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n10 -0.077 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 XLMUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.149R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n10 -0.081 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 XRPUSD                  holdout 2025-10-30+: n   1 (1/yr) +0.150R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n2 0.158 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
-FAILED  KELTNER v1 ZECUSD                  holdout n0 dev n13 -0.024 | no holdout trades
-FAILED  KELTNER v1 ZROUSD                  holdout n0 dev n1 0.162 | no holdout trades
+FAILED  SPIKE US Tech 100                  holdout 2026-06-04+: n  18 (43/yr) -0.077R t -0.18 halves -0.045/-0.109 win 33% maxDD -8.6R random95 0.558 | dev n17 0.222 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  SPIKE US 500                       holdout 2026-06-12+: n   8 (20/yr) +0.739R t +0.78 halves -0.473/+1.951 win 50% maxDD -1.6R random95 None | dev n19 0.152 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+WEAK    SPIKE Wall Street                  holdout 2026-08-16+: n  10 (45/yr) +1.514R t +2.19 halves +1.603/+1.425 win 70% maxDD -1.1R random95 0.71 | dev n9 0.129 | look-ahead ok | n<50
+FAILED  ORB Gold London                    holdout 2026-08-06+: n  46 (224/yr) -0.004R t -0.02 halves +0.148/-0.155 win 35% maxDD -8.6R random95 0.404 | dev n74 0.146 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+WEAK    IGNITION v1.1 US Tech 100          holdout 2026-06-05+: n  39 (92/yr) +0.297R t +1.58 halves +0.515/+0.090 win 62% maxDD -3.0R random95 0.47 | dev n48 0.351 | look-ahead ok | n<50, t<2, not above random 95th pct
+FAILED  BOOK15 sweep BTCUSD                holdout 2025-10-30+: n  88 (88/yr) -0.412R t -1.48 halves -0.326/-0.497 win 28% maxDD -49.1R random95 0.296 | dev n313 -0.089 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  BOOK16 OBV div BTCUSD              holdout 2025-10-30+: n   9 (9/yr) +0.882R t +0.73 halves +2.902/-0.734 win 44% maxDD -6.6R random95 None | dev n23 0.463 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  BOOK15 sweep ETHUSD                holdout 2025-10-30+: n  78 (78/yr) +0.083R t +0.25 halves +0.365/-0.199 win 35% maxDD -15.1R random95 0.421 | dev n334 -0.231 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  BOOK16 OBV div ETHUSD              holdout 2025-10-30+: n   3 (3/yr) +0.435R t +0.07 halves +nan/+nan win 67% maxDD 0.0R random95 None | dev n28 2.22 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  BOOK15 sweep SOLUSD                holdout 2025-10-30+: n  89 (89/yr) -0.392R t -1.58 halves -0.247/-0.534 win 29% maxDD -52.5R random95 0.392 | dev n317 -0.015 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  BOOK16 OBV div SOLUSD              holdout 2025-10-30+: n   5 (5/yr) -3.128R t -1.44 halves -1.565/-4.169 win 40% maxDD -17.0R random95 None | dev n21 0.658 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 AAVEUSD                 holdout 2025-10-26+: n   1 (1/yr) +0.512R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n15 0.282 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 ADAUSD                  holdout 2025-10-30+: n   2 (2/yr) +0.483R t +15.70 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n8 0.51 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 AEROUSD                 holdout n0 dev n3 -0.728 | no holdout trades
+FAILED  KELTNER v1 ARBUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.506R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n9 -0.024 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 AVAXUSD                 holdout 2025-10-30+: n   2 (2/yr) -1.478R t -0.77 halves +nan/+nan win 50% maxDD 0.0R random95 None | dev n8 -0.773 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 BTCUSD                  holdout 2025-10-30+: n   1 (1/yr) -3.289R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n5 -0.548 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 DOGEUSD                 holdout 2025-10-30+: n   1 (1/yr) -3.468R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n10 0.361 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 DOTUSD                  holdout 2025-10-30+: n   3 (3/yr) +0.004R t +0.01 halves +nan/+nan win 67% maxDD -1.0R random95 None | dev n9 0.389 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 ETHUSD                  holdout 2025-10-30+: n   1 (1/yr) -3.421R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n6 0.546 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 FETUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.530R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n9 -0.472 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 FILUSD                  holdout n0 dev n9 -0.48 | no holdout trades
+FAILED  KELTNER v1 HBARUSD                 holdout n0 dev n7 -0.031 | no holdout trades
+FAILED  KELTNER v1 ICPUSD                  holdout n0 dev n14 -0.09 | no holdout trades
+FAILED  KELTNER v1 INJUSD                  holdout n0 dev n7 -0.039 | no holdout trades
+FAILED  KELTNER v1 LINKUSD                 holdout 2025-10-30+: n   1 (1/yr) +0.497R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n8 -0.019 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 LTCUSD                  holdout 2025-10-30+: n   1 (1/yr) +0.519R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n7 0.013 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 NEARUSD                 holdout n0 dev n8 -1.153 | no holdout trades
+FAILED  KELTNER v1 ONDOUSD                 holdout n0 dev n1 0.663 | no holdout trades
+FAILED  KELTNER v1 QNTUSD                  holdout n0 dev n9 0.509 | no holdout trades
+FAILED  KELTNER v1 SOLUSD                  holdout 2025-10-30+: n   1 (1/yr) -3.494R t +0.00 halves +nan/+nan win 0% maxDD 0.0R random95 None | dev n7 -0.599 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 STRKUSD                 holdout n0 dev n3 -0.091 | no holdout trades
+FAILED  KELTNER v1 SUIUSD                  holdout 2025-10-26+: n   2 (2/yr) +0.465R t +16.05 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n4 0.55 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 UNIUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.488R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n10 -0.202 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 XLMUSD                  holdout 2025-10-26+: n   1 (1/yr) +0.439R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n10 -0.336 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 XRPUSD                  holdout 2025-10-30+: n   1 (1/yr) +0.491R t +0.00 halves +nan/+nan win 100% maxDD 0.0R random95 None | dev n2 0.669 | look-ahead ok | holdout mean R <= 0 or a holdout half <= 0
+FAILED  KELTNER v1 ZECUSD                  holdout n0 dev n13 -0.059 | no holdout trades
+FAILED  KELTNER v1 ZROUSD                  holdout n0 dev n1 0.481 | no holdout trades

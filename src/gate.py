@@ -10,6 +10,8 @@ HONESTY, ENFORCED BY THE GATE (not by the strategy author):
   3. IN A TRADE: every bar, the stop is checked BEFORE the target; a gap through the stop fills at the open. Trailing/breakeven changes from
      manage() apply from the NEXT bar. Exit at the close after `max_bars`, or at the session end if `flat_at_session_end`.
   4. ONE POSITION PER MARKET at a time; signals while in a trade are ignored. Costs: `cost` column (price units, round trip) charged per trade.
+UNIT (fixed 9 Nov, before any book was re-judged): results are in ATR units — the trade's points divided by the ATR at the signal —
+  not in multiples of the initial stop, because a very tight stop (noise-band entries) inflates 'R' without making money.
 JUDGEMENT, FIXED: holdout = last 365 days (or the last 40% if the data is under 2 years) — the development period never touches it.
   TESTED  = holdout n >= 50, mean R > 0 with t >= 2.0, both holdout halves > 0, beats the 95th percentile of 200 random-entry runs
             (same sessions, same side mix, same stop/target distances in ATR, same exits), and the look-ahead check passes.
@@ -88,8 +90,10 @@ def simulate(df, sig, manage=None, flat_at_session_end=False):
             if manage: manage(df, k, st)
             k += 1
         if px is None: break
+        if "carry" in df: c = c + float(np.nansum(df["carry"].values[j0:k + 1]))   # overnight funding etc., price units per bar held
         pnl = s * (px - e) - c
-        trades.append({"t": df.index[j0], "side": s, "e": e, "x": px, "R": pnl / risk, "pts": pnl, "how": how, "bars": k - j0,
+        a_i = df["atr"].values[i] if "atr" in df and np.isfinite(df["atr"].values[i]) and df["atr"].values[i] > 0 else risk
+        trades.append({"t": df.index[j0], "side": s, "e": e, "x": px, "R": pnl / a_i, "R_risk": pnl / risk, "pts": pnl, "how": how, "bars": k - j0,
                        "stop_atr": risk / df["atr"].values[i] if "atr" in df and df["atr"].values[i] > 0 else np.nan,
                        "tgt_atr": (abs(tgt - e) / df["atr"].values[i]) if "atr" in df and np.isfinite(tgt) and df["atr"].values[i] > 0 else np.nan,
                        "i": i})
@@ -155,3 +159,49 @@ def line(r):
     return (f"{r['label']:7s} {r['book']:34s} holdout {r['holdout_from']}+: n{r['hold_n']:4d} ({r['hold_per_year']}/yr) {r['hold_R']:+.3f}R t {r['t']:+.2f} "
             f"halves {r['h1']:+.3f}/{r['h2']:+.3f} win {r['win']:.0%} maxDD {r['maxdd_R']}R random95 {r['random_p95']} | dev n{r['dev_n']} {r['dev_R']} "
             f"| look-ahead {'ok' if r['lookahead_ok'] else 'FOUND'} | {r['reason']}")
+
+
+def judge_pool(name, items, holdout_days=365, note="", n_random=100):
+    """items: list of (market, df, signals_fn, kwargs). Same rules as judge(), applied to the pooled trades of one book across markets."""
+    allt, ok_all, where_all, rand = [], True, "", []
+    per = []
+    for mkt, df, fn, kw in items:
+        ok, where = lookahead_check(fn, df, n_cuts=8)
+        if not ok: ok_all, where_all = False, f"{mkt} {where}"
+        tr = simulate(df, fn(df), kw.get("manage"), kw.get("flat_at_session_end", False))
+        span = df.index[-1] - df.index[0]
+        cut = df.index[-1] - pd.Timedelta(days=holdout_days) if span >= pd.Timedelta(days=730) else df.index[0] + 0.6 * span
+        for x in tr: x["mkt"] = mkt; x["hold"] = x["t"] >= cut
+        allt += tr; per.append((mkt, df, cut, kw, [x for x in tr if x["hold"]]))
+    t = pd.DataFrame(allt)
+    res = {"book": name, "note": note, "lookahead_ok": ok_all, "lookahead_at": where_all, "markets": len(items)}
+    if not len(t) or not t.hold.any(): res.update(label="FAILED", reason="no holdout trades", hold_n=0, dev_n=len(t)); return res
+    t = t.sort_values("t"); hold, dev = t[t.hold], t[~t.hold]
+    hm = hold.R.mean(); hs = hold.R.std(ddof=1); tstat = hm / hs * np.sqrt(len(hold)) if len(hold) > 1 and hs > 0 else 0.0
+    h1, h2 = hold.iloc[: len(hold) // 2].R.mean(), hold.iloc[len(hold) // 2:].R.mean()
+    # pooled random benchmark
+    rng = np.random.default_rng(11); means = []
+    for r in range(n_random):
+        rr = []
+        for mkt, df, cut, kw, ht in per:
+            if not ht: continue
+            mb = int(np.nanmedian([x["bars"] for x in ht])) + 1
+            p = random_benchmark(df[df.index >= cut], ht, max(mb, 1), kw.get("manage"), kw.get("flat_at_session_end", False), n_runs=1, seed=int(rng.integers(1e9)))
+            if p is not None: rr.append((p, len(ht)))
+        if rr: means.append(sum(p * n for p, n in rr) / sum(n for _, n in rr))
+    p95 = float(np.percentile(means, 95)) if means else None
+    eq = hold.R.cumsum(); mdd = float((eq - eq.cummax()).min())
+    yrs = max(holdout_days / 365.25, 0.05)
+    res.update(holdout_from="per market", dev_n=int(len(dev)), dev_R=round(float(dev.R.mean()), 3) if len(dev) else None, hold_n=int(len(hold)),
+               hold_per_year=round(len(hold) / yrs), hold_R=round(float(hm), 3), t=round(float(tstat), 2), h1=round(float(h1), 3), h2=round(float(h2), 3),
+               win=round(float((hold.R > 0).mean()), 2), maxdd_R=round(mdd, 1), random_p95=None if p95 is None else round(p95, 3),
+               by_market={m: round(float(g.R.mean()), 3) for m, g in hold.groupby("mkt")})
+    beats = p95 is not None and hm > p95
+    if not ok_all: res.update(label="FAILED", reason=f"look-ahead found ({where_all})")
+    elif len(hold) >= 50 and hm > 0 and tstat >= 2.0 and h1 > 0 and h2 > 0 and beats: res.update(label="TESTED", reason="all conditions met")
+    elif hm > 0 and h1 > 0 and h2 > 0:
+        res.update(label="WEAK", reason=", ".join(w for w, c in (("n<50", len(hold) < 50), ("t<2", tstat < 2.0), ("not above random 95th pct", not beats)) if c))
+    else: res.update(label="FAILED", reason="holdout mean R <= 0 or a holdout half <= 0")
+    json.dump(res, open(f"{OUT}/{name.replace(' ', '_').replace('/', '-')}.json", "w"), indent=1, default=str)
+    t.to_csv(f"{OUT}/{name.replace(' ', '_').replace('/', '-')}_trades.csv", index=False)
+    return res

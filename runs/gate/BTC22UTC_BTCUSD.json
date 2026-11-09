@@ -1,0 +1,21 @@
+{
+ "book": "BTC22UTC BTCUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 1473,
+ "dev_R": -0.14,
+ "hold_n": 365,
+ "hold_per_year": 365,
+ "hold_R": -0.244,
+ "t": -4.04,
+ "h1": -0.224,
+ "h2": -0.264,
+ "win": 0.36,
+ "maxdd_R": -94.4,
+ "random_p95": -0.122,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

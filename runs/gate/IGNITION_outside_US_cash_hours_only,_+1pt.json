@@ -1,0 +1,21 @@
+{
+ "book": "IGNITION outside US cash hours only, +1pt",
+ "note": "",
+ "data": "2025-10-15..2026-11-08",
+ "holdout_from": "2026-06-05",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 386,
+ "dev_R": 0.131,
+ "hold_n": 246,
+ "hold_per_year": 580,
+ "hold_R": -0.042,
+ "t": -0.36,
+ "h1": -0.203,
+ "h2": 0.119,
+ "win": 0.54,
+ "maxdd_R": -43.8,
+ "random_p95": 0.043,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

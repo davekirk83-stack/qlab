@@ -1,0 +1,21 @@
+{
+ "book": "NOISEBAND US 500",
+ "note": "",
+ "data": "2025-11-03..2026-11-06",
+ "holdout_from": "2026-06-12",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 175,
+ "dev_R": -0.065,
+ "hold_n": 162,
+ "hold_per_year": 403,
+ "hold_R": -0.144,
+ "t": -1.03,
+ "h1": -0.189,
+ "h2": -0.099,
+ "win": 0.21,
+ "maxdd_R": -35.3,
+ "random_p95": 0.351,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

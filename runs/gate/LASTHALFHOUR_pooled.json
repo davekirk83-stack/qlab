@@ -1,0 +1,26 @@
+{
+ "book": "LASTHALFHOUR pooled",
+ "note": "",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "markets": 3,
+ "holdout_from": "per market",
+ "dev_n": 376,
+ "dev_R": -0.229,
+ "hold_n": 262,
+ "hold_per_year": 262,
+ "hold_R": -0.158,
+ "t": -1.3,
+ "h1": 0.048,
+ "h2": -0.364,
+ "win": 0.46,
+ "maxdd_R": -70.0,
+ "random_p95": 0.238,
+ "by_market": {
+  "US 500": -0.361,
+  "US Tech 100": -0.01,
+  "Wall Street": -0.056
+ },
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

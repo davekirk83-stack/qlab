@@ -1,0 +1,1 @@
+TESTED  TURN-OF-MONTH 6 indices            holdout per market+: n  68 (68/yr) +0.584R t +2.98 halves +0.595/+0.573 win 60% maxDD -14.0R random95 0.376 | dev n1800 0.053 | look-ahead ok | all conditions met | by market {'DAX': 0.415, 'DJI': 0.974, 'FTSE': 0.432, 'NDX': 0.412, 'RUT': 0.586, 'SPX': 0.715}

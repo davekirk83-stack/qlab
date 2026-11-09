@@ -1,0 +1,21 @@
+{
+ "book": "LASTHALFHOUR US 500",
+ "note": "",
+ "data": "2025-11-03..2026-11-06",
+ "holdout_from": "2026-06-12",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 148,
+ "dev_R": -0.254,
+ "hold_n": 103,
+ "hold_per_year": 256,
+ "hold_R": -0.361,
+ "t": -1.79,
+ "h1": -0.049,
+ "h2": -0.667,
+ "win": 0.4,
+ "maxdd_R": -48.6,
+ "random_p95": 0.326,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

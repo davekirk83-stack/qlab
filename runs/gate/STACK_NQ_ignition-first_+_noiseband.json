@@ -1,0 +1,21 @@
+{
+ "book": "STACK NQ ignition-first + noiseband",
+ "note": "",
+ "data": "2025-10-15..2026-11-06",
+ "holdout_from": "2026-06-04",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 12,
+ "dev_R": -0.664,
+ "hold_n": 28,
+ "hold_per_year": 66,
+ "hold_R": 0.215,
+ "t": 0.65,
+ "h1": 0.181,
+ "h2": 0.249,
+ "win": 0.36,
+ "maxdd_R": -5.1,
+ "random_p95": 0.929,
+ "label": "WEAK",
+ "reason": "n<50, t<2, not above random 95th pct"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "BTC22UTC ETHUSD",
+ "note": "",
+ "data": "2021-10-17..2026-10-30",
+ "holdout_from": "2025-10-30",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 1473,
+ "dev_R": -0.094,
+ "hold_n": 365,
+ "hold_per_year": 365,
+ "hold_R": -0.216,
+ "t": -3.44,
+ "h1": -0.163,
+ "h2": -0.269,
+ "win": 0.38,
+ "maxdd_R": -83.6,
+ "random_p95": -0.049,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

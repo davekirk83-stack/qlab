@@ -1,0 +1,6 @@
+WEAK    STACK NQ ignition-latest + noiseband holdout 2026-06-04+: n  28 (66/yr) +0.215R t +0.65 halves +0.181/+0.249 win 36% maxDD -5.1R random95 0.929 | dev n12 -0.664 | look-ahead ok | n<50, t<2, not above random 95th pct
+   dev  n 12 pts/trade  -21.43 total    -257 halves +20.49/-63.35 t -0.77
+   hold n 28 pts/trade   -2.65 total     -74 halves -11.24/+5.95 t -0.11
+WEAK    STACK NQ ignition-first + noiseband holdout 2026-06-04+: n  28 (66/yr) +0.215R t +0.65 halves +0.181/+0.249 win 36% maxDD -5.1R random95 0.929 | dev n12 -0.664 | look-ahead ok | n<50, t<2, not above random 95th pct
+   dev  n 12 pts/trade  -21.43 total    -257 halves +20.49/-63.35 t -0.77
+   hold n 28 pts/trade   -2.65 total     -74 halves -11.24/+5.95 t -0.11

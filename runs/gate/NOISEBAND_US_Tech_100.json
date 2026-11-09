@@ -1,0 +1,21 @@
+{
+ "book": "NOISEBAND US Tech 100",
+ "note": "",
+ "data": "2025-10-15..2026-11-06",
+ "holdout_from": "2026-06-04",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 131,
+ "dev_R": 0.056,
+ "hold_n": 98,
+ "hold_per_year": 232,
+ "hold_R": 0.297,
+ "t": 1.36,
+ "h1": 0.23,
+ "h2": 0.365,
+ "win": 0.28,
+ "maxdd_R": -12.3,
+ "random_p95": 0.492,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

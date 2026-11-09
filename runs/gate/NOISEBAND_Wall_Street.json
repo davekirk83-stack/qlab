@@ -1,0 +1,21 @@
+{
+ "book": "NOISEBAND Wall Street",
+ "note": "",
+ "data": "2026-04-15..2026-11-06",
+ "holdout_from": "2026-08-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 73,
+ "dev_R": -0.29,
+ "hold_n": 76,
+ "hold_per_year": 339,
+ "hold_R": -0.042,
+ "t": -0.17,
+ "h1": -0.464,
+ "h2": 0.38,
+ "win": 0.2,
+ "maxdd_R": -24.1,
+ "random_p95": 0.533,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
