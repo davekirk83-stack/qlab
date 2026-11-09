@@ -1,0 +1,57 @@
+A  51 RSI(2) < 5 and below 5MA, above 200MA, exit close > 5MA                   n  752 +0.245 t +4.35 years 19/26 last5 +0.362
+B  52 Two closes below Keltner (EMA20 - 2 ATR), above 200MA, exit EMA20         n  210 +0.437 t +2.69 years 17/26 last5 +0.070
+C  53 Big red candle (close < open - 1 ATR), above 200MA, hold 2 days           n 1883 +0.011 t +0.38 years 15/26 last5 +0.095
+F  54 Hammer at a 10-day low (lower wick > 2x body, close top third), above 200 n  440 -0.010 t -0.14 years 13/26 last5 -0.211
+C  55 Bullish engulfing at a 10-day low, above 200MA, hold 3                    n  142 +0.069 t +0.58 years 13/24 last5 -0.164
+F  56 Inside day after a down day, above 200MA, hold 2                          n 2029 -0.036 t -1.39 years 11/27 last5 +0.032
+F  57 Close above prior high after 3 down days (reversal confirmed), hold 3     n  700 -0.028 t -0.51 years 12/27 last5 -0.040
+F  58 Key reversal: new 20-day low but closes up on the day, hold 3             n  959 -0.061 t -1.32 years 12/27 last5 -0.110
+B  59 5-day drop > 2.5 ATR, above 200MA, hold 5                                 n  703 +0.251 t +3.35 years 15/26 last5 +0.539
+C  60 RSI(14) < 30 above 200MA, exit RSI(14) > 50                               n   70 +0.529 t +1.63 years 14/23 last5 +0.235
+A  61 Stochastic %K(5) < 10 above 200MA, exit %K > 50                           n 1774 +0.169 t +4.48 years 18/26 last5 +0.129
+B  62 Z-score(20) < -2 above 200MA, exit z > 0                                  n  555 +0.207 t +2.00 years 17/26 last5 +0.158
+C  63 Short RSI(2) > 95 below 200MA, cover RSI(2) < 50                          n  334 +0.179 t +3.06 years 12/22 last5 +0.269
+F  64 Short 5-day high close below 200MA, cover 5-day low                       n 1287 -0.071 t -1.63 years 9/26 last5 -0.308
+C  65 Pullback to the 50-day in an uptrend (50 > 200), exit +2 ATR or 10 days   n  896 +0.076 t +0.91 years 14/27 last5 -0.188
+C  66 Two closes in the bottom 20% of the range, above 200MA, hold 2            n 1054 +0.010 t +0.27 years 14/27 last5 +0.075
+F  67 20-day-high close above 200MA, hold 10 days fixed                         n 1903 -0.016 t -0.32 years 12/27 last5 +0.053
+F  68 Gap up > 0.5 ATR above prior high -> buy open, sell close                 n 1316 -0.002 t -0.13 years 11/27 last5 +0.050
+F  69 Weekly inside bar -> buy a close above its high the next week, hold 5     n  564 -0.017 t -0.25 years 13/27 last5 +0.188
+F  70 Close at a 6-month high -> hold one month, 18 markets                     n  279 -0.048 t -0.19 years 9/26 last5 +1.084
+F  71 Dual moving average 10/30 both sides, 18 markets                          n 2533 -0.477 t -6.89 years 3/27 last5 -0.576
+F  72 Above 200MA with positive 20-day momentum: long indices, hold 20          n  809 -0.026 t -0.21 years 12/27 last5 +0.563
+F  73 50-day slope / ATR > 0.1 (or < -0.1), 18 markets, exit on slope flip      n 1653 -0.223 t -2.46 years 10/27 last5 -0.129
+F  74 Breakout after a 30-day consolidation (range < 5 ATR), 18 markets, hold 1 n 2309 -0.212 t -4.75 years 5/27 last5 -0.265
+F  75 Tuesday close -> Wednesday close long                                     n 9603 -0.033 t -4.14 years 9/27 last5 -0.006
+C  76 January effect: Russell first 5 trading days                              n   52 +0.438 t +1.49 years 17/26 last5 +0.668
+F  77 September effect: short indices for September                             n  185 -0.054 t -0.19 years 13/27 last5 +1.016
+F  78 Day after a US holiday: long the close before -> next close               n 1080 -0.056 t -2.14 years 10/27 last5 -0.235
+F  79 Triple-witching Friday: short Thursday close -> Friday close              n  424 -0.007 t -0.21 years 12/27 last5 +0.064
+F  80 Quarter-end window dressing: long the last 5 days of the quarter          n  745 -0.153 t -2.76 years 11/27 last5 -0.082
+F  81 Overreaction: short the day after a > 2% up day                           n 2262 -0.025 t -1.80 years 8/27 last5 -0.026
+F  82 VIX > 1.3 x its 20-day average -> buy index 5 days                        n  364 -0.063 t -0.52 years 10/23 last5 -0.064
+C  83 Gold/silver ratio z > 2 -> long silver (expect silver to catch up), exit  n   96 +0.249 t +0.61 years 14/27 last5 +1.112
+B  84 Stocks down 5 days while bonds up -> long US index 5 days                 n 1565 +0.100 t +2.23 years 17/27 last5 +0.311
+F  85 Oil +3% day -> short USD/CAD 3 days                                       n  322 -0.078 t -1.30 years 12/24 last5 -0.142
+B  86 Copper +3% day -> long AUD/USD 3 days                                     n  139 +0.208 t +2.35 years 15/19 last5 +0.176
+A  87 SPX day move > 1% -> FTSE/DAX next open->close in the same direction      n 3637 +0.116 t +10.10 years 23/27 last5 +0.042
+C  88 Yen carry unwind: USD/JPY -3% in 5 days -> long USD/JPY 5 days            n   67 +0.392 t +2.00 years 13/21 last5 +0.153
+C  89 Gold down 3 days in a row above 200MA -> hold 3                           n  363 +0.038 t +0.44 years 9/25 last5 -0.041
+F  90 10-year note golden cross (bond trend), exit death cross                  n   21 -6.989 t -7.68 years 1/16 last5 -6.257
+F  91 Crypto weekend: long Friday close -> Sunday close                         n 2500 -0.025 t -1.51 years 3/6 last5 -0.030
+F  92 Crypto -10% day -> buy, hold 3 days                                       n  220 -0.056 t -0.72 years 4/6 last5 -0.093
+F  93 Crypto RSI(2) < 10 above its 200-day, exit RSI(2) > 70                    n  252 -0.039 t -0.46 years 2/5 last5 -0.039
+F  94 Alt 20% below its 20-day high while BTC above its 50-day -> hold 7        n  172 -0.271 t -2.67 years 2/5 last5 -0.271
+C  95 ETH/BTC ratio z < -2 -> long ETH, exit z > 0                              n   35 +0.256 t +0.59 years 2/5 last5 +0.256
+B  96 Crypto 7-day high breakout above 50-day, exit 5-day low                   n  694 +0.357 t +2.45 years 5/6 last5 +0.356
+C  97 Crypto low-volatility regime (20d vol < 40%/yr) above 100-day: long 10 da n  112 +0.482 t +1.37 years 3/5 last5 +0.482
+F  98 Crypto Monday: long Sunday close -> Monday close                          n 2509 -0.076 t -4.94 years 2/6 last5 -0.075
+C  99 Commodity pullback: RSI(2) < 10 above 200MA on oil/copper/silver, exit RS n  555 +0.011 t +0.15 years 12/25 last5 -0.115
+F  100 FX pullback: RSI(2) < 10 above 200MA on 5 pairs, exit RSI > 70 (both sid n 1531 -0.016 t -0.61 years 13/27 last5 -0.099
+
+t* = 3.70 (N = 240)
+rating
+A     3
+B     6
+C    13
+F    28
