@@ -1,0 +1,19 @@
+Ignition v1.1 trades 84: big losers (<= -30 pts) 10, total +1561 pts
+  ign     big losers median    1.35 | others median    1.28
+  dshare  big losers median    0.02 | others median    0.01
+  cpos    big losers median    0.55 | others median    0.60
+  atr     big losers median   34.00 | others median   35.24
+  hour    big losers median   10.00 | others median   10.00
+
+By signal-bar delta share (in the trade's direction):
+  weakest third    n 28 total   +426 mean +15.2 big losers 2
+  middle           n 28 total   +277 mean  +9.9 big losers 4
+  strongest third  n 28 total   +858 mean +30.6 big losers 4
+By signal-bar close position:
+  <60%             n 44 total   +461 mean +10.5 big losers 6
+  60-80%           n 13 total   +150 mean +11.5 big losers 1
+  >=80%            n 26 total   +950 mean +36.5 big losers 3
+By expansion size (ign):
+  smallest third   n 28 total   +538 mean +19.2 big losers 3
+  middle           n 28 total   +352 mean +12.6 big losers 3
+  largest third    n 28 total   +671 mean +24.0 big losers 4
