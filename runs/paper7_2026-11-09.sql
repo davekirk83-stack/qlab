@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow, equity_us, shadow_us, closed_us, equity_v11, shadow_v11, closed_v11) VALUES ('2026-11-09', 3447.96, 1678.35, 1, 43, 215, 2341.84, 2038.05, 17, 2151.50, 1967.82, 10);

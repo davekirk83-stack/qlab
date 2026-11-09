@@ -5,9 +5,14 @@
  "closed": 43,
  "closed_shadow": 215,
  "spec": "Ignition v1 (doc 92)",
- "open": null,
- "last_bar": "2026-11-06 21:10:00+00:00",
- "last_booked": "2026-11-08",
+ "open": {
+  "opened": "2026-11-08 23:35:00+00:00",
+  "side": -1,
+  "entry": 26914.667,
+  "bars_so_far": 4
+ },
+ "last_bar": "2026-11-08 23:55:00+00:00",
+ "last_booked": "2026-11-09",
  "halt": null,
  "us_hours": {
   "equity": 2341.84,

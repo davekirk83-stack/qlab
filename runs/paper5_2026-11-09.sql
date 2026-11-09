@@ -1,0 +1,6 @@
+INSERT OR REPLACE INTO pb5_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-09', 2000.0000, 2000.0000, 0, 0, 0);
+CREATE TABLE IF NOT EXISTS pb5_v11_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+INSERT OR REPLACE INTO pb5_v11_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-09', 1946.3169, 1945.5419, 0, 3, 3);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-09', 'INJUSD@v11', '2026-11-06 00:00:00+00:00', '2026-11-09 00:00:00+00:00', -0.023412, 'hold', 0);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-09', 'STRKUSD@v11', '2026-11-05 08:00:00+00:00', '2026-11-08 08:00:00+00:00', -0.095583, 'hold', 1);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-09', 'UNIUSD@v11', '2026-11-06 00:00:00+00:00', '2026-11-09 00:00:00+00:00', -0.006422, 'hold', 1);
