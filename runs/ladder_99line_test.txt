@@ -1,0 +1,6 @@
+RANGE v3 LADDER (the panel's LONG/SHORT advisory) on BTC with the 99-day line — sum of episode returns (% of ladder budget)
+  V0 baseline                    dev n2632 sum  +225.7% mean +0.086% win 73% worst -4.7% || hold n1787 sum   +74.2% mean +0.042% win 70% worst -3.2%
+  V1 longs only above the line   dev n2111 sum  +169.6% mean +0.080% win 72% worst -4.5% || hold n1454 sum   +63.2% mean +0.043% win 70% worst -3.2%
+  V2 shorts only below the line  dev n1840 sum  +180.1% mean +0.098% win 74% worst -4.7% || hold n1235 sum   +54.3% mean +0.044% win 70% worst -3.2%
+  V3 both trend-aligned          dev n1319 sum  +124.0% mean +0.094% win 74% worst -4.5% || hold n 902 sum   +43.3% mean +0.048% win 71% worst -3.2%
+done
