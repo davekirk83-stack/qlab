@@ -1,0 +1,45 @@
+{
+ "start": "2026-11-10",
+ "asof": "2026-11-09 17:07:00+00:00",
+ "books": {
+  "BTCUSDT": {
+   "role": "main",
+   "rules": {
+    "R": 3.0,
+    "ema": 50,
+    "slope": 6
+   },
+   "closed": 0,
+   "open": [],
+   "total_R": 0,
+   "win_rate": null,
+   "pool": 500.0
+  },
+  "ETHUSDT": {
+   "role": "shadow",
+   "rules": {
+    "R": 4.0,
+    "ema": 30,
+    "slope": 6
+   },
+   "closed": 0,
+   "open": [],
+   "total_R": 0,
+   "win_rate": null,
+   "pool": 500.0
+  },
+  "SOLUSDT": {
+   "role": "shadow",
+   "rules": {
+    "R": 4.0,
+    "ema": 30,
+    "slope": 6
+   },
+   "closed": 0,
+   "open": [],
+   "total_R": 0,
+   "win_rate": null,
+   "pool": 500.0
+  }
+ }
+}

@@ -1,0 +1,30 @@
+name: Paper books 15-16 (simulated only)
+# Doc 192 (DK 9 Nov 2026 "Yes"): paper book 15 (1h trend-aligned sweep, BTC + ETH/SOL shadow) and paper book 16 (OBV double divergence,
+# crypto rare book). Public Binance market data only: no account, no keys, no orders (CAP-021). Each run replays from 10 Nov 2026.
+on:
+  schedule:
+    - cron: "23 */4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: paper-15-16
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pandas numpy
+      - name: Run paper books 15 and 16
+        run: |
+          cd src && QLAB_ROOT=$GITHUB_WORKSPACE python paperbook15.py && QLAB_ROOT=$GITHUB_WORKSPACE python paperbook16.py
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "paper-books"; git config user.email "paper-books@users.noreply.github.com"
+          git add -f runs/paper15 runs/paper16; git commit -m "paper books 15-16 $(date -u +%Y-%m-%dT%H:%M)" || true
+          git push || (git fetch origin main && git rebase -X theirs origin/main && git push)

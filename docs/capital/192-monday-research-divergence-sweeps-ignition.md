@@ -40,3 +40,14 @@ episode; every side/regime bucket is positive. Not added. (It does matter for th
   0.1% costs): BTC +0.78% / +0.56%, ETH +3.36% / +0.82%, SOL +1.78% / +2.52% per trade; 121 trades (~18 a year), 60% winners,
   every calendar year positive (2020 +27%, 2021 +62%, 2022 +25%, 2023 +2%, 2024 +74%, 2025 +1%, 2026 +8%, each trade on its own stake).
 - DK (16:51): happy to run a rare book if it makes money on its rare days. Long-only spot -> fits the Revolut X account.
+
+## 9 Nov 17:10 — paper books registered (DK: "Yes")
+- **Paper book 15** (`src/paperbook15.py`): 1h trend-aligned sweep. Main = BTC, base rules (3R, 4h EMA50, slope 6, strict fill, 0.04% fees);
+  shadow = ETH and SOL with the 4R / EMA30 variant. £500 notional per market, 1% risk per trade. PASS after 3 months: main positive,
+  >= 20 trades, mean R within half of the backtest's +0.09R.
+- **Paper book 16** (`src/paperbook16.py`): OBV bullish double divergence on BTC/ETH/SOL 1h, long at confirmation, hold 48h, -8% stop,
+  0.1% costs, 10% of a £500 pool per trade. PASS after 6 months: positive, >= 8 trades, mean >= +0.5% per trade.
+- Both replay from 10 Nov 2026 on public Binance data every 4 hours via `.github/workflows/paper-books-15-16.yml` (no keys, no orders)
+  and write runs/paper15/ and runs/paper16/. Reviewed with the other books in the week of 16 Nov.
+- Dry run over the last ~6 weeks before registration (not part of the record): book 15 BTC 9 trades, +12.3R; ETH shadow 6 trades -1.4R.
+  Book 16 had one BTC signal on 8 Nov 00:00 at 75,799 (before the start date, so not counted).
