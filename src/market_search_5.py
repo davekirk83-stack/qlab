@@ -24,7 +24,7 @@ def tsmom(d):
     r12 = (d.close / d.close.shift(252) - 1).values; s = np.sign(r12[ix]); ok = np.isfinite(s) & (s != 0) & np.isfinite(d.atr.values[ix])
     ix = ix[ok]; s = s[ok].astype(int)
     return sigframe(d.index[ix], s, "close", np.nan, 6 * d.atr.values[ix], np.nan, 21, dist=True)
-go("M TIME-SERIES MOMENTUM 12m 18 markets", [(k, TF.prep(k), tsmom, {}) for k in TF.SPREAD])
+if __name__ == '__main__': go("M TIME-SERIES MOMENTUM 12m 18 markets", [(k, TF.prep(k), tsmom, {}) for k in TF.SPREAD])
 
 def d7(d):
     C = d.close; ok = (C > C.rolling(200).mean()) & (C <= C.rolling(7).min()) & d.atr.notna(); ix = np.where(ok.values)[0]
@@ -34,10 +34,10 @@ def d7_manage(df, k, st):
 def prep(k):
     d = M2.daily(k, .0003, 0.06); d["hi7"] = d.close.rolling(7).max(); return d
 IX = ("SPX", "NDX", "DJI", "RUT", "DAX", "FTSE", "N225", "GOLD")
-go("N DOUBLE 7s 8 markets", [(k, prep(k), d7, {"manage": d7_manage}) for k in IX])
+if __name__ == '__main__': go("N DOUBLE 7s 8 markets", [(k, prep(k), d7, {"manage": d7_manage}) for k in IX])
 
 def ibs(d):
     rng = (d.high - d.low).replace(0, np.nan); v = ((d.close - d.low) / rng).values; ix = np.where((v < 0.2) & np.isfinite(d.atr.values))[0]
     return sigframe(d.index[ix], 1, "close", np.nan, 3 * d.atr.values[ix], np.nan, 1, dist=True)
-go("O IBS low close 8 markets", [(k, M2.daily(k, .0003, 0.06), ibs, {}) for k in IX])
-open(f"{G.OUT}/search5.txt", "w").write("\n".join(G.line2(r) for r in R) + "\n")
+if __name__ == '__main__': go("O IBS low close 8 markets", [(k, M2.daily(k, .0003, 0.06), ibs, {}) for k in IX])
+if __name__ == '__main__': open(f"{G.OUT}/search5.txt", "w").write("\n".join(G.line2(r) for r in R) + "\n")
