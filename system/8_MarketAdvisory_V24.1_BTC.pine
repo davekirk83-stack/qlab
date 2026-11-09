@@ -1,6 +1,6 @@
 //@version=6
 // MARKET ADVISORY V24.1 — adds the order-flow read from the separate Delta/CVD script (DK 9 Nov: one indicator): a FLOW panel row
-//            (this bar's net buying or selling, the day's CVD direction) and the STRESS LOW mark (panic-low context; not a buy signal on its own — see its tooltip).
+//            (this bar's net buying or selling, the day's CVD direction) and an optional STRESS LOW mark, OFF by default: counted once per panic it was not a buy signal (doc 191 correction, 9 Nov).
 // MARKET ADVISORY V24 — V23 with a compact panel for phones and the yearly levels (DK 7-9 Nov 2026). Signal logic and alerts unchanged.
 //   PANEL    "Compact" (default): about half the width and 8-12 rows — short values, duplicate rows merged (LADDER into READ, SESSION into
 //            SESSION READ, the ADVISORY 'why' dropped), and rows that would only show "-" are hidden. "Full" keeps the V23 layout.
@@ -95,7 +95,7 @@ bool  showQtr   = input.bool(false, "Last quarter's high / low", group=gY)
 bool  showYrRow = input.bool(true, "Panel row: last weekly close vs last year's low", group=gY)
 string gF = "Order flow (V24.1, doc 191)"
 bool  showFlow   = input.bool(true, "Panel row: net buying / selling and the day's CVD", group=gF, tooltip="Estimated from 1-minute pieces: volume x (close - open) / (high - low). Agrees in direction with Binance's true taker delta ~74% of the time.")
-bool  showStress = input.bool(true, "Mark STRESS LOW on the chart", group=gF, tooltip="A new 4-hour low while price has fallen >= 3x its normal 24h move in the last 24h. CONTEXT, not a buy signal: counted once per episode (BTC 2020-26) it was -0.15%/+0.06% over the next 4h in the two test periods; above the 99-day line ~0/+0.10%, below it negative in both. The edge in doc 191 came from laddering several of these with a +3% target, and only above the 99-day line.")
+bool  showStress = input.bool(false, "Mark STRESS LOW on the chart (off: context only, not a signal)", group=gF, tooltip="A new 4-hour low while price has fallen >= 3x its normal 24h move in the last 24h. CONTEXT, not a buy signal: counted once per episode (BTC 2020-26) it was -0.15%/+0.06% over the next 4h in the two test periods; above the 99-day line ~0/+0.10%, below it negative in both. The edge in doc 191 came from laddering several of these with a +3% target, and only above the 99-day line.")
 float flStressK  = input.float(3.0, "Stress: 24h move at least x its 30-day median", step=0.25, group=gF)
 
 // ------------------------------------------------ HELPERS ------------------------------------------------
@@ -624,8 +624,8 @@ bool  stressLow = barstate.isconfirmed and low <= ta.lowest(low, flBars4h) and f
 plotshape(showStress and stressLow, "STRESS LOW (doc 191)", style=shape.diamond, location=location.belowbar, color=color.new(#ffd54f, 0), size=size.tiny, text="STRESS LOW", textcolor=#ffd54f)
 float flShare = volume > 0 ? 100 * flD / volume : na
 bool  flCvdUp = flCvd > flCvd[4]
-string flowTxt = na(flShare) ? "-" : (flD >= 0 ? "BUY +" : "SELL ") + str.tostring(math.abs(flShare), "#") + "% | CVD " + (flCvdUp ? "rising" : "falling") + (flStressDn ? " | STRESS" : "")
-color flowCol = flStressDn ? #ffd54f : flD >= 0 ? cUp : cDn
+string flowTxt = na(flShare) ? "-" : (flD >= 0 ? "BUY +" : "SELL ") + str.tostring(math.abs(flShare), "#") + "% | CVD " + (flCvdUp ? "rising" : "falling") 
+color flowCol = flD >= 0 ? cUp : cDn
 
 // ------------------------------------------------ YEARLY LEVELS (V24) ------------------------------------------------
 float pyH = request.security(syminfo.tickerid, "12M", high[1], lookahead=barmerge.lookahead_on)
