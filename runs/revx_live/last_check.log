@@ -1,0 +1,1 @@
+REVX_PRIVATE_KEY doesn't look like a private key (no '-----BEGIN PRIVATE KEY-----' line) — it may hold the API key instead
