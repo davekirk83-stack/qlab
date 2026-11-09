@@ -1,0 +1,74 @@
+
+== TPS ladder indices+gold: n1558, 2001-02-05..2026-11-02, mean +0.002
+  month    worst buckets now: Feb, Jul                                 | out-of-sample: all +2.2 -> switched +1.5, trades kept 904/1153 | keep running
+  weekday  worst buckets now: none                                     | out-of-sample: all +2.2 -> switched +2.0, trades kept 1089/1153 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +2.2 -> switched +1.8, trades kept 1058/1153 | keep running
+
+== TPS ladder coins: n295, 2022-11-07..2026-10-23, mean +0.012
+  month    worst buckets now: Jun, Oct                                 | out-of-sample: all +3.0 -> switched +1.5, trades kept 121/148 | keep running
+  weekday  worst buckets now: Sun                                      | out-of-sample: all +3.0 -> switched +2.3, trades kept 129/148 | keep running
+  vix      worst buckets now: VIX 20-30                                | out-of-sample: all +3.0 -> switched +2.8, trades kept 136/148 | keep running
+  hour     worst buckets now: none                                     | out-of-sample: all +3.0 -> switched +0.7, trades kept 82/148 | keep running
+
+== RSI(2) pullback: n1482, 2001-02-09..2026-10-30, mean +0.130
+  month    worst buckets now: Jan, Feb, May, Jul                       | out-of-sample: all +182.6 -> switched +152.9, trades kept 702/1110 | keep running
+  weekday  worst buckets now: none                                     | out-of-sample: all +182.6 -> switched +130.9, trades kept 736/1110 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +182.6 -> switched +160.1, trades kept 1006/1110 | keep running
+
+== Double 7s: n2070, 2001-02-09..2026-11-04, mean +0.135
+  month    worst buckets now: Mar, Sep                                 | out-of-sample: all +197.2 -> switched +64.9, trades kept 869/1521 | keep running
+  weekday  worst buckets now: Wed                                      | out-of-sample: all +197.2 -> switched +184.9, trades kept 1217/1521 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +197.2 -> switched +92.7, trades kept 1131/1521 | keep running
+
+== 12-month momentum: n3140, 2000-12-29..2026-09-30, mean +0.184
+  month    worst buckets now: Feb, May, Jul                            | out-of-sample: all +274.1 -> switched +325.6, trades kept 1438/2414 | ADOPT
+  weekday  worst buckets now: Mon, Wed                                 | out-of-sample: all +274.1 -> switched +232.3, trades kept 1504/2414 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +274.1 -> switched +98.1, trades kept 2284/2414 | keep running
+
+== Trend 100-day: n1021, 2000-07-31..2026-11-02, mean +0.493
+  month    worst buckets now: Jan, Feb, Mar, Apr, Oct, Dec             | out-of-sample: all +289.5 -> switched +372.2, trades kept 463/759 | ADOPT
+  weekday  worst buckets now: Thu                                      | out-of-sample: all +289.5 -> switched +258.7, trades kept 732/759 | keep running
+  vix      worst buckets now: VIX 15-20, VIX>30                        | out-of-sample: all +289.5 -> switched +386.1, trades kept 440/759 | ADOPT
+
+== Halloween: n668, 2000-02-29..2026-03-31, mean +0.482
+  month    worst buckets now: Jan, Feb                                 | out-of-sample: all +308.9 -> switched +210.3, trades kept 323/462 | keep running
+  weekday  worst buckets now: Wed                                      | out-of-sample: all +308.9 -> switched +241.2, trades kept 353/462 | keep running
+  vix      worst buckets now: VIX 15-20                                | out-of-sample: all +308.9 -> switched +186.2, trades kept 362/462 | keep running
+
+== Ignition US hours: n87, 2025-10-15..2026-11-05, mean +0.327
+  month    worst buckets now: Apr, Oct                                 | out-of-sample: all +18.3 -> switched +18.6, trades kept 31/44 | ADOPT
+  weekday  worst buckets now: none                                     | out-of-sample: all +18.3 -> switched +14.0, trades kept 31/44 | keep running
+  vix      worst buckets now: VIX 20-30                                | out-of-sample: all +18.3 -> switched +17.9, trades kept 43/44 | keep running
+  hour     worst buckets now: none                                     | out-of-sample: all +18.3 -> switched +8.1, trades kept 37/44 | keep running
+
+== Gold London breakout: n104, 2026-04-15..2026-10-21, mean +1.779
+  month    worst buckets now: Oct                                      | out-of-sample: all +84.9 -> switched +84.9, trades kept 52/52 | keep running
+  weekday  worst buckets now: none                                     | out-of-sample: all +84.9 -> switched +84.9, trades kept 52/52 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +84.9 -> switched +84.9, trades kept 52/52 | keep running
+  hour     worst buckets now: 09h NY                                   | out-of-sample: all +84.9 -> switched +84.9, trades kept 52/52 | keep running
+
+== Ignition all-hours regime+coil: n203, 2025-10-15..2026-11-06, mean +0.296
+  month    worst buckets now: Apr, Jun, Jul, Aug                       | out-of-sample: all +15.6 -> switched +15.6, trades kept 102/102 | keep running
+  weekday  worst buckets now: Tue, Wed                                 | out-of-sample: all +15.6 -> switched +27.2, trades kept 66/102 | ADOPT
+  vix      worst buckets now: VIX 20-30                                | out-of-sample: all +15.6 -> switched +19.3, trades kept 93/102 | ADOPT
+  hour     worst buckets now: 02h NY, 05h NY, 06h NY, 09h NY, 10h NY, 18h NY, 22h NY | out-of-sample: all +15.6 -> switched +19.8, trades kept 90/102 | ADOPT
+
+== DAX Asian-range breakout: n88, 2026-04-20..2026-11-06, mean +0.549
+  month    worst buckets now: Apr, Jul, Sep                            | out-of-sample: all +70.1 -> switched +74.4, trades kept 33/44 | ADOPT
+  weekday  worst buckets now: Mon                                      | out-of-sample: all +70.1 -> switched -3.7, trades kept 25/44 | keep running
+  vix      worst buckets now: none                                     | out-of-sample: all +70.1 -> switched +24.2, trades kept 7/44 | keep running
+  hour     worst buckets now: 03h NY                                   | out-of-sample: all +70.1 -> switched +47.4, trades kept 32/44 | keep running
+
+== BTC crowd contrarian: n202, 2022-04-22..2026-11-03, mean +0.234
+  month    worst buckets now: Sep, Dec                                 | out-of-sample: all +21.8 -> switched +17.7, trades kept 78/101 | keep running
+  weekday  worst buckets now: Sat, Sun                                 | out-of-sample: all +21.8 -> switched +28.3, trades kept 86/101 | ADOPT
+  vix      worst buckets now: none                                     | out-of-sample: all +21.8 -> switched +21.8, trades kept 101/101 | keep running
+  hour     worst buckets now: none                                     | out-of-sample: all +21.8 -> switched +21.8, trades kept 101/101 | keep running
+
+ADOPTED switches (passed out of sample):
+  12-month momentum: off in Feb, May, Jul (month)
+  Trend 100-day: off in Jan, Feb, Mar, Apr, Oct, Dec (month); off in VIX 15-20, VIX>30 (vix)
+  Ignition US hours: off in Apr, Oct (month)
+  Ignition all-hours regime+coil: off in Tue, Wed (weekday); off in VIX 20-30 (vix); off in 02h NY, 05h NY, 06h NY, 09h NY, 10h NY, 18h NY, 22h NY (hour)
+  DAX Asian-range breakout: off in Apr, Jul, Sep (month)
+  BTC crowd contrarian: off in Sat, Sun (weekday)

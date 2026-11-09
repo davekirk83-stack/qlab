@@ -28,7 +28,8 @@ def oi_flush(x):
     oi1 = (x.oi / x.oi.shift(1) - 1).shift(-1).values; r = (x.close / x.close.shift(1) - 1).values
     ix = np.where((oi1 <= -0.08) & (r <= -0.04) & np.isfinite(x.atr.values))[0]
     return sigframe(x.index[ix], 1, "close", np.nan, 3 * x.atr.values[ix], np.nan, 3, dist=True)
-for name, fn in (("T CROWD contrarian long/short ratio", crowd), ("U OI-confirmed breakout", oi_break), ("V OI flush buy", oi_flush)):
-    r = G.judge2(f"BTC {name}", [("BTC", d, fn, {})], daily=True); print(G.line2(r), flush=True)
-    t = pd.DataFrame(G.simulate(d, fn(d)))
-    if len(t): t["y"] = pd.to_datetime(t.t).dt.year; print("    by year:", " ".join(f"{y}:{g.R.mean():+.2f}(n{len(g)})" for y, g in t.groupby("y")), flush=True)
+if __name__ == "__main__":
+    for name, fn in (("T CROWD contrarian long/short ratio", crowd), ("U OI-confirmed breakout", oi_break), ("V OI flush buy", oi_flush)):
+        r = G.judge2(f"BTC {name}", [("BTC", d, fn, {})], daily=True); print(G.line2(r), flush=True)
+        t = pd.DataFrame(G.simulate(d, fn(d)))
+        if len(t): t["y"] = pd.to_datetime(t.t).dt.year; print("    by year:", " ".join(f"{y}:{g.R.mean():+.2f}(n{len(g)})" for y, g in t.groupby("y")), flush=True)

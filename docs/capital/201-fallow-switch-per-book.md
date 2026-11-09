@@ -24,3 +24,19 @@ Units: ATR units per trade summed (TPS: % of episode budget summed).
 them in the future gives LESS money, not more. Only the trend book (and, a little, the AuclairsDad stack) has bad conditions that repeat.
 Those two get their switches; every other book runs every signal. Re-check yearly as history grows (intraday books need more data —
 5 years of gold and US Tech 100 minute data is downloading).
+
+## Refinement: one condition at a time (`src/book_periods.py`, `runs/gate/book_periods.txt`)
+Switching all conditions together (above) over-fits; testing each condition on its own (month / weekday / VIX / hour), adopted only if it
+raises the out-of-sample total and keeps >= 50% of trades (daily books: walk-forward by year; short histories: chosen on the first half,
+judged on the second):
+| Book | Adopted switch | Out of sample |
+|---|---|---|
+| Trend 100-day | months off: Jan, Feb, Mar, Apr, Oct, Dec | +290 -> +372 |
+| Trend 100-day | VIX 15-20 and > 30 off | +290 -> +386 |
+| 12-month momentum | months off: Feb, May, Jul | +274 -> +326 |
+| AuclairsDad Ignition (regime+coil) | Tue, Wed off | +15.6 -> +27.2 |
+| AuclairsDad Ignition | VIX 20-30 off; worst NY hours off (02, 05, 06, 09, 10, 18, 22) | +15.6 -> +19.3 / +19.8 |
+| BTC crowd contrarian | weekends off | +21.8 -> +28.3 |
+| DAX Asian-range breakout | Apr, Jul, Sep off | +70 -> +74 (7 months of data — provisional) |
+| Ignition US hours | Apr, Oct off | +18.3 -> +18.6 (negligible — not used) |
+| TPS ladder (indices, coins), RSI(2), Double 7s, Halloween | none passes | run every signal |
