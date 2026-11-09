@@ -1,0 +1,28 @@
+1) OPTIONS EXPIRY (S&P 500 daily)
+  range vs its 20-day mean:  expiry Fri 1990-2009 0.96 (n236) || 2010-2026 0.95 (n197) | other days 1990-2009 1.02 || 2010-2026 1.04
+  expiry week        1990-2009 mean +0.30% up 59% (n236) || 2010-2026 mean +0.07% up 55% (n197)
+  week AFTER expiry  1990-2009 mean -0.17% up 46% (n236) || 2010-2026 mean +0.34% up 60% (n197)
+  other weeks        1990-2009 mean +0.20% up 58% (n572) || 2010-2026 mean +0.27% up 59% (n485)
+
+2) VANNA (VIX daily moves -> S&P next days)
+  VIX crush <= -10%  +1d 1990-2009 -0.05% (47%) || 2010-2026 -0.05% (55%) | +5d 1990-2009 -0.34% (51%) || 2010-2026 +0.25% (61%)  n386
+  VIX down 5-10%     +1d 1990-2009 +0.10% (57%) || 2010-2026 +0.01% (53%) | +5d 1990-2009 +0.16% (57%) || 2010-2026 +0.29% (59%)  n1272
+  VIX spike >= +15%  +1d 1990-2009 +0.44% (63%) || 2010-2026 +0.19% (54%) | +5d 1990-2009 +0.72% (63%) || 2010-2026 +0.17% (62%)  n265
+  all days           +1d 1990-2009 +0.03% (53%) || 2010-2026 +0.05% (55%) | +5d 1990-2009 +0.15% (56%) || 2010-2026 +0.25% (60%)  n9280
+
+3) CHARM INTO THE CLOSE (last 2 hours, 14:00-16:00 New York)
+  US 500 2025-26: days 245
+    all days                     n245 last-2h mean -0.021% up 47% | continues the morning's direction 47%
+    calm (VIX<20, small morning) n145 last-2h mean -0.036% up 50% | continues the morning's direction 44%
+    stressed (VIX>=20)           n 46 last-2h mean -0.038% up 35% | continues the morning's direction 54%
+    expiry Fridays               n 11 last-2h mean -0.145% up 36% | continues the morning's direction 45%
+  US Tech 100 2020-21: days 376
+    all days                     n376 last-2h mean +0.011% up 57% | continues the morning's direction 54%
+    calm (VIX<20, small morning) n 66 last-2h mean +0.008% up 61% | continues the morning's direction 64%
+    stressed (VIX>=20)           n269 last-2h mean +0.003% up 57% | continues the morning's direction 52%
+    expiry Fridays               n 17 last-2h mean -0.155% up 59% | continues the morning's direction 41%
+  US Tech 100 2025-26: days 214
+    all days                     n214 last-2h mean -0.032% up 43% | continues the morning's direction 50%
+    calm (VIX<20, small morning) n 78 last-2h mean -0.026% up 42% | continues the morning's direction 56%
+    stressed (VIX>=20)           n 41 last-2h mean -0.021% up 37% | continues the morning's direction 56%
+    expiry Fridays               n  9 last-2h mean -0.064% up 56% | continues the morning's direction 67%
