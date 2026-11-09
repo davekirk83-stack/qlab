@@ -1,0 +1,11 @@
+TREND bo50 trail20 stop2               n 2229 mean +0.045 ATR t +0.47 | years + 14/27 | last 5y -0.251
+TREND bo50 trail20 stop3               n 2037 mean -0.001 ATR t -0.01 | years + 14/27 | last 5y -0.354
+TREND bo50 trail20 stop4               n 1977 mean -0.028 ATR t -0.25 | years + 13/27 | last 5y -0.373
+TREND bo50 trail50 stop2               n 1701 mean +0.193 ATR t +1.19 | years + 15/27 | last 5y -0.218
+TREND bo50 trail50 stop3               n 1477 mean +0.094 ATR t +0.49 | years + 14/27 | last 5y -0.471
+TREND bo50 trail50 stop4               n 1346 mean +0.081 ATR t +0.38 | years + 14/27 | last 5y -0.535
+TREND bo50 trail100 stop2              n 1193 mean +0.637 ATR t +2.05 | years + 19/27 | last 5y -0.392
+TREND bo50 trail100 stop3              n  966 mean +0.751 ATR t +1.82 | years + 19/27 | last 5y -0.526
+TREND bo50 trail100 stop4              n  813 mean +0.933 ATR t +1.94 | years + 19/27 | last 5y -0.949
+TREND bo100 trail20 stop2              n 1507 mean +0.217 ATR t +1.73 | years + 15/27 | last 5y -0.322
+TREND bo100 trail20 stop3              n 1358 mean +0.253 ATR t +1.75 | years + 14/27 | last 5y -0.328
