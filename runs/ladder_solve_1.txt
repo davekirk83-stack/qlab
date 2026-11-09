@@ -1,0 +1,11 @@
+Doc 195 — Range v3 ladder, honest pricing, crypto 26 coins, 12 months to 30 Oct 2026, Revolut X costs
+depth x1.0  exit EMA-0.0ATR: n10454 mean -0.042% | H1 -0.038% H2 -0.046% | pool £500 -> £357 maxDD -31%
+depth x1.0  exit EMA-0.5ATR: n10853 mean -0.037% | H1 -0.036% H2 -0.038% | pool £500 -> £367 maxDD -28%
+depth x1.25 exit EMA-0.0ATR: n 8818 mean -0.050% | H1 -0.048% H2 -0.053% | pool £500 -> £337 maxDD -35%
+depth x1.25 exit EMA-0.5ATR: n 9074 mean -0.043% | H1 -0.035% H2 -0.051% | pool £500 -> £349 maxDD -33%
+depth x1.5  exit EMA-0.0ATR: n 7174 mean -0.068% | H1 -0.072% H2 -0.064% | pool £500 -> £325 maxDD -38%
+depth x1.5  exit EMA-0.5ATR: n 7320 mean -0.060% | H1 -0.055% H2 -0.065% | pool £500 -> £339 maxDD -36%
+depth x2.0  exit EMA-0.0ATR: n 3993 mean -0.089% | H1 -0.114% H2 -0.062% | pool £500 -> £365 maxDD -30%
+depth x2.0  exit EMA-0.5ATR: n 4026 mean -0.084% | H1 -0.108% H2 -0.058% | pool £500 -> £369 maxDD -29%
+reclaim: n7725 mean -0.296% win 41% | H1 -0.292% H2 -0.301% | pool £500 -> £51 maxDD -90%
+(earlier, revx_honest_test: bids pre-adjusted for the band moving inside the bar: £500 -> £333)
