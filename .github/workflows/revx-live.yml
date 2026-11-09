@@ -1,0 +1,39 @@
+name: Revolut X LIVE runner (doc 194 — £500 Range long book, spot, long only)
+# CAP-021 as amended 5 Nov 2026 (DK). DK owns and controls this. Keys are DK's secrets REVX_API_KEY / REVX_PRIVATE_KEY (never printed).
+# mode=check : one read-only signed call (balances) — proves the keys work, no orders.
+# mode=dry   : runs the book on live prices and logs the orders it WOULD place (no orders).
+# mode=live  : trades — only if DK has set the repo VARIABLE REVX_LIVE_ENABLED to "true". Claude never dispatches mode=live.
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "check / dry / live", default: "check" }
+permissions:
+  contents: write
+concurrency:
+  group: revx-live
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.event.inputs.mode != 'live' || vars.REVX_LIVE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q cryptography pandas numpy
+      - name: Run (secrets never printed)
+        env:
+          REVX_API_KEY: ${{ secrets.REVX_API_KEY }}
+          REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
+          QLAB_ROOT: ${{ github.workspace }}
+        run: |
+          mkdir -p runs/revx_live
+          python src/revx_client.py ${{ github.event.inputs.mode }} 2>&1 | tee runs/revx_live/last_${{ github.event.inputs.mode }}.log
+          exit ${PIPESTATUS[0]}
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "revx-runner"; git config user.email "revx-runner@users.noreply.github.com"
+          git add -f runs/revx_live; git commit -m "revx ${{ github.event.inputs.mode }} $(date -u +%Y-%m-%dT%H:%M)" || true
+          git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
