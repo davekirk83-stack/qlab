@@ -54,6 +54,7 @@ def NTR(name): return f"ntr_{name}" if SPLIT else "ntr"
 # doc 190 S1 / doc 191 (DK 8 Nov "run the demos"): SHOCK PAUSE — no new rungs AGAINST an abnormal 15-min bar (range >= 3x the mean of the
 # previous 96 bars) for 2 hours (the shock bar + 8). Improved US Tech 100 and FTSE 100 in both halves; on US 500 it cut the worst episode but
 # also the total, so it is not listed there by default. Demo only unless set in the live workflow.
+NO_ORDERS = os.environ.get("IG_RANGE_ORDERS", "1") == "0"   # doc 194 (DK 9 Nov): ladder off — bars kept for the spike engine, no new rungs
 SHOCK = {x.strip() for x in os.environ.get("IG_SHOCK_PAUSE", "").split(",") if x.strip()}
 def shock_block(d, i):
     """-> (block_longs, block_shorts) at bar i of the 15-min frame d"""
@@ -220,6 +221,7 @@ class RangeEngine:
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         blk = shock_block(d, i) if name in SHOCK else (False, False)
         for side in ("L", "S"):
+            if NO_ORDERS: self.cancel_orders(name, side); continue
             if not _in_hours(ts, hours): continue
             if blk[0 if side == "L" else 1]:
                 if st["orders"] or not st["pos"].get(side): log(f"{name}: shock pause — no {'long' if side == 'L' else 'short'} rungs against an abnormal bar (doc 190 S1)")

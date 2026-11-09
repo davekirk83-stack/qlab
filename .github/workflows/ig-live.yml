@@ -1,4 +1,4 @@
-name: IG LIVE runner (doc 185/194 — £500 book, Ignition + ladders NQ/US500/FTSE + spike engine, minimum stakes)
+name: IG LIVE runner (doc 185/194 — £500 book, Ignition + spike engine NQ/US500; ladders off, minimum stakes)
 # CAP-021 as amended 4 Nov 2026 (DK "Yes"). DK owns and controls this: it does nothing unless the repo VARIABLE IG_LIVE_ENABLED is "true"
 # (Settings -> Secrets and variables -> Actions -> Variables). Live credentials are the secrets IG_USERNAME_LIVE / IG_PASSWORD_LIVE /
 # IG_API_KEY_LIVE, set by DK. Same code as the demo; state and logs in runs/ig_live. Claude never dispatches this workflow.
@@ -8,11 +8,9 @@ on:
       minutes: { description: "how long to run", default: "30" }
       dry: { description: "true = no orders; --markets = read-only market check; false = trade (needs IG_LIVE_ENABLED)", default: "--markets" }
   schedule:
-    # doc 194 (DK 9 Nov "Yes to all the above"): London morning to the US close, three back-to-back jobs (each under the 350-min limit):
+    # doc 194: London-morning crons removed 9 Nov evening with the ladders (nothing live trades before the US open). Was: London morning to the US close, three back-to-back jobs (each under the 350-min limit):
     #   07:55 London -> 08:35 NY (FTSE ladder); 08:40 NY -> 13:20 NY (Ignition first half, ladders through the US lunch); 13:25 NY -> 17:00 NY.
     # Summer and winter variants of each; the wrong DST one exits. Session END times are computed in New York time below.
-    - cron: "55 7 * * 1-5"
-    - cron: "55 6 * * 1-5"
     - cron: "40 12 * * 1-5"
     - cron: "10 13 * * 1-5"
     - cron: "40 13 * * 1-5"
@@ -48,7 +46,8 @@ jobs:
           IG_MIN_ONLY: "1"
           IG_NEWS: "0"
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
-          IG_RANGE_INSTR: "NQ,US500,FTSE"   # doc 194 (DK 9 Nov): + US 500 and FTSE 100 ladders (doc 185 started with US Tech 100 only)
+          IG_RANGE_INSTR: "NQ,US500"        # bars for the spike engine only (FTSE dropped with the ladders)
+          IG_RANGE_ORDERS: "0"              # doc 194 (DK 9 Nov 18:55 "If they don't earn money then take them off"): ladders OFF on live — honest pricing shows no edge
           IG_SPIKE: "NQ,US500"              # doc 194: spike continuation engine (doc 191) on live, minimum stakes, 2% risk cap
           IG_SHOCK_PAUSE: "NQ,FTSE"         # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h (as on the demo)
           IG_GOV_SPLIT: "1"                 # doc 189: each engine/market its own 8 trades a day; Ignition cap in points, ladders in £

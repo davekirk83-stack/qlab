@@ -39,3 +39,9 @@ DK to do: move £500 into Revolut X; create the API key and put it in GitHub sec
 - Consequences: do NOT fund the Revolut X range book (workflow schedule removed; check/dry stay manual). Paper book 14's results and the
   doc 137/173 ladder backtests overstate the edge for the same reason. Ignition and the spike engine decide on closed bars and are not affected.
   The live IG ladders (NQ, and US500/FTSE added today) have no demonstrated edge on honest pricing — DK to decide whether they stay live.
+
+## 9 Nov 18:55 — ladders off live (DK: "If they don't earn money then take them off")
+`IG_RANGE_ORDERS=0` on ig-live.yml: the range engine still builds US Tech 100 / US 500 bars (the spike engine needs them) but places no
+rungs; any existing ladder position keeps its IG stop/limit. FTSE and the London-morning crons removed. Live now = Ignition v1.1 + spike
+continuation (NQ, US500), minimum stakes, 2% cap, -4% day stop. The demo keeps its ladders to gather real fills. The 18:09 scheduled live
+and demo runs failed before starting (GitHub "workflow file issue"; files lint clean, manual demo run fine, next slots ran) — no orders.
