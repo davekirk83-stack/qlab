@@ -21,3 +21,21 @@ Code: `IG_LIVE_CONFIRMED=CAP021-AMENDED-2026-11-09-IG-WIDER-500` (src/ig_mode.py
 ## Revolut X range-long book (approved 5 Nov) — runner next
 Paper book 14 (same rules on Revolut X's own candles): 236 closed trades 1-9 Nov, £500 -> £534.70 (+6.9%), worst dip -1.6%.
 DK to do: move £500 into Revolut X; create the API key and put it in GitHub secrets (Claude never sees it).
+
+## 9 Nov evening — Revolut X runner built; the Range book's edge is look-ahead (IMPORTANT)
+- Keys: DK made the Ed25519 pair (browser page, never seen by Claude) and put REVX_API_KEY / REVX_PRIVATE_KEY in GitHub secrets.
+  `revx-live.yml mode=check` -> "KEY CHECK OK" (read-only balances call). Account empty. No USD/GBP pair on Revolut X; GBP pairs are thin
+  (1-9 Nov replay: 59 episodes vs 203 on USD), so the plan was USD converted in the Revolut app.
+- Runner v1 (`src/revx_live.py`, bought after each bar closed): replay 1-9 Nov -3.5% vs paper book 14's +6.9%.
+- Runner v2 (resting post-only bids at the rungs and a resting sell at the mid, priced from the last CLOSED bar): replay 1-9 Nov -0.3%.
+- Why: `paperbook6.step` prices bar i's rungs and its mid exit from **bar i's own close** (EMA/bands include C[i]) and then asks whether
+  bar i's low touched them. That uses the close before it happens. `src/revx_honest_test.py` (12 months to 30 Oct 2026, 26 coins,
+  Revolut X costs, pool 10%/10 open): engine £500 -> £2,420 (maxDD -7%); same rules with orders priced from the previous bar
+  £500 -> **£356 (maxDD -30%)**; with bids pre-adjusted for the band moving inside the bar £333. 1-9 Nov on Revolut X candles: engine +7%,
+  honest +1%.
+- Same check on the IG ladder (`src/ig_ladder_honest_test.py`, both sides, ~1 year, before IG spread): engine NQ +24% / US500 +17% /
+  FTSE +17% summed per-episode returns; honest (what `src/ig_range_engine.py` actually does live) NQ 0.0% / US500 -6.1% / FTSE +1.3%.
+  Real demo ladder fills 26 Oct - 6 Nov: 14 trades, +£48 (mostly NQ) — too few to separate from zero.
+- Consequences: do NOT fund the Revolut X range book (workflow schedule removed; check/dry stay manual). Paper book 14's results and the
+  doc 137/173 ladder backtests overstate the edge for the same reason. Ignition and the spike engine decide on closed bars and are not affected.
+  The live IG ladders (NQ, and US500/FTSE added today) have no demonstrated edge on honest pricing — DK to decide whether they stay live.

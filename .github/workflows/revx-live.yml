@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       mode: { description: "check / dry / live", default: "check" }
+  # schedule: none. Doc 194 (9 Nov): with honest resting orders the Range long book loses (-29% over 12 months); not to be funded.
 permissions:
   contents: write
 concurrency:
@@ -14,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   run:
-    if: github.event.inputs.mode != 'live' || vars.REVX_LIVE_ENABLED == 'true'
+    if: github.event_name == 'schedule' || github.event.inputs.mode != 'live' || vars.REVX_LIVE_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -29,11 +30,14 @@ jobs:
           QLAB_ROOT: ${{ github.workspace }}
         run: |
           mkdir -p runs/revx_live
-          python src/revx_client.py ${{ github.event.inputs.mode }} 2>&1 | tee runs/revx_live/last_${{ github.event.inputs.mode }}.log
-          exit ${PIPESTATUS[0]}
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then [ "${{ vars.REVX_LIVE_ENABLED }}" = "true" ] && MODE=live || MODE=dry; fi
+          if [ "$MODE" = "check" ]; then python src/revx_client.py check 2>&1 | tee runs/revx_live/last_check.log; exit ${PIPESTATUS[0]}; fi
+          D=runs/revx_$MODE; mkdir -p $D
+          python src/revx_live.py $MODE 2>&1 | tee -a $D/log.txt; exit ${PIPESTATUS[0]}
       - name: Commit results
         if: always()
         run: |
           git config user.name "revx-runner"; git config user.email "revx-runner@users.noreply.github.com"
-          git add -f runs/revx_live; git commit -m "revx ${{ github.event.inputs.mode }} $(date -u +%Y-%m-%dT%H:%M)" || true
+          mkdir -p runs/revx_live runs/revx_dry; touch runs/revx_dry/.keep; git add -f runs/revx_live runs/revx_dry 2>/dev/null; git add -f data_rx_cache 2>/dev/null; git commit -m "revx ${{ github.event.inputs.mode }} $(date -u +%Y-%m-%dT%H:%M)" || true
           git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
