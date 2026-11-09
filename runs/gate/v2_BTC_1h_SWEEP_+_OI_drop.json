@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 716,
+ "mean_all": -0.082,
+ "t_all": -1.75,
+ "t_needed": 3.56,
+ "wf_positive": 0.33,
+ "wf_windows": 6,
+ "holdout_mean": -0.092,
+ "failed_checks": [
+  "full-sample t >= 3.56 (N=137)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 93,
+ "random_p95": -0.009,
+ "book": "BTC 1h SWEEP + OI drop"
+}

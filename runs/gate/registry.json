@@ -127,5 +127,16 @@
 "Q PRE-HOLIDAY 4 US indices",
 "R HALLOWEEN Nov-Apr 7 indices",
 "R2 every month (comparison) 7 indices",
-"S FX month-end rebalancing 3 pairs"
+"S FX month-end rebalancing 3 pairs",
+"BTC SWEEP recent 12h range (base)",
+"BTC SWEEP + OI drop",
+"BTC SWEEP + OI drop + no follow-through",
+"BTC SWEEP + chop",
+"BTC SWEEP + OI drop + chop",
+"BTC SWEEP + no follow-through",
+"BTC 1h SWEEP 24h range",
+"BTC 1h SWEEP + OI drop",
+"BTC T CROWD contrarian long/short ratio",
+"BTC U OI-confirmed breakout",
+"BTC V OI flush buy"
 ]

@@ -1,0 +1,17 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 45,
+ "mean_all": 0.602,
+ "t_all": 1.31,
+ "t_needed": 3.56,
+ "wf_positive": 0.8,
+ "wf_windows": 5,
+ "holdout_mean": 0.83,
+ "failed_checks": [
+  "full-sample t >= 3.56 (N=139)",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 7,
+ "random_p95": 1.088,
+ "book": "BTC U OI-confirmed breakout"
+}

@@ -70,3 +70,14 @@ Combined: 60% of months positive, 18 of 26 years; worst 12 months -38 ATR vs -13
 | NR7 breakout (Crabel), 12 markets | FAILED | n7511 -0.06 | 8/27 | |
 | Pre-holiday, 4 US indices | FAILED | n1084 -0.03 | 10/27 | |
 | FX month-end rebalancing (Melvin & Prins) | FAILED | n727 0.00 | 11/23 | |
+
+## Liquidity sweeps (Stoic's thread, DK 22:55) — src/sweep_liquidity_test.py, src/sweep_liquidity_1h.py, BTC Dec 2021 - Nov 2026
+Fading a sweep of the recent range (12h on 15-min / 24h on 1h), closing back inside, target the range middle: FAILED in every year
+(15-min -0.34 ATR, 1h -0.18). His mechanism shows up — sweeps where open interest DROPPED (a real liquidation) lose about half as much
+(1h: -0.08 ATR, 2 of 5 years positive) — but not enough to pay costs. His own chart (13 daily sweeps of 30+ day levels, 6 reversed) agrees.
+## Positioning (src/positioning_test.py), Binance futures metrics
+| Idea | v2 | Trades | By year |
+|---|---|---|---|
+| Crowd contrarian: Binance long/short ratio in its top/bottom 10% of 90 days -> fade 3 days | WEAK | n202 +0.23 ATR, t 2.1 | 2022 -0.28, 2023 +0.51, 2024 +0.31, 2025 +0.26, 2026 +0.20 |
+| OI-confirmed 20-day breakout (OI +5% in 3 days) | WEAK | n45 +0.60 | 4 of 5 years + |
+| OI flush buy (OI -8% & price -4% in a day) | FAILED (n12) | | |

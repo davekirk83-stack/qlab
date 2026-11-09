@@ -1,0 +1,17 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 202,
+ "mean_all": 0.234,
+ "t_all": 2.14,
+ "t_needed": 3.56,
+ "wf_positive": 0.8,
+ "wf_windows": 5,
+ "holdout_mean": 0.239,
+ "failed_checks": [
+  "full-sample t >= 3.56 (N=138)",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 45,
+ "random_p95": 0.542,
+ "book": "BTC T CROWD contrarian long/short ratio"
+}

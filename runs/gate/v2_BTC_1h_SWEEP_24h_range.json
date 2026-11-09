@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 2658,
+ "mean_all": -0.177,
+ "t_all": -7.45,
+ "t_needed": 3.56,
+ "wf_positive": 0.0,
+ "wf_windows": 6,
+ "holdout_mean": -0.196,
+ "failed_checks": [
+  "full-sample t >= 3.56 (N=136)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 555,
+ "random_p95": -0.091,
+ "book": "BTC 1h SWEEP 24h range"
+}

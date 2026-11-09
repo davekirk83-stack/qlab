@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 5958,
+ "mean_all": -0.338,
+ "t_all": -16.89,
+ "t_needed": 3.55,
+ "wf_positive": 0.0,
+ "wf_windows": 6,
+ "holdout_mean": -0.354,
+ "failed_checks": [
+  "full-sample t >= 3.55 (N=135)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 1191,
+ "random_p95": -0.299,
+ "book": "BTC SWEEP + no follow-through"
+}

@@ -1,0 +1,18 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 12,
+ "mean_all": 0.466,
+ "t_all": 1.38,
+ "t_needed": 3.56,
+ "wf_positive": 0.67,
+ "wf_windows": 6,
+ "holdout_mean": -1.147,
+ "failed_checks": [
+  "full-sample t >= 3.56 (N=140)",
+  "holdout mean > 0",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 1,
+ "random_p95": null,
+ "book": "BTC V OI flush buy"
+}
