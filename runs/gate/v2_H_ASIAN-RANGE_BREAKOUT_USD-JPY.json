@@ -1,0 +1,19 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 59,
+ "mean_all": -0.006,
+ "t_all": -0.0,
+ "t_needed": 3.51,
+ "wf_positive": 0.5,
+ "wf_windows": 6,
+ "holdout_mean": 0.455,
+ "failed_checks": [
+  "full-sample t >= 3.51 (N=115)",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 22,
+ "random_p95": 3.056,
+ "book": "H ASIAN-RANGE BREAKOUT USD/JPY"
+}

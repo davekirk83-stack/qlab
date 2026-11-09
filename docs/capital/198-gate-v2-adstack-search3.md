@@ -31,3 +31,13 @@ Gold London breakout of the Asian range (published retail backtest, PF ~1.37 ove
 Sources: Boyarchenko, Larsen & Whelan, "The Overnight Drift" (NY Fed Liberty Street, 2021); MQL5 "London Breakout on Gold: 3.7 Years of
 Backtests"; Baltussen, Da & Soebhag "End-of-Day Reversal" (stocks only — not testable on our indices); Della Corte, Kosowski & Wang
 overnight/intraday reversal (cxoadvisory); MQL5 "Unified Validation Pipeline Against Backtest Overfitting"; Sullivan, Timmermann & White.
+
+## Market search 4 (src/market_search_4.py, gate v2), 9 Nov 22:40
+| Idea | v2 | All trades | Walk-forward | Last year |
+|---|---|---|---|---|
+| RSI(2) pullback, 8 markets daily (Connors & Alvarez) | WEAK | n1482 +0.13 ATR, t 2.9 | 69% of 26 years | +0.34 (n92) |
+| Asian-range breakout, Germany 40 | WEAK | n88 +0.55 | 67% | +2.0 |
+| Asian-range breakout GBP/USD, USD/JPY, FTSE | FAILED | | | |
+| VIX spike reversion (SPX, NDX) | WEAK, barely | n334 +0.05 | 54% | |
+| Crypto 20-day-high breakout, 10 coins (spot) | FAILED | n275 +1.37 but 33% of windows; last year -0.55 | | |
+| Opening-gap fade, 3 US indices | FAILED | | | |

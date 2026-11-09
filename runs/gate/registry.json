@@ -111,5 +111,13 @@
 "v2 NOISEBAND US Tech 100",
 "v2 TURN-OF-MONTH 6 indices",
 "v2 TREND100 IG quarterly bets 18 markets",
-"v2 GOLD London breakout of Asian range"
+"v2 GOLD London breakout of Asian range",
+"H ASIAN-RANGE BREAKOUT GBP/USD",
+"H ASIAN-RANGE BREAKOUT USD/JPY",
+"H ASIAN-RANGE BREAKOUT Germany 40",
+"H ASIAN-RANGE BREAKOUT FTSE 100",
+"I RSI2 pullback 8 markets",
+"J VIX spike reversion SPX NDX",
+"K CRYPTO 20-day high breakout 10 coins",
+"L GAP FADE 3 US indices"
 ]

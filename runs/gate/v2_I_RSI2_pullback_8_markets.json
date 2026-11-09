@@ -1,0 +1,17 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 1482,
+ "mean_all": 0.13,
+ "t_all": 2.86,
+ "t_needed": 3.52,
+ "wf_positive": 0.69,
+ "wf_windows": 26,
+ "holdout_mean": 0.342,
+ "failed_checks": [
+  "full-sample t >= 3.52 (N=118)",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 92,
+ "random_p95": 0.453,
+ "book": "I RSI2 pullback 8 markets"
+}

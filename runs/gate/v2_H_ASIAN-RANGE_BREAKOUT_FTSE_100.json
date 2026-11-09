@@ -1,0 +1,19 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 101,
+ "mean_all": 0.205,
+ "t_all": 0.16,
+ "t_needed": 3.52,
+ "wf_positive": 0.5,
+ "wf_windows": 6,
+ "holdout_mean": -2.117,
+ "failed_checks": [
+  "full-sample t >= 3.52 (N=117)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 39,
+ "random_p95": 1.4,
+ "book": "H ASIAN-RANGE BREAKOUT FTSE 100"
+}

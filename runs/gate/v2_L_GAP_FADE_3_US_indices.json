@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 244,
+ "mean_all": -0.014,
+ "t_all": -0.44,
+ "t_needed": 3.52,
+ "wf_positive": 0.33,
+ "wf_windows": 6,
+ "holdout_mean": -0.051,
+ "failed_checks": [
+  "full-sample t >= 3.52 (N=121)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 120,
+ "random_p95": 0.104,
+ "book": "L GAP FADE 3 US indices"
+}

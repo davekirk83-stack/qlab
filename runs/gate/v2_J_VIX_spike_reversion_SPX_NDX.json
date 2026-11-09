@@ -1,0 +1,18 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 334,
+ "mean_all": 0.046,
+ "t_all": 0.38,
+ "t_needed": 3.52,
+ "wf_positive": 0.54,
+ "wf_windows": 26,
+ "holdout_mean": 0.58,
+ "failed_checks": [
+  "full-sample t >= 3.52 (N=119)",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 10,
+ "random_p95": 1.644,
+ "book": "J VIX spike reversion SPX NDX"
+}
