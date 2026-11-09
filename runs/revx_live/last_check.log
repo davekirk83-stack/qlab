@@ -1,1 +1,3 @@
-REVX_PRIVATE_KEY doesn't look like a private key (no '-----BEGIN PRIVATE KEY-----' line) — it may hold the API key instead
+KEY CHECK OK — Revolut X accepted the signed request.
+Balances held: none yet (account empty)
+Pairs: 418 total, 64 quoted in GBP, 331 in USD
