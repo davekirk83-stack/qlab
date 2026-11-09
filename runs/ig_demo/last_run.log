@@ -1,12 +1,22 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-18:20:25 account CFD balance {'balance': 10000.0, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 10000.0}
-18:20:25 account SPREADBET balance {'balance': 9968.29, 'deposit': 0.0, 'profitLoss': 0.0, 'available': 9968.29}
-18:20:26 IX.D.NASDAQ.CASH.IP | US Tech 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.01} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 5 PERCENTAGE | bands [(0, 355, 5), (355, 1775, 5), (1775, 2840, 5)] | bid 27803.2 offer 27804.4 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-18:20:28 IX.D.DOW.DAILY.IP | Wall Street | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 12.0} | marginFactor 5 PERCENTAGE | bands [(0, 170, 5), (170, 850, 5), (850, 1360, 5)] | bid 52395.2 offer 52397.6 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'AUD', 'USD', 'EUR']
-18:20:30 IX.D.DAX.DAILY.IP | Germany 40 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 5.0} | marginFactor 5 PERCENTAGE | bands [(0, 322, 5), (322, 1610, 5), (1610, 2576, 5)] | bid 26344.9 offer 26348.0 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'AUD', 'EUR']
-18:20:32 IX.D.FTSE.DAILY.IP | FTSE 100 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 6.0} | marginFactor 5 PERCENTAGE | bands [(0, 325, 5), (325, 1950, 5), (1950, 3250, 5)] | bid 10810.5 offer 10812.7 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR']
-18:20:35 IX.D.SPTRD.DAILY.IP | US 500 | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 1255, 5), (1255, 6275, 5), (6275, 10040, 5)] | bid 7543.44 offer 7543.94 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-18:20:37 CS.D.EURUSD.TODAY.IP | EUR/USD | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 2.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 578, 3.33), (578, 2890, 3.33), (2890, 4624, 3.33)] | bid 11202.6 offer 11203.5 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'EUR', 'GBP']
-18:20:39 CS.D.GBPUSD.TODAY.IP | GBP/USD | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.03} | minStop {'unit': 'POINTS', 'value': 4.0} | marginFactor 3.33 PERCENTAGE | bands [(0, 500, 3.33), (500, 2500, 3.33), (2500, 4000, 3.33)] | bid 13420.7 offer 13421.6 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-18:20:41 CS.D.USCGC.TODAY.IP | Spot Gold | expiry DFB | minSize {'unit': 'POINTS', 'value': 1.0} | minStop {'unit': 'POINTS', 'value': 1.0} | marginFactor 5 PERCENTAGE | bands [(0, 2300, 5), (2300, 4600, 5), (4600, 6900, 5)] | bid 4100.95 offer 4101.25 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['USD', 'AUD', 'GBP', 'EUR']
-18:20:44 CC.D.LCO.USS.IP | Oil - Brent Crude | expiry DFB | minSize {'unit': 'POINTS', 'value': 0.04} | minStop {'unit': 'POINTS', 'value': 6.0} | marginFactor 10 PERCENTAGE | bands [(0, 420, 10), (420, 1050, 10), (1050, 1470, 10)] | bid 9288.3 offer 9293.5 | valueOfOnePip None onePipMeans None | status TRADEABLE | ccy ['GBP', 'EUR', 'USD']
+18:37:22 delta-share threshold 0.0500 (percentile-matched on 3021 IG bars); registered 0.05
+18:37:23 FATAL Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 458, in <module>
+    Runner(end, dry).run()
+    ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 90, in __init__
+    self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
+                                      ^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 128, in history
+    def history(self): return self.rest_history(EPIC, "5Min", 300)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 131, in rest_history
+    h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1813, in fetch_historical_prices_by_epic
+    data = self.parse_response(response.text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 395, in parse_response
+    raise (Exception(response["errorCode"]))
+Exception: error.public-api.exceeded-account-historical-data-allowance
+
