@@ -1,0 +1,56 @@
+B  1 Connors R3: RSI(3) falls 3 days, <10, above 200MA                      n  443 +0.273 t +2.67 years 19/26 last5 +0.412
+B  2 Cumulative RSI(2) 2-day sum < 35, above 200MA                          n 1549 +0.134 t +3.43 years 18/26 last5 +0.202
+C  3 Three lower highs & lows, above 200MA, exit > 5MA                      n 1035 +0.097 t +2.15 years 16/26 last5 -0.037
+B  4 Double 5s: 5-day low close above 200MA, exit 5-day high                n 2964 +0.065 t +2.02 years 16/27 last5 +0.081
+B  5 Close below lower Bollinger(20,2), above 200MA, exit at 20MA           n  555 +0.207 t +2.00 years 17/26 last5 +0.158
+B  7 Williams %R(2) < -90 above 200MA, exit close > prior high              n 2591 +0.139 t +4.67 years 16/27 last5 +0.088
+F  8 Daily gap down > 0.5 ATR below prior low -> buy open, sell close       n 1185 -0.136 t -6.15 years 3/27 last5 -0.151
+C  9 Four down closes above 200MA, exit first up close                      n  627 +0.076 t +1.72 years 14/26 last5 +0.169
+C  10 10-day low in a range (efficiency < 0.3), hold 5 days                 n 2512 +0.005 t +0.14 years 15/27 last5 -0.074
+F  11 Down day closing in top 25% after a 5-day fall, hold 3 days           n  785 -0.031 t -0.57 years 13/27 last5 -0.057
+B  12 Weekly RSI(2) < 10 above 40-week MA, hold 5 days                      n  244 +0.340 t +2.98 years 18/26 last5 +0.117
+C  13 After a month down >= 5%, buy and hold one month                      n  298 +0.056 t +0.28 years 16/26 last5 +1.685
+A  14 Turnaround Tuesday: Monday down > 1% -> buy Monday close, sell Tuesda n 1424 +0.128 t +5.83 years 21/27 last5 +0.071
+F  15 Weekend: buy Friday close, sell Monday close                          n 9432 -0.039 t -4.61 years 11/27 last5 -0.011
+C  16 Short bear-market rallies: 3 up days below 200MA, cover first down cl n  773 +0.042 t +1.35 years 12/25 last5 +0.068
+C  17 Golden cross long-only (50/200), exit death cross                     n  129 +2.917 t +2.41 years 10/25 last5 +6.407
+F  18 Donchian 20 breakout long above 200MA, exit 10-day low                n 1579 -0.254 t -2.84 years 9/27 last5 -0.352
+F  19 52-week-high breakout long, exit 50-day low                           n  375 -0.263 t -0.54 years 10/27 last5 -0.540
+C  20 MACD(12,26,9) cross up above 200MA, exit cross down                   n 1506 +0.040 t +0.64 years 12/27 last5 -0.006
+B  21 Absolute momentum: long index only while 12m return > 0 (monthly)     n  895 +0.284 t +2.36 years 15/26 last5 +0.567
+F  22 3-month time-series momentum, 18 markets (monthly)                    n 3254 -0.299 t -4.86 years 10/27 last5 -0.436
+F  23 1-month time-series momentum, 18 markets (monthly)                    n 3277 -0.393 t -6.38 years 7/27 last5 -0.348
+F  24 Keltner breakout (close > EMA20 + 2 ATR) with trend, exit at EMA20    n 3407 -0.331 t -6.40 years 3/27 last5 -0.525
+F  25 Supertrend(10,3) style: 10-day ATR channel flip, 18 markets           n  408 -0.509 t -2.35 years 8/27 last5 -1.217
+F  26 Turtle 20/10 both sides, 18 markets                                   n 9399 -0.104 t -6.95 years 4/27 last5 -0.118
+C  27 Rising 200-day average and close above it: long, exit below           n  474 +0.552 t +1.84 years 13/27 last5 +1.455
+C  28 Gold above its 200-day average (long only)                            n   98 +1.456 t +1.32 years 9/20 last5 +5.447
+C  29 Larry Williams volatility breakout: next day open + 0.6 x range (O->C n18705 +0.030 t +7.80 years 20/27 last5 -0.020
+F  30 NR4 inside day breakout (Crabel), exit at close                       n 8261 -0.001 t -0.12 years 12/27 last5 -0.061
+C  31 VIX > 30 then 10% below its 5-day high: buy SPX/NDX 10 days           n  137 +0.061 t +0.30 years 9/13 last5 +0.756
+C  32 VIX RSI(2) > 90 (fear stretch): buy index 3 days                      n 1570 +0.044 t +1.18 years 13/27 last5 +0.169
+F  33 Low-vol regime: 20-day realised vol < 10% -> long until > 15%         n  229 -0.368 t -0.94 years 10/26 last5 +1.072
+F  34 Bollinger squeeze (6-month narrowest) then 20-day breakout            n  863 -0.341 t -3.52 years 5/27 last5 -0.406
+C  35 First trading day of the month (close before -> close)                n 2158 +0.114 t +5.92 years 17/27 last5 -0.064
+C  36 Options-expiry week long (Mon close of the week with the 3rd Friday - n 1196 +0.009 t +0.21 years 15/27 last5 -0.248
+A  37 Santa rally: last 5 trading days of Dec + first 2 of Jan              n  174 +0.495 t +4.20 years 20/26 last5 +0.060
+F  38 Monday weakness: short Friday close -> Monday close                   n 9432 -0.083 t -9.86 years 6/27 last5 -0.111
+A  39 Turn of the quarter: last day of quarter -> 3rd day                   n  689 +0.252 t +4.27 years 22/27 last5 +0.133
+B  40 Gold seasonal: long gold in Jan, Aug, Sep only                        n  141 +0.927 t +2.39 years 20/27 last5 +0.908
+C  41 Flight to safety: SPX down > 2% -> buy gold 5 days                    n  173 +0.112 t +0.65 years 10/23 last5 +0.034
+C  42 Falling yields: 10y note up > 1% in 5 days -> long US index 5 days    n  739 +0.111 t +1.70 years 16/27 last5 +0.386
+F  43 Oil shock: oil +5% day -> short US index 3 days                       n  354 -0.214 t -3.60 years 5/23 last5 -0.602
+F  44 Yen risk-off: USD/JPY down > 1.5% -> buy NDX/SPX 5 days               n  133 -0.114 t -0.68 years 9/23 last5 +0.074
+C  45 Copper/gold ratio rising (20d) -> long SPX for the month              n  338 +0.307 t +1.56 years 14/27 last5 +0.668
+C  46 Tokyo lead: Nikkei up/down > 1.5% -> same direction US index open->cl n 3014 +0.026 t +2.01 years 17/27 last5 -0.036
+A  47 US strong close (top 10% of range, +1%) -> DAX/FTSE next open->close  n 1140 +0.112 t +5.99 years 22/27 last5 +0.005
+F  48 Crypto turn of the month (last day -> 3rd day), spot                  n  569 -0.022 t -0.43 years 2/6 last5 -0.016
+C  49 Crypto above 50-day average, long only (exit below), spot             n  561 +0.700 t +2.33 years 3/6 last5 +0.712
+C  50 ETH/BTC rotation: hold ETH when ETH/BTC 30d rising, else BTC (monthly n   50 +0.460 t +0.66 years 4/6 last5 +0.625
+
+multiple-testing threshold t* = 3.64 (N = 190 ideas tried in total)
+rating
+A     4
+B     8
+C    20
+F    18

@@ -1,0 +1,51 @@
+idea,family,markets,n,per_year,mean_ATR,t,years_pos,last5,last_year,rating
+"47 US strong close (top 10% of range, +1%) -> DAX/FTSE next open->close",cross-asset,2.0,1140,42.0,0.112,5.99,22/27,0.005,0.03,A
+"14 Turnaround Tuesday: Monday down > 1% -> buy Monday close, sell Tuesday",mean reversion,7.0,1424,53.0,0.128,5.83,21/27,0.071,-0.118,A
+39 Turn of the quarter: last day of quarter -> 3rd day,calendar,7.0,689,26.0,0.252,4.27,22/27,0.133,1.079,A
+37 Santa rally: last 5 trading days of Dec + first 2 of Jan,calendar,7.0,174,7.0,0.495,4.2,20/26,0.06,0.622,A
+"7 Williams %R(2) < -90 above 200MA, exit close > prior high",mean reversion,8.0,2591,96.0,0.139,4.67,16/27,0.088,0.067,B
+"2 Cumulative RSI(2) 2-day sum < 35, above 200MA",mean reversion,8.0,1549,60.0,0.134,3.43,18/26,0.202,0.332,B
+"12 Weekly RSI(2) < 10 above 40-week MA, hold 5 days",mean reversion,8.0,244,9.0,0.34,2.98,18/26,0.117,-0.478,B
+"1 Connors R3: RSI(3) falls 3 days, <10, above 200MA",mean reversion,8.0,443,17.0,0.273,2.67,19/26,0.412,0.958,B
+"40 Gold seasonal: long gold in Jan, Aug, Sep only",calendar,2.0,141,5.0,0.927,2.39,20/27,0.908,4.038,B
+21 Absolute momentum: long index only while 12m return > 0 (monthly),trend,7.0,895,34.0,0.284,2.36,15/26,0.567,0.769,B
+"4 Double 5s: 5-day low close above 200MA, exit 5-day high",mean reversion,8.0,2964,110.0,0.065,2.02,16/27,0.081,0.017,B
+"5 Close below lower Bollinger(20,2), above 200MA, exit at 20MA",mean reversion,8.0,555,21.0,0.207,2.0,17/26,0.158,0.429,B
+29 Larry Williams volatility breakout: next day open + 0.6 x range (O->C),breakout,8.0,18705,693.0,0.03,7.8,20/27,-0.02,-0.017,C
+35 First trading day of the month (close before -> close),calendar,7.0,2158,80.0,0.114,5.92,17/27,-0.064,-0.028,C
+"17 Golden cross long-only (50/200), exit death cross",trend,8.0,129,5.0,2.917,2.41,10/25,6.407,-3.146,C
+"49 Crypto above 50-day average, long only (exit below), spot",crypto,10.0,561,94.0,0.7,2.33,3/6,0.712,0.143,C
+"3 Three lower highs & lows, above 200MA, exit > 5MA",mean reversion,8.0,1035,40.0,0.097,2.15,16/26,-0.037,0.175,C
+46 Tokyo lead: Nikkei up/down > 1.5% -> same direction US index open->close,cross-asset,2.0,3014,112.0,0.026,2.01,17/27,-0.036,-0.091,C
+"27 Rising 200-day average and close above it: long, exit below",trend,8.0,474,18.0,0.552,1.84,13/27,1.455,-0.256,C
+"9 Four down closes above 200MA, exit first up close",mean reversion,8.0,627,24.0,0.076,1.72,14/26,0.169,0.333,C
+42 Falling yields: 10y note up > 1% in 5 days -> long US index 5 days,cross-asset,3.0,739,27.0,0.111,1.7,16/27,0.386,-1.39,C
+45 Copper/gold ratio rising (20d) -> long SPX for the month,cross-asset,3.0,338,13.0,0.307,1.56,14/27,0.668,1.919,C
+"16 Short bear-market rallies: 3 up days below 200MA, cover first down close",mean reversion,7.0,773,31.0,0.042,1.35,12/25,0.068,-0.877,C
+28 Gold above its 200-day average (long only),trend,1.0,98,5.0,1.456,1.32,9/20,5.447,-0.431,C
+32 VIX RSI(2) > 90 (fear stretch): buy index 3 days,volatility,4.0,1570,58.0,0.044,1.18,13/27,0.169,0.163,C
+"50 ETH/BTC rotation: hold ETH when ETH/BTC 30d rising, else BTC (monthly)",crypto,2.0,50,8.0,0.46,0.66,4/6,0.625,-0.934,C
+41 Flight to safety: SPX down > 2% -> buy gold 5 days,cross-asset,1.0,173,8.0,0.112,0.65,10/23,0.034,1.687,C
+"20 MACD(12,26,9) cross up above 200MA, exit cross down",trend,8.0,1506,56.0,0.04,0.64,12/27,-0.006,-0.349,C
+31 VIX > 30 then 10% below its 5-day high: buy SPX/NDX 10 days,volatility,3.0,137,11.0,0.061,0.3,9/13,0.756,0.225,C
+"13 After a month down >= 5%, buy and hold one month",mean reversion,8.0,298,11.0,0.056,0.28,16/26,1.685,2.511,C
+36 Options-expiry week long (Mon close of the week with the 3rd Friday -> Fri),calendar,4.0,1196,44.0,0.009,0.21,15/27,-0.248,-0.47,C
+"10 10-day low in a range (efficiency < 0.3), hold 5 days",mean reversion,8.0,2512,93.0,0.005,0.14,15/27,-0.074,0.389,C
+"30 NR4 inside day breakout (Crabel), exit at close",breakout,18.0,8261,306.0,-0.001,-0.12,12/27,-0.061,-0.056,F
+"48 Crypto turn of the month (last day -> 3rd day), spot",crypto,10.0,569,95.0,-0.022,-0.43,2/6,-0.016,0.233,F
+"19 52-week-high breakout long, exit 50-day low",trend,18.0,375,14.0,-0.263,-0.54,10/27,-0.54,-3.136,F
+"11 Down day closing in top 25% after a 5-day fall, hold 3 days",mean reversion,8.0,785,29.0,-0.031,-0.57,13/27,-0.057,-0.408,F
+44 Yen risk-off: USD/JPY down > 1.5% -> buy NDX/SPX 5 days,cross-asset,2.0,133,6.0,-0.114,-0.68,9/23,0.074,0.767,F
+33 Low-vol regime: 20-day realised vol < 10% -> long until > 15%,volatility,7.0,229,9.0,-0.368,-0.94,10/26,1.072,-2.866,F
+"25 Supertrend(10,3) style: 10-day ATR channel flip, 18 markets",trend,18.0,408,15.0,-0.509,-2.35,8/27,-1.217,-0.485,F
+"18 Donchian 20 breakout long above 200MA, exit 10-day low",trend,18.0,1579,58.0,-0.254,-2.84,9/27,-0.352,-0.32,F
+34 Bollinger squeeze (6-month narrowest) then 20-day breakout,volatility,18.0,863,32.0,-0.341,-3.52,5/27,-0.406,-0.553,F
+43 Oil shock: oil +5% day -> short US index 3 days,cross-asset,3.0,354,15.0,-0.214,-3.6,5/23,-0.602,-0.889,F
+"15 Weekend: buy Friday close, sell Monday close",calendar,7.0,9432,349.0,-0.039,-4.61,11/27,-0.011,0.017,F
+"22 3-month time-series momentum, 18 markets (monthly)",trend,18.0,3254,121.0,-0.299,-4.86,10/27,-0.436,-0.486,F
+"8 Daily gap down > 0.5 ATR below prior low -> buy open, sell close",mean reversion,8.0,1185,44.0,-0.136,-6.15,3/27,-0.151,-0.03,F
+"23 1-month time-series momentum, 18 markets (monthly)",trend,18.0,3277,121.0,-0.393,-6.38,7/27,-0.348,-0.421,F
+"24 Keltner breakout (close > EMA20 + 2 ATR) with trend, exit at EMA20",trend,18.0,3407,126.0,-0.331,-6.4,3/27,-0.525,-0.546,F
+"26 Turtle 20/10 both sides, 18 markets",trend,18.0,9399,348.0,-0.104,-6.95,4/27,-0.118,-0.134,F
+38 Monday weakness: short Friday close -> Monday close,calendar,7.0,9432,349.0,-0.083,-9.86,6/27,-0.111,-0.141,F
+"6 Connors %b < 0 three days, above 200MA, exit %b > 0.75",mean reversion,,0,,,,,,,F
