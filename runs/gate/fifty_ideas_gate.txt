@@ -1,0 +1,12 @@
+PASS except t  1 Connors R3: RSI(3) falls 3 days, <10, above 200MA                mean +0.273 | random95 +0.107 (p=0.000) | cost1.5 +0.249 | last yr +0.958 | yrs 19/26 | fails: multiple-testing t
+PASS except t  2 Cumulative RSI(2) 2-day sum < 35, above 200MA                    mean +0.134 | random95 +0.042 (p=0.000) | cost1.5 +0.110 | last yr +0.332 | yrs 18/26 | fails: multiple-testing t
+FAIL           4 Double 5s: 5-day low close above 200MA, exit 5-day high          mean +0.065 | random95 +0.030 (p=0.000) | cost1.5 +0.040 | last yr +0.017 | yrs 16/27 | fails: 60% of years positive, multiple-testing t
+PASS except t  5 Close below lower Bollinger(20,2), above 200MA, exit at 20MA     mean +0.207 | random95 +0.045 (p=0.000) | cost1.5 +0.183 | last yr +0.429 | yrs 17/26 | fails: multiple-testing t
+FAIL           7 Williams %R(2) < -90 above 200MA, exit close > prior high        mean +0.139 | random95 +0.038 (p=0.000) | cost1.5 +0.113 | last yr +0.067 | yrs 16/27 | fails: 60% of years positive, multiple-testing t
+FAIL           12 Weekly RSI(2) < 10 above 40-week MA, hold 5 days                mean +0.340 | random95 +0.154 (p=0.005) | cost1.5 +0.319 | last yr -0.478 | yrs 18/26 | fails: last year positive, multiple-testing t
+FAIL           14 Turnaround Tuesday: Monday down > 1% -> buy Monday close, sell  mean +0.128 | random95 -0.008 (p=0.000) | cost1.5 +0.111 | last yr -0.118 | yrs 21/27 | fails: last year positive
+FAIL           21 Absolute momentum: long index only while 12m return > 0 (monthl mean +0.284 | random95 +0.128 (p=0.000) | cost1.5 +0.260 | last yr +0.769 | yrs 15/26 | fails: 60% of years positive, multiple-testing t
+PASS           37 Santa rally: last 5 trading days of Dec + first 2 of Jan        mean +0.495 | random95 +0.202 (p=0.000) | cost1.5 +0.472 | last yr +0.622 | yrs 20/26 | fails: -
+PASS           39 Turn of the quarter: last day of quarter -> 3rd day             mean +0.252 | random95 +0.035 (p=0.000) | cost1.5 +0.230 | last yr +1.079 | yrs 22/27 | fails: -
+FAIL           40 Gold seasonal: long gold in Jan, Aug, Sep only                  mean +0.927 | random95 +0.974 (p=0.075) | cost1.5 +0.889 | last yr +4.038 | yrs 20/27 | fails: beats random (95th pct), multiple-testing t
+PASS           47 US strong close (top 10% of range, +1%) -> DAX/FTSE next open-> mean +0.112 | random95 +0.008 (p=0.000) | cost1.5 +0.099 | last yr +0.030 | yrs 22/27 | fails: -

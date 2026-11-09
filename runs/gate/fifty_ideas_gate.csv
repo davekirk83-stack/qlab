@@ -1,0 +1,13 @@
+idea,mean,random_p95,p_value,cost15,last_year,years_pos,verdict,fails
+"1 Connors R3: RSI(3) falls 3 days, <10, above 200MA",0.273,0.107,0.0,0.249,0.958,19/26,PASS except t,multiple-testing t
+"2 Cumulative RSI(2) 2-day sum < 35, above 200MA",0.134,0.042,0.0,0.11,0.332,18/26,PASS except t,multiple-testing t
+"4 Double 5s: 5-day low close above 200MA, exit 5-day high",0.065,0.03,0.0,0.04,0.017,16/27,FAIL,"60% of years positive, multiple-testing t"
+"5 Close below lower Bollinger(20,2), above 200MA, exit at 20MA",0.207,0.045,0.0,0.183,0.429,17/26,PASS except t,multiple-testing t
+"7 Williams %R(2) < -90 above 200MA, exit close > prior high",0.139,0.038,0.0,0.113,0.067,16/27,FAIL,"60% of years positive, multiple-testing t"
+"12 Weekly RSI(2) < 10 above 40-week MA, hold 5 days",0.34,0.154,0.005,0.319,-0.478,18/26,FAIL,"last year positive, multiple-testing t"
+"14 Turnaround Tuesday: Monday down > 1% -> buy Monday close, sell Tuesday",0.128,-0.008,0.0,0.111,-0.118,21/27,FAIL,last year positive
+21 Absolute momentum: long index only while 12m return > 0 (monthly),0.284,0.128,0.0,0.26,0.769,15/26,FAIL,"60% of years positive, multiple-testing t"
+37 Santa rally: last 5 trading days of Dec + first 2 of Jan,0.495,0.202,0.0,0.472,0.622,20/26,PASS,-
+39 Turn of the quarter: last day of quarter -> 3rd day,0.252,0.035,0.0,0.23,1.079,22/27,PASS,-
+"40 Gold seasonal: long gold in Jan, Aug, Sep only",0.927,0.974,0.075,0.889,4.038,20/27,FAIL,"beats random (95th pct), multiple-testing t"
+"47 US strong close (top 10% of range, +1%) -> DAX/FTSE next open->close",0.112,0.008,0.0,0.099,0.03,22/27,PASS,-

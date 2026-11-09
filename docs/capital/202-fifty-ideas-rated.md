@@ -64,3 +64,18 @@ Totals: A 4, B 8, C 20, F 18 (idea 6 produced no signals).
 Notes: #29 (Larry Williams breakout) and #35 (first day of the month) have big t but negative last 5 years -> C. #17/#27/#28 trend filters
 have large means but few trades and long holds (C). Classic breakout/trend-following variants on daily bars (#18, 22-26, 34) fail after
 IG costs and funding — consistent with doc 197.
+
+## The 12 A/B ideas through the remaining gate checks (`src/fifty_ideas_gate.py`, `runs/gate/fifty_ideas_gate.csv`), 23:25
+Random-entry permutation test (200 runs, same markets/counts/exits), costs x1.5, last 365 days, >= 60% of years, multiple-testing t.
+| Verdict | Idea | Mean | Random 95th pct | Costs x1.5 | Last year | Years + |
+|---|---|---|---|---|---|---|
+| **PASS** | Turn of the quarter | +0.25 | +0.04 | +0.23 | +1.08 | 22/27 |
+| **PASS** | Santa rally | +0.50 | +0.20 | +0.47 | +0.62 | 20/26 |
+| **PASS** | US strong close -> DAX/FTSE next open->close | +0.11 | +0.01 | +0.10 | +0.03 | 22/27 |
+| PASS except t | Connors R3 | +0.27 | +0.11 | +0.25 | +0.96 | 19/26 |
+| PASS except t | Bollinger dip-buy above 200MA | +0.21 | +0.05 | +0.18 | +0.43 | 17/26 |
+| PASS except t | Cumulative RSI(2) | +0.13 | +0.04 | +0.11 | +0.33 | 18/26 |
+| FAIL (last year -0.12 only) | Turnaround Tuesday | +0.13 | -0.01 | +0.11 | -0.12 | 21/27 |
+| FAIL | Williams %R(2), Double 5s, absolute momentum (< 60% of years) | | | | | |
+| FAIL | Weekly RSI(2) (last year -0.48) | | | | | |
+| FAIL | Gold Jan/Aug/Sep (does not beat random gold longs: gold rose) | | | | | |
