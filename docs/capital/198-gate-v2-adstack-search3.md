@@ -47,3 +47,12 @@ overnight/intraday reversal (cxoadvisory); MQL5 "Unified Validation Pipeline Aga
 - Turn of the month: total +27 -> +9; last 5 years -2 -> +19; positive years 8 -> 10 of 19. Mixed.
 - RSI(2) pullback: total +183 -> +153; last 5 years +91 -> +55. Hurts — keep it running all year.
 Intraday books (Ignition, gold, spike) have ~1 year of data: no month-of-year test possible until more history is pulled.
+
+## Market search 5 (src/market_search_5.py), daily, 2000-2026, gate v2
+| Idea | v2 | All trades | Years positive | Last 5 years |
+|---|---|---|---|---|
+| Time-series momentum 12m, 18 markets (Moskowitz, Ooi & Pedersen 2012), IG quarterly bets | WEAK | n3140 +0.18 ATR, t 2.9 | 16/27 | +0.15 |
+| Double 7s, 8 markets (Connors & Alvarez) | WEAK | n2070 +0.14, t 2.9 | 17/26 | +0.13 |
+| IBS low close, 8 markets | FAILED | n9348 0.00 | 14/27 | 0.00 |
+Note: for long-only daily books the random-entry benchmark also earns the market's drift (2026 was a strong year), so "beats random" is hard.
+Robustness (src/robustness_daily.py): trend 25/27 nearby settings positive; RSI(2) 24/24.

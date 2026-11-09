@@ -1,0 +1,20 @@
+{
+ "label_v2": "FAILED",
+ "n_all": 9348,
+ "mean_all": -0.001,
+ "t_all": -0.11,
+ "t_needed": 3.53,
+ "wf_positive": 0.52,
+ "wf_windows": 27,
+ "holdout_mean": -0.008,
+ "failed_checks": [
+  "full-sample t >= 3.53 (N=124)",
+  "holdout mean > 0",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct",
+  "costs x1.5 still positive"
+ ],
+ "holdout_n": 317,
+ "random_p95": 0.26,
+ "book": "O IBS low close 8 markets"
+}

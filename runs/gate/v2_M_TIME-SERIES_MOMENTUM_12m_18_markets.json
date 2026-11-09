@@ -1,0 +1,18 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 3140,
+ "mean_all": 0.184,
+ "t_all": 2.91,
+ "t_needed": 3.53,
+ "wf_positive": 0.59,
+ "wf_windows": 27,
+ "holdout_mean": 0.024,
+ "failed_checks": [
+  "full-sample t >= 3.53 (N=122)",
+  "walk-forward >= 60% windows positive",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 114,
+ "random_p95": 2.695,
+ "book": "M TIME-SERIES MOMENTUM 12m 18 markets"
+}

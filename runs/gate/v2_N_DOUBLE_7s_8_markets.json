@@ -1,0 +1,17 @@
+{
+ "label_v2": "WEAK",
+ "n_all": 2070,
+ "mean_all": 0.135,
+ "t_all": 2.89,
+ "t_needed": 3.53,
+ "wf_positive": 0.65,
+ "wf_windows": 26,
+ "holdout_mean": 0.274,
+ "failed_checks": [
+  "full-sample t >= 3.53 (N=123)",
+  "beats random 95th pct"
+ ],
+ "holdout_n": 106,
+ "random_p95": 0.7,
+ "book": "N DOUBLE 7s 8 markets"
+}
