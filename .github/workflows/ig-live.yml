@@ -1,4 +1,4 @@
-name: IG LIVE runner (doc 185/194 — £500 book, Ignition + spike engine NQ/US500; ladders off, minimum stakes)
+name: IG LIVE runner (doc 185/194 — £500 book, Ignition to the US evening + spike engine NQ/US500; ladders off, minimum stakes)
 # CAP-021 as amended 4 Nov 2026 (DK "Yes"). DK owns and controls this: it does nothing unless the repo VARIABLE IG_LIVE_ENABLED is "true"
 # (Settings -> Secrets and variables -> Actions -> Variables). Live credentials are the secrets IG_USERNAME_LIVE / IG_PASSWORD_LIVE /
 # IG_API_KEY_LIVE, set by DK. Same code as the demo; state and logs in runs/ig_live. Claude never dispatches this workflow.
@@ -45,6 +45,7 @@ jobs:
           IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-09-IG-WIDER-500   # doc 194: widened scope (DK 9 Nov 17:23)
           IG_MIN_ONLY: "1"
           IG_NEWS: "0"
+          IG_ENTRY_CLOSE_NY: "1110"         # doc 194 (DK 9 Nov 19:07): Ignition entries to 18:30 New York (evening 16-19 NY: n46/yr, +11 to +14 pts/trade after wider spreads, both halves positive); session ends 19:00 NY
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
           IG_RANGE_INSTR: "NQ,US500"        # bars for the spike engine only (FTSE dropped with the ladders)
           IG_RANGE_ORDERS: "0"              # doc 194 (DK 9 Nov 18:55 "If they don't earn money then take them off"): ladders OFF on live — honest pricing shows no edge
@@ -68,7 +69,7 @@ jobs:
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
             # doc 194: London morning to 08:35 NY, first half to 13:20 NY (ladders run through the lunch; Ignition skips 12-15 NY itself), second half to 17:00 NY
-            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5") END="08:35";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="13:20";; *) END="17:00";; esac
+            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5") END="08:35";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="13:20";; *) END="19:00";; esac
             ARGS=$(( ($(TZ=America/New_York date -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
             DRY=""

@@ -45,3 +45,10 @@ DK to do: move £500 into Revolut X; create the API key and put it in GitHub sec
 rungs; any existing ladder position keeps its IG stop/limit. FTSE and the London-morning crons removed. Live now = Ignition v1.1 + spike
 continuation (NQ, US500), minimum stakes, 2% cap, -4% day stop. The demo keeps its ladders to gather real fills. The 18:09 scheduled live
 and demo runs failed before starting (GitHub "workflow file issue"; files lint clean, manual demo run fine, next slots ran) — no orders.
+
+## 9 Nov 19:07 — live Ignition into the US evening (DK: "Yes")
+Test (`paperbook7.replay`, NQ 5-min Oct 2025 - Nov 2026, v1.1 rules, evening spread +1 / +3 pts): entries 16:00-19:00 New York -> 46 trades,
++13.7 / +11.1 pts per trade, both halves positive (H1 +8.7/+8.1, H2 +18.8/+14.2); cash hours for reference 84 trades +18.6. (The "80 a year"
+quoted to DK first was the 20-24 UTC block of the hours test, which partly overlaps cash hours in winter; the true addition is ~46.)
+ig-live.yml: IG_ENTRY_CLOSE_NY=1110 (entries to 18:30 NY), second-half session END 19:00 NY (13:25 -> 19:00 = 335 min, under the 350 limit).
+Same limits: minimum stakes, 2% cap, 5x, -4% day stop.

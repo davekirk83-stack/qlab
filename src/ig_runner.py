@@ -62,6 +62,7 @@ def calibrate_dshare():
     return thr, src
 STATE = f"{OUT}/state.json"; TRADES = f"{OUT}/trades.csv"
 US_OPEN, US_CLOSE = P7.US_OPEN, P7.US_CLOSE   # New York local minutes (DST-proof, 27 Oct 2026)
+US_CLOSE = int(os.environ.get("IG_ENTRY_CLOSE_NY", US_CLOSE))   # doc 194 (DK 9 Nov 19:07 "Yes"): live Ignition entries into the US evening (to 18:30 NY)
 BAR = 5
 
 
