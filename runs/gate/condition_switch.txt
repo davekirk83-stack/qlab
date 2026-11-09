@@ -1,0 +1,11 @@
+TPS ladder indices+gold            periods  18 | every time: total   +221.5, periods + 15/18, last 5: +77.3 | SWITCHED: total    +99.6, periods + 15/18, last 5: +57.6, trades kept 781/1153 | now off: month=['2', '7']
+TPS ladder coins: only 5 years — monthly walk-forward instead:
+TPS ladder coins (monthly WF)      periods  31 | every time: total   +417.0, periods + 24/31, last 3: -0.2 | SWITCHED: total   +312.6, periods + 22/31, last 3: -1.5, trades kept 227/275 | now off: vix=['v20-30']
+RSI(2) pullback                    periods  18 | every time: total   +182.6, periods + 13/18, last 5: +90.6 | SWITCHED: total   +105.1, periods + 14/18, last 5: +25.1, trades kept 435/1110 | now off: month=['1', '2', '5', '7'], vix=['v>30']
+Double 7s                          periods  18 | every time: total   +197.2, periods + 12/18, last 5: +52.9 | SWITCHED: total    +61.6, periods + 9/18, last 5: -20.9, trades kept 560/1521 | now off: month=['1', '4', '5', '7', '9'], dow=['2']
+12-month momentum                  periods  19 | every time: total   +274.1, periods + 10/19, last 5: +90.5 | SWITCHED: total   +197.0, periods + 9/19, last 5: +41.2, trades kept 826/2414 | now off: month=['2', '3', '5', '7'], dow=['0', '2'], vix=['v>30']
+Trend 100-day (IG quarterly)       periods  19 | every time: total   +289.5, periods + 11/19, last 5: -94.7 | SWITCHED: total   +331.9, periods + 11/19, last 5: +39.3, trades kept 261/759 | now off: month=['10', '12', '2', '3', '4'], dow=['3'], vix=['v15-20', 'v>30']
+Halloween Nov-Apr                  periods  19 | every time: total   +308.9, periods + 14/19, last 5: +87.1 | SWITCHED: total   +118.1, periods + 12/19, last 5: +57.1, trades kept 260/462 | now off: dow=['2']
+IGNITION v1.1 US Tech 100          periods  10 | every time: total    +18.2, periods + 7/10, last 3: +4.1 | SWITCHED: total    +13.5, periods + 7/10, last 3: +4.1, trades kept 59/62 | now off: vix=['v20-30']
+GOLD London breakout of Asian rang periods   3 | every time: total    +56.6, periods + 2/3, last 3: +56.6 | SWITCHED: total    +56.6, periods + 2/3, last 3: +56.6, trades kept 47/47 | now off: nothing
+AD ignition + REGIME + COIL        periods  10 | every time: total    +21.8, periods + 6/10, last 3: +22.9 | SWITCHED: total    +26.8, periods + 7/10, last 3: +20.6, trades kept 74/124 | now off: hour=['2'], dow=['1', '2'], vix=['v20-30']
