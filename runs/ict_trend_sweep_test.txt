@@ -1,0 +1,16 @@
+ICT TREND SWEEP (4h bias, 15m sweep against it, FVG pullback entry, 3R) — R per trade after costs
+  BTC   bias with     dev n1306 -0.163R win  32% total -212.6R || hold n1123 -0.263R win  31% total -294.9R
+  BTC   bias none     dev n2285 -0.151R win  33% total -344.8R || hold n1921 -0.258R win  31% total -495.5R
+  BTC   bias against  dev n1369 -0.145R win  34% total -198.9R || hold n1159 -0.275R win  30% total -318.3R
+  NQ A 2020-21 bias with     dev n 146 +0.027R win  42% total   +4.0R || hold none
+  NQ A 2020-21 bias none     dev n 260 +0.007R win  38% total   +1.9R || hold none
+  NQ B 2025-26 bias with     dev n  80 -0.151R win  29% total  -12.1R || hold none
+  NQ B 2025-26 bias none     dev n 172 -0.072R win  31% total  -12.3R || hold none
+
+BTC 1-HOUR bars (same rules; 16-bar = 16h lows/highs; 48-bar = 2-day hold)
+  BTC 1h gross        bias with  dev n 276 +0.152R win  35% total  +42.0R || hold n 231 +0.145R win  34% total  +33.5R
+  BTC 1h gross        bias none  dev n 523 +0.086R win  34% total  +44.9R || hold n 466 -0.019R win  30% total   -9.0R
+  BTC 1h taker 0.10%  bias with  dev n 276 +0.057R win  34% total  +15.8R || hold n 231 +0.013R win  34% total   +3.0R
+  BTC 1h taker 0.10%  bias none  dev n 523 -0.000R win  33% total   -0.2R || hold n 466 -0.141R win  29% total  -65.8R
+  BTC 1h limit 0.04%  bias with  dev n 276 +0.114R win  35% total  +31.5R || hold n 231 +0.092R win  34% total  +21.3R
+  BTC 1h limit 0.04%  bias none  dev n 523 +0.051R win  34% total  +26.8R || hold n 466 -0.068R win  30% total  -31.7R

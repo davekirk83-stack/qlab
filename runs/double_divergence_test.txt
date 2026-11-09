@@ -1,0 +1,21 @@
+DOUBLE DIVERGENCE (Cheds lesson 38) — BTC 1h, forward return in the reversal direction
+
+OBV bullish (lower lows)
+  base: any swing      dev n3595 12h   +3.2 48h  +32.4bp (53%) || hold n2497 12h   +3.4 48h  +11.8bp (51%)
+  single divergence    dev n 408 12h   -8.1 48h  +32.9bp (53%) || hold n 299 12h   +0.7 48h   +7.5bp (52%)
+  DOUBLE divergence    dev n  22 12h   -4.8 48h  +60.0bp (55%) || hold n  22 12h  -20.2 48h  +66.1bp (68%)
+
+OBV bearish (higher highs)
+  base: any swing      dev n3641 12h   -7.8 48h  -29.7bp (46%) || hold n2552 12h   -4.0 48h  -15.0bp (48%)
+  single divergence    dev n 463 12h   -6.0 48h  -37.7bp (45%) || hold n 327 12h   -2.1 48h  -39.6bp (44%)
+  DOUBLE divergence    dev n  38 12h  -17.7 48h   -3.3bp (47%) || hold n  22 12h  +31.2 48h  -36.4bp (41%)
+
+CVD bullish (lower lows)
+  base: any swing      dev n3595 12h   +3.2 48h  +32.4bp (53%) || hold n2497 12h   +3.4 48h  +11.8bp (51%)
+  single divergence    dev n 211 12h   +1.2 48h  +61.8bp (58%) || hold n 244 12h   -5.7 48h   -0.4bp (50%)
+  DOUBLE divergence    dev n  13 12h  +41.9 48h +195.3bp (62%) || hold n  22 12h  -11.2 48h  -54.9bp (50%)
+
+CVD bearish (higher highs)
+  base: any swing      dev n3641 12h   -7.8 48h  -29.7bp (46%) || hold n2552 12h   -4.0 48h  -15.0bp (48%)
+  single divergence    dev n 817 12h   -7.1 48h  -32.7bp (45%) || hold n 509 12h   +1.8 48h   -9.1bp (48%)
+  DOUBLE divergence    dev n 171 12h   +4.6 48h  -56.1bp (46%) || hold n  98 12h  +27.1 48h   -5.2bp (45%)
