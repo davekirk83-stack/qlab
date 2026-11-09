@@ -1,0 +1,56 @@
+
+== Trend (IG quarterly bets): n1021, 2000-07-31..2026-11-02, mean +0.493 ATR
+  by month: Apr:-0.33(n91)  Aug:+1.02(n96)  Dec:-0.49(n82)  Feb:-0.12(n60)  Jan:-0.22(n64)  Jul:+0.56(n85)  Jun:+2.20(n79)  Mar:-1.48(n97)  May:+0.87(n79)  Nov:+2.40(n94)  Oct:-1.08(n97)  Sep:+2.37(n97)
+    bad in BOTH halves: Dec, Mar, Oct
+  by vix: VIX<15:+0.99(n329)  15-20:-0.45(n277)  20-30:+1.29(n283)  >30:-0.47(n132)
+    bad in BOTH halves: 15-20, >30
+  by dow: Fri:+0.54(n203)  Mon:+0.50(n203)  Sun:+0.67(n37)  Thu:-0.14(n197)  Tue:+0.90(n217)  Wed:+0.61(n164)
+    bad in BOTH halves: none
+
+== RSI(2) pullback: n1482, 2001-02-09..2026-10-30, mean +0.130 ATR
+  by month: Apr:+0.09(n122)  Aug:+0.24(n130)  Dec:+0.41(n123)  Feb:-0.13(n107)  Jan:-0.20(n129)  Jul:-0.24(n124)  Jun:+0.35(n133)  Mar:+0.05(n135)  May:-0.04(n131)  Nov:+0.36(n99)  Oct:+0.28(n128)  Sep:+0.42(n121)
+    bad in BOTH halves: none
+  by vix: VIX<15:+0.06(n568)  15-20:+0.14(n577)  20-30:+0.26(n295)  >30:+0.01(n42)
+    bad in BOTH halves: none
+  by dow: Fri:+0.04(n294)  Mon:+0.26(n245)  Thu:+0.16(n303)  Tue:+0.19(n341)  Wed:+0.03(n299)
+    bad in BOTH halves: none
+
+== Turn of the month: n1868, 2000-02-28..2026-10-29, mean +0.072 ATR
+  by month: Apr:-0.10(n162)  Aug:-0.15(n159)  Dec:+0.27(n156)  Feb:-0.01(n162)  Jan:+0.03(n156)  Jul:-0.61(n162)  Jun:+0.30(n162)  Mar:+0.11(n162)  May:+0.30(n143)  Nov:+0.27(n124)  Oct:+0.43(n158)  Sep:+0.13(n162)
+    bad in BOTH halves: Jul
+  by vix: VIX<15:-0.17(n563)  15-20:+0.11(n598)  20-30:+0.20(n527)  >30:+0.32(n180)
+    bad in BOTH halves: none
+  by dow: Fri:-0.09(n270)  Mon:+0.62(n254)  Thu:+0.02(n796)  Tue:-0.22(n272)  Wed:+0.16(n276)
+    bad in BOTH halves: none
+
+== Ignition (US hours): n87, 2025-10-15..2026-11-05, mean +0.327 ATR
+  by hour_ny: 9:+0.52(n17)  10:+0.06(n35)  11:+0.22(n10)  12:+1.37(n1)  15:+0.66(n21)  16:+0.04(n3)
+    bad in BOTH halves: none
+  by dow: Fri:+0.73(n17)  Mon:+0.27(n12)  Thu:+0.06(n25)  Tue:+0.44(n17)  Wed:+0.24(n16)
+    bad in BOTH halves: none
+  by vix: VIX<15:+0.81(n10)  15-20:+0.36(n62)  20-30:-0.14(n15)
+    bad in BOTH halves: none
+
+== Gold London breakout: n104, 2026-04-15..2026-10-21, mean +1.779 ATR
+  by hour_ny: 2:+1.99(n52)  3:+5.18(n16)  4:+1.59(n6)  5:-0.58(n4)  6:-2.41(n3)  7:+1.73(n6)  8:+2.28(n4)  9:-2.55(n7)  10:+3.84(n3)  11:-3.42(n2)  14:-7.89(n1)
+    bad in BOTH halves: none
+  by dow: Fri:+1.20(n21)  Mon:+0.20(n20)  Thu:+1.64(n22)  Tue:+3.11(n21)  Wed:+2.73(n20)
+    bad in BOTH halves: none
+  by vix: VIX<15:+2.95(n14)  15-20:+1.60(n90)
+    bad in BOTH halves: none
+
+== Noise band US Tech 100: n229, 2025-11-04..2026-11-06, mean +0.159 ATR
+  by hour_ny: 9:+2.12(n1)  10:-0.25(n88)  11:+0.48(n54)  12:+0.62(n36)  13:-0.09(n26)  14:+0.57(n12)  15:+0.33(n12)
+    bad in BOTH halves: 10
+  by dow: Fri:+0.34(n46)  Mon:-0.16(n47)  Thu:+0.54(n39)  Tue:+0.40(n48)  Wed:-0.24(n49)
+    bad in BOTH halves: Wed
+  by vix: VIX<15:+0.15(n17)  15-20:+0.11(n159)  20-30:+0.26(n47)  >30:+0.79(n6)
+    bad in BOTH halves: none
+
+== Ignition all hours + regime + coil: n203, 2025-10-15..2026-11-06, mean +0.296 ATR
+  by hour_ny: 0:+0.70(n11)  1:+0.81(n11)  2:-0.04(n21)  3:+0.89(n13)  4:+1.06(n15)  5:-1.56(n11)  6:-0.63(n14)  7:+0.61(n17)  8:+0.63(n14)  9:-0.76(n5)  10:-0.25(n9)  11:-0.29(n3)  15:+1.03(n6)  16:+0.08(n1)  18:-0.14(n13)  19:+3.70(n3)  20:+0.55(n8)  21:+1.11(n5)  22:-0.92(n7)  23:+0.74(n16)
+    bad in BOTH halves: 5, 6, 10, 18
+  by dow: Fri:+1.04(n45)  Mon:+0.29(n51)  Sun:+1.89(n1)  Thu:+0.45(n33)  Tue:-0.16(n34)  Wed:-0.31(n39)
+    bad in BOTH halves: Tue, Wed
+  by vix: VIX<15:+0.52(n31)  15-20:+0.37(n142)  20-30:-0.29(n30)
+    bad in BOTH halves: 20-30

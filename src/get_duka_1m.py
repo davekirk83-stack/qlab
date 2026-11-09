@@ -12,20 +12,30 @@ def get(url):
             return np.frombuffer(lzma.LZMADecompressor().decompress(raw), dtype=DT) if raw else None
         except Exception as e:
             if "404" in str(e): return None
-            time.sleep(2 + 3 * a)
+            time.sleep((30 if "429" in str(e) else 2) * (a + 1))
+    raise RuntimeError("throttled")
 def day(d):
     f = f"{OUT}/{INSTR}/{d}.npz"
     if os.path.exists(f): return f
-    b = get(f"https://datafeed.dukascopy.com/datafeed/{INSTR}/{d.year}/{d.month-1:02d}/{d.day:02d}/BID_candles_min_1.bi5")
-    a = get(f"https://datafeed.dukascopy.com/datafeed/{INSTR}/{d.year}/{d.month-1:02d}/{d.day:02d}/ASK_candles_min_1.bi5")
+    try:
+        _b = get(f"https://datafeed.dukascopy.com/datafeed/{INSTR}/{d.year}/{d.month-1:02d}/{d.day:02d}/BID_candles_min_1.bi5")
+        _a = get(f"https://datafeed.dukascopy.com/datafeed/{INSTR}/{d.year}/{d.month-1:02d}/{d.day:02d}/ASK_candles_min_1.bi5")
+    except RuntimeError:
+        return None   # throttled: not saved, retried on the next pass
+    b, a = _b, _a
     if b is None or a is None or len(b) != len(a): np.savez(f, x=np.zeros((0, 7))); return f
     x = np.column_stack([b["t"], (b["o"] + a["o"]) / 2, (b["h"] + a["h"]) / 2, (b["l"] + a["l"]) / 2, (b["c"] + a["c"]) / 2, b["v"] + a["v"], a["c"].astype(float) - b["c"]])
     np.savez(f, x=x); return f
 days = [x.date() for x in pd.date_range(START, END) if x.weekday() != 5]
-with ThreadPoolExecutor(max_workers=int(os.environ.get("W","48"))) as ex: files = list(ex.map(day, days))
+for p in range(int(os.environ.get("PASSES", "1"))):
+    with ThreadPoolExecutor(max_workers=int(os.environ.get("W","48"))) as ex: files = list(ex.map(day, days))
+    left = sum(f is None for f in files); print(f"pass {p}: {left} days still missing", flush=True)
+    if left == 0: break
+    time.sleep(120)
+files = [f for f in files if f]
 fr = []
-for d, f in zip(days, files):
-    x = np.load(f)["x"]
+for f in files:
+    d = pd.Timestamp(os.path.basename(f)[:-4]).date(); x = np.load(f)["x"]
     if len(x) == 0: continue
     df = pd.DataFrame(x[:, 1:], columns=["open", "high", "low", "close", "vol", "spread"], index=pd.Timestamp(d) + pd.to_timedelta(x[:, 0], unit="s"))
     fr.append(df[df.vol > 0])

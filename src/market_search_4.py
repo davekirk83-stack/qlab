@@ -23,12 +23,13 @@ def go(name, items, daily=False):
     r = G.judge2(name, items, daily=daily); R.append(r); print(G.line2(r), flush=True)
 
 # H — Asian-range breakout elsewhere (prices scaled as in the data: GBP/USD x10000, USD/JPY x100)
-for nm, f, cost in (("GBP/USD", "data_ig_cache/GBPUSD_IG_5m.csv", 1.4), ("USD/JPY", "data_ig_cache/USDJPY_IG_5m.csv", 1.0),
+if __name__ == '__main__':
+ for nm, f, cost in (("GBP/USD", "data_ig_cache/GBPUSD_IG_5m.csv", 1.4), ("USD/JPY", "data_ig_cache/USDJPY_IG_5m.csv", 1.0),
                     ("Germany 40", "data_ig_cache/DEUIDXEUR_5m.csv", 1.2), ("FTSE 100", "data_ig_cache/GBRIDXGBP_5m.csv", 1.0)):
-    if ONLY and ONLY != "H": continue
-    g = load5(f)[["open", "high", "low", "close"]].astype(float); g["cost"] = cost; g["atr"] = G.atr(g).shift(1)
-    lt = g.index.tz_convert("UTC"); g["session"] = pd.Series(lt.date, index=g.index).astype(str); g["eligible"] = (lt.hour >= 6) & (lt.hour < 19)
-    go(f"H ASIAN-RANGE BREAKOUT {nm}", [(nm, g, M3.gold_signals, {"flat_at_session_end": True})])
+     if ONLY and ONLY != "H": continue
+     g = load5(f)[["open", "high", "low", "close"]].astype(float); g["cost"] = cost; g["atr"] = G.atr(g).shift(1)
+     lt = g.index.tz_convert("UTC"); g["session"] = pd.Series(lt.date, index=g.index).astype(str); g["eligible"] = (lt.hour >= 6) & (lt.hour < 19)
+     go(f"H ASIAN-RANGE BREAKOUT {nm}", [(nm, g, M3.gold_signals, {"flat_at_session_end": True})])
 
 # I — RSI(2)
 def rsi2(c):
@@ -46,14 +47,16 @@ def prep_rsi(k):
 def rsi_signals_t(d):
     f = rsi_signals(d); f["target"] = (d["ma5"].reindex(f.index).values - d.close.reindex(f.index).values).clip(min=0.1 * d.atr.reindex(f.index).values)
     return f
-go("I RSI2 pullback 8 markets", [(k, prep_rsi(k), rsi_signals_t, {}) for k in ("SPX", "NDX", "DJI", "RUT", "DAX", "FTSE", "N225", "GOLD")], daily=True)
+if __name__ == '__main__':
+ go("I RSI2 pullback 8 markets", [(k, prep_rsi(k), rsi_signals_t, {}) for k in ("SPX", "NDX", "DJI", "RUT", "DAX", "FTSE", "N225", "GOLD")], daily=True)
 
 # J — VIX spike
 vix = pd.read_csv("data_daily/VIX.csv", index_col=0); vix.index = pd.to_datetime(vix.index, utc=True).normalize(); vchg = vix.close.pct_change()
 def vix_signals(d):
     v = vchg.reindex(d.index.normalize()).values; ix = np.where((v >= 0.15) & np.isfinite(d.atr.values))[0]
     return sigframe(d.index[ix], 1, "close", np.nan, 4 * d.atr.values[ix], np.nan, 5, dist=True)
-go("J VIX spike reversion SPX NDX", [(k, M2.daily(k, .0003, 0.06), vix_signals, {}) for k in ("SPX", "NDX")], daily=True)
+if __name__ == '__main__':
+ go("J VIX spike reversion SPX NDX", [(k, M2.daily(k, .0003, 0.06), vix_signals, {}) for k in ("SPX", "NDX")], daily=True)
 
 # K — crypto 20-day high, spot
 def kday(sym):
@@ -65,8 +68,9 @@ def k_signals(d):
 def k_manage(df, k, st):
     ch = df["lo10"].values[k]
     if np.isfinite(ch) and ch > st["stop"]: st["stop"] = ch
-go("K CRYPTO 20-day high breakout 10 coins", [(s, kday(s), k_signals, {"manage": k_manage}) for s in
-   ("BTCUSD", "ETHUSD", "SOLUSD", "XRPUSD", "DOGEUSD", "AVAXUSD", "LINKUSD", "ADAUSD", "LTCUSD", "DOTUSD") if os.path.exists(f"/home/claude/qlab/data_15m/{s}.csv")], daily=True)
+if __name__ == '__main__':
+ go("K CRYPTO 20-day high breakout 10 coins", [(s, kday(s), k_signals, {"manage": k_manage}) for s in
+    ("BTCUSD", "ETHUSD", "SOLUSD", "XRPUSD", "DOGEUSD", "AVAXUSD", "LINKUSD", "ADAUSD", "LTCUSD", "DOTUSD") if os.path.exists(f"/home/claude/qlab/data_15m/{s}.csv")], daily=True)
 
 # L — gap fade
 def gap_prep(f, cost):
@@ -83,6 +87,8 @@ def gap_signals(d):
     stop = d.dopen.values[ix] + np.sign(gap[ix]) * np.abs(gap[ix]); tgt = d.pc.values[ix]
     ok = s * (C - stop) > 0
     return sigframe(d.index[ix][ok], s[ok], "close", np.nan, stop[ok], tgt[ok], 30)
-go("L GAP FADE 3 US indices", [(n, gap_prep(f, c), gap_signals, {"flat_at_session_end": True}) for n, f, c in
-   (("US Tech 100", "data_nq_cache/nq_5m.csv", 1.0), ("US 500", "data_ig_cache/USA500IDXUSD_5m.csv", 0.4), ("Wall Street", "data_ig_cache/USA30IDXUSD_5m.csv", 2.4))])
-open(f"{G.OUT}/search4_{ONLY or 'all'}.txt", "w").write("\n".join(G.line2(r) for r in R) + "\n")
+if __name__ == '__main__':
+ go("L GAP FADE 3 US indices", [(n, gap_prep(f, c), gap_signals, {"flat_at_session_end": True}) for n, f, c in
+    (("US Tech 100", "data_nq_cache/nq_5m.csv", 1.0), ("US 500", "data_ig_cache/USA500IDXUSD_5m.csv", 0.4), ("Wall Street", "data_ig_cache/USA30IDXUSD_5m.csv", 2.4))])
+if __name__ == '__main__':
+ open(f"{G.OUT}/search4_{ONLY or 'all'}.txt", "w").write("\n".join(G.line2(r) for r in R) + "\n")
