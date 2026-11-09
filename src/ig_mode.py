@@ -2,11 +2,16 @@
 CAP-021 as amended 4 Nov 2026 (DK "Yes"): a £500 live book on DK's IG spread-bet account, run by an automation DK owns and controls
 (GitHub Actions, live key only in DK's GitHub secrets; DK switches it on/off with the repo variable IG_LIVE_ENABLED). Live scope:
 Ignition v1.1 + the Range ladder on the US Tech 100 only, IG minimum stakes, rule 186 limits, 5x exposure cap, -4% day stop,
-and back to paper at -15% from the start. Live mode needs IG_MODE=live AND the exact confirmation string below, or it refuses."""
+and back to paper at -15% from the start. Live mode needs IG_MODE=live AND the exact confirmation string below, or it refuses.
+WIDENED 9 Nov 2026 (DK 17:23 "Yes to all the above", doc 194): + Range ladders on US 500 and FTSE 100, + the spike continuation engine
+on US Tech 100 and US 500, + the shock pause, sessions from the London morning to the US close; same minimum stakes and limits.
+The wider scope needs the 9 Nov confirmation string; the 4 Nov string still runs the original scope only."""
 import os
 MODE = os.environ.get("IG_MODE", "demo").strip().lower()
 CONFIRM = "CAP021-AMENDED-2026-11-04-IG-SPREADBET-500"
-if MODE == "live" and os.environ.get("IG_LIVE_CONFIRMED", "") != CONFIRM:
+CONFIRM_WIDE = "CAP021-AMENDED-2026-11-09-IG-WIDER-500"
+WIDE = os.environ.get("IG_LIVE_CONFIRMED", "") == CONFIRM_WIDE
+if MODE == "live" and os.environ.get("IG_LIVE_CONFIRMED", "") not in (CONFIRM, CONFIRM_WIDE):
     raise SystemExit("IG_MODE=live refused: IG_LIVE_CONFIRMED does not match the CAP-021 amendment of 4 Nov 2026")
 if MODE not in ("demo", "live"): raise SystemExit(f"IG_MODE must be demo or live, not {MODE!r}")
 LIVE = MODE == "live"

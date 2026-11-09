@@ -1,6 +1,6 @@
 """
-SPIKE CONTINUATION ENGINE for the IG DEMO runner (doc 191, DK 8 Nov 2026: "Yes also run the demos if they are worthy of further investigation").
-DEMO ONLY: refuses to start on the live account (CAP-021 live scope is Ignition + the US Tech 100 ladder).
+SPIKE CONTINUATION ENGINE for the IG runner (demo; live from 9 Nov 2026 under the widened CAP-021 scope, doc 194) (doc 191, DK 8 Nov 2026: "Yes also run the demos if they are worthy of further investigation").
+On live: only with the 9 Nov confirmation string, IG minimum stakes, and never more than 2% of the book at risk.
 
 Rule (chosen on US Tech 100 2020-21, holdout 2025-26 +0.19R n40; US 500 2025-26 +0.27R n34 untuned):
   - cash session only (09:30-16:00 New York); 15-minute bars (the range engine's IG-aligned 15-min bars are reused — no extra history calls);
@@ -13,7 +13,7 @@ Its own 8 trades a day per market (gov key ntr_spike_<market>). State: <OUT>/spi
 """
 import os, json, csv, datetime as dt, traceback
 import numpy as np, pandas as pd
-from ig_mode import OUT, LIVE
+from ig_mode import OUT, LIVE, MIN_ONLY, WIDE
 
 STATE = f"{OUT}/spike_state.json"; TRADES = f"{OUT}/spike_trades.csv"
 SESS = {"NQ": ("America/New_York", 9.5, 16.0), "US500": ("America/New_York", 9.5, 16.0)}
@@ -49,7 +49,7 @@ def spike_signal(d, tz, h0, h1):
 
 class SpikeEngine:
     def __init__(self, ig, ccy, dry, gov, range_engine, book, notional_fn, markets):
-        if LIVE: raise SystemExit("spike engine is DEMO ONLY (CAP-021 live scope: Ignition + the US Tech 100 ladder)")
+        if LIVE and not WIDE: raise SystemExit("spike engine on live needs the CAP-021 amendment of 9 Nov 2026 (wider scope)")
         self.ig, self.ccy, self.dry, self.gov, self.eng, self.beq, self.notional_fn = ig, ccy, dry, gov, range_engine, book, notional_fn
         self.markets = [m for m in markets if m in SESS and m in range_engine.mkt and m not in range_engine.disabled]
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
@@ -83,7 +83,10 @@ class SpikeEngine:
         mk = self.eng.mkt[name]; risk = abs(sig["entry"] - sig["stop"])
         if risk < mk.get("minstop", 0): sig["stop"] = sig["entry"] - sig["side"] * mk["minstop"]; risk = mk["minstop"]
         size = max(mk["min"], round(self.beq.eq * RISK * self.beq.k / risk, 2)) if self.beq else mk["min"]
+        if MIN_ONLY: size = mk["min"]   # live: IG minimum stake on every order (doc 185)
         if self.beq: size = self.beq.cap(size, sig["entry"], self.notional_fn() if self.notional_fn else 0.0, mk["min"])
+        if LIVE and self.beq and size * risk > 0.02 * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than 2% at risk
+            log(name, "SIGNAL", what, f"— skipped, {size}/pt x {risk:.0f} pts is more than 2% of the book"); return
         if size <= 0: log(name, "SIGNAL", what, "— skipped, 5x exposure cap"); return
         log(name, "SIGNAL", what, f"size {size}/pt")
         if self.dry:

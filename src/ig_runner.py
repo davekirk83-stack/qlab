@@ -112,7 +112,7 @@ class Runner:
                 if extra: self.subscribe(extra)
             except Exception: log("range engine failed to start:", traceback.format_exc()); self.engine = None
         self.spike = None
-        if os.environ.get("IG_SPIKE", "") and not LIVE and self.engine:   # doc 191: spike continuation engine, DEMO ONLY
+        if os.environ.get("IG_SPIKE", "") and self.engine:   # doc 191 (demo) / doc 194 (live from 9 Nov, widened CAP-021 only; the engine checks)
             try:
                 from ig_spike_engine import SpikeEngine
                 self.spike = SpikeEngine(self.ig, self.ccy, dry, self.state, self.engine, self.beq, self.open_notional, [x.strip() for x in os.environ["IG_SPIKE"].split(",")])

@@ -1,4 +1,4 @@
-name: IG LIVE runner (doc 185 — £500 book, Ignition v1.1 + Range ladder on the US Tech 100, minimum stakes)
+name: IG LIVE runner (doc 185/194 — £500 book, Ignition + ladders NQ/US500/FTSE + spike engine, minimum stakes)
 # CAP-021 as amended 4 Nov 2026 (DK "Yes"). DK owns and controls this: it does nothing unless the repo VARIABLE IG_LIVE_ENABLED is "true"
 # (Settings -> Secrets and variables -> Actions -> Variables). Live credentials are the secrets IG_USERNAME_LIVE / IG_PASSWORD_LIVE /
 # IG_API_KEY_LIVE, set by DK. Same code as the demo; state and logs in runs/ig_live. Claude never dispatches this workflow.
@@ -8,8 +8,11 @@ on:
       minutes: { description: "how long to run", default: "30" }
       dry: { description: "true = no orders; --markets = read-only market check; false = trade (needs IG_LIVE_ENABLED)", default: "--markets" }
   schedule:
-    # US session only (no London morning, no CPI morning: FTSE and the news fade are not in the live scope). Summer and winter variants;
-    # the second to fire finds a session running and exits. Session END times are computed in New York time below.
+    # doc 194 (DK 9 Nov "Yes to all the above"): London morning to the US close, three back-to-back jobs (each under the 350-min limit):
+    #   07:55 London -> 08:35 NY (FTSE ladder); 08:40 NY -> 13:20 NY (Ignition first half, ladders through the US lunch); 13:25 NY -> 17:00 NY.
+    # Summer and winter variants of each; the wrong DST one exits. Session END times are computed in New York time below.
+    - cron: "55 7 * * 1-5"
+    - cron: "55 6 * * 1-5"
     - cron: "40 12 * * 1-5"
     - cron: "10 13 * * 1-5"
     - cron: "40 13 * * 1-5"
@@ -41,11 +44,14 @@ jobs:
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE || secrets.IG_PASSWORD }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}
           IG_MODE: live
-          IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-04-IG-SPREADBET-500
+          IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-09-IG-WIDER-500   # doc 194: widened scope (DK 9 Nov 17:23)
           IG_MIN_ONLY: "1"
           IG_NEWS: "0"
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
-          IG_RANGE_INSTR: "NQ"   # doc 185: US Tech 100 only to start
+          IG_RANGE_INSTR: "NQ,US500,FTSE"   # doc 194 (DK 9 Nov): + US 500 and FTSE 100 ladders (doc 185 started with US Tech 100 only)
+          IG_SPIKE: "NQ,US500"              # doc 194: spike continuation engine (doc 191) on live, minimum stakes, 2% risk cap
+          IG_SHOCK_PAUSE: "NQ,FTSE"         # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h (as on the demo)
+          IG_GOV_SPLIT: "1"                 # doc 189: each engine/market its own 8 trades a day; Ignition cap in points, ladders in £
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)
           IG_SIZE: "0.01"         # doc 137: Ignition at ~2% risk of a £1,000 account (stop 45-90 pts)   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |
@@ -62,7 +68,8 @@ jobs:
               case "$NYH" in 08|09) ;; *) echo "CPI morning but not 8-9am New York (the other DST cron) — exit"; exit 0;; esac
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
-            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5"|"15 12 * * 1-5"|"15 13 * * 1-5") END="12:05";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="12:05";; *) END="17:00";; esac
+            # doc 194: London morning to 08:35 NY, first half to 13:20 NY (ladders run through the lunch; Ignition skips 12-15 NY itself), second half to 17:00 NY
+            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5") END="08:35";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="13:20";; *) END="17:00";; esac
             ARGS=$(( ($(TZ=America/New_York date -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
             DRY=""
