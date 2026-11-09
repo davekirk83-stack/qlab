@@ -39,7 +39,7 @@
 // Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
 // the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
 // Works on any symbol and intraday timeframe: everything is ATR- and session-relative. Advisory only — no orders.
-indicator("Market Advisory V24.1 BTC", shorttitle="MktAdv24.1 BTC", overlay=true, max_lines_count=200, max_labels_count=200)
+indicator("Market Advisory V24.1 BTC", shorttitle="MA24.1 BTC", overlay=true, max_lines_count=200, max_labels_count=200)
 
 // ------------------------------------------------ INPUTS ------------------------------------------------
 string gM = "Market profile (V23)"
