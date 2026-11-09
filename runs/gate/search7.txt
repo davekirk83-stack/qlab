@@ -1,0 +1,13 @@
+W TPS ladder, 9 other markets                episodes 1347 (50/yr) mean -0.010% of budget t -0.16 win 83% worst -21.1% | years + 15/27 | last 5y -0.101% | last year +0.346%
+   W SILVER                                  episodes  161 (6/yr) mean +0.112% of budget t +0.65 win 87% worst -16.0% | years + 17/25 | last 5y -0.167% | last year -0.489%
+   W OIL                                     episodes  168 (7/yr) mean -0.166% of budget t -0.62 win 82% worst -18.7% | years + 12/24 | last 5y +0.548% | last year +0.492%
+   W COPPER                                  episodes  163 (7/yr) mean +0.189% of budget t +1.50 win 85% worst -8.9% | years + 14/24 | last 5y -0.034% | last year +0.724%
+   W NATGAS                                  episodes  145 (6/yr) mean -0.165% of budget t -0.37 win 80% worst -21.1% | years + 12/23 | last 5y -1.022% | last year +3.032%
+   W GBPUSD                                  episodes  159 (8/yr) mean -0.097% of budget t -1.46 win 81% worst -5.2% | years + 8/21 | last 5y -0.025% | last year -0.052%
+   W EURUSD                                  episodes  136 (7/yr) mean +0.092% of budget t +2.13 win 83% worst -1.9% | years + 15/20 | last 5y +0.000% | last year +0.122%
+   W USDJPY                                  episodes  156 (7/yr) mean +0.016% of budget t +0.30 win 88% worst -5.4% | years + 16/23 | last 5y -0.115% | last year +0.166%
+   W AUDUSD                                  episodes  114 (6/yr) mean -0.070% of budget t -0.66 win 84% worst -8.3% | years + 10/18 | last 5y -0.190% | last year -0.077%
+   W TNOTE                                   episodes  145 (6/yr) mean -0.019% of budget t -0.73 win 81% worst -1.4% | years + 11/23 | last 5y -0.123% | last year -0.077%
+X TPS SHORT ladder, 7 indices                episodes  748 (29/yr) mean +0.246% of budget t +3.53 win 83% worst -16.4% | years + 16/26 | last 5y -0.456% | last year -6.273%
+Y weekly reversal 7 indices: weeks 1401 mean +0.198%/week t +2.64 | years + 19/27 | last 5y +0.244%
+Z cross-sectional momentum 18 markets: months 323 mean -0.099%/month t -0.22 | years + 12/27 | last 5y -0.578%

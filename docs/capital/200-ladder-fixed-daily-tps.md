@@ -24,3 +24,12 @@ Neighbourhood (RSI 20/30, max 20/45 days, kill -10/-20%): every variant positive
   15-min range book, after a dry run.
 Sources: Connors & Alvarez, *High Probability ETF Trading* (2009) via TuringTrader's TPS page; Taranto & Khan (2020) via MQL5 article 21833;
 Quantpedia "A Primer on Grid Trading Strategy".
+
+## Search 7 (src/market_search_7.py), 23:10
+- TPS ladder on 9 other markets (silver, oil, copper, gas, 4 FX, 10y note): pooled -0.01% per episode, 15/27 years — the ladder is an
+  equity-index (+ gold) and crypto effect, not universal. Copper +0.19% (t 1.5) and EUR/USD +0.09% (t 2.1) only.
+- TPS SHORT side on indices: +0.25% (t 3.5), 16/26 years, but last 5 years negative and last year -6.3% (bull market). Not used.
+- Cross-sectional weekly reversal across 7 indices looked strong (+0.20%/week, t 2.6, 19/27 years) — but it was a CLOSING-TIME ARTEFACT:
+  Japan and Europe close hours before the US, so 'Friday close' prices are stale against each other. US-only (same close time): -0.04%/week;
+  entering a day late: negative. Rejected.
+- Cross-sectional momentum across 18 markets (Asness, Moskowitz & Pedersen): -0.10%/month, 12/27 years. Fails.
