@@ -41,3 +41,9 @@ overnight/intraday reversal (cxoadvisory); MQL5 "Unified Validation Pipeline Aga
 | VIX spike reversion (SPX, NDX) | WEAK, barely | n334 +0.05 | 54% | |
 | Crypto 20-day-high breakout, 10 coins (spot) | FAILED | n275 +1.37 but 33% of windows; last year -0.55 | | |
 | Opening-gap fade, 3 US indices | FAILED | | | |
+
+## Seasonal "fallow months" (DK 22:41) — src/seasonal_switch.py, walk-forward (months to skip chosen only from earlier years, >= 8 of them)
+- Trend 100-day, IG quarterly bets: total +290 -> **+373 ATR**; last 5 years **-95 -> +14**; positive years 11 -> 10 of 19; keeps 60% of trades.
+- Turn of the month: total +27 -> +9; last 5 years -2 -> +19; positive years 8 -> 10 of 19. Mixed.
+- RSI(2) pullback: total +183 -> +153; last 5 years +91 -> +55. Hurts — keep it running all year.
+Intraday books (Ignition, gold, spike) have ~1 year of data: no month-of-year test possible until more history is pulled.

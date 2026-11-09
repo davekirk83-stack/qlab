@@ -1,0 +1,3 @@
+TREND100 IG quarterly bets: years 19 | every month: total +289.5 ATR, positive years 11/19 | seasonal switch: total +372.6 ATR, positive years 10/19, trades kept 455/759 | last 5 years every month -94.7 vs seasonal +13.6 | months off in 2026: 2,3,4,10,12
+TURN-OF-MONTH 6 indices: years 19 | every month: total +26.6 ATR, positive years 8/19 | seasonal switch: total +8.9 ATR, positive years 10/19, trades kept 935/1312 | last 5 years every month -1.5 vs seasonal +18.8 | months off in 2026: 4,7,8
+RSI2 pullback 8 markets: years 18 | every month: total +182.6 ATR, positive years 13/18 | seasonal switch: total +152.9 ATR, positive years 10/18, trades kept 702/1110 | last 5 years every month +90.6 vs seasonal +55.4 | months off in 2026: 1,2,5,7

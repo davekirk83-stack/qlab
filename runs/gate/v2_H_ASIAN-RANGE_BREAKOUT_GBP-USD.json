@@ -3,12 +3,12 @@
  "n_all": 17,
  "mean_all": 0.646,
  "t_all": 0.22,
- "t_needed": 3.51,
+ "t_needed": 3.52,
  "wf_positive": 0.33,
  "wf_windows": 6,
  "holdout_mean": 4.56,
  "failed_checks": [
-  "full-sample t >= 3.51 (N=114)",
+  "full-sample t >= 3.52 (N=121)",
   "walk-forward >= 60% windows positive",
   "beats random 95th pct"
  ],
