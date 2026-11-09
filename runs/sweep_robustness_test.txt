@@ -1,0 +1,58 @@
+1) BASE RULES (3R, EMA50, slope 6) — touch fill vs STRICT fill (trade-through), fees 0.04% / 0.10%
+  BTC touch  fee 0.04%  fills 72%  dev n276 +0.114R (35%) | hold n231 +0.092R (34%)
+  BTC touch  fee 0.10%  fills 72%  dev n276 +0.057R (34%) | hold n231 +0.013R (34%)
+  BTC strict fee 0.04%  fills 72%  dev n276 +0.114R (35%) | hold n231 +0.092R (34%)
+  BTC strict fee 0.10%  fills 72%  dev n276 +0.057R (34%) | hold n231 +0.013R (34%)
+  BTC NO BIAS filter fee 0.04%          dev n523 +0.051R (34%) | hold n466 -0.068R (30%)
+  ETH touch  fee 0.04%  fills 75%  dev n251 -0.025R (30%) | hold n220 +0.057R (31%)
+  ETH touch  fee 0.10%  fills 75%  dev n251 -0.072R (29%) | hold n220 +0.001R (31%)
+  ETH strict fee 0.04%  fills 75%  dev n251 -0.028R (30%) | hold n219 +0.044R (31%)
+  ETH strict fee 0.10%  fills 75%  dev n251 -0.075R (29%) | hold n219 -0.012R (31%)
+  ETH NO BIAS filter fee 0.04%          dev n481 +0.025R (33%) | hold n417 +0.023R (33%)
+  SOL touch  fee 0.04%  fills 71%  dev n259 +0.009R (30%) | hold n221 +0.027R (31%)
+  SOL touch  fee 0.10%  fills 71%  dev n259 -0.017R (30%) | hold n221 -0.013R (31%)
+  SOL strict fee 0.04%  fills 71%  dev n257 -0.014R (30%) | hold n221 +0.028R (31%)
+  SOL strict fee 0.10%  fills 71%  dev n257 -0.039R (30%) | hold n221 -0.012R (31%)
+  SOL NO BIAS filter fee 0.04%          dev n513 -0.077R (29%) | hold n464 +0.019R (32%)
+
+2) PARAMETER NEIGHBOURHOOD (strict fill, fee 0.04%) — mean R dev | hold
+  R2 EMA 30 slope 3: BTC +0.10|-0.02   ETH +0.07|-0.02   SOL -0.06|+0.00
+  R2 EMA 30 slope 6: BTC +0.11|-0.01   ETH +0.06|-0.00   SOL -0.06|+0.00
+  R2 EMA 30 slope12: BTC +0.10|-0.03   ETH +0.13|-0.01   SOL -0.04|+0.07
+  R2 EMA 50 slope 3: BTC +0.06|-0.05   ETH +0.03|+0.06   SOL -0.08|-0.02
+  R2 EMA 50 slope 6: BTC +0.05|-0.04   ETH +0.03|+0.04   SOL -0.07|-0.03
+  R2 EMA 50 slope12: BTC +0.05|-0.05   ETH +0.03|+0.05   SOL -0.07|-0.00
+  R2 EMA100 slope 3: BTC +0.04|-0.07   ETH +0.08|+0.06   SOL -0.08|-0.05
+  R2 EMA100 slope 6: BTC +0.04|-0.07   ETH +0.08|+0.06   SOL -0.09|-0.06
+  R2 EMA100 slope12: BTC +0.04|-0.08   ETH +0.07|+0.09   SOL -0.07|-0.03
+  R3 EMA 30 slope 3: BTC +0.16|+0.11   ETH +0.05|-0.05   SOL -0.02|+0.08
+  R3 EMA 30 slope 6: BTC +0.17|+0.11   ETH +0.05|-0.04   SOL -0.02|+0.07
+  R3 EMA 30 slope12: BTC +0.17|+0.10   ETH +0.09|-0.05   SOL -0.01|+0.14
+  R3 EMA 50 slope 3: BTC +0.12|+0.09   ETH -0.03|+0.07   SOL -0.02|+0.05
+  R3 EMA 50 slope 6: BTC +0.11|+0.09   ETH -0.03|+0.04   SOL -0.01|+0.03
+  R3 EMA 50 slope12: BTC +0.12|+0.09   ETH -0.02|+0.04   SOL +0.00|+0.05
+  R3 EMA100 slope 3: BTC +0.13|+0.05   ETH +0.00|+0.05   SOL -0.05|-0.00
+  R3 EMA100 slope 6: BTC +0.12|+0.04   ETH +0.00|+0.05   SOL -0.07|-0.01
+  R3 EMA100 slope12: BTC +0.13|+0.03   ETH +0.00|+0.08   SOL -0.03|+0.02
+  R4 EMA 30 slope 3: BTC +0.18|+0.07   ETH -0.00|+0.02   SOL +0.10|+0.10
+  R4 EMA 30 slope 6: BTC +0.19|+0.10   ETH +0.01|+0.03   SOL +0.10|+0.10
+  R4 EMA 30 slope12: BTC +0.19|+0.09   ETH +0.03|+0.03   SOL +0.12|+0.17
+  R4 EMA 50 slope 3: BTC +0.16|+0.09   ETH -0.05|+0.13   SOL +0.11|+0.06
+  R4 EMA 50 slope 6: BTC +0.14|+0.09   ETH -0.05|+0.10   SOL +0.11|+0.04
+  R4 EMA 50 slope12: BTC +0.15|+0.09   ETH -0.05|+0.11   SOL +0.13|+0.06
+  R4 EMA100 slope 3: BTC +0.14|+0.05   ETH -0.08|+0.09   SOL +0.06|+0.05
+  R4 EMA100 slope 6: BTC +0.14|+0.04   ETH -0.08|+0.09   SOL +0.05|+0.04
+  R4 EMA100 slope12: BTC +0.14|+0.04   ETH -0.07|+0.12   SOL +0.09|+0.08
+
+   share of the 27 settings positive in BOTH periods:
+   BTC: 18/27
+   ETH: 11/27
+   SOL: 10/27
+
+3) LONGS vs SHORTS (base rules, strict, 0.04%)
+  BTC longs  dev n143 +0.057R (35%) | hold n121 +0.092R (35%)
+  BTC shorts dev n133 +0.176R (35%) | hold n110 +0.093R (33%)
+  ETH longs  dev n129 -0.061R (28%) | hold n102 +0.223R (37%)
+  ETH shorts dev n122 +0.007R (32%) | hold n117 -0.113R (26%)
+  SOL longs  dev n136 -0.173R (26%) | hold n106 +0.139R (33%)
+  SOL shorts dev n121 +0.165R (34%) | hold n115 -0.076R (30%)

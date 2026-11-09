@@ -26,3 +26,17 @@ Side note: signal bars closing in their top 20% averaged +36.5 pts vs +10.5 for 
 ## 4. 99-day line on the panel's ladder — `src/ladder_99line_test.py`
 Range v3 ladder on BTC 2020-26: filtering by the 99-day line cut totals (+226% / +74% -> +124% / +43%) with no consistent gain per
 episode; every side/regime bucket is positive. Not added. (It does matter for the panic ladder — doc 191 — and for the sweep engine above.)
+
+## Follow-up the same evening (DK: "Yes please") — robustness
+### Sweep engine — `src/sweep_robustness_test.py`
+- Fill realism: requiring price to trade THROUGH the limit changes nothing on BTC (fills 72% of setups).
+- BTC: 18 of 27 nearby settings positive in both periods; base rules +0.11R / +0.09R at 0.04% fees, +0.06 / +0.01R at 0.10%.
+- ETH and SOL (never seen): base rules about flat (-0.03 / +0.04R; -0.01 / +0.03R). Only the 4R / EMA30 variant is positive on all
+  three in both periods (BTC +0.19/+0.10, ETH +0.01/+0.03, SOL +0.10/+0.10). Longs vs shorts split differently by coin.
+- Verdict: real on BTC, weak transfer to alts, sensitive to fees -> paper-test on BTC with limit orders only, alts as a shadow arm.
+### Bullish OBV double divergence as a rare book — `src/double_div_more.py`
+- 48h forward return beats the base rate in all six crypto cells (BTC, ETH, SOL x two periods). Indices: too few events, negative.
+- The tight-stop 3R version gets shaken out; the edge is the drift. HOLD version (buy at confirmation, hold 48h, -8% catastrophe stop,
+  0.1% costs): BTC +0.78% / +0.56%, ETH +3.36% / +0.82%, SOL +1.78% / +2.52% per trade; 121 trades (~18 a year), 60% winners,
+  every calendar year positive (2020 +27%, 2021 +62%, 2022 +25%, 2023 +2%, 2024 +74%, 2025 +1%, 2026 +8%, each trade on its own stake).
+- DK (16:51): happy to run a rare book if it makes money on its rare days. Long-only spot -> fits the Revolut X account.

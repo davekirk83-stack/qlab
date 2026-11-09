@@ -1,0 +1,16 @@
+BULLISH OBV DOUBLE DIVERGENCE across markets (1h)
+  BTC          dev n22 48h    +60bp vs base  +32 | trade -0.12R (23%) || hold n22 48h    +66bp vs base  +12 | trade -0.09R (36%)
+  ETH          dev n20 48h   +357bp vs base  +41 | trade +0.37R (40%) || hold n16 48h    +68bp vs base   +6 | trade +0.21R (44%)
+  SOL          dev n18 48h   +241bp vs base  +84 | trade -0.12R (28%) || hold n23 48h   +249bp vs base  +10 | trade +0.57R (52%)
+  US Tech 100  dev n 5 48h   +101bp vs base  +17 | trade +1.28R (80%) || hold n 3 48h   -116bp vs base  -14 | trade -0.16R (33%)
+  US 500       dev n 3 48h    -70bp vs base  +17 | trade -1.03R (0%) || hold none
+  FTSE 100     dev n 6 48h     -5bp vs base   +4 | trade -1.02R (0%) || hold n 2 48h    -93bp vs base   +5 | trade -1.02R (0%)
+
+  ALL MARKETS: n140 trades, mean +0.08R, win 36%, total +11.5R; 48h mean +149bp
+
+HOLD-48h version (crypto): return per trade after 0.1% costs, catastrophe stop -8%
+  BTC  dev n22 mean +0.78% win 55% worst -8.1% || hold n22 mean +0.56% win 64% worst -7.0%
+  ETH  dev n20 mean +3.36% win 65% worst -8.1% || hold n16 mean +0.82% win 56% worst -8.1%
+  SOL  dev n18 mean +1.78% win 50% worst -8.1% || hold n23 mean +2.52% win 70% worst -8.1%
+  ALL CRYPTO: n121 (18 a year), mean +1.65% per trade, win 60%, sum +200% (each trade on its own stake)
+  by year: 2020:+27%(n8) 2021:+62%(n21) 2022:+25%(n11) 2023:+2%(n20) 2024:+74%(n29) 2025:+1%(n14) 2026:+8%(n18)
