@@ -1,0 +1,76 @@
+MARKET SEARCH 1 — honest fixed rules, costs in, R per trade; H1/H2 = first/second half of each market's data
+US Tech 100: 2025-10-15 .. 2026-11-06, cost 1.0 pts round trip
+  US Tech 100            SPIKE n  31 (   32/yr) +0.049R win  39%  H1 +0.160 H2 -0.056
+  US Tech 100            ORB   n 233 (  220/yr) -0.017R win  49%  H1 +0.068 H2 -0.102
+US 500: 2025-11-03 .. 2026-11-06, cost 0.4 pts round trip
+  US 500                 SPIKE n  22 (   23/yr) +0.165R win  50%  H1 -0.136 H2 +0.466
+  US 500                 ORB   n 244 (  244/yr) -0.033R win  43%  H1 -0.000 H2 -0.066
+Wall Street: 2026-04-15 .. 2026-11-06, cost 2.4 pts round trip
+  Wall Street            SPIKE n  17 (   32/yr) +0.426R win  53%  H1 +0.511 H2 +0.351  <-- both halves positive
+  Wall Street            ORB   n 122 (  218/yr) -0.128R win  37%  H1 -0.079 H2 -0.177
+Germany 40: 2026-04-15 .. 2026-11-06, cost 1.2 pts round trip
+  Germany 40             SPIKE n8 (too few)
+  Germany 40             ORB   n 135 (  241/yr) -0.095R win  42%  H1 -0.101 H2 -0.088
+FTSE 100: 2025-11-03 .. 2026-11-06, cost 1.0 pts round trip
+  FTSE 100               SPIKE n  12 (   16/yr) -0.373R win  25%  H1 -0.126 H2 -0.620
+  FTSE 100               ORB   n 222 (  220/yr) -0.005R win  41%  H1 +0.038 H2 -0.049
+Gold (NY): 2026-04-15 .. 2026-10-21, cost 0.3 pts round trip
+  Gold (NY)              SPIKE n  19 (   42/yr) -0.319R win  26%  H1 -0.343 H2 -0.297
+  Gold (NY)              ORB   n 127 (  247/yr) -0.189R win  31%  H1 -0.122 H2 -0.256
+Gold (London): 2026-04-15 .. 2026-10-21, cost 0.3 pts round trip
+  Gold (London)          SPIKE n  13 (   28/yr) -0.553R win  15%  H1 -0.590 H2 -0.521
+  Gold (London)          ORB   n 120 (  234/yr) +0.071R win  38%  H1 +0.084 H2 +0.058  <-- both halves positive
+GBP/USD (London): 2025-11-03 .. 2026-10-30, cost 0.9 pts round trip
+  GBP/USD (London)       SPIKE n  14 (   18/yr) -0.617R win  14%  H1 -1.128 H2 -0.107
+  GBP/USD (London)       ORB   n 242 (  245/yr) -0.025R win  37%  H1 -0.080 H2 +0.031
+GBP/USD (NY): 2025-11-03 .. 2026-10-30, cost 0.9 pts round trip
+  GBP/USD (NY)           SPIKE n  20 (   26/yr) -0.052R win  35%  H1 -0.389 H2 +0.285
+  GBP/USD (NY)           ORB   n 251 (  255/yr) -0.117R win  37%  H1 -0.049 H2 -0.184
+USD/JPY (Tokyo): 2025-11-03 .. 2026-10-30, cost 0.7 pts round trip
+  USD/JPY (Tokyo)        SPIKE n  25 (   28/yr) +0.125R win  40%  H1 -0.031 H2 +0.269
+  USD/JPY (Tokyo)        ORB   n 243 (  247/yr) -0.006R win  44%  H1 -0.050 H2 +0.038
+USD/JPY (NY): 2025-11-03 .. 2026-10-30, cost 0.7 pts round trip
+  USD/JPY (NY)           SPIKE n  27 (   29/yr) -0.404R win  26%  H1 -0.382 H2 -0.425
+  USD/JPY (NY)           ORB   n 238 (  241/yr) -0.180R win  34%  H1 -0.109 H2 -0.251
+BTCUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  BTCUSD (UTC day)       SPIKE n 765 (  153/yr) -0.409R win  35%  H1 -0.392 H2 -0.425
+  BTCUSD (UTC day)       ORB   n1733 (  344/yr) -0.555R win  30%  H1 -0.515 H2 -0.594
+BTCUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  BTCUSD (US hours)      SPIKE n 191 (   39/yr) -0.339R win  32%  H1 -0.273 H2 -0.405
+  BTCUSD (US hours)      ORB   n1653 (  329/yr) -0.238R win  39%  H1 -0.199 H2 -0.277
+ETHUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  ETHUSD (UTC day)       SPIKE n 706 (  141/yr) -0.354R win  34%  H1 -0.309 H2 -0.400
+  ETHUSD (UTC day)       ORB   n1736 (  345/yr) -0.411R win  32%  H1 -0.419 H2 -0.403
+ETHUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  ETHUSD (US hours)      SPIKE n 190 (   39/yr) -0.160R win  38%  H1 -0.026 H2 -0.295
+  ETHUSD (US hours)      ORB   n1637 (  325/yr) -0.176R win  40%  H1 -0.150 H2 -0.201
+SOLUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  SOLUSD (UTC day)       SPIKE n 556 (  111/yr) -0.339R win  34%  H1 -0.354 H2 -0.325
+  SOLUSD (UTC day)       ORB   n1740 (  346/yr) -0.311R win  31%  H1 -0.267 H2 -0.354
+SOLUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  SOLUSD (US hours)      SPIKE n 143 (   29/yr) -0.353R win  33%  H1 -0.192 H2 -0.513
+  SOLUSD (US hours)      ORB   n1707 (  339/yr) -0.090R win  42%  H1 -0.018 H2 -0.162
+XRPUSD (UTC day): 2023-07-13 .. 2026-10-30, cost 20bp round trip
+  XRPUSD (UTC day)       SPIKE n 420 (  129/yr) -0.262R win  37%  H1 -0.315 H2 -0.209
+  XRPUSD (UTC day)       ORB   n1130 (  343/yr) -0.420R win  30%  H1 -0.379 H2 -0.460
+XRPUSD (US hours): 2023-07-14 .. 2026-10-29, cost 20bp round trip
+  XRPUSD (US hours)      SPIKE n 115 (   36/yr) -0.247R win  39%  H1 -0.440 H2 -0.057
+  XRPUSD (US hours)      ORB   n1112 (  338/yr) -0.211R win  38%  H1 -0.220 H2 -0.201
+DOGEUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  DOGEUSD (UTC day)      SPIKE n 692 (  138/yr) -0.285R win  35%  H1 -0.377 H2 -0.193
+  DOGEUSD (UTC day)      ORB   n1725 (  343/yr) -0.319R win  31%  H1 -0.313 H2 -0.324
+DOGEUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  DOGEUSD (US hours)     SPIKE n 189 (   38/yr) -0.223R win  37%  H1 -0.196 H2 -0.249
+  DOGEUSD (US hours)     ORB   n1673 (  332/yr) -0.129R win  40%  H1 -0.120 H2 -0.138
+AVAXUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  AVAXUSD (UTC day)      SPIKE n 547 (  109/yr) -0.369R win  33%  H1 -0.348 H2 -0.390
+  AVAXUSD (UTC day)      ORB   n1734 (  345/yr) -0.330R win  30%  H1 -0.343 H2 -0.317
+AVAXUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  AVAXUSD (US hours)     SPIKE n 160 (   32/yr) -0.252R win  36%  H1 -0.283 H2 -0.221
+  AVAXUSD (US hours)     ORB   n1717 (  341/yr) -0.128R win  40%  H1 -0.037 H2 -0.218
+LINKUSD (UTC day): 2021-10-17 .. 2026-10-30, cost 20bp round trip
+  LINKUSD (UTC day)      SPIKE n 528 (  105/yr) -0.294R win  36%  H1 -0.344 H2 -0.245
+  LINKUSD (UTC day)      ORB   n1749 (  348/yr) -0.353R win  29%  H1 -0.348 H2 -0.358
+LINKUSD (US hours): 2021-10-17 .. 2026-10-29, cost 20bp round trip
+  LINKUSD (US hours)     SPIKE n 137 (   28/yr) -0.069R win  42%  H1 -0.036 H2 -0.102
+  LINKUSD (US hours)     ORB   n1691 (  336/yr) -0.159R win  40%  H1 -0.166 H2 -0.151
