@@ -90,7 +90,9 @@ def simulate(df, sig, manage=None, flat_at_session_end=False):
             if manage: manage(df, k, st)
             k += 1
         if px is None: break
-        if "carry" in df: c = c + float(np.nansum(df["carry"].values[j0:k + 1]))   # overnight funding etc., price units per bar held
+        if "carry" in df: c = c + float(np.nansum(df["carry"].values[j0:k + 1]))
+        if "carry_long" in df: c = c + float(np.nansum((df["carry_long"] if s == 1 else df["carry_short"]).values[j0:k + 1]))   # side-dependent funding / basis
+        if "roll_every" in df: c = c + cost[j0] * ((k - j0) // int(df["roll_every"].values[j0]))   # one spread per quarterly roll   # overnight funding etc., price units per bar held
         pnl = s * (px - e) - c
         a_i = df["atr"].values[i] if "atr" in df and np.isfinite(df["atr"].values[i]) and df["atr"].values[i] > 0 else risk
         trades.append({"t": df.index[j0], "side": s, "e": e, "x": px, "R": pnl / a_i, "R_risk": pnl / risk, "pts": pnl, "how": how, "bars": k - j0,
