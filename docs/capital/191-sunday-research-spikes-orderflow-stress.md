@@ -114,3 +114,10 @@ then still needs his say-so under CAP-021.
   +2.56/+5.79% → +2.66/+5.84%; US 500 and FTSE mixed) because the ladder's own regime switch already sits out most big days. Its value is
   as context for reads and for the spike/Ignition side, which already only fire on big bars.
 - Review with the live book in the week of 16 Nov.
+
+## Correction 9 Nov — stress lows counted once per episode
+DK asked whether STRESS LOW should feed the buy signal. Re-tested counting each panic ONCE (episodes >= 4h apart) instead of every 15-min
+bar inside it: stress low alone -15bp (dev) / +6bp (hold) over 4h; above the 99-day line -0.5 / +10bp; below it -27 / -6bp. With a
+reclaim of the stress-low bar's high (entry on that close) and above the line: +9 / +5bp, 58% / 55%. The +26-35bp quoted above counted the
+same panic many times. Conclusion: the stress low is CONTEXT, not a standalone buy trigger; the 99-day regime filter is what separates
+good from bad, and the ladder (several rungs, +3% target) is what turned it into a small edge. Panel tooltips corrected (V24.1).

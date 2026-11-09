@@ -4,9 +4,11 @@
 // each 1-minute piece adds volume x (close - open) / (high - low). Checked against Binance's TRUE taker delta (May-Nov 2026): it agrees in
 // sign about 74% of the time (correlation ~0.68) on 5-min to 1-hour bars. Good enough to see who is pushing; not exact.
 //   BARS    delta per bar (green = net buying, red = net selling); LINE = cumulative delta (CVD), reset each UTC day / week / never.
-//   STRESS  shaded background = BTC has moved >= 3x its normal 24h move in the last 24h. A NEW 4-HOUR LOW INSIDE A DOWN-STRESS MOVE
-//           (yellow 'STRESS LOW' mark) is the tested edge from doc 191: +26 to +35bp over the next 4h, right ~60% of the time, in both
-//           2020-23 and 2024-26 — versus +2 to +6bp at ordinary 4h lows. It is the basis of the BTC stress snap-back ladder.
+//   STRESS  shaded background = BTC has moved >= 3x its normal 24h move in the last 24h. 'STRESS LOW' = a new 4-hour low inside a
+//           down-stress move. CONTEXT, not a buy signal: counted once per episode (BTC 2020-26) it returned -0.15% / +0.06% over the next
+//           4h in the two test periods; above the 99-day line ~0 / +0.10%, below it negative in both. (The +0.26-0.35% first quoted in
+//           doc 191 counted every bar of the same panic separately — corrected 9 Nov.) The doc 191 ladder's small edge came from
+//           buying several of these with a +3% target, above the 99-day line only.
 //   ABS     absorption: heavy selling (delta z <= -2.5 vs the last ~4 days) but the bar closes in the top 40% of its range, at a 4h low.
 //           With TRUE delta it added ~+20bp on top of a stress low; with this chart's ESTIMATED delta the same marker was unreliable
 //           (one test period negative). Treat ABS as colour, not a signal. Mirror at highs; shorting stress highs did NOT work (doc 191).
