@@ -1,0 +1,21 @@
+FAIL  OD/ID both sides, 5 days [breakout (Raschke OD/ID)] — n 1423 (53/yr), mean +0.066, t +1.98, clustered t +1.88 (t* 3.82, idea #379), year-block CI [-0.012, +0.147], full years + 18/26, last 5y -0.103, last 12m -0.133, costs x1.5 +0.051, random 95th +0.020
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: market (+28 -> +71); paradigm 3y (+78 -> +122)
+      portfolio (risk-matched): corr +0.01, mean/month +3.17 vs core +2.22, worst 12m -72.7 vs -57.3, in the core's 10 worst months -2.4 -> does not add
+      by market: DAX n140 -0.12  DJI n120 +0.28  EURUSD n123 +0.06  FTSE n86 +0.32  GBPUSD n138 +0.16  GOLD n173 +0.28  NDX n115 -0.17  OIL n129 +0.13  SPX n98 -0.07  TNOTE n140 -0.23  USDJPY n161 +0.08
+      since 2016: n 606 mean -0.073; win 37%; per year 53
+
+FAIL  OD/ID long only, 5 days [breakout (Raschke OD/ID)] — n 893 (33/yr), mean -0.038, t -0.94, clustered t -0.88 (t* 3.82, idea #380), year-block CI [-0.126, +0.063], full years + 13/26, last 5y -0.119, last 12m -0.226, costs x1.5 -0.053, random 95th -0.018
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: market (-51 -> +2)
+      portfolio (risk-matched): corr +0.10, mean/month +1.79 vs core +2.22, worst 12m -89.4 vs -57.3, in the core's 10 worst months -7.6 -> does not add
+      by market: DAX n97 -0.18  DJI n77 +0.11  EURUSD n82 -0.15  FTSE n54 +0.32  GBPUSD n90 -0.01  GOLD n104 +0.21  NDX n68 +0.09  OIL n74 -0.02  SPX n58 -0.00  TNOTE n86 -0.55  USDJPY n103 -0.09
+      since 2016: n 372 mean -0.123; win 33%; per year 33
+
+FAIL  OD/ID both sides, 10 days [breakout (Raschke OD/ID)] — n 1357 (50/yr), mean +0.045, t +1.00, clustered t +0.96 (t* 3.82, idea #381), year-block CI [-0.058, +0.151], full years + 15/26, last 5y -0.138, last 12m -0.191, costs x1.5 +0.030, random 95th +0.013
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      walk-forward switches that help: weekday (+18 -> +49); market (+18 -> +90); paradigm 3y (+71 -> +101)
+      portfolio (risk-matched): corr -0.00, mean/month +2.73 vs core +2.22, worst 12m -71.3 vs -57.3, in the core's 10 worst months -11.6 -> does not add
+      by market: DAX n135 -0.31  DJI n118 +0.15  EURUSD n119 +0.14  FTSE n85 +0.26  GBPUSD n132 +0.26  GOLD n159 +0.46  NDX n109 -0.08  OIL n122 +0.04  SPX n98 -0.20  TNOTE n134 -0.32  USDJPY n146 +0.05
+      since 2016: n 579 mean -0.124; win 29%; per year 50
+
