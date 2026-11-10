@@ -100,6 +100,8 @@ class Runner:
         self.session_acc = self.acc; log("trading session on", self.session_acc if not LIVE else "live spread-bet account (id not logged: public repo)")
         mkt = self.ig.fetch_market_by_epic(EPIC)
         self.min_size = float(mkt["dealingRules"]["minDealSize"]["value"]); self.beq = BookEquity()
+        if LIVE:   # doc 212: one pot for every live book on the account
+            import live_limits as L; self.beq.pot = L.Pot(self.ig, self.beq.s)
         self.size = max(SIZE, self.min_size); self.expiry = mkt["instrument"]["expiry"]; cc = [c["code"] for c in mkt["instrument"]["currencies"]]; self.ccy = "GBP" if "GBP" in cc else cc[0]
         log(f"{ACC_TYPE.upper()} account {self.acc if not LIVE else '(hidden)'}, {EPIC} {mkt['instrument']['name']} min size {self.size} {self.ccy}/pt, status {mkt['snapshot']['marketStatus']}")
         self.state = json.load(open(STATE)) if os.path.exists(STATE) else {}

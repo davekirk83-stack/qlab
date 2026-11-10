@@ -38,8 +38,11 @@ LIVE = MODE == "live"
 OUT = os.environ.get("IG_OUT", "runs/ig_daily_live" if LIVE else "runs/ig_daily"); os.makedirs(OUT, exist_ok=True)
 STATE = f"{OUT}/state.json"; LEDGER = f"{OUT}/trades.csv"
 START_EQ = float(os.environ.get("IG_DAILY_START_EQ", "500"))
-RISK = 0.02 if LIVE else 0.01; TPS_RISK = 0.02; EXPO = 5.0
+RISK = 0.01; TPS_RISK = 0.02; EXPO = 5.0
 DAY_STOP, FLOOR = 0.96, 0.85
+if LIVE:   # doc 212: live money rules come from config/live_pot.json (one place, fractions of the pot, shared with the intraday runner)
+    import live_limits as L
+    START_EQ, RISK, TPS_RISK, EXPO = L.POT, L.RISK, L.RISK, L.EXPO
 
 MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
     "US500":  ("^GSPC", "IX.D.SPTRD.DAILY.IP", "us"),
@@ -52,7 +55,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
 BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX}
-if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in ("RSI4", "TPS", "TOM", "SANTA")}   # live core only: no HALLO, USCL, gold London
+if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 LOG = []
@@ -162,6 +165,9 @@ def ledger(row):
         if new: f.write("closed,book,market,entered,entry,exit,size,pnl_gbp,days,why\n")
         f.write(",".join(str(row[k]) for k in ("closed", "book", "market", "entered", "entry", "exit", "size", "pnl_gbp", "days", "why")) + "\n")
 def notional(s): return sum(p.get("want", p["size"]) * p["entry_ig"] for p in s["pos"] if p.get("entry_ig"))
+def size_eq(s):
+    """Equity the stakes are sized from: live = the shared pot now (all books' P&L compounded) x this book's share; demo = the sub-book."""
+    return s.get("pot_now", START_EQ) * L.share("daily") if LIVE else s["eq"]
 def size_for(eq, risk_frac, stop_pts, mn):
     """(stake actually placed, stake the rules intend). IG's minimum is often bigger than 1% of £500 allows, so the demo places the
     minimum and the sub-book counts the result at the INTENDED size (pnl x intended/placed) - the demo measures fills, not luck of size."""
@@ -193,11 +199,11 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
         if size > want * 1.0001: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than 2% risk ({want:.4f}/pt)"); return None
         want = size   # live: the stake placed is the stake counted
-    held = ig.account_notional() if LIVE else notional(s)   # live: both books on the account share one 5x cap on the £500 book
-    if held + want * mid > EXPO * (START_EQ if LIVE else s["eq"]): log(f"SKIP {book} {name}: exposure cap 5x (whole account)"); return None
+    held = ig.account_notional() if LIVE else notional(s)   # live: every book on the account shares one cap on the pot
+    if held + want * mid > EXPO * (s.get("pot_now", START_EQ) if LIVE else s["eq"]): log(f"SKIP {book} {name}: exposure cap {EXPO:g}x (whole account)"); return None
     if name in IDX and risk is not None:
         held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
-        if held + risk > IDX_RISK_CAP * s["eq"]: log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > 6% of the book"); return None
+        if held + risk > IDX_RISK_CAP * size_eq(s): log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > {IDX_RISK_CAP:.0%} of the book"); return None
     r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level)
     if r.get("dealStatus") not in ("ACCEPTED", "DRY"): log(f"REJECTED {book} {name}: {r.get('reason')}"); return None
     lvl = float(r["level"]) if r.get("level") else mid
@@ -209,7 +215,7 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
 # ------------------------------------------------------------------ jobs
 OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
 CLOSE_BOOKS = ("TOM", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
-IDX_RISK_CAP = 0.06                      # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
+IDX_RISK_CAP = L.IDX_CAP if LIVE else 0.06   # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
 
 def job_close(ig, s, group, hist_fn):
     """Calendar books: exits after their fixed number of days, entries on their known dates; USCL exits at the European close."""
@@ -226,7 +232,7 @@ def job_close(ig, s, group, hist_fn):
             for bk in CLOSE_BOOKS:
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
-                stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic))
+                stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(size_eq(s), RISK, stop_pts, ig.min_size(epic))
                 open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"{name} failed:", traceback.format_exc())
     if group == "eu":
@@ -266,11 +272,11 @@ def job_open(ig, s, group, hist_fn):
                 if not bool(entries(d, bk).iloc[-1]): continue
                 mn = ig.min_size(epic)
                 if bk == "TPS":   # whole ladder (1+2+3+4 = 10 units) loses 2% of the book at the 15% kill
-                    unitw = TPS_RISK * s["eq"] / (10 * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
+                    unitw = TPS_RISK * size_eq(s) / (10 * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
                     open_pos(ig, s, "TPS", name, epic, unit, mid, k, stop_level=round(mid * 0.80, 1), extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)},
                              want=unitw, risk=0.15 * unitw * mid)
                 else:
-                    stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, mn)
+                    stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(size_eq(s), RISK, stop_pts, mn)
                     open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"{name} failed:", traceback.format_exc())
 
@@ -284,7 +290,7 @@ def job_eu_open(ig, s, hist_fn):
             epic = MKT[name][1]; snap = ig.snap(epic); d, k, mid = today_bar(hist_fn(name), snap, pd.Timestamp(utcnow().date()))
             stop_pts = round(STOP_ATR["USCL"] * d.atr.iloc[-2] / k, 1)
             if not any(q["book"] == "USCL" and q["market"] == name for q in s["pos"]):
-                sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic)); open_pos(ig, s, "USCL", name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
+                sz, w = size_for(size_eq(s), RISK, stop_pts, ig.min_size(epic)); open_pos(ig, s, "USCL", name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"USCL {name} failed:", traceback.format_exc())
 
 # ------------------------------------------------------------------ gold London breakout (doc 197/198: WEAK, n104, +8 pts/trade)
@@ -321,7 +327,7 @@ def job_gold_ldn(ig, s):
     buf = 0.0002 * C
     L = (1, hi + buf, max(lo, hi * (1 - 0.006))); S = (-1, lo - buf, min(hi, lo * (1 + 0.006)))
     side, lvl, st = min((L, S), key=lambda x: abs(x[1] - C)); risk = abs(lvl - st); tgt = lvl + side * 2.5 * risk
-    sz, want = size_for(s["eq"], RISK, risk, ig.min_size(GOLD_EPIC))
+    sz, want = size_for(size_eq(s), RISK, risk, ig.min_size(GOLD_EPIC))
     log(f"gold: {'BUY' if side == 1 else 'SELL'} STOP at {lvl:.1f}, stop {st:.1f} ({risk:.1f} pts), target {tgt:.1f}; {sz}/pt (counted at {want:.4f})")
     o = {"day": today, "side": side, "level": round(lvl, 1), "stop": round(st, 1), "target": round(tgt, 1), "size": sz, "want": want, "deal_id": None}
     if not ig.dry:
@@ -366,17 +372,12 @@ def main():
         today = utcnow().strftime("%Y-%m-%d")
         if s.get("day") != today: s["day"], s["day_eq"] = today, s["eq"]
         s["entries_ok"], s["stop_why"] = True, ""
-        # BOTH live books share the account and the one £500 book: day stop and floor are measured on the WHOLE account's change
-        # (balance + open P&L) from its level at the start of the day / at the first live run — intraday and daily books together.
+        # doc 212: every live book shares the pot (config/live_pot.json): day stop, floor and exposure on the WHOLE account
         if not dry:
             try:
-                acc = ig.account_equity(); s.setdefault("acc_start", acc)
-                if s.get("acc_day_date") != today: s["acc_day_date"], s["acc_day"] = today, acc
-                if acc < s["acc_start"] - (1 - FLOOR) * START_EQ: s["entries_ok"], s["stop_why"] = False, f"account down £{s['acc_start'] - acc:.2f} since start (-15% of £500): no new entries (back to paper)"
-                elif acc < s["acc_day"] - (1 - DAY_STOP) * START_EQ: s["entries_ok"], s["stop_why"] = False, f"account down £{s['acc_day'] - acc:.2f} today (-4% of £500): no new entries today"
+                pot = L.Pot(ig.ig, s).refresh(); s["pot_now"] = pot.pot; s["entries_ok"], s["stop_why"] = pot.entries_ok()
+                log(f"pot £{pot.pot:.2f} (start £{L.POT:.0f}, all books {pot.change:+.2f}); entries {'on' if s['entries_ok'] else 'OFF: ' + s['stop_why']}")
             except Exception as e: log("account check failed — no new entries this run:", e); s["entries_ok"], s["stop_why"] = False, "account check failed"
-        if s["entries_ok"] and s["eq"] < FLOOR * START_EQ: s["entries_ok"], s["stop_why"] = False, f"book £{s['eq']:.2f} is below the -15% floor: no new entries (back to paper)"
-        elif s["entries_ok"] and s["eq"] < DAY_STOP * s["day_eq"]: s["entries_ok"], s["stop_why"] = False, "-4% day stop hit: no new entries today"
         if job.startswith("gold"): log("live: gold London book is demo-only — exit"); return
     if job == "eu_open":
         if not LIVE: job_eu_open(ig, s, hist_fn)   # USCL is demo-only (doc 209: FTSE open-data fault)

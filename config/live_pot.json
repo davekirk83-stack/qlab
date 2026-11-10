@@ -1,0 +1,15 @@
+{
+  "_note": "ONE place for the live money rules (doc 212). Every limit is a share of the pot, so the rules scale as the pot and the number of books grow. Changing pot_gbp or adding a live book is DK's decision (CAP-021); Claude edits this only on DK's instruction.",
+  "pot_gbp": 500,
+  "compound": true,
+  "deposits_raise_pot": true,
+  "risk_per_trade": 0.02,
+  "exposure_x": 5.0,
+  "day_stop": 0.04,
+  "floor": 0.15,
+  "index_risk_cap": 0.06,
+  "books": {
+    "intraday": {"share": 1.0, "engines": ["Ignition", "spike"], "approved": "DK 4 Nov / 9 Nov (CAP-021 amendments)"},
+    "daily":    {"share": 1.0, "engines": ["RSI4", "TPS", "TOM", "SANTA"], "approved": "DK 10 Nov 07:27 / 07:37"}
+  }
+}

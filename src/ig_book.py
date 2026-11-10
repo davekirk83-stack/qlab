@@ -11,6 +11,9 @@ F = f"{OUT}/book_eq.json"
 START_EQ = float(os.environ.get("IG_BOOK_START_EQ", "500"))
 R_IGN, RNG_MARGIN, R_NEWS, MARGIN = 0.02, 0.15, 0.01, 0.05
 MAX_LEV = 5.0   # DK 1 Nov 16:02: "happy with 2x but if you are confident in using 5x sensibly then that's fine (but no more)"
+if LIVE:   # doc 212: live rules from config/live_pot.json, shared with every live book on the account
+    import live_limits as L
+    START_EQ, MAX_LEV, R_IGN = L.POT, L.EXPO, L.RISK
 
 class BookEquity:
     def __init__(self):
@@ -26,8 +29,13 @@ class BookEquity:
     def floor_hit(self):
         """doc 93 / 185: live book at -15% from its start -> no new entries (back to paper)"""
         return LIVE and self.s["eq"] <= FLOOR * START_EQ
+    pot = None   # live: live_limits.Pot set by the runner (whole-account day stop, floor and exposure, all books together)
     def day_ok(self):
-        self._roll(); return self.s["eq"] > self.s["day_open"] * 0.96 and not self.floor_hit()
+        self._roll(); ok = self.s["eq"] > self.s["day_open"] * 0.96 and not self.floor_hit()
+        if ok and self.pot is not None:
+            try: ok = self.pot.refresh().entries_ok()[0]; self.save()
+            except Exception: ok = False   # account check failed: no new entries
+        return ok
     def add(self, gbp, src):
         if gbp is None or gbp != gbp: return
         self._roll(); self.s["eq"] = round(self.s["eq"] + float(gbp), 4); self.s["hi"] = max(self.s["hi"], self.s["eq"])
@@ -45,7 +53,7 @@ class BookEquity:
         return self.eq * RNG_MARGIN * self.k / MARGIN / max(price, 1.0)
     def cap(self, size, price, open_notional, min_size):
         """Scale a new position so total open exposure stays <= 5 x book equity; 0 if what is left is under a quarter of the size or the minimum."""
-        room = MAX_LEV * self.eq - open_notional
+        room = MAX_LEV * (self.pot.pot if self.pot is not None and "acc" in self.pot.s else self.eq) - open_notional
         if room <= 0 or price <= 0: return 0.0
         s = min(size, round(room / price, 2))
         return s if (s >= min_size and s >= 0.25 * size) else 0.0
