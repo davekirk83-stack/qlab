@@ -1,0 +1,41 @@
+name: Revolut X LIQ book (doc 225 — BTC liquidation clusters, every 15 min; dry unless DK enables live)
+# CAP-021 as amended 5 Nov 2026: £500 Revolut X book, spot long only, no leverage; £50 a trade (10% of the book), one trade at a time;
+# book -15% from the start -> no new trades. Live needs DK's repo VARIABLE REVX_LIQ_LIVE_ENABLED = "true" (DK's decision); otherwise dry.
+# Keys: DK's secrets REVX_API_KEY / REVX_PRIVATE_KEY (never printed). Claude never sets the variable or dispatches mode=live.
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "dry / live", default: "dry" }
+  schedule:
+    - cron: "1,16,31,46 * * * *"    # one minute after each 15-min bar closes
+permissions:
+  contents: write
+concurrency:
+  group: revx-liq
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.event_name == 'schedule' || github.event.inputs.mode != 'live' || vars.REVX_LIQ_LIVE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q cryptography pandas numpy
+      - name: Run (secrets never printed)
+        env:
+          REVX_API_KEY: ${{ secrets.REVX_API_KEY }}
+          REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then [ "${{ vars.REVX_LIQ_LIVE_ENABLED }}" = "true" ] && MODE=live || MODE=dry; fi
+          [ "$MODE" = "live" ] && [ "${{ vars.REVX_LIQ_LIVE_ENABLED }}" != "true" ] && { echo "live not enabled by DK"; exit 1; }
+          QLAB_ROOT=$PWD python src/revx_liq.py "$MODE" 2>&1 | tee -a runs/revx_liq_$MODE.log
+          tail -n 400 runs/revx_liq_$MODE.log > /tmp/l && mv /tmp/l runs/revx_liq_$MODE.log
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "revx-liq"; git config user.email "revx-liq@users.noreply.github.com"
+          git add -f runs/revx_liq_dry runs/revx_liq_live runs/revx_liq_*.log 2>/dev/null; git commit -q -m "revx liq $(date -u +%Y-%m-%dT%H:%M)" || true
+          for i in 1 2 3 4 5 6; do git pull -q --rebase -X theirs origin main && git push -q && break; echo "push retry $i"; sleep $((i*7)); done
