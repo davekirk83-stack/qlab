@@ -145,3 +145,28 @@ Script: `src/liq_session_test.py`. Output: `runs/gate/liq_session_test.txt`.
 **Where this leaves it.** The useful behaviour is range-edge reversal: buy at the lower cluster band and sell near the upper one. That is the long-level tap bounce already found, plus the reversal-to-the-far-cluster candidate (addendum 2). Those are the books to refine. A trade *toward* the nearer cluster from the open is not.
 
 Script: `src/liq_session_refine.py`. Output: `runs/gate/liq_session_refine.txt`.
+
+## Addendum 5: do clusters indicate extent? (DK, 16:11: "it does indicate extent… to a certain degree")
+
+The band is the nearest live long cluster below and the nearest live short cluster above at each session open. There were 6,669 opens. The median band was 1.42% below and 1.33% above.
+
+**Containment.** How often does the 8-hour session stay inside the band? Each result is compared with placebo bands of the same widths shuffled across other opens.
+
+| Session | Stays inside | Placebo | Reading |
+|---|---|---|---|
+| Asia | 53.6% | 49.9% (95% range 48.5–51.2) | Real effect: the clusters contain the quiet session |
+| London | 40.3% | 41.5% | No effect |
+| New York | 22.0% | 26.9% | Breaks out *more* than placebo: the clusters get run |
+
+**Range prediction.**
+- Band width on its own explains 16% of the session's range. Wider band, wider session: 1.48% for the narrowest fifth of bands, up to 3.00% for the widest.
+- Most of that is already captured by the previous 24 hours' range. Adding band width lifts the fit from 31.3% to 32.2%.
+
+**Broken edges.** Each edge breaks in about 32% of sessions. When it does, price carries on past it by a median of 0.8%. The 75th percentile is 1.6% and the 90th is 3.0%. It reaches the next cluster out 65% of the time, no more than placebo.
+
+**Uses.**
+1. **Asia-session range trade.** Fade the band edges overnight, the only session where the clusters measurably contain price. This is a candidate for the standard test, at Revolut X costs.
+2. **Stop placement for the cluster books.** A stop just under a cluster is inside the normal overshoot. Put it at least 1.6% beyond the cluster, and about 3% to survive 9 breaks in 10.
+3. **Don't fade the New York open at the clusters.** That is when they get run.
+
+Script: `src/liq_extent_test.py`. Output: `runs/gate/liq_extent_test.txt`.

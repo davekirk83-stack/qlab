@@ -1,0 +1,29 @@
+   MAGNET: nearer cluster hit first 75.6% vs random walk 69.6%  (n 3723)
+   toward NEARER cluster     avg -0.029% (t -2.05, win 57%) | 2020-22 -0.004%  2023-26 -0.046%
+   toward FARTHER cluster    avg -0.052% (t -3.69, win 40%) | 2020-22 -0.077%  2023-26 -0.035%
+   toward HEAVIER side (3%)  avg -0.039% (t -2.75, win 53%) | 2020-22 -0.025%  2023-26 -0.048%
+Session opens with a cluster on both sides within 10%: n 6669; median band: 1.42% below, 1.33% above
+
+1. CONTAINMENT — session stays inside the cluster band:
+   Asia      real 53.6% vs placebo (same widths, shuffled) 49.9% [95% 48.5-51.2]  n 2457
+        top edge holds   real 74.7% vs placebo 71.6%
+        bottom edge holds real 76.7% vs placebo 72.9%
+   London    real 40.3% vs placebo (same widths, shuffled) 41.5% [95% 40.1-42.6]  n 2458
+        top edge holds   real 67.6% vs placebo 66.3%
+        bottom edge holds real 68.9% vs placebo 67.4%
+   New York  real 22.0% vs placebo (same widths, shuffled) 26.9% [95% 25.3-28.3]  n 1754
+        top edge holds   real 58.4% vs placebo 57.9%
+        bottom edge holds real 55.0% vs placebo 56.9%
+   all       real 40.4% vs placebo (same widths, shuffled) 40.6% [95% 39.8-41.5]  n 6669
+        top edge holds   real 67.8% vs placebo 66.0%
+        bottom edge holds real 68.1% vs placebo 66.7%
+
+2. Does band width predict the session's range? (log-log regression)
+   previous 24h range only   R2 0.313  coefficients [0.602]
+   band width only           R2 0.164  coefficients [0.549]
+   both                      R2 0.322  coefficients [0.529 0.158]
+   session range by band-width quintile: Q1 band 1.72% -> range 1.48%  Q2 band 2.38% -> range 1.81%  Q3 band 3.04% -> range 2.09%  Q4 band 4.01% -> range 2.22%  Q5 band 6.04% -> range 3.00%
+
+3. When an edge BREAKS — overshoot beyond it, and does it reach the next cluster out?
+   top edge    broken 32% of sessions | overshoot past it: median 0.77%, 75th 1.63%, 90th 3.02% | reached the next cluster out 65% (placebo gap 65%)
+   bottom edge broken 32% of sessions | overshoot past it: median 0.82%, 75th 1.62%, 90th 2.95% | reached the next cluster out 65% (placebo gap 65%)
