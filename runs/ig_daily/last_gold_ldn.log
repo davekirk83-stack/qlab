@@ -1,0 +1,5 @@
+04:55:33 job gold_ldn (dry); daily sub-book £500.00, open positions 0
+04:55:34 switch_account: error.switch.accountId-must-be-different
+04:55:35 gold: IG history unavailable (error.public-api.exceeded-account-historical-data-allowance) — using Yahoo gold futures 5-min bars scaled to IG's price
+04:55:36 gold: only 46 Asian bars — no trade
+04:55:36 done; book £500.00, open []
