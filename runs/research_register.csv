@@ -22,3 +22,4 @@ date,name,family,markets,n,mean,t,clustered_t,tstar,ci_lo,ci_hi,years_pos,last5y
 2026-11-10,RSI(4) dip [IG costs],dip,SPX NDX DJI RUT DAX FTSE N225 GOLD,1262,0.3005,5.7,4.36,3.76,0.1372,0.4428,18/25,0.3906,0.2477,0.2871,0.066,PASS,market (+309 -> +319),,
 2026-11-10,"S1 Connors stock RSI(2)<5 above 200-day, exit > 5-day avg",stock-dip,shares,42690,0.031,3.29,1.21,3.76,-0.0444,0.0946,14/21,-0.0031,0.0357,-0.019,-0.0421,FAIL,month (-11 -> +87); VIX band (-11 -> +337); market (-11 -> +190),0.51,no
 2026-11-10,S2 our RSI(4) dip on shares,stock-dip,shares,63777,0.0499,6.03,1.88,3.76,-0.0263,0.1147,15/21,0.0019,0.0071,0.0001,-0.0318,FAIL,VIX band (+1226 -> +1516),0.54,no
+2026-11-10,"S3 short-term reversal: 5 worst 5-day S&P shares above 200-day, 5 days",stock-reversal,shares,12611,0.0219,1.54,1.23,3.76,-0.0333,0.0775,13/21,-0.003,0.0015,-0.0123,0.0143,FAIL,,0.36,no

@@ -9,3 +9,8 @@ FAIL  S2 our RSI(4) dip on shares [stock-dip] — n 63777 (2899/yr), mean +0.050
       walk-forward switches that help: VIX band (+1226 -> +1516)
       portfolio (risk-matched): corr +0.54, mean/month +2.85 vs core +2.22, worst 12m -122.4 vs -57.3, in the core's 10 worst months -163.5 -> does not add
       by index: FTSE100:-0.051(n10015) SP500:+0.069(n53762)
+FAIL  S3 short-term reversal: 5 worst 5-day S&P shares above 200-day, 5 days [stock-reversal] — n 12611 (573/yr), mean +0.022, t +1.54, clustered t +1.23 (t* 3.76, idea #300), year-block CI [-0.033, +0.077], full years + 13/21, last 5y -0.003, last 12m +0.001, costs x1.5 -0.012, random 95th +0.014
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.36, mean/month +2.66 vs core +2.22, worst 12m -130.2 vs -57.3, in the core's 10 worst months -121.8 -> does not add
+      by index: SP500:+0.022(n12611)
