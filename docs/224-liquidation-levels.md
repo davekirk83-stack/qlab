@@ -68,3 +68,33 @@ By period:
 - That is a sensible "wait one bar" rule, not an edge on its own.
 - The base finding still stands: taps of long-liquidation levels bounce, with t 8.45 on all taps. The bounce has shrunk a lot since 2022 (4h +0.36% → +0.11%), so it needs Revolut X's real costs and the standard test before any money goes near it.
 - Script: `src/toxicity_test.py`. Output: `runs/gate/toxicity_test.txt`.
+
+## Addendum 2: "once the last cluster in a region is gone, it reverses to the other extremity" (DK, 16:03)
+
+**The test.** At every tap of a long-liquidation level on BTC (15-minute bars, 2020–26) I recorded two things:
+- whether any long levels were still live below, within a region of 5% or 10%. If none were, the tap counts as **cleared**;
+- the live **short**-liquidation levels above at that moment. The *nearest* one and the *farthest* one within the region are the targets.
+
+The trade is a buy at the tapped level. It exits at the target, at a stop 1.5% or 3% below the level, or after 7 days, whichever comes first. Costs are 0.04%. Script: `src/liq_reversal_test.py`. Output: `runs/gate/liq_reversal_test.txt`.
+
+**5% region:**
+
+| Target | Stop | Taps | Hit target | Avg trade | 2023–26 |
+|---|---|---|---|---|---|
+| Nearest | 1.5% | Cleared, 111 | 32% | +0.06% (t 0.25) | −0.29% |
+| Nearest | 1.5% | Levels still below, 3,961 | 39% | +0.10% (t 3.07) | +0.02% |
+| Farthest | 3% | Cleared, 111 | 41% | −0.03% | +0.05% |
+| Farthest | 3% | Levels still below, 3,961 | 40% | +0.19% (t 3.53) | +0.05% |
+
+**10% region:**
+
+| Target | Stop | Taps | Hit target | Avg trade |
+|---|---|---|---|---|
+| Farthest | 3% | Cleared, 21 (all in 2020–22) | 10% | −1.66% |
+| Farthest | 3% | Levels still below, 4,915 | 20% | +0.34% (t 5.06) |
+
+**Verdict: the data says the opposite.**
+- When the last long cluster in a region is cleared, price reaches the short clusters above *less* often than usual, and gets stopped more.
+- Cleared taps mostly happen inside liquidation cascades, the 2020–22 crash days, where the whole ladder gets blown through. That is not the exhaustion point.
+- The better setting is a tap of an upper cluster *while there are still clusters below*. There the reversal toward the short clusters is the stronger result. With the farthest target and a 3% stop it is positive in both halves: 2020–22 +0.46%, 2023–26 +0.22%.
+- **Candidate for the standard test:** buy the tap of a long level that still has live levels below, target the farthest short cluster within 10%, 3% stop, 7-day limit.

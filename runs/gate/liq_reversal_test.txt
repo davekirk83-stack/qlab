@@ -1,0 +1,26 @@
+Taps of LONG liquidation levels; target = live SHORT liquidation level above; 7-day race vs a stop below the tapped level; 0.04% costs
+
+region 5%, target = nearest short cluster, stop 1.5% under the level
+   CLEARED (none left below)  n  111 | target 3.7% away | reached 32%, stopped 68% | avg trade +0.057% (t +0.25) | 2020-22 +0.237%, 2023-26 -0.288% | median hours to target 10
+   levels still below         n 3961 | target 2.7% away | reached 39%, stopped 60% | avg trade +0.104% (t +3.07) | 2020-22 +0.230%, 2023-26 +0.015% | median hours to target 16
+region 5%, target = nearest short cluster, stop 3.0% under the level
+   CLEARED (none left below)  n  111 | target 3.7% away | reached 44%, stopped 54% | avg trade -0.104% (t -0.33) | 2020-22 -0.021%, 2023-26 -0.263% | median hours to target 10
+   levels still below         n 3961 | target 2.7% away | reached 53%, stopped 44% | avg trade +0.107% (t +2.31) | 2020-22 +0.271%, 2023-26 -0.009% | median hours to target 22
+region 5%, target = farthest short cluster, stop 1.5% under the level
+   CLEARED (none left below)  n  111 | target 4.5% away | reached 28%, stopped 72% | avg trade +0.081% (t +0.32) | 2020-22 +0.203%, 2023-26 -0.154% | median hours to target 15
+   levels still below         n 3961 | target 4.5% away | reached 28%, stopped 69% | avg trade +0.137% (t +3.35) | 2020-22 +0.309%, 2023-26 +0.017% | median hours to target 27
+region 5%, target = farthest short cluster, stop 3.0% under the level
+   CLEARED (none left below)  n  111 | target 4.5% away | reached 41%, stopped 58% | avg trade -0.030% (t -0.09) | 2020-22 -0.071%, 2023-26 +0.049% | median hours to target 18
+   levels still below         n 3961 | target 4.5% away | reached 40%, stopped 51% | avg trade +0.194% (t +3.53) | 2020-22 +0.400%, 2023-26 +0.050% | median hours to target 35
+region 10%, target = nearest short cluster, stop 1.5% under the level
+   CLEARED (none left below)  n   21 | target 6.6% away | reached 24%, stopped 76% | avg trade -0.133% (t -0.24) | 2020-22 -0.133%, 2023-26 +nan% | median hours to target 4
+   levels still below         n 4915 | target 3.1% away | reached 36%, stopped 63% | avg trade +0.132% (t +3.86) | 2020-22 +0.300%, 2023-26 -0.014% | median hours to target 18
+region 10%, target = nearest short cluster, stop 3.0% under the level
+   CLEARED (none left below)  n   21 | target 6.6% away | reached 24%, stopped 71% | avg trade -0.762% (t -0.93) | 2020-22 -0.762%, 2023-26 +nan% | median hours to target 4
+   levels still below         n 4915 | target 3.1% away | reached 50%, stopped 47% | avg trade +0.158% (t +3.40) | 2020-22 +0.379%, 2023-26 -0.033% | median hours to target 22
+region 10%, target = farthest short cluster, stop 1.5% under the level
+   CLEARED (none left below)  n   21 | target 9.5% away | reached 10%, stopped 90% | avg trade -0.816% (t -1.54) | 2020-22 -0.816%, 2023-26 +nan% | median hours to target 8
+   levels still below         n 4915 | target 9.2% away | reached 14%, stopped 77% | avg trade +0.204% (t +4.04) | 2020-22 +0.296%, 2023-26 +0.123% | median hours to target 59
+region 10%, target = farthest short cluster, stop 3.0% under the level
+   CLEARED (none left below)  n   21 | target 9.5% away | reached 10%, stopped 86% | avg trade -1.659% (t -2.12) | 2020-22 -1.659%, 2023-26 +nan% | median hours to target 8
+   levels still below         n 4915 | target 9.2% away | reached 20%, stopped 59% | avg trade +0.335% (t +5.06) | 2020-22 +0.463%, 2023-26 +0.224% | median hours to target 64
