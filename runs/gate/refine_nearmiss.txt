@@ -1,0 +1,32 @@
+t* = 3.72 (258 ideas tried)
+FAIL          | TOM-A McConnell-Xu: in close day -2, out close day +3   | n 2561 (95/yr) mean +0.053 t +1.60 | yrs+ 12/27 | last5y +0.032 1y +0.413 | x1.5 +0.030 | rnd95 +0.059
+              per market: SPX:+0.07 NDX:+0.09 DJI:+0.06 RUT:-0.05 DAX:+0.09 FTSE:+0.08 N225:-0.06 GOLD:+0.15
+FAIL          | TOM-B same, only above 200-day                          | n 1732 (64/yr) mean +0.014 t +0.35 | yrs+ 11/27 | last5y +0.021 1y +0.297 | x1.5 -0.011 | rnd95 +0.087
+              per market: SPX:+0.00 NDX:+0.03 DJI:-0.04 RUT:-0.08 DAX:+0.01 FTSE:+0.05 N225:-0.09 GOLD:+0.22
+FAIL          | TOM-C wider: in close day -5, out close day +3          | n 2560 (95/yr) mean +0.124 t +3.05 | yrs+ 15/27 | last5y +0.128 1y +0.460 | x1.5 +0.101 | rnd95 +0.055
+              per market: SPX:+0.17 NDX:+0.19 DJI:+0.15 RUT:+0.11 DAX:+0.17 FTSE:+0.12 N225:+0.01 GOLD:+0.07
+FAIL          | TOM-D in close day -2, out close day +1 (shortest)      | n 2561 (95/yr) mean +0.044 t +1.93 | yrs+ 14/27 | last5y -0.029 1y -0.015 | x1.5 +0.022 | rnd95 +0.026
+              per market: SPX:+0.05 NDX:+0.05 DJI:+0.01 RUT:-0.04 DAX:+0.10 FTSE:+0.04 N225:-0.03 GOLD:+0.18
+FAIL          | ON-A every night, IG costs                              | n43078 (1595/yr) mean -0.013 t -6.54 | yrs+ 5/27 | last5y -0.007 1y -0.009 | x1.5 -0.020 | rnd95 +nan | at old gate costs -0.042
+              per market: SPX:-0.02 NDX:-0.00 DJI:-0.03 RUT:-0.03 DAX:-0.01 N225:-0.01 GOLD:-0.00
+FAIL          | ON-B after a down close, IG costs                       | n20131 (746/yr) mean -0.007 t -2.42 | yrs+ 8/27 | last5y -0.010 1y -0.016 | x1.5 -0.015 | rnd95 -0.010 | at old gate costs -0.036
+              per market: SPX:-0.02 NDX:+0.02 DJI:-0.03 RUT:-0.02 DAX:-0.00 N225:-0.01 GOLD:+0.01
+FAIL          | ON-C after a down close above 200-day, IG costs         | n12938 (479/yr) mean -0.008 t -1.94 | yrs+ 10/27 | last5y -0.012 1y -0.024 | x1.5 -0.016 | rnd95 -0.008 | at old gate costs -0.040
+              per market: SPX:-0.02 NDX:+0.02 DJI:-0.04 RUT:-0.02 DAX:-0.00 N225:-0.02 GOLD:+0.02
+FAIL          | ON-D after RSI(2) < 10 above 200-day, IG costs          | n 2339 (90/yr) mean +0.015 t +1.55 | yrs+ 16/26 | last5y +0.054 1y +0.143 | x1.5 +0.006 | rnd95 -0.001 | at old gate costs -0.017
+              per market: SPX:+0.03 NDX:+0.08 DJI:-0.04 RUT:+0.01 DAX:+0.00 N225:-0.01 GOLD:+0.03
+PASS          | MDD+RSI4 one book: either signal, exit RSI(4) > 55      | n 1802 (67/yr) mean +0.182 t +4.50 | yrs+ 18/27 | last5y +0.201 1y +0.246 | x1.5 +0.157 | rnd95 +0.027
+              per market: SPX:+0.39 NDX:+0.29 DJI:+0.13 RUT:+0.17 DAX:+0.25 FTSE:+0.09 N225:-0.11 GOLD:+0.18
+TSMOM 12m only, equal size                   | 28 markets | ann +1.3% vol 26.6% t +0.24 | yrs+ 13/25 | last5y ann +2.4% | 2008 +13.5% 2022 +18.8%
+TSMOM 1/3/12m blend, vol-scaled (published)  | 28 markets | ann -1.8% vol 14.0% t -0.65 | yrs+ 9/25 | last5y ann -6.1% | 2008 +23.7% 2022 +1.2%
+PASS          | TOM original, 6 traded markets                          | n 1854 (69/yr) mean +0.156 t +4.42 | yrs+ 17/27 | last5y +0.082 1y +0.439 | x1.5 +0.137 | rnd95 +0.039
+              per market: SPX:+0.16 NDX:+0.17 DJI:+0.18 DAX:+0.10 FTSE:+0.24 GOLD:+0.07
+FAIL          | TOM original, 5 indices only                            | n 1550 (57/yr) mean +0.172 t +4.59 | yrs+ 16/27 | last5y +0.026 1y +0.433 | x1.5 +0.155 | rnd95 +0.038
+              per market: SPX:+0.16 NDX:+0.17 DJI:+0.18 DAX:+0.10 FTSE:+0.24
+FAIL          | TOM last day -> day 2, 6 traded                         | n 1920 (71/yr) mean +0.123 t +4.39 | yrs+ 15/27 | last5y +0.052 1y +0.016 | x1.5 +0.104 | rnd95 +0.038
+              per market: SPX:+0.14 NDX:+0.13 DJI:+0.13 DAX:+0.06 FTSE:+0.18 GOLD:+0.09
+FAIL          | TOM last day -> day 4, 6 traded                         | n 1920 (71/yr) mean +0.142 t +3.53 | yrs+ 16/27 | last5y -0.012 1y +0.200 | x1.5 +0.123 | rnd95 +0.051
+              per market: SPX:+0.14 NDX:+0.16 DJI:+0.14 DAX:+0.09 FTSE:+0.17 GOLD:+0.16
+PASS          | MDD, 6 traded markets                                   | n 1172 (43/yr) mean +0.153 t +3.89 | yrs+ 18/27 | last5y +0.123 1y +0.332 | x1.5 +0.133 | rnd95 +0.040
+              per market: SPX:+0.26 NDX:+0.23 DJI:+0.05 DAX:+0.17 FTSE:+0.10 GOLD:+0.10
+TOM yearly: 2000:+16.5 2001:+7.3 2002:-15.0 2003:+31.5 2004:+15.7 2005:+45.6 2006:+4.3 2007:-6.7 2008:-21.7 2009:+19.4 2010:+59.0 2011:-5.7 2012:+21.6 2013:-0.1 2014:-15.9 2015:+3.9 2016:-6.8 2017:+31.1 2018:-26.4 2019:+1.3 2020:+69.6 2021:+32.3 2022:-1.2 2023:-16.1 2024:+0.7 2025:+19.4 2026:+24.8

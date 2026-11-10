@@ -6,7 +6,7 @@ market_search_6.py, ladder_daily_tps.py). One or two per family, so they don't a
               max 10 days; stop 3 ATR. At the next open: n1262, +0.275 ATR, t 5.28, 19/26 years
   TPS         close > 200-day, RSI(2) < 25 two closes running -> ladder in on lower closes (rungs 1:2:3:4); out when RSI(2) > 70,
               30 days, or a close 15% below the average price
-  TOQ  #39    last business day of a quarter -> buy at the close, hold 3 days, stop 5 ATR
+  TOM        last business day of every month -> buy at the close, hold 3 days, stop 5 ATR (doc 208; replaces TOQ, which it contains)
   SANTA #37   first trading day of 22-24 Dec -> buy at the close, hold 7 days, stop 5 ATR
   HALLO       month-end before Nov..Apr -> buy at the close, hold 21 days, stop 8 ATR (Halloween / sell in May)
   USCL #47    US 500 closed in the top 10% of its range and up 1% -> buy Germany 40 and FTSE 100 at the European open, sell at the close; stop 2 ATR
@@ -43,7 +43,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 }
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
-BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOQ": IDX, "SANTA": IDX, "HALLO": IDX}
+BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX}
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 LOG = []
@@ -67,10 +67,10 @@ def entries(d, name):
     nxt = (t + pd.offsets.BDay(1)).month
     return {"RSI4": up & (d.r4 < 25),
             "TPS": up & (d.r2 < 25) & (d.r2.shift(1) < 25),
-            "TOQ": bqe, "SANTA": santa,
+            "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
-STOP_ATR = {"RSI4": 3, "TOQ": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "TPS": 30, "TOQ": 3, "SANTA": 7, "HALLO": 21}
+STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
+MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -186,7 +186,7 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
 
 # ------------------------------------------------------------------ jobs
 OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
-CLOSE_BOOKS = ("TOQ", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
+CLOSE_BOOKS = ("TOM", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
 IDX_RISK_CAP = 0.06                      # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
 
 def job_close(ig, s, group, hist_fn):
