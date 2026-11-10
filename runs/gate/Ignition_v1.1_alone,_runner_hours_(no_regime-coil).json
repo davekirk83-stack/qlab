@@ -1,0 +1,21 @@
+{
+ "book": "Ignition v1.1 alone, runner hours (no regime/coil)",
+ "note": "",
+ "data": "2025-10-15..2026-11-09",
+ "holdout_from": "2026-06-06",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 217,
+ "dev_R": 0.329,
+ "hold_n": 150,
+ "hold_per_year": 351,
+ "hold_R": -0.017,
+ "t": -0.12,
+ "h1": -0.113,
+ "h2": 0.079,
+ "win": 0.55,
+ "maxdd_R": -18.8,
+ "random_p95": 0.114,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

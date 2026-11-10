@@ -1,0 +1,10 @@
+AD stack, runner hours (London 08:00 to 17:00 NY): n 108 (101/yr), pts/trade +1.81, total +195 pts, win 57% | dev +8.89 (n59), hold-out -6.72 (n49) | gate: 
+   months positive 5/13, worst month -156 pts
+AD stack, runner hours, Tue/Wed off: n 66 (62/yr), pts/trade +6.74, total +445 pts, win 62% | dev +11.81 (n33), hold-out +1.67 (n33) | gate: 
+   months positive 7/13, worst month -88 pts
+AD stack, all hours, Tue/Wed off: n 132 (124/yr), pts/trade +6.33, total +836 pts, win 70% | dev +7.14 (n79), hold-out +5.13 (n53) | gate: 
+   months positive 10/14, worst month -48 pts
+AD stack, US cash hours only: n 23 (22/yr), pts/trade +4.50, total +103 pts, win 65% | dev +19.43 (n10), hold-out -6.99 (n13) | gate: 
+   months positive 7/9, worst month -94 pts
+Ignition v1.1 alone, runner hours (no regime/coil): n 367 (344/yr), pts/trade +4.57, total +1678 pts, win 62% | dev +6.41 (n217), hold-out +1.91 (n150) | gate: 
+   months positive 11/14, worst month -190 pts

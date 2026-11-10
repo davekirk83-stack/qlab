@@ -220,9 +220,30 @@ class Runner:
         if why: return
         self.open(s, row, ts)
 
+    def ad_ok(self, s, row):
+        """doc 227: AuclairsDad's layers on the live bars — REGIME (16 x 15-min regression, hysteresis) agrees with the signal and COIL
+        (prior 20-bar range <= 4 ATR). Returns (regime_agrees, coil)."""
+        try:
+            c15 = self.bars.close.resample("15min").last().dropna(); n = 16; x = np.arange(n); xm = x - x.mean(); cur = 0
+            for k in range(n - 1, len(c15) - 1):                       # shift(1): the regime known before the current 15-min bar
+                y = c15.values[k - n + 1:k + 1]; y = y - y.mean(); b = (xm * y).sum() / (xm ** 2).sum(); res = y - b * xm; ss = (res ** 2).sum()
+                tt = b / (np.sqrt(ss / (n - 2) / (xm ** 2).sum()) if ss > 0 else 1e-9); r2 = 1 - ss / (y ** 2).sum() if (y ** 2).sum() > 0 else 0
+                if cur == 0 and abs(tt) > 2.0 and r2 > 0.3: cur = int(np.sign(tt))
+                elif cur != 0 and (abs(tt) < 1.0 or np.sign(tt) != cur): cur = 0
+            rng20 = self.bars.high.iloc[-21:-1].max() - self.bars.low.iloc[-21:-1].min()
+            return cur == s, bool(rng20 <= 4.0 * row.atr)
+        except Exception as e: log("ad layers:", e); return False, False
+
     def gate(self, s, row, ts, i, nyt, mins):
         """reason a signal is not taken, or None (doc 189: every signal is written to signals.csv for the daily paper-vs-IG check)"""
-        if not (US_OPEN <= mins < US_CLOSE): return "outside_us_hours"
+        hours = os.environ.get("IG_IGN_HOURS", "us")      # doc 227: "runner" = whenever the runner is up (London 08:00 to 17:00 NY), ex US lunch
+        if hours == "us" and not (US_OPEN <= mins < US_CLOSE): return "outside_us_hours"
+        if hours == "runner" and not (P7.ny(ts).tz_convert("Europe/London").hour >= 8 and mins < 17 * 60): return "outside_runner_hours"
+        if os.environ.get("IG_AD_STACK", "") == "1":     # doc 227: AuclairsDad's regime + coil gate, Tue/Wed off
+            rg, coil = self.ad_ok(s, row)
+            if nyt.dayofweek in (1, 2): return "ad_tue_wed"
+            if not rg: return "ad_no_regime"
+            if not coil: return "ad_no_coil"
         if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return "fomc_blackout"
         if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return "lunch"
         st = self.state

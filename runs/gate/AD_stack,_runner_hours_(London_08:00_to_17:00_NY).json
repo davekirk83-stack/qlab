@@ -1,0 +1,21 @@
+{
+ "book": "AD stack, runner hours (London 08:00 to 17:00 NY)",
+ "note": "",
+ "data": "2025-10-15..2026-11-09",
+ "holdout_from": "2026-06-06",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 59,
+ "dev_R": 0.561,
+ "hold_n": 49,
+ "hold_per_year": 115,
+ "hold_R": -0.279,
+ "t": -1.17,
+ "h1": -0.686,
+ "h2": 0.112,
+ "win": 0.47,
+ "maxdd_R": -19.6,
+ "random_p95": 0.216,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
