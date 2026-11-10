@@ -1,0 +1,4 @@
+replay 2024-08-31 -> 2026-11-09: £500 -> £657; episodes 150, win 91%, worst $-13.38; max drawdown 4.5%; lowest £498
+by year £: 2024:+28 2025:+130 2026:-1
+by coin £: ADA:+58 AVAX:+7 BTC:+17 DOGE:-8 DOT:+2 ETH:+15 LINK:+19 LTC:+5 SOL:+10 XRP:+33
+months positive 13/27, worst month £-21

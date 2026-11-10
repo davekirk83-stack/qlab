@@ -1,0 +1,40 @@
+name: Revolut X TPS coin ladder (doc 215 — daily, dry unless DK enables live)
+# CAP-021 as amended 5 Nov 2026: £500 book on DK's Revolut X account, spot long only, 10% of the book per episode, at most 10 open,
+# -15% from the start -> back to paper. Live needs DK's repo VARIABLE REVX_TPS_LIVE_ENABLED = "true" (DK's decision); otherwise dry (no orders).
+# Keys: DK's secrets REVX_API_KEY / REVX_PRIVATE_KEY (never printed). Claude never sets the variable or dispatches mode=live.
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "dry / live", default: "dry" }
+  schedule:
+    - cron: "10 0 * * *"    # 00:10 UTC, just after the daily candle closes (crypto trades every day)
+permissions:
+  contents: write
+concurrency:
+  group: revx-tps
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.event_name == 'schedule' || github.event.inputs.mode != 'live' || vars.REVX_TPS_LIVE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q cryptography pandas numpy
+      - name: Run (secrets never printed)
+        env:
+          REVX_API_KEY: ${{ secrets.REVX_API_KEY }}
+          REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then [ "${{ vars.REVX_TPS_LIVE_ENABLED }}" = "true" ] && MODE=live || MODE=dry; fi
+          [ "$MODE" = "live" ] && [ "${{ vars.REVX_TPS_LIVE_ENABLED }}" != "true" ] && { echo "live not enabled by DK"; exit 1; }
+          QLAB_ROOT=$PWD python src/revx_tps.py "$MODE" 2>&1 | tee runs/revx_tps_last.log
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "revx-tps"; git config user.email "revx-tps@users.noreply.github.com"
+          git add -f runs/revx_tps_dry runs/revx_tps_live runs/revx_tps_last.log 2>/dev/null; git commit -m "revx tps $(date -u +%Y-%m-%dT%H:%M)" || true
+          git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
