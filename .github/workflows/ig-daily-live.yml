@@ -22,9 +22,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   run:
-    # Trades only when DK sets the repo variable IG_DAILY_LIVE_ENABLED=true, and never while the intraday live runner (IG_LIVE_ENABLED) is on:
-    # one £500 book on the account at a time. A manual run with dry=true is always allowed (no orders). Claude never dispatches this workflow.
-    if: (vars.IG_DAILY_LIVE_ENABLED == 'true' && vars.IG_LIVE_ENABLED != 'true') || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry == 'true')
+    # Trades only when DK sets the repo variable IG_DAILY_LIVE_ENABLED=true. DK 10 Nov 07:37: "I want both books to operate on the account" —
+    # runs alongside the intraday live runner; both share the one £500 book: one 5x cap on the whole account, and the -4% day stop / -15% floor
+    # measured on the whole account. A manual run with dry=true is always allowed (no orders). Claude never dispatches this workflow.
+    if: vars.IG_DAILY_LIVE_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

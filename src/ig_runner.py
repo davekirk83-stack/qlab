@@ -335,6 +335,10 @@ class Runner:
                         if pp: other |= {l.get("deal_id") for l in pp.get("lots", [])}
             except Exception: pass
             other |= {v["pos"]["deal_id"] for v in self.state.get("news", {}).values() if v.get("pos")}
+            try:   # doc 210 (DK 10 Nov: both live books on one account): never adopt the DAILY books' positions (runs/ig_daily_live)
+                other |= {q["deal_id"] for q in json.load(open("runs/ig_daily_live/state.json")).get("pos", [])}
+            except FileNotFoundError: pass
+            except Exception as e: log("daily-book state unreadable — not adopting any unknown position:", e); return
             for x in self.ig.fetch_open_positions()["positions"]:
                 if x["market"]["epic"] == EPIC and x["position"]["dealId"] not in other:
                     p = x["position"]; s = 1 if p["direction"] == "BUY" else -1

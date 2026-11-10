@@ -117,6 +117,14 @@ class IG:
         return self.m[epic]
     def snap(self, epic): self.m.pop(epic, None); return self.market(epic)["snapshot"]
     def min_size(self, epic): return float(self.market(epic)["dealingRules"]["minDealSize"]["value"])
+    def account_notional(self):
+        """£ exposure of EVERY open position on the account (both live books), size x level."""
+        if self.dry: return 0.0
+        return float(sum(float(x["position"]["size"]) * float(x["position"]["level"]) for x in self.ig.fetch_open_positions()["positions"]))
+    def account_equity(self):
+        """Spread-bet account balance + open P&L (used only as a change from a baseline; never logged on live)."""
+        a = [a for a in self.ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"][0]["balance"]
+        return float(a["balance"]) + float(a.get("profitLoss") or 0.0)
     def open_ids(self):
         return {p["position"]["dealId"] for p in self.ig.fetch_open_positions()["positions"]}
     def buy(self, epic, size, stop_dist=None, stop_level=None):
@@ -185,7 +193,8 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
         if size > want * 1.0001: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than 2% risk ({want:.4f}/pt)"); return None
         want = size   # live: the stake placed is the stake counted
-    if notional(s) + want * mid > EXPO * s["eq"]: log(f"SKIP {book} {name}: exposure cap 5x"); return None
+    held = ig.account_notional() if LIVE else notional(s)   # live: both books on the account share one 5x cap on the £500 book
+    if held + want * mid > EXPO * (START_EQ if LIVE else s["eq"]): log(f"SKIP {book} {name}: exposure cap 5x (whole account)"); return None
     if name in IDX and risk is not None:
         held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
         if held + risk > IDX_RISK_CAP * s["eq"]: log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > 6% of the book"); return None
@@ -357,8 +366,17 @@ def main():
         today = utcnow().strftime("%Y-%m-%d")
         if s.get("day") != today: s["day"], s["day_eq"] = today, s["eq"]
         s["entries_ok"], s["stop_why"] = True, ""
-        if s["eq"] < FLOOR * START_EQ: s["entries_ok"], s["stop_why"] = False, f"book £{s['eq']:.2f} is below the -15% floor: no new entries (back to paper)"
-        elif s["eq"] < DAY_STOP * s["day_eq"]: s["entries_ok"], s["stop_why"] = False, "-4% day stop hit: no new entries today"
+        # BOTH live books share the account and the one £500 book: day stop and floor are measured on the WHOLE account's change
+        # (balance + open P&L) from its level at the start of the day / at the first live run — intraday and daily books together.
+        if not dry:
+            try:
+                acc = ig.account_equity(); s.setdefault("acc_start", acc)
+                if s.get("acc_day_date") != today: s["acc_day_date"], s["acc_day"] = today, acc
+                if acc < s["acc_start"] - (1 - FLOOR) * START_EQ: s["entries_ok"], s["stop_why"] = False, f"account down £{s['acc_start'] - acc:.2f} since start (-15% of £500): no new entries (back to paper)"
+                elif acc < s["acc_day"] - (1 - DAY_STOP) * START_EQ: s["entries_ok"], s["stop_why"] = False, f"account down £{s['acc_day'] - acc:.2f} today (-4% of £500): no new entries today"
+            except Exception as e: log("account check failed — no new entries this run:", e); s["entries_ok"], s["stop_why"] = False, "account check failed"
+        if s["entries_ok"] and s["eq"] < FLOOR * START_EQ: s["entries_ok"], s["stop_why"] = False, f"book £{s['eq']:.2f} is below the -15% floor: no new entries (back to paper)"
+        elif s["entries_ok"] and s["eq"] < DAY_STOP * s["day_eq"]: s["entries_ok"], s["stop_why"] = False, "-4% day stop hit: no new entries today"
         if job.startswith("gold"): log("live: gold London book is demo-only — exit"); return
     if job == "eu_open":
         if not LIVE: job_eu_open(ig, s, hist_fn)   # USCL is demo-only (doc 209: FTSE open-data fault)

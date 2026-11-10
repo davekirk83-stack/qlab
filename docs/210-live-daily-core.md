@@ -16,5 +16,14 @@ DK 07:27: "start making me reliable small gains on IG however small."
 - £500 -> £652. 18 of 20 months positive, worst month −£29 (Mar 2026), max drawdown £30, win rate 76%, about £0.38 per trading day.
 - NQ and Wall Street mostly skipped (minimum stake > 2% risk); trades land on US 500, FTSE, gold, some DAX.
 
+## Both live books on one account (DK 07:37: "I want both books to operate on the account")
+- The daily workflow no longer waits for the intraday one to be off. Both share the ONE £500 book:
+  - 5x exposure cap counts every open position on the account (both runners already do this);
+  - −4% day stop and −15% floor are measured on the whole account's change (balance + open P&L) — both books' losses together;
+  - every order is force_open, so the books' positions never net against each other;
+  - the intraday runner no longer "adopts" an unknown US Tech 100 position at start-up if it belongs to the daily book (runs/ig_daily_live/state.json).
+- In practice they rarely meet: the daily book mostly trades US 500, FTSE, gold and DAX (US Tech 100 is usually skipped at £500), holds for days;
+  the intraday runner trades US Tech 100 and US 500 for minutes to hours.
+
 ## To switch
-Settings -> Secrets and variables -> Actions -> Variables: IG_LIVE_ENABLED = false (intraday live off), IG_DAILY_LIVE_ENABLED = true.
+Settings -> Secrets and variables -> Actions -> Variables: add IG_DAILY_LIVE_ENABLED = true (leave IG_LIVE_ENABLED = true).
