@@ -174,7 +174,8 @@ def fit(s, stop_pts, atr_ig, mn, name=None):
     max_risk_at_min_stake (config/live_pot.json; = 2% unless DK sets an exception). None = skip."""
     sz, w = size_for(size_eq(s), RISK, stop_pts, mn)
     if not LIVE or sz <= w * 1.0001: return sz, w, stop_pts
-    cap = float(L.C.get("min_stake_exception", {}).get(name, L.C.get("max_risk_at_min_stake", RISK))); st2 = round(min(stop_pts, 2.0 * atr_ig), 1)
+    exc = L.C.get("min_stake_exception", {}); on = size_eq(s) < float(exc.get("until_pot", 1e18))   # exceptions end automatically at that pot size
+    cap = float(exc.get(name, L.C.get("max_risk_at_min_stake", RISK)) if on else L.C.get("max_risk_at_min_stake", RISK)); st2 = round(min(stop_pts, 2.0 * atr_ig), 1)
     if mn * st2 <= cap * size_eq(s): log(f"fit: minimum {mn}/pt with a 2 ATR stop ({st2} pts) risks £{mn * st2:.2f} ({mn * st2 / size_eq(s):.1%})"); return mn, mn, st2
     log(f"fit: minimum {mn}/pt risks £{mn * st2:.2f} even at 2 ATR (> {cap:.0%}) — skip"); return None
 def size_for(eq, risk_frac, stop_pts, mn):
