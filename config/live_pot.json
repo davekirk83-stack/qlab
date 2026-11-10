@@ -30,25 +30,25 @@
     }
   },
   "risk_tiers": {
-    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. tps_stop: TPS book stop (closed + open P&L) \u2014 \u00a3 while the pot is under \u00a31,000 (DK 08:22), then a share of the pot.",
+    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. DK 10:43 (doc 216, second review): TPS stop = 5% of the pot (closed + open TPS P&L), TPS losses count in the account day stop and floor, auto-restart once the US 500 is back above its 200-day.",
     "rows": [
       {
         "from_pot": 0,
         "risk_per_trade": 0.02,
         "tps_min_stake": true,
-        "tps_stop_gbp": 100
+        "tps_stop_frac": 0.05
       },
       {
         "from_pot": 1000,
         "risk_per_trade": 0.02,
         "tps_min_stake": true,
-        "tps_stop_frac": 0.1
+        "tps_stop_frac": 0.05
       },
       {
         "from_pot": 2500,
         "risk_per_trade": 0.015,
         "tps_min_stake": true,
-        "tps_stop_frac": 0.075
+        "tps_stop_frac": 0.05
       },
       {
         "from_pot": 5000,
@@ -57,12 +57,12 @@
         "tps_stop_frac": 0.05
       }
     ],
-    "tps_auto_restart": true
+    "tps_auto_restart": true,
+    "tps_in_floor": true
   },
   "min_stake_exception": {
-    "_note": "DK 10 Nov 09:58 / 10:00: US Tech 100 and Wall Street may risk up to 3.5% when IG's minimum stake (with a 2 ATR stop) needs it; they switch off automatically once the pot reaches \u00a31,000 (DK 10:00)",
-    "NQ": 0.035,
-    "WALLST": 0.035,
+    "_note": "Removed DK 10:43 (doc 216): changed nothing in the replay",
     "until_pot": 1000
-  }
+  },
+  "tps_rungs": 4
 }
