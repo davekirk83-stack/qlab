@@ -4,6 +4,7 @@
   "compound": true,
   "deposits_raise_pot": true,
   "risk_per_trade": 0.02,
+  "max_risk_at_min_stake": 0.02,
   "exposure_x": 5.0,
   "day_stop": 0.04,
   "floor": 0.15,

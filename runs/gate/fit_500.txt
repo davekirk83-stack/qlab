@@ -1,0 +1,19 @@
+t* = 3.74
+PASS except t | RSI4 US Tech 100 + Wall St, stop 3.0 ATR                | n  320 (12/yr) mean +0.290 t +2.81 | yrs+ 18/26 | last5y +0.157 1y +0.291 | x1.5 +0.271 | rnd95 +0.088
+              per market: NDX:+0.35 DJI:+0.23
+PASS except t | RSI4 US Tech 100 + Wall St, stop 2.0 ATR                | n  344 (13/yr) mean +0.288 t +3.11 | yrs+ 16/26 | last5y +0.158 1y +0.135 | x1.5 +0.270 | rnd95 +0.097
+              per market: NDX:+0.30 DJI:+0.27
+FAIL          | RSI4 US Tech 100 + Wall St, stop 1.5 ATR                | n  365 (14/yr) mean +0.284 t +3.42 | yrs+ 15/26 | last5y +0.302 1y +0.331 | x1.5 +0.266 | rnd95 +0.096
+              per market: NDX:+0.33 DJI:+0.24
+PASS except t | RSI4 US Tech 100 + Wall St, stop 1.0 ATR                | n  393 (15/yr) mean +0.168 t +2.35 | yrs+ 16/26 | last5y +0.183 1y +0.205 | x1.5 +0.150 | rnd95 +0.056
+              per market: NDX:+0.25 DJI:+0.09
+FAIL          | TOM US Tech 100 + Wall St, stop 5.0 ATR                 | n  628 (23/yr) mean +0.175 t +3.04 | yrs+ 16/27 | last5y +0.081 1y +0.612 | x1.5 +0.159 | rnd95 +0.070
+              per market: NDX:+0.17 DJI:+0.18
+PASS except t | TOM US Tech 100 + Wall St, stop 2.0 ATR                 | n  628 (23/yr) mean +0.180 t +3.29 | yrs+ 17/27 | last5y +0.083 1y +0.547 | x1.5 +0.164 | rnd95 +0.069
+              per market: NDX:+0.19 DJI:+0.17
+FAIL          | TOM US Tech 100 + Wall St, stop 1.5 ATR                 | n  628 (23/yr) mean +0.189 t +3.62 | yrs+ 16/27 | last5y +0.116 1y +0.557 | x1.5 +0.173 | rnd95 +0.087
+              per market: NDX:+0.20 DJI:+0.17
+FAIL          | US Tech 100 RSI4 signal traded on US 500 (extra days only) | n   92 (4/yr) mean +0.122 t +0.67 | yrs+ 12/24 | last5y -0.335 1y +0.056 | x1.5 +0.102 | rnd95 +0.171
+              per market: SPX:+0.12
+FAIL          | Wall St RSI4 signal traded on US 500 (extra days only)  | n   79 (3/yr) mean +0.095 t +0.45 | yrs+ 13/24 | last5y +0.848 1y +0.828 | x1.5 +0.073 | rnd95 +0.153
+              per market: SPX:+0.09
