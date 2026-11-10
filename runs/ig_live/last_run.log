@@ -1,67 +1,121 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-22:00:06 delta-share threshold 0.0439 (tail-ratio default (313 IG bars, <500)); registered 0.05
-22:00:24 history 300 bars to 2026-11-09 22:00:00+00:00
-22:00:24 stream user KT5F1 endpoint https://apd.marketdatasystems.com
-22:00:24 streaming IX.D.NASDAQ.CASH.IP
-22:00:24 ls status: CONNECTING
-22:00:25 ls status: CONNECTED:WS-STREAMING
-22:00:25 CHART IX.D.NASDAQ.CASH.IP subscribed
-22:00:25 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-22:00:25 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27957.5', 'OFR': '27962.5'}
-22:00:26 stream subscribed on CHART via KT5F1
-22:00:26 trading session on live spread-bet account (id not logged: public repo)
-22:00:26 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-22:00:28 [range] NQ: using the runner's own 300 IG bars
-22:00:28 [range] NQ: cache 70207 bars offset +953.1 to IG level, REST 300 bars to 2026-11-09 22:00:00+00:00
-22:00:28 [range] NQ: containment median 0.860 over 23405 15-min bars
-22:00:30 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27957.4', 'OFR': '27962.4'}
-22:00:31 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27957.5', 'OFR': '27962.5'}
-22:00:43 [range] US500 history throttled — waiting 15 s
-22:00:58 [range] US500 history throttled — waiting 15 s
-22:01:31 [range] US500: cache 69021 bars offset +162.9 to IG level, REST 300 bars to 2026-11-09 22:01:00+00:00
-22:01:31 [range] US500: containment median 0.880 over 23017 15-min bars
-22:01:31 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt'}
-22:01:31 streaming IX.D.SPTRD.DAILY.IP
-22:01:31 [spike] markets: ['NQ', 'US500']
-22:01:31 book 13 rehearsal: book equity £493.67 (risk x1.0), news events loaded 0
-22:01:31 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-22:01:31 CHART IX.D.SPTRD.DAILY.IP subscribed
-22:05:01 bar 22:00 o 27960.0 h 27962.8 l 27948.0 c 27948.7 ticks 64 delta -9
-22:10:09 bar 22:05 o 27949.6 h 27955.2 l 27948.4 c 27952.2 ticks 70 delta +0
-22:15:11 [range] US500: first bar 22:00 — watermark adopted, no trade (paperbook6 rule)
-22:15:11 [range] NQ 22:00 c 27956.6 ema 27898.4 band 27770.8-28025.9 atr 63.8 regime ON L 0 S 0 orders 0
-22:15:12 bar 22:10 o 27952.6 h 27957.7 l 27950.8 c 27956.6 ticks 53 delta +3
-22:20:03 bar 22:15 o 27956.5 h 27958.0 l 27955.2 c 27958.0 ticks 36 delta +8
-22:25:00 bar 22:20 o 27957.6 h 27958.0 l 27944.8 c 27944.9 ticks 58 delta -18
-22:30:13 [range] NQ 22:15 c 27946.9 ema 27903.0 band 27779.9-28026.1 atr 61.6 regime ON L 0 S 0 orders 0
-22:30:13 bar 22:25 o 27944.8 h 27950.7 l 27941.4 c 27946.9 ticks 82 delta +6
-22:30:31 [range] US500 22:15 c 7555.8 ema 7555.5 band 7533.6-7577.4 atr 11.0 regime ON L 0 S 0 orders 0
-22:35:01 bar 22:30 o 27946.8 h 27946.8 l 27926.0 c 27926.0 ticks 73 delta -19
-22:40:02 bar 22:35 o 27925.9 h 27939.3 l 27924.6 c 27937.4 ticks 56 delta +10
-22:45:15 [range] NQ 22:30 c 27940.5 ema 27906.6 band 27784.0-28029.1 atr 61.3 regime ON L 0 S 0 orders 0
-22:45:15 bar 22:40 o 27937.6 h 27941.4 l 27936.3 c 27940.5 ticks 28 delta +8
-22:45:23 [range] US500 22:30 c 7553.9 ema 7555.4 band 7533.4-7577.3 atr 11.0 regime ON L 0 S 0 orders 0
-22:50:28 bar 22:45 o 27939.9 h 27946.9 l 27939.7 c 27944.5 ticks 38 delta +2
-22:55:01 bar 22:50 o 27944.6 h 27946.5 l 27944.6 c 27945.0 ticks 30 delta +4
-23:00:00 [range] NQ 22:45 c 27941.8 ema 27909.9 band 27791.3-28028.5 atr 59.3 regime ON L 0 S 0 orders 0
-23:00:00 bar 22:55 o 27944.8 h 27946.1 l 27941.7 c 27941.8 ticks 42 delta +0
-23:00:01 [range] US500 22:45 c 7555.5 ema 7555.4 band 7534.3-7576.4 atr 10.5 regime ON L 0 S 0 orders 0
-23:05:00 bar 23:00 o 27942.2 h 27982.1 l 27938.0 c 27943.9 ticks 950 delta -8
-23:10:00 bar 23:05 o 27942.5 h 27965.5 l 27941.2 c 27963.4 ticks 1597 delta +5
-23:15:00 [range] NQ 23:00 c 27951.4 ema 27913.9 band 27814.7-28013.1 atr 49.6 regime ON L 0 S 0 orders 0
-23:15:00 bar 23:10 o 27963.5 h 27966.4 l 27946.5 c 27951.4 ticks 1502 delta -32
-23:15:01 [range] US500 23:00 c 7558.0 ema 7555.6 band 7538.3-7572.9 atr 8.6 regime ON L 0 S 0 orders 0
-23:20:00 bar 23:15 o 27951.5 h 27970.3 l 27950.9 c 27957.0 ticks 1469 delta -51
-23:25:00 bar 23:20 o 27957.3 h 27966.9 l 27942.5 c 27949.5 ticks 1582 delta -32
-23:30:00 [range] NQ 23:15 c 27940.1 ema 27916.4 band 27823.3-28009.5 atr 46.6 regime ON L 0 S 0 orders 0
-23:30:00 bar 23:25 o 27949.2 h 27953.2 l 27934.2 c 27940.1 ticks 1382 delta +18
-23:30:01 [range] US500 23:15 c 7556.2 ema 7555.7 band 7539.3-7572.0 atr 8.2 regime ON L 0 S 0 orders 0
-23:35:00 bar 23:30 o 27943.1 h 27945.6 l 27913.3 c 27939.0 ticks 1763 delta -7
-23:40:00 bar 23:35 o 27939.1 h 27962.3 l 27930.0 c 27936.1 ticks 1738 delta +32
-23:45:00 [range] NQ 23:30 c 27940.6 ema 27918.7 band 27830.7-28006.6 atr 44.0 regime ON L 0 S 0 orders 0
-23:45:00 bar 23:40 o 27936.0 h 27950.2 l 27934.9 c 27940.6 ticks 1240 delta +22
-23:45:01 [range] US500 23:30 c 7557.0 ema 7555.8 band 7540.6-7571.0 atr 7.6 regime ON L 0 S 0 orders 0
-23:50:00 bar 23:45 o 27940.4 h 27963.3 l 27939.2 c 27949.8 ticks 1955 delta -15
-23:55:00 bar 23:50 o 27950.0 h 27965.3 l 27948.6 c 27958.3 ticks 1577 delta +25
-23:59:06 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-23:59:06 done; ticks 22973 bars 322
+13:48:11 delta-share threshold 0.0439 (tail-ratio default (421 IG bars, <500)); registered 0.05
+13:48:29 history 300 bars to 2026-11-10 13:48:00+00:00
+13:48:29 stream user KT5F1 endpoint https://apd.marketdatasystems.com
+13:48:29 streaming IX.D.NASDAQ.CASH.IP
+13:48:29 ls status: CONNECTING
+13:48:30 ls status: CONNECTED:WS-STREAMING
+13:48:30 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+13:48:30 CHART IX.D.NASDAQ.CASH.IP subscribed
+13:48:30 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27637.7', 'OFR': '27639.9'}
+13:48:30 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27636.2', 'OFR': '27638.4'}
+13:48:30 stream subscribed on CHART via KT5F1
+13:48:30 trading session on live spread-bet account (id not logged: public repo)
+13:48:30 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27635.4', 'OFR': '27637.6'}
+13:48:30 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+13:48:33 [range] NQ: using the runner's own 300 IG bars
+13:48:33 [range] NQ: cache 70438 bars offset -72.3 to IG level, REST 300 bars to 2026-11-10 13:48:00+00:00
+13:48:33 [range] NQ: containment median 0.860 over 23482 15-min bars
+13:48:47 [range] US500 history throttled — waiting 15 s
+13:49:02 [range] US500 history throttled — waiting 15 s
+13:49:35 [range] US500: cache 69228 bars offset +9.7 to IG level, REST 300 bars to 2026-11-10 13:49:00+00:00
+13:49:35 [range] US500: containment median 0.880 over 23086 15-min bars
+13:49:35 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt'}
+13:49:35 streaming IX.D.SPTRD.DAILY.IP
+13:49:35 [spike] markets: ['NQ', 'US500']
+13:49:35 book 13 rehearsal: book equity £493.67 (risk x1.0), news events loaded 0
+13:49:35 CHART IX.D.SPTRD.DAILY.IP subscribed
+13:49:35 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+13:50:00 bar 13:45 o 27638.8 h 27638.8 l 27609.2 c 27623.1 ticks 1021 delta -26
+13:55:00 bar 13:50 o 27623.9 h 27625.7 l 27571.4 c 27576.2 ticks 3433 delta -39
+14:00:00 [range] NQ 13:45 c 27550.4 ema 27772.6 band 27613.5-27931.6 atr 79.5 regime off L 0 S 0 orders 0
+14:00:01 bar 13:55 o 27575.7 h 27590.2 l 27547.1 c 27550.4 ticks 3532 delta -56
+14:00:01 [range] US500 13:45 c 7494.5 ema 7544.6 band 7517.7-7571.5 atr 13.4 regime off L 0 S 0 orders 0
+14:05:00 bar 14:00 o 27551.0 h 27624.9 l 27546.2 c 27614.9 ticks 3543 delta +109
+14:10:00 bar 14:05 o 27615.2 h 27638.1 l 27599.9 c 27623.7 ticks 3462 delta +18
+14:15:00 [range] NQ 14:00 c 27635.6 ema 27759.5 band 27594.5-27924.6 atr 82.5 regime off L 0 S 0 orders 0
+14:15:01 bar 14:10 o 27623.4 h 27647.6 l 27619.9 c 27635.6 ticks 3309 delta +7
+14:15:01 [range] US500 14:00 c 7508.9 ema 7541.2 band 7512.8-7569.6 atr 14.2 regime off L 0 S 0 orders 0
+14:20:00 bar 14:15 o 27635.5 h 27660.5 l 27615.3 c 27626.8 ticks 3265 delta -89
+14:25:00 bar 14:20 o 27627.1 h 27640.4 l 27595.5 c 27609.5 ticks 3320 delta -18
+14:30:00 [range] NQ 14:15 c 27638.2 ema 27748.0 band 27582.6-27913.4 atr 82.7 regime off L 0 S 0 orders 0
+14:30:01 bar 14:25 o 27609.2 h 27653.7 l 27609.0 c 27638.2 ticks 3513 delta +37
+14:30:01 [range] US500 14:15 c 7500.9 ema 7537.4 band 7508.4-7566.3 atr 14.5 regime off L 0 S 0 orders 0
+14:35:00 bar 14:30 o 27640.8 h 27683.9 l 27536.2 c 27680.5 ticks 3754 delta +0
+14:40:00 bar 14:35 o 27680.2 h 27719.6 l 27634.0 c 27695.6 ticks 3764 delta +88
+14:45:00 [range] NQ 14:30 c 27752.6 ema 27748.4 band 27558.5-27938.3 atr 94.9 regime off L 0 S 0 orders 0
+14:45:01 bar 14:40 o 27694.4 h 27762.5 l 27646.5 c 27752.6 ticks 3693 delta -23
+14:45:01 [range] US500 14:30 c 7515.0 ema 7535.2 band 7503.8-7566.6 atr 15.7 regime off L 0 S 0 orders 0
+14:50:00 bar 14:45 o 27752.9 h 27756.2 l 27653.1 c 27702.2 ticks 3667 delta +99
+14:55:00 bar 14:50 o 27702.7 h 27785.7 l 27681.5 c 27779.3 ticks 3696 delta -52
+15:00:00 [range] NQ 14:45 c 27915.5 ema 27764.3 band 27540.9-27987.7 atr 111.7 regime off L 0 S 0 orders 0
+15:00:01 bar 14:55 o 27779.8 h 27918.3 l 27771.5 c 27915.5 ticks 3628 delta +170
+15:00:01 [range] US500 14:45 c 7529.8 ema 7534.7 band 7499.5-7569.9 atr 17.6 regime off L 0 S 0 orders 0
+15:05:00 bar 15:00 o 27916.2 h 27994.2 l 27899.0 c 27953.3 ticks 3657 delta -71
+15:10:00 bar 15:05 o 27952.8 h 27985.8 l 27913.2 c 27946.5 ticks 3666 delta -38
+15:15:00 [range] US500 15:00 c 7534.9 ema 7534.7 band 7498.5-7570.9 atr 18.1 regime off L 0 S 0 orders 0
+15:15:01 [range] NQ 15:00 c 27924.1 ema 27779.5 band 27551.8-28007.2 atr 113.8 regime off L 0 S 0 orders 0
+15:15:02 bar 15:10 o 27951.7 h 27960.6 l 27898.8 c 27924.1 ticks 3613 delta -35
+15:20:00 bar 15:15 o 27923.8 h 27925.0 l 27848.7 c 27868.7 ticks 3652 delta -98
+15:25:00 bar 15:20 o 27868.4 h 27903.6 l 27798.0 c 27801.7 ticks 3557 delta -29
+15:30:00 [range] NQ 15:15 c 27813.3 ema 27782.8 band 27539.3-28026.2 atr 121.7 regime off L 0 S 0 orders 0
+15:30:01 bar 15:25 o 27800.0 h 27864.5 l 27781.6 c 27813.3 ticks 3559 delta -45
+15:30:01 [range] US500 15:15 c 7517.6 ema 7533.1 band 7494.5-7571.7 atr 19.3 regime off L 0 S 0 orders 0
+15:35:00 bar 15:30 o 27814.3 h 27881.9 l 27807.2 c 27854.3 ticks 3552 delta +74
+15:40:00 bar 15:35 o 27854.7 h 27859.1 l 27760.9 c 27773.5 ticks 3613 delta -69
+15:45:00 [range] NQ 15:30 c 27714.1 ema 27776.2 band 27513.6-28038.8 atr 131.3 regime off L 0 S 0 orders 0
+15:45:01 bar 15:40 o 27772.5 h 27784.8 l 27709.1 c 27714.1 ticks 3584 delta -140
+15:45:01 [range] US500 15:30 c 7500.7 ema 7530.0 band 7488.7-7571.3 atr 20.7 regime off L 0 S 0 orders 0
+15:50:00 bar 15:45 o 27713.2 h 27730.6 l 27662.1 c 27681.2 ticks 3573 delta -61
+15:55:00 bar 15:50 o 27680.0 h 27680.0 l 27609.9 c 27646.2 ticks 3634 delta +22
+16:00:00 [range] NQ 15:45 c 27642.8 ema 27763.5 band 27489.6-28037.4 atr 137.0 regime off L 0 S 0 orders 0
+16:00:01 bar 15:55 o 27646.9 h 27684.4 l 27604.9 c 27642.8 ticks 3561 delta +107
+16:00:01 [range] US500 15:45 c 7490.5 ema 7526.2 band 7482.7-7569.8 atr 21.8 regime off L 0 S 0 orders 0
+16:05:00 bar 16:00 o 27642.7 h 27729.1 l 27637.1 c 27712.3 ticks 3550 delta +62
+16:10:00 bar 16:05 o 27712.3 h 27753.3 l 27672.2 c 27730.8 ticks 3495 delta -17
+16:15:00 [range] NQ 16:00 c 27705.2 ema 27758.0 band 27475.2-28040.7 atr 141.4 regime off L 0 S 0 orders 0
+16:15:01 bar 16:10 o 27730.7 h 27733.5 l 27692.8 c 27705.2 ticks 3464 delta -36
+16:15:01 [range] US500 16:00 c 7497.4 ema 7523.5 band 7478.7-7568.3 atr 22.4 regime off L 0 S 0 orders 0
+16:20:00 bar 16:15 o 27705.1 h 27754.7 l 27677.2 c 27701.2 ticks 3479 delta -29
+16:25:00 bar 16:20 o 27701.0 h 27714.8 l 27656.5 c 27707.7 ticks 3499 delta -47
+16:30:00 [range] NQ 16:15 c 27680.6 ema 27750.6 band 27458.0-28043.2 atr 146.3 regime off L 0 S 0 orders 0
+16:30:01 bar 16:25 o 27707.0 h 27720.0 l 27633.6 c 27680.6 ticks 3487 delta -57
+16:30:01 [range] US500 16:15 c 7499.6 ema 7521.2 band 7475.3-7567.2 atr 23.0 regime off L 0 S 0 orders 0
+16:35:00 bar 16:30 o 27680.3 h 27713.8 l 27655.5 c 27683.9 ticks 3477 delta +3
+16:40:00 bar 16:35 o 27683.8 h 27689.4 l 27605.8 c 27611.9 ticks 3452 delta -138
+16:45:00 [range] NQ 16:30 c 27632.3 ema 27739.3 band 27437.0-28041.7 atr 151.2 regime off L 0 S 0 orders 0
+16:45:01 bar 16:40 o 27612.3 h 27644.3 l 27599.7 c 27632.3 ticks 3423 delta -31
+16:45:01 [range] US500 16:30 c 7495.6 ema 7518.8 band 7471.3-7566.3 atr 23.8 regime off L 0 S 0 orders 0
+16:50:00 bar 16:45 o 27632.4 h 27634.8 l 27555.1 c 27569.9 ticks 3386 delta -140
+16:55:00 bar 16:50 o 27567.3 h 27592.8 l 27544.6 c 27564.0 ticks 3373 delta +5
+17:00:00 [range] US500 16:45 c 7483.3 ema 7515.4 band 7467.5-7563.3 atr 23.9 regime off L 0 S 0 orders 0
+17:00:01 [range] NQ 16:45 c 27533.9 ema 27719.8 band 27413.3-28026.2 atr 153.2 regime off L 0 S 0 orders 0
+17:00:02 bar 16:55 o 27563.6 h 27563.8 l 27518.4 c 27533.9 ticks 3369 delta -37
+17:05:00 bar 17:00 o 27533.3 h 27586.0 l 27518.2 c 27558.7 ticks 3472 delta -8
+17:10:00 bar 17:05 o 27559.2 h 27567.8 l 27523.5 c 27559.4 ticks 3357 delta -59
+17:15:00 [range] NQ 17:00 c 27579.5 ema 27706.4 band 27444.3-27968.5 atr 131.0 regime off L 0 S 0 orders 0
+17:15:01 bar 17:10 o 27558.9 h 27597.6 l 27558.2 c 27579.5 ticks 3354 delta -24
+17:15:01 [range] US500 17:00 c 7495.4 ema 7513.5 band 7472.9-7554.1 atr 20.3 regime off L 0 S 0 orders 0
+17:20:00 bar 17:15 o 27579.3 h 27598.7 l 27549.7 c 27586.6 ticks 3345 delta +25
+17:25:00 bar 17:20 o 27586.9 h 27595.6 l 27523.7 c 27524.5 ticks 3354 delta -174
+17:30:00 [range] NQ 17:15 c 27546.2 ema 27691.2 band 27430.4-27951.9 atr 130.4 regime off L 0 S 0 orders 0
+17:30:01 bar 17:25 o 27524.2 h 27558.0 l 27515.7 c 27546.2 ticks 3403 delta +45
+17:30:01 [range] US500 17:15 c 7490.6 ema 7511.3 band 7471.6-7551.1 atr 19.9 regime off L 0 S 0 orders 0
+17:35:00 bar 17:30 o 27546.0 h 27578.9 l 27537.2 c 27547.5 ticks 3360 delta -14
+17:40:00 bar 17:35 o 27544.6 h 27544.6 l 27444.5 c 27452.7 ticks 3455 delta -205
+17:40:00 bar 17:35 sig -1 in the US lunch window (12-15 New York) — skipped (v1.1)
+17:45:00 [range] US500 17:30 c 7479.0 ema 7508.2 band 7467.4-7549.1 atr 20.4 regime off L 0 S 0 orders 0
+17:45:01 [range] NQ 17:30 c 27461.8 ema 27669.3 band 27400.3-27938.3 atr 134.5 regime off L 0 S 0 orders 0
+17:45:02 bar 17:40 o 27451.8 h 27485.5 l 27419.8 c 27461.8 ticks 3457 delta -97
+17:50:00 bar 17:45 o 27462.0 h 27482.0 l 27428.4 c 27480.5 ticks 3382 delta -48
+17:55:00 bar 17:50 o 27478.8 h 27522.3 l 27461.5 c 27510.2 ticks 3388 delta +34
+18:00:00 [range] NQ 17:45 c 27539.0 ema 27656.9 band 27379.6-27934.2 atr 138.6 regime off L 0 S 0 orders 0
+18:00:01 bar 17:55 o 27509.9 h 27551.3 l 27503.5 c 27539.0 ticks 3294 delta +14
+18:00:01 [range] US500 17:45 c 7487.7 ema 7506.3 band 7464.6-7548.0 atr 20.9 regime off L 0 S 0 orders 0
+18:05:00 bar 18:00 o 27538.6 h 27539.6 l 27494.2 c 27513.6 ticks 3323 delta -13
+18:10:00 bar 18:05 o 27514.9 h 27538.3 l 27495.5 c 27514.3 ticks 3307 delta +1
+18:15:00 [range] NQ 18:00 c 27503.6 ema 27642.3 band 27390.2-27894.4 atr 126.0 regime off L 0 S 0 orders 0
+18:15:01 bar 18:10 o 27514.2 h 27531.1 l 27489.8 c 27503.6 ticks 3153 delta -47
+18:15:01 [range] US500 18:00 c 7482.4 ema 7504.0 band 7464.6-7543.5 atr 19.7 regime off L 0 S 0 orders 0
+18:19:12 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+18:19:12 done; ticks 271957 bars 353
