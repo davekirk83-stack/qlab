@@ -19,3 +19,11 @@ DK 07:24: "work on those other narrow fails". Script `src/refine_nearmiss2.py`, 
 
 ## Data note
 - Because of the FTSE open fault, any "next open" test on FTSE was really a close entry. The live runner uses IG's own prices, so live/demo trading is unaffected.
+
+## Result of the timing test (10 Nov 08:40, `src/uscl_timing.py`, runs/gate/uscl_timing.txt) — USCL CLOSED
+Dukascopy DAX minutes on 190 signal days 2013–2026, IG out-of-hours spread + one night's funding:
+- buy DAX at the US close (15:50 NY) -> sell at the European open: −0.065 ATR/trade, t −1.56, 5/14 years +
+- buy at the US close -> sell at the European close: −0.060, t −1.16
+- European open -> close (the old rule, real opens): −0.001, t −0.02
+The paper edge was a data artefact: Yahoo's FTSE "open" is the prior 16:30 close, so the old test counted FTSE's move from 16:30 on the
+signal day — before the 21:00 US close that defines the signal (look-ahead). Removed from the demo runner; never on live.

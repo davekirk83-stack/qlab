@@ -10,7 +10,52 @@
   "floor": 0.15,
   "index_risk_cap": 0.06,
   "books": {
-    "intraday": {"share": 1.0, "engines": ["Ignition", "spike"], "approved": "DK 4 Nov / 9 Nov (CAP-021 amendments)"},
-    "daily":    {"share": 1.0, "engines": ["RSI4", "TPS", "TOM", "SANTA"], "approved": "DK 10 Nov 07:27 / 07:37"}
+    "intraday": {
+      "share": 1.0,
+      "engines": [
+        "Ignition",
+        "spike"
+      ],
+      "approved": "DK 4 Nov / 9 Nov (CAP-021 amendments)"
+    },
+    "daily": {
+      "share": 1.0,
+      "engines": [
+        "RSI4",
+        "TPS",
+        "TOM",
+        "SANTA"
+      ],
+      "approved": "DK 10 Nov 07:27 / 07:37; TPS at minimum stake with its own stop DK 08:22"
+    }
+  },
+  "risk_tiers": {
+    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. tps_stop: TPS book stop (closed + open P&L) \u2014 \u00a3 while the pot is under \u00a31,000 (DK 08:22), then a share of the pot.",
+    "rows": [
+      {
+        "from_pot": 0,
+        "risk_per_trade": 0.02,
+        "tps_min_stake": true,
+        "tps_stop_gbp": 100
+      },
+      {
+        "from_pot": 1000,
+        "risk_per_trade": 0.02,
+        "tps_min_stake": true,
+        "tps_stop_frac": 0.1
+      },
+      {
+        "from_pot": 2500,
+        "risk_per_trade": 0.015,
+        "tps_min_stake": true,
+        "tps_stop_frac": 0.075
+      },
+      {
+        "from_pot": 5000,
+        "risk_per_trade": 0.01,
+        "tps_min_stake": false,
+        "tps_stop_frac": 0.05
+      }
+    ]
   }
 }

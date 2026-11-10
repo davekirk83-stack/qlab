@@ -186,6 +186,7 @@ def close_pos(ig, s, p, mid, why, day):
     r = ig.sell(p["deal_id"], p["size"]); lvl = r.get("level") or mid
     pnl = r.get("profit"); pnl = float(pnl) if pnl not in (None, "") else (float(lvl) - p["entry_ig"]) * p["size"]
     pnl = pnl * p.get("want", p["size"]) / p["size"]; s["eq"] += pnl; s["pos"].remove(p)
+    if p["book"] == "TPS": s.setdefault("tps", {}); s["tps"]["realised"] = s["tps"].get("realised", 0.0) + pnl
     ledger({"closed": day, "book": p["book"], "market": p["market"], "entered": p["entered"], "entry": p["entry_ig"], "exit": round(float(lvl), 2),
             "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": why})
     log(f"CLOSE {p['book']} {p['market']} {why}: {p['size']}/pt {p['entry_ig']} -> {float(lvl):.1f} = £{pnl:+.2f} (book £{s['eq']:.2f})")
@@ -198,6 +199,7 @@ def reconcile(ig, s, day):
         lvl, how = ig.closed_level(p); side = p.get("side", 1)
         if lvl is None: lvl, how = p["stop_ig"], "IG stop (level estimated; check IG history)"
         pnl = side * (lvl - p["entry_ig"]) * p.get("want", p["size"]); s["eq"] += pnl; s["pos"].remove(p)
+        if p["book"] == "TPS": s.setdefault("tps", {}); s["tps"]["realised"] = s["tps"].get("realised", 0.0) + pnl
         ledger({"closed": day, "book": p["book"], "market": p["market"], "entered": p["entered"], "entry": p["entry_ig"], "exit": round(lvl, 2),
                 "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
         log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
@@ -206,7 +208,9 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     want = size if want is None else want
     if LIVE:
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
-        if size > want * 1.0001: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than 2% risk ({want:.4f}/pt)"); return None
+        if book == "TPS" and s.get("tps", {}).get("stopped"): log(f"SKIP TPS {name}: TPS stopped at its £ limit (DK restarts it)"); return None
+        tps_min = book == "TPS" and L.tier(s.get("pot_now", START_EQ)).get("tps_min_stake", False)
+        if size > want * 1.0001 and not tps_min: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than {RISK:.0%} risk ({want:.4f}/pt)"); return None
         want = size   # live: the stake placed is the stake counted
     held = ig.account_notional() if LIVE else notional(s)   # live: every book on the account shares one cap on the pot
     if held + want * mid > EXPO * (s.get("pot_now", START_EQ) if LIVE else s["eq"]): log(f"SKIP {book} {name}: exposure cap {EXPO:g}x (whole account)"); return None
@@ -220,6 +224,21 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
          "stop_ig": stop_level if stop_level else lvl - stop_pts, "k": k, "want": want, "risk": risk or 0.0}
     if extra: p.update(extra)
     s["pos"].append(p); log(f"OPEN {book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
+
+def tps_check(ig, s):
+    """Live (doc 214, DK 10 Nov 08:22): TPS book stop. Realised + open TPS P&L <= -tps_stop (£100 while the pot is under £1,000) ->
+    close every TPS position and take no new ladders until DK restarts TPS (set state tps.stopped = false)."""
+    t = s.setdefault("tps", {}); today = utcnow().strftime("%Y-%m-%d"); mine = {p["deal_id"]: p for p in s["pos"] if p["book"] == "TPS"}
+    bid = {x["position"]["dealId"]: float(x["market"]["bid"]) for x in ig.ig.fetch_open_positions()["positions"] if x["position"]["dealId"] in mine}
+    t["open"] = round(sum((bid[d] - p["entry_ig"]) * p["size"] for d, p in mine.items() if d in bid), 2)
+    tot = t.get("realised", 0.0) + t["open"]
+    if t.get("day") != today: t["day"], t["day_start"] = today, tot
+    lim = L.tps_stop(s.get("pot_now", START_EQ)); log(f"TPS book £{tot:+.2f} (realised {t.get('realised', 0.0):+.2f}, open {t['open']:+.2f}); stop at -£{lim:.0f}{' — STOPPED' if t.get('stopped') else ''}")
+    if not t.get("stopped") and tot <= -lim:
+        t["stopped"] = True; log(f"TPS STOP: £{tot:.2f} <= -£{lim:.0f} — closing every TPS position; no new ladders until DK restarts TPS")
+        for d, p in mine.items():
+            try: close_pos(ig, s, p, bid.get(d, p["entry_ig"]), "TPS book stop", utcnow().date())
+            except Exception: log("TPS stop close failed:", traceback.format_exc())
 
 # ------------------------------------------------------------------ jobs
 OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
@@ -369,7 +388,7 @@ def job_gold_flat(ig, s):
     log(f"gold: day's IG P&L £{pnl_ig:+.2f} -> counted £{pnl:+.2f} (book £{s['eq']:.2f})")
 
 def main():
-    global STATE, LEDGER
+    global STATE, LEDGER, RISK
     job = sys.argv[1]; dry = "--dry" in sys.argv
     if job.startswith("gold"): STATE, LEDGER = f"{OUT}/gold_state.json", f"{OUT}/trades_gold.csv"   # own file: runs in its own concurrency group
     hist_fn = (lambda n: local(n)) if "--local" in sys.argv else (lambda n, c={}: c.setdefault(n, yahoo(MKT[n][0])))
@@ -384,12 +403,13 @@ def main():
         # doc 212: every live book shares the pot (config/live_pot.json): day stop, floor and exposure on the WHOLE account
         if not dry:
             try:
-                pot = L.Pot(ig.ig, s).refresh(); s["pot_now"] = pot.pot; s["entries_ok"], s["stop_why"] = pot.entries_ok()
+                pot = L.Pot(ig.ig, s, daily_state=s).refresh(); s["pot_now"] = pot.pot; s["entries_ok"], s["stop_why"] = pot.entries_ok()
+                RISK = float(L.tier(pot.pot)["risk_per_trade"]); tps_check(ig, s)
                 log(f"pot £{pot.pot:.2f} (start £{L.POT:.0f}, all books {pot.change:+.2f}); entries {'on' if s['entries_ok'] else 'OFF: ' + s['stop_why']}")
             except Exception as e: log("account check failed — no new entries this run:", e); s["entries_ok"], s["stop_why"] = False, "account check failed"
         if job.startswith("gold"): log("live: gold London book is demo-only — exit"); return
     if job == "eu_open":
-        if not LIVE: job_eu_open(ig, s, hist_fn)   # USCL is demo-only (doc 209: FTSE open-data fault)
+        # USCL removed 10 Nov (doc 209): its edge came from Yahoo's stale FTSE opens (look-ahead); on real DAX prices it loses
         job_open(ig, s, "eu", hist_fn)
     elif job == "us_open": job_open(ig, s, "us", hist_fn)
     elif job in ("eu_close", "us_close"): job_close(ig, s, job[:2], hist_fn)
