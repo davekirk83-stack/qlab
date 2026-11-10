@@ -1,16 +1,16 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-19:44:35 delta-share threshold 0.0500 (percentile-matched on 3021 IG bars); registered 0.05
-19:44:36 FATAL Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 459, in <module>
+07:59:56 delta-share threshold 0.0500 (percentile-matched on 3021 IG bars); registered 0.05
+07:59:57 FATAL Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 465, in <module>
     Runner(end, dry).run()
     ^^^^^^^^^^^^^^^^
   File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 91, in __init__
     self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
                                       ^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 129, in history
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 131, in history
     def history(self): return self.rest_history(EPIC, "5Min", 300)
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 132, in rest_history
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 134, in rest_history
     h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1813, in fetch_historical_prices_by_epic

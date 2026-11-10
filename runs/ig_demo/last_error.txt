@@ -1,14 +1,14 @@
 Traceback (most recent call last):
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 459, in <module>
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 465, in <module>
     Runner(end, dry).run()
     ^^^^^^^^^^^^^^^^
   File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 91, in __init__
     self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
                                       ^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 129, in history
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 131, in history
     def history(self): return self.rest_history(EPIC, "5Min", 300)
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 132, in rest_history
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 134, in rest_history
     h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1813, in fetch_historical_prices_by_epic
