@@ -1,0 +1,23 @@
+== (a) result per trade by regime at the signal
+  RSI(4) dip: BEAR n97 -0.272 | BULL-CALM n791 +0.217 | BULL-NERVOUS n306 +0.609 | SHOCK n68 +0.703
+  Turn of month: BEAR n359 +0.152 | BULL-CALM n1107 +0.139 | BULL-NERVOUS n220 +0.338 | SHOCK n168 +0.313
+  TPS ladder (% of budget): BEAR n125 -0.099 | BULL-CALM n1075 +0.188 | BULL-NERVOUS n299 +0.149 | SHOCK n59 +0.570
+  Santa: BEAR n40 +0.415 | BULL-CALM n115 +0.331 | BULL-NERVOUS n7 +1.135 | SHOCK n12 +1.950
+
+== (b) reviewer's rules as written vs (c) walk-forward allocation — out of sample 2008-26
+  RSI(4) dip
+     all signals : total  +303.1 | monthly Sharpe 0.88 | worst 12m  -53.5 | years + 14/19 | avg weight 1.00
+     reviewer    : total  +271.2 | monthly Sharpe 0.82 | worst 12m  -48.6 | years + 14/19 | avg weight 0.89
+     walk-forward: total  +423.9 | monthly Sharpe 0.91 | worst 12m  -60.3 | years + 13/19 | avg weight 1.11
+  Turn of month
+     all signals : total  +222.3 | monthly Sharpe 0.52 | worst 12m  -29.9 | years + 13/19 | avg weight 1.00
+     reviewer    : total  +150.7 | monthly Sharpe 0.39 | worst 12m  -28.5 | years + 11/19 | avg weight 0.83
+     walk-forward: total  +213.6 | monthly Sharpe 0.45 | worst 12m  -33.9 | years + 13/19 | avg weight 1.03
+  TPS ladder (% of budget)
+     all signals : total  +178.0 | monthly Sharpe 0.51 | worst 12m  -44.2 | years + 15/19 | avg weight 1.00
+     reviewer    : total  +143.7 | monthly Sharpe 0.64 | worst 12m  -28.9 | years + 14/19 | avg weight 0.79
+     walk-forward: total  +207.1 | monthly Sharpe 0.46 | worst 12m  -71.4 | years + 15/19 | avg weight 1.08
+  Santa
+     all signals : total   +72.2 | monthly Sharpe 1.84 | worst 12m  +24.9 | years + 14/18 | avg weight 1.00
+     reviewer    : total   +48.6 | monthly Sharpe 1.41 | worst 12m  +15.3 | years + 12/18 | avg weight 0.82
+     walk-forward: total   +60.9 | monthly Sharpe 1.24 | worst 12m  +27.3 | years + 13/18 | avg weight 0.89

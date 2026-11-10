@@ -279,6 +279,13 @@ def job_open(ig, s, group, hist_fn):
     """Dip books (RSI2, TPS): every decision uses the last FINAL daily bar (yesterday's close); exits, ladder rungs and entries are all
     traded now, at the open. Backtest of exactly this (doc 206): RSI2 t 4.14, 19/26 years; TPS t 4.85, 21/26 years."""
     day = pd.Timestamp(utcnow().date())
+    # doc 220 (regime layer, reviewer 2 sec. 4): no NEW dip-book positions (RSI4, TPS first rung) while the US 500 closed below its 200-day.
+    # Out of sample 2008-26: RSI4 +303 -> +323 (Sharpe 0.88 -> 0.97), TPS +178 -> +189 (0.51 -> 0.57); exits and open ladders unaffected.
+    bear = False
+    try:
+        sp = hist_fn("US500"); sp = sp[sp.index < day]; bear = bool(sp.close.iloc[-1] < sp.close.rolling(200).mean().iloc[-1])
+        if bear: log(f"REGIME: US 500 {sp.close.iloc[-1]:.1f} below its 200-day {sp.close.rolling(200).mean().iloc[-1]:.1f} — no new dip-book entries today")
+    except Exception as e: log("regime check failed (no filter today):", e)
     for name, (tk, epic, g) in MKT.items():
         if g != group: continue
         try:
@@ -303,6 +310,7 @@ def job_open(ig, s, group, hist_fn):
                 open_pos(ig, s, "TPS", name, epic, max(ig.min_size(epic), round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"],
                          extra={"unit": tps[0]["unit"], "unitw": tps[0]["unitw"], "sig_close": float(b.close)}, want=tps[0]["unitw"] * n_, risk=0.15 * tps[0]["unitw"] * n_ * mid)
             for bk in OPEN_BOOKS:
+                if bear: break
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
                 mn = ig.min_size(epic)
