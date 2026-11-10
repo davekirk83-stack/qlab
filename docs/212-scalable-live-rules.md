@@ -13,6 +13,7 @@ books: intraday (Ignition, spike) and daily (RSI4, TPS, TOM, Santa), each with a
   limit with it at the next run; a withdrawal lowers it; neither can trip the day stop or floor.
   Test: £500 pot, −£20 trading → £480; deposit £1,000 → £1,480 (change still −£20); a further −£100 that day = −£120 → day stop.
 - Exposure cap, day stop and floor are measured on the WHOLE account, so adding a book never multiplies the risk.
-- A bigger pot automatically un-skips trades: at £500 the IG minimum stake rules out TPS, most US Tech 100 and Wall Street trades;
-  from roughly £1,500–2,500 they fit inside 2% and start trading with no code change.
+- A bigger pot automatically un-skips trades (IG minimum 0.01/pt, today's ATRs): RSI(4) dips on US Tech 100 and Wall Street fit inside 2%
+  from about £1,000; turn of the month on US Tech 100 from about £1,600; the TPS ladder on US 500 from about £5,000 (US Tech 100 ~£20,000).
+  No code change — sizing reads the pot.
 - Adding a book = one entry under "books" (DK's decision, CAP-021); a share below 1.0 gives it a smaller slice of the pot.
