@@ -1,0 +1,7 @@
+
+== DK's 'cleared' test: taps of a long level, by how many live long levels remain below (within 10%); one event per 15-min bar
+   CLEARED: none left below n   25 | 1h +0.211% | 4h +1.054% (t +0.85, win 60%) | 24h +0.799% (win 60%) | median worst dip 4h -3.44%
+   1-2 left below           n  126 | 1h +0.407% | 4h +0.253% (t +0.67, win 66%) | 24h +0.895% (win 65%) | median worst dip 4h -1.32%
+   3+ left below            n 4911 | 1h +0.178% | 4h +0.222% (t +8.82, win 60%) | 24h +0.351% (win 57%) | median worst dip 4h -0.73%
+   CLEARED, 2020-22         n   25 | 1h +0.211% | 4h +1.054% (t +0.85, win 60%) | 24h +0.799% (win 60%) | median worst dip 4h -3.44%
+   CLEARED, 2023-26: n0

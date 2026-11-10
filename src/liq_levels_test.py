@@ -7,7 +7,7 @@ Test (Binance BTC 1-minute 2020-26 -> 15-min bars): every first touch of a LONG 
 1h / 4h / 24h (to the bar close) and the worst drop within 4h, vs the same horizons from random bars. Costs: 0.04% round trip (limit + market exit).
 Also the SHORT side: first touch of a short level = sell at the level. Halves 2020-22 / 2023-26."""
 import warnings; warnings.filterwarnings("ignore")
-import numpy as np, pandas as pd
+import sys, numpy as np, pandas as pd
 m = pd.read_parquet("data_long/btc_1m.parquet")
 d = m.resample("15min").agg({"open": "first", "high": "max", "low": "min", "close": "last", "vol": "sum"}).dropna()
 H, L, C, V, IX = d.high.values, d.low.values, d.close.values, d.vol.values, d.index; N = len(d)
@@ -44,7 +44,7 @@ def fwd(ev, kind):
         mae = side * ((L[j:j + 17].min() if side == 1 else H[j:j + 17].max()) / lvl - 1) * 100
         rows.append((IX[j], lev, r[4], r[16], r[96], mae))
     return pd.DataFrame(rows, columns=["t", "lev", "h1", "h4", "h24", "mae4"])
-if __name__ == "__main__":
+if __name__ == "__main__" and "cleared" not in sys.argv:
     rng = np.random.default_rng(3); rb = rng.integers(1100, N - 100, 20000)
     base = {h: (C[rb + h] / C[rb] - 1).mean() * 100 for h in (4, 16, 96)}
     print(f"BTC 15-min bars {IX[0].date()}..{IX[-1].date()}; random-bar drift: 1h {base[4]:+.3f}%  4h {base[16]:+.3f}%  24h {base[96]:+.3f}%")
@@ -55,3 +55,32 @@ if __name__ == "__main__":
             if len(g) < 20: continue
             tt = g.h4.mean() / g.h4.std() * np.sqrt(len(g))
             print(f"   {nm:8s} n{len(g):5d} | 1h {g.h1.mean():+.3f}% | 4h {g.h4.mean():+.3f}% (t {tt:+.2f}, win {100 * (g.h4 > 0).mean():.0f}%) | 24h {g.h24.mean():+.3f}% | worst drop within 4h: median {g.mae4.median():+.2f}%")
+
+# ---- DK 15:52: "The strongest buy signal would be a hit of the lowest level of liquidations, suggesting that 'direction' had been cleared."
+# For each tap of a LONG level, count the OTHER long levels still live (confirmed, not yet touched) BELOW the price at that moment.
+# 'Cleared' = none left below within 10%. Compared with taps that still have levels below.
+def cleared_test():
+    lv = levels("long"); ft = first_touch(lv, "long", max_bars=N)
+    touch_at = {}; 
+    for (start, lvl, lev), ev in zip(lv, [None] * len(lv)): pass
+    # map each level to its touch bar (or never)
+    tb = []
+    for start, lvl, lev in lv:
+        seg = np.nonzero(L[start:] <= lvl)[0]; tb.append(start + seg[0] if len(seg) else N + 10)
+    S = np.array([s for s, _, _ in lv]); LV = np.array([l for _, l, _ in lv]); TB = np.array(tb); LEV = np.array([v for _, _, v in lv])
+    rows = []
+    for k in range(len(lv)):
+        j = TB[k]
+        if j >= N - 100: continue
+        live_below = ((S <= j) & (TB > j) & (LV < LV[k]) & (LV > LV[k] * 0.90)).sum()
+        side = 1; lvl = LV[k]
+        r = {h: (C[j + h] / lvl - 1) * 100 - 0.04 for h in (4, 16, 96)}; mae = (L[j:j + 17].min() / lvl - 1) * 100
+        rows.append((IX[j], LEV[k], live_below, r[4], r[16], r[96], mae))
+    t = pd.DataFrame(rows, columns=["t", "lev", "below", "h1", "h4", "h24", "mae4"]).drop_duplicates(subset=["t"])   # one event per bar
+    print("\n== DK's 'cleared' test: taps of a long level, by how many live long levels remain below (within 10%); one event per 15-min bar")
+    for nm, g in [("CLEARED: none left below", t[t.below == 0]), ("1-2 left below", t[t.below.between(1, 2)]), ("3+ left below", t[t.below >= 3]),
+                  ("CLEARED, 2020-22", t[(t.below == 0) & (t.t.dt.year <= 2022)]), ("CLEARED, 2023-26", t[(t.below == 0) & (t.t.dt.year >= 2023)])]:
+        if len(g) < 10: print(f"   {nm}: n{len(g)}"); continue
+        tt = g.h4.mean() / g.h4.std() * np.sqrt(len(g))
+        print(f"   {nm:24s} n{len(g):5d} | 1h {g.h1.mean():+.3f}% | 4h {g.h4.mean():+.3f}% (t {tt:+.2f}, win {100 * (g.h4 > 0).mean():.0f}%) | 24h {g.h24.mean():+.3f}% (win {100 * (g.h24 > 0).mean():.0f}%) | median worst dip 4h {g.mae4.median():+.2f}%")
+if __name__ == "__main__" and "cleared" in sys.argv: cleared_test()

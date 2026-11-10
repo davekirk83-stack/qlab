@@ -26,3 +26,14 @@ The mirror trade (buy as price breaks through short-liquidation levels) is ≈ +
 ## Next
 Through the standard test (same-day clustering — many levels are hit together; walk-forward; Revolut X costs: limit 0%, taker 0.09%), exits (target /
 stop / time), 5-min vs 15-min, and as a Revolut X dry-run book if it passes. Today's 72,850 tap is one of these events.
+
+## DK 15:52: "the strongest buy signal would be a hit of the LOWEST level of liquidations — that direction cleared"
+Each long-level tap classed by how many live long levels remain below it (within 10%); one event per 15-min bar (runs/gate/liq_levels_cleared.txt):
+| Taps | n | 1h | 4h (win) | 24h (win) | median worst dip within 4h |
+|---|---|---|---|---|---|
+| CLEARED (none left below) | 25 (all 2020–22) | +0.21% | **+1.05% (60%)** | +0.80% (60%) | −3.44% |
+| 1–2 left below | 126 | +0.41% | +0.25% (66%) | +0.90% (65%) | −1.32% |
+| 3+ left below | 4,911 | +0.18% | +0.22% (t 8.8, 60%) | +0.35% (57%) | −0.73% |
+Direction supports DK's idea (the fewer levels left below, the bigger the bounce), but 'fully cleared' is rare (25 times in 7 years, crash days, with deep
+dips first) — too few to prove alone. The practical forms: the deep, low-leverage tiers (10x +0.64%, 5x +0.77% over 4h) and 'few levels left below'.
+To build next, with the standard test: a ladder that buys the deeper clusters in size (like TPS rungs), stop just below the last cluster.
