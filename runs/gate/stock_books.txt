@@ -14,3 +14,8 @@ FAIL  S3 short-term reversal: 5 worst 5-day S&P shares above 200-day, 5 days [st
       walk-forward switches that help: none
       portfolio (risk-matched): corr +0.36, mean/month +2.66 vs core +2.22, worst 12m -130.2 vs -57.3, in the core's 10 worst months -121.8 -> does not add
       by index: SP500:+0.022(n12611)
+WEAK  S4 earnings-gap drift: gap up >= 5% on 2x volume, hold 20 days [stock-event] — n 5761 (262/yr), mean +0.188, t +3.24, clustered t +2.19 (t* 3.76, idea #301), year-block CI [+0.001, +0.365], full years + 14/21, last 5y +0.184, last 12m +0.006, costs x1.5 +0.154, random 95th +0.258
+      failed: clustered t >= t*, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.31, mean/month +3.04 vs core +2.22, worst 12m -124.5 vs -57.3, in the core's 10 worst months -77.6 -> does not add
+      by index: FTSE100:+0.006(n505) SP500:+0.206(n5256)

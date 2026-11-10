@@ -23,3 +23,4 @@ date,name,family,markets,n,mean,t,clustered_t,tstar,ci_lo,ci_hi,years_pos,last5y
 2026-11-10,"S1 Connors stock RSI(2)<5 above 200-day, exit > 5-day avg",stock-dip,shares,42690,0.031,3.29,1.21,3.76,-0.0444,0.0946,14/21,-0.0031,0.0357,-0.019,-0.0421,FAIL,month (-11 -> +87); VIX band (-11 -> +337); market (-11 -> +190),0.51,no
 2026-11-10,S2 our RSI(4) dip on shares,stock-dip,shares,63777,0.0499,6.03,1.88,3.76,-0.0263,0.1147,15/21,0.0019,0.0071,0.0001,-0.0318,FAIL,VIX band (+1226 -> +1516),0.54,no
 2026-11-10,"S3 short-term reversal: 5 worst 5-day S&P shares above 200-day, 5 days",stock-reversal,shares,12611,0.0219,1.54,1.23,3.76,-0.0333,0.0775,13/21,-0.003,0.0015,-0.0123,0.0143,FAIL,,0.36,no
+2026-11-10,"S4 earnings-gap drift: gap up >= 5% on 2x volume, hold 20 days",stock-event,shares,5761,0.1885,3.24,2.19,3.76,0.0015,0.3652,14/21,0.1839,0.0062,0.154,0.2577,WEAK,,0.31,no
