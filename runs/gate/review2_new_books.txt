@@ -1,0 +1,16 @@
+A1 Donchian 55-day breakout LONG, above 200d, exit 20-day low, 2 ATR stop n 1115 (43/yr) mean +0.037 t +0.23 clustered t +0.22 | full yrs + 10/26 | last5y +0.602
+A2 Donchian 55-day breakout SHORT, below 200d, exit 20-day high n  847 (33/yr) mean -0.659 t -5.49 clustered t -4.76 | full yrs + 6/26 | last5y -0.948
+A3 Donchian 20-day LONG, above 200d, exit 10-day low       n 1811 (70/yr) mean +0.009 t +0.09 clustered t +0.08 | full yrs + 13/26 | last5y +0.388
+B1 Bollinger squeeze (width < 10th pct of 100d) breakout UP + trend, 3 ATR trail n  810 (31/yr) mean -0.312 t -2.81 clustered t -2.69 | full yrs + 7/25 | last5y -0.086
+B2 Bollinger squeeze breakout DOWN + trend                 n  547 (21/yr) mean -0.511 t -4.48 clustered t -4.21 | full yrs + 6/26 | last5y -0.528
+D  MA re-entry: >200EMA, 20>50EMA, pullback to 20EMA, close back above n 2155 (83/yr) mean -0.071 t -0.96 clustered t -0.87 | full yrs + 11/26 | last5y +0.071
+E relative strength: top 3 by 6-month return (above 200d), monthly n  922 (35/yr) mean -0.008 t -0.20 clustered t -0.16 | full yrs + 14/26 | last5y -0.023
+
+core (RSI4 + TOM) monthly ATR sum: mean 1.99, worst 12 months -60.3
+  + A1 Donchian 55-day breakout LONG, above 200d, exit 20-da corr +0.19 | combined mean/month +2.08 vs core +1.99 | worst 12m -95.5 vs core -60.3 | core's 10 worst months: this book -38.8
+  + A2 Donchian 55-day breakout SHORT, below 200d, exit 20-d corr -0.08 | combined mean/month +0.20 vs core +1.99 | worst 12m -111.0 vs core -60.3 | core's 10 worst months: this book -29.0
+  + A3 Donchian 20-day LONG, above 200d, exit 10-day low     corr +0.15 | combined mean/month +2.03 vs core +1.99 | worst 12m -93.7 vs core -60.3 | core's 10 worst months: this book -32.5
+  + B1 Bollinger squeeze (width < 10th pct of 100d) breakout corr +0.08 | combined mean/month +0.76 vs core +1.99 | worst 12m -92.6 vs core -60.3 | core's 10 worst months: this book -33.3
+  + B2 Bollinger squeeze breakout DOWN + trend               corr -0.15 | combined mean/month +0.14 vs core +1.99 | worst 12m -129.3 vs core -60.3 | core's 10 worst months: this book -18.4
+  + D  MA re-entry: >200EMA, 20>50EMA, pullback to 20EMA, cl corr +0.26 | combined mean/month +1.64 vs core +1.99 | worst 12m -105.7 vs core -60.3 | core's 10 worst months: this book -59.1
+  + E relative strength: top 3 by 6-month return (above 200d corr +0.17 | combined mean/month +1.91 vs core +1.99 | worst 12m -111.8 vs core -60.3 | core's 10 worst months: this book +2.4

@@ -54,3 +54,16 @@ Correct for the research simulator — fixed: entries, TPS rungs and ALL exits n
 
 ## Proposed change for DK (one decision)
 TPS stop £100 -> 5% of the pot (£25 now), counted in the account day stop and floor, keep the 200-day auto-restart; remove the 3.5% exceptions.
+
+## Reviewer 2's families re-tested TODAY at their exact rules (DK 10:43: "killing them needlessly? … older outdated tests?")
+`src/review2_new_books.py`, runs/gate/review2_new_books.txt — 21 markets (indices, gold, silver, oil, copper, gas, 5 FX, US 10y), next-open in/out:
+| Book (reviewer's rules) | n/yr | mean ATR | t | full years + | last 5y | adds to the core? |
+|---|---|---|---|---|---|---|
+| Donchian 55 long, >200d, exit 20-day low, 2 ATR | 43 | +0.037 | 0.23 | 10/26 | **+0.602** | worst 12 months −60 -> −96 |
+| Donchian 55 short, <200d | 33 | −0.659 | −5.49 | 6/26 | −0.948 | worse |
+| Donchian 20 long, exit 10-day low | 70 | +0.009 | 0.09 | 13/26 | +0.388 | worse |
+| Bollinger squeeze breakout up / down | 31 / 21 | −0.31 / −0.51 | −2.8 / −4.5 | 7 / 6 of 26 | | worse |
+| MA re-entry (20/50/200 EMA pullback) | 83 | −0.071 | −0.96 | 11/26 | +0.071 | worse |
+| Relative strength top 3 of 6-month, monthly | 35 | −0.008 | −0.20 | 14/26 | −0.023 | the only one positive in the core's worst months (+2.4), but no edge |
+None adds return or lowers the core's worst 12 months. Note: long Donchian has been strong in the last 5 years (+0.60) after two decades of nothing —
+kept on the watch list (re-check yearly), not traded.
