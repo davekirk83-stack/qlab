@@ -24,3 +24,4 @@ date,name,family,markets,n,mean,t,clustered_t,tstar,ci_lo,ci_hi,years_pos,last5y
 2026-11-10,S2 our RSI(4) dip on shares,stock-dip,shares,63777,0.0499,6.03,1.88,3.76,-0.0263,0.1147,15/21,0.0019,0.0071,0.0001,-0.0318,FAIL,VIX band (+1226 -> +1516),0.54,no
 2026-11-10,"S3 short-term reversal: 5 worst 5-day S&P shares above 200-day, 5 days",stock-reversal,shares,12611,0.0219,1.54,1.23,3.76,-0.0333,0.0775,13/21,-0.003,0.0015,-0.0123,0.0143,FAIL,,0.36,no
 2026-11-10,"S4 earnings-gap drift: gap up >= 5% on 2x volume, hold 20 days",stock-event,shares,5761,0.1885,3.24,2.19,3.76,0.0015,0.3652,14/21,0.1839,0.0062,0.154,0.2577,WEAK,,0.31,no
+2026-11-10,"S5 gap-down rebound: gap down >= 5% on 2x volume above 200-day, 5 days",stock-event,shares,2990,-0.161,-5.57,-3.46,3.76,-0.2834,-0.0545,6/21,-0.0512,-0.0773,-0.1954,0.0419,FAIL,market (-391 -> -331),0.25,no

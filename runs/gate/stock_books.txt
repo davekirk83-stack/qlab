@@ -19,3 +19,8 @@ WEAK  S4 earnings-gap drift: gap up >= 5% on 2x volume, hold 20 days [stock-even
       walk-forward switches that help: none
       portfolio (risk-matched): corr +0.31, mean/month +3.04 vs core +2.22, worst 12m -124.5 vs -57.3, in the core's 10 worst months -77.6 -> does not add
       by index: FTSE100:+0.006(n505) SP500:+0.206(n5256)
+FAIL  S5 gap-down rebound: gap down >= 5% on 2x volume above 200-day, 5 days [stock-event] — n 2990 (136/yr), mean -0.161, t -5.57, clustered t -3.46 (t* 3.76, idea #302), year-block CI [-0.283, -0.054], full years + 6/21, last 5y -0.051, last 12m -0.077, costs x1.5 -0.195, random 95th +0.042
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: market (-391 -> -331)
+      portfolio (risk-matched): corr +0.25, mean/month +0.77 vs core +2.22, worst 12m -245.7 vs -57.3, in the core's 10 worst months -115.3 -> does not add
+      by index: FTSE100:-0.132(n222) SP500:-0.163(n2768)
