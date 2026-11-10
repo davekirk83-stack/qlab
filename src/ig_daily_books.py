@@ -2,7 +2,8 @@
 
 The books that passed the standard test (docs 200-203), with the SAME rules as their backtests (src/fifty_ideas.py, fifty_ideas_2.py,
 market_search_6.py, ladder_daily_tps.py). One or two per family, so they don't all buy the same dip:
-  RSI2   #51  close > 200-day, RSI(2) < 5, close < 5-day avg -> buy at the close; sell at the close above the 5-day avg; max 10 days; stop 3 ATR
+  RSI4        (doc 207, replaced RSI2 #51: same family, corr 0.72, more trades) close > 200-day, RSI(4) < 25 -> buy; sell when RSI(4) > 55;
+              max 10 days; stop 3 ATR. At the next open: n1262, +0.275 ATR, t 5.28, 19/26 years
   TPS         close > 200-day, RSI(2) < 25 two closes running -> ladder in on lower closes (rungs 1:2:3:4); out when RSI(2) > 70,
               30 days, or a close 15% below the average price
   TOQ  #39    last business day of a quarter -> buy at the close, hold 3 days, stop 5 ATR
@@ -42,7 +43,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 }
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
-BOOKS = {"RSI2": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOQ": IDX, "SANTA": IDX, "HALLO": IDX}
+BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOQ": IDX, "SANTA": IDX, "HALLO": IDX}
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 LOG = []
@@ -55,7 +56,7 @@ def rsi(c, n=2):
     return 100 - 100 / (1 + up / dn.replace(0, np.nan))
 def add_ind(d):
     tr = np.maximum(d.high - d.low, np.maximum((d.high - d.close.shift()).abs(), (d.low - d.close.shift()).abs()))
-    d["atr"] = tr.rolling(20).mean(); d["ma200"] = d.close.rolling(200).mean(); d["ma5"] = d.close.rolling(5).mean(); d["r2"] = rsi(d.close, 2)
+    d["atr"] = tr.rolling(20).mean(); d["ma200"] = d.close.rolling(200).mean(); d["ma5"] = d.close.rolling(5).mean(); d["r2"] = rsi(d.close, 2); d["r4"] = rsi(d.close, 4)
     return d
 
 def entries(d, name):
@@ -64,12 +65,12 @@ def entries(d, name):
     bme = pd.Series(t == (t + pd.offsets.BMonthEnd(0)), index=t); bqe = pd.Series(t == (t + pd.offsets.BQuarterEnd(0)), index=t)
     s = pd.Series((t.month == 12) & (t.day >= 22) & (t.day <= 24) & (t.dayofweek < 5), index=t); santa = s & ~s.shift(1, fill_value=False)
     nxt = (t + pd.offsets.BDay(1)).month
-    return {"RSI2": up & (d.r2 < 5) & (d.close < d.ma5),
+    return {"RSI4": up & (d.r4 < 25),
             "TPS": up & (d.r2 < 25) & (d.r2.shift(1) < 25),
             "TOQ": bqe, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
-STOP_ATR = {"RSI2": 3, "TOQ": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI2": 10, "TPS": 30, "TOQ": 3, "SANTA": 7, "HALLO": 21}
+STOP_ATR = {"RSI4": 3, "TOQ": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
+MAXD = {"RSI4": 10, "TPS": 30, "TOQ": 3, "SANTA": 7, "HALLO": 21}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -184,7 +185,7 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     s["pos"].append(p); log(f"OPEN {book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
 
 # ------------------------------------------------------------------ jobs
-OPEN_BOOKS = ("RSI2", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
+OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
 CLOSE_BOOKS = ("TOQ", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
 IDX_RISK_CAP = 0.06                      # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
 
@@ -222,10 +223,10 @@ def job_open(ig, s, group, hist_fn):
             if snap.get("marketStatus") != "TRADEABLE": log(f"{name}: market {snap.get('marketStatus')} — skipped"); continue
             h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
             mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
-            log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
+            log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
             for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
-                if p["book"] == "RSI2" and b.close > b.ma5: why = "closed above 5-day avg"
+                if p["book"] in ("RSI4", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
                 if p["book"] == "TPS":
                     rungs = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
