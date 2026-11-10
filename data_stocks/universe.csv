@@ -1,0 +1,604 @@
+ticker,index,sector
+MMM,SP500,Industrials
+AOS,SP500,Industrials
+ABT,SP500,Health Care
+ABBV,SP500,Health Care
+ACN,SP500,Information Technology
+ADBE,SP500,Information Technology
+AMD,SP500,Information Technology
+AES,SP500,Utilities
+AFL,SP500,Financials
+A,SP500,Health Care
+APD,SP500,Materials
+ABNB,SP500,Consumer Discretionary
+AKAM,SP500,Information Technology
+ALB,SP500,Materials
+ARE,SP500,Real Estate
+ALGN,SP500,Health Care
+ALLE,SP500,Industrials
+LNT,SP500,Utilities
+ALL,SP500,Financials
+GOOGL,SP500,Communication Services
+GOOG,SP500,Communication Services
+MO,SP500,Consumer Staples
+AMZN,SP500,Consumer Discretionary
+AMCR,SP500,Materials
+AEE,SP500,Utilities
+AEP,SP500,Utilities
+AXP,SP500,Financials
+AIG,SP500,Financials
+AMT,SP500,Real Estate
+AWK,SP500,Utilities
+AMP,SP500,Financials
+AME,SP500,Industrials
+AMGN,SP500,Health Care
+APH,SP500,Information Technology
+ADI,SP500,Information Technology
+AON,SP500,Financials
+APA,SP500,Energy
+APO,SP500,Financials
+AAPL,SP500,Information Technology
+AMAT,SP500,Information Technology
+APP,SP500,Communication Services
+APTV,SP500,Consumer Discretionary
+ACGL,SP500,Financials
+ADM,SP500,Consumer Staples
+ARES,SP500,Financials
+ANET,SP500,Information Technology
+AJG,SP500,Financials
+AIZ,SP500,Financials
+T,SP500,Communication Services
+ATO,SP500,Utilities
+ADSK,SP500,Information Technology
+ADP,SP500,Industrials
+AZO,SP500,Consumer Discretionary
+AVY,SP500,Materials
+AXON,SP500,Industrials
+BKR,SP500,Energy
+BALL,SP500,Materials
+BAC,SP500,Financials
+BAX,SP500,Health Care
+BDX,SP500,Health Care
+BRK-B,SP500,Financials
+BBY,SP500,Consumer Discretionary
+TECH,SP500,Health Care
+BIIB,SP500,Health Care
+BLK,SP500,Financials
+BX,SP500,Financials
+XYZ,SP500,Financials
+BE,SP500,Industrials
+BNY,SP500,Financials
+BA,SP500,Industrials
+BKNG,SP500,Consumer Discretionary
+BSX,SP500,Health Care
+BMY,SP500,Health Care
+AVGO,SP500,Information Technology
+BR,SP500,Industrials
+BRO,SP500,Financials
+BF-B,SP500,Consumer Staples
+BG,SP500,Consumer Staples
+BXP,SP500,Real Estate
+CHRW,SP500,Industrials
+CDNS,SP500,Information Technology
+CPT,SP500,Real Estate
+COF,SP500,Financials
+CAH,SP500,Health Care
+CCL,SP500,Consumer Discretionary
+CARR,SP500,Industrials
+CVNA,SP500,Consumer Discretionary
+CASY,SP500,Consumer Staples
+CAT,SP500,Industrials
+CBOE,SP500,Financials
+CBRE,SP500,Real Estate
+CDW,SP500,Information Technology
+COR,SP500,Health Care
+CNC,SP500,Health Care
+CNP,SP500,Utilities
+CF,SP500,Materials
+CRL,SP500,Health Care
+SCHW,SP500,Financials
+CHTR,SP500,Communication Services
+CVX,SP500,Energy
+CMG,SP500,Consumer Discretionary
+CB,SP500,Financials
+CHD,SP500,Consumer Staples
+CIEN,SP500,Information Technology
+CI,SP500,Health Care
+CINF,SP500,Financials
+CTAS,SP500,Industrials
+CSCO,SP500,Information Technology
+C,SP500,Financials
+CFG,SP500,Financials
+CLX,SP500,Consumer Staples
+CME,SP500,Financials
+CMS,SP500,Utilities
+KO,SP500,Consumer Staples
+CTSH,SP500,Information Technology
+COHR,SP500,Information Technology
+COIN,SP500,Financials
+CL,SP500,Consumer Staples
+CMCSA,SP500,Communication Services
+FIX,SP500,Industrials
+COP,SP500,Energy
+ED,SP500,Utilities
+STZ,SP500,Consumer Staples
+CEG,SP500,Utilities
+COO,SP500,Health Care
+CPRT,SP500,Industrials
+GLW,SP500,Information Technology
+CPAY,SP500,Financials
+CSGP,SP500,Real Estate
+COST,SP500,Consumer Staples
+CRH,SP500,Materials
+CRWD,SP500,Information Technology
+CCI,SP500,Real Estate
+CSX,SP500,Industrials
+CMI,SP500,Industrials
+CVS,SP500,Health Care
+DHR,SP500,Health Care
+DRI,SP500,Consumer Discretionary
+DDOG,SP500,Information Technology
+DVA,SP500,Health Care
+DECK,SP500,Consumer Discretionary
+DE,SP500,Industrials
+DELL,SP500,Information Technology
+DAL,SP500,Industrials
+DVN,SP500,Energy
+DXCM,SP500,Health Care
+FANG,SP500,Energy
+DLR,SP500,Real Estate
+DG,SP500,Consumer Staples
+DLTR,SP500,Consumer Staples
+D,SP500,Utilities
+DPZ,SP500,Consumer Discretionary
+DASH,SP500,Consumer Discretionary
+DOV,SP500,Industrials
+DOW,SP500,Materials
+DHI,SP500,Consumer Discretionary
+DTE,SP500,Utilities
+DUK,SP500,Utilities
+DD,SP500,Industrials
+ETN,SP500,Industrials
+EBAY,SP500,Consumer Discretionary
+ECHO,SP500,Communication Services
+ECL,SP500,Materials
+EIX,SP500,Utilities
+EW,SP500,Health Care
+ELV,SP500,Health Care
+EME,SP500,Industrials
+EMR,SP500,Industrials
+ETR,SP500,Utilities
+EOG,SP500,Energy
+EQT,SP500,Energy
+EFX,SP500,Industrials
+EQIX,SP500,Real Estate
+ERIE,SP500,Financials
+ESS,SP500,Real Estate
+EL,SP500,Consumer Staples
+EG,SP500,Financials
+EVRG,SP500,Utilities
+P,SP500,Information Technology
+ES,SP500,Utilities
+EXC,SP500,Utilities
+EXE,SP500,Energy
+EXPE,SP500,Consumer Discretionary
+EXPD,SP500,Industrials
+EXR,SP500,Real Estate
+XOM,SP500,Energy
+FFIV,SP500,Information Technology
+FDS,SP500,Financials
+FICO,SP500,Information Technology
+FAST,SP500,Industrials
+FRT,SP500,Real Estate
+FDX,SP500,Industrials
+FDXF,SP500,Industrials
+FERG,SP500,Industrials
+FIS,SP500,Financials
+FITB,SP500,Financials
+FSLR,SP500,Information Technology
+FE,SP500,Utilities
+FISV,SP500,Financials
+FLEX,SP500,Information Technology
+F,SP500,Consumer Discretionary
+FTNT,SP500,Information Technology
+FTV,SP500,Industrials
+FOXA,SP500,Communication Services
+FOX,SP500,Communication Services
+BEN,SP500,Financials
+FCX,SP500,Materials
+GRMN,SP500,Consumer Discretionary
+IT,SP500,Information Technology
+GE,SP500,Industrials
+GEHC,SP500,Health Care
+GEV,SP500,Industrials
+GEN,SP500,Information Technology
+GNRC,SP500,Industrials
+GD,SP500,Industrials
+GIS,SP500,Consumer Staples
+GM,SP500,Consumer Discretionary
+GPC,SP500,Consumer Discretionary
+GILD,SP500,Health Care
+GPN,SP500,Financials
+GL,SP500,Financials
+GDDY,SP500,Information Technology
+GS,SP500,Financials
+HAL,SP500,Energy
+HIG,SP500,Financials
+HAS,SP500,Consumer Discretionary
+HCA,SP500,Health Care
+DOC,SP500,Real Estate
+HSIC,SP500,Health Care
+HSY,SP500,Consumer Staples
+HPE,SP500,Information Technology
+HLT,SP500,Consumer Discretionary
+HD,SP500,Consumer Discretionary
+HONA,SP500,Industrials
+HON,SP500,Industrials
+HRL,SP500,Consumer Staples
+HST,SP500,Real Estate
+HWM,SP500,Industrials
+HPQ,SP500,Information Technology
+HUBB,SP500,Industrials
+HUM,SP500,Health Care
+HBAN,SP500,Financials
+HII,SP500,Industrials
+IBM,SP500,Information Technology
+IEX,SP500,Industrials
+IDXX,SP500,Health Care
+ITW,SP500,Industrials
+ILMN,SP500,Health Care
+INCY,SP500,Health Care
+IR,SP500,Industrials
+PODD,SP500,Health Care
+INTC,SP500,Information Technology
+IBKR,SP500,Financials
+ICE,SP500,Financials
+IFF,SP500,Materials
+IP,SP500,Materials
+INTU,SP500,Information Technology
+ISRG,SP500,Health Care
+IVZ,SP500,Financials
+INVH,SP500,Real Estate
+IQV,SP500,Health Care
+IRM,SP500,Real Estate
+JBHT,SP500,Industrials
+JBL,SP500,Information Technology
+JKHY,SP500,Financials
+J,SP500,Industrials
+JNJ,SP500,Health Care
+JCI,SP500,Industrials
+JPM,SP500,Financials
+KDP,SP500,Consumer Staples
+KEY,SP500,Financials
+KEYS,SP500,Information Technology
+KMB,SP500,Consumer Staples
+KIM,SP500,Real Estate
+KMI,SP500,Energy
+KKR,SP500,Financials
+KLAC,SP500,Information Technology
+KHC,SP500,Consumer Staples
+KR,SP500,Consumer Staples
+LHX,SP500,Industrials
+LH,SP500,Health Care
+LRCX,SP500,Information Technology
+LVS,SP500,Consumer Discretionary
+LDOS,SP500,Industrials
+LEN,SP500,Consumer Discretionary
+LII,SP500,Industrials
+LLY,SP500,Health Care
+LIN,SP500,Materials
+LYV,SP500,Communication Services
+LMT,SP500,Industrials
+L,SP500,Financials
+LOW,SP500,Consumer Discretionary
+LULU,SP500,Consumer Discretionary
+LITE,SP500,Information Technology
+LYB,SP500,Materials
+MTB,SP500,Financials
+MPC,SP500,Energy
+MAR,SP500,Consumer Discretionary
+MRSH,SP500,Financials
+MLM,SP500,Materials
+MRVL,SP500,Information Technology
+MAS,SP500,Industrials
+MA,SP500,Financials
+MKC,SP500,Consumer Staples
+MCD,SP500,Consumer Discretionary
+MCK,SP500,Health Care
+MDT,SP500,Health Care
+MRK,SP500,Health Care
+META,SP500,Communication Services
+MET,SP500,Financials
+MTD,SP500,Health Care
+MGM,SP500,Consumer Discretionary
+MCHP,SP500,Information Technology
+MU,SP500,Information Technology
+MSFT,SP500,Information Technology
+MAA,SP500,Real Estate
+MRNA,SP500,Health Care
+MDLZ,SP500,Consumer Staples
+MPWR,SP500,Information Technology
+MNST,SP500,Consumer Staples
+MCO,SP500,Financials
+MS,SP500,Financials
+MOS,SP500,Materials
+MSI,SP500,Information Technology
+MSCI,SP500,Financials
+NDAQ,SP500,Financials
+NTAP,SP500,Information Technology
+NFLX,SP500,Communication Services
+NEM,SP500,Materials
+NWSA,SP500,Communication Services
+NWS,SP500,Communication Services
+NEE,SP500,Utilities
+NKE,SP500,Consumer Discretionary
+NI,SP500,Utilities
+NDSN,SP500,Industrials
+NSC,SP500,Industrials
+NTRS,SP500,Financials
+NOC,SP500,Industrials
+NCLH,SP500,Consumer Discretionary
+NRG,SP500,Utilities
+NUE,SP500,Materials
+NVDA,SP500,Information Technology
+NVR,SP500,Consumer Discretionary
+NXPI,SP500,Information Technology
+ORLY,SP500,Consumer Discretionary
+OXY,SP500,Energy
+OKTA,SP500,Information Technology
+ODFL,SP500,Industrials
+OMC,SP500,Communication Services
+ON,SP500,Information Technology
+OKE,SP500,Energy
+ORCL,SP500,Information Technology
+OTIS,SP500,Industrials
+PCAR,SP500,Industrials
+PKG,SP500,Materials
+PLTR,SP500,Information Technology
+PANW,SP500,Information Technology
+PH,SP500,Industrials
+PAYX,SP500,Industrials
+PYPL,SP500,Financials
+PNR,SP500,Industrials
+PEP,SP500,Consumer Staples
+PFE,SP500,Health Care
+PCG,SP500,Utilities
+PM,SP500,Consumer Staples
+PSX,SP500,Energy
+PNW,SP500,Utilities
+PNC,SP500,Financials
+PPG,SP500,Materials
+PPL,SP500,Utilities
+PFG,SP500,Financials
+PG,SP500,Consumer Staples
+PGR,SP500,Financials
+PLD,SP500,Real Estate
+PRU,SP500,Financials
+PTC,SP500,Information Technology
+PEG,SP500,Utilities
+PSA,SP500,Real Estate
+PHM,SP500,Consumer Discretionary
+Q,SP500,Information Technology
+QCOM,SP500,Information Technology
+PWR,SP500,Industrials
+DGX,SP500,Health Care
+RL,SP500,Consumer Discretionary
+RJF,SP500,Financials
+RDDT,SP500,Communication Services
+O,SP500,Real Estate
+REG,SP500,Real Estate
+REGN,SP500,Health Care
+RF,SP500,Financials
+RSG,SP500,Industrials
+RMD,SP500,Health Care
+RVTY,SP500,Health Care
+HOOD,SP500,Financials
+ROK,SP500,Industrials
+ROL,SP500,Industrials
+ROP,SP500,Information Technology
+ROST,SP500,Consumer Discretionary
+RCL,SP500,Consumer Discretionary
+RTX,SP500,Industrials
+SPGI,SP500,Financials
+CRM,SP500,Information Technology
+SNDK,SP500,Information Technology
+SBAC,SP500,Real Estate
+SLB,SP500,Energy
+STX,SP500,Information Technology
+SRE,SP500,Utilities
+NOW,SP500,Information Technology
+SHW,SP500,Materials
+SPG,SP500,Real Estate
+SKYD,SP500,Communication Services
+SWKS,SP500,Information Technology
+SJM,SP500,Consumer Staples
+SW,SP500,Materials
+SNA,SP500,Industrials
+SOLV,SP500,Health Care
+SO,SP500,Utilities
+LUV,SP500,Industrials
+SWK,SP500,Industrials
+SBUX,SP500,Consumer Discretionary
+STT,SP500,Financials
+STLD,SP500,Materials
+STE,SP500,Health Care
+SYK,SP500,Health Care
+SMCI,SP500,Information Technology
+SYF,SP500,Financials
+SNPS,SP500,Information Technology
+SYY,SP500,Consumer Staples
+TMUS,SP500,Communication Services
+TROW,SP500,Financials
+TTWO,SP500,Communication Services
+TPR,SP500,Consumer Discretionary
+TRGP,SP500,Energy
+TGT,SP500,Consumer Staples
+TEL,SP500,Information Technology
+TDY,SP500,Information Technology
+TER,SP500,Information Technology
+TSLA,SP500,Consumer Discretionary
+TXN,SP500,Information Technology
+TPL,SP500,Energy
+TXT,SP500,Industrials
+TMO,SP500,Health Care
+TJX,SP500,Consumer Discretionary
+TKO,SP500,Communication Services
+TSCO,SP500,Consumer Discretionary
+TT,SP500,Industrials
+TDG,SP500,Industrials
+TRV,SP500,Financials
+TRMB,SP500,Information Technology
+TFC,SP500,Financials
+TWLO,SP500,Information Technology
+TYL,SP500,Information Technology
+TSN,SP500,Consumer Staples
+USB,SP500,Financials
+UBER,SP500,Industrials
+UDR,SP500,Real Estate
+ULTA,SP500,Consumer Discretionary
+UNP,SP500,Industrials
+UAL,SP500,Industrials
+UPS,SP500,Industrials
+URI,SP500,Industrials
+UNH,SP500,Health Care
+UHS,SP500,Health Care
+VLO,SP500,Energy
+VEEV,SP500,Health Care
+VTR,SP500,Real Estate
+VLTO,SP500,Industrials
+VRSN,SP500,Information Technology
+VRSK,SP500,Industrials
+VZ,SP500,Communication Services
+VRTX,SP500,Health Care
+VRT,SP500,Industrials
+VTRS,SP500,Health Care
+VICI,SP500,Real Estate
+V,SP500,Financials
+VST,SP500,Utilities
+VMRK,SP500,Real Estate
+VMC,SP500,Materials
+VYLR,SP500,Consumer Staples
+WRB,SP500,Financials
+GWW,SP500,Industrials
+WAB,SP500,Industrials
+WMT,SP500,Consumer Staples
+DIS,SP500,Communication Services
+WM,SP500,Industrials
+WAT,SP500,Health Care
+WEC,SP500,Utilities
+WFC,SP500,Financials
+WELL,SP500,Real Estate
+WST,SP500,Health Care
+WDC,SP500,Information Technology
+WY,SP500,Real Estate
+WSM,SP500,Consumer Discretionary
+WMB,SP500,Energy
+WTW,SP500,Financials
+WDAY,SP500,Information Technology
+WYNN,SP500,Consumer Discretionary
+XEL,SP500,Utilities
+XYL,SP500,Industrials
+YUM,SP500,Consumer Discretionary
+ZBRA,SP500,Information Technology
+ZBH,SP500,Health Care
+ZTS,SP500,Health Care
+III.L,FTSE100,
+ABDN.L,FTSE100,
+ADM.L,FTSE100,
+AAF.L,FTSE100,
+ALW.L,FTSE100,
+AAL.L,FTSE100,
+ANTO.L,FTSE100,
+ABF.L,FTSE100,
+AZN.L,FTSE100,
+AUTO.L,FTSE100,
+AV.L,FTSE100,
+BAB.L,FTSE100,
+BA.L,FTSE100,
+BBY.L,FTSE100,
+BARC.L,FTSE100,
+BTRW.L,FTSE100,
+BP.L,FTSE100,
+BATS.L,FTSE100,
+BLND.L,FTSE100,
+BT-A.L,FTSE100,
+BNZL.L,FTSE100,
+BRBY.L,FTSE100,
+CNA.L,FTSE100,
+CCEP.L,FTSE100,
+CCH.L,FTSE100,
+CPG.L,FTSE100,
+CCC.L,FTSE100,
+CTEC.L,FTSE100,
+CRDA.L,FTSE100,
+DCC.L,FTSE100,
+DGE.L,FTSE100,
+DPLM.L,FTSE100,
+EZJ.L,FTSE100,
+EDV.L,FTSE100,
+EXPN.L,FTSE100,
+FCIT.L,FTSE100,
+FRES.L,FTSE100,
+GAW.L,FTSE100,
+GLEN.L,FTSE100,
+GSK.L,FTSE100,
+HLN.L,FTSE100,
+HLMA.L,FTSE100,
+HSX.L,FTSE100,
+HWDN.L,FTSE100,
+HSBA.L,FTSE100,
+ICG.L,FTSE100,
+IGG.L,FTSE100,
+IHG.L,FTSE100,
+IMI.L,FTSE100,
+IMB.L,FTSE100,
+INF.L,FTSE100,
+IAG.L,FTSE100,
+ITRK.L,FTSE100,
+INVP.L,FTSE100,
+ITH.L,FTSE100,
+JD.L,FTSE100,
+BGEO.L,FTSE100,
+KGF.L,FTSE100,
+LAND.L,FTSE100,
+LGEN.L,FTSE100,
+LLOY.L,FTSE100,
+LMP.L,FTSE100,
+LSEG.L,FTSE100,
+MNG.L,FTSE100,
+MKS.L,FTSE100,
+MRO.L,FTSE100,
+MTLN.L,FTSE100,
+NG.L,FTSE100,
+NWG.L,FTSE100,
+NXT.L,FTSE100,
+PSON.L,FTSE100,
+PSH.L,FTSE100,
+PCT.L,FTSE100,
+PRU.L,FTSE100,
+RKT.L,FTSE100,
+REL.L,FTSE100,
+RTO.L,FTSE100,
+RIO.L,FTSE100,
+RR.L,FTSE100,
+SGE.L,FTSE100,
+SBRY.L,FTSE100,
+SMT.L,FTSE100,
+SGRO.L,FTSE100,
+SVT.L,FTSE100,
+SHEL.L,FTSE100,
+SMIN.L,FTSE100,
+SN.L,FTSE100,
+SPX.L,FTSE100,
+SSE.L,FTSE100,
+STAN.L,FTSE100,
+SDLF.L,FTSE100,
+STJ.L,FTSE100,
+TSCO.L,FTSE100,
+BBOX.L,FTSE100,
+ULVR.L,FTSE100,
+UU.L,FTSE100,
+VOD.L,FTSE100,
+WEIR.L,FTSE100,
+WTB.L,FTSE100,
+WPP.L,FTSE100,
