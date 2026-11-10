@@ -1,0 +1,54 @@
+== core books through the standard test
+PASS  RSI(4) dip, next-open in/out [dip] — n 1262 (49/yr), mean +0.279, t +5.31, clustered t +4.07 (t* 3.74, idea #277), year-block CI [+0.118, +0.422], full years + 18/25, last 5y +0.371, last 12m +0.231, costs x1.5 +0.256, random 95th +0.052
+      failed: none
+      walk-forward switches that help: market (+289 -> +299)
+WEAK  Turn of the month, 6 traded markets [calendar] — n 1854 (69/yr), mean +0.156, t +4.42, clustered t +2.47 (t* 3.74, idea #278), year-block CI [+0.039, +0.289], full years + 16/26, last 5y +0.148, last 12m +0.439, costs x1.5 +0.137, random 95th +0.019
+      failed: clustered t >= t*
+      walk-forward switches that help: none
+
+== Donchian 55 long (IG-tradable markets, no crypto), by market condition at the signal
+FAIL  Donchian 55 long | none [trend] — n 1014 (38/yr), mean -0.106, t -0.66, clustered t -0.64 (t* 3.74, idea #279), year-block CI [-0.494, +0.288], full years + 8/26, last 5y -0.036, last 12m -1.130, costs x1.5 -0.138, random 95th -0.051
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.16, mean/month +1.71 vs core +1.99, worst 12m -100.5 vs -60.3, in the core's 10 worst months -40.8 -> does not add
+FAIL  Donchian 55 long | trend efficiency ER(60) > 0.30 [trend] — n 303 (12/yr), mean +0.034, t +0.10, clustered t +0.09 (t* 3.74, idea #280), year-block CI [-0.731, +0.841], full years + 8/25, last 5y +0.629, last 12m +2.826, costs x1.5 +0.003, random 95th +0.177
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, beats random 95th
+      walk-forward switches that help: month (-21 -> +9); market (-21 -> +3)
+      portfolio (risk-matched): corr +0.14, mean/month +2.03 vs core +1.99, worst 12m -89.8 vs -60.3, in the core's 10 worst months -25.9 -> does not add
+FAIL  Donchian 55 long | ADX(14) > 25 [trend] — n 616 (23/yr), mean -0.149, t -0.73, clustered t -0.69 (t* 3.74, idea #281), year-block CI [-0.545, +0.237], full years + 12/26, last 5y +0.102, last 12m -0.879, costs x1.5 -0.183, random 95th -0.030
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.16, mean/month +1.69 vs core +1.99, worst 12m -97.7 vs -60.3, in the core's 10 worst months -52.0 -> does not add
+FAIL  Donchian 55 long | 12-month momentum > 0 [trend] — n 884 (33/yr), mean -0.089, t -0.50, clustered t -0.48 (t* 3.74, idea #282), year-block CI [-0.506, +0.342], full years + 7/26, last 5y +0.029, last 12m -1.295, costs x1.5 -0.121, random 95th -0.030
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.14, mean/month +1.78 vs core +1.99, worst 12m -96.5 vs -60.3, in the core's 10 worst months -45.2 -> does not add
+FAIL  Donchian 55 long | volatility low: ATR below its 1-year median [trend] — n 736 (28/yr), mean -0.162, t -0.78, clustered t -0.76 (t* 3.74, idea #283), year-block CI [-0.664, +0.341], full years + 7/25, last 5y -0.030, last 12m -2.069, costs x1.5 -0.195, random 95th +0.011
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.17, mean/month +1.63 vs core +1.99, worst 12m -98.0 vs -60.3, in the core's 10 worst months -60.2 -> does not add
+FAIL  Donchian 55 long | volatility high: ATR above its 1-year median [trend] — n 570 (22/yr), mean -0.096, t -0.48, clustered t -0.48 (t* 3.74, idea #284), year-block CI [-0.568, +0.390], full years + 9/25, last 5y +0.181, last 12m -0.212, costs x1.5 -0.126, random 95th +0.014
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.15, mean/month +1.77 vs core +1.99, worst 12m -120.5 vs -60.3, in the core's 10 worst months -28.0 -> does not add
+FAIL  Donchian 55 long | breadth: > 60% of markets above their 200-day [trend] — n 826 (33/yr), mean -0.022, t -0.12, clustered t -0.11 (t* 3.75, idea #285), year-block CI [-0.454, +0.387], full years + 8/24, last 5y -0.020, last 12m -1.041, costs x1.5 -0.053, random 95th +0.013
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.14, mean/month +1.94 vs core +1.99, worst 12m -89.4 vs -60.3, in the core's 10 worst months -49.1 -> does not add
+FAIL  Donchian 55 long | breadth: < 40% of markets above their 200-day [trend] — n 143 (6/yr), mean -0.341, t -0.85, clustered t -0.83 (t* 3.75, idea #286), year-block CI [-1.303, +0.982], full years + 6/23, last 5y +0.204, last 12m -1.032, costs x1.5 -0.377, random 95th +0.095
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: market (+22 -> +32)
+      portfolio (risk-matched): corr +0.10, mean/month +1.65 vs core +1.99, worst 12m -92.6 vs -60.3, in the core's 10 worst months +0.0 -> does not add
+crypto markets: ['BTCUSD', 'ETHUSD', 'SOLUSD', 'XRPUSD', 'DOGEUSD', 'AVAXUSD', 'LINKUSD', 'ADAUSD', 'LTCUSD', 'DOTUSD'] from 2021-10-17
+FAIL  Donchian 55 long CRYPTO spot | none [trend-crypto] — n 101 (20/yr), mean +1.480, t +1.98, clustered t +1.85 (t* 3.75, idea #287), year-block CI [-0.946, +2.734], full years + 2/4, last 5y +1.480, last 12m -0.593, costs x1.5 +1.480, random 95th +1.301
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.09, mean/month +2.65 vs core +1.99, worst 12m -75.6 vs -60.3, in the core's 10 worst months -5.9 -> does not add
+FAIL  Donchian 55 long CRYPTO spot | trend efficiency ER(60) > 0.30 [trend-crypto] — n 49 (10/yr), mean +1.000, t +1.02, clustered t +0.89 (t* 3.75, idea #288), year-block CI [-2.025, +3.560], full years + 2/4, last 5y +1.000, last 12m -2.084, costs x1.5 +1.000, random 95th +1.718
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.05, mean/month +2.38 vs core +1.99, worst 12m -60.3 vs -60.3, in the core's 10 worst months +0.0 -> ADDS
+FAIL  Donchian 55 long CRYPTO spot | 12-month momentum > 0 [trend-crypto] — n 64 (16/yr), mean +1.701, t +1.64, clustered t +1.65 (t* 3.75, idea #289), year-block CI [-0.742, +2.708], full years + 2/3, last 5y +1.701, last 12m -2.046, costs x1.5 +1.701, random 95th +1.655
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.11, mean/month +2.67 vs core +1.99, worst 12m -64.9 vs -60.3, in the core's 10 worst months -4.1 -> ADDS

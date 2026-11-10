@@ -1,0 +1,42 @@
+
+== Donchian 55 long: n1115, mean +0.037, total +41.5 ATR
+  month    out of sample: all +66.5 -> switched +180.9 ATR, trades kept 283/846 | no help
+  weekday  out of sample: all +66.5 -> switched -14.1 ATR, trades kept 468/846 | no help
+  vix      out of sample: all +66.5 -> switched +35.5 ATR, trades kept 299/846 | no help
+  market   out of sample: all +66.5 -> switched +272.6 ATR, trades kept 388/846 | no help
+  paradigm (trade a year only if the previous 3 were positive): all +92.6 -> switched +98.8 ATR, years traded 12/24 | HELPS | on in 2026: True
+
+== Donchian 55 short: n847, mean -0.659, total -558.0 ATR
+  month    out of sample: all -409.4 -> switched -180.1 ATR, trades kept 172/666 | no help
+  weekday  out of sample: all -409.4 -> switched -13.5 ATR, trades kept 85/666 | no help
+  vix      out of sample: all -409.4 -> switched -156.9 ATR, trades kept 115/666 | no help
+  market   out of sample: all -409.4 -> switched -149.4 ATR, trades kept 278/666 | no help
+  paradigm (trade a year only if the previous 3 were positive): all -572.1 -> switched -209.1 ATR, years traded 7/24 | HELPS | on in 2026: False
+
+== Donchian 20 long: n1811, mean +0.009, total +16.0 ATR
+  month    out of sample: all +11.4 -> switched +233.7 ATR, trades kept 585/1386 | no help
+  weekday  out of sample: all +11.4 -> switched -148.5 ATR, trades kept 469/1386 | no help
+  vix      out of sample: all +11.4 -> switched -69.7 ATR, trades kept 507/1386 | no help
+  market   out of sample: all +11.4 -> switched +260.4 ATR, trades kept 588/1386 | no help
+  paradigm (trade a year only if the previous 3 were positive): all +40.1 -> switched +105.5 ATR, years traded 9/24 | HELPS | on in 2026: True
+
+== Bollinger squeeze up: n810, mean -0.312, total -252.8 ATR
+  month    out of sample: all -194.0 -> switched -45.4 ATR, trades kept 174/603 | no help
+  weekday  out of sample: all -194.0 -> switched -43.7 ATR, trades kept 82/603 | no help
+  vix      out of sample: all -194.0 -> switched +27.4 ATR, trades kept 136/603 | no help
+  market   out of sample: all -194.0 -> switched +15.9 ATR, trades kept 205/603 | no help
+  paradigm (trade a year only if the previous 3 were positive): all -260.9 -> switched -54.2 ATR, years traded 2/23 | HELPS | on in 2026: False
+
+== Bollinger squeeze down: n547, mean -0.511, total -279.6 ATR
+  month    out of sample: all -287.6 -> switched -43.8 ATR, trades kept 185/453 | no help
+  weekday  out of sample: all -287.6 -> switched -55.8 ATR, trades kept 104/453 | no help
+  vix      out of sample: all -287.6 -> switched -71.6 ATR, trades kept 97/453 | no help
+  market   out of sample: all -287.6 -> switched -100.2 ATR, trades kept 231/453 | HELPS
+  paradigm (trade a year only if the previous 3 were positive): all -325.3 -> switched -30.4 ATR, years traded 3/24 | HELPS | on in 2026: False
+
+== MA re-entry: n2155, mean -0.071, total -152.3 ATR
+  month    out of sample: all -249.9 -> switched +77.9 ATR, trades kept 737/1658 | no help
+  weekday  out of sample: all -249.9 -> switched -117.8 ATR, trades kept 657/1658 | no help
+  vix      out of sample: all -249.9 -> switched +29.7 ATR, trades kept 517/1658 | no help
+  market   out of sample: all -249.9 -> switched -22.7 ATR, trades kept 688/1658 | no help
+  paradigm (trade a year only if the previous 3 were positive): all -143.2 -> switched -33.1 ATR, years traded 10/24 | HELPS | on in 2026: True
