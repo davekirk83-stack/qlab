@@ -114,9 +114,23 @@ class IG:
         return self.ig.create_open_position(currency_code="GBP" if "GBP" in cc else cc[0], direction="BUY", epic=epic, expiry=mk["instrument"]["expiry"],
                                             force_open=True, guaranteed_stop=False, level=None, limit_distance=None, limit_level=None, order_type="MARKET",
                                             quote_id=None, size=size, stop_distance=stop_dist, stop_level=stop_level, trailing_stop=False, trailing_stop_increment=None)
-    def sell(self, deal_id, size):
+    def closed_level(self, p):
+        """Exit level of a position IG closed itself (stop or limit), from the transaction history (matched on the opening level)."""
+        try:
+            now = utcnow(); tx = self.ig.fetch_transaction_history(trans_type="ALL", from_date=(now - dt.timedelta(days=40)).strftime("%Y-%m-%dT%H:%M:%S"),
+                                                                    to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=200)
+            rows = tx.get("transactions", tx) if isinstance(tx, dict) else tx
+            for t in rows:
+                if str(t.get("transactionType", "")).upper() != "DEAL": continue
+                try: ol, cl = float(t.get("openLevel")), float(t.get("closeLevel"))
+                except Exception: continue
+                if abs(ol - p["entry_ig"]) <= 1e-6 * max(1.0, abs(ol)) + 0.05:
+                    return cl, ("IG stop" if p.get("side", 1) * (cl - ol) < 0 else "IG limit") + f" (IG P&L {t.get('profitAndLoss')})"
+        except Exception as e: log("transactions:", e)
+        return None, None
+    def sell(self, deal_id, size, direction="SELL"):
         if self.dry or str(deal_id).startswith("dry-"): return {"dealStatus": "DRY", "level": None, "profit": None}
-        return self.ig.close_open_position(deal_id=deal_id, direction="SELL", epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=size)
+        return self.ig.close_open_position(deal_id=deal_id, direction=direction, epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=size)
 
 # ------------------------------------------------------------------ book
 def load_state():
@@ -147,10 +161,12 @@ def reconcile(ig, s, day):
     if ig.dry: return
     live = ig.open_ids()
     for p in [p for p in s["pos"] if p["deal_id"] not in live]:
-        lvl = p["stop_ig"]; pnl = (lvl - p["entry_ig"]) * p.get("want", p["size"]); s["eq"] += pnl; s["pos"].remove(p)
+        lvl, how = ig.closed_level(p); side = p.get("side", 1)
+        if lvl is None: lvl, how = p["stop_ig"], "IG stop (level estimated; check IG history)"
+        pnl = side * (lvl - p["entry_ig"]) * p.get("want", p["size"]); s["eq"] += pnl; s["pos"].remove(p)
         ledger({"closed": day, "book": p["book"], "market": p["market"], "entered": p["entered"], "entry": p["entry_ig"], "exit": round(lvl, 2),
-                "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": "IG stop (level estimated; check IG history)"})
-        log(f"STOPPED by IG: {p['book']} {p['market']} est £{pnl:+.2f}")
+                "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
+        log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
 
 def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None):
     want = size if want is None else want
@@ -221,8 +237,68 @@ def job_eu_open(ig, s, hist_fn):
                 sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic)); open_pos(ig, s, "USCL", name, epic, sz, mid, k, stop_pts=stop_pts, want=w)
         except Exception: log(f"USCL {name} failed:", traceback.format_exc())
 
+# ------------------------------------------------------------------ gold London breakout (doc 197/198: WEAK, n104, +8 pts/trade)
+GOLD_EPIC = MKT["GOLD"][1]
+def num(x):
+    try: return float("".join(ch for ch in str(x) if ch in "0123456789.-"))
+    except Exception: return 0.0
+def job_gold_ldn(ig, s):
+    """06:00 UTC: Asian range 01:00-06:00 UTC on IG's own 5-min mid bars; width 0.3-1.6% of price; stop-entry 0.02% beyond the side nearer
+    the price; stop at the other side (capped at 0.6%); target 2.5x risk; flat at 19:00 UTC (job gold_flat). Same rules as market_search_3."""
+    today = utcnow().strftime("%Y-%m-%d")
+    if s.get("gold", {}).get("day") == today: log("gold: already placed today"); return
+    h = ig.ig.fetch_historical_prices_by_epic(GOLD_EPIC, resolution="5Min", numpoints=80)["prices"]
+    rows = []
+    for b in h:
+        t = pd.Timestamp(b.get("snapshotTimeUTC") or b["snapshotTime"].replace("/", "-"), tz="UTC" if b.get("snapshotTimeUTC") else None)
+        mid = lambda k: (float(b[k]["bid"]) + float(b[k]["ask"])) / 2
+        rows.append((t, mid("highPrice"), mid("lowPrice"), mid("closePrice")))
+    d = pd.DataFrame(rows, columns=["t", "high", "low", "close"]).set_index("t")
+    if d.index.tz is None: d.index = d.index.tz_localize("Europe/London").tz_convert("UTC")
+    a = d[(d.index.strftime("%Y-%m-%d") == today) & (d.index.hour >= 1) & (d.index.hour < 6)]
+    if len(a) < 48: log(f"gold: only {len(a)} Asian bars — no trade"); return
+    hi, lo = a.high.max(), a.low.min(); C = float(d.close.iloc[-1]); w = (hi - lo) / C
+    log(f"gold: Asian range {lo:.1f}-{hi:.1f} ({100 * w:.2f}% of {C:.1f}), {len(a)} bars")
+    if w < 0.003 or w > 0.016: log("gold: range outside 0.3-1.6% — no trade"); s["gold"] = {"day": today, "none": True}; return
+    buf = 0.0002 * C
+    L = (1, hi + buf, max(lo, hi * (1 - 0.006))); S = (-1, lo - buf, min(hi, lo * (1 + 0.006)))
+    side, lvl, st = min((L, S), key=lambda x: abs(x[1] - C)); risk = abs(lvl - st); tgt = lvl + side * 2.5 * risk
+    sz, want = size_for(s["eq"], RISK, risk, ig.min_size(GOLD_EPIC))
+    log(f"gold: {'BUY' if side == 1 else 'SELL'} STOP at {lvl:.1f}, stop {st:.1f} ({risk:.1f} pts), target {tgt:.1f}; {sz}/pt (counted at {want:.4f})")
+    o = {"day": today, "side": side, "level": round(lvl, 1), "stop": round(st, 1), "target": round(tgt, 1), "size": sz, "want": want, "deal_id": None}
+    if not ig.dry:
+        mk = ig.market(GOLD_EPIC); cc = [c["code"] for c in mk["instrument"]["currencies"]]
+        r = ig.ig.create_working_order(currency_code="GBP" if "GBP" in cc else cc[0], direction="BUY" if side == 1 else "SELL", epic=GOLD_EPIC,
+                                       expiry=mk["instrument"]["expiry"], guaranteed_stop=False, level=o["level"], size=sz, time_in_force="GOOD_TILL_CANCELLED",
+                                       order_type="STOP", force_open=True, stop_level=o["stop"], limit_level=o["target"])
+        if r.get("dealStatus") != "ACCEPTED": log("gold: order rejected:", r.get("reason")); return
+        o["deal_id"] = r.get("dealId"); log("gold: working order placed", o["deal_id"])
+    s["gold"] = o
+
+def job_gold_flat(ig, s):
+    """19:00 UTC: cancel the unfilled order, close an open position at market, book the day's real IG P&L on gold."""
+    o = s.get("gold") or {}
+    if o.get("day") != utcnow().strftime("%Y-%m-%d") or o.get("none") or o.get("booked"): log("gold: nothing to flatten today"); return
+    if ig.dry: log("gold: dry — would cancel/close"); return
+    try:
+        if o.get("deal_id") in {x["workingOrderData"]["dealId"] for x in ig.ig.fetch_working_orders().get("workingOrders", [])}:
+            ig.ig.delete_working_order(o["deal_id"]); log("gold: order never filled — cancelled"); o["booked"] = True; return
+    except Exception as e: log("gold: working orders:", e)
+    for x in ig.ig.fetch_open_positions()["positions"]:
+        if x["market"]["epic"] == GOLD_EPIC:
+            q = x["position"]; r = ig.sell(q["dealId"], float(q["size"]), direction="SELL" if q["direction"] == "BUY" else "BUY"); log("gold: closed at 19:00", r.get("level"))
+    import time; time.sleep(5)
+    now = utcnow(); tx = ig.ig.fetch_transaction_history(trans_type="ALL", from_date=now.strftime("%Y-%m-%dT05:50:00"), to_date=now.strftime("%Y-%m-%dT%H:%M:%S"), page_size=50)
+    rows = [t for t in (tx.get("transactions", tx) if isinstance(tx, dict) else tx) if str(t.get("transactionType", "")).upper() == "DEAL" and "gold" in str(t.get("instrumentName", "")).lower()]
+    pnl_ig = sum(num(t.get("profitAndLoss")) for t in rows); pnl = pnl_ig * o["want"] / o["size"]; s["eq"] += pnl; o["booked"] = True
+    ledger({"closed": now.date(), "book": "GOLDLDN", "market": "GOLD", "entered": o["day"], "entry": o["level"], "exit": "", "size": o["size"],
+            "pnl_gbp": round(pnl, 2), "days": 0, "why": f"day's IG gold P&L £{pnl_ig:.2f} x intended/placed"})
+    log(f"gold: day's IG P&L £{pnl_ig:+.2f} -> counted £{pnl:+.2f} (book £{s['eq']:.2f})")
+
 def main():
+    global STATE, LEDGER
     job = sys.argv[1]; dry = "--dry" in sys.argv
+    if job.startswith("gold"): STATE, LEDGER = f"{OUT}/gold_state.json", f"{OUT}/trades_gold.csv"   # own file: runs in its own concurrency group
     hist_fn = (lambda n: local(n)) if "--local" in sys.argv else (lambda n, c={}: c.setdefault(n, yahoo(MKT[n][0])))
     s = load_state(); log(f"job {job}{' (dry)' if dry else ''}; daily sub-book £{s['eq']:.2f}, open positions {len(s['pos'])}")
     tag = f"{job}:{utcnow():%Y-%m-%d}"
@@ -230,6 +306,8 @@ def main():
     ig = IG(dry); reconcile(ig, s, utcnow().date())
     if job == "eu_open": job_eu_open(ig, s, hist_fn)
     elif job in ("eu_close", "us_close"): job_close(ig, s, job[:2], hist_fn)
+    elif job == "gold_ldn": job_gold_ldn(ig, s)
+    elif job == "gold_flat": job_gold_flat(ig, s)
     if not dry: s["done"] = (s["done"] + [tag])[-30:]
     save_state(s); log(f"done; book £{s['eq']:.2f}, open {[(p['book'], p['market'], p['size']) for p in s['pos']]}")
     open(f"{OUT}/last_{job}.log", "w").write("\n".join(LOG) + "\n")

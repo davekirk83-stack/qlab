@@ -2,7 +2,7 @@ name: IG daily books (doc 204 — RSI2, TPS ladder, calendar books, US close -> 
 on:
   workflow_dispatch:
     inputs:
-      job: { description: "eu_open / eu_close / us_close", default: "us_close" }
+      job: { description: "eu_open / eu_close / us_close / gold_ldn / gold_flat", default: "us_close" }
       dry: { description: "dry run (no orders)", default: "true" }
   schedule:
     # GitHub cron is UTC-only and often fires 20-40 min late, so each job starts early and waits for its target time.
@@ -13,10 +13,12 @@ on:
     - cron: "40 15 * * 1-5"
     - cron: "50 18 * * 1-5"   # us_close (target 15:40 New York)
     - cron: "50 19 * * 1-5"
+    - cron: "35 5 * * 1-5"    # gold_ldn  (target 06:00 UTC, the end of the Asian range)
+    - cron: "35 18 * * 1-5"   # gold_flat (target 19:00 UTC)
 permissions:
   contents: write
 concurrency:
-  group: ig-daily
+  group: ig-daily-${{ (github.event.schedule == '35 5 * * 1-5' || github.event.schedule == '35 18 * * 1-5' || startsWith(github.event.inputs.job, 'gold')) && 'gold' || 'books' }}
   cancel-in-progress: false
 jobs:
   run:
@@ -38,6 +40,8 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then
             DRY="false"
             case "${{ github.event.schedule }}" in
+              "35 5 * * 1-5")                  JOB=gold_ldn;  TZN=UTC;             T="06:00";;
+              "35 18 * * 1-5")                 JOB=gold_flat; TZN=UTC;             T="19:00";;
               "45 6 * * 1-5"|"45 7 * * 1-5")   JOB=eu_open;  TZN=Europe/London;    T="08:05";;
               "40 14 * * 1-5"|"40 15 * * 1-5") JOB=eu_close; TZN=Europe/London;    T="16:10";;
               *)                               JOB=us_close; TZN=America/New_York; T="15:40";;
