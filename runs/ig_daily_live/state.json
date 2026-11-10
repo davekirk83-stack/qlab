@@ -1,0 +1,27 @@
+{
+ "eq": 500.0,
+ "start": "2026-11-10",
+ "pos": [],
+ "done": [
+  "us_open:2026-11-10"
+ ],
+ "day": "2026-11-10",
+ "day_eq": 500.0,
+ "entries_ok": true,
+ "stop_why": "",
+ "pot": {
+  "acc_start": 493.68,
+  "start_date": "2026-11-10",
+  "day": "2026-11-10",
+  "acc_day": 493.68,
+  "cash_day": 0.0,
+  "acc": 493.68,
+  "cash": 0.0
+ },
+ "pot_now": 500.0,
+ "tps": {
+  "open": 0,
+  "day": "2026-11-10",
+  "day_start": 0.0
+ }
+}
