@@ -18,4 +18,12 @@ DK 08:22 "Yes" (TPS live with its own loss limit) · 08:22 "Set the TPS stop los
 | **TPS with the £100 stop (as built)** | **+£263** | −£125 | £150 | £382 |
 | no TPS | +£367 | −£53 | £75 | £485 |
 With the £100 stop, TPS stopped on 10 Mar 2020 (COVID crash) at −£103 and never restarted; TPS would have made +£817 after that date.
-Open question for DK: restart rule after a TPS stop.
+
+## Auto-restart added (DK 08:47–08:49: "the £100 stop is counter-effective?" … "maximum income within sensible risk management")
+After a TPS stop, TPS restarts by itself with a fresh £ limit once the US 500 closes back above its 200-day average (`tps_auto_restart`).
+| TPS stop | total since Nov 2019 | lowest balance | worst month | max drawdown |
+|---|---|---|---|---|
+| **£100 + auto-restart (live setting)** | **+£1,104** | **£382** | −£218 | £266 |
+| £200 (never triggers in this history) | +£1,010 | £321 | −£214 | £217 |
+| £100, no restart | +£263 | £382 | −£125 | £150 |
+By year (£100 + restart): 2020 +1, 2021 +173, 2022 −12, 2023 +118, 2024 +104, 2025 +281, 2026 +434. Backtest through the live runner.

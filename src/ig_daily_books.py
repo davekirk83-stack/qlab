@@ -225,7 +225,7 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     if extra: p.update(extra)
     s["pos"].append(p); log(f"OPEN {book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
 
-def tps_check(ig, s):
+def tps_check(ig, s, hist_fn=None):
     """Live (doc 214, DK 10 Nov 08:22): TPS book stop. Realised + open TPS P&L <= -tps_stop (£100 while the pot is under £1,000) ->
     close every TPS position and take no new ladders until DK restarts TPS (set state tps.stopped = false)."""
     t = s.setdefault("tps", {}); today = utcnow().strftime("%Y-%m-%d"); mine = {p["deal_id"]: p for p in s["pos"] if p["book"] == "TPS"}
@@ -233,6 +233,11 @@ def tps_check(ig, s):
     t["open"] = round(sum((bid[d] - p["entry_ig"]) * p["size"] for d, p in mine.items() if d in bid), 2)
     tot = t.get("realised", 0.0) + t["open"]
     if t.get("day") != today: t["day"], t["day_start"] = today, tot
+    if t.get("stopped") and L.C.get("risk_tiers", {}).get("tps_auto_restart", False) and hist_fn is not None:
+        h = hist_fn("US500"); h = h[h.index < pd.Timestamp(utcnow().date())]
+        if len(h) > 200 and h.close.iloc[-1] > h.close.rolling(200).mean().iloc[-1]:
+            t["stopped"], t["base"] = False, tot; log(f"TPS RESTART: US 500 back above its 200-day average — fresh £ limit from TPS £{tot:+.2f}")
+    tot = tot - t.get("base", 0.0)   # the stop counts from the last (re)start
     lim = L.tps_stop(s.get("pot_now", START_EQ)); log(f"TPS book £{tot:+.2f} (realised {t.get('realised', 0.0):+.2f}, open {t['open']:+.2f}); stop at -£{lim:.0f}{' — STOPPED' if t.get('stopped') else ''}")
     if not t.get("stopped") and tot <= -lim:
         t["stopped"] = True; log(f"TPS STOP: £{tot:.2f} <= -£{lim:.0f} — closing every TPS position; no new ladders until DK restarts TPS")
@@ -404,7 +409,7 @@ def main():
         if not dry:
             try:
                 pot = L.Pot(ig.ig, s, daily_state=s).refresh(); s["pot_now"] = pot.pot; s["entries_ok"], s["stop_why"] = pot.entries_ok()
-                RISK = float(L.tier(pot.pot)["risk_per_trade"]); tps_check(ig, s)
+                RISK = float(L.tier(pot.pot)["risk_per_trade"]); tps_check(ig, s, hist_fn)
                 log(f"pot £{pot.pot:.2f} (start £{L.POT:.0f}, all books {pot.change:+.2f}); entries {'on' if s['entries_ok'] else 'OFF: ' + s['stop_why']}")
             except Exception as e: log("account check failed — no new entries this run:", e); s["entries_ok"], s["stop_why"] = False, "account check failed"
         if job.startswith("gold"): log("live: gold London book is demo-only — exit"); return

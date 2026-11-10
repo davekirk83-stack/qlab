@@ -56,6 +56,7 @@
         "tps_min_stake": false,
         "tps_stop_frac": 0.05
       }
-    ]
+    ],
+    "tps_auto_restart": true
   }
 }
