@@ -54,7 +54,8 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 }
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
-BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX}
+BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
+         "TPSS": IDX}   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
 if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
@@ -82,7 +83,7 @@ def entries(d, name):
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21}
+MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -130,10 +131,10 @@ class IG:
         return float(a["balance"]) + float(a.get("profitLoss") or 0.0)
     def open_ids(self):
         return {p["position"]["dealId"] for p in self.ig.fetch_open_positions()["positions"]}
-    def buy(self, epic, size, stop_dist=None, stop_level=None):
+    def buy(self, epic, size, stop_dist=None, stop_level=None, direction="BUY"):
         if self.dry: return {"dealStatus": "DRY", "dealId": f"dry-{epic}-{utcnow():%H%M%S}", "level": None}
         mk = self.market(epic); cc = [c["code"] for c in mk["instrument"]["currencies"]]
-        return self.ig.create_open_position(currency_code="GBP" if "GBP" in cc else cc[0], direction="BUY", epic=epic, expiry=mk["instrument"]["expiry"],
+        return self.ig.create_open_position(currency_code="GBP" if "GBP" in cc else cc[0], direction=direction, epic=epic, expiry=mk["instrument"]["expiry"],
                                             force_open=True, guaranteed_stop=False, level=None, limit_distance=None, limit_level=None, order_type="MARKET",
                                             quote_id=None, size=size, stop_distance=stop_dist, stop_level=stop_level, trailing_stop=False, trailing_stop_increment=None)
     def closed_level(self, p):
@@ -184,8 +185,8 @@ def size_for(eq, risk_frac, stop_pts, mn):
     want = risk_frac * eq / stop_pts; return max(mn, math.floor(want * 100) / 100), want
 
 def close_pos(ig, s, p, mid, why, day):
-    r = ig.sell(p["deal_id"], p["size"]); lvl = r.get("level") or mid
-    pnl = r.get("profit"); pnl = float(pnl) if pnl not in (None, "") else (float(lvl) - p["entry_ig"]) * p["size"]
+    side = p.get("side", 1); r = ig.sell(p["deal_id"], p["size"], direction="SELL" if side == 1 else "BUY"); lvl = r.get("level") or mid
+    pnl = r.get("profit"); pnl = float(pnl) if pnl not in (None, "") else side * (float(lvl) - p["entry_ig"]) * p["size"]
     pnl = pnl * p.get("want", p["size"]) / p["size"]; s["eq"] += pnl; s["pos"].remove(p)
     if p["book"] == "TPS": s.setdefault("tps", {}); s["tps"]["realised"] = s["tps"].get("realised", 0.0) + pnl
     ledger({"closed": day, "book": p["book"], "market": p["market"], "entered": p["entered"], "entry": p["entry_ig"], "exit": round(float(lvl), 2),
@@ -205,7 +206,7 @@ def reconcile(ig, s, day):
                 "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
         log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
 
-def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None):
+def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None, side=1):
     want = size if want is None else want
     if LIVE:
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
@@ -218,13 +219,13 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     if name in IDX and risk is not None:
         held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
         if held + risk > IDX_RISK_CAP * size_eq(s): log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > {IDX_RISK_CAP:.0%} of the book"); return None
-    r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level)
+    r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level, **({} if side == 1 else {"direction": "SELL"}))
     if r.get("dealStatus") not in ("ACCEPTED", "DRY"): log(f"REJECTED {book} {name}: {r.get('reason')}"); return None
     lvl = float(r["level"]) if r.get("level") else mid
     p = {"book": book, "market": name, "deal_id": r["dealId"], "size": size, "entry_ig": lvl, "entered": utcnow().strftime("%Y-%m-%d"), "days": 0,
-         "stop_ig": stop_level if stop_level else lvl - stop_pts, "k": k, "want": want, "risk": risk or 0.0}
+         "stop_ig": stop_level if stop_level else lvl - side * stop_pts, "k": k, "want": want, "risk": risk or 0.0, "side": side}
     if extra: p.update(extra)
-    s["pos"].append(p); log(f"OPEN {book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
+    s["pos"].append(p); log(f"OPEN {'SHORT ' if side == -1 else ''}{book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
 
 def tps_check(ig, s, hist_fn=None):
     """Live (doc 214, DK 10 Nov 08:22): TPS book stop. Realised + open TPS P&L <= -tps_stop (£100 while the pot is under £1,000) ->
@@ -294,7 +295,7 @@ def job_open(ig, s, group, hist_fn):
             h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
             mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
             log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
-            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS]:
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS",)]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
                 if p["book"] in ("RSI4", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
                 if p["book"] == "TPS":
@@ -302,6 +303,11 @@ def job_open(ig, s, group, hist_fn):
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
                     if b.r2 > 70: why = "RSI2 > 70"
                     elif b.close / k <= avg * 0.85: why = "15% below avg"
+                if p["book"] == "TPSS":
+                    rungs = [q for q in s["pos"] if q["book"] == "TPSS" and q["market"] == name]
+                    avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
+                    if b.r2 < 30: why = "RSI2 < 30"
+                    elif b.close / k >= avg * 1.15: why = "15% above avg"
                 if why is None and p["days"] >= MAXD[p["book"]]: why = f"{p['days']} days"
                 if why: close_pos(ig, s, p, mid, why, day.date())
             tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
@@ -309,6 +315,18 @@ def job_open(ig, s, group, hist_fn):
                 n_ = len(tps) + 1
                 open_pos(ig, s, "TPS", name, epic, max(ig.min_size(epic), round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"],
                          extra={"unit": tps[0]["unit"], "unitw": tps[0]["unitw"], "sig_close": float(b.close)}, want=tps[0]["unitw"] * n_, risk=0.15 * tps[0]["unitw"] * n_ * mid)
+            # TPSS (doc 221, demo only): short ladder mirror of TPS — the market below its 200-day AND the US 500 below its 200-day, RSI(2) > 75 on two
+            # closes -> short 10% of the budget; each HIGHER close adds 20/30/40%; exit RSI(2) < 30, 30 days, or 15% above the average short price.
+            if "TPSS" in BOOKS and name in BOOKS["TPSS"]:
+                ss = [q for q in s["pos"] if q["book"] == "TPSS" and q["market"] == name]
+                if ss and len(ss) < TPS_RUNGS and b.close > ss[-1].get("sig_close", -1e18):
+                    n_ = len(ss) + 1
+                    open_pos(ig, s, "TPSS", name, epic, max(ig.min_size(epic), round(ss[0]["unit"] * n_, 2)), mid, k, stop_level=ss[0]["stop_ig"], side=-1,
+                             extra={"unit": ss[0]["unit"], "unitw": ss[0]["unitw"], "sig_close": float(b.close)}, want=ss[0]["unitw"] * n_, risk=0.15 * ss[0]["unitw"] * n_ * mid)
+                elif not ss and bear and b.close < b.ma200 and b.r2 > 75 and d.r2.iloc[-2] > 75:
+                    mn = ig.min_size(epic); unitw = TPS_RISK * size_eq(s) / (sum(range(1, TPS_RUNGS + 1)) * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
+                    open_pos(ig, s, "TPSS", name, epic, unit, mid, k, stop_level=round(mid * 1.20, 1), side=-1,
+                             extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)}, want=unitw, risk=0.15 * unitw * mid)
             for bk in OPEN_BOOKS:
                 if bear: break
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue

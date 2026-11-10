@@ -38,3 +38,10 @@ G6 by year: 2001 +43, 2008 +88, 2011 +37 … but 2023 −10, 2025 −24, 2026 �
 3. The best use of bad markets for us is already in place: the dip books earn most in SHOCK / nervous regimes (+0.6 to +0.7 ATR) and now sit out
    BEAR regimes (doc 220).
 4. Candidate for demo measurement only: G6 (TPS short ladder while the US 500 is below its 200-day) — the one short that improves the portfolio.
+
+## On the demo (DK 11:21 "Yes please")
+`TPSS` book in `src/ig_daily_books.py`, DEMO ONLY (the live book list comes from config/live_pot.json, which does not include it): short ladder
+mirror of TPS — market below its 200-day AND US 500 below its 200-day, RSI(2) > 75 on two closes -> short 10% of the budget at the next open;
+each higher close adds 20/30/40%; exit RSI(2) < 30, 30 days, or 15% above the average short price; catastrophic stop 20% above entry.
+Shorts now supported in the runner (direction SELL, closed with BUY, P&L by side). Replay of the demo runner 2019–26: 179 short rungs, −£42 at
+intended size (2020 +0.7, 2022 −1, 2023 −7, 2025 −15, 2026 −20) — consistent with the study: recent sell-offs reversed fast. Measuring forward.
