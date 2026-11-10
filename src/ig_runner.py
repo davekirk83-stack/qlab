@@ -130,7 +130,34 @@ class Runner:
     # ---------------------------------------------------------------- data
     def history(self): return self.rest_history(EPIC, "5Min", 300)
 
-    def rest_history(self, epic, res, n):
+    def rest_history(self, epic, res, n, name=None):
+        """IG REST history with a local cache (runs/<book>/hist_cache). IG's demo allowance (~10,000 points a week) ran out on 9 Nov 14:55
+        because every job re-downloaded 300 bars per market; now each job asks only for the bars since the cache ends (+2), and when IG
+        refuses (allowance or throttle) it falls back (DEMO only; live still stops) to the cache plus the bars this runner logged itself (bars_<name>_<date>.csv)."""
+        import glob
+        os.makedirs(f"{OUT}/hist_cache", exist_ok=True); f = f"{OUT}/hist_cache/{epic.replace('.', '_')}_{res}.csv"; cols = ["open", "high", "low", "close", "vol", "delta", "spread"]
+        try: c = pd.read_csv(f, index_col=0); c.index = pd.to_datetime(c.index, utc=True)
+        except Exception: c = pd.DataFrame(columns=cols)
+        step = pd.Timedelta(res.replace("Min", "min")) if "Min" in res else pd.Timedelta("1h")
+        need = n if not len(c) else int(min(n, max(3, (utcnow() - c.index[-1]) / step + 2)))
+        fresh = pd.DataFrame(columns=cols)
+        try: fresh = self._rest_fetch(epic, res, need)
+        except Exception as ex:
+            if LIVE: raise                                   # live money: never start from stale history — fail as before
+            log(f"{name or epic}: IG history refused ({str(ex)[:80]}) — using cache {len(c)} bars + own logged bars")
+            pat = f"{OUT}/bars_{name}_*.csv" if name else (f"{OUT}/bars_20*.csv" if epic == EPIC else None)
+            own = [pd.read_csv(x, header=None, names=["ts"] + cols) for x in sorted(glob.glob(pat))[-5:]] if pat else []
+            if own:
+                o = pd.concat(own); o = o[o.ts.astype(str).str.startswith("20")]; o.index = pd.to_datetime(o.ts, utc=True); fresh = o[cols].astype(float)
+        d = pd.concat([c, fresh]) if len(c) else fresh
+        d = d[~d.index.duplicated(keep="last")].sort_index()
+        if not len(d): raise RuntimeError(f"no history for {epic}: IG refused and no cache or own bars")
+        try: d.tail(2000).to_csv(f)
+        except Exception as ex: log("history cache save failed:", ex)
+        if len(fresh) < need and need > 3: log(f"{name or epic}: history {len(d)} bars, last {d.index[-1]} (asked IG for {need}, got {len(fresh)})")
+        return d.tail(max(n, 300))
+
+    def _rest_fetch(self, epic, res, n):
         h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
         rows = []
         for x in h:

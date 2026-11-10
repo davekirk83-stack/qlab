@@ -142,7 +142,7 @@ class RangeEngine:
         except Exception as ex: log(name, "cache", ex); c = pd.DataFrame()
         try:
             if epic == self.primary[0] and self.primary[1] is not None and len(self.primary[1]): r = self.primary[1][["open", "high", "low", "close"]].copy(); log(f"{name}: using the runner's own {len(r)} IG bars")
-            else: time.sleep(2); r = retry(lambda: self.rest(epic, "5Min", 300), f"{name} history")[["open", "high", "low", "close"]]
+            else: time.sleep(2); r = retry(lambda: self.rest(epic, "5Min", 300, name=name), f"{name} history")[["open", "high", "low", "close"]]
         except Exception as ex: log(name, "rest history", f"{type(ex).__name__}: {ex!r}"[:200]); r = pd.DataFrame()
         f = f"{OUT}/bars_{name}_{utcnow():%Y-%m-%d}.csv"
         if not len(r) and os.path.exists(f):   # doc 189: IG's history allowance ran out on 5 Nov 14:03 — fall back to today's own logged IG bars
