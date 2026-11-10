@@ -55,7 +55,8 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
 BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
-         "TPSS": IDX}   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
+         "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
+         "LBS": IDX}    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
 if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
@@ -83,7 +84,7 @@ def entries(d, name):
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30}
+MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -295,7 +296,7 @@ def job_open(ig, s, group, hist_fn):
             h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
             mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
             log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
-            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS",)]:
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS", "LBS")]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
                 if p["book"] in ("RSI4", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
                 if p["book"] == "TPS":
@@ -308,6 +309,7 @@ def job_open(ig, s, group, hist_fn):
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
                     if b.r2 < 30: why = "RSI2 < 30"
                     elif b.close / k >= avg * 1.15: why = "15% above avg"
+                if p["book"] == "LBS" and b.close > d.close.rolling(10).max().shift(1).iloc[-1]: why = "close above the 10-day high"
                 if why is None and p["days"] >= MAXD[p["book"]]: why = f"{p['days']} days"
                 if why: close_pos(ig, s, p, mid, why, day.date())
             tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
@@ -327,6 +329,14 @@ def job_open(ig, s, group, hist_fn):
                     mn = ig.min_size(epic); unitw = TPS_RISK * size_eq(s) / (sum(range(1, TPS_RUNGS + 1)) * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
                     open_pos(ig, s, "TPSS", name, epic, unit, mid, k, stop_level=round(mid * 1.20, 1), side=-1,
                              extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)}, want=unitw, risk=0.15 * unitw * mid)
+            # LBS (doc 222, demo only): an ESTABLISHED long bear in this market — its 200-day average lower than 60 days ago AND the close >= 15% below the
+            # 1-year high — plus close below the 200-day and below the prior 20-day low -> short at the open; exit close above the 10-day high, 60 days; stop 2 ATR.
+            if "LBS" in BOOKS and name in BOOKS["LBS"] and not any(q["book"] == "LBS" and q["market"] == name for q in s["pos"]):
+                m200 = d.close.rolling(200).mean(); est = m200.iloc[-1] < m200.iloc[-61] and b.close <= 0.85 * d.close.rolling(252).max().iloc[-1]
+                if est and b.close < b.ma200 and b.close < d.low.rolling(20).min().shift(1).iloc[-1]:
+                    log(f"LBS {name}: established long bear (200-day falling, {100 * (1 - b.close / d.close.rolling(252).max().iloc[-1]):.0f}% below the 1-year high) + 20-day breakdown")
+                    sp_ = round(2.0 * atr_ig, 1); sz, w = size_for(size_eq(s), RISK, sp_, ig.min_size(epic))
+                    open_pos(ig, s, "LBS", name, epic, sz, mid, k, stop_pts=sp_, want=w, risk=w * sp_, side=-1)
             for bk in OPEN_BOOKS:
                 if bear: break
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue

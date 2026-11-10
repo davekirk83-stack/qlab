@@ -1,0 +1,25 @@
+CAPE expensive (above the 80th pct of earlier months) on 47% of days; latest CAPE in the data 30.8 (2023-09), threshold 22.4
+
+T1 new 1-year high, stop 1 ATR, 20 days: n1014 (10/yr) mean -0.211 ATR t -1.60 win 17% | total -214 ATR, years + 47%, worst year -54
+   1928-45: n 130 -0.777 t-2.8 yrs+ 0% | 1946-81: n 327 -0.018 t-0.1 yrs+ 63% | 1982-00: n 249 -0.193 t-0.8 yrs+ 58% | 2001-26: n 308 -0.191 t-0.8 yrs+ 41%
+   at the big tops: 1929:-0.4 1937:-1.2 1973:+2.7 1987:-2.1 2000:+3.5 2007:+19.4 2020:+36.8 2022:+13.8
+
+T2 new 1-year high, stop 2 ATR, 20 days: n727 (7/yr) mean -0.351 ATR t -1.92 win 25% | total -255 ATR, years + 43%, worst year -56
+   1928-45: n  88 -1.018 t-2.4 yrs+ 20% | 1946-81: n 238 -0.089 t-0.2 yrs+ 46% | 1982-00: n 184 -0.209 t-0.7 yrs+ 58% | 2001-26: n 217 -0.486 t-1.4 yrs+ 36%
+   at the big tops: 1929:-0.3 1937:+4.3 1973:+8.6 1987:+4.2 2000:+3.8 2007:+16.6 2020:+40.4 2022:+7.4
+
+T3 new 1-year high + CAPE expensive, stop 1 ATR: n596 (6/yr) mean -0.191 ATR t -1.09 win 17% | total -114 ATR, years + 50%, worst year -52
+   1928-45: n  37 -0.159 t-0.3 yrs+ 33% | 1946-81: n 123 +0.149 t+0.3 yrs+ 70% | 1982-00: n 135 -0.430 t-1.6 yrs+ 50% | 2001-26: n 301 -0.226 t-0.9 yrs+ 43%
+   at the big tops: 1929:-0.4 1937:-1.2 1973:+0.0 1987:+0.0 2000:+3.5 2007:+19.4 2020:+36.8 2022:+13.8
+
+T4 new all-time high, stop 1 ATR, 20 days: n630 (6/yr) mean -0.112 ATR t -0.66 win 18% | total -71 ATR, years + 60%, worst year -50
+   1928-45: n  42 -0.768 t-1.6 yrs+ 0% | 1946-81: n 163 +0.125 t+0.3 yrs+ 67% | 1982-00: n 222 -0.119 t-0.5 yrs+ 65% | 2001-26: n 203 -0.159 t-0.5 yrs+ 54%
+   at the big tops: 1929:-0.4 1937:+0.0 1973:+2.7 1987:-2.1 2000:+3.5 2007:+19.4 2020:+36.8 2022:+13.8
+
+T5 new all-time high + CAPE expensive, stop 1 ATR: n488 (5/yr) mean -0.176 ATR t -0.89 win 17% | total -86 ATR, years + 54%, worst year -50
+   1928-45: n  42 -0.768 t-1.6 yrs+ 0% | 1946-81: n 109 +0.325 t+0.6 yrs+ 70% | 1982-00: n 134 -0.424 t-1.6 yrs+ 50% | 2001-26: n 203 -0.159 t-0.5 yrs+ 54%
+   at the big tops: 1929:-0.4 1937:+0.0 1973:+0.0 1987:+0.0 2000:+3.5 2007:+19.4 2020:+36.8 2022:+13.8
+
+T6 new high + CAPE expensive, stop 1 ATR, ride up to 120 days (3 ATR trail): n615 (6/yr) mean -0.275 ATR t -2.18 win 25% | total -169 ATR, years + 45%, worst year -46
+   1928-45: n  41 -0.060 t-0.1 yrs+ 33% | 1946-81: n 127 +0.155 t+0.4 yrs+ 70% | 1982-00: n 139 -0.499 t-2.3 yrs+ 50% | 2001-26: n 308 -0.380 t-2.3 yrs+ 33%
+   at the big tops: 1929:+0.8 1937:-2.8 1973:+0.0 1987:+0.0 2000:+2.9 2007:+11.2 2020:+14.7 2022:+5.0
