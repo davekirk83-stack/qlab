@@ -1,0 +1,7 @@
+05:09:52 job us_open (dry); daily sub-book £500.00, open positions 0
+05:09:53 switch_account: error.switch.accountId-must-be-different
+05:09:54 US500: final close 2026-11-09 7549.9 RSI2 69.8 5d 7507.6 200d 7328.2 ATR 105.5 | IG open 7560.5
+05:09:55 NQ: final close 2026-11-09 27907.6 RSI2 70.3 5d 27629.0 200d 27995.4 ATR 679.0 | IG open 27863.9
+05:09:55 WALLST: final close 2026-11-09 52389.8 RSI2 68.6 5d 52068.3 200d 50692.8 ATR 722.0 | IG open 52559.8
+05:09:56 GOLD: final close 2026-11-09 4114.5 RSI2 74.5 5d 4063.3 200d 4497.2 ATR 81.8 | IG open 4111.7
+05:09:56 done; book £500.00, open []
