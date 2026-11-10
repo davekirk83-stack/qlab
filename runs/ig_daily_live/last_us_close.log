@@ -1,0 +1,5 @@
+20:40:00 job us_close; daily sub-book £500.00, open positions 0
+20:40:02 switch_account: error.switch.accountId-must-be-different
+20:40:03 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
+20:40:03 pot £500.00 (start £500, all books +0.00); entries on
+20:40:06 done; book £500.00, open []
