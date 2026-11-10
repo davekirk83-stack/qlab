@@ -1,0 +1,6 @@
+499 US + 99 UK shares loaded; costs 0.1% per side + funding
+FAIL  S1 Connors stock RSI(2)<5 above 200-day, exit > 5-day avg [stock-dip] — n 42690 (1940/yr), mean +0.031, t +3.29, clustered t +1.21 (t* 3.76, idea #298), year-block CI [-0.044, +0.095], full years + 14/21, last 5y -0.003, last 12m +0.036, costs x1.5 -0.019, random 95th -0.042
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: month (-11 -> +87); VIX band (-11 -> +337); market (-11 -> +190)
+      portfolio (risk-matched): corr +0.51, mean/month +2.66 vs core +2.22, worst 12m -148.9 vs -57.3, in the core's 10 worst months -160.8 -> does not add
+      by index: FTSE100:-0.050(n6910) SP500:+0.047(n35780)
