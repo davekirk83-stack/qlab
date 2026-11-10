@@ -1,0 +1,58 @@
+== 1. Pre-FOMC drift: buy the close before a scheduled FOMC day, sell the FOMC-day close (stop 3 ATR)
+  SPX: n  214 mean +0.080 t +1.35 | years + 19/27 | 2000-12 +0.199 2013-26 -0.032 | last 3y -0.263
+  NDX: n  214 mean +0.144 t +2.70 | years + 21/27 | 2000-12 +0.214 2013-26 +0.078 | last 3y -0.070
+  DJI: n  214 mean +0.051 t +0.90 | years + 18/27 | 2000-12 +0.184 2013-26 -0.075 | last 3y -0.354
+  RUT: n  214 mean +0.049 t +0.82 | years + 17/27 | 2000-12 +0.186 2013-26 -0.081 | last 3y -0.240
+  pooled n  856 mean +0.081 t +2.82 vs every day n13464 mean -0.036 t -5.23
+== 2. Daily books: trades with an event inside the hold vs without
+  RSI2 #51             all n  752 mean +0.245 t +4.35
+      fomc inside: n   83 mean -0.098 t -0.56 | none: n  669 mean +0.287 t +4.85
+      nfp  inside: n  113 mean -0.084 t -0.53 | none: n  639 mean +0.303 t +5.07
+      ev   inside: n  186 mean -0.064 t -0.53 | none: n  566 mean +0.346 t +5.53
+      walk-forward 'skip trades with an event inside': out-of-sample total +184.1 -> +183.2
+  Stoch #61            all n 1774 mean +0.169 t +4.48
+      fomc inside: n  227 mean -0.392 t -3.28 | none: n 1547 mean +0.251 t +6.43
+      nfp  inside: n  288 mean -0.254 t -2.65 | none: n 1486 mean +0.251 t +6.18
+      ev   inside: n  487 mean -0.251 t -3.28 | none: n 1287 mean +0.327 t +7.76
+      walk-forward 'skip trades with an event inside': out-of-sample total +299.2 -> +356.1
+  Double 7s            all n 2076 mean +0.122 t +2.72
+      fomc inside: n  424 mean -0.250 t -2.41 | none: n 1652 mean +0.217 t +4.39
+      nfp  inside: n  581 mean -0.289 t -3.33 | none: n 1495 mean +0.282 t +5.44
+      ev   inside: n  882 mean -0.191 t -2.70 | none: n 1194 mean +0.353 t +6.20
+      walk-forward 'skip trades with an event inside': out-of-sample total +253.2 -> +380.9
+  Turn of quarter      all n  689 mean +0.252 t +4.27
+      fomc inside: n   14 mean +0.364 t +1.50 | none: n  675 mean +0.249 t +4.16
+      nfp  inside: n  264 mean +0.370 t +3.66 | none: n  425 mean +0.178 t +2.48
+      ev   inside: n  278 mean +0.369 t +3.83 | none: n  411 mean +0.172 t +2.33
+      walk-forward 'skip trades with an event inside': out-of-sample total +173.3 -> +173.3
+  US close -> Europe   all n 1140 mean +0.112 t +5.99
+      fomc inside: n   22 mean +0.378 t +3.06 | none: n 1118 mean +0.107 t +5.66
+      nfp  inside: n   69 mean -0.018 t -0.27 | none: n 1071 mean +0.120 t +6.20
+      ev   inside: n   91 mean +0.078 t +1.28 | none: n 1049 mean +0.115 t +5.86
+      walk-forward 'skip trades with an event inside': out-of-sample total +127.5 -> +127.5
+== 3. Known at entry (no duration bias)
+  RSI2 #51             all n  752 mean +0.245 t +4.35
+      event within 1d of entry: n   67 mean +0.113 t +0.51 | not: n  685 mean +0.258 t +4.44 | halves +0.219/+0.050 | WF skip: +184.1 -> +172.0
+      event within 2d of entry: n  116 mean +0.250 t +1.57 | not: n  636 mean +0.244 t +4.06 | halves +0.149/+0.296 | WF skip: +184.1 -> +179.8
+      event within 3d of entry: n  176 mean +0.152 t +1.23 | not: n  576 mean +0.273 t +4.33 | halves -0.134/+0.324 | WF skip: +184.1 -> +168.5
+      event within 5d of entry: n  270 mean +0.223 t +2.26 | not: n  482 mean +0.257 t +3.76 | halves +0.087/+0.320 | WF skip: +184.1 -> +176.3
+  Stoch #61            all n 1774 mean +0.169 t +4.48
+      event within 1d of entry: n  153 mean -0.059 t -0.39 | not: n 1621 mean +0.190 t +4.91 | halves -0.125/-0.001 | WF skip: +299.2 -> +268.3
+      event within 2d of entry: n  285 mean +0.111 t +1.11 | not: n 1489 mean +0.180 t +4.43 | halves -0.019/+0.205 | WF skip: +299.2 -> +270.9
+      event within 3d of entry: n  418 mean +0.068 t +0.82 | not: n 1356 mean +0.200 t +4.76 | halves +0.016/+0.106 | WF skip: +299.2 -> +252.4
+      event within 5d of entry: n  666 mean +0.204 t +3.25 | not: n 1108 mean +0.147 t +3.14 | halves +0.221/+0.190 | WF skip: +299.2 -> +299.2
+  Double 7s            all n 2076 mean +0.122 t +2.72
+      event within 1d of entry: n  178 mean -0.208 t -1.26 | not: n 1898 mean +0.153 t +3.28 | halves -0.279/-0.152 | WF skip: +253.2 -> +268.0
+      event within 2d of entry: n  337 mean -0.104 t -0.88 | not: n 1739 mean +0.166 t +3.42 | halves -0.135/-0.083 | WF skip: +253.2 -> +245.8
+      event within 3d of entry: n  516 mean -0.074 t -0.78 | not: n 1560 mean +0.187 t +3.70 | halves -0.038/-0.096 | WF skip: +253.2 -> +242.7
+      event within 5d of entry: n  790 mean +0.051 t +0.66 | not: n 1286 mean +0.165 t +3.02 | halves +0.212/-0.058 | WF skip: +253.2 -> +253.2
+  Turn of quarter      all n  689 mean +0.252 t +4.27
+      event within 1d of entry: n   98 mean +0.384 t +2.65 | not: n  591 mean +0.230 t +3.57 | halves +1.002/-0.315 | WF skip: +173.3 -> +173.3
+      event within 2d of entry: n  192 mean +0.359 t +3.26 | not: n  497 mean +0.210 t +3.02 | halves +0.489/+0.214 | WF skip: +173.3 -> +173.3
+      event within 3d of entry: n  277 mean +0.368 t +3.80 | not: n  412 mean +0.173 t +2.35 | halves +0.541/+0.176 | WF skip: +173.3 -> +173.3
+      event within 5d of entry: n  618 mean +0.234 t +3.68 | not: n   71 mean +0.402 t +2.91 | halves +0.375/+0.091 | WF skip: +173.3 -> +173.3
+  US close -> Europe   all n 1140 mean +0.112 t +5.99
+      event within 1d of entry: n   91 mean +0.078 t +1.28 | not: n 1049 mean +0.115 t +5.86 | halves +0.119/+0.005 | WF skip: +127.5 -> +127.5
+      event within 2d of entry: n  182 mean +0.101 t +2.08 | not: n  958 mean +0.114 t +5.64 | halves +0.170/-0.022 | WF skip: +127.5 -> +127.5
+      event within 3d of entry: n  276 mean +0.158 t +4.07 | not: n  864 mean +0.097 t +4.57 | halves +0.216/+0.054 | WF skip: +127.5 -> +127.5
+      event within 5d of entry: n  403 mean +0.147 t +4.59 | not: n  737 mean +0.092 t +4.04 | halves +0.210/+0.049 | WF skip: +127.5 -> +127.5
