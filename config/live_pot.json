@@ -58,5 +58,9 @@
       }
     ],
     "tps_auto_restart": true
+  },
+  "min_stake_exception": {
+    "_note": "DK 10 Nov 09:58: US Tech 100 may risk up to 3.5% when IG's minimum stake (with a 2 ATR stop) needs it",
+    "NQ": 0.035
   }
 }

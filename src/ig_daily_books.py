@@ -168,13 +168,13 @@ def notional(s): return sum(p.get("want", p["size"]) * p["entry_ig"] for p in s[
 def size_eq(s):
     """Equity the stakes are sized from: live = the shared pot now (all books' P&L compounded) x this book's share; demo = the sub-book."""
     return s.get("pot_now", START_EQ) * L.share("daily") if LIVE else s["eq"]
-def fit(s, stop_pts, atr_ig, mn):
+def fit(s, stop_pts, atr_ig, mn, name=None):
     """Live (doc 213): (size, want, stop_pts) for a 2%-risk trade. If IG's minimum stake makes the normal stop risk more than 2%, fall back to a
     2 ATR stop (tested: same edge — RSI4 +0.288 vs +0.290, TOM +0.180 vs +0.175 ATR) and take the minimum stake if its risk is within
     max_risk_at_min_stake (config/live_pot.json; = 2% unless DK sets an exception). None = skip."""
     sz, w = size_for(size_eq(s), RISK, stop_pts, mn)
     if not LIVE or sz <= w * 1.0001: return sz, w, stop_pts
-    cap = float(L.C.get("max_risk_at_min_stake", RISK)); st2 = round(min(stop_pts, 2.0 * atr_ig), 1)
+    cap = float(L.C.get("min_stake_exception", {}).get(name, L.C.get("max_risk_at_min_stake", RISK))); st2 = round(min(stop_pts, 2.0 * atr_ig), 1)
     if mn * st2 <= cap * size_eq(s): log(f"fit: minimum {mn}/pt with a 2 ATR stop ({st2} pts) risks £{mn * st2:.2f} ({mn * st2 / size_eq(s):.1%})"); return mn, mn, st2
     log(f"fit: minimum {mn}/pt risks £{mn * st2:.2f} even at 2 ATR (> {cap:.0%}) — skip"); return None
 def size_for(eq, risk_frac, stop_pts, mn):
@@ -265,7 +265,7 @@ def job_close(ig, s, group, hist_fn):
             for bk in CLOSE_BOOKS:
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
-                f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, ig.min_size(epic))
+                f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, ig.min_size(epic), name)
                 if f_: sz, w, stop_pts = f_; open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"{name} failed:", traceback.format_exc())
     if group == "eu":
@@ -309,7 +309,7 @@ def job_open(ig, s, group, hist_fn):
                     open_pos(ig, s, "TPS", name, epic, unit, mid, k, stop_level=round(mid * 0.80, 1), extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)},
                              want=unitw, risk=0.15 * unitw * mid)
                 else:
-                    f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, mn)
+                    f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, mn, name)
                     if f_: sz, w, stop_pts = f_; open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"{name} failed:", traceback.format_exc())
 
