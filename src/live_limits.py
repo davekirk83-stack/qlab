@@ -8,7 +8,7 @@ raises the pot (and every limit with it) automatically (DK 10 Nov 07:53: "I may 
 - day_stop / floor: no new entries once the whole account is down day_stop * pot today, or floor * pot_gbp from the start (back to paper).
 - index_risk_cap: total risk on the five equity indices at once (they move together)."""
 import os, json, datetime as dt
-CFG = os.path.join(os.environ.get("QLAB_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "config", "live_pot.json")
+CFG = os.environ.get("LIVE_POT_CFG") or os.path.join(os.environ.get("QLAB_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "config", "live_pot.json")   # LIVE_POT_CFG: replays only
 C = json.load(open(CFG))
 POT, RISK, EXPO, DAY_STOP, FLOOR, IDX_CAP = (float(C[k]) for k in ("pot_gbp", "risk_per_trade", "exposure_x", "day_stop", "floor", "index_risk_cap"))
 def _now(): return dt.datetime.now(dt.timezone.utc)   # replaceable in replays
