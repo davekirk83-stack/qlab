@@ -1,0 +1,15 @@
+FAIL  S6 bad-news drift SHORT: gap down >= 5% on 2x volume (was above 200-day), 5 days [stock-event-short] — n 2983 (136/yr), mean -0.077, t -2.67, clustered t -1.61 (t* 3.76, idea #303), year-block CI [-0.171, +0.035], full years + 5/21, last 5y -0.159, last 12m -0.100, costs x1.5 -0.112, random 95th -0.195
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr -0.23, mean/month +1.50 vs core +2.22, worst 12m -87.7 vs -57.3, in the core's 10 worst months +82.1 -> does not add
+      by index: FTSE100:-0.154(n221) SP500:-0.071(n2762) | by year: 2005:-9 2006:-0 2007:-6 2008:-17 2009:-37 2010:-1 2011:-13 2012:-15 2013:-52 2014:-18 2015:-4 2016:-45 2017:-17 2018:+46 2019:+44 2020:+84 2021:+2 2022:+2 2023:-50 2024:-66 2025:-28 2026:-31
+FAIL  S7 bad-news drift SHORT: same, 20 days [stock-event-short] — n 2938 (134/yr), mean -0.400, t -7.31, clustered t -4.95 (t* 3.76, idea #304), year-block CI [-0.582, -0.189], full years + 3/21, last 5y -0.480, last 12m -0.350, costs x1.5 -0.435, random 95th -0.635
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: market (-897 -> -779)
+      portfolio (risk-matched): corr -0.26, mean/month +0.46 vs core +2.22, worst 12m -118.8 vs -57.3, in the core's 10 worst months +63.9 -> does not add
+      by index: FTSE100:-0.569(n219) SP500:-0.387(n2719) | by year: 2005:-34 2006:-17 2007:-6 2008:-10 2009:-113 2010:-85 2011:+26 2012:-42 2013:-147 2014:-92 2015:-38 2016:-139 2017:-77 2018:-21 2019:+5 2020:+113 2021:-72 2022:-15 2023:-37 2024:-201 2025:-114 2026:-62
+FAIL  S8 bad-news drift SHORT: any gap down >= 5% on 2x volume, 20 days [stock-event-short] — n 5616 (255/yr), mean -0.527, t -13.90, clustered t -7.61 (t* 3.76, idea #305), year-block CI [-0.672, -0.364], full years + 3/21, last 5y -0.623, last 12m -0.582, costs x1.5 -0.557, random 95th -0.603
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: market (-2180 -> -1526)
+      portfolio (risk-matched): corr -0.22, mean/month -0.44 vs core +2.22, worst 12m -126.7 vs -57.3, in the core's 10 worst months +59.9 -> does not add
+      by index: FTSE100:-0.555(n505) SP500:-0.525(n5111) | by year: 2005:-60 2006:-75 2007:+9 2008:-279 2009:-183 2010:-121 2011:+25 2012:-97 2013:-172 2014:-140 2015:-50 2016:-338 2017:-143 2018:-130 2019:-114 2020:+90 2021:-117 2022:-157 2023:-152 2024:-267 2025:-325 2026:-165
