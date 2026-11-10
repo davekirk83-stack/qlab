@@ -1,0 +1,14 @@
+FAIL  Pre-FOMC drift [IG costs] [calendar-event] — n 856 (32/yr), mean +0.099, t +3.46, clustered t +1.83 (t* 3.75, idea #293), year-block CI [+0.001, +0.198], full years + 20/26, last 5y -0.054, last 12m -0.373, costs x1.5 +0.087, random 95th +0.035
+      failed: clustered t >= t*, last 5y and 12m +
+      portfolio (risk-matched): corr +0.02, mean/month +3.15 vs core +2.22, worst 12m -94.1 vs -57.3, in the core's 10 worst months -27.4 -> does not add
+FAIL  Bear-market dip [IG costs] [dip-bear] — n 1198 (44/yr), mean +0.035, t +0.75, clustered t +0.57 (t* 3.75, idea #294), year-block CI [-0.060, +0.154], full years + 12/26, last 5y +0.014, last 12m -0.160, costs x1.5 +0.024, random 95th +0.033
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      portfolio (risk-matched): corr +0.24, mean/month +2.49 vs core +2.22, worst 12m -79.9 vs -57.3, in the core's 10 worst months +5.3 -> does not add
+WEAK  Gold flight to safety [IG costs] [cross-asset] — n 208 (9/yr), mean +0.165, t +1.37, clustered t +1.37 (t* 3.75, idea #295), year-block CI [+0.026, +0.297], full years + 16/22, last 5y +0.156, last 12m +1.187, costs x1.5 +0.159, random 95th +0.194
+      failed: clustered t >= t*, beats random 95th
+      portfolio (risk-matched): corr +0.09, mean/month +2.96 vs core +2.22, worst 12m -82.0 vs -57.3, in the core's 10 worst months +15.5 -> does not add
+WEAK  Turn of the month [IG costs] [calendar] — n 1854 (69/yr), mean +0.181, t +5.14, clustered t +2.88 (t* 3.76, idea #296), year-block CI [+0.062, +0.314], full years + 18/26, last 5y +0.172, last 12m +0.461, costs x1.5 +0.175, random 95th +0.060
+      failed: clustered t >= t*
+      portfolio (risk-matched): corr +0.79, mean/month +3.69 vs core +2.22, worst 12m -91.8 vs -57.3, in the core's 10 worst months -180.5 -> does not add
+PASS  RSI(4) dip [IG costs] [dip] — n 1262 (49/yr), mean +0.300, t +5.70, clustered t +4.36 (t* 3.76, idea #297), year-block CI [+0.137, +0.443], full years + 18/25, last 5y +0.391, last 12m +0.248, costs x1.5 +0.287, random 95th +0.066
+      failed: none

@@ -7,9 +7,15 @@ import fifty_ideas as F, review2_fixes as RF, review2_new_books as N, review_ide
 IX8, TR6 = F.IXG, RF.TR6; ALL = N.ALL
 NONCRYPTO = [k for k in ALL if not k.endswith("USD") or k in ("EURUSD", "GBPUSD", "AUDUSD")]
 up = lambda d: d.close > d.close.rolling(200).mean(); r4 = lambda d: F.rsi(d.close, 4)
+# doc 219 (DK 10:56): IG's real spreads, charged as ONE FULL SPREAD PER SIDE (about double what IG takes per round trip) — points at
+# today's levels: US 500 0.5/6,800, US Tech 100 1/25,000, Wall St 2.4/47,000, Germany 40 1.4/24,000, FTSE 1/9,700, gold 0.3/4,000;
+# Russell/Japan/others keep the old gate figure. The 1.5x-cost check stays on top. Set STD_COSTS=gate to use the old 0.02%/side.
+IG_COST = {"SPX": .000075, "NDX": .00004, "DJI": .00005, "DAX": .00006, "FTSE": .0001, "GOLD": .000075}
+USE_IG = os.environ.get("STD_COSTS", "ig") == "ig"
 class cost:
     def __init__(s, cm): s.cm = cm
-    def __enter__(s): s.old = dict(F.COST); [F.COST.__setitem__(k, v * s.cm) for k, v in s.old.items()]
+    def __enter__(s):
+        s.old = dict(F.COST); base = {**s.old, **(IG_COST if USE_IG else {})}; [F.COST.__setitem__(k, v * s.cm) for k, v in base.items()]
     def __exit__(s, *a): F.COST.clear(); F.COST.update(s.old)
 def mk(rows): return pd.DataFrame(rows, columns=["t", "R", "m"])
 def rsi4(cm=1.0, rnd=None):
