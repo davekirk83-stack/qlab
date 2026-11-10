@@ -70,7 +70,8 @@ class Pot:
     def pot(self): return self.base + (self.change if C.get("compound", True) else 0.0)
     def entries_ok(self):
         """Day stop / floor for every book EXCEPT TPS, which has its own stop (tps_stop): TPS P&L is taken out first."""
-        tt, td = tps_pnl(self.daily); ch, today = self.change - tt, self.today - td
+        tt, td = tps_pnl(self.daily) if not C.get("risk_tiers", {}).get("tps_in_floor", False) else (0.0, 0.0)
+        ch, today = self.change - tt, self.today - td
         if ch < -FLOOR * self.base: return False, f"books (ex TPS) down £{-ch:.2f} since start (-{FLOOR:.0%} of £{self.base:.0f}): back to paper"
         if today < -DAY_STOP * (self.pot - self.today): return False, f"books (ex TPS) down £{-today:.2f} today (-{DAY_STOP:.0%}): no new entries today"
         return True, ""

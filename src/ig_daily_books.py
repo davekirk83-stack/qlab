@@ -249,6 +249,7 @@ def tps_check(ig, s, hist_fn=None):
 # ------------------------------------------------------------------ jobs
 OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
 CLOSE_BOOKS = ("TOM", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
+TPS_RUNGS = int(L.C.get("tps_rungs", 4)) if LIVE else 4   # doc 216: 3 rungs keeps ~77% of the profit, halves the worst loss
 IDX_RISK_CAP = L.IDX_CAP if LIVE else 0.06   # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
 
 def job_close(ig, s, group, hist_fn):
@@ -297,7 +298,7 @@ def job_open(ig, s, group, hist_fn):
                 if why is None and p["days"] >= MAXD[p["book"]]: why = f"{p['days']} days"
                 if why: close_pos(ig, s, p, mid, why, day.date())
             tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
-            if tps and len(tps) < 4 and b.close < tps[-1].get("sig_close", 1e18):
+            if tps and len(tps) < TPS_RUNGS and b.close < tps[-1].get("sig_close", 1e18):
                 n_ = len(tps) + 1
                 open_pos(ig, s, "TPS", name, epic, max(ig.min_size(epic), round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"],
                          extra={"unit": tps[0]["unit"], "unitw": tps[0]["unitw"], "sig_close": float(b.close)}, want=tps[0]["unitw"] * n_, risk=0.15 * tps[0]["unitw"] * n_ * mid)
@@ -306,7 +307,7 @@ def job_open(ig, s, group, hist_fn):
                 if not bool(entries(d, bk).iloc[-1]): continue
                 mn = ig.min_size(epic)
                 if bk == "TPS":   # whole ladder (1+2+3+4 = 10 units) loses 2% of the book at the 15% kill
-                    unitw = TPS_RISK * size_eq(s) / (10 * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
+                    unitw = TPS_RISK * size_eq(s) / (sum(range(1, TPS_RUNGS + 1)) * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
                     open_pos(ig, s, "TPS", name, epic, unit, mid, k, stop_level=round(mid * 0.80, 1), extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)},
                              want=unitw, risk=0.15 * unitw * mid)
                 else:
