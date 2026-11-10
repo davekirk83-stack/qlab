@@ -1,0 +1,57 @@
+name: IG daily books (doc 204 — RSI2, TPS ladder, calendar books, US close -> Europe; DEMO ONLY)
+on:
+  workflow_dispatch:
+    inputs:
+      job: { description: "eu_open / eu_close / us_close", default: "us_close" }
+      dry: { description: "dry run (no orders)", default: "true" }
+  schedule:
+    # GitHub cron is UTC-only and often fires 20-40 min late, so each job starts early and waits for its target time.
+    # Both DST variants are listed; the script's "already ran today" check makes the second a no-op.
+    - cron: "45 6 * * 1-5"    # eu_open  (target 08:05 London)
+    - cron: "45 7 * * 1-5"
+    - cron: "40 14 * * 1-5"   # eu_close (target 16:10 London)
+    - cron: "40 15 * * 1-5"
+    - cron: "50 18 * * 1-5"   # us_close (target 15:40 New York)
+    - cron: "50 19 * * 1-5"
+permissions:
+  contents: write
+concurrency:
+  group: ig-daily
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q trading-ig pandas numpy yfinance
+      - name: Run (demo account only; secrets never printed)
+        env:
+          IG_MODE: demo
+          IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
+          IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
+        run: |
+          JOB="${{ github.event.inputs.job }}"; DRY="${{ github.event.inputs.dry }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            DRY="false"
+            case "${{ github.event.schedule }}" in
+              "45 6 * * 1-5"|"45 7 * * 1-5")   JOB=eu_open;  TZN=Europe/London;    T="08:05";;
+              "40 14 * * 1-5"|"40 15 * * 1-5") JOB=eu_close; TZN=Europe/London;    T="16:10";;
+              *)                               JOB=us_close; TZN=America/New_York; T="15:40";;
+            esac
+            WAIT=$(( $(TZ=$TZN date -d "today $T" +%s) - $(date -u +%s) ))
+            if [ "$WAIT" -gt 7200 ]; then echo "other DST variant (target $T $TZN is $WAIT s away) — exit"; exit 0; fi
+            if [ "$WAIT" -lt -1500 ]; then echo "cron fired too late for $T $TZN — exit"; exit 0; fi
+            if [ "$WAIT" -gt 0 ]; then echo "waiting $WAIT s for $T $TZN"; sleep $WAIT; fi
+          fi
+          [ "$DRY" = "true" ] && DRYF="--dry" || DRYF=""
+          QLAB_ROOT=$PWD python src/ig_daily_books.py "$JOB" $DRYF
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "ig-daily"; git config user.email "ig-daily@users.noreply.github.com"
+          git add -f runs/ig_daily; git commit -m "ig daily books $(date -u +%Y-%m-%dT%H:%M)" || true
+          git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
