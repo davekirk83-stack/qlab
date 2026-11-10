@@ -10,7 +10,8 @@ market_search_6.py, ladder_daily_tps.py). One or two per family, so they don't a
   HALLO       month-end before Nov..Apr -> buy at the close, hold 21 days, stop 8 ATR (Halloween / sell in May)
   USCL #47    US 500 closed in the top 10% of its range and up 1% -> buy Germany 40 and FTSE 100 at the European open, sell at the close; stop 2 ATR
 
-Jobs (one GitHub Actions run each, .github/workflows/ig-daily.yml):
+Jobs (one GitHub Actions run each, .github/workflows/ig-daily.yml). Since doc 206: RSI2 and TPS decide on the FINAL close and trade at the next open
+(eu_open for Germany 40 / FTSE 100, us_open 09:35 New York for the US indices and gold); the calendar books stay at the close:
   eu_open   08:05 London   USCL entries
   eu_close  16:10 London   Germany 40 + FTSE 100: exits, then entries; USCL exits
   us_close  15:40 New York US 500, US Tech 100, Wall Street, gold: exits, then entries
@@ -168,19 +169,27 @@ def reconcile(ig, s, day):
                 "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
         log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
 
-def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None):
+def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None):
     want = size if want is None else want
     if notional(s) + want * mid > EXPO * s["eq"]: log(f"SKIP {book} {name}: exposure cap 5x"); return None
+    if name in IDX and risk is not None:
+        held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
+        if held + risk > IDX_RISK_CAP * s["eq"]: log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > 6% of the book"); return None
     r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level)
     if r.get("dealStatus") not in ("ACCEPTED", "DRY"): log(f"REJECTED {book} {name}: {r.get('reason')}"); return None
     lvl = float(r["level"]) if r.get("level") else mid
     p = {"book": book, "market": name, "deal_id": r["dealId"], "size": size, "entry_ig": lvl, "entered": utcnow().strftime("%Y-%m-%d"), "days": 0,
-         "stop_ig": stop_level if stop_level else lvl - stop_pts, "k": k, "want": want}
+         "stop_ig": stop_level if stop_level else lvl - stop_pts, "k": k, "want": want, "risk": risk or 0.0}
     if extra: p.update(extra)
     s["pos"].append(p); log(f"OPEN {book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
 
 # ------------------------------------------------------------------ jobs
+OPEN_BOOKS = ("RSI2", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
+CLOSE_BOOKS = ("TOQ", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
+IDX_RISK_CAP = 0.06                      # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
+
 def job_close(ig, s, group, hist_fn):
+    """Calendar books: exits after their fixed number of days, entries on their known dates; USCL exits at the European close."""
     day = pd.Timestamp(utcnow().date())
     for name, (tk, epic, g) in MKT.items():
         if g != group: continue
@@ -188,41 +197,59 @@ def job_close(ig, s, group, hist_fn):
             snap = ig.snap(epic)
             if snap.get("marketStatus") != "TRADEABLE": log(f"{name}: market {snap.get('marketStatus')} — skipped"); continue
             d, k, mid = today_bar(hist_fn(name), snap, day); b = d.iloc[-1]; atr_ig = b.atr / k
-            log(f"{name}: close~{b.close:.1f} RSI2 {b.r2:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG mid {mid:.1f}")
-            # exits first
-            for p in [p for p in s["pos"] if p["market"] == name and p["book"] != "USCL"]:
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in CLOSE_BOOKS]:
                 p["days"] = int((d.index > pd.Timestamp(p["entered"])).sum())
-                bk = p["book"]; why = None
-                if bk == "RSI2" and b.close > b.ma5: why = "close above 5-day avg"
-                if bk == "TPS":
-                    rungs = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
-                    avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
-                    if b.r2 > 70: why = "RSI2 > 70"
-                    elif mid <= avg * 0.85: why = "15% below avg"
-                if why is None and p["days"] >= MAXD.get(bk, 99): why = f"{p['days']} days"
-                if why: close_pos(ig, s, p, mid, why, day.date())
-            # TPS: add a rung on a lower close
-            tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
-            if tps and len(tps) < 4:
-                last = tps[-1]["entry_ig"]
-                if mid < last:
-                    n_ = len(tps) + 1; mn = ig.min_size(epic)
-                    open_pos(ig, s, "TPS", name, epic, max(mn, round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"], extra={"unit": tps[0]["unit"]}, want=tps[0]["unitw"] * n_)
-            # entries
-            for bk, mk in BOOKS.items():
-                if name not in mk or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
+                if p["days"] >= MAXD[p["book"]]: close_pos(ig, s, p, mid, f"{p['days']} days", day.date())
+            for bk in CLOSE_BOOKS:
+                if name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
-                mn = ig.min_size(epic)
-                if bk == "TPS":   # whole ladder (1+2+3+4 = 10 units) loses 2% of the book at the 15% kill
-                    unitw = TPS_RISK * s["eq"] / (10 * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
-                    open_pos(ig, s, "TPS", name, epic, unit, mid, k, stop_level=round(mid * 0.80, 1), extra={"unit": unit, "unitw": unitw}, want=unitw)   # disaster stop below the kill
-                else:
-                    stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, mn); open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w)
+                stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic))
+                open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"{name} failed:", traceback.format_exc())
     if group == "eu":
         for p in [p for p in s["pos"] if p["book"] == "USCL"]:
             try: close_pos(ig, s, p, (lambda sn: (float(sn["bid"]) + float(sn["offer"])) / 2)(ig.snap(MKT[p["market"]][1])), "European close", day.date())
             except Exception: log("USCL close failed:", traceback.format_exc())
+
+def job_open(ig, s, group, hist_fn):
+    """Dip books (RSI2, TPS): every decision uses the last FINAL daily bar (yesterday's close); exits, ladder rungs and entries are all
+    traded now, at the open. Backtest of exactly this (doc 206): RSI2 t 4.14, 19/26 years; TPS t 4.85, 21/26 years."""
+    day = pd.Timestamp(utcnow().date())
+    for name, (tk, epic, g) in MKT.items():
+        if g != group: continue
+        try:
+            snap = ig.snap(epic)
+            if snap.get("marketStatus") != "TRADEABLE": log(f"{name}: market {snap.get('marketStatus')} — skipped"); continue
+            h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
+            mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
+            log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS]:
+                p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
+                if p["book"] == "RSI2" and b.close > b.ma5: why = "closed above 5-day avg"
+                if p["book"] == "TPS":
+                    rungs = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
+                    avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
+                    if b.r2 > 70: why = "RSI2 > 70"
+                    elif b.close / k <= avg * 0.85: why = "15% below avg"
+                if why is None and p["days"] >= MAXD[p["book"]]: why = f"{p['days']} days"
+                if why: close_pos(ig, s, p, mid, why, day.date())
+            tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
+            if tps and len(tps) < 4 and b.close < tps[-1].get("sig_close", 1e18):
+                n_ = len(tps) + 1
+                open_pos(ig, s, "TPS", name, epic, max(ig.min_size(epic), round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"],
+                         extra={"unit": tps[0]["unit"], "unitw": tps[0]["unitw"], "sig_close": float(b.close)}, want=tps[0]["unitw"] * n_, risk=0.15 * tps[0]["unitw"] * n_ * mid)
+            for bk in OPEN_BOOKS:
+                if name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
+                if not bool(entries(d, bk).iloc[-1]): continue
+                mn = ig.min_size(epic)
+                if bk == "TPS":   # whole ladder (1+2+3+4 = 10 units) loses 2% of the book at the 15% kill
+                    unitw = TPS_RISK * s["eq"] / (10 * 0.15 * mid); unit = max(mn, math.floor(unitw * 100) / 100)
+                    open_pos(ig, s, "TPS", name, epic, unit, mid, k, stop_level=round(mid * 0.80, 1), extra={"unit": unit, "unitw": unitw, "sig_close": float(b.close)},
+                             want=unitw, risk=0.15 * unitw * mid)
+                else:
+                    stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, mn)
+                    open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
+        except Exception: log(f"{name} failed:", traceback.format_exc())
 
 def job_eu_open(ig, s, hist_fn):
     spx = add_ind(hist_fn("US500")); spx = spx[spx.index < pd.Timestamp(utcnow().date())]; y = spx.iloc[-1]; prev = spx.close.iloc[-2]
@@ -234,7 +261,7 @@ def job_eu_open(ig, s, hist_fn):
             epic = MKT[name][1]; snap = ig.snap(epic); d, k, mid = today_bar(hist_fn(name), snap, pd.Timestamp(utcnow().date()))
             stop_pts = round(STOP_ATR["USCL"] * d.atr.iloc[-2] / k, 1)
             if not any(q["book"] == "USCL" and q["market"] == name for q in s["pos"]):
-                sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic)); open_pos(ig, s, "USCL", name, epic, sz, mid, k, stop_pts=stop_pts, want=w)
+                sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic)); open_pos(ig, s, "USCL", name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
         except Exception: log(f"USCL {name} failed:", traceback.format_exc())
 
 # ------------------------------------------------------------------ gold London breakout (doc 197/198: WEAK, n104, +8 pts/trade)
@@ -312,7 +339,8 @@ def main():
     tag = f"{job}:{utcnow():%Y-%m-%d}"
     if not dry and tag in s.setdefault("done", []): log(f"{job} already ran today — exit (backup cron)"); return
     ig = IG(dry); reconcile(ig, s, utcnow().date())
-    if job == "eu_open": job_eu_open(ig, s, hist_fn)
+    if job == "eu_open": job_eu_open(ig, s, hist_fn); job_open(ig, s, "eu", hist_fn)
+    elif job == "us_open": job_open(ig, s, "us", hist_fn)
     elif job in ("eu_close", "us_close"): job_close(ig, s, job[:2], hist_fn)
     elif job == "gold_ldn": job_gold_ldn(ig, s)
     elif job == "gold_flat": job_gold_flat(ig, s)
