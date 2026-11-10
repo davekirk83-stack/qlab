@@ -21,6 +21,6 @@ TPS at minimum stakes is most of the money, but its worst stretch (−£196, ~40
 Running it would need DK to set its own loss limit for that book. DK's decision.
 
 ## US Tech 100 exception (DK 10 Nov 09:58: "make an exception for the US Tech 100 up to 3.5%")
-`min_stake_exception: {"NQ": 0.035}` in config/live_pot.json. When IG's minimum stake is more than 2% at the normal stop, the US Tech 100
+`min_stake_exception: {"NQ": 0.035, "WALLST": 0.035}` (Wall Street added DK 10:00) in config/live_pot.json. When IG's minimum stake is more than 2% at the normal stop, the US Tech 100
 trade takes the 2 ATR stop (same edge) and may risk up to 3.5% (today ~2.6%: 0.01/pt x 2 x 640-pt ATR = £12.80). Other markets stay at 2%.
 400-day replay, all live books incl. TPS at minimum: US Tech 100 50 trades +£186; all markets +£719.
