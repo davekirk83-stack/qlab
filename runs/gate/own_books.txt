@@ -1,0 +1,21 @@
+== 1. RSI(4) dip: result per trade by VIX at the signal (next-open in/out)
+   VIX <15    n 323 mean +0.194 ATR t +1.96 | years + 11/16 | worst trade -5.47
+   VIX 15-20  n 495 mean +0.157 ATR t +1.84 | years + 13/24 | worst trade -7.61
+   VIX 20-25  n 267 mean +0.511 ATR t +4.44 | years + 15/24 | worst trade -4.15
+   VIX 25-30  n 112 mean +0.178 ATR t +0.97 | years + 11/18 | worst trade -3.70
+   VIX >30    n  65 mean +0.862 ATR t +3.89 | years + 10/13 | worst trade -3.32
+   2000-13: VIX >= 20 +0.337 (n209) vs VIX < 20 +0.322 (n351)
+   2014-26: VIX >= 20 +0.604 (n235) vs VIX < 20 +0.058 (n467)
+
+FAIL  Bear-market dip: RSI(4)<20 below 200-day, 5 days [dip-bear] — n 1198 (44/yr), mean +0.021, t +0.45, clustered t +0.34 (t* 3.75, idea #290), year-block CI [-0.079, +0.146], full years + 11/26, last 5y +0.001, last 12m -0.177, costs x1.5 +0.003, random 95th +0.020
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      walk-forward switches that help: market (+8 -> +29)
+      portfolio (risk-matched): corr +0.24, mean/month +2.15 vs core +1.99, worst 12m -83.2 vs -60.3, in the core's 10 worst months +4.3 -> does not add
+FAIL  Pre-FOMC drift: US indices, close day before -> close decision day [calendar-event] — n 856 (32/yr), mean +0.081, t +2.82, clustered t +1.49 (t* 3.75, idea #291), year-block CI [-0.021, +0.179], full years + 20/26, last 5y -0.071, last 12m -0.391, costs x1.5 +0.060, random 95th +0.003
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: VIX band (+40 -> +67); paradigm 3y (+68 -> +78)
+      portfolio (risk-matched): corr +0.02, mean/month +2.75 vs core +1.99, worst 12m -99.2 vs -60.3, in the core's 10 worst months -29.5 -> does not add
+FAIL  Gold flight to safety: US 500 -2% day -> gold 3 days [cross-asset] — n 208 (9/yr), mean +0.129, t +1.07, clustered t +1.07 (t* 3.75, idea #292), year-block CI [-0.012, +0.258], full years + 16/22, last 5y +0.127, last 12m +1.165, costs x1.5 +0.105, random 95th +0.211
+      failed: clustered t >= t*, year-block CI > 0, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.10, mean/month +2.57 vs core +1.99, worst 12m -87.2 vs -60.3, in the core's 10 worst months +13.5 -> does not add

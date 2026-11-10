@@ -1,0 +1,4 @@
+two bands: VIX < 20 / >= 20: out of sample 2008-26 | flat: total +283 ATR, monthly Sharpe 0.82, worst 12m -55.4, years + 14/19 | VIX-sized: total +325, Sharpe 0.77, worst 12m -61.1, years + 13/19 | avg multiplier 1.07
+   multipliers now: {0: 0.61, 1: 1.71}
+five bands: out of sample 2008-26 | flat: total +283 ATR, monthly Sharpe 0.82, worst 12m -55.4, years + 14/19 | VIX-sized: total +244, Sharpe 0.61, worst 12m -66.0, years + 13/19 | avg multiplier 0.96
+   multipliers now: {0: 0.77, 1: 0.57, 2: 1.94, 3: 0.67, 4: 2.12}
