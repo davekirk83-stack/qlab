@@ -69,3 +69,22 @@ Each variant was run on the same 2,051 trades: target 3%, stop 4%, 3 days, with 
 **Rule for the dry run:** take half off at +1% with a resting limit (maker, no fee). Keep the stop 4% under the cluster. **No breakeven stop.**
 
 Script: `src/liq_book_be.py`. Output: `runs/gate/liq_book_be.txt`.
+
+## Running: Revolut X LIQ book (10 Nov, 22:25)
+
+The book is built as `src/revx_liq.py` and runs every 15 minutes via `.github/workflows/revx-liq.yml`, one minute after each bar closes.
+
+| Item | Setting |
+|---|---|
+| Size | £50 a trade (10% of the £500 Revolut X book, CAP-021), one trade at a time |
+| Entry | resting limit buys (maker, 0% fee) at the setup cluster and 1% lower |
+| Exits | resting sells, half at +1% and the rest at +3%; stop −4%, market; 3-day limit, market |
+| Filters | 200-day regime; CPI blackout (out before the 08:30 release) |
+| Levels | from Coinbase 15-minute volume, with Revolut X as fallback |
+| Not included | the toxicity skip (these feeds carry no taker buy/sell split) |
+| Mode | **dry** by default. Live only when DK sets the repo variable `REVX_LIQ_LIVE_ENABLED` = `true`. Claude never sets it. |
+
+**First runs:**
+- 22:24: resting buys placed at 72,861 (a 100× cluster) and 72,132. That is the same area as DK's 72,850 level today.
+- 22:25 (GitHub): ran clean from the saved state.
+- Bench test: the whole cycle was simulated — fill, half off, target exit, then a new resting buy — and it behaved correctly.
