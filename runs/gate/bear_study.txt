@@ -1,0 +1,90 @@
+== A. Drawdowns >= 10% from a closing high, 2000-2026 (depth / trading days peak->trough / days trough->recovery / biggest rally inside)
+  US 500: 8 episodes
+     2000-03-24 -> 2002-10-09  -49.1%  BEAR       fall  637 days, recovery     1166 days, biggest rally inside the fall 21.4%
+     2007-10-09 -> 2009-03-09  -56.8%  BEAR       fall  355 days, recovery     1021 days, biggest rally inside the fall 24.2%
+     2015-05-21 -> 2016-02-11  -14.2%  correction fall  183 days, recovery      103 days, biggest rally inside the fall 13.0%
+     2018-01-26 -> 2018-02-08  -10.2%  correction fall    9 days, recovery      137 days, biggest rally inside the fall  1.7%
+     2018-09-20 -> 2018-12-24  -19.8%  correction fall   65 days, recovery       81 days, biggest rally inside the fall  6.5%
+     2020-02-19 -> 2020-03-23  -33.9%  CRASH      fall   23 days, recovery      103 days, biggest rally inside the fall  9.3%
+     2022-01-03 -> 2022-10-12  -25.4%  BEAR       fall  195 days, recovery      318 days, biggest rally inside the fall 17.4%
+     2025-02-19 -> 2025-04-08  -18.9%  correction fall   34 days, recovery       55 days, biggest rally inside the fall  4.6%
+  US Tech 100: 17 episodes
+     2000-01-03 -> 2000-01-06  -11.9%  correction fall    3 days, recovery        8 days, biggest rally inside the fall  0.0%
+     2000-01-21 -> 2000-01-28  -10.5%  correction fall    5 days, recovery        4 days, biggest rally inside the fall  2.7%
+     2000-03-27 -> 2002-10-07  -82.9%  BEAR       fall  634 days, recovery     3292 days, biggest rally inside the fall 52.7%
+     2015-11-03 -> 2016-02-09  -16.3%  correction fall   66 days, recovery      118 days, biggest rally inside the fall  4.8%
+     2018-01-26 -> 2018-02-08  -10.2%  correction fall    9 days, recovery       20 days, biggest rally inside the fall  2.6%
+     2018-03-12 -> 2018-04-02  -10.4%  correction fall   14 days, recovery       44 days, biggest rally inside the fall  3.8%
+     2018-08-29 -> 2018-12-24  -23.0%  BEAR       fall   80 days, recovery       78 days, biggest rally inside the fall  8.2%
+     2019-05-03 -> 2019-06-03  -11.1%  correction fall   20 days, recovery       22 days, biggest rally inside the fall  3.5%
+     2020-02-19 -> 2020-03-20  -28.0%  CRASH      fall   22 days, recovery       53 days, biggest rally inside the fall 10.1%
+     2020-09-02 -> 2020-09-23  -12.8%  correction fall   14 days, recovery       48 days, biggest rally inside the fall  3.3%
+     2021-02-12 -> 2021-03-08  -10.9%  correction fall   15 days, recovery       23 days, biggest rally inside the fall  3.5%
+     2021-11-19 -> 2022-12-28  -35.6%  BEAR       fall  277 days, recovery      243 days, biggest rally inside the fall 22.8%
+     2024-07-10 -> 2024-08-07  -13.6%  correction fall   20 days, recovery       64 days, biggest rally inside the fall  3.0%
+     2025-02-19 -> 2025-04-08  -22.9%  CRASH      fall   34 days, recovery       52 days, biggest rally inside the fall  5.5%
+     2025-10-29 -> 2026-03-30  -12.1%  correction fall  103 days, recovery       11 days, biggest rally inside the fall  8.2%
+     2026-06-02 -> 2026-07-29  -11.3%  correction fall   39 days, recovery       38 days, biggest rally inside the fall  7.1%
+     2026-10-06 -> 2026-11-05  -14.7%  correction fall   22 days, recovery  not yet days, biggest rally inside the fall  3.0%
+  Wall St: 9 episodes
+     2000-01-14 -> 2002-10-09  -37.8%  BEAR       fall  685 days, recovery     1003 days, biggest rally inside the fall 29.1%
+     2007-10-09 -> 2009-03-09  -53.8%  BEAR       fall  355 days, recovery     1004 days, biggest rally inside the fall 19.6%
+     2015-05-19 -> 2016-02-11  -14.5%  correction fall  185 days, recovery      104 days, biggest rally inside the fall 14.4%
+     2018-01-26 -> 2018-03-23  -11.6%  correction fall   39 days, recovery      125 days, biggest rally inside the fall  7.7%
+     2018-10-03 -> 2018-12-24  -18.8%  correction fall   56 days, recovery      131 days, biggest rally inside the fall  7.2%
+     2020-02-12 -> 2020-03-23  -37.1%  CRASH      fall   27 days, recovery      166 days, biggest rally inside the fall  9.4%
+     2022-01-04 -> 2022-09-30  -21.9%  BEAR       fall  186 days, recovery      302 days, biggest rally inside the fall 14.3%
+     2024-12-04 -> 2025-04-08  -16.4%  correction fall   84 days, recovery       94 days, biggest rally inside the fall  7.0%
+     2026-02-10 -> 2026-03-27  -10.0%  correction fall   32 days, recovery       38 days, biggest rally inside the fall  1.9%
+  DAX: 10 episodes
+     2000-03-07 -> 2003-03-12  -72.7%  BEAR       fall  763 days, recovery     1090 days, biggest rally inside the fall 44.2%
+     2007-07-16 -> 2009-03-06  -54.8%  BEAR       fall  416 days, recovery     1058 days, biggest rally inside the fall 22.9%
+     2014-07-03 -> 2014-10-15  -14.5%  correction fall   73 days, recovery       37 days, biggest rally inside the fall  8.8%
+     2015-04-10 -> 2016-02-11  -29.3%  BEAR       fall  213 days, recovery      305 days, biggest rally inside the fall 20.7%
+     2018-01-23 -> 2018-12-27  -23.4%  BEAR       fall  234 days, recovery      269 days, biggest rally inside the fall 11.7%
+     2020-02-19 -> 2020-03-18  -38.8%  CRASH      fall   20 days, recovery      197 days, biggest rally inside the fall  2.3%
+     2022-01-05 -> 2022-09-29  -26.4%  BEAR       fall  189 days, recovery      162 days, biggest rally inside the fall 15.5%
+     2023-07-28 -> 2023-10-27  -10.8%  correction fall   65 days, recovery       27 days, biggest rally inside the fall  2.6%
+     2025-03-06 -> 2025-04-09  -16.0%  correction fall   24 days, recovery       19 days, biggest rally inside the fall  4.7%
+     2026-01-13 -> 2026-03-27  -12.3%  correction fall   53 days, recovery       66 days, biggest rally inside the fall  4.0%
+  FTSE: 8 episodes
+     2000-03-24 -> 2000-04-17  -11.0%  correction fall   16 days, recovery       94 days, biggest rally inside the fall  3.0%
+     2000-09-04 -> 2003-03-12  -51.6%  BEAR       fall  637 days, recovery     2573 days, biggest rally inside the fall 21.1%
+     2013-05-22 -> 2013-06-24  -11.9%  correction fall   22 days, recovery      171 days, biggest rally inside the fall  1.6%
+     2014-05-14 -> 2014-12-15  -10.1%  correction fall  151 days, recovery       43 days, biggest rally inside the fall  9.0%
+     2015-04-27 -> 2016-02-11  -22.1%  BEAR       fall  202 days, recovery      222 days, biggest rally inside the fall  9.2%
+     2018-01-12 -> 2018-03-26  -11.4%  correction fall   51 days, recovery       35 days, biggest rally inside the fall  2.9%
+     2018-05-22 -> 2020-03-23  -36.6%  BEAR       fall  466 days, recovery      722 days, biggest rally inside the fall 16.7%
+     2025-03-03 -> 2025-04-09  -13.4%  correction fall   27 days, recovery       42 days, biggest rally inside the fall  2.7%
+
+== B/C. Short books through the standard test (IG spreads, real short funding)
+FAIL  B1 bear-rally fade: below 200d, RSI(4) > 75 -> short, exit RSI(4) < 45 / 10d [short] — n 472 (20/yr), mean +0.044, t +0.64, clustered t +0.51 (t* 3.76, idea #306), year-block CI [-0.146, +0.211], full years + 10/23, last 5y -0.207, last 12m -0.816, costs x1.5 +0.033, random 95th +0.007
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      walk-forward switches that help: month (+1 -> +3); VIX band (+1 -> +18)
+      portfolio (risk-matched): corr -0.11, mean/month +2.44 vs core +2.22, worst 12m -68.7 vs -57.3, in the core's 10 worst months +3.8 -> does not add
+      by regime: BEAR n239 +0.053 | BULL-CALM n90 -0.420 | BULL-NERVOUS n31 +0.356 | SHOCK n112 +0.311
+FAIL  B2 trend short: 50d crosses below 200d (close < 200d), exit close > 50d [short] — n 103 (4/yr), mean -0.641, t -3.24, clustered t -3.17 (t* 3.76, idea #307), year-block CI [-1.150, -0.035], full years + 5/22, last 5y -0.746, last 12m -1.157, costs x1.5 -0.652, random 95th -0.060
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: month (-56 -> -53); VIX band (-56 -> -23); market (-56 -> -26)
+      portfolio (risk-matched): corr -0.09, mean/month +0.98 vs core +2.22, worst 12m -110.9 vs -57.3, in the core's 10 worst months +24.2 -> does not add
+      by regime: BEAR n50 -0.257 | BULL-CALM n22 -0.934 | BULL-NERVOUS n8 -0.468 | SHOCK n23 -1.254
+FAIL  B3 breakdown short: below 200d, close < 20-day low, exit > 10-day high [short] — n 470 (17/yr), mean -0.378, t -2.82, clustered t -2.33 (t* 3.77, idea #308), year-block CI [-0.970, +0.205], full years + 4/26, last 5y -0.994, last 12m -1.816, costs x1.5 -0.391, random 95th -0.334
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: month (-191 -> -64); VIX band (-191 -> -49)
+      portfolio (risk-matched): corr -0.18, mean/month +1.38 vs core +2.22, worst 12m -112.0 vs -57.3, in the core's 10 worst months -16.2 -> does not add
+      by regime: BEAR n213 +0.237 | BULL-CALM n91 -0.910 | BULL-NERVOUS n56 -1.013 | SHOCK n110 -0.806
+FAIL  B4 crash continuation: 5-day fall >= 6% and VIX > 25 -> short 3 days [short] — n 463 (23/yr), mean -0.227, t -3.32, clustered t -2.01 (t* 3.77, idea #309), year-block CI [-0.448, -0.007], full years + 4/19, last 5y -0.265, last 12m -0.432, costs x1.5 -0.235, random 95th +0.004
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr +0.02, mean/month +1.13 vs core +2.22, worst 12m -115.3 vs -57.3, in the core's 10 worst months +3.6 -> does not add
+      by regime: BEAR n92 -0.138 | BULL-NERVOUS n37 -0.346 | SHOCK n334 -0.239
+FAIL  B5 failed rally: below 200d, 3 higher closes ending above 20d avg -> short 5 days [short] — n 542 (23/yr), mean -0.064, t -1.12, clustered t -0.89 (t* 3.77, idea #310), year-block CI [-0.243, +0.065], full years + 11/23, last 5y -0.018, last 12m -0.642, costs x1.5 -0.075, random 95th -0.055
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +, beats random 95th
+      walk-forward switches that help: none
+      portfolio (risk-matched): corr -0.11, mean/month +1.83 vs core +2.22, worst 12m -93.5 vs -57.3, in the core's 10 worst months -0.7 -> does not add
+      by regime: BEAR n288 -0.030 | BULL-CALM n99 -0.400 | BULL-NERVOUS n23 -0.238 | SHOCK n132 +0.145
+FAIL  B6 TPS short ladder below 200d (% of budget) [short] — n 748 (29/yr), mean +0.158, t +2.24, clustered t +1.78 (t* 3.77, idea #311), year-block CI [-0.191, +0.398], full years + 15/25, last 5y -0.566, last 12m -6.245, costs x1.5 +0.147, random 95th +0.158
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +, beats random 95th
+      walk-forward switches that help: month (+33 -> +54); VIX band (+33 -> +54); paradigm 3y (+46 -> +69)
+      portfolio (risk-matched): corr -0.12, mean/month +2.95 vs core +2.22, worst 12m -53.7 vs -57.3, in the core's 10 worst months +2.0 -> ADDS
+      by regime: BEAR n391 +0.067 | BULL-CALM n144 -0.253 | BULL-NERVOUS n35 -0.203 | SHOCK n178 +0.765

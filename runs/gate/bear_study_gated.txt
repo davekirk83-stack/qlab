@@ -1,0 +1,16 @@
+== D. shorts only while the US 500 is below its 200-day
+FAIL  G1 bear-rally fade, only while US 500 < 200d [short-gated] — n 355 (19/yr), mean +0.133, t +1.74, clustered t +1.30 (t* 3.77, idea #312), year-block CI [-0.066, +0.303], full years + 11/19, last 5y -0.056, last 12m -0.697, costs x1.5 +0.124, random 95th -0.017
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +
+      walk-forward switches that help: month (-22 -> -5); weekday (-22 -> -18); market (-22 -> -20)
+      portfolio (risk-matched): corr -0.12, mean/month +2.76 vs core +2.22, worst 12m -87.7 vs -57.3, in the core's 10 worst months +12.0 -> does not add
+      by year: 2000:+10 2001:+10 2002:+9 2003:+7 2004:-2 2007:+1 2008:+26 2009:+6 2010:-3 2011:+7 2012:-5 2015:-6 2016:-7 2018:+7 2019:-11 2020:-1 2022:+0 2023:+1 2025:-4
+FAIL  G3 breakdown short, only while US 500 < 200d [short-gated] — n 362 (16/yr), mean -0.230, t -1.48, clustered t -1.10 (t* 3.77, idea #313), year-block CI [-0.941, +0.486], full years + 4/22, last 5y -1.132, last 12m -1.599, costs x1.5 -0.241, random 95th -0.313
+      failed: clustered t >= t*, year-block CI > 0, >= 60% full years +, last 5y and 12m +, 1.5x costs +
+      walk-forward switches that help: month (-95 -> -41); weekday (-95 -> -84); VIX band (-95 -> -31); market (-95 -> -67)
+      portfolio (risk-matched): corr -0.15, mean/month +1.79 vs core +2.22, worst 12m -100.6 vs -57.3, in the core's 10 worst months -24.3 -> does not add
+      by year: 2000:-18 2001:+63 2002:+26 2003:-8 2004:-7 2005:-17 2006:-15 2007:-11 2008:+83 2009:-6 2010:-30 2011:-1 2012:-19 2014:-12 2015:-29 2016:-8 2018:-15 2019:-10 2020:+30 2022:-38 2023:-14 2025:-16 2026:-10
+FAIL  G6 TPS short ladder, only while US 500 < 200d (% of budget) [short-gated] — n 569 (25/yr), mean +0.283, t +3.38, clustered t +2.58 (t* 3.77, idea #314), year-block CI [-0.127, +0.557], full years + 15/22, last 5y -0.821, last 12m -6.401, costs x1.5 +0.274, random 95th +0.283
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +, beats random 95th
+      walk-forward switches that help: paradigm 3y (+90 -> +133)
+      portfolio (risk-matched): corr -0.11, mean/month +3.25 vs core +2.22, worst 12m -48.4 vs -57.3, in the core's 10 worst months +3.9 -> ADDS
+      by year: 2000:+11 2001:+43 2002:+18 2003:+17 2004:+2 2005:+1 2006:+1 2007:+9 2008:+88 2009:+17 2010:-1 2011:+37 2012:-13 2014:-18 2015:+5 2016:-1 2018:+12 2019:-8 2020:+7 2022:+3 2023:-10 2025:-24 2026:-32
