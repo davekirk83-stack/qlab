@@ -48,3 +48,24 @@ This doc builds the doc-224 findings into a book and runs it through standard te
 - The cluster volume comes from Binance-style taker volume. The dry run needs an exchange feed that GitHub runners can reach, and Revolut X's own volume needs checking first.
 
 Scripts: `src/liq_book.py` (`grid`, `regime`). Output: `runs/gate/liq_book.txt`, `liq_grid.txt`, `liq_regime.txt`.
+
+## Addendum: trade management (DK, 16:36: "should have taken profit on the bounce… instead out at B/E")
+
+Each variant was run on the same 2,051 trades: target 3%, stop 4%, 3 days, with the 200-day, CPI and toxicity skips. Same-bar conflicts were resolved against us.
+
+| Management | Mean | Win | Year-block CI | Verdict |
+|---|---|---|---|---|
+| A: as doc 225 | **+0.229%** | 63% | [+0.03, +0.46] | WEAK |
+| B: stop to breakeven at +0.75% | +0.034% | 28% | [−0.07, +0.11] | FAIL |
+| C: breakeven at +0.75% and half off at +1% | +0.041% | 66% | [−0.05, +0.12] | FAIL |
+| **D: half off at +1% only** | +0.157% | **66%** | [+0.02, +0.30] | WEAK |
+| E: breakeven at +0.5% | +0.040% | 22% | [−0.01, +0.08] | FAIL |
+| F: breakeven at +0.75% and half off at +0.8% | +0.041% | 80% | [−0.05, +0.12] | FAIL |
+
+**The breakeven stop kills the edge.** Moving the stop to breakeven cuts the average trade from +0.23% to about +0.03–0.04%. The bounce off a cluster usually comes back to the entry at least once before it runs to the target, and that is exactly what happened today. A breakeven stop takes the trade out at that retest and misses the run.
+
+**A partial take-profit is the right way to bank something on the bounce.** Half off at +1% keeps the book at WEAK and lifts the win rate to 66%, at the cost of about 0.07% a trade on average. The remaining half keeps the original stop and target.
+
+**Rule for the dry run:** take half off at +1% with a resting limit (maker, no fee). Keep the stop 4% under the cluster. **No breakeven stop.**
+
+Script: `src/liq_book_be.py`. Output: `runs/gate/liq_book_be.txt`.

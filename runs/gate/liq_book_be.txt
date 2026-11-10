@@ -1,0 +1,30 @@
+WEAK  LIQ mgmt A as doc 225 [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.229, t +3.88, clustered t +2.36 (t* 3.81, idea #373), year-block CI [+0.028, +0.455], full years + 4/5, last 5y +0.170, last 12m +0.310, costs x1.5 +0.207, random 95th -0.006
+      failed: clustered t >= t*
+      walk-forward switches that help: paradigm 3y (+124 -> +181)
+      by year: 2020: +0.69%  2021: +0.39%  2023: +0.27%  2024: +0.07%  2025: -0.14%  2026: +0.56% | win 63%, worst -3.65%
+
+FAIL  LIQ mgmt B breakeven at +0.75% [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.034, t +0.93, clustered t +0.63 (t* 3.81, idea #374), year-block CI [-0.072, +0.109], full years + 4/5, last 5y +0.030, last 12m +0.142, costs x1.5 +0.008, random 95th +0.029
+      failed: clustered t >= t*, year-block CI > 0
+      walk-forward switches that help: paradigm 3y (+5 -> +59)
+      by year: 2020: +0.07%  2021: +0.10%  2023: +0.05%  2024: +0.09%  2025: -0.18%  2026: +0.23% | win 28%, worst -3.65%
+
+FAIL  LIQ mgmt C breakeven +0.75% & half off +1% [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.041, t +1.23, clustered t +0.82 (t* 3.81, idea #375), year-block CI [-0.052, +0.120], full years + 4/5, last 5y +0.040, last 12m +0.144, costs x1.5 +0.022, random 95th +0.011
+      failed: clustered t >= t*, year-block CI > 0
+      walk-forward switches that help: paradigm 3y (+11 -> +50)
+      by year: 2020: +0.05%  2021: +0.13%  2023: +0.02%  2024: +0.10%  2025: -0.14%  2026: +0.23% | win 66%, worst -3.65%
+
+WEAK  LIQ mgmt D half off at +1% only [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.157, t +3.64, clustered t +2.18 (t* 3.81, idea #376), year-block CI [+0.017, +0.303], full years + 4/5, last 5y +0.130, last 12m +0.304, costs x1.5 +0.142, random 95th +0.008
+      failed: clustered t >= t*
+      walk-forward switches that help: paradigm 3y (+100 -> +151)
+      by year: 2020: +0.37%  2021: +0.28%  2023: +0.16%  2024: +0.11%  2025: -0.12%  2026: +0.47% | win 66%, worst -3.65%
+
+FAIL  LIQ mgmt E breakeven at +0.5% [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.040, t +1.32, clustered t +0.97 (t* 3.82, idea #377), year-block CI [-0.007, +0.081], full years + 4/5, last 5y +0.037, last 12m +0.001, costs x1.5 +0.011, random 95th +0.014
+      failed: clustered t >= t*, year-block CI > 0
+      walk-forward switches that help: paradigm 3y (+16 -> +35)
+      by year: 2020: +0.07%  2021: +0.11%  2023: +0.02%  2024: +0.05%  2025: -0.05%  2026: +0.04% | win 22%, worst -3.65%
+
+FAIL  LIQ mgmt F breakeven +0.75% & half off +0.8% [liquidation clusters (crypto, Revolut X costs)] — n 2051 (342/yr), mean +0.041, t +1.24, clustered t +0.83 (t* 3.82, idea #378), year-block CI [-0.049, +0.116], full years + 4/5, last 5y +0.040, last 12m +0.168, costs x1.5 +0.024, random 95th +0.027
+      failed: clustered t >= t*, year-block CI > 0
+      walk-forward switches that help: paradigm 3y (+11 -> +47)
+      by year: 2020: +0.05%  2021: +0.13%  2023: +0.02%  2024: +0.09%  2025: -0.14%  2026: +0.25% | win 80%, worst -3.65%
+
