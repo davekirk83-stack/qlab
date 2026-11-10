@@ -1,0 +1,55 @@
+== Asia opens: n 2255 | median distance to nearest long cluster 1.43%, short cluster 1.29% | either hit within 8h 47%
+   MAGNET: nearer cluster hit first 77.8% vs random walk 70.0%  (n 1051)
+   toward NEARER cluster     avg -0.058% (t -2.75, win 52%) | 2020-22 -0.064%  2023-26 -0.054%
+   toward FARTHER cluster    avg -0.022% (t -1.03, win 44%) | 2020-22 -0.016%  2023-26 -0.026%
+   toward HEAVIER side (3%)  avg -0.095% (t -4.51, win 48%) | 2020-22 -0.107%  2023-26 -0.087%
+== London opens: n 2280 | median distance to nearest long cluster 1.40%, short cluster 1.31% | either hit within 8h 60%
+   MAGNET: nearer cluster hit first 76.6% vs random walk 69.8%  (n 1374)
+   toward NEARER cluster     avg -0.010% (t -0.42, win 58%) | 2020-22 +0.031%  2023-26 -0.038%
+   toward FARTHER cluster    avg -0.071% (t -2.96, win 39%) | 2020-22 -0.113%  2023-26 -0.042%
+   toward HEAVIER side (3%)  avg +0.011% (t +0.48, win 55%) | 2020-22 +0.045%  2023-26 -0.011%
+== New York opens: n 1643 | median distance to nearest long cluster 1.30%, short cluster 1.23% | either hit within 8h 79%
+   MAGNET: nearer cluster hit first 72.9% vs random walk 69.1%  (n 1298)
+   toward NEARER cluster     avg -0.015% (t -0.51, win 63%) | 2020-22 +0.027%  2023-26 -0.044%
+   toward FARTHER cluster    avg -0.069% (t -2.31, win 36%) | 2020-22 -0.111%  2023-26 -0.040%
+   toward HEAVIER side (3%)  avg -0.031% (t -1.04, win 56%) | 2020-22 -0.009%  2023-26 -0.046%
+== all opens: n 6178 | median distance to nearest long cluster 1.39%, short cluster 1.28% | either hit within 8h 60%
+   MAGNET: nearer cluster hit first 75.6% vs random walk 69.6%  (n 3723)
+   toward NEARER cluster     avg -0.029% (t -2.05, win 57%) | 2020-22 -0.004%  2023-26 -0.046%
+   toward FARTHER cluster    avg -0.052% (t -3.69, win 40%) | 2020-22 -0.077%  2023-26 -0.035%
+   toward HEAVIER side (3%)  avg -0.039% (t -2.75, win 53%) | 2020-22 -0.025%  2023-26 -0.048%
+
+== Toward the nearer cluster, stop = 1.0x the target distance (chance 50%)
+   all opens                          n 6178 | target hit first  49.0% vs chance 50% (decided 4585) | avg -0.035% (t -2.94) | 2020-22 -0.022  2023-26 -0.044
+
+== Toward the nearer cluster, stop = 1.5x the target distance (chance 60%)
+   all opens                          n 6178 | target hit first  61.9% vs chance 60% (decided 4090) | avg -0.029% (t -2.21) | 2020-22 +0.005  2023-26 -0.053
+
+== Toward the nearer cluster, stop = 2.0x the target distance (chance 67%)
+   all opens                          n 6178 | target hit first  71.4% vs chance 67% (decided 3746) | avg -0.034% (t -2.42) | 2020-22 +0.001  2023-26 -0.058
+
+== Splits (stop = 1x target distance, chance 50%)
+   session Asia                       n 2255 | target hit first  46.6% vs chance 50% (decided 1442) | avg -0.065% (t -3.52) | 2020-22 -0.068  2023-26 -0.062
+   session London                     n 2280 | target hit first  50.8% vs chance 50% (decided 1670) | avg -0.016% (t -0.78) | 2020-22 -0.004  2023-26 -0.024
+   session New York                   n 1643 | target hit first  49.3% vs chance 50% (decided 1473) | avg -0.021% (t -0.87) | 2020-22 +0.016  2023-26 -0.046
+   nearer cluster 100x                n 5567 | target hit first  49.0% vs chance 50% (decided 4151) | avg -0.035% (t -2.87) | 2020-22 -0.017  2023-26 -0.047
+   nearer cluster 50x                 n  428 | target hit first  50.0% vs chance 50% (decided 302) | avg -0.019% (t -0.37) | 2020-22 -0.009  2023-26 -0.029
+   nearer cluster 25x                 n  105 | target hit first  50.0% vs chance 50% (decided 80) | avg +0.024% (t +0.21) | 2020-22 -0.046  2023-26 +0.124
+   nearer cluster 10x                 n   55 | target hit first  36.8% vs chance 50% (decided 38) | avg -0.312% (t -1.92) | 2020-22 -0.341  2023-26 -0.277
+   nearer cluster 5x                  n   23 | target hit first  64.3% vs chance 50% (decided 14) | avg +0.119% (t +0.60) | 2020-22 -0.317  2023-26 +0.351
+   near/far distance ratio 0-0.4      n 2387 | target hit first  46.5% vs chance 50% (decided 2118) | avg -0.057% (t -4.07) | 2020-22 -0.068  2023-26 -0.050
+   near/far distance ratio 0.4-0.7    n 2195 | target hit first  50.0% vs chance 50% (decided 1512) | avg -0.033% (t -1.57) | 2020-22 +0.006  2023-26 -0.059
+   near/far distance ratio 0.7-1.01   n 1596 | target hit first  53.0% vs chance 50% (decided 955) | avg -0.005% (t -0.17) | 2020-22 +0.007  2023-26 -0.014
+   target 0-0.5% away                 n 1024 | target hit first  41.4% vs chance 50% (decided 987) | avg -0.082% (t -7.46) | 2020-22 -0.074  2023-26 -0.086
+   target 0.5-1% away                 n 2613 | target hit first  49.9% vs chance 50% (decided 2064) | avg -0.044% (t -3.30) | 2020-22 -0.060  2023-26 -0.037
+   target 1-2% away                   n 2154 | target hit first  52.1% vs chance 50% (decided 1368) | avg -0.022% (t -0.91) | 2020-22 -0.019  2023-26 -0.025
+   target 2-9% away                   n  387 | target hit first  57.8% vs chance 50% (decided 166) | avg +0.081% (t +0.85) | 2020-22 +0.153  2023-26 -0.061
+   cluster age 0-6h                   n 2455 | target hit first  45.8% vs chance 50% (decided 1959) | avg -0.081% (t -4.15) | 2020-22 -0.074  2023-26 -0.086
+   cluster age 6-24h                  n 2396 | target hit first  50.9% vs chance 50% (decided 1757) | avg -0.002% (t -0.10) | 2020-22 +0.007  2023-26 -0.008
+   cluster age 24-1000000000.0h       n 1327 | target hit first  52.2% vs chance 50% (decided 869) | avg -0.010% (t -0.39) | 2020-22 +0.042  2023-26 -0.036
+   target above (buy)                 n 3251 | target hit first  48.4% vs chance 50% (decided 2428) | avg -0.042% (t -2.59) | 2020-22 -0.038  2023-26 -0.045
+   target below (sell)                n 2927 | target hit first  49.7% vs chance 50% (decided 2157) | avg -0.027% (t -1.56) | 2020-22 -0.004  2023-26 -0.043
+   buy, above 200-day                 n 1839 | target hit first  47.9% vs chance 50% (decided 1383) | avg -0.047% (t -2.21) | 2020-22 -0.036  2023-26 -0.051
+   sell, below 200-day                n 1154 | target hit first  50.6% vs chance 50% (decided 860) | avg -0.023% (t -0.84) | 2020-22 +0.007  2023-26 -0.050
+   with the trend (either side)       n 2993 | target hit first  48.9% vs chance 50% (decided 2243) | avg -0.038% (t -2.24) | 2020-22 -0.015  2023-26 -0.051
+   against the trend                  n 2761 | target hit first  49.4% vs chance 50% (decided 2028) | avg -0.025% (t -1.37) | 2020-22 -0.003  2023-26 -0.037

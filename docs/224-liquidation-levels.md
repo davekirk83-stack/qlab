@@ -123,3 +123,25 @@ The trade is a buy at the tapped level. It exits at the target, at a stop 1.5% o
 - Use it as a **bias**, not a book. At the open, the nearer cluster is the likelier first tag, about 3 times in 4. That helps time entries for the long-level tap book, for example by not buying ahead of the open when the nearer cluster is still below.
 
 Script: `src/liq_session_test.py`. Output: `runs/gate/liq_session_test.txt`.
+
+## Addendum 4: refining the session-open "3 in 4" (DK, 16:07)
+
+**The method.** I re-ran the test with the stop set as a multiple of the target distance, not at the opposite cluster. That makes "chance" known exactly. From all 6,178 opens, here is how often the nearer cluster was hit first:
+
+| Stop distance | Hit first | Chance | Avg after 0.04% costs |
+|---|---|---|---|
+| 1× the target distance | 49.0% | 50% | −0.035% |
+| 1.5× | 61.9% | 60% | −0.029% |
+| 2× | 71.4% | 67% | −0.034% |
+
+**Reading.** The nearer cluster does *not* pull price harder than an equal distance the other way. The original 76%-vs-70% came from the other side. Price that heads toward the *far* cluster tends to turn back before reaching it. The clusters behave like the **edges of a range**: price oscillates between them more than chance says, rather than being drawn to the nearest one.
+
+**Splits** (1× stop, chance 50%):
+- Clusters under 0.5% away are hit first only 41% of the time (t −7.5). Price moves *away* from a very close cluster.
+- Clusters 2%+ away are hit first 58% of the time, but there are only 166 decided cases.
+- Fresh clusters (under 6 hours old): 46%. Older ones: 51–52%.
+- No session, leverage tier or trend filter turns the trade positive after costs.
+
+**Where this leaves it.** The useful behaviour is range-edge reversal: buy at the lower cluster band and sell near the upper one. That is the long-level tap bounce already found, plus the reversal-to-the-far-cluster candidate (addendum 2). Those are the books to refine. A trade *toward* the nearer cluster from the open is not.
+
+Script: `src/liq_session_refine.py`. Output: `runs/gate/liq_session_refine.txt`.
