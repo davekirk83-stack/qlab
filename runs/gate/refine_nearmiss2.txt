@@ -1,0 +1,24 @@
+t* = 3.73 (266 ideas tried)
+PASS          | USCL base: DAX/FTSE open -> close                       | n 1153 (43/yr) mean +0.128 t +6.76 | yrs+ 24/27 | last5y +0.038 1y +0.039 | x1.5 +0.115 | rnd95 -0.004
+              per market: DAX:+0.03 FTSE:+0.23
+              by year since 2018: 2018:+4.4 2019:-1.4 2020:-4.4 2021:+8.8 2022:+0.6 2023:+1.5 2024:+1.3 2025:+2.8 2026:+0.1
+PASS except t | USCL hold 2 sessions (open -> next close)               | n 1153 (43/yr) mean +0.086 t +3.14 | yrs+ 19/27 | last5y +0.010 1y +0.019 | x1.5 +0.073 | rnd95 +0.003
+              per market: DAX:-0.01 FTSE:+0.18
+              by year since 2018: 2018:-8.9 2019:-0.5 2020:-6.8 2021:+4.4 2022:-0.1 2023:+1.2 2024:+1.1 2025:+1.3 2026:-1.9
+FAIL          | USCL only when US 500 above its 200-day                 | n  614 (26/yr) mean +0.099 t +3.94 | yrs+ 17/24 | last5y +0.019 1y -0.001 | x1.5 +0.084 | rnd95 +0.010
+              per market: DAX:+0.02 FTSE:+0.18
+              by year since 2018: 2018:+5.7 2019:-0.4 2020:-2.0 2021:+8.8 2022:-0.2 2023:+0.3 2024:+1.3 2025:+1.4 2026:-0.9
+PASS          | USCL only when US 500 below its 200-day                 | n  539 (26/yr) mean +0.160 t +5.63 | yrs+ 16/21 | last5y +0.069 1y +0.247 | x1.5 +0.151 | rnd95 +0.019
+              per market: DAX:+0.04 FTSE:+0.28
+              by year since 2018: 2018:-1.3 2019:-1.0 2020:-2.4 2022:+0.8 2023:+1.3 2025:+1.4 2026:+1.0
+FAIL          | USCL also trade the US 500 itself next open -> close    | n 1749 (65/yr) mean -0.047 t -3.11 | yrs+ 10/27 | last5y +0.030 1y +0.191 | x1.5 -0.059 | rnd95 +0.007
+              per market: SPX:-0.06 NDX:-0.02 DJI:-0.07
+              by year since 2018: 2018:-3.8 2019:+2.6 2020:-23.3 2021:+0.8 2022:-5.1 2023:+9.1 2024:+3.7 2025:-8.8 2026:+8.6
+FAIL          | HALLO base: Nov-Apr month-ends, hold 21d, stop 8 ATR    | n  487 (18/yr) mean +0.452 t +2.91 | yrs+ 17/27 | last5y +0.716 1y -0.841 | x1.5 +0.436 | rnd95 +0.235
+              per market: SPX:+0.50 NDX:+0.51 DJI:+0.48 DAX:+0.72 FTSE:+0.09
+FAIL          | HALLO + above 200-day                                   | n  333 (13/yr) mean +0.412 t +2.15 | yrs+ 14/25 | last5y +0.019 1y -2.226 | x1.5 +0.393 | rnd95 +0.326
+              per market: SPX:+0.64 NDX:+0.38 DJI:+0.68 DAX:+0.52 FTSE:-0.17
+FAIL          | HALLO whole season: buy end-Oct, hold to end-Apr        | n  129 (5/yr) mean +1.269 t +1.76 | yrs+ 16/26 | last5y +3.296 1y -1.235 | x1.5 +1.253 | rnd95 +1.705
+              per market: SPX:+0.96 NDX:+0.54 DJI:+1.35 DAX:+3.32 FTSE:+0.26
+FAIL          | MDD only the dips RSI(4) misses (RSI(4) >= 25)          | n  850 (31/yr) mean +0.072 t +1.70 | yrs+ 16/27 | last5y -0.022 1y +0.129 | x1.5 +0.052 | rnd95 +0.065
+              per market: SPX:+0.19 NDX:+0.18 DJI:-0.07 DAX:+0.02 FTSE:+0.06 GOLD:+0.07
