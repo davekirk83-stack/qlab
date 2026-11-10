@@ -27,3 +27,12 @@ After a TPS stop, TPS restarts by itself with a fresh £ limit once the US 500 c
 | £200 (never triggers in this history) | +£1,010 | £321 | −£214 | £217 |
 | £100, no restart | +£263 | £382 | −£125 | £150 |
 By year (£100 + restart): 2020 +1, 2021 +173, 2022 −12, 2023 +118, 2024 +104, 2025 +281, 2026 +434. Backtest through the live runner.
+
+## Double down at the stop? (DK 08:58) — no
+Replay as above; at the £100 stop TPS immediately re-buys the same ladders (fresh £100 limit; 200-day restart after a second stop):
+| | total since Nov 2019 | 2020 | lowest balance |
+|---|---|---|---|
+| **£100 stop + 200-day restart (live setting)** | **+£1,104** | +£1 | **£382** |
+| re-buy at the stop, same size | +£1,004 | −£114 | £296 |
+| re-buy at the stop, double size | +£852 | −£153 | £275 |
+In March 2020 the re-bought ladders were stopped out again within days; doubling turned a −£103 stop into −£203. Kept the 200-day restart.
