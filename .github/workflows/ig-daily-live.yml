@@ -42,6 +42,7 @@ jobs:
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE || secrets.IG_PASSWORD }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}
         run: |
+          mkdir -p runs/ig_daily_live; echo "$(date -u +%FT%TZ) ${{ github.event_name }} IG_DAILY_LIVE_ENABLED=${{ vars.IG_DAILY_LIVE_ENABLED }}" >> runs/ig_daily_live/switch.log   # lets Claude confirm DK's switch from the repo
           JOB="${{ github.event.inputs.job }}"; DRY="${{ github.event.inputs.dry }}"
           if [ "${{ github.event_name }}" = "schedule" ]; then
             DRY="false"
