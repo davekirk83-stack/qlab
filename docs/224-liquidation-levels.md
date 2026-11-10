@@ -98,3 +98,28 @@ The trade is a buy at the tapped level. It exits at the target, at a stop 1.5% o
 - Cleared taps mostly happen inside liquidation cascades, the 2020–22 crash days, where the whole ladder gets blown through. That is not the exhaustion point.
 - The better setting is a tap of an upper cluster *while there are still clusters below*. There the reversal toward the short clusters is the stronger result. With the farthest target and a 3% stop it is positive in both halves: 2020–22 +0.46%, 2023–26 +0.22%.
 - **Candidate for the standard test:** buy the tap of a long level that still has live levels below, target the farthest short cluster within 10%, 3% stop, 7-day limit.
+
+## Addendum 3: session-open cluster study (DK, 16:05)
+
+**The setup.** At each session open on BTC, 2020–26, I found the nearest live long cluster below and the nearest live short cluster above, both within 5%. The opens were Asia at 00:00 UTC, London at 08:00 London time and New York at 09:30 New York time, all daylight-saving-correct.
+
+**Magnet test.** Is the nearer cluster tagged first more often than chance? "Chance" means what a random walk predicts from the two distances alone.
+- Asia: 77.8% vs 70.0% expected.
+- London: 76.6% vs 69.8%.
+- New York: 72.9% vs 69.1%.
+- All opens: 75.6% vs 69.6%, across 3,723 decided sessions. That is about 8 standard errors, so **the magnet is real**.
+
+**Trades over the 8-hour session, after 0.04% costs:**
+
+| Trade | Avg per trade | t | Win rate | Note |
+|---|---|---|---|---|
+| Toward the nearer cluster (stop at the opposite cluster) | −0.03% | | 57% | Gross only about +0.01% |
+| Toward the farther cluster | −0.05% | | | |
+| Toward the heavier side | −0.04% | | | |
+| London, toward the heavier side | +0.01% | 0.48 | | Best single cell, not significant |
+
+**Verdict.**
+- The pull is genuine but too small to pay for a trade on its own. The nearer side wins more often, but its target is closer than the stop, so the extra six points of hit-rate are worth only about 0.01% gross.
+- Use it as a **bias**, not a book. At the open, the nearer cluster is the likelier first tag, about 3 times in 4. That helps time entries for the long-level tap book, for example by not buying ahead of the open when the nearer cluster is still below.
+
+Script: `src/liq_session_test.py`. Output: `runs/gate/liq_session_test.txt`.
