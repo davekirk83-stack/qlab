@@ -4,3 +4,8 @@ FAIL  S1 Connors stock RSI(2)<5 above 200-day, exit > 5-day avg [stock-dip] — 
       walk-forward switches that help: month (-11 -> +87); VIX band (-11 -> +337); market (-11 -> +190)
       portfolio (risk-matched): corr +0.51, mean/month +2.66 vs core +2.22, worst 12m -148.9 vs -57.3, in the core's 10 worst months -160.8 -> does not add
       by index: FTSE100:-0.050(n6910) SP500:+0.047(n35780)
+FAIL  S2 our RSI(4) dip on shares [stock-dip] — n 63777 (2899/yr), mean +0.050, t +6.03, clustered t +1.88 (t* 3.76, idea #299), year-block CI [-0.026, +0.115], full years + 15/21, last 5y +0.002, last 12m +0.007, costs x1.5 +0.000, random 95th -0.032
+      failed: clustered t >= t*, year-block CI > 0
+      walk-forward switches that help: VIX band (+1226 -> +1516)
+      portfolio (risk-matched): corr +0.54, mean/month +2.85 vs core +2.22, worst 12m -122.4 vs -57.3, in the core's 10 worst months -163.5 -> does not add
+      by index: FTSE100:-0.051(n10015) SP500:+0.069(n53762)
