@@ -1,7 +1,3 @@
-04:42:02 job us_close (dry); daily sub-book £500.00, open positions 0
-04:42:03 switch_account: error.switch.accountId-must-be-different
-04:42:04 US500: close~7559.5 RSI2 71.6 5d 7505.7 200d 7331.3 ATR 105.1 | IG mid 7558.2
-04:42:05 NQ: close~27854.7 RSI2 66.0 5d 27563.9 200d 28006.1 ATR 676.2 | IG mid 27844.8
-04:42:05 WALLST: close~52578.3 RSI2 73.8 5d 52226.6 200d 50708.6 ATR 697.2 | IG mid 52572.2
-04:42:06 GOLD: close~4099.1 RSI2 51.7 5d 4096.8 200d 4492.3 ATR 80.3 | IG mid 4116.4
-04:42:06 done; book £500.00, open []
+20:40:01 job us_close; daily sub-book £500.00, open positions 0
+20:40:02 switch_account: error.switch.accountId-must-be-different
+20:40:06 done; book £500.00, open []
