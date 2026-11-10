@@ -1,0 +1,21 @@
+BTC 15-min bars 2020-01-01..2026-11-07; random-bar drift: 1h -0.000%  4h +0.013%  24h +0.117%
+
+== LONG liquidation levels tapped -> BUY at the level (after 0.04% costs), n 9253
+   all      n 9253 | 1h +0.064% | 4h +0.089% (t +4.57, win 56%) | 24h +0.206% | worst drop within 4h: median -0.89%
+   2020-22  n 4376 | 1h +0.108% | 4h +0.132% (t +3.87, win 58%) | 24h +0.163% | worst drop within 4h: median -1.09%
+   2023-26  n 4877 | 1h +0.024% | 4h +0.050% (t +2.44, win 55%) | 24h +0.244% | worst drop within 4h: median -0.74%
+   100x     n 7758 | 1h +0.040% | 4h +0.060% (t +2.86, win 56%) | 24h +0.185% | worst drop within 4h: median -0.88%
+   50x      n  814 | 1h +0.059% | 4h +0.124% (t +1.97, win 58%) | 24h +0.568% | worst drop within 4h: median -0.89%
+   25x      n  403 | 1h +0.161% | 4h +0.155% (t +1.61, win 56%) | 24h -0.126% | worst drop within 4h: median -1.10%
+   10x      n  178 | 1h +0.557% | 4h +0.636% (t +3.86, win 66%) | 24h +0.561% | worst drop within 4h: median -1.04%
+   5x       n  100 | 1h +0.648% | 4h +0.769% (t +3.36, win 62%) | 24h -0.438% | worst drop within 4h: median -1.00%
+
+== SHORT liquidation levels tapped -> SELL at the level (after 0.04% costs), n 9289
+   all      n 9289 | 1h -0.130% | 4h -0.175% (t -10.21, win 49%) | 24h -0.401% | worst drop within 4h: median -0.86%
+   2020-22  n 4367 | 1h -0.080% | 4h -0.077% (t -2.71, win 52%) | 24h -0.301% | worst drop within 4h: median -0.98%
+   2023-26  n 4922 | 1h -0.174% | 4h -0.262% (t -12.91, win 47%) | 24h -0.488% | worst drop within 4h: median -0.78%
+   100x     n 7580 | 1h -0.119% | 4h -0.159% (t -8.42, win 50%) | 24h -0.366% | worst drop within 4h: median -0.84%
+   50x      n  926 | 1h -0.173% | 4h -0.221% (t -4.07, win 47%) | 24h -0.331% | worst drop within 4h: median -0.93%
+   25x      n  451 | 1h -0.176% | 4h -0.213% (t -2.65, win 44%) | 24h -0.701% | worst drop within 4h: median -0.95%
+   10x      n  216 | 1h -0.177% | 4h -0.296% (t -2.46, win 52%) | 24h -1.068% | worst drop within 4h: median -1.23%
+   5x       n  116 | 1h -0.231% | 4h -0.490% (t -2.89, win 34%) | 24h -0.815% | worst drop within 4h: median -1.27%
