@@ -1,4 +1,4 @@
-"""Daily books on the IG DEMO account (doc 204). DEMO ONLY: this file refuses to run with IG_MODE=live.
+"""Daily books on the IG DEMO account (doc 204); since doc 210 also the LIVE core (RSI4, TPS, TOM, SANTA) behind DK's own switch.
 
 The books that passed the standard test (docs 200-203), with the SAME rules as their backtests (src/fifty_ideas.py, fifty_ideas_2.py,
 market_search_6.py, ladder_daily_tps.py). One or two per family, so they don't all buy the same dip:
@@ -26,12 +26,20 @@ Total open notional capped at 5x the sub-book. Ledger: runs/ig_daily/trades.csv;
 import os, sys, json, math, datetime as dt, traceback
 import numpy as np, pandas as pd
 
-if os.environ.get("IG_MODE", "demo").strip().lower() != "demo":
-    sys.exit("ig_daily_books.py is DEMO ONLY")
-OUT = os.environ.get("IG_OUT", "runs/ig_daily"); os.makedirs(OUT, exist_ok=True)
+MODE = os.environ.get("IG_MODE", "demo").strip().lower()
+# LIVE (doc 210, DK 10 Nov 07:27 "start making me reliable small gains on IG however small"): the daily CORE books only, on DK's £500 IG
+# spread-bet book, under CAP-021 (amended 4 Nov) limits: <= 2% risk per trade (a trade IG's minimum stake would push over 2% is SKIPPED,
+# never oversized), 5x exposure, -4% day stop, -15% floor. Needs IG_MODE=live AND the confirmation string, and DK's own repo switch
+# IG_DAILY_LIVE_ENABLED (workflow ig-daily-live.yml). Claude never sets that switch or dispatches the live workflow.
+LIVE_CONFIRM = "CAP021-AMENDED-2026-11-10-IG-DAILY-CORE-500"
+if MODE not in ("demo", "live"): sys.exit(f"IG_MODE must be demo or live, not {MODE!r}")
+if MODE == "live" and os.environ.get("IG_DAILY_LIVE_CONFIRMED", "") != LIVE_CONFIRM: sys.exit("live refused: IG_DAILY_LIVE_CONFIRMED does not match")
+LIVE = MODE == "live"
+OUT = os.environ.get("IG_OUT", "runs/ig_daily_live" if LIVE else "runs/ig_daily"); os.makedirs(OUT, exist_ok=True)
 STATE = f"{OUT}/state.json"; LEDGER = f"{OUT}/trades.csv"
 START_EQ = float(os.environ.get("IG_DAILY_START_EQ", "500"))
-RISK = 0.01; TPS_RISK = 0.02; EXPO = 5.0
+RISK = 0.02 if LIVE else 0.01; TPS_RISK = 0.02; EXPO = 5.0
+DAY_STOP, FLOOR = 0.96, 0.85
 
 MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
     "US500":  ("^GSPC", "IX.D.SPTRD.DAILY.IP", "us"),
@@ -44,6 +52,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
 BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX}
+if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in ("RSI4", "TPS", "TOM", "SANTA")}   # live core only: no HALLO, USCL, gold London
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 LOG = []
@@ -96,9 +105,9 @@ class IG:
     def __init__(self, dry):
         from trading_ig import IGService
         u, p, key = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-        self.ig = IGService(u, p, key, acc_type="demo", return_dataframe=False); self.ig.create_session(); self.dry = dry
+        self.ig = IGService(u, p, key, acc_type="live" if LIVE else "demo", return_dataframe=False); self.ig.create_session(); self.dry = dry
         sb = [a for a in self.ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
-        if not sb: raise RuntimeError("no SPREADBET demo account")
+        if not sb: raise RuntimeError("no SPREADBET account")
         try: self.ig.switch_account(sb[0]["accountId"], True)
         except Exception as e:
             if "same" not in str(e).lower(): log("switch_account:", e)
@@ -172,6 +181,10 @@ def reconcile(ig, s, day):
 
 def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None):
     want = size if want is None else want
+    if LIVE:
+        if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
+        if size > want * 1.0001: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than 2% risk ({want:.4f}/pt)"); return None
+        want = size   # live: the stake placed is the stake counted
     if notional(s) + want * mid > EXPO * s["eq"]: log(f"SKIP {book} {name}: exposure cap 5x"); return None
     if name in IDX and risk is not None:
         held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
@@ -202,7 +215,7 @@ def job_close(ig, s, group, hist_fn):
                 p["days"] = int((d.index > pd.Timestamp(p["entered"])).sum())
                 if p["days"] >= MAXD[p["book"]]: close_pos(ig, s, p, mid, f"{p['days']} days", day.date())
             for bk in CLOSE_BOOKS:
-                if name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
+                if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
                 stop_pts = round(STOP_ATR[bk] * atr_ig, 1); sz, w = size_for(s["eq"], RISK, stop_pts, ig.min_size(epic))
                 open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
@@ -240,7 +253,7 @@ def job_open(ig, s, group, hist_fn):
                 open_pos(ig, s, "TPS", name, epic, max(ig.min_size(epic), round(tps[0]["unit"] * n_, 2)), mid, k, stop_level=tps[0]["stop_ig"],
                          extra={"unit": tps[0]["unit"], "unitw": tps[0]["unitw"], "sig_close": float(b.close)}, want=tps[0]["unitw"] * n_, risk=0.15 * tps[0]["unitw"] * n_ * mid)
             for bk in OPEN_BOOKS:
-                if name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
+                if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue
                 if not bool(entries(d, bk).iloc[-1]): continue
                 mn = ig.min_size(epic)
                 if bk == "TPS":   # whole ladder (1+2+3+4 = 10 units) loses 2% of the book at the 15% kill
@@ -340,7 +353,16 @@ def main():
     tag = f"{job}:{utcnow():%Y-%m-%d}"
     if not dry and tag in s.setdefault("done", []): log(f"{job} already ran today — exit (backup cron)"); return
     ig = IG(dry); reconcile(ig, s, utcnow().date())
-    if job == "eu_open": job_eu_open(ig, s, hist_fn); job_open(ig, s, "eu", hist_fn)
+    if LIVE:
+        today = utcnow().strftime("%Y-%m-%d")
+        if s.get("day") != today: s["day"], s["day_eq"] = today, s["eq"]
+        s["entries_ok"], s["stop_why"] = True, ""
+        if s["eq"] < FLOOR * START_EQ: s["entries_ok"], s["stop_why"] = False, f"book £{s['eq']:.2f} is below the -15% floor: no new entries (back to paper)"
+        elif s["eq"] < DAY_STOP * s["day_eq"]: s["entries_ok"], s["stop_why"] = False, "-4% day stop hit: no new entries today"
+        if job.startswith("gold"): log("live: gold London book is demo-only — exit"); return
+    if job == "eu_open":
+        if not LIVE: job_eu_open(ig, s, hist_fn)   # USCL is demo-only (doc 209: FTSE open-data fault)
+        job_open(ig, s, "eu", hist_fn)
     elif job == "us_open": job_open(ig, s, "us", hist_fn)
     elif job in ("eu_close", "us_close"): job_close(ig, s, job[:2], hist_fn)
     elif job == "gold_ldn": job_gold_ldn(ig, s)
