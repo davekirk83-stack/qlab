@@ -1,0 +1,26 @@
+baseline: next close, stop 1 ATR, 20 days    n 630 mean -0.112 total    -70 ATR | worst year   -50 | since 2001   -32 | tops 1929:-0 1987:-2 2000:+4 2007:+19 2020:+37 2022:+14 | exits: stop 82% time 18%
+at the ATH close, stop 1 ATR, 20 days        n 763 mean -0.223 total   -170 ATR | worst year   -54 | since 2001   -49 | tops 1929:-5 1987:+0 2000:+3 2007:+16 2020:+37 2022:+7 | exits: stop 83% time 17%
+close entry, BE after 0.5 ATR, TP None, 20 days n 916 mean -0.241 total   -221 ATR | worst year   -53 | since 2001   -79 | tops 1929:-5 1987:-4 2000:+3 2007:+15 2020:+37 2022:+2 | exits: stop 51% breakeven 37% time 12%
+close entry, BE after 0.5 ATR, TP None, 60 days n 915 mean -0.555 total   -508 ATR | worst year   -59 | since 2001  -223 | tops 1929:+25 1987:+29 2000:+1 2007:+17 2020:+17 2022:+0 | exits: stop 51% breakeven 45% time 4%
+close entry, BE after 0.5 ATR, TP 2.0, 20 days n 916 mean -0.145 total   -132 ATR | worst year   -28 | since 2001    +6 | tops 1929:+1 1987:-5 2000:+1 2007:+6 2020:+10 2022:+8 | exits: stop 51% target 28% breakeven 21%
+close entry, BE after 0.5 ATR, TP 2.0, 60 days n 916 mean -0.145 total   -132 ATR | worst year   -28 | since 2001    +6 | tops 1929:+1 1987:-5 2000:+1 2007:+6 2020:+10 2022:+8 | exits: stop 51% target 28% breakeven 21%
+close entry, BE after 0.5 ATR, TP 3.0, 20 days n 916 mean -0.116 total   -106 ATR | worst year   -31 | since 2001    -7 | tops 1929:-0 1987:-3 2000:+3 2007:+10 2020:+10 2022:+9 | exits: stop 51% breakeven 28% target 21%
+close entry, BE after 0.5 ATR, TP 3.0, 60 days n 916 mean -0.116 total   -106 ATR | worst year   -31 | since 2001    -7 | tops 1929:-0 1987:-3 2000:+3 2007:+10 2020:+10 2022:+9 | exits: stop 51% breakeven 28% target 21%
+close entry, BE after 0.5 ATR, TP 5.0, 20 days n 916 mean -0.059 total    -54 ATR | worst year   -35 | since 2001   -12 | tops 1929:+2 1987:-6 2000:+7 2007:+14 2020:+10 2022:+7 | exits: stop 51% breakeven 32% target 15% time 1%
+close entry, BE after 0.5 ATR, TP 5.0, 60 days n 916 mean -0.051 total    -46 ATR | worst year   -35 | since 2001    -5 | tops 1929:+2 1987:-6 2000:+7 2007:+14 2020:+10 2022:+7 | exits: stop 51% breakeven 33% target 16%
+close entry, BE after 1.0 ATR, TP None, 20 days n 869 mean -0.213 total   -185 ATR | worst year   -53 | since 2001   -55 | tops 1929:-5 1987:-1 2000:+3 2007:+16 2020:+37 2022:+2 | exits: stop 58% breakeven 29% time 13%
+close entry, BE after 1.0 ATR, TP None, 60 days n 868 mean -0.584 total   -507 ATR | worst year   -59 | since 2001  -224 | tops 1929:+25 1987:+31 2000:+1 2007:+13 2020:+17 2022:+0 | exits: stop 58% breakeven 38% time 4%
+close entry, BE after 1.0 ATR, TP 2.0, 20 days n 869 mean -0.142 total   -123 ATR | worst year   -29 | since 2001    +2 | tops 1929:+1 1987:-3 2000:+1 2007:+6 2020:+10 2022:+8 | exits: stop 58% target 30% breakeven 12%
+close entry, BE after 1.0 ATR, TP 2.0, 60 days n 869 mean -0.142 total   -123 ATR | worst year   -29 | since 2001    +2 | tops 1929:+1 1987:-3 2000:+1 2007:+6 2020:+10 2022:+8 | exits: stop 58% target 30% breakeven 12%
+close entry, BE after 1.0 ATR, TP 3.0, 20 days n 869 mean -0.114 total    -99 ATR | worst year   -31 | since 2001    -4 | tops 1929:-0 1987:-3 2000:+3 2007:+10 2020:+10 2022:+9 | exits: stop 58% target 23% breakeven 19%
+close entry, BE after 1.0 ATR, TP 3.0, 60 days n 869 mean -0.114 total    -99 ATR | worst year   -31 | since 2001    -4 | tops 1929:-0 1987:-3 2000:+3 2007:+10 2020:+10 2022:+9 | exits: stop 58% target 23% breakeven 19%
+close entry, BE after 1.0 ATR, TP 5.0, 20 days n 869 mean -0.057 total    -49 ATR | worst year   -35 | since 2001   -10 | tops 1929:+2 1987:-5 2000:+7 2007:+13 2020:+10 2022:+7 | exits: stop 58% breakeven 24% target 16% time 1%
+close entry, BE after 1.0 ATR, TP 5.0, 60 days n 869 mean -0.048 total    -42 ATR | worst year   -35 | since 2001    -3 | tops 1929:+2 1987:-5 2000:+7 2007:+13 2020:+10 2022:+7 | exits: stop 58% breakeven 25% target 17%
+
+0/16 variants positive overall; best (1.0, 5.0, 60) -42, worst (0.5, None, 60) -508
+
+-- next-day entry versions (what the runner can do: decide on the final close, trade the next open/close)
+next-day entry, BE None, TP None, 20 days    n 630 mean -0.112 total    -70 ATR | worst year   -50 | since 2001   -32 | tops 1929:-0 1987:-2 2000:+4 2007:+19 2020:+37 2022:+14 | exits: stop 82% time 18%
+next-day entry, BE 1.0, TP 5.0, 60 days      n 691 mean +0.068 total    +47 ATR | worst year   -37 | since 2001   +13 | tops 1929:+5 1987:+0 2000:+7 2007:+13 2020:+12 2022:+10 | exits: stop 55% breakeven 27% target 19%
+next-day entry, BE 1.0, TP 3.0, 60 days      n 691 mean +0.076 total    +53 ATR | worst year   -32 | since 2001    +7 | tops 1929:+4 1987:+2 2000:+3 2007:+10 2020:+12 2022:+8 | exits: stop 55% target 25% breakeven 20%
+next-day entry, BE 1.0, TP None, 20 days     n 691 mean -0.135 total    -93 ATR | worst year   -49 | since 2001   -51 | tops 1929:-2 1987:+1 2000:+4 2007:+19 2020:+28 2022:+6 | exits: stop 55% breakeven 32% time 13%

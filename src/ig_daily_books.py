@@ -56,7 +56,8 @@ LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "D
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
 BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
          "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
-         "LBS": IDX}    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
+         "LBS": IDX,    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
+         "INS": ["US500"]}   # INS = insurance short at each new ALL-TIME closing high of the US 500 (doc 223, DK 11:42: demo, 0.5% risk)
 if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
@@ -84,7 +85,7 @@ def entries(d, name):
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60}
+MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -132,11 +133,11 @@ class IG:
         return float(a["balance"]) + float(a.get("profitLoss") or 0.0)
     def open_ids(self):
         return {p["position"]["dealId"] for p in self.ig.fetch_open_positions()["positions"]}
-    def buy(self, epic, size, stop_dist=None, stop_level=None, direction="BUY"):
+    def buy(self, epic, size, stop_dist=None, stop_level=None, direction="BUY", limit_dist=None):
         if self.dry: return {"dealStatus": "DRY", "dealId": f"dry-{epic}-{utcnow():%H%M%S}", "level": None}
         mk = self.market(epic); cc = [c["code"] for c in mk["instrument"]["currencies"]]
         return self.ig.create_open_position(currency_code="GBP" if "GBP" in cc else cc[0], direction=direction, epic=epic, expiry=mk["instrument"]["expiry"],
-                                            force_open=True, guaranteed_stop=False, level=None, limit_distance=None, limit_level=None, order_type="MARKET",
+                                            force_open=True, guaranteed_stop=False, level=None, limit_distance=limit_dist, limit_level=None, order_type="MARKET",
                                             quote_id=None, size=size, stop_distance=stop_dist, stop_level=stop_level, trailing_stop=False, trailing_stop_increment=None)
     def closed_level(self, p):
         """Exit level of a position IG closed itself (stop or limit), from the transaction history (matched on the opening level)."""
@@ -152,6 +153,10 @@ class IG:
                     return cl, ("IG stop" if p.get("side", 1) * (cl - ol) < 0 else "IG limit") + f" (IG P&L {t.get('profitAndLoss')})"
         except Exception as e: log("transactions:", e)
         return None, None
+    def move_stop(self, deal_id, stop_level, limit_level=None):
+        """Amend an open position's stop (e.g. to breakeven), keeping its limit."""
+        if self.dry or str(deal_id).startswith("dry-"): return {"dealStatus": "DRY"}
+        return self.ig.update_open_position(limit_level=limit_level, stop_level=stop_level, deal_id=deal_id)
     def sell(self, deal_id, size, direction="SELL"):
         if self.dry or str(deal_id).startswith("dry-"): return {"dealStatus": "DRY", "level": None, "profit": None}
         return self.ig.close_open_position(deal_id=deal_id, direction=direction, epic=None, expiry=None, level=None, order_type="MARKET", quote_id=None, size=size)
@@ -207,7 +212,7 @@ def reconcile(ig, s, day):
                 "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
         log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
 
-def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None, side=1):
+def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None, side=1, limit_pts=None):
     want = size if want is None else want
     if LIVE:
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
@@ -220,11 +225,14 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     if name in IDX and risk is not None:
         held = sum(q.get("risk", 0.0) for q in s["pos"] if q["market"] in IDX)
         if held + risk > IDX_RISK_CAP * size_eq(s): log(f"SKIP {book} {name}: equity-index risk would be £{held + risk:.2f} > {IDX_RISK_CAP:.0%} of the book"); return None
-    r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level, **({} if side == 1 else {"direction": "SELL"}))
+    kw = {} if side == 1 else {"direction": "SELL"}
+    if limit_pts: kw["limit_dist"] = limit_pts
+    r = ig.buy(epic, size, stop_dist=stop_pts, stop_level=stop_level, **kw)
     if r.get("dealStatus") not in ("ACCEPTED", "DRY"): log(f"REJECTED {book} {name}: {r.get('reason')}"); return None
     lvl = float(r["level"]) if r.get("level") else mid
     p = {"book": book, "market": name, "deal_id": r["dealId"], "size": size, "entry_ig": lvl, "entered": utcnow().strftime("%Y-%m-%d"), "days": 0,
          "stop_ig": stop_level if stop_level else lvl - side * stop_pts, "k": k, "want": want, "risk": risk or 0.0, "side": side}
+    if limit_pts: p["limit_ig"] = lvl + side * limit_pts   # take-profit: above a long's entry, BELOW a short's
     if extra: p.update(extra)
     s["pos"].append(p); log(f"OPEN {'SHORT ' if side == -1 else ''}{book} {name} {size}/pt (counted at {want:.4f}/pt) at {lvl:.1f} stop {p['stop_ig']:.1f}"); return p
 
@@ -296,7 +304,7 @@ def job_open(ig, s, group, hist_fn):
             h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
             mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
             log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
-            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS", "LBS")]:
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS", "LBS", "INS")]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
                 if p["book"] in ("RSI4", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
                 if p["book"] == "TPS":
@@ -310,6 +318,10 @@ def job_open(ig, s, group, hist_fn):
                     if b.r2 < 30: why = "RSI2 < 30"
                     elif b.close / k >= avg * 1.15: why = "15% above avg"
                 if p["book"] == "LBS" and b.close > d.close.rolling(10).max().shift(1).iloc[-1]: why = "close above the 10-day high"
+                if p["book"] == "INS" and not p.get("be") and b.close / k <= p["entry_ig"] - p.get("atr_ig", atr_ig):   # dropped back 1 ATR -> stop to breakeven
+                    try: ig.move_stop(p["deal_id"], round(p["entry_ig"], 1), p.get("limit_ig")); p["be"] = True; p["stop_ig"] = p["entry_ig"]; log(f"INS {name}: dropped back 1 ATR — stop moved to breakeven {p['entry_ig']:.1f}")
+                    except Exception as e: log("INS breakeven move failed (will close at breakeven instead):", e); p["be"] = True; p["stop_ig"] = p["entry_ig"]
+                if p["book"] == "INS" and p.get("be") and mid >= p["entry_ig"]: why = "back to breakeven"
                 if why is None and p["days"] >= MAXD[p["book"]]: why = f"{p['days']} days"
                 if why: close_pos(ig, s, p, mid, why, day.date())
             tps = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
@@ -337,6 +349,18 @@ def job_open(ig, s, group, hist_fn):
                     log(f"LBS {name}: established long bear (200-day falling, {100 * (1 - b.close / d.close.rolling(252).max().iloc[-1]):.0f}% below the 1-year high) + 20-day breakdown")
                     sp_ = round(2.0 * atr_ig, 1); sz, w = size_for(size_eq(s), RISK, sp_, ig.min_size(epic))
                     open_pos(ig, s, "LBS", name, epic, sz, mid, k, stop_pts=sp_, want=w, risk=w * sp_, side=-1)
+            # INS (doc 223, demo only, DK 11:42-11:47): the US 500 closed at a new ALL-TIME high -> short at the next open, stop 1.5 ATR; once it drops back 1 ATR
+            # the stop moves to breakeven; take-profit 3 ATR (IG limit); out after 60 days. With INTRADAY stops, S&P 1962-2026: -6 ATR in 65 years (about free),
+            # since 2001 +5, worst year -12; pays a little at most tops (1973 +3, 2007 +6, 2020 +7, 2022 +1). Risk 0.5% of the book.
+            if "INS" in BOOKS and name in BOOKS["INS"] and not any(q["book"] == "INS" and q["market"] == name for q in s["pos"]):
+                ref = d.close.iloc[:-1].max()
+                try:   # long history, only dates BEFORE today's final bar (no look-ahead in replays)
+                    hh = pd.read_csv("data_hist/SPX_yahoo.csv", index_col=0, parse_dates=True).Close; ref = max(ref, float(hh[hh.index < d.index[-1]].max())) if name == "US500" else ref
+                except Exception: pass
+                if b.close > ref:
+                    sp_ = round(1.5 * atr_ig, 1); sz, w = size_for(size_eq(s), 0.005, sp_, ig.min_size(epic))
+                    log(f"INS {name}: new all-time closing high {b.close:.1f} (previous {ref:.1f}) — insurance short, stop {sp_} pts")
+                    open_pos(ig, s, "INS", name, epic, sz, mid, k, stop_pts=sp_, want=w, risk=w * sp_, side=-1, limit_pts=round(3.0 * atr_ig, 1), extra={"atr_ig": float(atr_ig)})
             for bk in OPEN_BOOKS:
                 if bear: break
                 if bk not in BOOKS or name not in BOOKS[bk] or any(q["book"] == bk and q["market"] == name for q in s["pos"]): continue

@@ -32,3 +32,15 @@ Valuation filter: Shiller CAPE above the 80th percentile of all EARLIER months (
 - T4 in pounds on a £500 book: at 0.5% risk per trade, 99-year total −£176 (≈ −£1.80 a year), worst year −£126 (1995), payouts 2020 +£92,
   2007–08 +£49, 2022 +£35. At 1% risk everything doubles (worst year −£252).
 - Buffett indicator (market cap / GDP): not tested — no long history reachable from here; CAPE is the long-run valuation measure we have (1881–2023).
+
+## Refined with DK (11:42–11:47): close entry, breakeven, take-profit — and an honest intraday re-test
+- Close-only test 1928–2026 (`src/ins_refine.py`): shorting AT the record close is worse (−170 ATR) than at the next day (−70) — new highs run on a day.
+  Next-day entry + breakeven after a 1 ATR drop + 5 ATR target, 60 days: **+47 ATR** (since 2001 +13; worst year −37; 1929 +5, 2000 +7, 2007 +13,
+  2020 +12, 2022 +10). BUT that test checks stops on closes only.
+- Intraday re-test 1962–2026 (`src/ins_intraday.py`, IG stops trigger on the day's high): with a 1 ATR stop 62% of trades are stopped by noise.
+  Grid (stop 1/1.5/2/3 ATR x breakeven on/off x target 3/5/none) — breakeven and a target help in every row. Chosen for robustness:
+  **stop 1.5 ATR, breakeven after 1 ATR, target 3 ATR, 60 days: −6 ATR in 65 years (about free), since 2001 +5, worst year −12; tops 1973 +3,
+  2007 +6, 2020 +7, 2022 +1.** (Stop 3 ATR / target 5: −24, pays +10 at 2007/2020/2022.)
+- Built into the demo runner (INS, US 500, 0.5% risk): IG stop + IG limit at entry; `move_stop` amends the IG stop to breakeven once the close is
+  1 ATR below entry. Bug found and fixed in the replay: a short's take-profit level was recorded above entry (would have sent a wrong limit when
+  moving the stop). Replay 2019–26 after the fix: 81 trades, −£25 at intended size (2024 −£24 in a relentless bull, 2026 +£10), all 15 target exits profitable.
