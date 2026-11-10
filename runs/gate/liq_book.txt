@@ -1,0 +1,17 @@
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: none
+      by year: 2020: n474 +1.14% (sum +542)  2021: n684 +0.36% (sum +249)  2022: n633 -0.47% (sum -295)  2023: n426 +0.53% (sum +227)  2024: n581 +0.60% (sum +348)  2025: n578 -0.51% (sum -297)  2026: n507 -0.16% (sum -80)
+      win 38%, worst -2.65%, median -2.65%
+
+FAIL  LIQ ladder, no NY-open taps [liquidation clusters (crypto, Revolut X costs)] — n 3200 (457/yr), mean +0.217, t +3.10, clustered t +2.08 (t* 3.77, idea #316), year-block CI [-0.163, +0.623], full years + 4/6, last 5y +0.094, last 12m -0.298, costs x1.5 +0.160, random 95th +0.145
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: none
+      by year: 2020: n421 +1.03% (sum +433)  2021: n598 +0.47% (sum +282)  2022: n524 -0.32% (sum -168)  2023: n335 +0.47% (sum +156)  2024: n461 +0.66% (sum +304)  2025: n462 -0.55% (sum -255)  2026: n399 -0.14% (sum -57)
+      win 39%, worst -2.65%, median -2.65%
+
+FAIL  LIQ ladder, one position at a time [liquidation clusters (crypto, Revolut X costs)] — n 749 (107/yr), mean +0.167, t +1.12, clustered t +1.11 (t* 3.77, idea #317), year-block CI [-0.150, +0.488], full years + 4/6, last 5y +0.051, last 12m -0.302, costs x1.5 +0.111, random 95th +0.100
+      failed: clustered t >= t*, year-block CI > 0, last 5y and 12m +
+      walk-forward switches that help: none
+      by year: 2020: n115 +0.80% (sum +92)  2021: n181 +0.12% (sum +22)  2022: n126 -0.40% (sum -50)  2023: n70 +0.68% (sum +47)  2024: n102 +0.48% (sum +49)  2025: n89 -0.28% (sum -25)  2026: n66 -0.16% (sum -10)
+      win 37%, worst -2.65%, median -2.65%
+
