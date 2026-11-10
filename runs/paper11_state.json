@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-06",
+ "since": "2026-11-09",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -11,8 +11,8 @@
   "closed_shadow": 0
  },
  "EP": {
-  "equity": 2000.0,
-  "shadow_equity": 2000.0,
+  "equity": 2025.8675403791726,
+  "shadow_equity": 2002.5268687076475,
   "pos": [
    {
     "sym": "WRBY",
@@ -23,33 +23,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 1,
-    "kind": "real",
-    "cloud": false
-   },
-   {
-    "sym": "BRUN",
-    "opened": "2026-11-06",
-    "entry": 6.235358166364443,
-    "stop": 5.744248874596145,
-    "risk": 0.07876200190351566,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
-    "kind": "real",
-    "cloud": false
-   },
-   {
-    "sym": "CIFR",
-    "opened": "2026-11-06",
-    "entry": 6.354854755765317,
-    "stop": 5.655520405728051,
-    "risk": 0.11004725944409804,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
+    "n": 2,
     "kind": "real",
     "cloud": false
    },
@@ -62,37 +36,12 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 0,
-    "kind": "real",
-    "cloud": false
-   },
-   {
-    "sym": "HUT",
-    "opened": "2026-11-06",
-    "entry": 51.6901847121914,
-    "stop": 47.008872315585705,
-    "risk": 0.09056482236755455,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
+    "n": 1,
     "kind": "real",
     "cloud": false
    }
   ],
   "shadow": [
-   {
-    "sym": "OPY",
-    "opened": "2026-11-06",
-    "entry": 91.60656700077843,
-    "stop": 88.97692908531509,
-    "risk": 0.02870577952605722,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
-    "kind": "shadow"
-   },
    {
     "sym": "STGW",
     "opened": "2026-11-06",
@@ -102,7 +51,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 0,
+    "n": 1,
     "kind": "shadow"
    },
    {
@@ -114,7 +63,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 0,
+    "n": 1,
     "kind": "shadow"
    },
    {
@@ -126,11 +75,11 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 0,
+    "n": 1,
     "kind": "shadow"
    }
   ],
-  "closed": 0,
-  "closed_shadow": 0
+  "closed": 3,
+  "closed_shadow": 1
  }
 }

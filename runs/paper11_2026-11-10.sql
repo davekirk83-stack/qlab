@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS pb11_equity (d TEXT, book TEXT, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER, PRIMARY KEY (d, book));
+CREATE TABLE IF NOT EXISTS pb11_trades (d TEXT, book TEXT, sym TEXT, opened TEXT, closed TEXT, ret REAL, r_mult REAL, how TEXT, shadow INTEGER);
+INSERT OR REPLACE INTO pb11_equity VALUES ('2026-11-10', 'MV', 2000.0000, 2000.0000, 0, 0, 0);
+INSERT OR REPLACE INTO pb11_equity VALUES ('2026-11-10', 'EP', 2025.8675, 2002.5269, 2, 3, 1);
+CREATE TABLE IF NOT EXISTS pb11_cloud (d TEXT, book TEXT, cloud_equity REAL, closed_cloud INTEGER, PRIMARY KEY (d, book));
+CREATE TABLE IF NOT EXISTS pb11_trade_cloud (book TEXT, sym TEXT, opened TEXT, cloud INTEGER, PRIMARY KEY (book, sym, opened));
+INSERT OR REPLACE INTO pb11_cloud VALUES ('2026-11-10', 'MV', 2000.0000, 0);
+INSERT OR REPLACE INTO pb11_cloud VALUES ('2026-11-10', 'EP', 2000.0000, 0);
+INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('EP', 'WRBY', '2026-11-05', 0);
+INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('EP', 'COHR', '2026-11-06', 0);
+INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('EP', 'BRUN', '2026-11-06', 0);
+INSERT INTO pb11_trades VALUES ('2026-11-10', 'EP', 'BRUN', '2026-11-06', '2026-11-09', 0.069693, 0.8849, 'trail SMA10', 0);
+INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('EP', 'CIFR', '2026-11-06', 0);
+INSERT INTO pb11_trades VALUES ('2026-11-10', 'EP', 'CIFR', '2026-11-06', '2026-11-09', 0.066809, 0.6071, 'trail SMA10', 0);
+INSERT OR REPLACE INTO pb11_trade_cloud VALUES ('EP', 'HUT', '2026-11-06', 0);
+INSERT INTO pb11_trades VALUES ('2026-11-10', 'EP', 'HUT', '2026-11-06', '2026-11-09', 0.098173, 1.0840, 'trail SMA10', 0);
+INSERT INTO pb11_trades VALUES ('2026-11-10', 'EP', 'OPY', '2026-11-06', '2026-11-09', 0.007254, 0.2527, 'trail SMA10', 1);
