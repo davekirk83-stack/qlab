@@ -42,3 +42,24 @@ IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-06 New York
 Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 0, no fills. ig_live both 0 / paper-only-while-live 0 / IG-only 0, no fills.
 
 Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/1, no fills.
+
+## 2026-11-09 (NY day) — checked 2026-11-10
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-09 New York
+  no Ignition signal on either feed — agree
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-09 New York
+  09:40 NY BUY  IG only    paper close       nan  IG close   27568.6  taken
+  17:35 NY BUY  IG only    paper close       nan  IG close   27937.4  cooloff
+  agreement: 0/2 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+  IG fill 09:40 NY side +1: filled 27568.0 vs IG signal close 27568.6 -> -0.6 pts against us; result +32.7 pts (ig_limit)
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 0, no fills (note: no ig_demo bars files for 2026-11-09 — the demo NQ runner does not appear to have run that day, so "agree" here is empty coverage). ig_live both 0 / paper-only-while-live 0 / IG-only 2 (1 taken, 1 cooloff), slippage -0.6 pts over 1 fill (negative = filled better than the signal close).
+
+Caveat: the paper feed (data_nq_cache/nq_5m.csv) has gaps on 2026-11-09 UTC — no bars 09:00–09:55, 14:00–15:55 and 21:15–22:55 UTC. The 14:00–15:55 UTC hole is 09:00–10:55 NY, which covers the live 09:40 NY BUY, so the "IG only" taken trade is a paper data gap, not a feed disagreement. ig_vs_paper.py marks the day "covered" if any bar exists, so it does not flag such holes.
+
+Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/3 (2 of the 3 misses fall in the 9 Nov paper data gap), mean slippage -0.6 pts over 1 fill.
+
+Flag: ig_live took a live BUY at 09:40 NY (+32.7 pts) with no paper counterpart — paper feed missing those bars.
