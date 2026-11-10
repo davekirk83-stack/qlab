@@ -247,14 +247,22 @@ def job_gold_ldn(ig, s):
     the price; stop at the other side (capped at 0.6%); target 2.5x risk; flat at 19:00 UTC (job gold_flat). Same rules as market_search_3."""
     today = utcnow().strftime("%Y-%m-%d")
     if s.get("gold", {}).get("day") == today: log("gold: already placed today"); return
-    h = ig.ig.fetch_historical_prices_by_epic(GOLD_EPIC, resolution="5Min", numpoints=80)["prices"]
-    rows = []
-    for b in h:
-        t = pd.Timestamp(b.get("snapshotTimeUTC") or b["snapshotTime"].replace("/", "-"), tz="UTC" if b.get("snapshotTimeUTC") else None)
-        mid = lambda k: (float(b[k]["bid"]) + float(b[k]["ask"])) / 2
-        rows.append((t, mid("highPrice"), mid("lowPrice"), mid("closePrice")))
-    d = pd.DataFrame(rows, columns=["t", "high", "low", "close"]).set_index("t")
-    if d.index.tz is None: d.index = d.index.tz_localize("Europe/London").tz_convert("UTC")
+    try:
+        h = ig.ig.fetch_historical_prices_by_epic(GOLD_EPIC, resolution="5Min", numpoints=80)["prices"]
+        rows = []
+        for b in h:
+            t = pd.Timestamp(b.get("snapshotTimeUTC") or b["snapshotTime"].replace("/", "-"), tz="UTC" if b.get("snapshotTimeUTC") else None)
+            mid = lambda k: (float(b[k]["bid"]) + float(b[k]["ask"])) / 2
+            rows.append((t, mid("highPrice"), mid("lowPrice"), mid("closePrice")))
+        d = pd.DataFrame(rows, columns=["t", "high", "low", "close"]).set_index("t")
+        if d.index.tz is None: d.index = d.index.tz_localize("Europe/London").tz_convert("UTC")
+    except Exception as e:   # the demo account's weekly price-history allowance is shared with the 5-min runner
+        log(f"gold: IG history unavailable ({e}) — using Yahoo gold futures 5-min bars scaled to IG's price")
+        import yfinance as yf
+        y = yf.download("GC=F", period="2d", interval="5m", progress=False)
+        if isinstance(y.columns, pd.MultiIndex): y.columns = y.columns.get_level_values(0)
+        y = y.rename(columns=str.lower)[["high", "low", "close"]].dropna(); y.index = pd.to_datetime(y.index).tz_convert("UTC")
+        sn = ig.snap(GOLD_EPIC); k = ((float(sn["bid"]) + float(sn["offer"])) / 2) / float(y.close.iloc[-1]); d = y * k
     a = d[(d.index.strftime("%Y-%m-%d") == today) & (d.index.hour >= 1) & (d.index.hour < 6)]
     if len(a) < 48: log(f"gold: only {len(a)} Asian bars — no trade"); return
     hi, lo = a.high.max(), a.low.min(); C = float(d.close.iloc[-1]); w = (hi - lo) / C
