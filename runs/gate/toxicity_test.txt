@@ -1,0 +1,12 @@
+Taps of LONG liquidation levels, by order-flow toxicity at the tap (one event per 15-min bar):
+   all taps                                             n 5062 | 1h +0.184% | 4h +0.227% (t +8.45, win 60%) | 24h +0.367%
+   TOXIC (top 20% of 30 days, sellers) and still ACCELERATING n 1657 | 1h +0.145% | 4h +0.226% (t +4.38, win 60%) | 24h +0.303%
+   TOXIC (sellers) but COOLING  <- 'cooling after a burst' n  327 | 1h +0.273% | 4h +0.270% (t +3.19, win 60%) | 24h +0.536%
+   moderate (rank 40-80%)                               n 1939 | 1h +0.205% | 4h +0.227% (t +5.38, win 59%) | 24h +0.354%
+   CALM (bottom 40%)                                    n 1129 | 1h +0.179% | 4h +0.211% (t +3.92, win 60%) | 24h +0.439%
+   2020-22: toxic+cooling                               n  141 | 1h +0.591% | 4h +0.473% (t +3.08, win 66%) | 24h +1.018%
+   2020-22: toxic+accelerating                          n  855 | 1h +0.268% | 4h +0.395% (t +4.38, win 64%) | 24h +0.500%
+   2023-26: toxic+cooling                               n  186 | 1h +0.032% | 4h +0.116% (t +1.27, win 56%) | 24h +0.171%
+   2023-26: toxic+accelerating                          n  802 | 1h +0.015% | 4h +0.046% (t +1.01, win 56%) | 24h +0.093%
+   2020-22: all taps                                    n 2404 | 1h +0.297% | 4h +0.358% (t +7.43, win 63%) | 24h +0.474%
+   2023-26: all taps                                    n 2658 | 1h +0.082% | 4h +0.108% (t +4.09, win 57%) | 24h +0.269%

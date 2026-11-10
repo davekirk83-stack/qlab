@@ -37,3 +37,34 @@ Each long-level tap classed by how many live long levels remain below it (within
 Direction supports DK's idea (the fewer levels left below, the bigger the bounce), but 'fully cleared' is rare (25 times in 7 years, crash days, with deep
 dips first) — too few to prove alone. The practical forms: the deep, low-leverage tiers (10x +0.64%, 5x +0.77% over 4h) and 'few levels left below'.
 To build next, with the standard test: a ladder that buys the deeper clusters in size (like TPS rungs), stop just below the last cluster.
+
+## Addendum — toxic order flow (DK 10 Nov: "Yes please")
+
+**What "toxic flow" means.** Market makers call flow *toxic* when the aggressive orders are mostly one way: someone is hitting bids (or lifting offers) relentlessly, usually because they know or are forced to do something. Liquidity providers lose money against it, so they pull their quotes, and price slides through levels faster. VPIN is the academic measure of it. We rebuilt a simple version from Binance BTC taker volume: on 15-minute bars, **toxicity = |net taker buy − sell| ÷ total volume over the last 3 hours**. Its percentile is taken against the previous 30 days, and "cooling" means it is lower than 45 minutes earlier.
+
+**The test.** We took every tap of a long-liquidation level, 5,062 taps from 2020 to 2026, measured from the level and after 0.04% costs, and grouped them by the toxicity at the moment of the tap.
+
+| At the tap | n | 4h | t | 24h |
+|---|---|---|---|---|
+| All taps | 5,062 | +0.227% | 8.45 | +0.367% |
+| Toxic (top 20%, sellers), still accelerating | 1,657 | +0.226% | 4.38 | +0.303% |
+| Toxic (sellers), cooling | 327 | +0.270% | 3.19 | +0.536% |
+| Moderate | 1,939 | +0.227% | 5.38 | +0.354% |
+| Calm | 1,129 | +0.211% | 3.92 | +0.439% |
+
+By period:
+
+| Period | Group | 4h | 24h |
+|---|---|---|---|
+| 2020–22 | All taps | +0.358% | |
+| 2020–22 | Toxic + cooling | +0.473% | +1.02% |
+| 2023–26 | All taps | +0.108% | |
+| 2023–26 | Toxic + cooling | +0.116% (t 1.27) | +0.17% |
+| 2023–26 | Toxic + accelerating | +0.046% | |
+
+**Verdict.**
+- Toxicity **does not usefully filter** liquidation-level taps. "Toxic and cooling" looks a little better over 1h and 24h, but only on 327 events, and the edge comes from 2020–22. In the recent period it is indistinguishable from simply taking every tap.
+- The one consistent hint is to **avoid buying while toxic selling is still accelerating**. Those taps were the weakest group in 2023–26: +0.05% over 4h, about zero after real costs.
+- That is a sensible "wait one bar" rule, not an edge on its own.
+- The base finding still stands: taps of long-liquidation levels bounce, with t 8.45 on all taps. The bounce has shrunk a lot since 2022 (4h +0.36% → +0.11%), so it needs Revolut X's real costs and the standard test before any money goes near it.
+- Script: `src/toxicity_test.py`. Output: `runs/gate/toxicity_test.txt`.
