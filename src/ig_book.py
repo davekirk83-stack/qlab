@@ -9,7 +9,7 @@ import os, json, datetime as dt
 from ig_mode import OUT, LIVE, MIN_ONLY, FLOOR   # doc 185: the same book runs the live £500 account (runs/ig_live)
 F = f"{OUT}/book_eq.json"
 START_EQ = float(os.environ.get("IG_BOOK_START_EQ", "500"))
-R_IGN, RNG_MARGIN, R_NEWS, MARGIN = 0.02, 0.15, 0.01, 0.05
+R_IGN, RNG_MARGIN, R_NEWS, MARGIN = 0.03, 0.15, 0.01, 0.05   # DK 11 Nov: Ignition 3% per trade while the pot is under £1,000 (was 2%)
 MAX_LEV = 5.0   # DK 1 Nov 16:02: "happy with 2x but if you are confident in using 5x sensibly then that's fine (but no more)"
 if LIVE:   # doc 212: live rules from config/live_pot.json, shared with every live book on the account
     import live_limits as L
@@ -27,8 +27,10 @@ class BookEquity:
         today = dt.datetime.now(dt.timezone.utc).date().isoformat()
         if self.s.get("day") != today: self.s["day"] = today; self.s["day_open"] = self.s["eq"]; self.save()
     def floor_hit(self):
-        """doc 93 / 185: live book at -15% from its start -> no new entries (back to paper)"""
-        return LIVE and self.s["eq"] <= FLOOR * START_EQ
+        """doc 93 / 185: live book at -15% from its start -> no new entries (back to paper); DK 11 Nov: -20% while the pot is under £1,000"""
+        if not LIVE: return False
+        fl = 1 - float(L.tier(START_EQ).get("floor", 1 - FLOOR))
+        return self.s["eq"] <= fl * START_EQ
     pot = None   # live: live_limits.Pot set by the runner (whole-account day stop, floor and exposure, all books together)
     def day_ok(self):
         self._roll(); ok = self.s["eq"] > self.s["day_open"] * 0.96 and not self.floor_hit()
@@ -43,7 +45,8 @@ class BookEquity:
         self.save()
     def ign_size(self, stop_pts, min_size):
         if MIN_ONLY: return min_size
-        return max(min_size, round(self.eq * R_IGN * self.k / max(stop_pts, 1.0), 2))
+        r = L.intraday_risk(self.pot.pot if self.pot is not None and "acc" in self.pot.s else self.eq) if LIVE else R_IGN
+        return max(min_size, round(self.eq * r * self.k / max(stop_pts, 1.0), 2))
     def news_size(self, risk_pts, min_size):
         if MIN_ONLY: return min_size
         return max(min_size, round(self.eq * R_NEWS * self.k / max(risk_pts, 1.0), 2))

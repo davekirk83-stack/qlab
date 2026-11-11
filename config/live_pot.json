@@ -30,31 +30,39 @@
     }
   },
   "risk_tiers": {
-    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. DK 10:43 (doc 216, second review): TPS stop = 5% of the pot (closed + open TPS P&L), TPS losses count in the account day stop and floor, auto-restart once the US 500 is back above its 200-day.",
+    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. DK 10:43 (doc 216, second review): TPS stop = 5% of the pot (closed + open TPS P&L), TPS losses count in the account day stop and floor, auto-restart once the US 500 is back above its 200-day. DK 11 Nov 09:16 'Yes': intraday books (Ignition, AuclairsDad stack, Williams breakout) risk 3% per trade while the pot is under \u00a31,000 (2% from \u00a31,000), and the account floor is -20% under \u00a31,000 (-15% from \u00a31,000). Daily books keep risk_per_trade.",
     "rows": [
       {
         "from_pot": 0,
         "risk_per_trade": 0.02,
         "tps_min_stake": true,
-        "tps_stop_frac": 0.05
+        "tps_stop_frac": 0.05,
+        "intraday_risk": 0.03,
+        "floor": 0.2
       },
       {
         "from_pot": 1000,
         "risk_per_trade": 0.02,
         "tps_min_stake": true,
-        "tps_stop_frac": 0.05
+        "tps_stop_frac": 0.05,
+        "intraday_risk": 0.02,
+        "floor": 0.15
       },
       {
         "from_pot": 2500,
         "risk_per_trade": 0.015,
         "tps_min_stake": true,
-        "tps_stop_frac": 0.05
+        "tps_stop_frac": 0.05,
+        "intraday_risk": 0.015,
+        "floor": 0.15
       },
       {
         "from_pot": 5000,
         "risk_per_trade": 0.01,
         "tps_min_stake": false,
-        "tps_stop_frac": 0.05
+        "tps_stop_frac": 0.05,
+        "intraday_risk": 0.01,
+        "floor": 0.15
       }
     ],
     "tps_auto_restart": true,

@@ -15,7 +15,7 @@ from ig_mode import OUT, LIVE
 
 STATE = f"{OUT}/wvb_state.json"; TRADES = f"{OUT}/wvb_trades.csv"
 SESS = {"NQ": ("America/New_York", 570, 960), "USDJPY": ("Europe/London", 480, 990), "US500": ("America/New_York", 570, 960)}
-K, RISK = 0.5, 0.02
+K, RISK = 0.5, 0.03   # DK 11 Nov: intraday books 3% per trade under a £1,000 pot
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), "[wvb]", *a, flush=True)

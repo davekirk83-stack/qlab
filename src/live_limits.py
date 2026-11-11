@@ -40,6 +40,9 @@ def tier(pot):
     for r in rows:
         if pot >= r["from_pot"]: row = r
     return row
+def intraday_risk(pot):
+    """Risk per trade for the intraday books (Ignition, AuclairsDad stack, Williams breakout) — DK 11 Nov: 3% under £1,000."""
+    r = tier(pot); return float(r.get("intraday_risk", r.get("risk_per_trade", RISK)))
 def tps_stop(pot):
     r = tier(pot); return float(r["tps_stop_gbp"]) if "tps_stop_gbp" in r else float(r.get("tps_stop_frac", 0.05)) * pot
 def tps_pnl(state=None):
@@ -72,6 +75,7 @@ class Pot:
         """Day stop / floor for every book EXCEPT TPS, which has its own stop (tps_stop): TPS P&L is taken out first."""
         tt, td = tps_pnl(self.daily) if not C.get("risk_tiers", {}).get("tps_in_floor", False) else (0.0, 0.0)
         ch, today = self.change - tt, self.today - td
+        FLOOR = float(tier(self.base).get("floor", globals()["FLOOR"]))   # DK 11 Nov: -20% under £1,000, -15% from £1,000
         if ch < -FLOOR * self.base: return False, f"books (ex TPS) down £{-ch:.2f} since start (-{FLOOR:.0%} of £{self.base:.0f}): back to paper"
         if today < -DAY_STOP * (self.pot - self.today): return False, f"books (ex TPS) down £{-today:.2f} today (-{DAY_STOP:.0%}): no new entries today"
         return True, ""

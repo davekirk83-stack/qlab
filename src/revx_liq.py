@@ -22,7 +22,7 @@ ROOT = os.environ.get("QLAB_ROOT", os.path.dirname(os.path.dirname(os.path.abspa
 TIERS = [(100, .20, .0049, .0051), (50, .10, .0147, .0155), (25, .05, .0338, .0370), (10, .025, .0467, .0511), (5, .0125, .06115, .06705)]
 TRADE_GBP, USD_PER_GBP, BOOK_GBP, BOOK_STOP = 50.0, 1.27, 500.0, 0.15
 RUNG2, TP1, TP2, STOP, HOLD_H = 0.01, 0.01, 0.03, 0.04, 72
-MAXSLOTS = 3          # DK 11 Nov: bids at up to 3 clusters at once (doc 225 'all taps' version: ~3x the trades, same +0.23%/trade); CAP-021 allows 10 x 10%
+MAXSLOTS = 5          # DK 11 Nov 09:16: 5 slots (was 3). Bids at up to 5 clusters at once (doc 225 'all taps' version: ~3x the trades, same +0.23%/trade); CAP-021 allows 10 x 10%
 TAKER, SLIP = 0.0009, 0.0005
 SYM = "BTC-USD"
 
