@@ -29,3 +29,44 @@ These are mostly day-trading methods, built for intraday entries and exits on lo
 - Crabel's opening-range breakout following an NR7 day;
 - Williams' breakout from the open;
 - Raschke's 80-20 and Holy Grail on intraday bars.
+
+## Part 2: intraday, the way the champions traded (11 Nov, morning)
+
+**Set-up.**
+- **Data:** 5-minute bars, cash session only.
+- **Costs:** IG's spread as the round-trip cost.
+- **Exits:** flat by the session close.
+- **Markets:** US Tech 100, US 500 and USD/JPY have about 1 year of data. Wall Street, Germany 40 and gold (IG prices) have about 7 months. Gold from Dukascopy covers 2021–2026.
+- **R** is the session's 10-day average range.
+
+**Scripts:** `src/champions_intraday.py` and `src/champions_intraday_refine.py`. **Output:** `runs/gate/champ/intraday_*`.
+
+### Larry Williams' volatility breakout works intraday
+**Rules:**
+- **Entry:** buy stop at the open + k × the previous session's range, and sell stop at the open − k × that range.
+- **Stop:** the other side of the bracket.
+- **Exit:** at the close.
+
+**US Tech 100.** Positive at every k with the bracket stop:
+
+| k | n/yr | Pts/trade | R | Win | First 60% / last 40% | Months + |
+|---|---|---|---|---|---|---|
+| 0.3 | 242 | +18.8 | +0.056 | 51% | +0.076 / +0.027 | 10/14 |
+| **0.4** | 211 | **+37.1** | **+0.095 (t 2.47)** | **60%** | +0.113 / +0.069 | 9/14 |
+| 0.5 | 195 | +28.8 | +0.075 | 55% | +0.073 / +0.078 | 10/14 |
+| 0.6 | 172 | +20.3 | +0.053 | 52% | +0.059 / +0.044 | 7/14 |
+| 0.7 | 148 | +18.3 | +0.056 | 48% | +0.082 / +0.018 | 9/14 |
+
+**USD/JPY.** Positive at every k, and both halves positive at every k: +0.085 to +0.108 R, with k 0.5 giving 182 trades a year at +0.092 R.
+
+**Other markets:**
+- US 500: positive only around k 0.5 (+0.053 R).
+- Wall Street and Germany 40: mixed, with only 7 months of data.
+- Gold 2021–26: flat.
+
+### Other set-ups
+- **Crabel's stretch breakout** fails with his tight stop at the open (17% win). With the stop at twice the stretch it turns positive on US Tech 100: +11 to +18 points, 46–54% win, both halves positive, 11 of 14 months positive at 2×.
+- **Crabel's 30-minute opening-range breakout and his NR4/NR7 filters** come out small positive on GBP/USD, USD/JPY and gold. That is a good sign, but the samples are small.
+- **Raschke's 80-20** does not work intraday at these stops.
+
+**Next:** build the Williams breakout into the IG demo runner on US Tech 100 and USD/JPY. It would use bracket working orders at the open, a one-cancels-the-other fill, and flat at the close. That is about 375 trades a year between the two markets.
