@@ -1,0 +1,4 @@
+Stack all hours TueWed off (base)    n 132 pts/trade +6.33 total +836 win 70% | dev +7.14 hold-out +5.13 | months + 10/14 worst -48
++ VWAP side                          n 114 pts/trade +5.48 total +624 win 72% | dev +6.50 hold-out +3.90 | months + 10/13 worst -68
++ 1h fast EMA                        n 115 pts/trade +5.49 total +632 win 67% | dev +5.74 hold-out +5.15 | months + 7/14 worst -48
++ VWAP + 1h fast EMA                 n 104 pts/trade +4.45 total +462 win 68% | dev +5.16 hold-out +3.43 | months + 7/13 worst -68

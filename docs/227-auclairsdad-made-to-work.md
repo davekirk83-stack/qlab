@@ -29,3 +29,24 @@ DK, 22:35: "go back to auclair's dad's system and make it work. I already gave y
   - both were bench-tested.
 - **Demo:** `IG_IGN_HOURS=runner` from tomorrow's 07:55 London session.
 - **Live:** unchanged until DK decides. Live would also need the London-morning cron restored.
+
+## Addendum (11 Nov, 09:07): his post, and the stack goes overnight on the demo
+
+AuclairsDad posted that his algo "made 700 ticks just going long over and over" overnight in a slow, strong-internals uptrend. His panel shows a Regime Score, a Trigger Score, VWAP and a higher-timeframe fast EMA.
+
+**His two visible filters, tested on our stack** (all hours, Tue/Wed off; `src/ad_stack_vwap.py`):
+
+| Version | n | Pts/trade | Win | Dev / hold-out | Months + |
+|---|---|---|---|---|---|
+| **Base stack** | 132 | **+6.33** | 70% | +7.14 / +5.13 | **10/14** |
+| + VWAP side | 114 | +5.48 | 72% | +6.50 / +3.90 | 10/13 |
+| + 1-hour fast EMA | 115 | +5.49 | 67% | +5.74 / +5.15 | 7/14 |
+| + both | 104 | +4.45 | 68% | +5.16 / +3.43 | 7/13 |
+
+Neither filter adds anything. His regime layer already carries that information, so the base stack is the version to run.
+
+**His post confirms the main point: the stack makes its money around the clock.** The demo now runs it overnight:
+- **Night 1:** 17:05 New York to 03:00 UTC, Sunday to Thursday evenings.
+- **Night 2:** 03:00 UTC to 07:50 London.
+- **Settings for both:** `IG_AD_STACK=1` and `IG_IGN_HOURS=all`.
+- **Day sessions:** unchanged; Ignition trades runner hours.
