@@ -1,0 +1,21 @@
+{
+ "book": "Stack all hours TueWed off (base)",
+ "note": "",
+ "data": "2025-10-15..2026-11-10",
+ "holdout_from": "2026-06-07",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 79,
+ "dev_R": 0.65,
+ "hold_n": 53,
+ "hold_per_year": 124,
+ "hold_R": 0.204,
+ "t": 0.98,
+ "h1": 0.022,
+ "h2": 0.38,
+ "win": 0.62,
+ "maxdd_R": -5.8,
+ "random_p95": 0.183,
+ "label": "WEAK",
+ "reason": "t<2"
+}

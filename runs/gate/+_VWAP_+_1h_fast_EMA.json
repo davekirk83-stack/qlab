@@ -1,0 +1,21 @@
+{
+ "book": "+ VWAP + 1h fast EMA",
+ "note": "",
+ "data": "2025-10-15..2026-11-10",
+ "holdout_from": "2026-06-07",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 61,
+ "dev_R": 0.423,
+ "hold_n": 43,
+ "hold_per_year": 101,
+ "hold_R": 0.091,
+ "t": 0.38,
+ "h1": -0.087,
+ "h2": 0.262,
+ "win": 0.63,
+ "maxdd_R": -6.1,
+ "random_p95": 0.299,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

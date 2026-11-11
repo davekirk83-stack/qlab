@@ -1,0 +1,21 @@
+{
+ "book": "+ 1h fast EMA",
+ "note": "",
+ "data": "2025-10-15..2026-11-10",
+ "holdout_from": "2026-06-07",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 67,
+ "dev_R": 0.455,
+ "hold_n": 48,
+ "hold_per_year": 112,
+ "hold_R": 0.199,
+ "t": 0.87,
+ "h1": -0.03,
+ "h2": 0.428,
+ "win": 0.62,
+ "maxdd_R": -6.1,
+ "random_p95": 0.247,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "+ VWAP side",
+ "note": "",
+ "data": "2025-10-15..2026-11-10",
+ "holdout_from": "2026-06-07",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 69,
+ "dev_R": 0.655,
+ "hold_n": 45,
+ "hold_per_year": 105,
+ "hold_R": 0.116,
+ "t": 0.51,
+ "h1": -0.066,
+ "h2": 0.29,
+ "win": 0.64,
+ "maxdd_R": -5.8,
+ "random_p95": 0.321,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
