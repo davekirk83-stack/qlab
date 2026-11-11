@@ -1,2 +1,7 @@
 
 === Crabel NR7 breakout
+  FAIL same-day close, both             n 17704 (656/yr) mean -0.008 cl.t -1.62 | years+ 10/26 | last5y -0.037 last12m -0.043 | x1.5 -0.032 | rnd95 -0.047 | adds no
+  FAIL fpo, both                        n 14026 (519/yr) mean +0.023 cl.t +3.13 | years+ 18/26 | last5y -0.001 last12m -0.044 | x1.5 -0.000 | rnd95 -0.0295 | adds no
+  FAIL 3 days, both + regime            n  9010 (334/yr) mean -0.051 cl.t -3.89 | years+ 7/26 | last5y -0.099 last12m -0.086 | x1.5 -0.074 | rnd95 -0.014 | adds no
+  FAIL fpo, long + 200d                 n  6025 (223/yr) mean -0.047 cl.t -4.57 | years+ 7/26 | last5y -0.070 last12m -0.126 | x1.5 -0.070 | rnd95 -0.0147 | adds no
+  -> best: fpo, both; + walk-forward market choice: n 6879 mean +0.041 (all markets same years +0.015) | last 5y +0.019 | years + 15/19

@@ -1,2 +1,7 @@
 
 === Williams Oops!
+  FAIL same-day close, both             n 14025 (519/yr) mean -0.050 cl.t -9.28 | years+ 7/26 | last5y -0.079 last12m -0.081 | x1.5 -0.071 | rnd95 -0.0455 | adds no
+  FAIL fpo, both                        n 11067 (410/yr) mean +0.007 cl.t +0.78 | years+ 14/26 | last5y -0.014 last12m -0.032 | x1.5 -0.015 | rnd95 -0.0308 | adds no
+  FAIL fpo, long + 200d                 n  3344 (124/yr) mean +0.005 cl.t +0.32 | years+ 14/25 | last5y -0.038 last12m -0.110 | x1.5 -0.017 | rnd95 0.0015 | adds no
+  FAIL fpo, both + regime               n  5739 (213/yr) mean +0.008 cl.t +0.60 | years+ 15/26 | last5y -0.046 last12m -0.109 | x1.5 -0.015 | rnd95 -0.0128 | adds no
+  -> best: fpo, both; + walk-forward market choice: n 6098 mean +0.004 (all markets same years -0.003) | last 5y -0.008 | years + 9/19

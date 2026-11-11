@@ -1,2 +1,7 @@
 
 === Williams volatility breakout
+  FAIL fpo, both                        n 27992 (1037/yr) mean -0.034 cl.t -6.13 | years+ 7/26 | last5y -0.043 last12m -0.056 | x1.5 -0.058 | rnd95 -0.0225 | adds no
+  FAIL fpo, long + 200d                 n 17008 (630/yr) mean -0.037 cl.t -5.36 | years+ 7/26 | last5y -0.045 last12m -0.071 | x1.5 -0.060 | rnd95 -0.0181 | adds no
+  FAIL fpo, both + regime               n 17142 (635/yr) mean -0.036 cl.t -5.30 | years+ 7/26 | last5y -0.043 last12m -0.056 | x1.5 -0.060 | rnd95 -0.0174 | adds no
+  FAIL same-day close, long + 200d      n 23021 (853/yr) mean -0.087 cl.t -20.00 | years+ 3/26 | last5y -0.137 last12m -0.138 | x1.5 -0.109 | rnd95 -0.0332 | adds no
+  -> best: fpo, both + regime; + walk-forward market choice: n 3031 mean -0.019 (all markets same years -0.045) | last 5y -0.007 | years + 6/19

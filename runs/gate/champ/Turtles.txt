@@ -1,2 +1,6 @@
 
 === Turtles System 1 (20-day)
+  FAIL 10-day exit, both                n  4829 (179/yr) mean -0.123 cl.t -2.52 | years+ 7/26 | last5y -0.304 last12m -0.355 | x1.5 -0.146 | rnd95 -0.0841 | adds no
+  FAIL 10-day exit, both + regime       n  3375 (125/yr) mean -0.042 cl.t -0.74 | years+ 11/26 | last5y -0.227 last12m -0.298 | x1.5 -0.065 | rnd95 -0.0201 | adds no
+  FAIL 10-day exit, long + 200d         n  2003 (74/yr) mean -0.003 cl.t -0.04 | years+ 14/26 | last5y -0.138 last12m -0.176 | x1.5 -0.026 | rnd95 0.0282 | adds no
+  -> best: 10-day exit, long + 200d; + walk-forward market choice: n 753 mean +0.049 (all markets same years -0.080) | last 5y +0.075 | years + 11/19
