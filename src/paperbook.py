@@ -79,6 +79,7 @@ def load():
     out = {}
     for p in sorted(glob.glob(f"{OUT}/*.csv")):
         d = pd.read_csv(p)
+        if "t" not in d.columns: continue   # foreign file in data_daily/ (macro CSVs from the IG runner) - not part of this book's universe
         if len(d) < MINBARS: continue
         d.index = pd.to_datetime(d.t, unit="ms")
         out[os.path.basename(p)[:-4]] = d[["open", "high", "low", "close", "volume"]].sort_index()

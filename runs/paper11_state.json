@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-09",
+ "since": "2026-11-10",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -12,18 +12,23 @@
  },
  "EP": {
   "equity": 2025.8675403791726,
-  "shadow_equity": 2002.5268687076475,
+  "shadow_equity": 2009.1529886839617,
   "pos": [
    {
     "sym": "WRBY",
     "opened": "2026-11-05",
     "entry": 26.3897618367314,
-    "stop": 24.830957800021732,
+    "stop": 26.3897618367314,
     "risk": 0.05906851476544959,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 2,
+    "w": 0.5,
+    "legs": [
+     [
+      0.5,
+      29.899999618530273
+     ]
+    ],
+    "be": true,
+    "n": 3,
     "kind": "real",
     "cloud": false
    },
@@ -36,7 +41,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 1,
+    "n": 2,
     "kind": "real",
     "cloud": false
    }
@@ -51,7 +56,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 1,
+    "n": 2,
     "kind": "shadow"
    },
    {
@@ -63,23 +68,11 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 1,
-    "kind": "shadow"
-   },
-   {
-    "sym": "MYRG",
-    "opened": "2026-11-06",
-    "entry": 263.10007116524395,
-    "stop": 250.35640531080213,
-    "risk": 0.04843657319437958,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 1,
+    "n": 2,
     "kind": "shadow"
    }
   ],
   "closed": 3,
-  "closed_shadow": 1
+  "closed_shadow": 2
  }
 }

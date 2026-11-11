@@ -1,0 +1,7 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-11', exit_px=0.01427043, exit_reason='target', ret=0.061734, pnl=9.83 WHERE sym='CORECHAINUSD' AND opened='2026-11-01' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-11', exit_px=0.02187999, exit_reason='stop', ret=-0.063945, pnl=-10.49 WHERE sym='MNDEUSD' AND opened='2026-11-04' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-11', exit_px=0.12633165, exit_reason='stop', ret=-0.038032, pnl=-6.19 WHERE sym='KRLUSD' AND opened='2026-11-09' AND status='open';
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('DOTUSD','2026-11-11',0.8312,0.66617857,0.85870357,0.05500714,54.27,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('SYRUPUSD','2026-11-11',0.134,0.09999286,0.13966786,0.01133571,54.27,3.0,'open');
+INSERT INTO pb_positions (sym,opened,entry,stop,target,atr,margin,lev,status) VALUES ('WELLUSD','2026-11-11',0.001525,0.00107543,0.00159993,0.00014986,54.27,3.0,'open');
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-11',2170.73,20,1,3,3,0,'3 signals, 3 taken, 0 dropped, 3 closed, 20 open');
