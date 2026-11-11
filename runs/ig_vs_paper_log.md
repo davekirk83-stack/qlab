@@ -63,3 +63,20 @@ Caveat: the paper feed (data_nq_cache/nq_5m.csv) has gaps on 2026-11-09 UTC — 
 Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/3 (2 of the 3 misses fall in the 9 Nov paper data gap), mean slippage -0.6 pts over 1 fill.
 
 Flag: ig_live took a live BUY at 09:40 NY (+32.7 pts) with no paper counterpart — paper feed missing those bars.
+
+## 2026-11-10 (NY day) — checked 2026-11-11
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-10 New York
+  no Ignition signal on either feed — agree
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-10 New York
+  12:35 NY SELL IG only    paper close       nan  IG close   27452.7  lunch
+  agreement: 0/1 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 0, no fills. ig_live both 0 / paper-only-while-live 0 / IG-only 1 (lunch skip, not taken), no fills.
+
+Caveat: paper feed has gaps on 2026-11-10 UTC — no bars 16:00–16:55 UTC (11:00–11:55 NY) and 21:15–22:55 UTC. The 12:35 NY (17:35 UTC) bar itself is present on paper, so this IG-only signal is a feed difference, though the hour-earlier hole may affect paper's indicator state. Not a taken trade.
+
+Running tally (from 2026-11-05): ig_demo agree 1/3, mean slippage -4.1 pts over 2 fills; ig_live agree 0/4 (2 of the 4 misses fall in the 9 Nov paper data gap; none of the 4 is a live-vs-paper disagreement on a trade paper took), mean slippage -0.6 pts over 1 fill.
