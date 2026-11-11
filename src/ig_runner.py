@@ -70,6 +70,11 @@ def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), *a, flush=True)
 
 
+def L_intraday_risk(beq):
+    import live_limits as L
+    return L.intraday_risk(beq.pot.pot if getattr(beq, "pot", None) is not None and "acc" in beq.pot.s else beq.eq)
+
+
 class Runner:
     news = None   # doc 189: the stream's first tick can arrive before __init__ sets this (5 Nov 08:15 and 18:05 on_tick errors)
     def __init__(self, end_utc, dry):
@@ -276,8 +281,9 @@ class Runner:
         size = self.beq.ign_size(stop_pts, self.min_size)
         size = self.beq.cap(size, float(row.close), self.open_notional(), self.min_size)
         if size <= 0: log(f"SIGNAL {direction} skipped — book exposure already at the 5x cap"); return
-        if LIVE and size * stop_pts > 0.02 * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than 2% at risk
-            log(f"SIGNAL {direction} skipped — {size}/pt x {stop_pts} pts = £{size*stop_pts:.2f} at risk > 2% of book £{self.beq.eq:,.2f}"); return
+        rmax = L_intraday_risk(self.beq) if LIVE else 0.02
+        if LIVE and size * stop_pts > rmax * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than the tier's intraday risk (DK 11 Nov: 3% under £1,000)
+            log(f"SIGNAL {direction} skipped — {size}/pt x {stop_pts} pts = £{size*stop_pts:.2f} at risk > {rmax:.0%} of book £{self.beq.eq:,.2f}"); return
         if self.dry: log(f"dry run — no order (stop would be {stop_pts} pts, size {size}/pt on book £{self.beq.eq:,.2f})"); return
         r = self.ig.create_open_position(currency_code=self.ccy, direction=direction, epic=EPIC, expiry=self.expiry, force_open=True, guaranteed_stop=False,
                                          level=None, limit_distance=tgt, limit_level=None, order_type="MARKET", quote_id=None, size=size,

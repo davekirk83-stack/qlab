@@ -82,11 +82,14 @@ class SpikeEngine:
         if self.beq and not self.beq.day_ok(): log(name, "SIGNAL", what, "— skipped, book day stop"); return
         mk = self.eng.mkt[name]; risk = abs(sig["entry"] - sig["stop"])
         if risk < mk.get("minstop", 0): sig["stop"] = sig["entry"] - sig["side"] * mk["minstop"]; risk = mk["minstop"]
-        size = max(mk["min"], round(self.beq.eq * RISK * self.beq.k / risk, 2)) if self.beq else mk["min"]
+        rk = RISK
+        if LIVE:
+            import live_limits as L; rk = L.intraday_risk(self.beq.pot.pot if self.beq and getattr(self.beq, "pot", None) is not None and "acc" in self.beq.pot.s else (self.beq.eq if self.beq else 500))
+        size = max(mk["min"], int(self.beq.eq * rk * self.beq.k / risk * 100) / 100) if self.beq else mk["min"]
         if MIN_ONLY: size = mk["min"]   # live: IG minimum stake on every order (doc 185)
         if self.beq: size = self.beq.cap(size, sig["entry"], self.notional_fn() if self.notional_fn else 0.0, mk["min"])
-        if LIVE and self.beq and size * risk > 0.02 * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than 2% at risk
-            log(name, "SIGNAL", what, f"— skipped, {size}/pt x {risk:.0f} pts is more than 2% of the book"); return
+        if LIVE and self.beq and size * risk > rk * self.beq.eq * self.beq.k + 1e-9:   # rule 186 on real money: never more than the tier's intraday risk (DK 11 Nov: 3%)
+            log(name, "SIGNAL", what, f"— skipped, {size}/pt x {risk:.0f} pts is more than {rk:.0%} of the book"); return
         if size <= 0: log(name, "SIGNAL", what, "— skipped, 5x exposure cap"); return
         log(name, "SIGNAL", what, f"size {size}/pt")
         if self.dry:

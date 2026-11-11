@@ -46,7 +46,8 @@ class BookEquity:
     def ign_size(self, stop_pts, min_size):
         if MIN_ONLY: return min_size
         r = L.intraday_risk(self.pot.pot if self.pot is not None and "acc" in self.pot.s else self.eq) if LIVE else R_IGN
-        return max(min_size, round(self.eq * r * self.k / max(stop_pts, 1.0), 2))
+        import math
+        return max(min_size, math.floor(self.eq * r * self.k / max(stop_pts, 1.0) * 100) / 100)   # rounded DOWN so the risk check never trips on rounding
     def news_size(self, risk_pts, min_size):
         if MIN_ONLY: return min_size
         return max(min_size, round(self.eq * R_NEWS * self.k / max(risk_pts, 1.0), 2))

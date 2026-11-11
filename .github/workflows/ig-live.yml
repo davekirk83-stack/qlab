@@ -43,7 +43,7 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}
           IG_MODE: live
           IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-09-IG-WIDER-500   # doc 194: widened scope (DK 9 Nov 17:23)
-          IG_MIN_ONLY: "1"
+          IG_MIN_ONLY: "0"                  # DK 11 Nov 09:18 "Now": stakes from risk (3% per trade under a £1,000 pot, config/live_pot.json), not IG's minimum
           IG_NEWS: "0"
           IG_ENTRY_CLOSE_NY: "1110"         # doc 194 (DK 9 Nov 19:07): Ignition entries to 18:30 New York (evening 16-19 NY: n46/yr, +11 to +14 pts/trade after wider spreads, both halves positive); session ends 19:00 NY
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
