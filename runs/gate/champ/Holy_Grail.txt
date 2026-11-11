@@ -1,0 +1,7 @@
+
+=== Raschke Holy Grail
+  FAIL 5 days, both                     n   381 (14/yr) mean +0.053 cl.t +0.65 | years+ 15/26 | last5y +0.005 last12m -0.216 | x1.5 +0.036 | rnd95 0.0012 | adds no
+  FAIL 10-day trail, both               n   367 (14/yr) mean -0.004 cl.t -0.03 | years+ 10/26 | last5y -0.254 last12m -0.433 | x1.5 -0.021 | rnd95 -0.0186 | adds no
+  FAIL 5 days, both + regime            n   207 (8/yr) mean -0.041 cl.t -0.41 | years+ 12/26 | last5y +0.131 last12m -0.208 | x1.5 -0.060 | rnd95 0.0545 | adds no
+  FAIL 10-day trail, long + 200d        n   105 (4/yr) mean +0.084 cl.t +0.32 | years+ 8/24 | last5y +0.552 last12m +1.488 | x1.5 +0.064 | rnd95 0.054 | adds no
+  -> best: 5 days, both; + walk-forward market choice: n 129 mean +0.078 (all markets same years +0.082) | last 5y +0.086 | years + 10/19

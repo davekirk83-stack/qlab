@@ -1,0 +1,7 @@
+
+=== Raschke Turtle Soup
+  FAIL 3 days, both                     n  4714 (175/yr) mean -0.064 cl.t -3.55 | years+ 8/26 | last5y -0.070 last12m -0.064 | x1.5 -0.085 | rnd95 -0.0233 | adds no
+  FAIL fpo, both                        n  4743 (176/yr) mean -0.079 cl.t -6.33 | years+ 5/26 | last5y -0.037 last12m +0.013 | x1.5 -0.100 | rnd95 -0.0213 | adds no
+  FAIL fpo, long + 200d                 n   984 (36/yr) mean -0.044 cl.t -1.55 | years+ 11/25 | last5y +0.093 last12m +0.012 | x1.5 -0.063 | rnd95 0.0124 | adds no
+  FAIL 5 days, long + 200d              n   976 (36/yr) mean -0.013 cl.t -0.28 | years+ 13/25 | last5y -0.080 last12m -0.321 | x1.5 -0.033 | rnd95 0.0475 | adds no
+  -> best: 5 days, long + 200d; + walk-forward market choice: n 399 mean +0.001 (all markets same years -0.044) | last 5y +0.041 | years + 10/18

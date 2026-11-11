@@ -1,0 +1,7 @@
+
+=== Raschke 80-20
+  FAIL same-day close, both             n 19448 (720/yr) mean -0.019 cl.t -3.36 | years+ 9/26 | last5y -0.030 last12m -0.003 | x1.5 -0.043 | rnd95 -0.026 | adds no
+  FAIL fpo, both                        n 16094 (596/yr) mean -0.003 cl.t -0.41 | years+ 12/26 | last5y -0.011 last12m +0.012 | x1.5 -0.027 | rnd95 -0.0114 | adds no
+  FAIL fpo, long + 200d                 n  4371 (162/yr) mean -0.003 cl.t -0.20 | years+ 12/26 | last5y +0.041 last12m -0.027 | x1.5 -0.027 | rnd95 0.0071 | adds no
+  FAIL 3 days, both + regime            n  7367 (273/yr) mean +0.012 cl.t +0.68 | years+ 13/26 | last5y +0.007 last12m -0.017 | x1.5 -0.011 | rnd95 0.0137 | adds no
+  -> best: 3 days, both + regime; + walk-forward market choice: n 3093 mean +0.038 (all markets same years +0.009) | last 5y +0.069 | years + 11/19
