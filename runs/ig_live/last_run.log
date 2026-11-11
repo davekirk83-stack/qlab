@@ -1,142 +1,119 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-18:19:42 delta-share threshold 0.0439 (tail-ratio default (421 IG bars, <500)); registered 0.05
-18:19:59 history 300 bars to 2026-11-10 18:19:00+00:00
-18:19:59 stream user KT5F1 endpoint https://apd.marketdatasystems.com
-18:19:59 streaming IX.D.NASDAQ.CASH.IP
-18:19:59 ls status: CONNECTING
-18:20:00 ls status: CONNECTED:WS-STREAMING
-18:20:00 CHART IX.D.NASDAQ.CASH.IP subscribed
-18:20:00 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-18:20:00 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27501.8', 'OFR': '27503.2'}
-18:20:00 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27502', 'OFR': '27503.4'}
-18:20:00 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27501.9', 'OFR': '27503.3'}
-18:20:00 stream subscribed on CHART via KT5F1
-18:20:00 trading session on live spread-bet account (id not logged: public repo)
-18:20:01 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-18:20:03 [range] NQ: using the runner's own 300 IG bars
-18:20:03 [range] NQ: cache 70438 bars offset -184.0 to IG level, REST 300 bars to 2026-11-10 18:19:00+00:00
-18:20:03 [range] NQ: containment median 0.860 over 23482 15-min bars
-18:20:17 [range] US500 history throttled — waiting 15 s
-18:20:32 [range] US500 history throttled — waiting 15 s
-18:21:05 [range] US500: cache 69228 bars offset -5.9 to IG level, REST 232 bars to 2026-11-10 18:21:00+00:00
-18:21:05 [range] US500: containment median 0.880 over 23086 15-min bars
-18:21:05 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt'}
-18:21:05 streaming IX.D.SPTRD.DAILY.IP
-18:21:05 [spike] markets: ['NQ', 'US500']
-18:21:05 book 13 rehearsal: book equity £493.67 (risk x1.0), news events loaded 0
-18:21:05 CHART IX.D.SPTRD.DAILY.IP subscribed
-18:21:05 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-18:25:00 bar 18:20 o 27502.5 h 27509.3 l 27484.5 c 27497.4 ticks 3160 delta -71
-18:30:00 [range] NQ 18:15 c 27528.7 ema 27613.1 band 27391.4-27834.8 atr 110.9 regime off L 0 S 0 orders 0
-18:30:01 bar 18:25 o 27497.7 h 27528.7 l 27487.1 c 27528.7 ticks 3153 delta +5
-18:30:01 [range] US500 18:15 c 7486.8 ema 7499.9 band 7466.5-7533.2 atr 16.7 regime off L 0 S 0 orders 0
-18:35:00 bar 18:30 o 27528.2 h 27581.3 l 27522.9 c 27557.9 ticks 3275 delta +15
-18:40:00 bar 18:35 o 27558.1 h 27594.8 l 27542.6 c 27544.4 ticks 3283 delta -95
-18:45:00 [range] NQ 18:30 c 27563.7 ema 27608.4 band 27390.0-27826.8 atr 109.2 regime off L 0 S 0 orders 0
-18:45:01 bar 18:40 o 27545.7 h 27569.4 l 27543.8 c 27563.7 ticks 3206 delta -54
-18:45:01 [range] US500 18:30 c 7494.9 ema 7499.4 band 7468.8-7530.1 atr 15.3 regime off L 0 S 0 orders 0
-18:50:00 bar 18:45 o 27564.0 h 27574.2 l 27550.7 c 27565.8 ticks 3203 delta +5
-18:55:00 bar 18:50 o 27565.2 h 27608.4 l 27553.0 c 27606.4 ticks 3200 delta +6
-19:00:00 [range] NQ 18:45 c 27597.0 ema 27607.3 band 27399.1-27815.5 atr 104.1 regime off L 0 S 0 orders 0
-19:00:01 bar 18:55 o 27606.6 h 27622.6 l 27590.7 c 27597.0 ticks 3280 delta -28
-19:00:01 [range] US500 18:45 c 7500.3 ema 7499.5 band 7469.1-7529.8 atr 15.2 regime off L 0 S 0 orders 0
-19:05:00 bar 19:00 o 27596.1 h 27608.5 l 27585.1 c 27606.1 ticks 3185 delta +25
-19:10:00 bar 19:05 o 27606.4 h 27651.0 l 27588.6 c 27648.2 ticks 3286 delta +20
-19:15:00 [range] NQ 19:00 c 27601.3 ema 27606.7 band 27412.7-27800.7 atr 97.0 regime off L 0 S 0 orders 0
-19:15:00 bar 19:10 o 27648.1 h 27658.7 l 27595.9 c 27601.3 ticks 3264 delta -78
-19:15:01 [range] US500 19:00 c 7501.5 ema 7499.7 band 7470.5-7528.9 atr 14.6 regime off L 0 S 0 orders 0
-19:20:00 bar 19:15 o 27600.9 h 27623.8 l 27583.7 c 27620.6 ticks 3166 delta +90
-19:25:00 bar 19:20 o 27621.4 h 27629.8 l 27608.2 c 27618.2 ticks 3204 delta -104
-19:30:00 [range] US500 19:15 c 7507.1 ema 7500.4 band 7473.1-7527.7 atr 13.7 regime off L 0 S 0 orders 0
-19:30:01 [range] NQ 19:15 c 27624.8 ema 27608.5 band 27425.3-27791.6 atr 91.6 regime off L 0 S 0 orders 0
-19:30:01 bar 19:25 o 27618.5 h 27633.6 l 27611.3 c 27624.8 ticks 3167 delta -3
-19:35:00 bar 19:30 o 27624.6 h 27645.0 l 27615.0 c 27643.0 ticks 3089 delta +75
-19:40:00 bar 19:35 o 27642.3 h 27645.9 l 27599.0 c 27600.2 ticks 3222 delta -138
-19:45:00 [range] NQ 19:30 c 27621.8 ema 27609.7 band 27436.5-27783.0 atr 86.6 regime off L 0 S 0 orders 0
-19:45:01 bar 19:40 o 27600.8 h 27632.1 l 27600.5 c 27621.8 ticks 3108 delta -4
-19:45:01 [range] US500 19:30 c 7507.7 ema 7501.1 band 7474.5-7527.7 atr 13.3 regime off L 0 S 0 orders 0
-19:50:00 bar 19:45 o 27621.0 h 27683.2 l 27617.8 c 27678.1 ticks 3239 delta +105
-19:55:00 bar 19:50 o 27678.3 h 27691.1 l 27643.7 c 27645.4 ticks 3218 delta -120
-20:00:00 [range] NQ 19:45 c 27650.4 ema 27613.6 band 27447.2-27780.0 atr 83.2 regime off L 0 S 0 orders 0
-20:00:01 bar 19:55 o 27645.5 h 27667.4 l 27634.9 c 27650.4 ticks 3178 delta +72
-20:00:01 [range] US500 19:45 c 7510.8 ema 7502.0 band 7475.8-7528.3 atr 13.1 regime off L 0 S 0 orders 0
-20:05:00 bar 20:00 o 27650.5 h 27653.8 l 27602.1 c 27610.7 ticks 3305 delta -31
-20:10:00 bar 20:05 o 27611.0 h 27643.6 l 27600.9 c 27635.7 ticks 3220 delta +14
-20:15:00 [range] US500 20:00 c 7510.9 ema 7502.9 band 7476.6-7529.2 atr 13.2 regime off L 0 S 0 orders 0
-20:15:01 [range] NQ 20:00 c 27668.7 ema 27618.8 band 27458.1-27779.6 atr 80.4 regime off L 0 S 0 orders 0
-20:15:01 bar 20:10 o 27634.9 h 27675.0 l 27631.7 c 27668.7 ticks 3241 delta +75
-20:20:00 bar 20:15 o 27669.9 h 27676.7 l 27654.4 c 27669.1 ticks 3193 delta -17
-20:25:00 bar 20:20 o 27669.6 h 27717.1 l 27664.9 c 27708.4 ticks 3312 delta +38
-20:30:00 [range] US500 20:15 c 7516.4 ema 7504.2 band 7478.6-7529.7 atr 12.8 regime off L 0 S 0 orders 0
-20:30:01 [range] NQ 20:15 c 27713.7 ema 27627.9 band 27473.1-27782.7 atr 77.4 regime off L 0 S 0 orders 0
-20:30:02 bar 20:25 o 27708.8 h 27729.4 l 27702.0 c 27713.7 ticks 3225 delta -11
-20:35:00 bar 20:30 o 27713.3 h 27713.3 l 27686.0 c 27697.1 ticks 3236 delta +52
-20:40:00 bar 20:35 o 27698.3 h 27707.3 l 27679.2 c 27687.1 ticks 3185 delta -109
-20:45:00 [range] NQ 20:30 c 27682.4 ema 27633.1 band 27484.7-27781.4 atr 74.2 regime off L 0 S 0 orders 0
-20:45:01 bar 20:40 o 27687.2 h 27702.0 l 27679.2 c 27682.4 ticks 3165 delta -41
-20:45:01 [range] US500 20:30 c 7514.7 ema 7505.2 band 7480.4-7529.9 atr 12.4 regime off L 0 S 0 orders 0
-20:50:00 bar 20:45 o 27682.1 h 27733.7 l 27680.2 c 27731.8 ticks 3243 delta -43
-20:55:00 bar 20:50 o 27732.0 h 27798.6 l 27721.6 c 27760.1 ticks 3399 delta -1
-21:00:00 [range] US500 20:45 c 7521.1 ema 7506.7 band 7480.6-7532.8 atr 13.0 regime off L 0 S 0 orders 0
-21:00:01 [range] NQ 20:45 c 27737.7 ema 27643.0 band 27489.6-27796.5 atr 76.7 regime off L 0 S 0 orders 0
-21:00:02 bar 20:55 o 27759.3 h 27781.3 l 27729.0 c 27737.7 ticks 3358 delta -72
-21:05:00 bar 21:00 o 27738.2 h 27768.2 l 27726.8 c 27751.9 ticks 3025 delta -5
-21:10:00 bar 21:05 o 27751.4 h 27809.7 l 27750.3 c 27768.0 ticks 3087 delta -115
-21:15:00 [range] NQ 21:00 c 27761.3 ema 27654.3 band 27511.8-27796.8 atr 71.3 regime off L 0 S 0 orders 0
-21:15:00 bar 21:10 o 27768.1 h 27781.2 l 27759.1 c 27761.3 ticks 2609 delta -7
-21:15:01 [range] US500 21:00 c 7528.1 ema 7508.7 band 7484.4-7533.1 atr 12.2 regime off L 0 S 0 orders 0
-21:20:00 bar 21:15 o 27761.2 h 27773.5 l 27755.3 c 27773.0 ticks 2176 delta +34
-21:25:00 bar 21:20 o 27772.8 h 27779.6 l 27755.9 c 27759.7 ticks 1912 delta -56
-21:30:00 [range] NQ 21:15 c 27764.7 ema 27664.8 band 27535.5-27794.1 atr 64.6 regime off L 0 S 0 orders 0
-21:30:01 bar 21:25 o 27759.8 h 27768.2 l 27749.3 c 27764.7 ticks 2057 delta +11
-21:30:03 [range] US500 21:15 c 7530.9 ema 7510.8 band 7488.2-7533.5 atr 11.3 regime off L 0 S 0 orders 0
-21:35:00 bar 21:30 o 27764.6 h 27792.0 l 27758.6 c 27790.0 ticks 2022 delta -18
-21:40:00 bar 21:35 o 27789.7 h 27793.8 l 27782.2 c 27789.2 ticks 1923 delta -9
-21:45:00 [range] NQ 21:30 c 27797.9 ema 27677.5 band 27548.9-27806.1 atr 64.3 regime off L 0 S 0 orders 0
-21:45:01 bar 21:40 o 27789.4 h 27803.3 l 27785.4 c 27797.9 ticks 1566 delta +34
-21:45:01 [range] US500 21:30 c 7534.2 ema 7513.1 band 7491.1-7535.0 atr 11.0 regime off L 0 S 0 orders 0
-21:50:00 bar 21:45 o 27798.7 h 27805.4 l 27793.1 c 27803.7 ticks 1805 delta -15
-21:55:00 bar 21:50 o 27803.8 h 27812.5 l 27800.7 c 27801.9 ticks 1561 delta +5
-22:00:00 [range] NQ 21:45 c 27800.8 ema 27689.2 band 27565.0-27813.5 atr 62.1 regime off L 0 S 0 orders 0
-22:00:01 bar 21:55 o 27802.2 h 27812.6 l 27790.4 c 27800.8 ticks 1609 delta +59
-22:00:01 [range] US500 21:45 c 7532.4 ema 7514.9 band 7493.3-7536.5 atr 10.8 regime off L 0 S 0 orders 0
-22:05:15 bar 22:00 o 27801.5 h 27803.9 l 27793.8 c 27803.5 ticks 78 delta +0
-22:10:02 bar 22:05 o 27803.7 h 27803.7 l 27801.9 c 27803.4 ticks 41 delta +5
-22:15:02 [range] NQ 22:00 c 27795.5 ema 27699.4 band 27584.0-27814.7 atr 57.7 regime off L 0 S 0 orders 0
-22:15:03 bar 22:10 o 27803.8 h 27803.8 l 27794.5 c 27795.5 ticks 53 delta +1
-22:15:51 [range] US500 22:00 c 7533.3 ema 7516.7 band 7496.5-7536.8 atr 10.1 regime off L 0 S 0 orders 0
-22:20:00 bar 22:15 o 27795.3 h 27798.1 l 27785.7 c 27786.5 ticks 64 delta -8
-22:25:00 bar 22:20 o 27786.4 h 27788.1 l 27773.0 c 27780.9 ticks 85 delta -19
-22:30:01 [range] NQ 22:15 c 27765.9 ema 27705.7 band 27595.7-27815.7 atr 55.0 regime off L 0 S 0 orders 0
-22:30:01 bar 22:25 o 27779.8 h 27783.2 l 27764.0 c 27765.9 ticks 89 delta -21
-22:30:04 [range] US500 22:15 c 7526.9 ema 7517.6 band 7498.3-7537.0 atr 9.7 regime off L 0 S 0 orders 0
-22:35:14 bar 22:30 o 27766.0 h 27779.5 l 27766.0 c 27776.0 ticks 34 delta +10
-22:40:00 bar 22:35 o 27775.2 h 27786.9 l 27775.2 c 27783.0 ticks 32 delta +6
-22:45:09 [range] US500 22:30 c 7530.1 ema 7518.8 band 7500.9-7536.7 atr 8.9 regime off L 0 S 0 orders 0
-22:45:20 [range] NQ 22:30 c 27779.5 ema 27712.7 band 27609.8-27815.6 atr 51.5 regime off L 0 S 0 orders 0
-22:45:21 bar 22:40 o 27785.1 h 27789.9 l 27779.0 c 27779.5 ticks 47 delta -7
-22:50:10 bar 22:45 o 27779.3 h 27784.9 l 27779.1 c 27782.6 ticks 27 delta +1
-22:55:02 bar 22:50 o 27782.7 h 27782.8 l 27774.1 c 27779.3 ticks 36 delta -10
-23:00:00 [range] NQ 22:45 c 27779.7 ema 27719.1 band 27621.8-27816.4 atr 48.7 regime off L 0 S 0 orders 0
-23:00:00 bar 22:55 o 27780.6 h 27785.0 l 27777.9 c 27779.7 ticks 55 delta -5
-23:00:01 [range] US500 22:45 c 7530.9 ema 7520.0 band 7503.3-7536.7 atr 8.4 regime off L 0 S 0 orders 0
-23:05:00 bar 23:00 o 27779.8 h 27804.0 l 27753.8 c 27764.6 ticks 1678 delta +68
-23:10:00 bar 23:05 o 27764.7 h 27780.8 l 27757.1 c 27778.2 ticks 1058 delta +10
-23:15:00 [range] US500 23:00 c 7535.1 ema 7521.4 band 7504.5-7538.3 atr 8.5 regime off L 0 S 0 orders 0
-23:15:01 [range] NQ 23:00 c 27830.5 ema 27729.7 band 27628.0-27831.5 atr 50.9 regime off L 0 S 0 orders 0
-23:15:01 bar 23:10 o 27778.4 h 27831.6 l 27762.8 c 27830.5 ticks 1638 delta +42
-23:20:00 bar 23:15 o 27830.4 h 27856.8 l 27818.1 c 27845.7 ticks 1791 delta -75
-23:25:00 bar 23:20 o 27846.1 h 27874.1 l 27836.2 c 27871.6 ticks 1419 delta -39
-23:30:00 [range] NQ 23:15 c 27868.7 ema 27742.9 band 27643.6-27842.3 atr 49.7 regime off L 0 S 0 orders 0
-23:30:00 bar 23:25 o 27870.5 h 27874.6 l 27840.9 c 27868.7 ticks 1476 delta -162
-23:30:01 [range] US500 23:15 c 7540.8 ema 7523.3 band 7507.1-7539.4 atr 8.1 regime off L 0 S 0 orders 0
-23:35:00 bar 23:30 o 27869.1 h 27876.6 l 27848.6 c 27859.7 ticks 1333 delta -81
-23:40:00 bar 23:35 o 27859.0 h 27873.5 l 27846.6 c 27871.5 ticks 1249 delta +25
-23:45:00 [range] NQ 23:30 c 27868.6 ema 27754.9 band 27661.4-27848.4 atr 46.8 regime off L 0 S 0 orders 0
-23:45:00 bar 23:40 o 27872.1 h 27879.9 l 27863.3 c 27868.6 ticks 1261 delta +5
-23:45:01 [range] US500 23:30 c 7538.0 ema 7524.7 band 7509.0-7540.4 atr 7.9 regime off L 0 S 0 orders 0
-23:50:00 bar 23:45 o 27868.5 h 27883.0 l 27854.3 c 27861.5 ticks 1905 delta -15
-23:55:00 bar 23:50 o 27861.6 h 27863.9 l 27844.8 c 27852.2 ticks 1600 delta +12
-23:59:42 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-23:59:42 ls status: DISCONNECTED
-23:59:42 done; ticks 194387 bars 367
+13:53:06 delta-share threshold 0.0500 (percentile-matched on 622 IG bars); registered 0.05
+13:53:24 history 300 bars to 2026-11-11 13:53:00+00:00
+13:53:24 stream user KT5F1 endpoint https://apd.marketdatasystems.com
+13:53:24 streaming IX.D.NASDAQ.CASH.IP
+13:53:24 ls status: CONNECTING
+13:53:25 ls status: CONNECTED:WS-STREAMING
+13:53:25 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+13:53:25 CHART IX.D.NASDAQ.CASH.IP subscribed
+13:53:25 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28258.3', 'OFR': '28260.5'}
+13:53:25 stream subscribed on CHART via KT5F1
+13:53:25 trading session on live spread-bet account (id not logged: public repo)
+13:53:25 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28258.1', 'OFR': '28260.3'}
+13:53:25 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '28258.2', 'OFR': '28260.4'}
+13:53:26 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+13:53:28 [range] NQ: using the runner's own 300 IG bars
+13:53:28 [range] NQ: cache 70693 bars offset +312.3 to IG level, REST 300 bars to 2026-11-11 13:53:00+00:00
+13:53:28 [range] NQ: containment median 0.860 over 23567 15-min bars
+13:53:43 [range] US500 history throttled — waiting 15 s
+13:53:58 [range] US500 history throttled — waiting 15 s
+13:54:31 [range] US500: cache 69447 bars offset +35.4 to IG level, REST 300 bars to 2026-11-11 13:54:00+00:00
+13:54:31 [range] US500: containment median 0.880 over 23159 15-min bars
+13:54:31 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt'}
+13:54:31 streaming IX.D.SPTRD.DAILY.IP
+13:54:31 [spike] markets: ['NQ', 'US500']
+13:54:31 book 13 rehearsal: book equity £493.67 (risk x1.0), news events loaded 0
+13:54:31 CHART IX.D.SPTRD.DAILY.IP subscribed
+13:54:31 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+13:55:00 bar 13:50 o 28259.4 h 28266.7 l 28253.5 c 28264.5 ticks 854 delta +1
+14:00:00 [range] NQ 13:45 c 28279.7 ema 28233.4 band 28154.3-28312.6 atr 39.6 regime off L 0 S 0 orders 0
+14:00:01 bar 13:55 o 28264.2 h 28283.8 l 28260.7 c 28279.7 ticks 2928 delta +6
+14:00:01 [range] US500 13:45 c 7596.2 ema 7583.4 band 7570.1-7596.7 atr 6.7 regime ON L 0 S 0 orders 0
+14:05:00 bar 14:00 o 28279.8 h 28281.2 l 28262.5 c 28273.7 ticks 3043 delta -65
+14:10:00 bar 14:05 o 28273.8 h 28280.9 l 28256.8 c 28262.4 ticks 2815 delta -45
+14:15:00 [range] NQ 14:00 c 28264.3 ema 28236.4 band 28158.1-28314.7 atr 39.1 regime off L 0 S 0 orders 0
+14:15:01 bar 14:10 o 28262.3 h 28269.2 l 28253.8 c 28264.3 ticks 2643 delta +15
+14:15:01 [range] US500 14:00 c 7592.7 ema 7584.3 band 7571.2-7597.4 atr 6.5 regime ON L 0 S 0 orders 0
+14:20:00 bar 14:15 o 28264.4 h 28288.2 l 28258.2 c 28280.1 ticks 2728 delta +26
+14:25:00 bar 14:20 o 28280.4 h 28287.6 l 28268.2 c 28272.6 ticks 2699 delta -19
+14:30:00 [range] NQ 14:15 c 28256.7 ema 28238.3 band 28159.7-28316.9 atr 39.3 regime off L 0 S 0 orders 0
+14:30:01 bar 14:25 o 28272.8 h 28287.1 l 28251.0 c 28256.7 ticks 3042 delta -62
+14:30:01 [range] US500 14:15 c 7590.1 ema 7584.8 band 7571.3-7598.4 atr 6.8 regime ON L 0 S 0 orders 0
+14:35:00 bar 14:30 o 28256.2 h 28329.8 l 28236.4 c 28253.5 ticks 3708 delta -14
+14:40:00 bar 14:35 o 28253.1 h 28280.1 l 28191.1 c 28260.3 ticks 3675 delta +21
+14:45:00 [range] NQ 14:30 c 28192.6 ema 28234.0 band 28137.8-28330.1 atr 48.1 regime off L 0 S 0 orders 0
+14:45:01 bar 14:40 o 28261.3 h 28266.2 l 28161.0 c 28192.6 ticks 3641 delta -15
+14:45:01 [range] US500 14:30 c 7583.2 ema 7584.7 band 7568.8-7600.6 atr 8.0 regime ON L 0 S 0 orders 0
+14:50:00 bar 14:45 o 28193.1 h 28193.1 l 28110.5 c 28145.4 ticks 3648 delta +4
+14:55:00 bar 14:50 o 28147.4 h 28184.5 l 28098.2 c 28144.5 ticks 3631 delta -21
+15:00:00 [range] NQ 14:45 c 28190.0 ema 28229.8 band 28123.3-28336.3 atr 53.2 regime off L 0 S 0 orders 0
+15:00:01 bar 14:55 o 28143.8 h 28204.1 l 28132.7 c 28190.0 ticks 3571 delta +25
+15:00:01 [range] US500 14:45 c 7585.8 ema 7584.8 band 7567.0-7602.6 atr 8.9 regime ON L 0 S 0 orders 0
+15:05:00 bar 15:00 o 28190.0 h 28225.8 l 28160.2 c 28219.1 ticks 3603 delta +23
+15:10:00 bar 15:05 o 28219.2 h 28248.5 l 28193.2 c 28203.8 ticks 3548 delta -78
+15:15:00 [range] NQ 15:00 c 28177.9 ema 28224.8 band 28110.2-28339.5 atr 57.3 regime off L 0 S 0 orders 0
+15:15:01 bar 15:10 o 28204.7 h 28215.9 l 28163.4 c 28177.9 ticks 3569 delta -53
+15:15:01 [range] US500 15:00 c 7576.8 ema 7584.0 band 7564.8-7603.3 atr 9.6 regime ON L 0 S 0 orders 0
+15:20:00 bar 15:15 o 28178.0 h 28225.2 l 28169.6 c 28216.0 ticks 3501 delta +39
+15:25:00 bar 15:20 o 28216.5 h 28221.2 l 28184.8 c 28193.9 ticks 3454 delta +10
+15:30:00 [range] US500 15:15 c 7589.8 ema 7584.6 band 7564.4-7604.8 atr 10.1 regime ON L 0 S 0 orders 0
+15:30:01 [range] NQ 15:15 c 28274.4 ema 28229.6 band 28105.5-28353.6 atr 62.0 regime off L 0 S 0 orders 0
+15:30:02 bar 15:25 o 28193.7 h 28287.8 l 28193.1 c 28274.4 ticks 3465 delta +79
+15:35:00 bar 15:30 o 28275.5 h 28278.5 l 28238.3 c 28266.4 ticks 3460 delta -10
+15:40:00 bar 15:35 o 28266.8 h 28311.4 l 28266.2 c 28291.7 ticks 3391 delta -17
+15:45:00 [range] NQ 15:30 c 28329.4 ema 28239.1 band 28105.5-28372.6 atr 66.8 regime off L 0 S 0 orders 0
+15:45:01 bar 15:40 o 28291.5 h 28344.5 l 28275.0 c 28329.4 ticks 3435 delta +43
+15:45:01 [range] US500 15:30 c 7596.6 ema 7585.7 band 7564.2-7607.2 atr 10.8 regime ON L 0 S 0 orders 0
+15:50:00 bar 15:45 o 28329.1 h 28367.9 l 28314.2 c 28366.6 ticks 3429 delta +79
+15:55:00 bar 15:50 o 28366.7 h 28420.5 l 28365.2 c 28411.8 ticks 3459 delta +37
+16:00:00 [range] NQ 15:45 c 28449.4 ema 28259.1 band 28109.3-28408.9 atr 74.9 regime off L 0 S 0 orders 0
+16:00:01 bar 15:55 o 28411.7 h 28449.6 l 28407.8 c 28449.4 ticks 3430 delta +16
+16:00:01 [range] US500 15:45 c 7609.3 ema 7588.0 band 7564.7-7611.3 atr 11.7 regime ON L 0 S 0 orders 0
+16:05:00 bar 16:00 o 28449.0 h 28451.3 l 28409.3 c 28420.5 ticks 3398 delta -62
+16:10:00 bar 16:05 o 28420.6 h 28420.6 l 28365.0 c 28366.9 ticks 3441 delta -71
+16:15:00 [range] NQ 16:00 c 28398.7 ema 28272.4 band 28115.2-28429.6 atr 78.6 regime off L 0 S 0 orders 0
+16:15:01 bar 16:10 o 28366.7 h 28404.3 l 28361.1 c 28398.7 ticks 3352 delta +8
+16:15:01 [range] US500 16:00 c 7607.2 ema 7589.8 band 7565.7-7613.9 atr 12.0 regime ON L 0 S 0 orders 0
+16:20:00 bar 16:15 o 28398.5 h 28403.5 l 28377.7 c 28395.9 ticks 3322 delta -44
+16:25:00 bar 16:20 o 28396.4 h 28432.0 l 28396.4 c 28430.9 ticks 3302 delta +44
+16:30:00 [range] NQ 16:15 c 28467.2 ema 28290.9 band 28126.1-28455.8 atr 82.4 regime off L 0 S 0 orders 0
+16:30:01 bar 16:25 o 28431.2 h 28472.0 l 28428.4 c 28467.2 ticks 3259 delta +29
+16:30:01 [range] US500 16:15 c 7615.0 ema 7592.2 band 7567.3-7617.1 atr 12.5 regime ON L 0 S 0 orders 0
+16:35:00 bar 16:30 o 28467.5 h 28469.9 l 28419.2 c 28426.3 ticks 3331 delta -89
+16:40:00 bar 16:35 o 28426.4 h 28455.4 l 28423.6 c 28442.0 ticks 3262 delta +4
+16:45:00 [range] NQ 16:30 c 28460.0 ema 28307.0 band 28144.0-28470.1 atr 81.5 regime off L 0 S 0 orders 0
+16:45:01 bar 16:40 o 28441.0 h 28473.1 l 28438.0 c 28460.0 ticks 3196 delta -12
+16:45:02 [range] US500 16:30 c 7615.2 ema 7594.4 band 7569.8-7619.0 atr 12.3 regime ON L 0 S 0 orders 0
+16:50:00 bar 16:45 o 28459.3 h 28487.5 l 28456.4 c 28485.8 ticks 3202 delta +52
+16:55:00 bar 16:50 o 28485.9 h 28499.9 l 28479.7 c 28488.5 ticks 3074 delta -46
+17:00:00 [range] US500 16:45 c 7623.3 ema 7597.1 band 7572.0-7622.3 atr 12.6 regime ON L 0 S 0 orders 0
+17:00:01 [range] NQ 16:45 c 28509.8 ema 28326.4 band 28160.0-28492.8 atr 83.2 regime off L 0 S 0 orders 0
+17:00:02 bar 16:55 o 28488.2 h 28518.7 l 28479.1 c 28509.8 ticks 3042 delta -34
+17:05:00 bar 17:00 o 28509.9 h 28523.2 l 28503.9 c 28509.0 ticks 3188 delta -78
+17:10:00 bar 17:05 o 28508.9 h 28514.9 l 28474.7 c 28477.2 ticks 3176 delta -66
+17:15:00 [range] NQ 17:00 c 28503.0 ema 28343.2 band 28176.5-28509.9 atr 83.3 regime off L 0 S 0 orders 0
+17:15:01 bar 17:10 o 28478.2 h 28509.7 l 28476.1 c 28503.0 ticks 3087 delta +55
+17:15:01 [range] US500 17:00 c 7626.7 ema 7600.0 band 7574.6-7625.3 atr 12.7 regime ON L 0 S 0 orders 0
+17:20:00 bar 17:15 o 28502.5 h 28521.3 l 28492.0 c 28515.2 ticks 3054 delta +2
+17:25:00 bar 17:20 o 28515.0 h 28557.9 l 28512.4 c 28545.5 ticks 3086 delta -6
+17:30:00 [range] US500 17:15 c 7629.6 ema 7602.8 band 7576.8-7628.8 atr 13.0 regime off L 0 S 0 orders 0
+17:30:01 [range] NQ 17:15 c 28530.6 ema 28361.0 band 28189.2-28532.8 atr 85.9 regime off L 0 S 0 orders 0
+17:30:02 bar 17:25 o 28545.7 h 28545.7 l 28523.2 c 28530.6 ticks 3011 delta -95
+17:35:00 bar 17:30 o 28532.0 h 28552.3 l 28529.4 c 28549.4 ticks 2983 delta +69
+17:40:00 bar 17:35 o 28549.5 h 28565.5 l 28544.5 c 28550.0 ticks 2979 delta -13
+17:45:00 [range] NQ 17:30 c 28538.1 ema 28377.9 band 28204.9-28550.9 atr 86.5 regime off L 0 S 0 orders 0
+17:45:01 bar 17:40 o 28551.6 h 28559.7 l 28536.4 c 28538.1 ticks 2954 delta -50
+17:45:01 [range] US500 17:30 c 7634.4 ema 7605.8 band 7579.1-7632.5 atr 13.3 regime off L 0 S 0 orders 0
+17:50:00 bar 17:45 o 28538.0 h 28552.3 l 28533.6 c 28540.9 ticks 2921 delta -53
+17:55:00 bar 17:50 o 28540.3 h 28545.1 l 28521.3 c 28542.8 ticks 2930 delta -32
+18:00:00 [range] NQ 17:45 c 28529.7 ema 28392.4 band 28220.2-28564.5 atr 86.1 regime off L 0 S 0 orders 0
+18:00:01 bar 17:55 o 28542.9 h 28550.3 l 28529.7 c 28529.7 ticks 2817 delta -103
+18:00:01 [range] US500 17:45 c 7634.0 ema 7608.5 band 7582.1-7634.8 atr 13.2 regime off L 0 S 0 orders 0
+18:05:00 bar 18:00 o 28529.9 h 28543.6 l 28502.6 c 28512.3 ticks 3223 delta -89
+18:10:00 bar 18:05 o 28512.1 h 28523.3 l 28500.0 c 28521.4 ticks 3039 delta +53
+18:15:00 [range] US500 18:00 c 7635.5 ema 7611.0 band 7586.8-7635.3 atr 12.1 regime off L 0 S 0 orders 0
+18:15:01 [range] NQ 18:00 c 28538.5 ema 28406.3 band 28251.5-28561.1 atr 77.4 regime off L 0 S 0 orders 0
+18:15:02 bar 18:10 o 28521.5 h 28547.3 l 28518.9 c 28538.5 ticks 2828 delta -70
+18:19:07 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+18:19:07 done; ticks 232961 bars 352
