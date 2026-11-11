@@ -1,9 +1,7 @@
 {
  "day": "2026-11-11",
- "ntr": 2,
- "dpl": -0.10000000000218279,
- "last_exit_bar": 356,
- "news": {},
- "last_atr": 20.159999999999854,
- "open_bars": 11
+ "ntr": 0,
+ "dpl": 0.0,
+ "last_exit_bar": null,
+ "news": {}
 }
