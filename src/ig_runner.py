@@ -120,6 +120,12 @@ class Runner:
                 from ig_spike_engine import SpikeEngine
                 self.spike = SpikeEngine(self.ig, self.ccy, dry, self.state, self.engine, self.beq, self.open_notional, [x.strip() for x in os.environ["IG_SPIKE"].split(",")])
             except Exception: log("spike engine failed to start:", traceback.format_exc()); self.spike = None
+        self.wvb = None
+        if os.environ.get("IG_WVB", "") and self.engine:   # doc 228 part 2: Larry Williams' volatility breakout (demo only; the engine refuses live)
+            try:
+                from ig_wvb_engine import WVBEngine
+                self.wvb = WVBEngine(self.ig, self.ccy, dry, self.engine, self.beq, self.open_notional, [x.strip() for x in os.environ["IG_WVB"].split(",")])
+            except BaseException: log("Williams breakout engine failed to start:", traceback.format_exc()); self.wvb = None
         self.news = None
         if os.environ.get("IG_NEWS", "1") == "1":
             try: self.news = NewsFade(self.ig, EPIC, self.expiry, self.ccy, dry, self.state, self.beq, self.min_size, log, notional_fn=self.open_notional)
@@ -194,6 +200,9 @@ class Runner:
         if getattr(self, "spike", None):
             try: self.spike.on_bar5(epic, c)
             except Exception: log("spike engine error:", traceback.format_exc())
+        if getattr(self, "wvb", None):
+            try: self.wvb.on_bar5(epic, c)
+            except Exception: log("Williams breakout engine error:", traceback.format_exc())
         if epic != EPIC: return
         log(f"bar {c['ts']:%H:%M} o {c['open']:.1f} h {c['high']:.1f} l {c['low']:.1f} c {c['close']:.1f} ticks {c['vol']} delta {c['delta']:+.0f}")
         row = pd.DataFrame([dict(open=c["open"], high=c["high"], low=c["low"], close=c["close"], vol=c["vol"], delta=c["delta"], spread=c["spread_sum"]/max(c["vol"], 1))], index=[pd.Timestamp(c["ts"])])
@@ -441,6 +450,9 @@ class Runner:
         if getattr(self, "spike", None):
             try: self.spike.end_of_job()
             except Exception: log("spike engine end:", traceback.format_exc())
+        if getattr(self, "wvb", None):
+            try: self.wvb.end_of_job()
+            except Exception: log("Williams breakout engine end:", traceback.format_exc())
         if self.engine:
             try: self.engine.end_of_job()
             except Exception: log("range engine end:", traceback.format_exc())

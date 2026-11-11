@@ -50,6 +50,7 @@ jobs:
           IG_RANGE_INSTR: "NQ,US500,FTSE,GBPUSD,USDJPY"   # doc 186 (DK 4 Nov): + GBP/USD and USD/JPY ladders, London hours. doc 175: the ladder on US Tech 100 + US 500 (NY hours) + FTSE 100 (London hours)    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
           IG_SPIKE: "NQ,US500"         # doc 191 (DK 8 Nov): spike continuation engine on the demo
           IG_SHOCK_PAUSE: "NQ,FTSE"    # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h
+          IG_WVB: "NQ,USDJPY"     # doc 228 part 2 (DK 11 Nov): Larry Williams' volatility breakout, k 0.5, bracket stop orders at the open, flat at the close
           IG_IGN_HOURS: "runner"  # doc 227 (DK 22:35): Ignition v1.1 whenever the runner is up (London 08:00 to 17:00 NY, ex lunch): backtest +4.6 pts/trade, ~340/yr, 11 of 14 months +
           IG_GOV_SPLIT: "1"   # doc 189: Ignition daily cap in points, ladders in £ (demo first)
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)
