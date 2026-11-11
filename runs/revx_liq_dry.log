@@ -95,3 +95,7 @@
 22:38:10 BTC 74,228 | Coinbase 1500 bars, live long levels 6, short 24 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
 22:38:10 slots: bids 73,746; bids 72,935; bids 72,861; bids 72,413; bids 72,288
 22:38:10 book $635.00 (£500.00); trades 0
+23:30:08 BTC 73,725 | Coinbase 1500 bars, live long levels 5, short 24 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
+23:30:08 FILLED at the 73,746 cluster: 0.000431 BTC; sells resting at 74,484 (half) and 75,959; stop 70,797
+23:30:08 slots: TRADE 73,746; bids 72,935; bids 72,861; bids 72,413; bids 72,288
+23:30:08 book $635.00 (£500.00); trades 0
