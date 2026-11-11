@@ -1,3 +1,3 @@
-20:40:01 job us_close; daily sub-book £500.00, open positions 0
+20:40:00 job us_close; daily sub-book £500.00, open positions 0
 20:40:02 switch_account: error.switch.accountId-must-be-different
-20:40:06 done; book £500.00, open []
+20:40:04 done; book £500.00, open []
