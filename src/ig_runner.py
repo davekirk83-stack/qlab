@@ -400,6 +400,11 @@ class Runner:
                         if pp: other |= {l.get("deal_id") for l in pp.get("lots", [])}
             except Exception: pass
             other |= {v["pos"]["deal_id"] for v in self.state.get("news", {}).values() if v.get("pos")}
+            for f, get in ((f"{OUT}/wvb_state.json", lambda st: [m.get("pos") for m in st.values() if isinstance(m, dict)]),     # doc 228: the Williams breakout's positions
+                           (f"{OUT}/spike_state.json", lambda st: list((st.get("pos") or {}).values()))):                     # the spike engine's positions
+                try: other |= {p.get("deal_id") for p in get(json.load(open(f))) if p}
+                except FileNotFoundError: pass
+                except Exception as e: log(f"{f} unreadable — not adopting any unknown position:", e); return
             try:   # doc 210 (DK 10 Nov: both live books on one account): never adopt the DAILY books' positions (runs/ig_daily_live)
                 other |= {q["deal_id"] for q in json.load(open("runs/ig_daily_live/state.json")).get("pos", [])}
             except FileNotFoundError: pass
