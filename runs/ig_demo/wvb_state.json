@@ -1,10 +1,10 @@
 {
  "NQ": {
-  "day": "2026-11-11",
+  "day": "2026-11-12",
   "orders": {},
   "pos": null,
-  "done": true,
-  "open": 28255.5,
+  "done": false,
+  "open": null,
   "up": 28449.1,
   "dn": 28061.9,
   "dist": 387.2000000000007,
