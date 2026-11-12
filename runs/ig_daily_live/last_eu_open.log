@@ -1,0 +1,7 @@
+08:05:01 job eu_open; daily sub-book £500.00, open positions 0
+08:05:02 switch_account: error.switch.accountId-must-be-different
+08:05:03 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
+08:05:03 pot £500.00 (start £500, all books +0.00); entries on
+08:05:04 DAX: final close 2026-11-11 26662.8 RSI2 87.0 RSI4 73.4 5d 26284.6 200d 24953.1 ATR 383.0 | IG open 26941.2
+08:05:05 FTSE: final close 2026-11-11 10835.5 RSI2 77.5 RSI4 64.3 5d 10765.3 200d 10546.7 ATR 121.9 | IG open 10875.5
+08:05:05 done; book £500.00, open []
