@@ -99,3 +99,14 @@
 23:30:08 FILLED at the 73,746 cluster: 0.000431 BTC; sells resting at 74,484 (half) and 75,959; stop 70,797
 23:30:08 slots: TRADE 73,746; bids 72,935; bids 72,861; bids 72,413; bids 72,288
 23:30:08 book $635.00 (£500.00); trades 0
+00:16:12 BTC 73,795 | Coinbase 1500 bars, live long levels 6, short 24 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
+00:16:12 cancelled resting buys at 72,935
+00:16:12 resting BUYS at 73,024 (100x cluster) and 72,294, $31.75 each
+00:16:12 cancelled resting buys at 72,861
+00:16:12 resting BUYS at 72,935 (100x cluster) and 72,206, $31.75 each
+00:16:12 cancelled resting buys at 72,413
+00:16:12 resting BUYS at 72,861 (100x cluster) and 72,132, $31.75 each
+00:16:12 cancelled resting buys at 72,288
+00:16:12 resting BUYS at 72,413 (100x cluster) and 71,689, $31.75 each
+00:16:12 slots: TRADE 73,746; bids 73,024; bids 72,935; bids 72,861; bids 72,413
+00:16:12 book $635.00 (£500.00); trades 0
