@@ -1,5 +1,5 @@
-08:05:01 job eu_open; daily sub-book £500.00, open positions 0
-08:05:02 switch_account: error.switch.accountId-must-be-different
-08:05:04 DAX: final close 2026-11-10 26347.4 RSI2 70.2 RSI4 63.2 5d 26239.5 200d 24942.5 ATR 376.7 | IG open 26629.5
-08:05:05 FTSE: final close 2026-11-10 10751.6 RSI2 49.6 RSI4 51.3 5d 10764.1 200d 10543.3 ATR 121.9 | IG open 10835.8
-08:05:05 done; book £500.00, open []
+08:05:00 job eu_open; daily sub-book £500.00, open positions 0
+08:05:01 switch_account: error.switch.accountId-must-be-different
+08:05:03 DAX: final close 2026-11-11 26662.8 RSI2 87.0 RSI4 73.4 5d 26284.6 200d 24953.1 ATR 383.0 | IG open 26940.5
+08:05:03 FTSE: final close 2026-11-11 10835.5 RSI2 77.5 RSI4 64.3 5d 10765.3 200d 10546.7 ATR 121.9 | IG open 10876.6
+08:05:03 done; book £500.00, open []
