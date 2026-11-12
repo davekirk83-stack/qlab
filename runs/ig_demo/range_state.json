@@ -59,9 +59,34 @@
    "S": null
   },
   "cool": {
-   "L": "2026-11-06 15:15:00+00:00"
+   "L": "2026-11-12 13:45:00+00:00"
   },
-  "orders": {}
+  "orders": {
+   "L2": {
+    "deal_id": "DIAAAAYUDL2ZGBW",
+    "ref": "RGGBPUSDL2121345",
+    "price": 13247.1,
+    "size": 0.07
+   },
+   "L3": {
+    "deal_id": "DIAAAAYUDMSQYBL",
+    "ref": "RGGBPUSDL3121345",
+    "price": 13244.6,
+    "size": 0.07
+   },
+   "S0": {
+    "deal_id": "DIAAAAYUEZ37QBW",
+    "ref": "RGGBPUSDS0121400",
+    "price": 13280.7,
+    "size": 0.03
+   },
+   "S1": {
+    "deal_id": "DIAAAAYUE2ALPBX",
+    "ref": "RGGBPUSDS1121400",
+    "price": 13282.8,
+    "size": 0.04
+   }
+  }
  },
  "USDJPY": {
   "since": "2026-11-04 18:00:00+00:00",
@@ -70,8 +95,34 @@
    "S": null
   },
   "cool": {
-   "S": "2026-11-06 13:30:00+00:00"
+   "S": "2026-11-06 13:30:00+00:00",
+   "L": "2026-11-12 11:15:00+00:00"
   },
-  "orders": {}
+  "orders": {
+   "L2": {
+    "deal_id": "DIAAAAYUADFT2BB",
+    "ref": "RGUSDJPYL2121100",
+    "price": 15949.5,
+    "size": 0.04
+   },
+   "L1": {
+    "deal_id": "DIAAAAYUADY87BN",
+    "ref": "RGUSDJPYL1121115",
+    "price": 15951.9,
+    "size": 0.04
+   },
+   "S0": {
+    "deal_id": "DIAAAAYUEZVJYBL",
+    "ref": "RGUSDJPYS0121400",
+    "price": 15984.8,
+    "size": 0.04
+   },
+   "S1": {
+    "deal_id": "DIAAAAYUEZUMUBD",
+    "ref": "RGUSDJPYS1121400",
+    "price": 15987.0,
+    "size": 0.04
+   }
+  }
  }
 }
