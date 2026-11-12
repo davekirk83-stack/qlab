@@ -12,10 +12,10 @@
   "R": 387.2000000000007
  },
  "USDJPY": {
-  "day": "2026-11-11",
+  "day": "2026-11-12",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
  }
 }
