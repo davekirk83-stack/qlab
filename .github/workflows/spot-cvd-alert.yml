@@ -1,7 +1,7 @@
 name: spot-cvd-alert
 # DK 13 Nov: Binance spot CVD roll-over as a standing alert. Fires at most once per 12h by opening a GitHub issue (GitHub notifies DK).
 on:
-  schedule: [{cron: "7,22,37,52 * * * *"}]
+  # schedule off: DK 13 Nov wants the alert in chat, not GitHub
   workflow_dispatch: {}
 permissions: {contents: read, issues: write}
 jobs:
