@@ -1,9 +1,9 @@
-14:35:00 job us_open; daily sub-book £500.00, open positions 0
+14:35:01 job us_open; daily sub-book £500.00, open positions 0
 14:35:02 switch_account: error.switch.accountId-must-be-different
-14:35:03 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
-14:35:03 pot £500.00 (start £500, all books +0.00); entries on
-14:35:04 US500: final close 2026-11-11 7619.4 RSI2 80.4 RSI4 61.7 5d 7484.2 200d 7334.3 ATR 108.8 | IG open 7574.8
-14:35:05 NQ: final close 2026-11-11 28374.2 RSI2 81.8 RSI4 61.4 5d 27528.5 200d 28017.7 ATR 700.1 | IG open 28099.0
-14:35:05 WALLST: final close 2026-11-11 52486.5 RSI2 71.8 RSI4 58.6 5d 51983.4 200d 50724.3 ATR 703.8 | IG open 52465.6
-14:35:07 GOLD: final close 2026-11-11 4000.5 RSI2 18.1 RSI4 37.1 5d 4066.7 200d 4486.5 ATR 85.2 | IG open 3896.4
-14:35:07 done; book £500.00, open []
+14:35:04 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
+14:35:04 pot £500.96 (start £500, all books +0.96); entries on
+14:35:05 US500: final close 2026-11-12 7592.4 RSI2 62.2 RSI4 56.6 5d 7531.9 200d 7337.4 ATR 109.6 | IG open 7604.7
+14:35:05 NQ: final close 2026-11-12 28289.2 RSI2 71.1 RSI4 58.5 5d 27860.4 200d 28029.0 ATR 701.6 | IG open 28232.3
+14:35:05 WALLST: final close 2026-11-12 52297.1 RSI2 48.9 RSI4 52.6 5d 52138.2 200d 50740.7 ATR 696.3 | IG open 52437.9
+14:35:06 GOLD: final close 2026-11-12 3885.3 RSI2 5.3 RSI4 21.6 5d 4021.1 200d 4479.4 ATR 88.2 | IG open 3893.6
+14:35:06 done; book £500.00, open []
