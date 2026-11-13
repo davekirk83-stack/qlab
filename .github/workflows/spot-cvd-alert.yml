@@ -1,0 +1,24 @@
+name: spot-cvd-alert
+# DK 13 Nov: Binance spot CVD roll-over as a standing alert. Fires at most once per 12h by opening a GitHub issue (GitHub notifies DK).
+on:
+  schedule: [{cron: "7,22,37,52 * * * *"}]
+  workflow_dispatch: {}
+permissions: {contents: read, issues: write}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -q pandas numpy
+      - run: python src/spot_cvd_alert.py
+      - name: open an issue when it fires (12h cooldown)
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          [ -f runs/alerts/spot_cvd_alert.md ] || exit 0
+          gh label create cvd-alert --color B60205 2>/dev/null || true
+          last=$(gh issue list --label cvd-alert --state all --limit 1 --json createdAt -q '.[0].createdAt')
+          if [ -n "$last" ] && [ $(( $(date +%s) - $(date -d "$last" +%s) )) -lt 43200 ]; then echo "cooldown"; exit 0; fi
+          gh issue create --title "ALERT: BTC spot CVD rolling over ($(date -u +'%d %b %H:%M') UTC)" --label cvd-alert --body-file runs/alerts/spot_cvd_alert.md
