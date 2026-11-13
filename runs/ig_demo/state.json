@@ -1,13 +1,9 @@
 {
- "day": "2026-11-12",
- "ntr": 1,
- "dpl": -7.700000000000728,
- "last_exit_bar": 346,
+ "day": "2026-11-13",
+ "ntr": 0,
+ "dpl": 0.0,
+ "last_exit_bar": null,
  "news": {},
- "last_atr": 29.395000000000074,
- "open_bars": 0,
- "ntr_USDJPY": 3,
- "dpl_rng": -1.3440000000001058,
- "ntr_GBPUSD": 2,
- "ntr_US500": 1
+ "dpl_rng": 0.0,
+ "ntr_USDJPY": 2
 }
