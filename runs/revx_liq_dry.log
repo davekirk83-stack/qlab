@@ -214,3 +214,15 @@
 02:37:21 no setup (below the 200-day)
 02:37:21 slots: - 0; TRADE 73,140; TRADE 73,024; TRADE 72,935; TRADE 72,861
 02:37:21 book $632.68 (£498.17); trades 1, won 0, total $-2.32
+03:32:36 BTC 69,299 | Coinbase 1500 bars, live long levels 0, short 27 | daily close 71,379 vs 200d 73,084 -> OFF | CPI - | book $632.68
+03:32:36 no setup (below the 200-day)
+03:32:36 EXIT (stop -4%): $-2.32 (-3.65%)
+03:32:36 no setup (below the 200-day)
+03:32:36 EXIT (stop -4%): $-2.32 (-3.65%)
+03:32:36 no setup (below the 200-day)
+03:32:36 EXIT (stop -4%): $-2.32 (-3.65%)
+03:32:36 no setup (below the 200-day)
+03:32:36 EXIT (stop -4%): $-2.32 (-3.65%)
+03:32:36 no setup (below the 200-day)
+03:32:36 slots: - 0; - 0; - 0; - 0; - 0
+03:32:36 book $623.41 (£490.87); trades 5, won 0, total $-11.60
