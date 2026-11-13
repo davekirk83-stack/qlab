@@ -1,0 +1,50 @@
+//@version=6
+// SPOT CVD ROLL-OVER ALERT (DK 13 Nov). Same rule as src/spot_cvd_alert.py:
+// inside the last 24h, Binance spot CVD BUILT (rise >= Build% of 24h volume) then ROLLED OVER (gave back >= Give% of the rise,
+// peak at least 1h old, last hour's delta negative, price below the price at the CVD peak).
+// TradingView has no taker-buy feed, so delta here = 1-min bar volume signed by candle colour (an approximation of true CVD).
+// Use on a 5m-1h chart. To add to your own indicator: paste everything below the indicator() line into it and add max_bars_back=1500.
+indicator("Spot CVD roll-over alert", overlay = true, max_bars_back = 1500)
+
+cvdA_sym   = input.symbol("BINANCE:BTCUSDT", "Spot market", group = "Spot CVD alert")
+cvdA_build = input.float(2.0, "Build: CVD rise >= % of 24h volume", group = "Spot CVD alert") / 100
+cvdA_give  = input.float(40.0, "Roll-over: gives back >= % of rise", group = "Spot CVD alert") / 100
+cvdA_coolH = input.int(12, "Cooldown (hours)", group = "Spot CVD alert")
+
+[cvdA_o, cvdA_c, cvdA_v] = request.security_lower_tf(cvdA_sym, "1", [open, close, volume])
+float cvdA_d = 0.0
+float cvdA_vol = 0.0
+if array.size(cvdA_c) > 0
+    for i = 0 to array.size(cvdA_c) - 1
+        float vi = array.get(cvdA_v, i)
+        cvdA_vol += vi
+        cvdA_d += array.get(cvdA_c, i) > array.get(cvdA_o, i) ? vi : array.get(cvdA_c, i) < array.get(cvdA_o, i) ? -vi : 0.0
+cvdA_cvd = ta.cum(cvdA_d)
+cvdA_px  = request.security(cvdA_sym, timeframe.period, close)
+
+int cvdA_N  = math.max(4, math.round(86400 / timeframe.in_seconds()))
+int cvdA_hb = math.max(1, math.round(3600 / timeframe.in_seconds()))
+float cvdA_v24 = math.sum(cvdA_vol, cvdA_N)
+
+float cvdA_pk = cvdA_cvd
+int cvdA_ip = 0
+for j = 0 to cvdA_N - 1
+    if cvdA_cvd[j] > cvdA_pk
+        cvdA_pk := cvdA_cvd[j]
+        cvdA_ip := j
+float cvdA_lo = cvdA_pk
+for j = cvdA_ip to cvdA_N - 1
+    cvdA_lo := math.min(cvdA_lo, cvdA_cvd[j])
+float cvdA_rise = cvdA_pk - cvdA_lo
+float cvdA_gb   = cvdA_rise > 0 ? (cvdA_pk - cvdA_cvd) / cvdA_rise : 0.0
+
+bool cvdA_fire = cvdA_rise >= cvdA_build * cvdA_v24 and cvdA_gb >= cvdA_give and cvdA_ip >= cvdA_hb
+     and cvdA_cvd - cvdA_cvd[cvdA_hb] < 0 and cvdA_px < cvdA_px[cvdA_ip]
+var int cvdA_last = na
+bool cvdA_sig = cvdA_fire and barstate.isconfirmed and (na(cvdA_last) or time - cvdA_last > cvdA_coolH * 3600000)
+if cvdA_sig
+    cvdA_last := time
+    alert("Binance spot CVD rolling over: gave back " + str.tostring(100 * cvdA_gb, "#") + "% of a 24h build. Check futures CVD, funding, OI, clusters below.", alert.freq_once_per_bar_close)
+
+plotshape(cvdA_sig, "Spot CVD roll-over", shape.labeldown, location.abovebar, color.new(color.red, 0), text = "SPOT CVD\nROLL", textcolor = color.white, size = size.small)
+alertcondition(cvdA_sig, "Spot CVD roll-over", "Binance spot CVD rolling over after a 24h build")
