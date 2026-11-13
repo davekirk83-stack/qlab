@@ -102,3 +102,30 @@ Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 4 (2 taken, 2 ad_tue_wed
 Caveat: paper feed gaps on 2026-11-11 UTC — no bars 12:00–13:55 UTC (07:00–08:55 NY) and 21:15–22:55 UTC. The two taken demo BUYs (09:40 and 11:50 UTC) both have paper bars present (paper closes 28193.6 and 28284.1, within ~2 pts of IG), so those two are genuine feed disagreements — paper produced no signal on the same bars. The two 21:25/21:35 NY SELLs fall on 12 Nov UTC (02:25/02:35), which the paper file does not yet cover, so they are coverage, not disagreement.
 
 Running tally (from 2026-11-05): ig_demo agree 1/7, mean slippage -1.35 pts over 4 fills; ig_live agree 0/4 (none a disagreement on a trade paper took), mean slippage -0.6 pts over 1 fill. Combined 1/11 signals — past the 10-signal mark and below 50%.
+
+## 2026-11-12 (NY day) — checked 2026-11-13
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-12 New York
+  02:40 NY SELL IG only    paper close       nan  IG close   28075.3  taken
+  10:50 NY BUY  both       paper close   28348.8  IG close   28348.9  cooloff
+  11:05 NY BUY  IG only    paper close       nan  IG close   28502.9  cooloff
+  17:10 NY SELL IG only    paper close       nan  IG close   28283.5  ad_no_regime
+  23:55 NY SELL IG only    paper close       nan  IG close   28271.2  ad_no_regime
+  agreement: 1/5 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+  IG fill 02:40 NY side -1: filled 28072.2 vs IG signal close 28075.3 -> +3.1 pts against us; result -7.7 pts (session_end)
+  paper trade 10:50 NY side +1: +119.4 pts (be)
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-12 New York
+  10:50 NY BUY  paper only paper close   28348.8  IG close       nan  IG runner not running then (coverage, not a feed difference)
+  14:20 NY SELL IG only    paper close       nan  IG close   28315.4  lunch
+  agreement: 0/1 signals on both feeds while the IG runner was live (1 paper signals fell outside its sessions)
+  IG fill 10:50 NY side +1: filled 28346.9 vs IG signal close 28348.5 -> -1.6 pts against us; result +10.7 pts (ig_limit)
+  paper trade 10:50 NY side +1: +119.4 pts (be)
+```
+
+Day: ig_demo both 1 / paper-only-while-live 0 / IG-only 4 (1 taken, 3 skips), slippage +3.1 pts over 1 fill (against us). ig_live both 0 (script) / paper-only-while-live 0 / IG-only 1 (lunch skip), slippage -1.6 pts over 1 fill (in our favour).
+
+Flag — script/runner mismatch: the script labels the ig_live 10:50 NY BUY "paper only, runner not running", but runs/ig_live/trades.csv shows the live runner opened that BUY at 15:50 UTC (IG signal close 28348.55, filled 28346.90). The bar is missing from runs/ig_live/signals.csv (only the 19:20 UTC lunch row is logged for 12 Nov), so the script's coverage test misfires. In substance live and paper agreed on this trade (same bar, same side, closes 0.25 pt apart). Outcome differed sharply: live +10.7 pts (ig_limit) vs paper +119.4 pts (be).
+
+Running tally (from 2026-11-05): ig_demo agree 2/12, mean slippage -0.46 pts over 5 fills; ig_live agree 0/5 by script (1/6 counting the 10:50 BUY both runners took), mean slippage -1.1 pts over 2 fills. Combined 2/17 by script (3/18 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
