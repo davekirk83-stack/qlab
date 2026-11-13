@@ -1,6 +1,6 @@
 {
  "start": "2026-11-10",
- "asof": "2026-11-13 13:32:00+00:00",
+ "asof": "2026-11-13 17:16:00+00:00",
  "books": {
   "BTCUSDT": {
    "role": "main",
@@ -36,7 +36,16 @@
     "slope": 6
    },
    "closed": 0,
-   "open": [],
+   "open": [
+    {
+     "signal": "2026-11-13 16:00:00+00:00",
+     "side": -1,
+     "entry": 80.15,
+     "stop": 82.475,
+     "target": 70.85000000000005,
+     "status": "order working"
+    }
+   ],
    "total_R": 0,
    "win_rate": null,
    "pool": 500.0
