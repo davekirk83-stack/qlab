@@ -633,12 +633,12 @@ string flowTxt = na(flShare) ? "-" : (flD >= 0 ? "BUY +" : "SELL ") + str.tostri
 color flowCol = flD >= 0 ? cUp : cDn
 
 // ------------------------------------------------ SPOT CVD ROLL-OVER (V24.2) ------------------------------------------------
-string gS = "Spot CVD roll-over (V24.2)"
-bool   showSpot   = input.bool(true, "Spot CVD roll-over: mark, panel row and alert", group=gS)
-string spSym      = input.symbol("BINANCE:BTCUSDT", "Spot market", group=gS)
-float  spBuild    = input.float(2.0, "Build: CVD rise >= % of 24h volume", group=gS) / 100
-float  spGive     = input.float(40.0, "Roll-over: gives back >= % of the rise", group=gS) / 100
-int    spCoolH    = input.int(12, "Cooldown (hours)", group=gS)
+string gSp = "Spot CVD roll-over (V24.2)"
+bool   showSpot   = input.bool(true, "Spot CVD roll-over: mark, panel row and alert", group=gSp)
+string spSym      = input.symbol("BINANCE:BTCUSDT", "Spot market", group=gSp)
+float  spBuild    = input.float(2.0, "Build: CVD rise >= % of 24h volume", group=gSp) / 100
+float  spGive     = input.float(40.0, "Roll-over: gives back >= % of the rise", group=gSp) / 100
+int    spCoolH    = input.int(12, "Cooldown (hours)", group=gSp)
 [spO, spH, spL, spC, spV] = request.security_lower_tf(spSym, "1", [open, high, low, close, volume])
 float spD = 0.0
 float spVol = 0.0
