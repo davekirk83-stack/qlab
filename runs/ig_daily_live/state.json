@@ -12,12 +12,13 @@
   "eu_open:2026-11-12",
   "us_open:2026-11-12",
   "eu_close:2026-11-12",
-  "us_close:2026-11-12"
+  "us_close:2026-11-12",
+  "eu_open:2026-11-13"
  ],
- "day": "2026-11-12",
+ "day": "2026-11-13",
  "day_eq": 500.0,
- "entries_ok": true,
- "stop_why": "",
+ "entries_ok": false,
+ "stop_why": "account check failed",
  "pot": {
   "acc_start": 493.68,
   "start_date": "2026-11-10",
