@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO pb4_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-13', 1976.1288, 2047.4947, 8, 9, 9);

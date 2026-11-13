@@ -1,0 +1,4 @@
+INSERT OR REPLACE INTO pb5_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-13', 2000.0000, 2000.0000, 0, 0, 0);
+CREATE TABLE IF NOT EXISTS pb5_v11_equity (d TEXT PRIMARY KEY, equity REAL, shadow_equity REAL, open_positions INTEGER, closed_total INTEGER, closed_shadow INTEGER);
+INSERT OR REPLACE INTO pb5_v11_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-13', 1924.0985, 1933.8835, 0, 4, 4);
+INSERT INTO pb5_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-13', 'XRPUSD@v11', '2026-11-09 08:00:00+00:00', '2026-11-12 08:00:00+00:00', -0.039949, 'hold', 1);

@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-11",
+ "since": "2026-11-12",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -11,27 +11,9 @@
   "closed_shadow": 0
  },
  "EP": {
-  "equity": 2025.8675403791726,
-  "shadow_equity": 2009.1529886839617,
+  "equity": 1979.3907513092329,
+  "shadow_equity": 1997.9311173844599,
   "pos": [
-   {
-    "sym": "WRBY",
-    "opened": "2026-11-05",
-    "entry": 26.3897618367314,
-    "stop": 26.3897618367314,
-    "risk": 0.05906851476544959,
-    "w": 0.5,
-    "legs": [
-     [
-      0.5,
-      29.899999618530273
-     ]
-    ],
-    "be": true,
-    "n": 4,
-    "kind": "real",
-    "cloud": false
-   },
    {
     "sym": "COHR",
     "opened": "2026-11-06",
@@ -46,84 +28,12 @@
      ]
     ],
     "be": true,
-    "n": 3,
-    "kind": "real",
-    "cloud": false
-   },
-   {
-    "sym": "CRWV",
-    "opened": "2026-11-11",
-    "entry": 59.3915871551544,
-    "stop": 53.748090070444626,
-    "risk": 0.09502182640727747,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
-    "kind": "real",
-    "cloud": false
-   },
-   {
-    "sym": "NBIS",
-    "opened": "2026-11-11",
-    "entry": 155.8064763167221,
-    "stop": 146.89470247499577,
-    "risk": 0.057197711240260324,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
+    "n": 4,
     "kind": "real",
     "cloud": false
    }
   ],
   "shadow": [
-   {
-    "sym": "STGW",
-    "opened": "2026-11-06",
-    "entry": 11.140000343322754,
-    "stop": 11.140000343322754,
-    "risk": 0.03231603224925793,
-    "w": 0.5,
-    "legs": [
-     [
-      0.5,
-      11.369999885559082
-     ]
-    ],
-    "be": true,
-    "n": 3,
-    "kind": "shadow"
-   },
-   {
-    "sym": "WING",
-    "opened": "2026-11-06",
-    "entry": 164.53557431560017,
-    "stop": 164.53557431560017,
-    "risk": 0.0367610738986185,
-    "w": 0.5,
-    "legs": [
-     [
-      0.5,
-      166.72999572753906
-     ]
-    ],
-    "be": true,
-    "n": 3,
-    "kind": "shadow"
-   },
-   {
-    "sym": "TER",
-    "opened": "2026-11-11",
-    "entry": 265.649998792524,
-    "stop": 254.74040600582796,
-    "risk": 0.04106754314430307,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 0,
-    "kind": "shadow"
-   },
    {
     "sym": "MEOH",
     "opened": "2026-11-11",
@@ -133,11 +43,11 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 0,
+    "n": 1,
     "kind": "shadow"
    }
   ],
-  "closed": 3,
-  "closed_shadow": 2
+  "closed": 6,
+  "closed_shadow": 5
  }
 }

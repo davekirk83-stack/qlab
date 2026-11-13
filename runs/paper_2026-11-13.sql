@@ -1,0 +1,4 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-13', exit_px=0.06142915, exit_reason='stop', ret=-0.162345, pnl=-25.27 WHERE sym='HBARUSD' AND opened='2026-10-29' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-13', exit_px=2.94354947, exit_reason='stop', ret=-0.183328, pnl=-28.53 WHERE sym='KSMUSD' AND opened='2026-10-29' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-13', exit_px=0.03104736, exit_reason='target', ret=0.031268, pnl=5.09 WHERE sym='GFIUSD' AND opened='2026-11-09' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-13',2089.85,14,0,0,0,0,'0 signals, 0 taken, 0 dropped, 3 closed, 14 open');
