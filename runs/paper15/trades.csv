@@ -1,2 +1,2 @@
-market,role,signal,side,entry,stop,target,status
-SOLUSDT,shadow,2026-11-13 16:00:00+00:00,-1,80.15,82.475,70.85000000000005,order working
+market,role,signal,filled,side,entry,stop,target,status
+SOLUSDT,shadow,2026-11-13 16:00:00+00:00,2026-11-13 17:00:00+00:00,-1,80.15,82.475,70.85,open
