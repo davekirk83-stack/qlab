@@ -129,3 +129,20 @@ Day: ig_demo both 1 / paper-only-while-live 0 / IG-only 4 (1 taken, 3 skips), sl
 Flag — script/runner mismatch: the script labels the ig_live 10:50 NY BUY "paper only, runner not running", but runs/ig_live/trades.csv shows the live runner opened that BUY at 15:50 UTC (IG signal close 28348.55, filled 28346.90). The bar is missing from runs/ig_live/signals.csv (only the 19:20 UTC lunch row is logged for 12 Nov), so the script's coverage test misfires. In substance live and paper agreed on this trade (same bar, same side, closes 0.25 pt apart). Outcome differed sharply: live +10.7 pts (ig_limit) vs paper +119.4 pts (be).
 
 Running tally (from 2026-11-05): ig_demo agree 2/12, mean slippage -0.46 pts over 5 fills; ig_live agree 0/5 by script (1/6 counting the 10:50 BUY both runners took), mean slippage -1.1 pts over 2 fills. Combined 2/17 by script (3/18 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-13 (NY day) — checked 2026-11-14
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-13 New York
+  04:45 NY SELL IG only    paper close       nan  IG close   28228.3  taken
+  agreement: 0/1 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-13 New York
+  no Ignition signal on either feed — agree
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 1; no fill. ig_live no signal on either feed (agree); no fill. Slippage: no fills today.
+
+Notes: the paper feed has the 09:45 UTC bar (close 28229.3 vs IG 28228.3, 1 pt apart) but produced no signal, so this is a genuine feed disagreement, not coverage. The demo SELL is logged "taken" in runs/ig_demo/signals.csv, but the demo run log (commit 9cd53e5) says "SIGNAL SELL skipped — book exposure already at the 5x cap"; no row in runs/ig_demo/trades.csv and state.json ntr 0. So no order was placed — the signals.csv "taken" label is wrong for cap skips.
+
+Running tally (from 2026-11-05): ig_demo agree 2/13, mean slippage -0.46 pts over 5 fills; ig_live agree 1/6 by script (2/7 counting the 12 Nov 10:50 BUY both runners took), mean slippage -1.1 pts over 2 fills. Combined 3/19 by script (4/20 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
