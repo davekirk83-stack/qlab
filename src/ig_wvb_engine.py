@@ -22,7 +22,7 @@ def log(*a): print(utcnow().strftime("%H:%M:%S"), "[wvb]", *a, flush=True)
 
 class WVBEngine:
     def __init__(self, ig, ccy, dry, range_engine, book, notional_fn, markets):
-        if LIVE: raise SystemExit("Williams breakout engine is demo-only until DK decides (doc 228)")
+        if LIVE and os.environ.get("IG_WVB_LIVE") != "1": raise SystemExit("Williams breakout engine: live needs IG_WVB_LIVE=1 (set by ig-live.yml only when DK's IG_WVB_LIVE_ENABLED is true)")
         self.ig, self.ccy, self.dry, self.eng, self.beq, self.notional_fn = ig, ccy, dry, range_engine, book, notional_fn
         self.markets = [m for m in markets if m in SESS and m in range_engine.mkt and m not in range_engine.disabled]
         self.st = json.load(open(STATE)) if os.path.exists(STATE) else {}
@@ -115,7 +115,8 @@ class WVBEngine:
                 try: ids = {x["position"]["dealId"] for x in self.ig.fetch_open_positions()["positions"]}
                 except Exception as ex: log(name, "sync:", ex); return
                 if p["deal_id"] not in ids:
-                    lv = self.eng.exit_levels(name, [dict(deal_id=p["deal_id"], px=p["px"], sz=p["sz"])]); self.book(name, lv.get(p["deal_id"], np.nan), "ig_stop"); st["done"] = True
+                    lv = self.eng.exit_levels(name, [dict(deal_id=p["deal_id"], px=p["px"], sz=p["sz"])])
+                    self.book(name, lv.get(p["deal_id"], p["stop"] or float(c["close"])), "ig_stop"); st["done"] = True   # 14 Nov: never book NaN
 
     def flatten(self, name, how):
         st = self.st[name]
@@ -133,6 +134,9 @@ class WVBEngine:
                     r = self.ig.close_open_position(deal_id=p["deal_id"], direction="SELL" if p["side"] == 1 else "BUY", epic=None, expiry=None, level=None,
                                                     order_type="MARKET", quote_id=None, size=p["sz"]); px = float(r.get("level") or np.nan)
                 except Exception as ex: log(name, "close:", ex)
+                if not np.isfinite(px):                                  # 14 Nov: IG's close reply carries no level -> look it up, else the last bar close
+                    px = self.eng.exit_levels(name, [dict(deal_id=p["deal_id"], px=p["px"], sz=p["sz"])]).get(p["deal_id"], np.nan)
+                    if not np.isfinite(px): px = float(self.eng.bars5[name].close.iloc[-1])
             self.book(name, px, how)
         st["done"] = True; self.save()
 

@@ -338,8 +338,9 @@ class RangeEngine:
                     if k in used: continue
                     try: ol, cl, sz = float(t.get("openLevel")), float(t.get("closeLevel")), abs(float(str(t.get("size")).replace("+", "")))
                     except Exception: continue
-                    if abs(ol - l["px"]) <= 0.5 and abs(sz - l["sz"]) < 1e-6 and (mk["name"].split(" ")[0] in str(t.get("instrumentName", "")) or True):
-                        out[l["deal_id"]] = cl; used.add(k); break
+                    sc = next((f for f in (1, 10, 100, 1000, 10000) if abs(ol * f - l["px"]) <= 0.5), None)   # 14 Nov: FX/US 500 history quotes a different scale (NaN exits)
+                    if sc and abs(sz - l["sz"]) < 1e-6:
+                        out[l["deal_id"]] = cl * sc; used.add(k); break
         except Exception as ex: log(name, "exit levels:", ex)
         return out
 
