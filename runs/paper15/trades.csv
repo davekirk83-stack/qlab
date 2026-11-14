@@ -1,2 +1,2 @@
-market,role,signal,filled,side,entry,stop,target,status
-SOLUSDT,shadow,2026-11-13 16:00:00+00:00,2026-11-13 17:00:00+00:00,-1,80.15,82.475,70.85,open
+market,role,signal,filled,side,entry,stop,target,status,closed,R
+SOLUSDT,shadow,2026-11-13 16:00:00+00:00,2026-11-13 17:00:00+00:00,-1,80.15,82.475,70.85,target,2026-11-14 20:00:00+00:00,3.986
