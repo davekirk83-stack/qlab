@@ -1,11 +1,3 @@
-11:34:36 BTC 73,965 | Coinbase 1500 bars, live long levels 4, short 22 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
-11:34:36 no setup
-11:34:36 no setup
-11:34:36 slots: bids 72,861; bids 72,413; bids 72,288; - 0; - 0
-11:34:36 book $635.00 (£500.00); trades 0
-12:37:39 BTC 73,843 | Coinbase 1500 bars, live long levels 4, short 22 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
-12:37:39 no setup
-12:37:39 no setup
 12:37:39 slots: bids 72,861; bids 72,413; bids 72,288; - 0; - 0
 12:37:39 book $635.00 (£500.00); trades 0
 13:53:31 BTC 73,670 | Coinbase 1500 bars, live long levels 4, short 22 | daily close 73,729 vs 200d 73,137 -> ON | CPI - | book $635.00
@@ -398,3 +390,11 @@
 02:55:39 no setup (below the 200-day)
 02:55:39 slots: - 0; - 0; - 0; - 0; - 0
 02:55:39 book $623.41 (£490.87); trades 5, won 0, total $-11.60
+03:38:18 BTC 67,365 | Coinbase 1500 bars, live long levels 1, short 28 | daily close 68,265 vs 200d 73,040 -> OFF | CPI - | book $623.41
+03:38:18 no setup (below the 200-day)
+03:38:18 no setup (below the 200-day)
+03:38:18 no setup (below the 200-day)
+03:38:18 no setup (below the 200-day)
+03:38:18 no setup (below the 200-day)
+03:38:18 slots: - 0; - 0; - 0; - 0; - 0
+03:38:18 book $623.41 (£490.87); trades 5, won 0, total $-11.60
