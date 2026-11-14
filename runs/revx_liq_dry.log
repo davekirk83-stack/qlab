@@ -1,11 +1,3 @@
-12:37:08 FILLED at the 73,024 cluster: 0.000435 BTC; sells resting at 73,754 (half) and 75,215; stop 70,103
-12:37:08 FILLED at the 72,935 cluster: 0.000435 BTC; sells resting at 73,664 (half) and 75,123; stop 70,018
-12:37:08 FILLED at the 72,861 cluster: 0.000436 BTC; sells resting at 73,589 (half) and 75,046; stop 69,946
-12:37:08 slots: TRADE 73,746; TRADE 73,140; TRADE 73,024; TRADE 72,935; TRADE 72,861
-12:37:08 book $635.00 (£500.00); trades 0
-13:55:07 BTC 72,484 | Coinbase 1500 bars, live long levels 2, short 25 | daily close 73,993 vs 200d 73,119 -> ON | CPI - | book $635.00
-13:55:07 rung 2 filled at 72,408; target order resized
-13:55:07 rung 2 filled at 72,294; target order resized
 13:55:07 rung 2 filled at 72,206; target order resized
 13:55:07 slots: TRADE 73,746; TRADE 73,140; TRADE 73,024; TRADE 72,935; TRADE 72,861
 13:55:07 book $635.00 (£500.00); trades 0
@@ -398,3 +390,11 @@
 14:49:21 no setup (below the 200-day)
 14:49:21 slots: - 0; - 0; - 0; - 0; - 0
 14:49:21 book $623.41 (£490.87); trades 5, won 0, total $-11.60
+15:27:04 BTC 66,647 | Coinbase 1500 bars, live long levels 0, short 28 | daily close 68,265 vs 200d 73,040 -> OFF | CPI - | book $623.41
+15:27:04 no setup (below the 200-day)
+15:27:04 no setup (below the 200-day)
+15:27:04 no setup (below the 200-day)
+15:27:04 no setup (below the 200-day)
+15:27:04 no setup (below the 200-day)
+15:27:04 slots: - 0; - 0; - 0; - 0; - 0
+15:27:04 book $623.41 (£490.87); trades 5, won 0, total $-11.60
