@@ -38,6 +38,7 @@ jobs:
           IG_MODE: live
           IG_DAILY_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-10-IG-DAILY-CORE-500
           IG_DAILY_START_EQ: "500"
+          IG_DAILY_LOOSE: ${{ vars.IG_DAILY_LOOSE == 'true' && '1' || '0' }}   # 15 Nov: looser RSI4/TPS entries (doc 235) — DK's switch
           IG_USERNAME: ${{ secrets.IG_USERNAME_LIVE || secrets.IG_USERNAME }}
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE || secrets.IG_PASSWORD }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}

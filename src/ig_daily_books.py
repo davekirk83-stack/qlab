@@ -80,8 +80,13 @@ def entries(d, name):
     bme = pd.Series(t == (t + pd.offsets.BMonthEnd(0)), index=t); bqe = pd.Series(t == (t + pd.offsets.BQuarterEnd(0)), index=t)
     s = pd.Series((t.month == 12) & (t.day >= 22) & (t.day <= 24) & (t.dayofweek < 5), index=t); santa = s & ~s.shift(1, fill_value=False)
     nxt = (t + pd.offsets.BDay(1)).month
-    return {"RSI4": up & (d.r4 < 25),
-            "TPS": up & (d.r2 < 25) & (d.r2.shift(1) < 25),
+    # 15 Nov (DK: make the best books trade; src/sweep_daily_freq.py, sweep_tps_freq.py): thresholds from env, defaults = tested originals.
+    # IG_DAILY_LOOSE=1 -> RSI4 < 35 (47 -> 84 trades/yr on 8 markets, win 70%, same £/yr) and TPS on ONE close RSI(2) < 30 (68 -> 120/yr, win 84%).
+    th4 = float(os.environ.get("IG_RSI4_TH", "35" if os.environ.get("IG_DAILY_LOOSE") == "1" else "25"))
+    tht = float(os.environ.get("IG_TPS_TH", "30" if os.environ.get("IG_DAILY_LOOSE") == "1" else "25"))
+    two = os.environ.get("IG_TPS_CLOSES", "1" if os.environ.get("IG_DAILY_LOOSE") == "1" else "2") == "2"
+    return {"RSI4": up & (d.r4 < th4),
+            "TPS": up & (d.r2 < tht) & ((d.r2.shift(1) < tht) if two else True),
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}

@@ -14,8 +14,9 @@ import numpy as np, pandas as pd
 from ig_mode import OUT, LIVE
 
 STATE = f"{OUT}/wvb_state.json"; TRADES = f"{OUT}/wvb_trades.csv"
-SESS = {"NQ": ("America/New_York", 570, 960), "USDJPY": ("Europe/London", 480, 990), "US500": ("America/New_York", 570, 960)}
+SESS = {"NQ": ("America/New_York", 570, 960), "USDJPY": ("Europe/London", 480, 990), "US500": ("America/New_York", 570, 960), "GOLD": ("Europe/London", 480, 990)}
 K, RISK = 0.5, 0.03   # DK 11 Nov: intraday books 3% per trade under a £1,000 pot
+KM = {"NQ": 0.4, "US500": 0.5, "USDJPY": 0.5, "GOLD": 0.3}   # 15 Nov (src/sweep_williams_mkts.py, doc 235): best k per market, both halves positive
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), "[wvb]", *a, flush=True)
@@ -63,7 +64,7 @@ class WVBEngine:
         st = self.st[name]; mk = self.eng.mkt[name]; R = self.prev_range(name, st["day"])
         if not R or R <= 0: log(name, "no previous session range — no bracket today"); st["done"] = True; return
         if self.beq and not self.beq.day_ok(): log(name, "book day stop — no bracket today"); st["done"] = True; return
-        o = st["open"]; a = K * R; up, dn, dist = o + a, o - a, 2 * a
+        o = st["open"]; a = KM.get(name, K) * R; up, dn, dist = o + a, o - a, 2 * a
         dist = max(dist, mk.get("minstop", 0))
         size = max(mk["min"], round(self.beq.eq * RISK * self.beq.k / dist, 2)) if self.beq else mk["min"]
         if self.beq: size = self.beq.cap(size, o, self.notional_fn() if self.notional_fn else 0.0, mk["min"])
