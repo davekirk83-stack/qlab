@@ -1,0 +1,21 @@
+{
+ "book": "now: runner hrs, regime, coil 4",
+ "note": "",
+ "data": "2025-10-15..2026-11-13",
+ "holdout_from": "2026-06-08",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 60,
+ "dev_R": 0.604,
+ "hold_n": 48,
+ "hold_per_year": 112,
+ "hold_R": -0.35,
+ "t": -1.52,
+ "h1": -0.817,
+ "h2": 0.117,
+ "win": 0.46,
+ "maxdd_R": -19.6,
+ "random_p95": 0.283,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
