@@ -19,3 +19,4 @@ __pycache__/
 !data_rx_cache/
 !data_rx_cache/*.csv.gz
 data_long/
+runs/alerts/
