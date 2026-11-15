@@ -1,0 +1,4 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-15', exit_px=0.00548148, exit_reason='stop', ret=-0.154784, pnl=-24.65 WHERE sym='GMTUSD' AND opened='2026-11-02' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-15', exit_px=1799.01599357, exit_reason='stop', ret=-0.139601, pnl=-22.71 WHERE sym='ETHUSD' AND opened='2026-11-09' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-15', exit_px=0.09984287, exit_reason='stop', ret=-0.255053, pnl=-41.52 WHERE sym='SYRUPUSD' AND opened='2026-11-11' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-15',1935.53,9,0,0,0,0,'0 signals, 0 taken, 0 dropped, 3 closed, 9 open');
