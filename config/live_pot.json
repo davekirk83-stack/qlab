@@ -22,11 +22,12 @@
       "share": 1.0,
       "engines": [
         "RSI4",
+        "RSI4L",
         "TPS",
         "TOM",
         "SANTA"
       ],
-      "approved": "DK 10 Nov 07:27 / 07:37; TPS at minimum stake with its own stop DK 08:22"
+      "approved": "DK 10 Nov 07:27 / 07:37; TPS at minimum stake with its own stop DK 08:22; RSI4L (loose RSI4 < 35 alongside RSI4) DK 15 Nov 08:19 \"Yes progress as you suggest\""
     }
   },
   "risk_tiers": {

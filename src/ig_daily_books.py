@@ -54,7 +54,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 }
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
-BOOKS = {"RSI4": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
+BOOKS = {"RSI4": IDX + ["GOLD"], "RSI4L": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
          "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
          "LBS": IDX,    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
          "INS": ["US500"]}   # INS = insurance short at each new ALL-TIME closing high of the US 500 (doc 223, DK 11:42: demo, 0.5% risk)
@@ -82,15 +82,15 @@ def entries(d, name):
     nxt = (t + pd.offsets.BDay(1)).month
     # 15 Nov (DK: make the best books trade; src/sweep_daily_freq.py, sweep_tps_freq.py): thresholds from env, defaults = tested originals.
     # IG_DAILY_LOOSE=1 -> RSI4 < 35 (47 -> 84 trades/yr on 8 markets, win 70%, same £/yr) and TPS on ONE close RSI(2) < 30 (68 -> 120/yr, win 84%).
-    th4 = float(os.environ.get("IG_RSI4_TH", "35" if os.environ.get("IG_DAILY_LOOSE") == "1" else "25"))
+    th4 = float(os.environ.get("IG_RSI4_TH", "25"))   # DK 15 Nov 08:19: run BOTH — RSI4 (< 25) and RSI4L (< 35) side by side (10y: £87/yr vs £35)
     tht = float(os.environ.get("IG_TPS_TH", "30" if os.environ.get("IG_DAILY_LOOSE") == "1" else "25"))
     two = os.environ.get("IG_TPS_CLOSES", "1" if os.environ.get("IG_DAILY_LOOSE") == "1" else "2") == "2"
-    return {"RSI4": up & (d.r4 < th4),
+    return {"RSI4": up & (d.r4 < th4), "RSI4L": up & (d.r4 < float(os.environ.get("IG_RSI4L_TH", "35"))),
             "TPS": up & (d.r2 < tht) & ((d.r2.shift(1) < tht) if two else True),
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
-STOP_ATR = {"RSI4": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
+STOP_ATR = {"RSI4": 3, "RSI4L": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
+MAXD = {"RSI4": 10, "RSI4L": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -262,7 +262,7 @@ def tps_check(ig, s, hist_fn=None):
             except Exception: log("TPS stop close failed:", traceback.format_exc())
 
 # ------------------------------------------------------------------ jobs
-OPEN_BOOKS = ("RSI4", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
+OPEN_BOOKS = ("RSI4", "RSI4L", "TPS")            # price-based signals: decided on the FINAL daily close, traded at the next open (doc 206 review)
 CLOSE_BOOKS = ("TOM", "SANTA", "HALLO")  # date-based signals (known in advance): traded about 20 min before the close
 TPS_RUNGS = int(L.C.get("tps_rungs", 4)) if LIVE else 4   # doc 216: 3 rungs keeps ~77% of the profit, halves the worst loss
 IDX_RISK_CAP = L.IDX_CAP if LIVE else 0.06   # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
@@ -311,7 +311,7 @@ def job_open(ig, s, group, hist_fn):
             log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
             for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS", "LBS", "INS")]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
-                if p["book"] in ("RSI4", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
+                if p["book"] in ("RSI4", "RSI4L", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
                 if p["book"] == "TPS":
                     rungs = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
