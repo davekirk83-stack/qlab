@@ -12,10 +12,16 @@
   "R": 608.7330000000002
  },
  "USDJPY": {
-  "day": "2026-11-13",
+  "day": "2026-11-16",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
+ },
+ "US500": {
+  "day": null,
+  "orders": {},
+  "pos": null,
+  "done": false
  }
 }
