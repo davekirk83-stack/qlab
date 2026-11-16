@@ -1,4 +1,7 @@
 //@version=6
+// V24.4.1 (16 Nov 12:45, DK "the indicator labels are shit" / "stack outwards away from the chart"): one label per trigger in even ROWS
+//            stepping out from the highest high / lowest low of the last 8 bars (never on top of each other); Clean look by default — coloured text and an arrow, no filled boxes;
+//            the daily Asia / London / NY open tags off by default (they were most of the clutter); boxes still selectable.
 // MARKET ADVISORY V24.4 (16 Nov 2026, DK "make sure that any trigger labels don't overlap each other"):
 //   LABELS   every trigger mark (LONG/SHORT/CAUTION, expansion, saucer, spot CVD, 300W zone, stress low, session tags, sweeps, targets)
 //            now goes through ONE stacker: all triggers on a bar are merged into one label above and one below, and a label within
@@ -89,8 +92,10 @@ bool  showTargets  = input.bool(true, "Session target lines (T1 / T2)", group=gS
 bool  showWeekendIn = input.bool(true, "Weekend H/L and midpoint (crypto)", group=gS)
 int   keepLabels   = input.int(30, "Keep last N tags", minval=5, maxval=100, group=gS)
 float tagGap       = input.float(0.8, "Tag distance from the bar (ATR)", minval=0.1, step=0.1, group=gS)
-int   stackBars    = input.int(6, "Stack window: lift a label clear of one this many bars back", minval=0, maxval=30, group=gS)
-float lineAtr      = input.float(0.9, "Label line height (ATR) - raise if labels still touch when zoomed out", minval=0.2, step=0.1, group=gS)
+int   stackBars    = input.int(8, "Stack window (bars): labels this close share the row system", minval=0, maxval=30, group=gS)
+string lblLook    = input.string("Clean", "Trigger label look", options=["Clean", "Boxes"], group=gS, tooltip="Clean: small coloured text with a dot, no box (V24.4.1). Boxes: the old filled tags.")
+bool  sesTags      = input.bool(false, "Tag every Asia / London / NY open on the chart (busy; the panel shows the session anyway)", group=gS)
+float lineAtr      = input.float(0.9, "Row spacing (ATR) - raise if rows still touch when zoomed out", minval=0.2, step=0.1, group=gS)
 
 string gI = "Expansion tag"
 bool  showIgn      = input.bool(true, "Tag expansion bars", group=gI)
@@ -371,11 +376,14 @@ if showSessions and not na(asiaHiLn) and not na(aH)
     setln(asiaLoLn, aBar, aL, bar_index + 1, aL)
 // one small tag per session start and per sweep — highs above the bar, lows below
 if showSessions and nyStart
-    tag(bar_index, high, "NY - " + nyLean, cNy, true)   // session tags always ABOVE the bar; sweeps of lows go below
+    if sesTags
+        tag(bar_index, high, "NY - " + nyLean, cNy, true)   // session tags always ABOVE the bar; sweeps of lows go below
 if showSessions and ldnStart
-    tag(bar_index, high, "LDN", cLdn, true)
+    if sesTags
+        tag(bar_index, high, "LDN", cLdn, true)
 if showSessions and asiaStart
-    tag(bar_index, high, "ASIA", cAsia, true)
+    if sesTags
+        tag(bar_index, high, "ASIA", cAsia, true)
 string tgtSuffix = t1Now ? " = T1" : t2Now ? " = T2" : ""
 if showSessions and (sweptLdnH or sweptAsiaH)
     tag(bar_index, high, (sweptLdnH ? "LDN H swept" : "ASIA H swept") + tgtSuffix, cWarn, true)
@@ -820,49 +828,41 @@ pct(float v) => na(v) ? "" : " " + (v >= 0 ? "+" : "") + str.tostring(100 * v, "
 string bfxTxt = na(bfxL) ? "-" : "L " + fmtK(bfxL) + pct(bfxLc) + " | S " + fmtK(bfxS) + pct(bfxSc)
 color bfxCol = bfxLc <= -bfxDrop ? cWarn : bfxSc >= bfxBuild ? #ce93d8 : cMute
 
-// ------------------------------------------------ TRIGGER LABEL STACKER (V24.4) ------------------------------------------------
-// One label per side per bar (all of that bar's triggers on separate lines). A new label within stackBars of the previous one on the
-// same side is lifted (above) or dropped (below) clear of it, using lineAtr x ATR per line of text.
+// ------------------------------------------------ TRIGGER LABEL STACKER (V24.4.1: rows stacking OUTWARDS) ------------------------------------------------
+// DK 16 Nov 12:42: "make them stack outwards away from the chart rather than just picking random gap spacings".
+// Each trigger gets its own label in a ROW: row 0 sits just clear of the highest high (above) / lowest low (below) of the last
+// stackBars bars, row 1 one fixed step further out, and so on. A row stays taken while a label in it is inside the window, so labels
+// never sit on each other and always step away from the candles in even steps.
 var label[] evLbs = array.new_label()
-var int   upX = na
-var float upY = na
-var int   upN = 0
-var int   dnX = na
-var float dnY = na
-var int   dnN = 0
+var int[] upBars = array.new_int()
+var int[] upRows = array.new_int()
+var int[] dnBars = array.new_int()
+var int[] dnRows = array.new_int()
+float rowStep = lineAtr * atrTag
+float baseUp = ta.highest(high, stackBars + 1) + tagGap * atrTag
+float baseDn = ta.lowest(low, stackBars + 1) - tagGap * atrTag
+freeRow(int[] bars, int[] rows) =>
+    while array.size(bars) > 0 and bar_index - array.get(bars, 0) > stackBars
+        array.shift(bars)
+        array.shift(rows)
+    int r = 0
+    while array.includes(rows, r)
+        r += 1
+    array.push(bars, bar_index)
+    array.push(rows, r)
+    r
 int nEv = array.size(evT)
 if nEv > 0
-    string tA = ""
-    string tB = ""
-    color cA = na
-    color cB = na
-    int nA = 0
-    int nB = 0
     for i = 0 to nEv - 1
-        if array.get(evA, i)
-            tA := nA == 0 ? array.get(evT, i) : tA + "\n" + array.get(evT, i)
-            cA := na(cA) ? array.get(evC, i) : cA
-            nA += 1
+        bool up = array.get(evA, i)
+        string t = array.get(evT, i)
+        color c = array.get(evC, i)
+        int r = up ? freeRow(upBars, upRows) : freeRow(dnBars, dnRows)
+        float y = up ? baseUp + r * rowStep : baseDn - r * rowStep
+        if lblLook == "Clean"
+            array.push(evLbs, label.new(bar_index, y, (up ? "▼ " : "▲ ") + t, style=label.style_none, textcolor=c, size=size.small))
         else
-            tB := nB == 0 ? array.get(evT, i) : tB + "\n" + array.get(evT, i)
-            cB := na(cB) ? array.get(evC, i) : cB
-            nB += 1
-    if nA > 0
-        float y = high + tagGap * atrTag
-        if not na(upX) and bar_index - upX <= stackBars
-            y := math.max(y, upY + (upN + 0.5) * lineAtr * atrTag)
-        array.push(evLbs, label.new(bar_index, y, tA, style=label.style_label_down, color=color.new(cA, 15), textcolor=color.white, size=size.tiny))
-        upX := bar_index
-        upY := y
-        upN := nA
-    if nB > 0
-        float y = low - tagGap * atrTag
-        if not na(dnX) and bar_index - dnX <= stackBars
-            y := math.min(y, dnY - (dnN + 0.5) * lineAtr * atrTag)
-        array.push(evLbs, label.new(bar_index, y, tB, style=label.style_label_up, color=color.new(cB, 15), textcolor=color.white, size=size.tiny))
-        dnX := bar_index
-        dnY := y
-        dnN := nB
+            array.push(evLbs, label.new(bar_index, y, t, style=up ? label.style_label_down : label.style_label_up, color=color.new(c, 15), textcolor=color.white, size=size.tiny))
     while array.size(evLbs) > keepLabels
         label.delete(array.shift(evLbs))
 array.clear(evT)
