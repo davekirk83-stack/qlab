@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       mode: { description: "dry / live", default: "dry" }
-  schedule:
-    - cron: "2,17,32,47 * * * *"    # one minute after each 15-min bar closes
+  # NO SCHEDULE (16 Nov): replayed honestly this engine loses (doc 194/195/238) — manual dry runs only until a version passes the honest test
 permissions:
   contents: write
 concurrency:

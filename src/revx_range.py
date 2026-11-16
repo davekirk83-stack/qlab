@@ -30,6 +30,7 @@ P.MK, P.TAKER, P.SLIP = 0.0, 0.0009, 0.0010
 try: P._MED.clear(); P._MED.update(json.load(open(f"{ROOT}/runs/contain_median.json")))   # the registered medians, wherever the repo sits
 except Exception as e: raise SystemExit(f"registered contain_median.json missing: {e}")
 START = os.environ.get("REVX_RANGE_START", "2026-11-16")
+CHASE = float(os.environ.get("REVX_RANGE_CHASE", "0"))   # bid AT the engine's trigger level (0) — bidding at the paper's chase price filled bars the engine never traded
 GBP_USD = 1.27; BOOK_USD = 500.0 * GBP_USD; FRAC, MAXOPEN, BOOK_STOP, MIN_USD, TK, SL = 0.10, 10, 0.15, 2.0, 0.0009, 0.0010
 
 def log(*a): print(dt.datetime.utcnow().strftime("%H:%M:%S"), "[revx-range]", *a, flush=True)
@@ -45,7 +46,7 @@ def plan(sym, d, start):
     cool = pos.get("cool", {}).get("L"); cooling = bool(cool and d.index[-1] + pd.Timedelta(minutes=15) < pd.Timestamp(cool) + pd.Timedelta(hours=P.COOLDOWN_H))
     tried = list(p["tried"]) if p else []
     buys = [] if (not ok or (p is None and cooling)) else \
-        [(k, float(lo_b[i] + off * A + P.CHASE_PREM * A), f) for k, (f, off) in enumerate(P.BID) if k not in tried]
+        [(k, float(lo_b[i] + off * A + CHASE * A), f) for k, (f, off) in enumerate(P.BID) if k not in tried]
     return (p["open"] if p else None), tried, how, buys, float(ema[i]), ok
 
 class Dry:
