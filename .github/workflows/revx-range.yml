@@ -1,0 +1,41 @@
+name: Revolut X RANGE book (doc 238 — paper book 14 traded with resting limit orders, every 15 min; dry unless DK enables live)
+# CAP-021 as amended 5 Nov 2026: £500 Revolut X book, spot long only, no leverage; 10% of book equity per episode, at most 10 open across
+# the Revolut X books; book -15% -> no new episodes. Live needs DK's repo VARIABLE REVX_RANGE_LIVE_ENABLED = "true"; otherwise dry.
+# Keys: DK's secrets REVX_API_KEY / REVX_PRIVATE_KEY (never printed). Claude never sets the variable or dispatches mode=live.
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "dry / live", default: "dry" }
+  schedule:
+    - cron: "2,17,32,47 * * * *"    # one minute after each 15-min bar closes
+permissions:
+  contents: write
+concurrency:
+  group: revx-range
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.event_name == 'schedule' || github.event.inputs.mode != 'live' || vars.REVX_RANGE_LIVE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q cryptography pandas numpy
+      - name: Run (secrets never printed)
+        env:
+          REVX_API_KEY: ${{ secrets.REVX_API_KEY }}
+          REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then [ "${{ vars.REVX_RANGE_LIVE_ENABLED }}" = "true" ] && MODE=live || MODE=dry; fi
+          [ "$MODE" = "live" ] && [ "${{ vars.REVX_RANGE_LIVE_ENABLED }}" != "true" ] && { echo "live not enabled by DK"; exit 1; }
+          QLAB_ROOT=$PWD python src/revx_range.py "$MODE" 2>&1 | tee -a runs/revx_range_$MODE.log
+          tail -n 400 runs/revx_range_$MODE.log > /tmp/l && mv /tmp/l runs/revx_range_$MODE.log
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "revx-range"; git config user.email "revx-range@users.noreply.github.com"
+          for p in data_rx_cache runs/revx_range_dry runs/revx_range_live runs/revx_range_dry.log runs/revx_range_live.log; do [ -e "$p" ] && git add -f "$p"; done; git commit -q -m "revx range $(date -u +%Y-%m-%dT%H:%M)" || true
+          for i in 1 2 3 4 5 6; do git pull -q --rebase -X theirs origin main && git push -q && break; echo "push retry $i"; sleep $((i*7)); done

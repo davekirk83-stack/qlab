@@ -43,6 +43,8 @@ INSTR = {  # name: candidate epics, search text, 5-min cache, UTC hours for NEW 
     # doc 175 part 3 / doc 186 (DK 4 Nov 17:56 "Yes why not"): FX ladders on the DEMO. IG spread-bet FX is quoted in pips (GBP/USD 13473.5,
     # USD/JPY 15400.5), so the caches are Dukascopy x10000 / x100. FX margin 3.33%. unit = £ notional per £1/pt (GBP/USD: £10,000; USD/JPY ~ price).
     "GBPUSD": dict(epics=["CS.D.GBPUSD.TODAY.IP"], search="GBP/USD", cache=f"{ROOT}/data_ig_cache/GBPUSD_IG_5m.csv", hours=("Europe/London", 7, 17), margin=0.0333, unit=lambda p: 10000.0),
+    # 16 Nov (doc 235/238): spot gold for the Williams breakout only (k 0.3, London hours) — bars, NO ladder rungs (ladder=False)
+    "GOLD":   dict(epics=["CS.D.USCGC.TODAY.IP"], search="Spot Gold", cache=f"{ROOT}/data_ig_cache/XAUUSD_5m.csv", hours=("Europe/London", 8, 16.5), ladder=False),
     "USDJPY": dict(epics=["CS.D.USDJPY.TODAY.IP"], search="USD/JPY", cache=f"{ROOT}/data_ig_cache/USDJPY_IG_5m.csv", hours=("Europe/London", 0, 17), margin=0.0333, unit=lambda p: p),
 }
 MAXT, LOSSCAP = 8, 200.0
@@ -221,7 +223,7 @@ class RangeEngine:
         onot = (self.notional_fn() if self.notional_fn else 0.0) + sum(o["size"] * o["price"] for o in st["orders"].values())   # resting orders count: they can fill
         blk = shock_block(d, i) if name in SHOCK else (False, False)
         for side in ("L", "S"):
-            if NO_ORDERS: self.cancel_orders(name, side); continue
+            if NO_ORDERS or not INSTR[name].get("ladder", True): self.cancel_orders(name, side); continue
             if not _in_hours(ts, hours): continue
             if blk[0 if side == "L" else 1]:
                 if st["orders"] or not st["pos"].get(side): log(f"{name}: shock pause — no {'long' if side == 'L' else 'short'} rungs against an abnormal bar (doc 190 S1)")

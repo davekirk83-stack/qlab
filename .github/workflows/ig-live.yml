@@ -54,9 +54,9 @@ jobs:
           IG_NEWS: "0"
           IG_ENTRY_CLOSE_NY: "1110"         # doc 194 (DK 9 Nov 19:07): Ignition entries to 18:30 New York (evening 16-19 NY: n46/yr, +11 to +14 pts/trade after wider spreads, both halves positive); session ends 19:00 NY
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
-          IG_RANGE_INSTR: "NQ,US500,USDJPY"   # bars for the spike + Williams engines (ladders stay OFF, IG_RANGE_ORDERS 0); USD/JPY added 16 Nov for Williams
+          IG_RANGE_INSTR: "NQ,US500,USDJPY,GOLD"   # bars for the spike + Williams engines (ladders stay OFF, IG_RANGE_ORDERS 0); USD/JPY added 16 Nov for Williams
           IG_RANGE_ORDERS: "0"              # doc 194 (DK 9 Nov 18:55 "If they don't earn money then take them off"): ladders OFF on live — honest pricing shows no edge
-          IG_WVB: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && 'NQ,US500,USDJPY' || '' }}   # doc 228/235: Williams breakout — DK's switch IG_WVB_LIVE_ENABLED; USD/JPY via the London-morning job (16 Nov)
+          IG_WVB: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && 'NQ,US500,USDJPY,GOLD' || '' }}   # doc 228/235: Williams breakout — DK's switch IG_WVB_LIVE_ENABLED; USD/JPY via the London-morning job (16 Nov)
           IG_AD_STACK: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}       # doc 235/238: AD stack (regime + coil, Tue/Wed off) — DK's switch IG_ADSTACK_LIVE_ENABLED
           IG_IGN_HOURS: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && 'all' || 'us' }}
           ADSTACK_ON: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}
