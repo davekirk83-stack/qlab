@@ -1,144 +1,139 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-22:45:00 delta-share threshold 0.0500 (percentile-matched on 5465 IG bars); registered 0.05
-22:45:17 history 300 bars to 2026-11-13 21:59:00+00:00
-22:45:17 ls status: CONNECTING
-22:45:17 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-22:45:17 streaming IX.D.NASDAQ.CASH.IP
-22:45:18 ls status: CONNECTED:WS-STREAMING
-22:45:18 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-22:45:18 CHART IX.D.NASDAQ.CASH.IP subscribed
-22:45:18 CHART IX.D.NASDAQ.CASH.IP update: {'BID': None, 'OFR': None}
-22:45:18 stream subscribed on CHART via Z6FARW
-22:45:18 trading session on Z6FARW
-22:45:19 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status EDITS_ONLY
-22:45:21 [range] NQ: using the runner's own 300 IG bars
-22:45:21 [range] NQ: cache 71359 bars offset -12.0 to IG level, REST 300 bars to 2026-11-13 21:59:00+00:00
-22:45:21 [range] NQ: containment median 0.860 over 23789 15-min bars
-22:45:35 US500: IG history refused () — using cache 1027 bars + own logged bars
-22:45:35 [range] US500: cache 70028 bars offset +3.0 to IG level, REST 300 bars to 2026-11-13 22:00:00+00:00
-22:45:35 [range] US500: containment median 0.880 over 23353 15-min bars
-22:45:37 [range] market IX.D.FTSE.DAILY.IP throttled — waiting 15 s
-22:45:52 [range] market IX.D.FTSE.DAILY.IP throttled — waiting 15 s
-22:46:27 [range] FTSE: cache 70359 bars offset -4.9 to IG level, REST 300 bars to 2026-11-13 21:59:00+00:00
-22:46:27 [range] FTSE: containment median 0.880 over 23484 15-min bars
-22:46:45 GBPUSD: IG history refused () — using cache 901 bars + own logged bars
-22:46:45 [range] GBPUSD: cache 73364 bars offset -155.0 to IG level, REST 300 bars to 2026-11-13 21:40:00+00:00
-22:46:45 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
-22:46:46 [range] market CS.D.USDJPY.TODAY.IP throttled — waiting 15 s
-22:47:02 [range] market CS.D.USDJPY.TODAY.IP throttled — waiting 15 s
-22:47:36 USDJPY: IG history refused (unsupported operand type(s) for +: 'float' and 'NoneType') — using cache 844 bars + own logged bars
-22:47:37 [range] USDJPY: cache 73266 bars offset +234.8 to IG level, REST 300 bars to 2026-11-13 22:00:00+00:00
-22:47:37 [range] USDJPY: containment median 0.900 over 24425 15-min bars
-22:47:37 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
-22:47:37 streaming IX.D.SPTRD.DAILY.IP
-22:47:37 streaming IX.D.FTSE.DAILY.IP
-22:47:37 streaming CS.D.GBPUSD.TODAY.IP
-22:47:37 streaming CS.D.USDJPY.TODAY.IP
-22:47:37 [spike] markets: ['NQ', 'US500']
-22:47:37 [wvb] markets: ['NQ', 'USDJPY', 'US500']
-22:47:37 book 13 rehearsal: book equity £483.38 (risk x1.0), news events loaded 24
-22:47:37 CHART IX.D.SPTRD.DAILY.IP subscribed
-22:47:37 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-22:47:37 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
-22:47:37 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
-22:47:37 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
-22:47:37 CHART IX.D.FTSE.DAILY.IP subscribed
-22:47:37 CHART CS.D.GBPUSD.TODAY.IP subscribed
-22:47:37 CHART CS.D.USDJPY.TODAY.IP subscribed
-22:47:37 CHART IX.D.SPTRD.DAILY.IP update: {'BID': None, 'OFR': None}
-22:47:37 CHART IX.D.FTSE.DAILY.IP update: {'BID': None, 'OFR': None}
-23:00:37 [range] USDJPY 22:45 c 15971.6 ema 15977.9 band 15959.3-15996.5 atr 9.3 regime ON L 0 S 0 orders 0
-23:15:52 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:15:52 [range] GBPUSD 22:45 c 13219.0 ema 13214.6 band 13205.0-13224.1 atr 4.8 regime ON L 0 S 0 orders 0
-23:20:02 bar 23:15 o 28013.6 h 28155.1 l 28010.6 c 28066.9 ticks 10245 delta -342
-23:25:00 bar 23:20 o 28067.9 h 28106.5 l 28059.9 c 28100.9 ticks 2179 delta +119
-23:45:58 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:45:58 [range] NQ 23:15 c 28101.2 ema 27898.9 band 27688.8-28109.0 atr 105.1 regime off L 0 S 0 orders 0
-23:45:58 bar 23:25 o 28100.7 h 28137.9 l 28081.6 c 28101.2 ticks 2831 delta -21
-23:45:58 bar 23:30 o 28101.1 h 28101.1 l 28101.1 c 28101.1 ticks 1 delta -1
-23:45:59 [range] USDJPY 23:15 c 15979.9 ema 15978.1 band 15959.2-15996.9 atr 9.4 regime ON L 0 S 0 orders 0
-23:45:59 [range] US500 23:15 c 7581.8 ema 7552.0 band 7515.8-7588.3 atr 18.1 regime off L 0 S 0 orders 0
-23:46:00 [range] FTSE 23:15 c 10930.1 ema 10901.4 band 10877.8-10925.0 atr 11.8 regime off L 0 S 0 orders 0
-23:46:39 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:46:39 [range] GBPUSD 23:15 c 13212.5 ema 13214.9 band 13204.6-13225.2 atr 5.2 regime ON L 0 S 0 orders 0
-23:50:00 bar 23:45 o 28101.0 h 28177.1 l 28087.2 c 28169.8 ticks 9847 delta -127
-23:55:00 bar 23:50 o 28170.0 h 28177.4 l 28162.1 c 28172.5 ticks 1832 delta -76
-00:15:48 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:15:48 [range] NQ 23:45 c 28163.7 ema 27941.5 band 27738.5-28144.6 atr 101.5 regime off L 0 S 0 orders 0
-00:15:48 bar 23:55 o 28172.6 h 28186.7 l 28159.7 c 28163.7 ticks 1870 delta -64
-00:15:49 [range] USDJPY 23:45 c 15979.1 ema 15978.2 band 15957.9-15998.4 atr 10.1 regime ON L 0 S 0 orders 0
-00:15:49 bar 00:00 o 28163.9 h 28163.9 l 28163.9 c 28163.9 ticks 1 delta -1
-00:15:49 [range] US500 23:45 c 7589.6 ema 7555.6 band 7519.3-7591.9 atr 18.2 regime off L 0 S 0 orders 0
-00:15:50 [range] FTSE 23:45 c 10935.3 ema 10904.6 band 10880.6-10928.7 atr 12.0 regime off L 0 S 0 orders 0
-00:16:37 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:16:37 [range] GBPUSD 23:45 c 13216.4 ema 13215.0 band 13203.9-13226.2 atr 5.6 regime ON L 0 S 0 orders 0
-00:20:00 bar 00:15 o 28163.6 h 28175.6 l 28068.6 c 28083.8 ticks 12143 delta -61
-00:25:00 bar 00:20 o 28083.7 h 28086.9 l 28067.7 c 28086.9 ticks 2863 delta +83
-00:45:58 [range] USDJPY sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:45:58 [range] USDJPY 00:15 c 15972.0 ema 15977.6 band 15955.8-15999.3 atr 10.9 regime ON L 0 S 0 orders 0
-00:45:59 [range] USDJPY LIMIT BUY rung 0 0.04/pt at 15959.1 placed (DIAAAAYUR5J6DBW)
-00:45:59 [range] USDJPY LIMIT BUY rung 1 0.04/pt at 15956.4 placed (DIAAAAYUR6EY6BT)
-00:46:00 [range] NQ 00:15 c 28081.2 ema 27974.0 band 27771.1-28176.9 atr 101.4 regime off L 0 S 0 orders 0
-00:46:00 bar 00:25 o 28086.7 h 28097.4 l 28073.4 c 28081.2 ticks 2980 delta +68
-00:46:00 [range] US500 00:15 c 7576.1 ema 7557.6 band 7520.7-7594.4 atr 18.4 regime off L 0 S 0 orders 0
-00:46:00 [range] FTSE 00:15 c 10911.2 ema 10905.3 band 10878.1-10932.4 atr 13.6 regime off L 0 S 0 orders 0
-00:46:31 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:46:31 [range] GBPUSD 00:15 c 13212.5 ema 13214.8 band 13203.2-13226.4 atr 5.8 regime ON L 0 S 0 orders 0
-00:46:31 bar 00:45 o 28081.1 h 28094.1 l 28020.0 c 28056.5 ticks 11333 delta -153
-00:50:00 bar 00:45 o 28056.6 h 28102.2 l 28054.9 c 28084.3 ticks 2535 delta -65
-00:55:00 bar 00:50 o 28084.5 h 28094.0 l 28070.8 c 28090.9 ticks 3624 delta +36
-01:16:01 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-01:16:01 [range] NQ 00:45 c 28086.8 ema 27984.7 band 27787.0-28182.5 atr 98.9 regime off L 0 S 0 orders 0
-01:16:01 bar 00:55 o 28090.8 h 28099.7 l 28074.6 c 28086.8 ticks 3642 delta -30
-01:16:01 [range] US500 00:45 c 7579.7 ema 7559.7 band 7523.7-7595.7 atr 18.0 regime off L 0 S 0 orders 0
-01:16:01 bar 01:00 o 28087.3 h 28087.3 l 28087.3 c 28087.3 ticks 1 delta +1
-01:16:02 [range] USDJPY 00:45 c 15977.6 ema 15977.1 band 15954.6-15999.6 atr 11.3 regime ON L 0 S 0 orders 2
-01:16:03 [range] FTSE 00:45 c 10913.6 ema 10906.1 band 10879.3-10932.8 atr 13.4 regime off L 0 S 0 orders 0
-01:16:21 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-01:16:21 [range] GBPUSD 00:45 c 13213.4 ema 13214.7 band 13202.8-13226.6 atr 5.9 regime ON L 0 S 0 orders 0
-01:20:00 bar 01:15 o 28087.1 h 28088.7 l 27865.5 c 27899.5 ticks 15373 delta -297
-01:25:00 bar 01:20 o 27899.2 h 27902.2 l 27823.4 c 27823.4 ticks 3292 delta -126
-01:45:59 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-01:45:59 [range] GBPUSD 01:15 c 13213.0 ema 13214.5 band 13202.1-13226.9 atr 6.2 regime ON L 0 S 0 orders 0
-01:45:59 [range] NQ 01:15 c 27799.7 ema 27976.0 band 27746.8-28205.1 atr 114.6 regime off L 0 S 0 orders 0
-01:46:00 bar 01:25 o 27823.5 h 27827.8 l 27776.7 c 27799.7 ticks 3076 delta -28
-01:46:00 [range] US500 01:15 c 7545.9 ema 7558.4 band 7518.3-7598.4 atr 20.0 regime off L 0 S 0 orders 0
-01:46:00 [range] FTSE 01:15 c 10910.9 ema 10906.5 band 10879.5-10933.5 atr 13.5 regime off L 0 S 0 orders 0
-01:46:11 [range] USDJPY sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-01:46:11 [range] USDJPY 01:15 c 15970.9 ema 15976.5 band 15952.7-16000.3 atr 11.9 regime ON L 0 S 0 orders 0
-01:46:12 [range] USDJPY LIMIT BUY rung 0 0.04/pt at 15956.3 placed (DIAAAAYUSAB4CAZ)
-01:46:12 [range] USDJPY LIMIT BUY rung 1 0.04/pt at 15953.3 placed (DIAAAAYUR9BBEBD)
-01:46:12 bar 01:45 o 27799.5 h 27826.0 l 27766.2 c 27818.0 ticks 9763 delta -21
-01:50:00 bar 01:45 o 27817.9 h 27824.8 l 27789.2 c 27794.2 ticks 2167 delta -63
-01:55:00 bar 01:50 o 27794.3 h 27821.3 l 27786.8 c 27804.7 ticks 2662 delta -56
-02:15:57 [range] US500 sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-02:15:57 [range] US500 01:45 c 7542.5 ema 7556.9 band 7517.4-7596.3 atr 19.7 regime off L 0 S 0 orders 0
-02:15:58 [range] NQ 01:45 c 27777.0 ema 27957.0 band 27725.4-28188.6 atr 115.8 regime off L 0 S 0 orders 0
-02:15:58 bar 01:55 o 27804.5 h 27814.3 l 27772.4 c 27777.0 ticks 2501 delta -37
-02:15:58 [range] FTSE 01:45 c 10913.4 ema 10907.2 band 10879.5-10934.8 atr 13.8 regime off L 0 S 0 orders 0
-02:15:58 [range] USDJPY 01:45 c 15969.2 ema 15975.8 band 15951.1-16000.5 atr 12.4 regime ON L 0 S 0 orders 2
-02:15:59 [range] USDJPY LIMIT BUY rung 0 0.04/pt at 15954.8 placed (DIAAAAYUSCDR6BR)
-02:16:00 [range] USDJPY LIMIT BUY rung 1 0.04/pt at 15951.7 placed (DIAAAAYUSCAVWB6)
-02:17:11 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-02:17:11 [range] GBPUSD 01:45 c 13216.0 ema 13214.5 band 13202.0-13227.0 atr 6.2 regime ON L 0 S 0 orders 0
-02:17:11 bar 02:15 o 27775.3 h 27895.4 l 27766.7 c 27881.0 ticks 9559 delta -103
-02:20:00 bar 02:15 o 27881.8 h 27909.9 l 27881.8 c 27903.0 ticks 1478 delta -12
-02:25:00 bar 02:20 o 27903.3 h 27965.3 l 27882.2 c 27963.8 ticks 2802 delta -2
-02:45:51 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-02:45:51 [range] NQ 02:15 c 27894.9 ema 27951.1 band 27710.2-28192.0 atr 120.5 regime off L 0 S 0 orders 0
-02:45:51 bar 02:25 o 27963.7 h 27970.0 l 27894.0 c 27894.9 ticks 2751 delta -175
-02:45:51 bar 02:30 o 27894.8 h 27894.8 l 27894.8 c 27894.8 ticks 1 delta +1
-02:45:52 [range] USDJPY 02:15 c 15973.3 ema 15975.6 band 15950.3-16000.9 atr 12.7 regime ON L 0 S 0 orders 2
-02:45:52 [range] FTSE 02:15 c 10917.5 ema 10908.1 band 10879.3-10936.9 atr 14.4 regime off L 0 S 0 orders 0
-02:45:52 [range] US500 02:15 c 7556.5 ema 7555.6 band 7515.8-7595.3 atr 19.9 regime off L 0 S 0 orders 0
-02:47:01 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-02:47:01 [range] GBPUSD 02:15 c 13212.5 ema 13214.3 band 13201.4-13227.2 atr 6.4 regime ON L 0 S 0 orders 0
-02:50:01 bar 02:45 o 27894.7 h 27951.4 l 27857.2 c 27860.8 ticks 10430 delta -160
-02:55:00 bar 02:50 o 27860.9 h 27874.2 l 27840.4 c 27872.5 ticks 2441 delta -17
-03:15:49 [range] USDJPY cancel L0 ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-03:15:49 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-03:15:49 [range] NQ 02:45 c 27905.8 ema 27941.9 band 27735.3-28148.5 atr 103.3 regime off L 0 S 0 orders 0
-03:15:49 bar 02:55 o 27872.4 h 27909.7 l 27870.0 c 27905.8 ticks 2673 delta +73
-03:15:50 [range] US500 02:45 c 7559.0 ema 7555.9 band 7516.0-7595.8 atr 20.0 regime off L 0 S 0 orders 0
-03:15:50 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-03:15:50 done; ticks 225995 bars 328
+04:12:02 delta-share threshold 0.0500 (percentile-matched on 5648 IG bars); registered 0.05
+04:12:21 history 300 bars to 2026-11-16 04:12:00+00:00
+04:12:21 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+04:12:21 streaming IX.D.NASDAQ.CASH.IP
+04:12:21 ls status: CONNECTING
+04:12:22 ls status: CONNECTED:WS-STREAMING
+04:12:23 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+04:12:23 CHART IX.D.NASDAQ.CASH.IP subscribed
+04:12:23 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27746.6', 'OFR': '27748.8'}
+04:12:23 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27746.6', 'OFR': '27748.8'}
+04:12:23 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27746.7', 'OFR': '27748.9'}
+04:12:23 stream subscribed on CHART via Z6FARW
+04:12:23 trading session on Z6FARW
+04:12:23 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+04:12:25 [range] NQ: using the runner's own 300 IG bars
+04:12:25 [range] NQ: cache 71410 bars offset +249.0 to IG level, REST 300 bars to 2026-11-16 04:12:00+00:00
+04:12:25 [range] NQ: containment median 0.860 over 23806 15-min bars
+04:12:40 US500: IG history refused () — using cache 1217 bars + own logged bars
+04:12:40 [range] US500: cache 70050 bars offset -3.6 to IG level, REST 300 bars to 2026-11-16 02:55:00+00:00
+04:12:40 [range] US500: containment median 0.880 over 23360 15-min bars
+04:12:42 [range] market IX.D.FTSE.DAILY.IP throttled — waiting 15 s
+04:12:57 [range] market IX.D.FTSE.DAILY.IP throttled — waiting 15 s
+04:13:33 [range] FTSE: cache 70408 bars offset +13.0 to IG level, REST 300 bars to 2026-11-16 04:13:00+00:00
+04:13:33 [range] FTSE: containment median 0.880 over 23501 15-min bars
+04:13:52 GBPUSD: IG history refused () — using cache 966 bars + own logged bars
+04:13:52 [range] GBPUSD: cache 73364 bars offset -156.6 to IG level, REST 300 bars to 2026-11-16 02:50:00+00:00
+04:13:52 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
+04:13:53 [range] market CS.D.USDJPY.TODAY.IP throttled — waiting 15 s
+04:14:08 [range] market CS.D.USDJPY.TODAY.IP throttled — waiting 15 s
+04:14:44 [range] USDJPY: cache 73266 bars offset +223.3 to IG level, REST 300 bars to 2026-11-16 04:14:00+00:00
+04:14:44 [range] USDJPY: containment median 0.900 over 24425 15-min bars
+04:14:44 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
+04:14:44 streaming IX.D.SPTRD.DAILY.IP
+04:14:44 streaming IX.D.FTSE.DAILY.IP
+04:14:44 streaming CS.D.GBPUSD.TODAY.IP
+04:14:44 streaming CS.D.USDJPY.TODAY.IP
+04:14:44 [spike] markets: ['NQ', 'US500']
+04:14:44 [wvb] markets: ['NQ', 'USDJPY', 'US500']
+04:14:44 book 13 rehearsal: book equity £483.38 (risk x1.0), news events loaded 24
+04:14:44 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+04:14:44 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
+04:14:44 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
+04:14:44 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
+04:14:44 CHART IX.D.SPTRD.DAILY.IP subscribed
+04:14:44 CHART CS.D.GBPUSD.TODAY.IP subscribed
+04:14:44 CHART IX.D.FTSE.DAILY.IP subscribed
+04:14:44 CHART CS.D.USDJPY.TODAY.IP subscribed
+04:15:00 [range] NQ 04:00 c 27748.0 ema 27911.7 band 27705.3-28118.0 atr 103.2 regime off L 0 S 0 orders 0
+04:15:00 bar 04:10 o 27747.7 h 27816.5 l 27747.0 c 27813.2 ticks 1284 delta +120
+04:15:01 [range] USDJPY 04:00 c 15963.1 ema 15970.3 band 15952.6-15988.1 atr 8.9 regime ON L 0 S 0 orders 0
+04:15:01 [range] USDJPY LIMIT BUY rung 0 0.04/pt at 15955.3 placed (DIAAAAYUSMK6SBW)
+04:15:01 [range] USDJPY LIMIT BUY rung 1 0.04/pt at 15953.0 placed (DIAAAAYUSPBWKBT)
+04:15:02 [range] FTSE 04:00 c 10913.5 ema 10917.1 band 10899.8-10934.4 atr 8.6 regime ON L 0 S 0 orders 0
+04:15:02 [range] US500 04:00 c 7543.2 ema 7554.7 band 7513.6-7595.7 atr 20.5 regime off L 0 S 0 orders 0
+04:15:03 [range] GBPUSD 04:00 c 13206.0 ema 13213.1 band 13199.8-13226.4 atr 6.6 regime ON L 0 S 0 orders 0
+04:20:00 bar 04:15 o 27813.3 h 27820.4 l 27779.8 c 27788.8 ticks 2537 delta -185
+04:25:00 bar 04:20 o 27788.9 h 27839.7 l 27763.8 c 27839.3 ticks 2554 delta +82
+04:30:45 [range] GBPUSD 04:15 c 13203.5 ema 13212.2 band 13199.4-13225.0 atr 6.4 regime ON L 0 S 0 orders 0
+04:30:46 [range] FTSE 04:15 c 10915.5 ema 10917.0 band 10900.1-10933.8 atr 8.4 regime ON L 0 S 0 orders 0
+04:30:46 [range] USDJPY 04:15 c 15966.8 ema 15970.0 band 15953.6-15986.4 atr 8.2 regime ON L 0 S 0 orders 2
+04:30:47 [range] USDJPY LIMIT BUY rung 1 0.04/pt at 15954.0 placed (DIAAAAYUSNY2TB2)
+04:30:48 [range] US500 04:15 c 7546.1 ema 7553.9 band 7514.5-7593.3 atr 19.7 regime off L 0 S 0 orders 0
+04:45:51 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+04:45:51 [range] NQ 04:15 c 27827.2 ema 27903.6 band 27694.5-28112.8 atr 104.6 regime off L 0 S 0 orders 0
+04:45:52 bar 04:25 o 27839.2 h 27842.7 l 27825.4 c 27827.2 ticks 2175 delta -89
+04:45:52 bar 04:30 o 27827.3 h 27827.3 l 27827.3 c 27827.3 ticks 1 delta +1
+04:50:00 bar 04:45 o 27827.4 h 27828.3 l 27722.8 c 27737.3 ticks 8404 delta -400
+04:55:00 bar 04:50 o 27737.0 h 27737.5 l 27717.7 c 27727.9 ticks 1853 delta -61
+05:15:58 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+05:15:58 [range] GBPUSD 04:45 c 13207.8 ema 13211.8 band 13199.7-13223.9 atr 6.0 regime ON L 0 S 0 orders 0
+05:15:59 [range] US500 04:45 c 7532.4 ema 7551.8 band 7516.2-7587.4 atr 17.8 regime off L 0 S 0 orders 0
+05:15:59 [range] FTSE 04:45 c 10912.4 ema 10916.5 band 10900.8-10932.3 atr 7.9 regime ON L 0 S 0 orders 0
+05:16:00 [range] USDJPY LIMIT rung 0 filled at 15955.3
+05:16:00 [range] USDJPY LIMIT rung 1 filled at 15954.0
+05:16:00 [range] USDJPY 04:45 c 15960.7 ema 15969.1 band 15952.3-15985.9 atr 8.4 regime ON L 2 S 0 orders 0
+05:16:39 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+05:16:39 [range] NQ 04:45 c 27726.9 ema 27880.2 band 27730.4-28030.1 atr 74.9 regime off L 0 S 0 orders 0
+05:16:39 bar 04:55 o 27728.0 h 27734.7 l 27713.8 c 27726.9 ticks 1861 delta -15
+05:20:00 bar 05:15 o 27727.0 h 27750.5 l 27676.3 c 27740.8 ticks 8416 delta -194
+05:25:00 bar 05:20 o 27740.3 h 27758.0 l 27720.4 c 27731.3 ticks 2419 delta -19
+05:45:52 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+05:45:52 [range] NQ 05:15 c 27707.2 ema 27863.8 band 27710.8-28016.7 atr 76.5 regime off L 0 S 0 orders 0
+05:45:52 bar 05:25 o 27731.2 h 27743.8 l 27704.0 c 27707.2 ticks 2335 delta -109
+05:45:53 [range] US500 05:15 c 7530.6 ema 7549.8 band 7517.3-7582.3 atr 16.2 regime off L 0 S 0 orders 0
+05:45:53 bar 05:30 o 27707.0 h 27707.0 l 27707.0 c 27707.0 ticks 1 delta -1
+05:45:53 [range] USDJPY EPISODE L closed (sold_or_stop): 2 lots, -1.20 GBP (ladders today -1.20 GBP)
+05:45:53 [range] USDJPY 05:15 c 15949.7 ema 15967.3 band 15950.4-15984.2 atr 8.4 regime ON L 0 S 0 orders 0
+05:45:54 [range] FTSE 05:15 c 10912.0 ema 10916.1 band 10900.5-10931.7 atr 7.8 regime ON L 0 S 0 orders 0
+05:46:33 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+05:46:33 [range] GBPUSD 05:15 c 13212.8 ema 13211.5 band 13200.0-13223.0 atr 5.7 regime ON L 0 S 0 orders 0
+05:50:00 bar 05:45 o 27706.9 h 27711.4 l 27634.9 c 27635.4 ticks 9118 delta -326
+05:55:00 bar 05:50 o 27635.5 h 27645.0 l 27619.7 c 27627.8 ticks 2340 delta -98
+06:15:50 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+06:15:50 [range] NQ 05:45 c 27612.4 ema 27826.3 band 27682.7-27969.9 atr 71.8 regime off L 0 S 0 orders 0
+06:15:50 bar 05:55 o 27627.9 h 27627.9 l 27595.9 c 27612.4 ticks 2285 delta +29
+06:15:51 [range] US500 05:45 c 7518.5 ema 7546.8 band 7515.1-7578.5 atr 15.9 regime off L 0 S 0 orders 0
+06:15:51 [range] FTSE 05:45 c 10916.8 ema 10916.2 band 10901.0-10931.3 atr 7.6 regime ON L 0 S 0 orders 0
+06:15:51 bar 06:00 o 27612.8 h 27612.8 l 27612.8 c 27612.8 ticks 1 delta -1
+06:15:52 [range] USDJPY 05:45 c 15947.1 ema 15965.4 band 15948.1-15982.6 atr 8.6 regime ON L 0 S 0 orders 0
+06:16:31 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+06:16:31 [range] GBPUSD 05:45 c 13208.0 ema 13211.2 band 13200.5-13221.8 atr 5.3 regime ON L 0 S 0 orders 0
+06:20:00 bar 06:15 o 27612.0 h 27663.5 l 27569.5 c 27583.5 ticks 13468 delta -66
+06:25:00 bar 06:20 o 27582.8 h 27595.5 l 27574.4 c 27576.2 ticks 2982 delta -84
+06:45:52 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+06:45:52 [range] NQ 06:15 c 27611.9 ema 27787.5 band 27656.0-27919.0 atr 65.8 regime off L 0 S 0 orders 0
+06:45:53 bar 06:25 o 27576.4 h 27615.9 l 27576.4 c 27611.9 ticks 3107 delta +75
+06:45:53 [range] US500 06:15 c 7518.8 ema 7544.2 band 7518.8-7569.5 atr 12.7 regime off L 0 S 0 orders 0
+06:45:53 bar 06:30 o 27612.0 h 27612.0 l 27612.0 c 27612.0 ticks 1 delta +1
+06:45:54 [range] FTSE 06:15 c 10910.2 ema 10915.6 band 10900.4-10930.8 atr 7.6 regime ON L 0 S 0 orders 0
+06:45:54 [range] USDJPY 06:15 c 15948.7 ema 15963.8 band 15946.6-15981.0 atr 8.6 regime ON L 0 S 0 orders 0
+06:46:29 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+06:46:29 [range] GBPUSD 06:15 c 13206.6 ema 13210.7 band 13200.3-13221.2 atr 5.2 regime ON L 0 S 0 orders 0
+06:50:00 bar 06:45 o 27612.7 h 27657.7 l 27599.8 c 27654.8 ticks 11258 delta -116
+06:55:00 bar 06:50 o 27654.5 h 27661.8 l 27644.3 c 27651.8 ticks 2405 delta -47
+07:15:50 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+07:15:50 [range] NQ 06:45 c 27661.7 ema 27760.4 band 27642.9-27877.9 atr 58.8 regime off L 0 S 0 orders 0
+07:15:51 bar 06:55 o 27651.3 h 27680.5 l 27641.8 c 27661.7 ticks 2378 delta -64
+07:15:51 [range] FTSE 06:45 c 10914.1 ema 10915.5 band 10901.2-10929.8 atr 7.2 regime ON L 0 S 0 orders 0
+07:15:51 bar 07:00 o 27661.8 h 27661.8 l 27661.8 c 27661.8 ticks 1 delta -1
+07:15:52 [range] USDJPY 06:45 c 15955.5 ema 15963.0 band 15945.4-15980.5 atr 8.8 regime ON L 0 S 0 orders 0
+07:15:52 [range] US500 06:45 c 7525.2 ema 7542.4 band 7517.4-7567.3 atr 12.5 regime off L 0 S 0 orders 0
+07:16:27 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+07:16:27 [range] GBPUSD 06:45 c 13196.5 ema 13209.4 band 13198.3-13220.4 atr 5.5 regime ON L 0 S 0 orders 0
+07:20:00 bar 07:15 o 27661.7 h 27712.8 l 27633.9 c 27637.0 ticks 11385 delta -29
+07:25:00 bar 07:20 o 27636.8 h 27680.3 l 27629.3 c 27666.0 ticks 2844 delta +120
+07:45:53 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+07:45:53 [range] NQ 07:15 c 27668.8 ema 27743.2 band 27628.7-27857.6 atr 57.2 regime off L 0 S 0 orders 0
+07:45:53 bar 07:25 o 27666.3 h 27686.7 l 27662.9 c 27668.8 ticks 2627 delta -19
+07:45:53 bar 07:30 o 27669.0 h 27669.0 l 27669.0 c 27669.0 ticks 1 delta -1
+07:45:53 [range] USDJPY 07:15 c 15940.9 ema 15960.9 band 15942.2-15979.5 atr 9.3 regime ON L 0 S 0 orders 0
+07:45:54 [range] US500 07:15 c 7530.6 ema 7541.2 band 7517.2-7565.3 atr 12.0 regime off L 0 S 0 orders 0
+07:45:55 [range] FTSE 07:15 c 10923.4 ema 10916.2 band 10902.0-10930.4 atr 7.1 regime ON L 0 S 0 orders 0
+07:46:25 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+07:46:25 [range] GBPUSD 07:15 c 13206.5 ema 13209.1 band 13197.0-13221.3 atr 6.1 regime ON L 0 S 0 orders 0
+07:46:26 [range] GBPUSD LIMIT BUY rung 0 0.03/pt at 13198.8 placed (DIAAAAYUVGAD4BZ)
+07:46:27 [range] GBPUSD LIMIT BUY rung 1 0.05/pt at 13197.3 placed (DIAAAAYUVHQKABT)
+07:49:03 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+07:49:03 done; ticks 187196 bars 327

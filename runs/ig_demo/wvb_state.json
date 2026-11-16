@@ -1,10 +1,10 @@
 {
  "NQ": {
-  "day": "2026-11-13",
+  "day": "2026-11-16",
   "orders": {},
   "pos": null,
-  "done": true,
-  "open": 28304.199999999997,
+  "done": false,
+  "open": null,
   "up": 28608.566499999997,
   "dn": 27999.833499999997,
   "dist": 608.7330000000002,
@@ -19,9 +19,10 @@
   "open": null
  },
  "US500": {
-  "day": null,
+  "day": "2026-11-16",
   "orders": {},
   "pos": null,
-  "done": false
+  "done": false,
+  "open": null
  }
 }
