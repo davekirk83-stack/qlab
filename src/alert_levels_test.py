@@ -41,7 +41,11 @@ for i in range(len(d)):
     if tr[i] and until < i: until = i + 126; starts.append(d.index[i])
     if i <= until and not red[i]: gold[i] = True
 d["gold"] = gold
-d["level"] = np.where(d.red, "RED", np.where(d.gold, "GOLD", np.where((d.c < d.ma200) | (d.vol >= 22), "AMBER", "GREEN")))
+# 16 Nov (DK: "the S&P is still really at historic highs"; 10y 5.15% and rising): AMBER widened to late-cycle danger —
+# yields above 5% and rising, or the S&P within 5% of its all-time high while the 10y has risen 0.5 pt+ in 6 months.
+ath = d.c.cummax(); yr6 = d.y10 - d.y10.shift(126)
+d["late"] = ((d.y10 > 5) & (d.y10 - d.y10.shift(63) > 0)) | ((d.c >= 0.95 * ath) & (yr6 >= 0.5))
+d["level"] = np.where(d.red, "RED", np.where(d.gold, "GOLD", np.where((d.c < d.ma200) | (d.vol >= 22) | d.late.fillna(False), "AMBER", "GREEN")))
 d = d[d.index >= "1929-01-01"]
 for h, nm in ((21, "1m"), (63, "3m"), (252, "12m"), (756, "3y")): d[nm] = d.c.shift(-h) / d.c - 1
 print("== share of days and S&P forward returns by level (1929-2026)")
