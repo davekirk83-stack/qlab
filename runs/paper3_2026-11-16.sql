@@ -1,0 +1,12 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-16', 1900.3110, 0, 297);
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'UNG', 'L', '2026-11-11 18:45:00+00:00', '2026-11-16', 0.014602, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'GLD', 'L', '2026-11-13 20:30:00+00:00', '2026-11-16', 0.000597, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'GDX', 'L', '2026-11-13 20:30:00+00:00', '2026-11-16', 0.001173, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'DBA', 'S', '2026-11-13 21:00:00+00:00', '2026-11-16', 0.000000, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'XLF', 'S', '2026-11-13 20:45:00+00:00', '2026-11-16', 0.000000, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'XLV', 'S', '2026-11-13 19:30:00+00:00', '2026-11-16', 0.000480, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'XLU', 'L', '2026-11-12 20:45:00+00:00', '2026-11-16', 0.001216, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'XLY', 'L', '2026-11-13 15:00:00+00:00', '2026-11-16', 0.000754, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'EEM', 'S', '2026-11-13 20:45:00+00:00', '2026-11-16', 0.000000, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'EFA', 'L', '2026-11-13 15:00:00+00:00', '2026-11-16', 0.000199, 'halt');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'EWJ', 'S', '2026-11-13 19:15:00+00:00', '2026-11-16', 0.000000, 'halt');

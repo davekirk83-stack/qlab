@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO pb6_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-16', 2428.1853, 0, 1493);

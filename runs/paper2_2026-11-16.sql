@@ -1,0 +1,2 @@
+INSERT OR REPLACE INTO pb2_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-16', 2168.6707, 0, 1252);
+INSERT INTO pb2_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-16', 'AEROUSD', 'S', '2026-11-15 02:15:00+00:00', '2026-11-16', 0.002168, 'halt');

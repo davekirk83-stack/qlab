@@ -1,0 +1,12 @@
+INSERT OR REPLACE INTO pb4_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow) VALUES ('2026-11-16', 2583.4841, 2199.3967, 0, 18, 13);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'ARBUSD', '2026-11-10 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.203759, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'AVAXUSD', '2026-11-12 12:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.166850, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'ICPUSD', '2026-11-14 04:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.110209, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'QNTUSD', '2026-11-05 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.323934, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'UNIUSD', '2026-11-05 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.376470, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'XRPUSD', '2026-11-05 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.310126, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'ZECUSD', '2026-11-05 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.393291, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'ZROUSD', '2026-11-05 08:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.191087, 'halt', 0);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'AAVEUSD', '2026-11-11 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.160902, 'trail', 1);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'ADAUSD', '2026-11-05 08:00:00+00:00', '2026-11-15 12:00:00+00:00', 0.264775, 'trail', 1);
+INSERT INTO pb4_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-16', 'STRKUSD', '2026-11-10 16:00:00+00:00', '2026-11-15 04:00:00+00:00', 0.055511, 'trail', 1);
