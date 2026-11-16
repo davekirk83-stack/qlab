@@ -15,7 +15,7 @@
   "day": "2026-11-16",
   "orders": {},
   "pos": null,
-  "done": false,
+  "done": true,
   "open": null
  },
  "US500": {
@@ -23,6 +23,13 @@
   "orders": {},
   "pos": null,
   "done": false,
+  "open": null
+ },
+ "GOLD": {
+  "day": "2026-11-16",
+  "orders": {},
+  "pos": null,
+  "done": true,
   "open": null
  }
 }
