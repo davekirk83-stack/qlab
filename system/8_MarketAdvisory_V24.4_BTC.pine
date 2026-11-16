@@ -1,4 +1,7 @@
 //@version=6
+// V24.4.2 (16 Nov 12:50, DK "still incomprehensible"): every label sits at its OWN candle and only moves outwards if it would touch
+//            another, with a dotted line back to its candle; LONG/SHORT one tag with the price (no separate BUY tag); expansion tags off
+//            by default (panel row + alert stay); plot values no longer print in the status line.
 // V24.4.1 (16 Nov 12:45, DK "the indicator labels are shit" / "stack outwards away from the chart"): one label per trigger in even ROWS
 //            stepping out from the highest high / lowest low of the last 8 bars (never on top of each other); Clean look by default — coloured text and an arrow, no filled boxes;
 //            the inputs no longer print across the chart (status line); TARGET/T1/T2 tags readable (were white on white);
@@ -63,7 +66,7 @@
 // Removed from V19.1: the 0-9 score and CONFIRMED/WATCH states (indistinguishable from random entries over 2,234 signals),
 // the repainting Nadaraya-Watson lines, the Leledc boost, the end-of-month boost, the 1.5-ATR / 2R strategy exits.
 // Works on any symbol and intraday timeframe: everything is ATR- and session-relative. Advisory only — no orders.
-indicator("Market Advisory V24.4 BTC", shorttitle="MA24.4 BTC", overlay=true, max_bars_back=1500, max_lines_count=200, max_labels_count=500)
+indicator("Market Advisory V24.4 BTC", shorttitle="MA24.4 BTC", overlay=true, max_bars_back=1500, max_lines_count=500, max_labels_count=500)
 
 // ------------------------------------------------ INPUTS ------------------------------------------------
 string gM = "Market profile (V23)"
@@ -94,14 +97,15 @@ bool  showWeekendIn = input.bool(true, "Weekend H/L and midpoint (crypto)", grou
 int   keepLabels   = input.int(30, "Keep last N tags", minval=5, maxval=100, group=gS, display=display.none)
 float tagGap       = input.float(0.8, "Tag distance from the bar (ATR)", minval=0.1, step=0.1, group=gS, display=display.none)
 int   stackBars    = input.int(8, "Stack window (bars): labels this close share the row system", minval=0, maxval=30, group=gS, display=display.none)
-string lblLook    = input.string("Clean", "Trigger label look", options=["Clean", "Boxes"], group=gS, tooltip="Clean: small coloured text with a dot, no box (V24.4.1). Boxes: the old filled tags.", display=display.none)
+string lblLook    = input.string("Clean", "Trigger label look", options=["Clean", "Boxes"], group=gS, tooltip="Clean: short codes (L, S, TP, CVD...) in small tags at the candle, full text on hover, legend in the panel. Boxes: full text in each tag.", display=display.none)
 bool  sesTags      = input.bool(true, "Mark every Asia / London / NY open: a vertical line in the session colour + its name", group=gS, display=display.none)
 int   tgtBars      = input.int(12, "Target lines: show only the last N bars", minval=3, maxval=200, group=gS, display=display.none)
 int   sesKeep      = input.int(15, "Session-open lines to keep (days)", minval=1, maxval=60, group=gS, display=display.none)
 float lineAtr      = input.float(0.9, "Row spacing (ATR) - raise if rows still touch when zoomed out", minval=0.2, step=0.1, group=gS, display=display.none)
 
 string gI = "Expansion tag"
-bool  showIgn      = input.bool(true, "Tag expansion bars", group=gI, display=display.none)
+bool  showIgn      = input.bool(true, "Expansion bars: panel row and alert", group=gI, display=display.none)
+bool  ignTags      = input.bool(false, "Expansion bars: also label them on the chart (they fire often)", group=gI, display=display.none)
 float ignMult      = input.float(1.25, "Range >= x prior-20 average", step=0.05, group=gI, display=display.none)
 bool  ignSkipLunch = input.bool(true, "Skip 16:00-18:59 UTC (US lunch, doc 108)", group=gI, display=display.none)
 
@@ -235,9 +239,9 @@ if barstate.islast
         label.set_xy(lr, x1, on ? array.get(rungPx, i) : na)
         label.set_text(lr, on ? array.get(rungTx, i) + "  " + str.tostring(array.get(rungPx, i), format.mintick) : "")
         label.set_textcolor(lr, i < 4 ? cUp : cDn)
-plot(hiB, "Upper band", color=color.new(cMute, 70))
-plot(loB, "Lower band", color=color.new(cMute, 70))
-plot(mid, "Mid EMA", color=color.new(cHead, 60))
+plot(hiB, "Upper band", color=color.new(cMute, 70), display=display.all - display.status_line)
+plot(loB, "Lower band", color=color.new(cMute, 70), display=display.all - display.status_line)
+plot(mid, "Mid EMA", color=color.new(cHead, 60), display=display.all - display.status_line)
 
 // ------------------------------------------------ SESSIONS ------------------------------------------------
 bool intraday  = timeframe.isintraday
@@ -436,9 +440,9 @@ if not weekend and not na(wkHeldH)
         if showWeekend
             tag(bar_index, low, "WKND L taken", cWk, false)
 float wkMid = (wkHeldH + wkHeldL) / 2.0
-plot(showWeekend and not weekend ? wkHeldH : na, "Weekend high", color=color.new(cWk, 40), style=plot.style_linebr)
-plot(showWeekend and not weekend ? wkHeldL : na, "Weekend low", color=color.new(cWk, 40), style=plot.style_linebr)
-plot(showWeekend and not weekend ? wkMid : na, "Weekend midpoint (74%)", color=color.new(cWk, 70), style=plot.style_linebr)
+plot(showWeekend and not weekend ? wkHeldH : na, "Weekend high", color=color.new(cWk, 40), style=plot.style_linebr, display=display.all - display.status_line)
+plot(showWeekend and not weekend ? wkHeldL : na, "Weekend low", color=color.new(cWk, 40), style=plot.style_linebr, display=display.all - display.status_line)
+plot(showWeekend and not weekend ? wkMid : na, "Weekend midpoint (74%)", color=color.new(cWk, 70), style=plot.style_linebr, display=display.all - display.status_line)
 string weekText = na(wkHeldH) ? "-" : wkHighGone and wkLowGone ? "both taken" : wkHighGone ? "H taken - L 54% later - mid 74%" : wkLowGone ? "L taken - H open" : weekLean
 
 // ------------------------------------------------ EXPANSION TAG (Ignition without delta) ------------------------------------------------
@@ -449,9 +453,9 @@ int   hourU = hour(time, "UTC")
 bool  lunch = ignSkipLunch and hourU >= 16 and hourU <= 18
 bool  ignLong  = showIgn and barstate.isconfirmed and ign >= ignMult and close > open and emaUp and not lunch
 bool  ignShort = showIgn and barstate.isconfirmed and ign >= ignMult and close < open and not emaUp and not lunch
-if ignLong
+if ignLong and ignTags
     tag(bar_index, low, "EXP UP", cUp, false)
-if ignShort
+if ignShort and ignTags
     tag(bar_index, high, "EXP DN", cDn, true)
 var string lastIgn = "-"
 if ignLong
@@ -478,10 +482,7 @@ string advWhy  = advState == 9 ? (brokeUp ? "band broken upward" : brokeDn ? "ba
 bool newLong    = advState == 2 and advState[1] != 2 and barstate.isconfirmed
 bool newShort   = advState == -2 and advState[1] != -2 and barstate.isconfirmed
 bool newCaution = advState == 9 and advState[1] != 9 and barstate.isconfirmed
-if newLong
-    tag(bar_index, low, "LONG", cUp, false)
-if newShort
-    tag(bar_index, high, "SHORT", cDn, true)
+// LONG / SHORT tags are drawn with their rung price in the trade-marker block below (one tag, not two)
 if newCaution
     tag(bar_index, high, "CAUTION", cWarn, true)
 
@@ -505,7 +506,7 @@ if newLong or newShort
     invLn := line.new(bar_index, invLvl, bar_index + 1, invLvl, color=color.new(cWarn, 0), width=1, style=line.style_dashed)
     tgtLb := label.new(bar_index + 1, mid, "TARGET " + str.tostring(mid, format.mintick), style=label.style_label_left, color=color.new(cHead, 20), textcolor=color.black, size=size.tiny)
     invLb := label.new(bar_index + 1, invLvl, "INVALID " + str.tostring(invLvl, format.mintick), style=label.style_label_left, color=color.new(cWarn, 20), textcolor=color.white, size=size.tiny)
-    tag(bar_index, newLong ? low : high, newLong ? "BUY " + str.tostring(b1, format.mintick) : "SELL " + str.tostring(a1, format.mintick), newLong ? cUp : cDn, newShort)
+    tag(bar_index, newLong ? low : high, newLong ? "LONG " + str.tostring(b1, "#") : "SHORT " + str.tostring(a1, "#"), newLong ? cUp : cDn, newShort)
 if not na(tgtLn) and (liveLong or liveShort)
     float invNow = liveLong ? loB - breakATR * atr : hiB + breakATR * atr
     setln(tgtLn, math.max(line.get_x1(tgtLn), bar_index - tgtBars), mid, bar_index + 1, mid)
@@ -586,9 +587,9 @@ bool htfNew  = ta.change(time(saucTf)) != 0
 bool sigNow  = htfNew and sSig
 bool fillNow = htfNew and sFill
 bool exitNow = htfNew and sExit
-plot(showSauc and showTeeth ? sTeeth : na, "Alligator teeth (engine timeframe)", color=color.new(#e91e63, 30))
-plot(showSauc and not na(sPend) ? sPend : na, "Saucer buy stop", color=color.new(cUp, 0), style=plot.style_circles, linewidth=2)
-plot(showSauc and sOpen > 0 ? sLd : na, "Saucer exit line (engine bar closing below = exit all)", color=color.new(cWarn, 20), style=plot.style_linebr)
+plot(showSauc and showTeeth ? sTeeth : na, "Alligator teeth (engine timeframe)", color=color.new(#e91e63, 30), display=display.all - display.status_line)
+plot(showSauc and not na(sPend) ? sPend : na, "Saucer buy stop", color=color.new(cUp, 0), style=plot.style_circles, linewidth=2, display=display.all - display.status_line)
+plot(showSauc and sOpen > 0 ? sLd : na, "Saucer exit line (engine bar closing below = exit all)", color=color.new(cWarn, 20), style=plot.style_linebr, display=display.all - display.status_line)
 if showSauc and sigNow
     tag(bar_index, low, "SAUCER SIGNAL", cUp, false)
 if showSauc and fillNow
@@ -609,8 +610,8 @@ float dLow  = request.security(syminfo.tickerid, "D", low, lookahead=barmerge.lo
 float dPos  = pdh > pdl ? (dOpen - pdl) / (pdh - pdl) : 0.5
 bool  pdhTaken = dHigh > pdh
 bool  pdlTaken = dLow < pdl
-plot(showPD ? pdh : na, "PDH", color=color.new(#2196F3, 20), style=plot.style_stepline)
-plot(showPD ? pdl : na, "PDL", color=color.new(#F44336, 20), style=plot.style_stepline)
+plot(showPD ? pdh : na, "PDH", color=color.new(#2196F3, 20), style=plot.style_stepline, display=display.all - display.status_line)
+plot(showPD ? pdl : na, "PDL", color=color.new(#F44336, 20), style=plot.style_stepline, display=display.all - display.status_line)
 string dayTxt = not showPD ? "off" : not isBtc ? ((pdhTaken and pdlTaken) ? "both taken" : pdhTaken ? "PDH taken" : pdlTaken ? "PDL taken" : "PDH " + str.tostring(pdh, format.mintick) + " / PDL " + str.tostring(pdl, format.mintick)) + " - targets, not S/R (% BTC-only)" : (pdhTaken and pdlTaken) ? "both taken" : dPos > 2.0/3 ? (pdhTaken ? "PDH taken (74% day) - PDL 22%" : "aims PDH " + str.tostring(pdh, format.mintick) + " (74%, first 70%)") : dPos < 1.0/3 ? (pdlTaken ? "PDL taken (72% day) - PDH 22%" : "aims PDL " + str.tostring(pdl, format.mintick) + " (72%, first 70%)") : (pdhTaken ? "PDH taken - PDL ~43%" : pdlTaken ? "PDL taken - PDH ~43%" : "mid-range: PDH / PDL ~43% each")
 color dayCol = dPos > 2.0/3 ? cUp : dPos < 1.0/3 ? cDn : cHead
 
@@ -734,12 +735,12 @@ float wkC = request.security(syminfo.tickerid, "W", close[1], lookahead=barmerge
 color cYr = #ffd54f
 string pyTag = "'" + str.substring(str.tostring(year(time) - 1), 2)
 string cyTag = "'" + str.substring(str.tostring(year(time)), 2)
-plot(showYear ? pyH : na, "Last year's high", color=color.new(cYr, 10), style=plot.style_stepline, linewidth=2)
-plot(showYear ? pyL : na, "Last year's low", color=color.new(cYr, 10), style=plot.style_stepline, linewidth=2)
-plot(showYear and bar_index >= last_bar_index - 300 ? cyH : na, "This year's high (so far)", color=color.new(cYr, 60), style=plot.style_stepline)
-plot(showYear and bar_index >= last_bar_index - 300 ? cyL : na, "This year's low (so far)", color=color.new(cYr, 60), style=plot.style_stepline)
-plot(showQtr ? pqH : na, "Last quarter's high", color=color.new(#90caf9, 40), style=plot.style_stepline)
-plot(showQtr ? pqL : na, "Last quarter's low", color=color.new(#90caf9, 40), style=plot.style_stepline)
+plot(showYear ? pyH : na, "Last year's high", color=color.new(cYr, 10), style=plot.style_stepline, linewidth=2, display=display.all - display.status_line)
+plot(showYear ? pyL : na, "Last year's low", color=color.new(cYr, 10), style=plot.style_stepline, linewidth=2, display=display.all - display.status_line)
+plot(showYear and bar_index >= last_bar_index - 300 ? cyH : na, "This year's high (so far)", color=color.new(cYr, 60), style=plot.style_stepline, display=display.all - display.status_line)
+plot(showYear and bar_index >= last_bar_index - 300 ? cyL : na, "This year's low (so far)", color=color.new(cYr, 60), style=plot.style_stepline, display=display.all - display.status_line)
+plot(showQtr ? pqH : na, "Last quarter's high", color=color.new(#90caf9, 40), style=plot.style_stepline, display=display.all - display.status_line)
+plot(showQtr ? pqL : na, "Last quarter's low", color=color.new(#90caf9, 40), style=plot.style_stepline, display=display.all - display.status_line)
 var label lbPyH = na
 var label lbPyL = na
 var label lbCyH = na
@@ -767,8 +768,8 @@ float wkZone  = input.float(3.0, "Cycle-low zone: within % of the 300-week MA", 
 bool  showFib = input.bool(true, "Fibonacci extensions of yesterday's range", group=gW, display=display.none)
 float w300 = request.security(syminfo.tickerid, "W", ta.sma(close, 300), lookahead=barmerge.lookahead_off)
 float w200 = request.security(syminfo.tickerid, "W", ta.sma(close, 200), lookahead=barmerge.lookahead_off)
-plot(showWk ? w300 : na, "300-week MA", color=color.new(#ff1744, 0), linewidth=2)
-plot(showWk ? w200 : na, "200-week MA", color=color.new(#ff9100, 20), linewidth=2)
+plot(showWk ? w300 : na, "300-week MA", color=color.new(#ff1744, 0), linewidth=2, display=display.all - display.status_line)
+plot(showWk ? w200 : na, "200-week MA", color=color.new(#ff9100, 20), linewidth=2, display=display.all - display.status_line)
 float wkDist = na(w300) ? na : 100 * (close / w300 - 1)
 bool  cycleZone = not na(w300) and low <= w300 * (1 + wkZone)
 bool  cycleZoneNew = cycleZone and not cycleZone[1] and barstate.isconfirmed
@@ -838,43 +839,55 @@ pct(float v) => na(v) ? "" : " " + (v >= 0 ? "+" : "") + str.tostring(100 * v, "
 string bfxTxt = na(bfxL) ? "-" : "L " + fmtK(bfxL) + pct(bfxLc) + " | S " + fmtK(bfxS) + pct(bfxSc)
 color bfxCol = bfxLc <= -bfxDrop ? cWarn : bfxSc >= bfxBuild ? #ce93d8 : cMute
 
-// ------------------------------------------------ TRIGGER LABEL STACKER (V24.4.1: rows stacking OUTWARDS) ------------------------------------------------
-// DK 16 Nov 12:42: "make them stack outwards away from the chart rather than just picking random gap spacings".
-// Each trigger gets its own label in a ROW: row 0 sits just clear of the highest high (above) / lowest low (below) of the last
-// stackBars bars, row 1 one fixed step further out, and so on. A row stays taken while a label in it is inside the window, so labels
-// never sit on each other and always step away from the candles in even steps.
+// ------------------------------------------------ TRIGGER LABELS (V24.4.2) ------------------------------------------------
+// Each trigger is labelled at ITS OWN bar: first choice just above the high (or below the low). If that spot would touch a label from
+// the last stackBars bars, it moves outwards one row at a time until it is clear, and a thin line joins it back to its candle, so every
+// label is readable and you can see which bar it belongs to.
 var label[] evLbs = array.new_label()
-var int[] upBars = array.new_int()
-var int[] upRows = array.new_int()
-var int[] dnBars = array.new_int()
-var int[] dnRows = array.new_int()
+var line[]  evLns = array.new_line()
+var int[]   upBars = array.new_int()
+var float[] upYs = array.new_float()
+var int[]   dnBars = array.new_int()
+var float[] dnYs = array.new_float()
 float rowStep = lineAtr * atrTag
-float baseUp = ta.highest(high, stackBars + 1) + tagGap * atrTag
-float baseDn = ta.lowest(low, stackBars + 1) - tagGap * atrTag
-freeRow(int[] bars, int[] rows) =>
+place(int[] bars, float[] ys, float y0, bool up) =>
     while array.size(bars) > 0 and bar_index - array.get(bars, 0) > stackBars
         array.shift(bars)
-        array.shift(rows)
-    int r = 0
-    while array.includes(rows, r)
-        r += 1
+        array.shift(ys)
+    float y = y0
+    bool moved = true
+    int guard = 0
+    while moved and guard < 40
+        moved := false
+        guard += 1
+        for k = 0 to array.size(ys) - 1
+            if array.size(ys) > 0 and math.abs(array.get(ys, k) - y) < rowStep
+                y := up ? array.get(ys, k) + rowStep : array.get(ys, k) - rowStep
+                moved := true
     array.push(bars, bar_index)
-    array.push(rows, r)
-    r
+    array.push(ys, y)
+    y
+// Short codes on the chart, the full text on hover (the pattern LuxAlgo / Smart Money Concepts use: "BOS", "CHoCH" + tooltip), legend in the panel.
+code(string t) =>
+    str.startswith(t, "LONG") ? "L" : str.startswith(t, "SHORT") ? "S" : t == "CAUTION" ? "!" : t == "TARGET HIT" ? "TP" : str.startswith(t, "T1") ? "T1" : str.startswith(t, "T2") ? "T2" : str.startswith(t, "SPOT CVD") ? "CVD" : str.startswith(t, "300W") ? "300W" : str.startswith(t, "BFX CLAIM") ? "BFX+" : str.startswith(t, "BFX LONG") ? "BFX-" : str.startswith(t, "BFX SHORTS") ? "BFXs" : str.startswith(t, "SAUCER BUY") or str.startswith(t, "SAUCER ADD") ? "SB" : str.startswith(t, "SAUCER EXIT") ? "SX" : str.startswith(t, "SAUCER") ? "s" : str.startswith(t, "NY OPEN") ? "NY" : str.startswith(t, "LONDON OPEN") ? "LDN" : str.startswith(t, "ASIA OPEN") ? "ASIA" : str.contains(t, "swept") ? "SW" + (str.contains(t, "= T") ? "=T" : "") : str.startswith(t, "WKND") ? "WK" : str.startswith(t, "EXP") ? "x" : str.startswith(t, "STRESS") ? "STR" : str.contains(t, "HEAVY") ? "HV" : t
 int nEv = array.size(evT)
 if nEv > 0
     for i = 0 to nEv - 1
         bool up = array.get(evA, i)
         string t = array.get(evT, i)
         color c = array.get(evC, i)
-        int r = up ? freeRow(upBars, upRows) : freeRow(dnBars, dnRows)
-        float y = up ? baseUp + r * rowStep : baseDn - r * rowStep
+        float y0 = up ? high + tagGap * atrTag : low - tagGap * atrTag
+        float y = up ? place(upBars, upYs, y0, true) : place(dnBars, dnYs, y0, false)
+        if math.abs(y - y0) > 0.1 * rowStep
+            array.push(evLns, line.new(bar_index, up ? high : low, bar_index, up ? y - 0.3 * rowStep : y + 0.3 * rowStep, color=color.new(c, 55), style=line.style_dotted, width=1))
         if lblLook == "Clean"
-            array.push(evLbs, label.new(bar_index, y, (up ? "▼ " : "▲ ") + t, style=label.style_none, textcolor=c, size=size.small))
+            array.push(evLbs, label.new(bar_index, y, code(t), style=up ? label.style_label_down : label.style_label_up, color=color.new(c, 10), textcolor=color.white, size=size.tiny, tooltip=t))
         else
-            array.push(evLbs, label.new(bar_index, y, t, style=up ? label.style_label_down : label.style_label_up, color=color.new(c, 15), textcolor=color.white, size=size.tiny))
+            array.push(evLbs, label.new(bar_index, y, t, style=up ? label.style_label_down : label.style_label_up, color=color.new(c, 15), textcolor=color.white, size=size.tiny, tooltip=t))
     while array.size(evLbs) > keepLabels
         label.delete(array.shift(evLbs))
+    while array.size(evLns) > keepLabels
+        line.delete(array.shift(evLns))
 array.clear(evT)
 array.clear(evC)
 array.clear(evA)
@@ -914,7 +927,7 @@ if barstate.islast
             prev := yk
 
 // ------------------------------------------------ PANEL ------------------------------------------------
-var table panel = table.new(pos(), 2, 22, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
+var table panel = table.new(pos(), 2, 23, bgcolor=color.new(#0d1117, 15), frame_color=color.new(#30363d, 0), frame_width=1, border_color=color.new(#21262d, 0), border_width=1)
 row(int r, string k, string v, color c) =>
     table.cell(panel, 0, r, k, text_color=cMute, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, r, v, text_color=c, text_size=sz(), text_halign=text.align_right)
@@ -925,9 +938,9 @@ addRow(int r, bool show, string k, string v, color c) =>
         out := r + 1
     out
 if barstate.islast and panelMode == "Compact"
-    table.clear(panel, 0, 0, 1, 21)
+    table.clear(panel, 0, 0, 1, 22)
     color advColC = advState == 9 ? cWarn : advState > 0 ? cUp : advState < 0 ? cDn : cHead
-    table.cell(panel, 0, 0, "V24.4 " + syminfo.ticker + " " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_left)
+    table.cell(panel, 0, 0, "V24.4.2 " + syminfo.ticker + " " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, advText, text_color=advColC, text_size=sz(), text_halign=text.align_right)
     string readC = not cashOn ? "cash closed - ladder off" : inRange ? (brokeUp or brokeDn ? "BROKEN - stand aside" : lowTouched > 0 ? "LONG " + str.tostring(lowTouched) + "/4 > " + str.tostring(mid, format.mintick) + "" : highTouched > 0 ? "SHORT " + str.tostring(highTouched) + "/4 > " + str.tostring(mid, format.mintick) + "" : close < mid ? "long rung < " + str.tostring(b1, format.mintick) : "short rung > " + str.tostring(a1, format.mintick)) : (trendUp ? "TREND UP - exp. up only" : "TREND DN - exp. down only")
     color readColC = inRange ? (brokeUp or brokeDn ? cWarn : lowTouched > 0 ? cUp : highTouched > 0 ? cDn : cHead) : (trendUp ? cUp : cDn)
@@ -955,6 +968,7 @@ if barstate.islast and panelMode == "Compact"
     r := addRow(r, showBfx, "BFX", bfxTxt, bfxCol)
     r := addRow(r, showWk, "300W", wkTxt, wkCol)
     r := addRow(r, showYrRow, "YEAR", yrTxt, yrCol)
+    r := addRow(r, lblLook == "Clean", "KEY", "L/S ladder  TP target  ! caution  CVD roll  SW sweep  SB/SX saucer  BFX  ASIA/LDN/NY open - hover a tag for detail", cMute)
 if barstate.islast and panelMode == "Full"
     table.cell(panel, 0, 0, isBtc ? "MKT ADVISORY V24.4 - BTC" : "MKT ADVISORY V24.4 - MARKETS", text_color=cHead, text_size=sz(), text_halign=text.align_left)
     table.cell(panel, 1, 0, syminfo.ticker + " - " + timeframe.period, text_color=cMute, text_size=sz(), text_halign=text.align_right)
