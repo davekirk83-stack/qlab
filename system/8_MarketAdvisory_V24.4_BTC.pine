@@ -2,7 +2,7 @@
 // V24.4.1 (16 Nov 12:45, DK "the indicator labels are shit" / "stack outwards away from the chart"): one label per trigger in even ROWS
 //            stepping out from the highest high / lowest low of the last 8 bars (never on top of each other); Clean look by default — coloured text and an arrow, no filled boxes;
 //            the inputs no longer print across the chart (status line); TARGET/T1/T2 tags readable (were white on white);
-//            every Asia / London / NY open marked by a dashed vertical line in its colour plus "ASIA OPEN" / "LONDON OPEN" / "NY OPEN" (DK 12:44 "I want these marked clearly"); boxes still selectable.
+//            every Asia / London / NY open marked by a dashed vertical line in its colour plus "ASIA OPEN" / "LONDON OPEN" / "NY OPEN" (DK 12:44 "I want these marked clearly"); boxes still selectable. Target lines (T1/T2, TARGET/INVALID) thin and only the last 12 bars long (DK 12:45 "too wide").
 // MARKET ADVISORY V24.4 (16 Nov 2026, DK "make sure that any trigger labels don't overlap each other"):
 //   LABELS   every trigger mark (LONG/SHORT/CAUTION, expansion, saucer, spot CVD, 300W zone, stress low, session tags, sweeps, targets)
 //            now goes through ONE stacker: all triggers on a bar are merged into one label above and one below, and a label within
@@ -96,6 +96,7 @@ float tagGap       = input.float(0.8, "Tag distance from the bar (ATR)", minval=
 int   stackBars    = input.int(8, "Stack window (bars): labels this close share the row system", minval=0, maxval=30, group=gS, display=display.none)
 string lblLook    = input.string("Clean", "Trigger label look", options=["Clean", "Boxes"], group=gS, tooltip="Clean: small coloured text with a dot, no box (V24.4.1). Boxes: the old filled tags.", display=display.none)
 bool  sesTags      = input.bool(true, "Mark every Asia / London / NY open: a vertical line in the session colour + its name", group=gS, display=display.none)
+int   tgtBars      = input.int(12, "Target lines: show only the last N bars", minval=3, maxval=200, group=gS, display=display.none)
 int   sesKeep      = input.int(15, "Session-open lines to keep (days)", minval=1, maxval=60, group=gS, display=display.none)
 float lineAtr      = input.float(0.9, "Row spacing (ATR) - raise if rows still touch when zoomed out", minval=0.2, step=0.1, group=gS, display=display.none)
 
@@ -336,11 +337,11 @@ if showTargets and (nyStart or ldnStart) and not na(t1)
     if not na(t1Ln)
         line.delete(t1Ln)
         line.delete(t2Ln)
-    t1Ln := line.new(bar_index, t1, bar_index + 1, t1, color=color.new(cHead, 20), width=2, style=line.style_dashed)
-    t2Ln := line.new(bar_index, t2, bar_index + 1, t2, color=color.new(cHead, 60), width=1, style=line.style_dashed)
+    t1Ln := line.new(bar_index, t1, bar_index + 1, t1, color=color.new(cHead, 35), width=1, style=line.style_dashed)
+    t2Ln := line.new(bar_index, t2, bar_index + 1, t2, color=color.new(cHead, 65), width=1, style=line.style_dotted)
 if showTargets and not na(t1Ln) and (inNy or inLdn)
-    setln(t1Ln, tBar, t1, bar_index + 1, t1)
-    setln(t2Ln, tBar, t2, bar_index + 1, t2)
+    setln(t1Ln, math.max(tBar, bar_index - tgtBars), t1, bar_index + 3, t1)
+    setln(t2Ln, math.max(tBar, bar_index - tgtBars), t2, bar_index + 3, t2)
 
 var string lastEvent = "-"
 if nyStart
@@ -500,15 +501,15 @@ if newLong or newShort
         label.delete(tgtLb)
         label.delete(invLb)
     float invLvl = newLong ? loB - breakATR * atr : hiB + breakATR * atr
-    tgtLn := line.new(bar_index, mid, bar_index + 1, mid, color=color.new(cHead, 0), width=2)
+    tgtLn := line.new(bar_index, mid, bar_index + 1, mid, color=color.new(#42a5f5, 20), width=1)
     invLn := line.new(bar_index, invLvl, bar_index + 1, invLvl, color=color.new(cWarn, 0), width=1, style=line.style_dashed)
     tgtLb := label.new(bar_index + 1, mid, "TARGET " + str.tostring(mid, format.mintick), style=label.style_label_left, color=color.new(cHead, 20), textcolor=color.black, size=size.tiny)
     invLb := label.new(bar_index + 1, invLvl, "INVALID " + str.tostring(invLvl, format.mintick), style=label.style_label_left, color=color.new(cWarn, 20), textcolor=color.white, size=size.tiny)
     tag(bar_index, newLong ? low : high, newLong ? "BUY " + str.tostring(b1, format.mintick) : "SELL " + str.tostring(a1, format.mintick), newLong ? cUp : cDn, newShort)
 if not na(tgtLn) and (liveLong or liveShort)
     float invNow = liveLong ? loB - breakATR * atr : hiB + breakATR * atr
-    setln(tgtLn, line.get_x1(tgtLn), mid, bar_index + 1, mid)
-    setln(invLn, line.get_x1(invLn), invNow, bar_index + 1, invNow)
+    setln(tgtLn, math.max(line.get_x1(tgtLn), bar_index - tgtBars), mid, bar_index + 1, mid)
+    setln(invLn, math.max(line.get_x1(invLn), bar_index - tgtBars), invNow, bar_index + 1, invNow)
     label.set_xy(tgtLb, bar_index + 1, mid)
     label.set_text(tgtLb, "TARGET " + str.tostring(mid, format.mintick))
     label.set_xy(invLb, bar_index + 1, invNow)
