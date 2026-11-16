@@ -19,6 +19,13 @@ on:
     - cron: "55 17 * * 1-5"
     - cron: "25 18 * * 1-5"
     - cron: "55 18 * * 1-5"
+    # 16 Nov (doc 238): LONDON MORNING back for Williams on USD/JPY (08:00 London open) — only does anything when DK's IG_WVB_LIVE_ENABLED is true;
+    # both DST variants, the wrong one exits. OVERNIGHT AD stack (doc 227/235) — only when DK's IG_ADSTACK_LIVE_ENABLED is true.
+    - cron: "55 7 * * 1-5"
+    - cron: "55 6 * * 1-5"
+    - cron: "10 22 * * 0-4"
+    - cron: "10 21 * * 0-4"
+    - cron: "5 3 * * 1-5"
 permissions:
   contents: write
   actions: read
@@ -47,9 +54,13 @@ jobs:
           IG_NEWS: "0"
           IG_ENTRY_CLOSE_NY: "1110"         # doc 194 (DK 9 Nov 19:07): Ignition entries to 18:30 New York (evening 16-19 NY: n46/yr, +11 to +14 pts/trade after wider spreads, both halves positive); session ends 19:00 NY
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
-          IG_RANGE_INSTR: "NQ,US500"        # bars for the spike engine only (FTSE dropped with the ladders)
+          IG_RANGE_INSTR: "NQ,US500,USDJPY"   # bars for the spike + Williams engines (ladders stay OFF, IG_RANGE_ORDERS 0); USD/JPY added 16 Nov for Williams
           IG_RANGE_ORDERS: "0"              # doc 194 (DK 9 Nov 18:55 "If they don't earn money then take them off"): ladders OFF on live — honest pricing shows no edge
-          IG_WVB: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && 'NQ,US500' || '' }}   # doc 228 / 14 Nov: Williams breakout on US Tech 100 — DK's switch (repo variable IG_WVB_LIVE_ENABLED); USD/JPY needs the London-morning job
+          IG_WVB: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && 'NQ,US500,USDJPY' || '' }}   # doc 228/235: Williams breakout — DK's switch IG_WVB_LIVE_ENABLED; USD/JPY via the London-morning job (16 Nov)
+          IG_AD_STACK: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}       # doc 235/238: AD stack (regime + coil, Tue/Wed off) — DK's switch IG_ADSTACK_LIVE_ENABLED
+          IG_IGN_HOURS: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && 'all' || 'us' }}
+          ADSTACK_ON: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}
+          WVB_ON: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && '1' || '0' }}
           IG_WVB_LIVE: "1"
           IG_SPIKE: "NQ,US500"              # doc 194: spike continuation engine (doc 191) on live, minimum stakes, 2% risk cap
           IG_SHOCK_PAUSE: "NQ,FTSE"         # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h (as on the demo)
@@ -68,6 +79,20 @@ jobs:
               TODAY=$(TZ=America/New_York date +%F); NYH=$(TZ=America/New_York date +%H)
               python3 -c "import json,sys; sys.exit(0 if '$TODAY' in json.load(open('runs/event_blackouts.json')).get('cpi', []) else 1)" || { echo "not a CPI morning — exit"; exit 0; }
               case "$NYH" in 08|09) ;; *) echo "CPI morning but not 8-9am New York (the other DST cron) — exit"; exit 0;; esac
+            fi
+            NIGHT=""
+            case "${{ github.event.schedule }}" in
+              "55 7 * * 1-5"|"55 6 * * 1-5") [ "$WVB_ON" = "1" ] || [ "$ADSTACK_ON" = "1" ] || { echo "London morning: neither Williams nor the AD stack is switched on — exit"; exit 0; };;
+              "10 22 * * 0-4"|"10 21 * * 0-4") [ "$ADSTACK_ON" = "1" ] || { echo "overnight: IG_ADSTACK_LIVE_ENABLED not true — exit"; exit 0; }
+                NYH=$(TZ=America/New_York date +%H); case "$NYH" in 17) ;; *) echo "not 5pm New York (the other DST cron) — exit"; exit 0;; esac
+                NIGHT=1; ARGS=$(( ($(date -u -d "tomorrow 03:00" +%s) - $(date -u +%s)) / 60 )); [ "$ARGS" -gt 340 ] && ARGS=$(( ($(date -u -d "today 03:00" +%s) - $(date -u +%s)) / 60 ));;
+              "5 3 * * 1-5") [ "$ADSTACK_ON" = "1" ] || { echo "overnight: IG_ADSTACK_LIVE_ENABLED not true — exit"; exit 0; }
+                NIGHT=1; ARGS=$(( ($(TZ=Europe/London date -d "today 07:50" +%s) - $(date -u +%s)) / 60 ));;
+            esac
+            if [ -n "$NIGHT" ]; then
+              echo "LIVE overnight session: AD stack (regime + coil + Ignition, Tue/Wed off), $ARGS minutes"
+              [ "$ARGS" -lt 10 ] && { echo "night window over — exit"; exit 0; }
+              mkdir -p runs/ig_live; QLAB_ROOT=$PWD python src/ig_runner.py $ARGS 2>&1 | tee runs/ig_live/last_run.log; exit 0
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
             # doc 194: London morning to 08:35 NY, first half to 13:20 NY (ladders run through the lunch; Ignition skips 12-15 NY itself), second half to 17:00 NY
