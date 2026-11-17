@@ -1,0 +1,17 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-17', 1881.3222, 3, 313);
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'UNG', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.013813, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'GDX', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 16:00:00+00:00', -0.010560, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'DBA', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.004048, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'SPY', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.005670, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'QQQ', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.011343, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'DIA', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 18:30:00+00:00', -0.009531, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'XLF', 'L', '2026-11-16 18:15:00+00:00', '2026-11-16 19:15:00+00:00', -0.004108, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'XLV', 'S', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.004665, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'XLP', 'S', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.005994, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'XLY', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.006506, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'EEM', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.015683, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'EFA', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 17:45:00+00:00', -0.005458, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'FXI', 'L', '2026-11-16 18:15:00+00:00', '2026-11-16 19:30:00+00:00', -0.003140, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'EWJ', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.005592, 'break');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'VXX', 'S', '2026-11-16 14:45:00+00:00', '2026-11-16 15:15:00+00:00', -0.017950, 'regime');
+INSERT INTO pb3_trades (d, sym, side, opened, closed, ret, how) VALUES ('2026-11-17', 'XME', 'L', '2026-11-16 14:45:00+00:00', '2026-11-16 15:00:00+00:00', -0.009172, 'regime');

@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-13",
+ "since": "2026-11-16",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -11,43 +11,11 @@
   "closed_shadow": 0
  },
  "EP": {
-  "equity": 1979.3907513092329,
-  "shadow_equity": 1997.9311173844599,
-  "pos": [
-   {
-    "sym": "COHR",
-    "opened": "2026-11-06",
-    "entry": 193.32000732421875,
-    "stop": 193.32000732421875,
-    "risk": 0.07386723306986429,
-    "w": 0.5,
-    "legs": [
-     [
-      0.5,
-      234.50999450683594
-     ]
-    ],
-    "be": true,
-    "n": 5,
-    "kind": "real",
-    "cloud": false
-   }
-  ],
-  "shadow": [
-   {
-    "sym": "MEOH",
-    "opened": "2026-11-11",
-    "entry": 69.00001158245088,
-    "stop": 67.6803940996695,
-    "risk": 0.01912488784446823,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 2,
-    "kind": "shadow"
-   }
-  ],
-  "closed": 6,
-  "closed_shadow": 5
+  "equity": 1996.3233871379207,
+  "shadow_equity": 1985.431063566396,
+  "pos": [],
+  "shadow": [],
+  "closed": 7,
+  "closed_shadow": 6
  }
 }

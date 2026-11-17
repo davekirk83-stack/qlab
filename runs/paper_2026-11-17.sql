@@ -1,0 +1,2 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-17', exit_px=0.00041292, exit_reason='time', ret=-0.262795, pnl=-41.85 WHERE sym='GSTUSD' AND opened='2026-11-01' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-17',1903.62,7,0,0,0,0,'0 signals, 0 taken, 0 dropped, 1 closed, 7 open');
