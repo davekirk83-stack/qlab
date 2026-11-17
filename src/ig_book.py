@@ -55,10 +55,10 @@ class BookEquity:
         """full-ladder £/pt so that the whole ladder's notional is 15% of equity as margin at 5%"""
         if MIN_ONLY: return 0.0   # every rung at the market minimum
         return self.eq * RNG_MARGIN * self.k / MARGIN / max(price, 1.0)
-    def cap(self, size, price, open_notional, min_size):
+    def cap(self, size, price, open_notional, min_size, floor=0.25):
         """Scale a new position so total open exposure stays <= 5 x book equity; 0 if what is left is under a quarter of the size or the minimum."""
         room = MAX_LEV * (self.pot.pot if self.pot is not None and "acc" in self.pot.s else self.eq) - open_notional
         if room <= 0 or price <= 0: return 0.0
         s = min(size, round(room / price, 2))
-        return s if (s >= min_size and s >= 0.25 * size) else 0.0
+        return s if (s >= min_size and s >= floor * size) else 0.0
     def save(self): json.dump(self.s, open(F, "w"), indent=1)

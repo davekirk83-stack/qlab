@@ -67,7 +67,7 @@ class WVBEngine:
         o = st["open"]; a = KM.get(name, K) * R; up, dn, dist = o + a, o - a, 2 * a
         dist = max(dist, mk.get("minstop", 0))
         size = max(mk["min"], round(self.beq.eq * RISK * self.beq.k / dist, 2)) if self.beq else mk["min"]
-        if self.beq: size = self.beq.cap(size, o, self.notional_fn() if self.notional_fn else 0.0, mk["min"])
+        if self.beq: size = self.beq.cap(size, o, self.notional_fn() if self.notional_fn else 0.0, mk["min"], floor=0.0)   # 17 Nov: USD/JPY was refused at 08:05 because the 5x room was under a quarter of the wanted size; a smaller stake only lowers the risk, so take it
         if size <= 0: log(name, "5x exposure cap — no bracket"); st["done"] = True; return
         st.update(up=up, dn=dn, dist=dist, size=size, R=R)
         log(name, f"session open {o:.1f}, previous range {R:.1f}: BUY STOP {up:.1f} / SELL STOP {dn:.1f}, stop distance {dist:.1f}, {size}/pt")
