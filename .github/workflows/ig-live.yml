@@ -131,7 +131,11 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           RAN=$(( ($(date -u +%s) - T0) / 60 )); echo "this session ran $RAN min"
-          [ "$RAN" -ge 30 ] || { echo "ran under 30 min (exited early or failed) - no hand-over; the crons pick it up"; exit 0; }
+          # 17 Nov: a cron that fires hours late exits at its gate in seconds - it must still start the chain. Only chained runs need the 30-min
+          # guard (that is what stops a crashing session looping); a scheduled run can't loop.
+          if [ "${{ github.event_name }}" != "schedule" ]; then [ "$RAN" -ge 30 ] || { echo "chained run lasted under 30 min (failed?) - no hand-over; the watchdog picks it up"; exit 0; }; fi
+          N=$(gh run list -R ${{ github.repository }} --workflow ig-live.yml --json databaseId,status -q '[.[] | select(.databaseId != ${{ github.run_id }}) | select(.status != "completed")] | length' 2>/dev/null || echo 1)
+          [ "$N" -eq 0 ] || { echo "another live session is running or queued - no hand-over needed"; exit 0; }
           DOW=$(date -u +%u); H=$(date -u +%H)
           if [ "$DOW" = 6 ] || { [ "$DOW" = 5 ] && [ "$H" -ge 21 ]; } || { [ "$DOW" = 7 ] && [ "$H" -lt 21 ]; }; then echo "weekend - chain stops"; exit 0; fi
           END=$(date -u -d "$( [ "$DOW" = 5 ] && echo today || echo "next friday" ) 21:00" +%s)
