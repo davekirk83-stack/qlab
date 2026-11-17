@@ -261,7 +261,8 @@ class Runner:
         if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return "fomc_blackout"
         if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return "lunch"
         st = self.state
-        if st["ntr"] >= P7.MAXT or st["dpl"] <= -P7.LOSSCAP: log("governor: daily cap reached"); return "governor"
+        if st["ntr"] >= P7.MAXT: log("governor: daily trade cap reached"); return "governor"
+        if not LIVE and st["dpl"] <= -P7.LOSSCAP: log("governor: daily point cap reached"); return "governor"   # 17 Nov: on live the day loss limit is the book's -4% day stop (below), not a fixed 200 points
         if st.get("last_exit_bar") is not None and (i - st["last_exit_bar"]) < P7.COOL: return "cooloff"
         if not self.beq.day_ok(): log("book daily stop (-4%) reached — no new Ignition entries"); return "book_day_stop"
         return None
