@@ -2,16 +2,40 @@
  "NQ": {
   "day": "2026-11-17",
   "orders": {},
-  "pos": null,
+  "pos": {
+   "deal_id": "DIAAAASHWMH39A6",
+   "side": -1,
+   "px": 27105.8,
+   "stop": 27408.2,
+   "sz": 0.05,
+   "bar": "2026-11-17 15:05:00+00:00"
+  },
   "done": false,
-  "open": null
+  "open": 27257.0,
+  "up": 27408.218,
+  "dn": 27105.782,
+  "dist": 302.4359999999986,
+  "size": 0.05,
+  "R": 378.04499999999825
  },
  "US500": {
   "day": "2026-11-17",
   "orders": {},
-  "pos": null,
+  "pos": {
+   "deal_id": "DIAAAASHWLZKMBW",
+   "side": -1,
+   "px": 7365.97,
+   "stop": 7442.07,
+   "sz": 0.19,
+   "bar": "2026-11-17 15:30:00+00:00"
+  },
   "done": false,
-  "open": null
+  "open": 7404.05,
+  "up": 7442.0922500000015,
+  "dn": 7366.007749999999,
+  "dist": 76.08450000000175,
+  "size": 0.19,
+  "R": 76.08450000000175
  },
  "USDJPY": {
   "day": "2026-11-17",
@@ -22,14 +46,15 @@
  },
  "GOLD": {
   "day": "2026-11-17",
-  "orders": {
-   "BUY": {
-    "deal_id": "DIAAAASHTXF4BA9",
-    "ref": "XH4TS7PHYHSTYN7",
-    "level": 3874.761
-   }
+  "orders": {},
+  "pos": {
+   "deal_id": "DIAAAASHTXF4BA9",
+   "side": 1,
+   "px": 3874.8,
+   "stop": 3867.3,
+   "sz": 0.64,
+   "bar": "2026-11-17 15:30:00+00:00"
   },
-  "pos": null,
   "done": false,
   "open": 3871.02,
   "up": 3874.761,
