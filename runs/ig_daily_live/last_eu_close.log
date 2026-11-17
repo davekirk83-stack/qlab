@@ -1,5 +1,5 @@
-16:24:44 job eu_close; daily sub-book £500.00, open positions 0
-16:24:45 switch_account: error.switch.accountId-must-be-different
-16:24:46 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
-16:24:46 pot £500.96 (start £500, all books +0.96); entries on
-16:24:48 done; book £500.00, open []
+16:10:00 job eu_close; daily sub-book £500.00, open positions 3
+16:10:02 switch_account: error.switch.accountId-must-be-different
+16:10:03 TPS book £-3.86 (realised +0.00, open -3.86); stop at -£25
+16:10:03 pot £495.95 (start £500, all books -4.08); entries on
+16:10:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01)]
