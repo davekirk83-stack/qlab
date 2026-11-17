@@ -73,13 +73,24 @@ class WVBEngine:
         log(name, f"session open {o:.1f}, previous range {R:.1f}: BUY STOP {up:.1f} / SELL STOP {dn:.1f}, stop distance {dist:.1f}, {size}/pt")
         for side, lvl in (("BUY", up), ("SELL", dn)):
             if self.dry: st["orders"][side] = {"deal_id": "dry", "level": lvl}; continue
-            try:
-                r = self.ig.create_working_order(currency_code=self.ccy, direction=side, epic=mk["epic"], expiry=mk["expiry"], guaranteed_stop=False,
-                                                 level=round(lvl, 1), size=size, time_in_force="GOOD_TILL_CANCELLED", order_type="STOP",
-                                                 stop_distance=round(dist, 1), force_open=True)
-                if r.get("dealStatus") != "ACCEPTED": log(name, side, "STOP order rejected:", r.get("reason")); continue
-                st["orders"][side] = {"deal_id": r.get("dealId"), "ref": r.get("dealReference"), "level": lvl}
-            except Exception as ex: log(name, side, "working order:", ex)
+            # 17 Nov: IG rejected the gold SELL stop with ATTACHED_ORDER_LEVEL_ERROR (its stop sat too close to the live price).
+            # Retry with a wider stop and a smaller stake so the £ at risk never grows; skip if the stake would fall under IG's minimum.
+            d, sz = dist, size
+            for attempt in range(4):
+                try:
+                    r = self.ig.create_working_order(currency_code=self.ccy, direction=side, epic=mk["epic"], expiry=mk["expiry"], guaranteed_stop=False,
+                                                     level=round(lvl, 1), size=sz, time_in_force="GOOD_TILL_CANCELLED", order_type="STOP",
+                                                     stop_distance=round(d, 1), force_open=True)
+                except Exception as ex: log(name, side, "working order:", ex); break
+                if r.get("dealStatus") == "ACCEPTED":
+                    st["orders"][side] = {"deal_id": r.get("dealId"), "ref": r.get("dealReference"), "level": lvl, "dist": d, "size": sz}
+                    if attempt: log(name, side, f"STOP order accepted on retry {attempt}: stop distance {d:.1f}, {sz}/pt")
+                    break
+                why = str(r.get("reason")); log(name, side, "STOP order rejected:", why)
+                if "ATTACHED_ORDER_LEVEL" not in why and "STOP" not in why.upper(): break
+                d2 = d * 1.25; sz2 = round(sz * d / d2, 2)
+                if sz2 < mk["min"]: log(name, side, "a wider stop would need a stake under IG's minimum — no order this side"); break
+                d, sz = d2, sz2
 
     def sync(self, name, c):
         st = self.st[name]
