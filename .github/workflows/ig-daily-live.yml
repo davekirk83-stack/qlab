@@ -58,6 +58,11 @@ jobs:
             if [ "$WAIT" -lt -1500 ]; then echo "cron fired too late for $T $TZN — exit"; exit 0; fi
             if [ "$WAIT" -gt 0 ]; then echo "waiting $WAIT s for $T $TZN"; sleep $WAIT; fi
           fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "$DRY" = "false" ]; then   # 17 Nov: started by the live session's clock (src/session_clock.sh) a few min early - wait for the exact time
+            case "$JOB" in eu_open) TZN=Europe/London; T="08:05";; us_open) TZN=America/New_York; T="09:35";; eu_close) TZN=Europe/London; T="16:10";; *) TZN=America/New_York; T="15:40";; esac
+            WAIT=$(( $(TZ=$TZN date -d "today $T" +%s) - $(date -u +%s) ))
+            if [ "$WAIT" -gt 0 ] && [ "$WAIT" -lt 900 ]; then echo "waiting $WAIT s for $T $TZN"; sleep $WAIT; fi
+          fi
           [ "$DRY" = "true" ] && DRYF="--dry" || DRYF=""
           QLAB_ROOT=$PWD python src/ig_daily_books.py "$JOB" $DRYF
       - name: Commit results

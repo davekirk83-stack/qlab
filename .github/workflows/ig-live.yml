@@ -57,6 +57,7 @@ jobs:
           IG_PASSWORD: ${{ secrets.IG_PASSWORD_LIVE || secrets.IG_PASSWORD }}
           IG_API_KEY: ${{ secrets.IG_API_KEY_LIVE }}
           IG_MODE: live
+          GH_TOKEN: ${{ github.token }}     # 17 Nov: the session clock starts the daily books on time
           IG_LIVE_CONFIRMED: CAP021-AMENDED-2026-11-09-IG-WIDER-500   # doc 194: widened scope (DK 9 Nov 17:23)
           IG_MIN_ONLY: "0"                  # DK 11 Nov 09:18 "Now": stakes from risk (3% per trade under a £1,000 pot, config/live_pot.json), not IG's minimum
           IG_NEWS: "0"
@@ -102,7 +103,8 @@ jobs:
             if [ -n "$NIGHT" ]; then
               echo "LIVE overnight session: AD stack (regime + coil + Ignition, Tue/Wed off), $ARGS minutes"
               [ "$ARGS" -lt 10 ] && { echo "night window over — exit"; exit 0; }
-              mkdir -p runs/ig_live; QLAB_ROOT=$PWD python src/ig_runner.py $ARGS 2>&1 | tee runs/ig_live/last_run.log; exit 0
+              mkdir -p runs/ig_live; bash src/session_clock.sh ${{ github.repository }} & CLK=$!
+              QLAB_ROOT=$PWD python src/ig_runner.py $ARGS 2>&1 | tee runs/ig_live/last_run.log; kill $CLK 2>/dev/null; exit 0
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
             # doc 194: London morning to 08:35 NY, first half to 13:20 NY (ladders run through the lunch; Ignition skips 12-15 NY itself), second half to 17:00 NY
@@ -115,7 +117,9 @@ jobs:
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
           [ "$DRY" = "--order-test" ] && DRYF="--order-test"; [ "$DRY" = "--tx" ] && DRYF="--tx"; [ "$DRY" = "--markets" ] && DRYF="--markets"
           mkdir -p runs/ig_live
+          CLK=""; [ -z "$DRYF" ] && { bash src/session_clock.sh ${{ github.repository }} & CLK=$!; }   # 17 Nov: the live session keeps the daily books' clock
           QLAB_ROOT=$PWD python src/ig_runner.py ${ARGS:-60} $DRYF 2>&1 | tee runs/ig_live/last_run.log
+          [ -n "$CLK" ] && kill $CLK 2>/dev/null; true
       - name: Commit results
         if: always()
         run: |
@@ -127,13 +131,19 @@ jobs:
         # session starts the next the moment it ends, so the book is watched round the clock Mon-Fri. Stops for the weekend at Fri 21:00 UTC.
         # Only real sessions chain (schedule, or a run this chain started) and only if the session ran >= 30 min (a crash can't loop).
         # Started by DK's own workflow with its own token - Claude never dispatches it. DK's IG_LIVE_ENABLED still gates every run.
-        if: always() && vars.IG_LIVE_ENABLED == 'true' && (github.event_name == 'schedule' || github.event.inputs.chain == '1')
+        if: always() && vars.IG_LIVE_ENABLED == 'true' && (github.event_name == 'schedule' || github.event.inputs.chain != '0' && github.event.inputs.chain != '')
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           RAN=$(( ($(date -u +%s) - T0) / 60 )); echo "this session ran $RAN min"
           # 17 Nov: a cron that fires hours late exits at its gate in seconds - it must still start the chain. Only chained runs need the 30-min
           # guard (that is what stops a crashing session looping); a scheduled run can't loop.
-          if [ "${{ github.event_name }}" != "schedule" ]; then [ "$RAN" -ge 30 ] || { echo "chained run lasted under 30 min (failed?) - no hand-over; the watchdog picks it up"; exit 0; }; fi
+          # 17 Nov 06:48: a session that crashes must not break the chain either. A short chained run retries after 5 min, up to 6 times in a
+          # row (chain counts the short runs); any run of 30+ min resets the count. Only 6 straight failures stop it (a real fault, not a blip).
+          C="${{ github.event.inputs.chain }}"; C=${C:-0}; NEXT=1
+          if [ "${{ github.event_name }}" != "schedule" ] && [ "$RAN" -lt 30 ]; then
+            NEXT=$(( C + 1 )); [ "$NEXT" -le 7 ] || { echo "6 short sessions in a row - chain stops (a real fault)"; exit 1; }
+            echo "short chained session ($RAN min) - retry $((NEXT-1)) of 6 in 5 min"; sleep 300
+          fi
           N=$(gh run list -R ${{ github.repository }} --workflow ig-live.yml --json databaseId,status -q '[.[] | select(.databaseId != ${{ github.run_id }}) | select(.status != "completed")] | length' 2>/dev/null || echo 1)
           [ "$N" -eq 0 ] || { echo "another live session is running or queued - no hand-over needed"; exit 0; }
           DOW=$(date -u +%u); H=$(date -u +%H)
@@ -141,4 +151,4 @@ jobs:
           END=$(date -u -d "$( [ "$DOW" = 5 ] && echo today || echo "next friday" ) 21:00" +%s)
           MIN=$(( (END - $(date -u +%s)) / 60 )); [ "$MIN" -gt 340 ] && MIN=340
           [ "$MIN" -ge 10 ] || { echo "under 10 min to the weekend close - chain stops"; exit 0; }
-          gh workflow run ig-live.yml -R ${{ github.repository }} -f minutes=$MIN -f dry=false -f chain=1 && echo "next session started: $MIN min"
+          gh workflow run ig-live.yml -R ${{ github.repository }} -f minutes=$MIN -f dry=false -f chain=$NEXT && echo "next session started: $MIN min (chain $NEXT)"
