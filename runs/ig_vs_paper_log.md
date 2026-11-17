@@ -146,3 +146,25 @@ Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 1; no fill. ig_live no s
 Notes: the paper feed has the 09:45 UTC bar (close 28229.3 vs IG 28228.3, 1 pt apart) but produced no signal, so this is a genuine feed disagreement, not coverage. The demo SELL is logged "taken" in runs/ig_demo/signals.csv, but the demo run log (commit 9cd53e5) says "SIGNAL SELL skipped — book exposure already at the 5x cap"; no row in runs/ig_demo/trades.csv and state.json ntr 0. So no order was placed — the signals.csv "taken" label is wrong for cap skips.
 
 Running tally (from 2026-11-05): ig_demo agree 2/13, mean slippage -0.46 pts over 5 fills; ig_live agree 0/5 by script (1/6 counting the 12 Nov 10:50 BUY both runners took; no-signal days add nothing), mean slippage -1.1 pts over 2 fills. Combined 2/18 by script (3/19 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-16 (NY day) — checked 2026-11-17
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-16 New York
+  14:30 NY SELL IG only    paper close       nan  IG close   27229.6  lunch
+  16:50 NY SELL IG only    paper close       nan  IG close   27161.4  taken
+  agreement: 0/2 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-16 New York
+  16:50 NY SELL IG only    paper close       nan  IG close   27160.7  taken
+  18:15 NY SELL IG only    paper close       nan  IG close   27212.1  ad_no_regime
+  18:35 NY SELL IG only    paper close       nan  IG close   27131.8  ad_no_regime
+  agreement: 0/3 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+  IG fill 16:50 NY side -1: filled 27159.2 vs IG signal close 27160.7 -> +1.5 pts against us; result -51.7 pts (ig_stop)
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 2 (1 "taken", 1 lunch skip); no demo fill (no row in runs/ig_demo/trades.csv for 16 Nov). ig_live both 0 / paper-only-while-live 0 / IG-only 3 (1 taken, 2 ad_no_regime skips); slippage +1.5 pts over 1 fill (against us).
+
+Flag — taken live trade with no paper counterpart: the live 16:50 NY SELL (21:50 UTC) was filled and stopped for -51.7 pts. data_nq_cache/nq_5m.csv has no bars from 21:15 to 22:55 UTC on 16 Nov (21:10 then 23:00; the 22:00–23:00 UTC hour is the normal CME halt, but 21:15–21:55 is a paper-feed gap). So the paper record could not have seen this bar — a paper-data coverage hole, not a confirmed signal difference. The demo "taken" 21:50 SELL has no trade row, consistent with the cap-skip mislabel noted on 13 Nov.
+
+Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/8 by script (1/9 counting the 12 Nov 10:50 BUY both runners took), mean slippage -0.23 pts over 3 fills. Combined 2/23 by script (3/24 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
