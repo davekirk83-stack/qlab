@@ -99,6 +99,27 @@ def yahoo(tk):
     if isinstance(d.columns, pd.MultiIndex): d.columns = d.columns.get_level_values(0)
     d = d.rename(columns=str.lower)[["open", "high", "low", "close"]].dropna(); d.index = pd.to_datetime(d.index).tz_localize(None).normalize()
     return d[~d.index.duplicated(keep="last")].astype(float)
+_IGH = {"ig": None}
+def patch_stale(name, h):
+    """17 Nov 2026: on 16 Nov Yahoo's history ended at Thu 12 Nov, so the dip books judged Monday on a 4-day-old close. If Yahoo is
+    missing finished trading days, add them from IG's own daily bars (scaled to Yahoo's level on the last shared day)."""
+    ig = _IGH["ig"]
+    day = pd.Timestamp(utcnow().date()); hh = h[h.index < day]
+    if not len(hh) or ig is None or hh.index[-1] >= (day - pd.offsets.BDay(1)).normalize(): return h
+    try:
+        rows = []
+        for x in ig.ig.fetch_historical_prices_by_epic(MKT[name][1], resolution="D", numpoints=10)["prices"]:
+            m = lambda k: (x[k]["bid"] + x[k]["ask"]) / 2 if x[k]["bid"] is not None else np.nan
+            rows.append(dict(ts=pd.Timestamp(x["snapshotTime"].replace("/", "-")).normalize(), open=m("openPrice"), high=m("highPrice"), low=m("lowPrice"), close=m("closePrice")))
+        g = pd.DataFrame(rows).dropna().set_index("ts").sort_index(); g = g[~g.index.duplicated(keep="last")]
+        common = g.index.intersection(hh.index)
+        if not len(common): log(f"{name}: Yahoo ends {hh.index[-1].date()} and IG daily bars don't overlap — using Yahoo as is"); return h
+        k = hh.close.loc[common[-1]] / g.close.loc[common[-1]]
+        add = g[(g.index > hh.index[-1]) & (g.index < day)] * k
+        if len(add): log(f"{name}: Yahoo ended {hh.index[-1].date()} — added {len(add)} day(s) from IG ({', '.join(str(x.date()) for x in add.index)})")
+        return pd.concat([hh, add, h[h.index >= day]]).sort_index()
+    except Exception as e:
+        log(f"{name}: IG daily bars unavailable ({e}) — Yahoo ends {hh.index[-1].date()}"); return h
 def local(name):
     d = pd.read_csv(f"data_daily/{LOCAL[name]}.csv", index_col=0); d.index = pd.to_datetime(d.index, utc=True).tz_convert(None).normalize()
     return d[~d.index.duplicated(keep="last")][["open", "high", "low", "close"]].astype(float)
@@ -463,11 +484,11 @@ def main():
     global STATE, LEDGER, RISK
     job = sys.argv[1]; dry = "--dry" in sys.argv
     if job.startswith("gold"): STATE, LEDGER = f"{OUT}/gold_state.json", f"{OUT}/trades_gold.csv"   # own file: runs in its own concurrency group
-    hist_fn = (lambda n: local(n)) if "--local" in sys.argv else (lambda n, c={}: c.setdefault(n, yahoo(MKT[n][0])))
+    hist_fn = (lambda n: local(n)) if "--local" in sys.argv else (lambda n, c={}: c.setdefault(n, patch_stale(n, yahoo(MKT[n][0]))))
     s = load_state(); log(f"job {job}{' (dry)' if dry else ''}; daily sub-book £{s['eq']:.2f}, open positions {len(s['pos'])}")
     tag = f"{job}:{utcnow():%Y-%m-%d}"
     if not dry and tag in s.setdefault("done", []): log(f"{job} already ran today — exit (backup cron)"); return
-    ig = IG(dry); reconcile(ig, s, utcnow().date())
+    ig = IG(dry); _IGH["ig"] = ig; reconcile(ig, s, utcnow().date())
     if LIVE:
         today = utcnow().strftime("%Y-%m-%d")
         if s.get("day") != today: s["day"], s["day_eq"] = today, s["eq"]
