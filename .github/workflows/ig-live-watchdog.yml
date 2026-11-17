@@ -1,0 +1,35 @@
+name: IG LIVE watchdog (17 Nov - restarts the live hand-over chain if no session is running)
+# 17 Nov 03:16 UTC: none of the night crons (21:10, 22:10, 00:05, 03:05 UTC) produced a run at all, so the hand-over chain never began.
+# This checks every 10 minutes Sun 21:00 UTC -> Fri 21:00 UTC; if no live session is running or queued it starts one (chain=1),
+# which then hands over to the next itself. Gated by DK's own IG_LIVE_ENABLED - with it off this does nothing. Claude never dispatches live.
+on:
+  schedule:
+    - cron: "*/10 * * * 1-5"
+    - cron: "*/10 21-23 * * 0"
+  workflow_dispatch:
+permissions:
+  actions: write
+concurrency:
+  group: ig-live-watchdog
+  cancel-in-progress: false
+jobs:
+  check:
+    if: vars.IG_LIVE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env: { GH_TOKEN: "${{ github.token }}" }
+    steps:
+      - name: Start a live session if none is running
+        run: |
+          DOW=$(date -u +%u); H=$(date -u +%H)
+          if [ "$DOW" = 6 ] || { [ "$DOW" = 5 ] && [ "$H" -ge 21 ]; } || { [ "$DOW" = 7 ] && [ "$H" -lt 21 ]; }; then echo "weekend - nothing to do"; exit 0; fi
+          N=0
+          for S in in_progress queued waiting pending requested; do
+            C=$(gh run list -R ${{ github.repository }} --workflow ig-live.yml --status $S --json databaseId -q 'length' 2>/dev/null || echo 1)
+            N=$(( N + C ))
+          done
+          [ "$N" -eq 0 ] || { echo "a live session is running or queued ($N) - fine"; exit 0; }
+          END=$(date -u -d "$( [ "$DOW" = 5 ] && echo today || echo "next friday" ) 21:00" +%s)
+          MIN=$(( (END - $(date -u +%s)) / 60 )); [ "$MIN" -gt 340 ] && MIN=340
+          [ "$MIN" -ge 10 ] || { echo "under 10 min to the weekend close"; exit 0; }
+          gh workflow run ig-live.yml -R ${{ github.repository }} -f minutes=$MIN -f dry=false -f chain=1 && echo "no live session was running - started one: $MIN min"
