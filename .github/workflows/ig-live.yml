@@ -7,6 +7,7 @@ on:
     inputs:
       minutes: { description: "how long to run", default: "30" }
       dry: { description: "true = no orders; --markets = read-only market check; false = trade (needs IG_LIVE_ENABLED)", default: "--markets" }
+      chain: { description: "1 = started by the previous live session (the hand-over chain); leave 0 for manual runs", default: "0" }
   schedule:
     # doc 194: London-morning crons removed 9 Nov evening with the ladders (nothing live trades before the US open). Was: London morning to the US close, three back-to-back jobs (each under the 350-min limit):
     #   07:55 London -> 08:35 NY (FTSE ladder); 08:40 NY -> 13:20 NY (Ignition first half, ladders through the US lunch); 13:25 NY -> 17:00 NY.
@@ -34,7 +35,7 @@ on:
     - cron: "5 0 * * 1-5"     # 17 Nov: the evening job runs to midnight UTC, so the 22:10 overnight start exits as a double - this covers 00:05-03:00
 permissions:
   contents: write
-  actions: read
+  actions: write   # 17 Nov: each live session starts the next one itself (hand-over chain) instead of waiting for GitHub's late cron
 concurrency:
   group: ig-live   # ONE runner at a time, whatever started it (26 Oct: a late 13:10 cron overlapped a manual run and doubled the orders)
   cancel-in-progress: false
@@ -45,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
+      - run: echo "T0=$(date -u +%s)" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
@@ -120,3 +122,19 @@ jobs:
           git config user.name "ig-runner"; git config user.email "ig-runner@users.noreply.github.com"; mkdir -p runs/ig_live
           git add -f runs/ig_live; git commit -m "ig LIVE run $(date -u +%Y-%m-%dT%H:%M)" || true
           git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
+      - name: Hand over to the next session (17 Nov - no gaps, no waiting for GitHub's cron)
+        # The first scheduled start of the week (Sunday 22:10/21:10 UTC overnight, or any weekday cron) begins the chain; after that each
+        # session starts the next the moment it ends, so the book is watched round the clock Mon-Fri. Stops for the weekend at Fri 21:00 UTC.
+        # Only real sessions chain (schedule, or a run this chain started) and only if the session ran >= 30 min (a crash can't loop).
+        # Started by DK's own workflow with its own token - Claude never dispatches it. DK's IG_LIVE_ENABLED still gates every run.
+        if: always() && vars.IG_LIVE_ENABLED == 'true' && (github.event_name == 'schedule' || github.event.inputs.chain == '1')
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          RAN=$(( ($(date -u +%s) - T0) / 60 )); echo "this session ran $RAN min"
+          [ "$RAN" -ge 30 ] || { echo "ran under 30 min (exited early or failed) - no hand-over; the crons pick it up"; exit 0; }
+          DOW=$(date -u +%u); H=$(date -u +%H)
+          if [ "$DOW" = 6 ] || { [ "$DOW" = 5 ] && [ "$H" -ge 21 ]; } || { [ "$DOW" = 7 ] && [ "$H" -lt 21 ]; }; then echo "weekend - chain stops"; exit 0; fi
+          END=$(date -u -d "$( [ "$DOW" = 5 ] && echo today || echo "next friday" ) 21:00" +%s)
+          MIN=$(( (END - $(date -u +%s)) / 60 )); [ "$MIN" -gt 340 ] && MIN=340
+          [ "$MIN" -ge 10 ] || { echo "under 10 min to the weekend close - chain stops"; exit 0; }
+          gh workflow run ig-live.yml -R ${{ github.repository }} -f minutes=$MIN -f dry=false -f chain=1 && echo "next session started: $MIN min"
