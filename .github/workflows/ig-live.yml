@@ -15,6 +15,11 @@ on:
     - cron: "10 13 * * 1-5"
     - cron: "40 13 * * 1-5"
     - cron: "10 14 * * 1-5"
+    # 17 Nov: on 16 Nov GitHub started the US job at 15:41 London - every cron above ran 1.5-3h late, so Williams missed the US open.
+    # More fallback starts (the in-progress check stops doubles); the first one that actually runs takes the session.
+    - cron: "25 14 * * 1-5"
+    - cron: "35 14 * * 1-5"
+    - cron: "50 14 * * 1-5"
     - cron: "25 17 * * 1-5"
     - cron: "55 17 * * 1-5"
     - cron: "25 18 * * 1-5"
@@ -26,6 +31,7 @@ on:
     - cron: "10 22 * * 0-4"
     - cron: "10 21 * * 0-4"
     - cron: "5 3 * * 1-5"
+    - cron: "5 0 * * 1-5"     # 17 Nov: the evening job runs to midnight UTC, so the 22:10 overnight start exits as a double - this covers 00:05-03:00
 permissions:
   contents: write
   actions: read
@@ -86,6 +92,8 @@ jobs:
               "10 22 * * 0-4"|"10 21 * * 0-4") [ "$ADSTACK_ON" = "1" ] || { echo "overnight: IG_ADSTACK_LIVE_ENABLED not true — exit"; exit 0; }
                 NYH=$(TZ=America/New_York date +%H); case "$NYH" in 17) ;; *) echo "not 5pm New York (the other DST cron) — exit"; exit 0;; esac
                 NIGHT=1; ARGS=$(( ($(date -u -d "tomorrow 03:00" +%s) - $(date -u +%s)) / 60 )); [ "$ARGS" -gt 340 ] && ARGS=$(( ($(date -u -d "today 03:00" +%s) - $(date -u +%s)) / 60 ));;
+              "5 0 * * 1-5") [ "$ADSTACK_ON" = "1" ] || { echo "overnight: IG_ADSTACK_LIVE_ENABLED not true — exit"; exit 0; }
+                NIGHT=1; ARGS=$(( ($(date -u -d "today 03:00" +%s) - $(date -u +%s)) / 60 ));;
               "5 3 * * 1-5") [ "$ADSTACK_ON" = "1" ] || { echo "overnight: IG_ADSTACK_LIVE_ENABLED not true — exit"; exit 0; }
                 NIGHT=1; ARGS=$(( ($(TZ=Europe/London date -d "today 07:50" +%s) - $(date -u +%s)) / 60 ));;
             esac
@@ -96,9 +104,10 @@ jobs:
             fi
             # END in NEW YORK time (DST-proof): first half to 12:05 NY (v1.1 takes no entries 12:00-14:59 NY), second half to 17:00 NY
             # doc 194: London morning to 08:35 NY, first half to 13:20 NY (ladders run through the lunch; Ignition skips 12-15 NY itself), second half to 17:00 NY
-            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5") END="08:35";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5") END="13:20";; *) END="19:00";; esac
+            case "${{ github.event.schedule }}" in "55 7 * * 1-5"|"55 6 * * 1-5") END="08:35";; "40 12 * * 1-5"|"10 13 * * 1-5"|"40 13 * * 1-5"|"10 14 * * 1-5"|"25 14 * * 1-5"|"35 14 * * 1-5"|"50 14 * * 1-5") END="13:20";; *) END="19:00";; esac
             ARGS=$(( ($(TZ=America/New_York date -d "today $END" +%s) - $(date -u +%s)) / 60 ))
             if [ "$ARGS" -lt 10 ]; then echo "session window $END already over (cron ran late) — nothing to do"; exit 0; fi
+            [ "$ARGS" -gt 340 ] && ARGS=340   # GitHub's 6-hour job limit
             DRY=""
           elif [ -f runs/ig_live/trigger.txt ] && [ -z "$ARGS" ]; then ARGS=$(cut -d' ' -f1 runs/ig_live/trigger.txt); DRY=$(cut -s -d' ' -f2 runs/ig_live/trigger.txt); fi
           [ "$DRY" = "true" ] || [ "$DRY" = "--dry" ] && DRYF="--dry" || DRYF=""
