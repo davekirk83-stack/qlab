@@ -53,15 +53,8 @@
  "GOLD": {
   "day": "2026-11-18",
   "orders": {},
-  "pos": {
-   "deal_id": "DIAAAASH5LPFGAS",
-   "side": -1,
-   "px": 3758.32,
-   "stop": 3789.62,
-   "sz": 0.46,
-   "bar": "2026-11-18 08:10:00+00:00"
-  },
-  "done": false,
+  "pos": null,
+  "done": true,
   "open": 3774.08,
   "up": 3789.743,
   "dn": 3758.417,
