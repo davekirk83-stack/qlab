@@ -168,3 +168,20 @@ Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 2 (1 "taken", 1 lunch sk
 Flag — taken live trade with no paper counterpart: the live 16:50 NY SELL (21:50 UTC) was filled and stopped for -51.7 pts. data_nq_cache/nq_5m.csv has no bars from 21:15 to 22:55 UTC on 16 Nov (21:10 then 23:00; the 22:00–23:00 UTC hour is the normal CME halt, but 21:15–21:55 is a paper-feed gap). So the paper record could not have seen this bar — a paper-data coverage hole, not a confirmed signal difference. The demo "taken" 21:50 SELL has no trade row, consistent with the cap-skip mislabel noted on 13 Nov.
 
 Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/8 by script (1/9 counting the 12 Nov 10:50 BUY both runners took), mean slippage -0.23 pts over 3 fills. Combined 2/23 by script (3/24 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-17 (NY day) — checked 2026-11-18
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-17 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-17 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+
+Comparison not possible: data_nq_cache/nq_5m.csv still ends 2026-11-16 23:55 UTC at 09:05 UTC on 18 Nov (re-pulled after a 10-minute wait). The last "paper books" commit touching it is 4d4a4c8 (17 Nov); today only "paper books 15-16" (d9c0409) landed, which does not touch the NQ cache — so the 18 Nov 07:23 paper run appears not to have pushed bars.
+
+IG side only (for the record, not scored): ig_demo logged no 17 Nov signals. ig_live logged 6 signals — 04:25 UTC SELL taken; 05:00, 08:15 UTC SELL and 22:05, 22:25, 22:40 UTC BUY all skipped ad_tue_wed.
+Live fill 04:25 UTC SELL: filled 27255.40 vs IG signal close 27258.30 -> +2.9 pts against us; result -45.9 pts (ig_stop). Within the 10-pt threshold.
+
+Running tally (from 2026-11-05), unchanged pending paper bars for 17 Nov: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/8 by script (1/9 adjusted), mean slippage -0.23 pts over 3 scored fills (0.55 pts over 4 including today's unscored +2.9). Combined 2/23 by script (3/24 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
