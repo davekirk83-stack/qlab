@@ -1,13 +1,85 @@
-14:35:00 job us_open; daily sub-book £500.00, open positions 0
+14:35:00 job us_open; daily sub-book £500.00, open positions 3
 14:35:01 switch_account: error.switch.accountId-must-be-different
-14:35:02 TPS book £+0.00 (realised +0.00, open +0.00); stop at -£25
-14:35:02 pot £492.21 (start £500, all books -7.82); entries on
-14:35:04 US500: final close 2026-11-16 7416.6 RSI2 9.8 RSI4 29.5 5d 7542.2 200d 7342.7 ATR 114.0 | IG open 7397.2
-14:35:04 OPEN RSI4L US500 0.02/pt (counted at 0.0200/pt) at 7397.0 stop 7055.9
-14:35:05 OPEN TPS US500 0.01/pt (counted at 0.0100/pt) at 7397.7 stop 5917.8
-14:35:05 NQ: final close 2026-11-16 27197.2 RSI2 10.6 RSI4 29.7 5d 27909.0 200d 28047.6 ATR 702.5 | IG open 27179.8
-14:35:06 WALLST: final close 2026-11-16 51608.2 RSI2 10.7 RSI4 32.2 5d 52194.2 200d 50770.7 ATR 713.1 | IG open 51276.9
-14:35:06 fit: minimum 0.01/pt risks £14.17 even at 2 ATR (> 2%) — skip
-14:35:07 OPEN TPS WALLST 0.01/pt (counted at 0.0100/pt) at 51272.1 stop 41021.5
-14:35:07 GOLD: final close 2026-11-16 3853.0 RSI2 3.6 RSI4 18.1 5d 3931.1 200d 4467.8 ATR 89.0 | IG open 3866.6
-14:35:07 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01)]
+14:35:02 account check failed — no new entries this run: 
+14:35:02 REGIME: US 500 7340.5 below its 200-day 7344.5 — no new dip-book entries today
+14:35:02 US500 failed: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 328, in job_open
+    snap = ig.snap(epic)
+           ^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 150, in snap
+    def snap(self, epic): self.m.pop(epic, None); return self.market(epic)["snapshot"]
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 148, in market
+    if epic not in self.m: self.m[epic] = self.ig.fetch_market_by_epic(epic)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
+    response = self._req(action, endpoint, params, session, version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
+    result = self._request(action, endpoint, params, session, version, check)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
+    raise ApiExceededException()
+trading_ig.rest.ApiExceededException
+
+14:35:03 NQ failed: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 328, in job_open
+    snap = ig.snap(epic)
+           ^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 150, in snap
+    def snap(self, epic): self.m.pop(epic, None); return self.market(epic)["snapshot"]
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 148, in market
+    if epic not in self.m: self.m[epic] = self.ig.fetch_market_by_epic(epic)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
+    response = self._req(action, endpoint, params, session, version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
+    result = self._request(action, endpoint, params, session, version, check)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
+    raise ApiExceededException()
+trading_ig.rest.ApiExceededException
+
+14:35:03 WALLST failed: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 328, in job_open
+    snap = ig.snap(epic)
+           ^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 150, in snap
+    def snap(self, epic): self.m.pop(epic, None); return self.market(epic)["snapshot"]
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 148, in market
+    if epic not in self.m: self.m[epic] = self.ig.fetch_market_by_epic(epic)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
+    response = self._req(action, endpoint, params, session, version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
+    result = self._request(action, endpoint, params, session, version, check)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
+    raise ApiExceededException()
+trading_ig.rest.ApiExceededException
+
+14:35:03 GOLD failed: Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 328, in job_open
+    snap = ig.snap(epic)
+           ^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 150, in snap
+    def snap(self, epic): self.m.pop(epic, None); return self.market(epic)["snapshot"]
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_daily_books.py", line 148, in market
+    if epic not in self.m: self.m[epic] = self.ig.fetch_market_by_epic(epic)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1503, in fetch_market_by_epic
+    response = self._req(action, endpoint, params, session, version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
+    result = self._request(action, endpoint, params, session, version, check)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 379, in _request
+    raise ApiExceededException()
+trading_ig.rest.ApiExceededException
+
+14:35:03 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01)]
