@@ -107,24 +107,25 @@
   "us_close:2026-11-17",
   "eu_open:2026-11-18",
   "us_open:2026-11-18",
-  "eu_close:2026-11-18"
+  "eu_close:2026-11-18",
+  "us_close:2026-11-18"
  ],
  "day": "2026-11-18",
  "day_eq": 500.0,
  "entries_ok": false,
- "stop_why": "books (ex TPS) down \u00a334.81 today (-4%): no new entries today",
+ "stop_why": "books (ex TPS) down \u00a335.68 today (-4%): no new entries today",
  "pot": {
   "acc_start": 493.68,
   "start_date": "2026-11-10",
   "day": "2026-11-18",
   "acc_day": 486.14000000000004,
   "cash_day": -0.11000000000000001,
-  "acc": 451.33,
+  "acc": 450.46,
   "cash": -0.11000000000000001
  },
- "pot_now": 457.65,
+ "pot_now": 456.78,
  "tps": {
-  "open": -20.06,
+  "open": -19.74,
   "day": "2026-11-18",
   "day_start": -4.6
  }
