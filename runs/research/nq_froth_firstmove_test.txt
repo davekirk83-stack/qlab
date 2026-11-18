@@ -1,0 +1,34 @@
+days 211  2025-10-15 .. 2026-11-16
+
+first move 09:35->10:00: froth opposite to the first move on 48% of days; median |move| 71 pts
+  |move|>=  0  fade to 11:00: n=211 win  53.6% avg   +6.8 pts  halves   -683 /  +2117
+  |move|>=  0  fade to 12:00: n=211 win  54.0% avg  +18.4 pts  halves  +1496 /  +2394
+  |move|>=  0  fade to 15:55: n=211 win  50.2% avg   +1.4 pts  halves   +542 /   -248
+  |move|>= 50  fade to 11:00: n=144 win  52.1% avg   -3.0 pts  halves   -952 /   +514
+  |move|>= 50  fade to 12:00: n=144 win  52.1% avg  +13.1 pts  halves   +938 /   +954
+  |move|>= 50  fade to 15:55: n=144 win  47.2% avg   +0.5 pts  halves   +356 /   -281
+  |move|>=100  fade to 11:00: n= 76 win  48.7% avg   -9.9 pts  halves   -733 /    -17
+  |move|>=100  fade to 12:00: n= 76 win  52.6% avg   -1.9 pts  halves   -477 /   +332
+  |move|>=100  fade to 15:55: n= 76 win  44.7% avg  -29.5 pts  halves  -2566 /   +327
+
+first move 09:35->10:05: froth opposite to the first move on 46% of days; median |move| 71 pts
+  |move|>=  0  fade to 11:00: n=211 win  49.3% avg   -1.1 pts  halves   -840 /   +614
+  |move|>=  0  fade to 12:00: n=211 win  51.7% avg  +15.0 pts  halves  +1764 /  +1397
+  |move|>=  0  fade to 15:55: n=211 win  47.9% avg   +2.5 pts  halves   +833 /   -296
+  |move|>= 50  fade to 11:00: n=131 win  46.6% avg   -3.1 pts  halves  -1158 /   +751
+  |move|>= 50  fade to 12:00: n=131 win  52.7% avg  +11.7 pts  halves   +664 /   +871
+  |move|>= 50  fade to 15:55: n=131 win  49.6% avg   +1.1 pts  halves   +806 /   -666
+  |move|>=100  fade to 11:00: n= 76 win  40.8% avg  -21.2 pts  halves  -1324 /   -285
+  |move|>=100  fade to 12:00: n= 76 win  48.7% avg   -8.9 pts  halves   -394 /   -285
+  |move|>=100  fade to 15:55: n= 76 win  47.4% avg  -38.3 pts  halves   -832 /  -2076
+
+first move 09:35->10:10: froth opposite to the first move on 46% of days; median |move| 75 pts
+  |move|>=  0  fade to 11:00: n=211 win  51.7% avg   +0.2 pts  halves  -1025 /  +1070
+  |move|>=  0  fade to 12:00: n=211 win  48.8% avg   +5.3 pts  halves   -156 /  +1271
+  |move|>=  0  fade to 15:55: n=211 win  48.3% avg   -4.9 pts  halves  -1802 /   +758
+  |move|>= 50  fade to 11:00: n=141 win  48.2% avg   -2.3 pts  halves  -1284 /   +963
+  |move|>= 50  fade to 12:00: n=141 win  49.6% avg  +12.0 pts  halves   +132 /  +1559
+  |move|>= 50  fade to 15:55: n=141 win  48.9% avg   +1.8 pts  halves   -635 /   +885
+  |move|>=100  fade to 11:00: n= 75 win  46.7% avg   -6.8 pts  halves  -1246 /   +735
+  |move|>=100  fade to 12:00: n= 75 win  50.7% avg  +12.6 pts  halves   -312 /  +1256
+  |move|>=100  fade to 15:55: n= 75 win  49.3% avg   -9.9 pts  halves  -1724 /   +982
