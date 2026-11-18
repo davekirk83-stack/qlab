@@ -1,6 +1,8 @@
-08:05:00 job eu_open; daily sub-book £500.00, open positions 0
-08:05:01 switch_account: error.switch.accountId-must-be-different
-08:05:02 account check failed — no new entries this run: Server problem: status code: 500, reason: Internal Server Error
-08:05:03 DAX: final close 2026-11-12 26771.9 RSI2 90.6 RSI4 76.4 5d 26373.9 200d 24963.0 ATR 385.6 | IG open 26697.7
-08:05:03 FTSE: final close 2026-11-12 10863.1 RSI2 83.5 RSI4 68.1 5d 10781.4 200d 10550.2 ATR 116.6 | IG open 10843.2
-08:05:03 done; book £500.00, open []
+08:05:00 job eu_open; daily sub-book £500.00, open positions 3
+08:05:02 switch_account: error.switch.accountId-must-be-different
+08:05:03 TPS book £-4.60 (realised +0.00, open -4.60); stop at -£25
+08:05:03 pot £492.46 (start £500, all books -7.43); entries on
+08:05:03 REGIME: US 500 7340.5 below its 200-day 7344.5 — no new dip-book entries today
+08:05:03 DAX: final close 2026-11-17 26045.4 RSI2 6.5 RSI4 28.6 5d 26565.7 200d 24990.6 ATR 377.4 | IG open 26070.1
+08:05:04 FTSE: final close 2026-11-17 10689.9 RSI2 9.2 RSI4 28.7 5d 10834.5 200d 10558.1 ATR 116.5 | IG open 10648.1
+08:05:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01)]
