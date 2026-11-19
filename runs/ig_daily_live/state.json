@@ -1,5 +1,5 @@
 {
- "eq": 500.0,
+ "eq": 462.95,
  "start": "2026-11-10",
  "pos": [
   {
@@ -15,74 +15,6 @@
    "want": 0.02,
    "risk": 9.844199999999999,
    "side": 1
-  },
-  {
-   "book": "TPS",
-   "market": "US500",
-   "deal_id": "DIAAAASHWNBEZAM",
-   "size": 0.01,
-   "entry_ig": 7397.7,
-   "entered": "2026-11-17",
-   "days": 2,
-   "stop_ig": 5917.8,
-   "k": 1.0026158193799308,
-   "want": 0.01,
-   "risk": 0.9844199999999997,
-   "side": 1,
-   "unit": 0.01,
-   "unitw": 0.000887195764906911,
-   "sig_close": 7416.58984375
-  },
-  {
-   "book": "TPS",
-   "market": "WALLST",
-   "deal_id": "DIAAAASHWNTU2BB",
-   "size": 0.01,
-   "entry_ig": 51272.1,
-   "entered": "2026-11-17",
-   "days": 2,
-   "stop_ig": 41021.5,
-   "k": 1.0064614319132317,
-   "want": 0.01,
-   "risk": 0.9844199999999999,
-   "side": 1,
-   "unit": 0.01,
-   "unitw": 0.00012798758114041713,
-   "sig_close": 51608.171875
-  },
-  {
-   "book": "TPS",
-   "market": "US500",
-   "deal_id": "DIAAAASH72QR3AK",
-   "size": 0.02,
-   "entry_ig": 7349.42,
-   "entered": "2026-11-18",
-   "days": 1,
-   "stop_ig": 5917.8,
-   "k": 0.9988583064118605,
-   "want": 0.02,
-   "risk": 1.955979210191909,
-   "side": 1,
-   "unit": 0.01,
-   "unitw": 0.000887195764906911,
-   "sig_close": 7340.52978515625
-  },
-  {
-   "book": "TPS",
-   "market": "WALLST",
-   "deal_id": "DIAAAASH73FT6BM",
-   "size": 0.02,
-   "entry_ig": 50596.0,
-   "entered": "2026-11-18",
-   "days": 1,
-   "stop_ig": 41021.5,
-   "k": 1.0031813598045,
-   "want": 0.02,
-   "risk": 1.9427919674863017,
-   "side": 1,
-   "unit": 0.01,
-   "unitw": 0.00012798758114041713,
-   "sig_close": 50759.421875
   }
  ],
  "done": [
@@ -110,25 +42,28 @@
   "eu_close:2026-11-18",
   "us_close:2026-11-18",
   "eu_open:2026-11-19",
-  "us_open:2026-11-19"
+  "us_open:2026-11-19",
+  "eu_close:2026-11-19"
  ],
  "day": "2026-11-19",
  "day_eq": 500.0,
- "entries_ok": true,
- "stop_why": "",
+ "entries_ok": false,
+ "stop_why": "books (ex TPS) down \u00a325.58 today (-4%): no new entries today",
  "pot": {
   "acc_start": 493.68,
   "start_date": "2026-11-10",
   "day": "2026-11-19",
   "acc_day": 463.82,
   "cash_day": -0.48,
-  "acc": 461.75,
+  "acc": 438.24,
   "cash": -0.48
  },
- "pot_now": 468.07,
+ "pot_now": 444.56,
  "tps": {
-  "open": -11.84,
+  "open": -37.06,
   "day": "2026-11-19",
-  "day_start": -7.7
+  "day_start": -7.7,
+  "stopped": true,
+  "realised": -37.05
  }
 }
