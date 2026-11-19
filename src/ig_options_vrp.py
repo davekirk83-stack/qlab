@@ -123,6 +123,10 @@ def place(ig, epic, direction, size):
 def open_week(ig, dry):
     tag = f"{OUT}/opened_{utcnow():%G-W%V}.json"
     if os.path.exists(tag): log("already opened this week:", tag); return
+    if utcnow().weekday() == 0:   # Monday fallback: only if Friday could not open (next week's series not listed yet)
+        held = [p for p in ig.fetch_open_positions()["positions"] if str(p["market"]["epic"]).startswith("OP.D.SPXWEEK.")]
+        if held: log("Monday fallback: spread already held -> nothing to do"); return
+        log("Monday fallback: no spread held, opening for this Friday")
     u = ig.fetch_market_by_epic(UNDERLYING)["snapshot"]; S = (float(u["bid"]) + float(u["offer"])) / 2
     V = vix_now()
     if not V: log("no VIX -> no trade"); return

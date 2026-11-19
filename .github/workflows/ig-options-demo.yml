@@ -7,6 +7,8 @@ on:
   schedule:
     - cron: "50 19 * * 5"   # open: Friday ~1h before the US cash close (target 20:00 UTC in winter; script waits)
     - cron: "50 18 * * 5"   # summer-time variant
+    - cron: "50 19 * * 1"   # Monday fallback open if Friday found no next-week series (winter)
+    - cron: "50 18 * * 1"   # Monday fallback (summer)
     - cron: "15 21 * * 1-5" # status after the US close
 permissions:
   contents: write
