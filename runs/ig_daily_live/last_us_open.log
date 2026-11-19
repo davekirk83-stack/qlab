@@ -1,12 +1,12 @@
-14:35:33 job us_open; daily sub-book £500.00, open positions 3
-14:35:34 switch_account: error.switch.accountId-must-be-different
-14:35:35 TPS book £-7.34 (realised +0.00, open -7.34); stop at -£24
-14:35:35 pot £474.68 (start £500, all books -25.21); entries on
-14:35:36 REGIME: US 500 7340.5 below its 200-day 7344.5 — no new dip-book entries today
-14:35:36 US500: final close 2026-11-17 7340.5 RSI2 5.4 RSI4 22.9 5d 7506.1 200d 7344.5 ATR 116.4 | IG open 7348.9
-14:35:37 OPEN TPS US500 0.02/pt (counted at 0.0200/pt) at 7349.4 stop 5917.8
-14:35:37 NQ: final close 2026-11-17 27001.8 RSI2 7.8 RSI4 26.4 5d 27761.2 200d 28053.9 ATR 711.2 | IG open 27092.9
-14:35:37 WALLST: final close 2026-11-17 50759.4 RSI2 3.8 RSI4 19.9 5d 51899.7 200d 50777.5 ATR 726.2 | IG open 50598.4
-14:35:37 OPEN TPS WALLST 0.02/pt (counted at 0.0200/pt) at 50596.0 stop 41021.5
-14:35:38 GOLD: final close 2026-11-17 3864.2 RSI2 25.9 RSI4 24.1 5d 3897.9 200d 4463.8 ATR 89.5 | IG open 3771.4
-14:35:38 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01), ('TPS', 'US500', 0.02), ('TPS', 'WALLST', 0.02)]
+14:35:00 job us_open; daily sub-book £500.00, open positions 5
+14:35:01 switch_account: error.switch.accountId-must-be-different
+14:35:02 TPS book £-11.84 (realised +0.00, open -11.84); stop at -£23
+14:35:02 pot £468.07 (start £500, all books -31.45); entries on
+14:35:02 REGIME: US 500 7323.6 below its 200-day 7346.6 — no new dip-book entries today
+14:35:03 US500: final close 2026-11-18 7323.6 RSI2 4.5 RSI4 21.4 5d 7447.0 200d 7346.6 ATR 117.4 | IG open 7408.5
+14:35:03 SKIP TPS US500: exposure cap 5x (whole account)
+14:35:03 NQ: final close 2026-11-18 27116.3 RSI2 29.7 RSI4 32.3 5d 27509.6 200d 28062.8 ATR 708.7 | IG open 27709.5
+14:35:04 WALLST: final close 2026-11-18 50198.2 RSI2 2.0 RSI4 14.9 5d 51442.1 200d 50782.2 ATR 739.3 | IG open 50394.9
+14:35:04 SKIP TPS WALLST: exposure cap 5x (whole account)
+14:35:04 GOLD: final close 2026-11-18 3741.9 RSI2 4.3 RSI4 11.6 5d 3846.1 200d 4457.9 ATR 94.7 | IG open 3714.8
+14:35:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01), ('TPS', 'US500', 0.02), ('TPS', 'WALLST', 0.02)]
