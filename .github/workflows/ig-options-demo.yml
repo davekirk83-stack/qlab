@@ -2,7 +2,7 @@ name: IG options VRP book (doc 245; weekly US 500 put spread; DEMO ONLY)
 on:
   workflow_dispatch:
     inputs:
-      job: { description: "scan / open / status", default: "scan" }
+      job: { description: "scan / nav / open / status", default: "scan" }
       dry: { description: "dry run (no orders)", default: "true" }
   schedule:
     - cron: "50 19 * * 5"   # open: Friday ~1h before the US cash close (target 20:00 UTC in winter; script waits)

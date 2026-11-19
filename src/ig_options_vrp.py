@@ -69,6 +69,32 @@ def scan(ig):
     json.dump(out, open(f"{OUT}/scan.json", "w"), indent=1, default=str)
     for m in out[:60]: log(m.get("epic"), "|", m.get("instrumentName"), "|", m.get("expiry"), "|", m.get("bid"), "/", m.get("offer"), "|", m.get("minDealSize", ""))
 
+def nav(ig):
+    """Walk IG's market navigation to the US 500 option nodes (search only returns a few strikes)."""
+    import time
+    top = ig.fetch_top_level_navigation_nodes()
+    nodes = top.get("nodes", []) if isinstance(top, dict) else top
+    log("top nodes:", [n["name"] for n in nodes])
+    found = []
+    def walk(node_id, path, depth):
+        if depth > 4: return
+        time.sleep(1.2)
+        try: r = ig.fetch_sub_nodes_by_node(node_id)
+        except Exception as e: log("node", path, e); return
+        subs = r.get("nodes", []) or []; mkts = r.get("markets", []) or []
+        if mkts and ("500" in path or "S&P" in path or "SPX" in path):
+            log("NODE", path, f"{len(mkts)} markets; e.g.", [(m["epic"], m["instrumentName"], m.get("expiry")) for m in mkts[:4]])
+            found.append({"path": path, "id": node_id, "markets": [{k: m.get(k) for k in ("epic", "instrumentName", "expiry", "bid", "offer")} for m in mkts]})
+        for n in subs:
+            nm = n["name"]
+            if depth == 0 and "option" not in nm.lower(): continue
+            if depth >= 1 and not any(k in nm.upper() for k in ("US 500", "S&P", "SPX", "WEEKLY", "DAILY", "INDICES", "INDEX", "500")): continue
+            walk(n["id"], path + " > " + nm, depth + 1)
+    for n in nodes:
+        if "option" in n["name"].lower(): walk(n["id"], n["name"], 1)
+    json.dump(found, open(f"{OUT}/nav.json", "w"), indent=1, default=str)
+    log(f"nav: {len(found)} US 500 option nodes saved to {OUT}/nav.json")
+
 def strike_of(name):
     m = re.search(r"(\d{3,5}(?:\.\d+)?)\s*(?:PUT|P\b)", name.upper()) or re.search(r"(\d{4,5}(?:\.\d+)?)", name)
     return float(m.group(1)) if m else None
@@ -140,4 +166,4 @@ def status(ig):
 if __name__ == "__main__":
     job = sys.argv[1] if len(sys.argv) > 1 else "scan"; dry = "--dry" in sys.argv
     ig = connect()
-    {"scan": lambda: scan(ig), "open": lambda: open_week(ig, dry), "status": lambda: status(ig)}[job]()
+    {"scan": lambda: scan(ig), "nav": lambda: nav(ig), "open": lambda: open_week(ig, dry), "status": lambda: status(ig)}[job]()
