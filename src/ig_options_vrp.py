@@ -50,7 +50,9 @@ def search(ig, terms):
     return list(seen.values())
 
 def option_markets(ig):
-    ms = search(ig, ["US 500 put", "US 500 weekly", "Weekly US 500", "US 500 option", "US 500 PUT", "SPX weekly put"])
+    extra = [t for t in os.environ.get("SCAN_TERMS", "").split("|") if t]
+    strikes = [7300 - 50 * i for i in range(0, 12)]
+    ms = search(ig, ["US 500 put", "US 500 weekly", "Weekly US 500", "US 500 option", "US 500 PUT", "SPX weekly put"] + [f"US 500 {k} PUT" for k in strikes] + [f"Weekly US 500 {k}" for k in strikes[:4]] + extra)
     return [m for m in ms if "OPT" in str(m.get("instrumentType", "")).upper() or "PUT" in m.get("instrumentName", "").upper()]
 
 def scan(ig):
