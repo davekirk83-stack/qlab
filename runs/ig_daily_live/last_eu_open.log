@@ -1,8 +1,8 @@
-08:05:00 job eu_open; daily sub-book £500.00, open positions 3
+08:05:00 job eu_open; daily sub-book £500.00, open positions 5
 08:05:02 switch_account: error.switch.accountId-must-be-different
-08:05:03 TPS book £-4.60 (realised +0.00, open -4.60); stop at -£25
-08:05:03 pot £492.46 (start £500, all books -7.43); entries on
-08:05:03 REGIME: US 500 7340.5 below its 200-day 7344.5 — no new dip-book entries today
-08:05:03 DAX: final close 2026-11-17 26045.4 RSI2 6.5 RSI4 28.6 5d 26565.7 200d 24990.6 ATR 377.4 | IG open 26070.1
-08:05:04 FTSE: final close 2026-11-17 10689.9 RSI2 9.2 RSI4 28.7 5d 10834.5 200d 10558.1 ATR 116.5 | IG open 10648.1
-08:05:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01)]
+08:05:03 TPS book £-7.70 (realised +0.00, open -7.70); stop at -£24
+08:05:03 pot £470.14 (start £500, all books -29.38); entries on
+08:05:03 REGIME: US 500 7323.6 below its 200-day 7346.6 — no new dip-book entries today
+08:05:04 DAX: final close 2026-11-18 25736.2 RSI2 3.4 RSI4 20.8 5d 26380.4 200d 24995.6 ATR 375.3 | IG open 25848.5
+08:05:04 FTSE: final close 2026-11-18 10551.2 RSI2 4.1 RSI4 18.6 5d 10777.7 200d 10558.9 ATR 120.6 | IG open 10543.2
+08:05:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01), ('TPS', 'US500', 0.02), ('TPS', 'WALLST', 0.02)]
