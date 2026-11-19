@@ -95,3 +95,5 @@
 2026-11-19 06:55:56Z OP.D.SPX1.7200P.IP | US 500 7200 PUT | NOV-26 | 4.25 / 4.85 | 
 2026-11-19 06:55:56Z OP.D.SPX4.7200P.IP | US 500 7200 PUT | JAN-27 | 127.2 / 129.4 | 
 2026-11-19 06:55:56Z OP.D.SPX5.7200P.IP | US 500 7200 Put | DEC-26 | 85.79 / 87.59 | 
+2026-11-19 06:58:54Z switch_account: error.switch.accountId-must-be-different
+2026-11-19 06:58:56Z no Friday weekly put 3-9 days out yet; expiries seen: ['20-NOV-26']
