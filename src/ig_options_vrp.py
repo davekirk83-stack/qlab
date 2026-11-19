@@ -32,7 +32,13 @@ def bs_put(S, K, T, v):
 def connect():
     from trading_ig import IGService
     u, p, key = (os.environ[x].strip() for x in ("IG_USERNAME", "IG_PASSWORD", "IG_API_KEY"))
-    ig = IGService(u, p, key, acc_type="demo", return_dataframe=False); ig.create_session()
+    import time
+    ig = IGService(u, p, key, acc_type="demo", return_dataframe=False)
+    for i in range(4):   # demo API allowance: back off and retry on ApiExceeded
+        try: ig.create_session(); break
+        except Exception as e:
+            if "Exceeded" not in type(e).__name__ or i == 3: raise
+            log("IG API allowance exceeded at login; waiting", 90 * (i + 1), "s"); time.sleep(90 * (i + 1))
     sb = [a for a in ig.fetch_accounts()["accounts"] if a["accountType"] == "SPREADBET"]
     if not sb: raise RuntimeError("no SPREADBET account on the demo login")
     try: ig.switch_account(sb[0]["accountId"], True)
@@ -121,8 +127,10 @@ def open_week(ig, dry):
     V = vix_now()
     if not V: log("no VIX -> no trade"); return
     T = 5 / 252; target = S * (1 - V / 100 * math.sqrt(T))
-    puts = [m for m in option_markets(ig) if "PUT" in m.get("instrumentName", "").upper()]
-    # choose the expiry about a week out: the latest expiry within 9 days
+    # Friday weekly series only (OP.D.SPXWEEK.<K>P.IP). Search just the strikes we need (keeps API calls low).
+    k0 = round(target / 50) * 50
+    ks = sorted({k0 - 50, k0, k0 + 50, k0 - WIDTH, k0 - WIDTH - 50, k0 - WIDTH + 50})
+    puts = [m for m in search(ig, [f"Weekly US 500 {int(k)} PUT" for k in ks]) if str(m.get("epic", "")).startswith("OP.D.SPXWEEK.") and "PUT" in m.get("instrumentName", "").upper()]
     def exp_days(m):
         e = str(m.get("expiry") or "")
         for fmt in ("%d-%b-%y", "%d-%b-%Y", "%Y-%m-%d"):
@@ -130,7 +138,8 @@ def open_week(ig, dry):
             except ValueError: pass
         return None
     cands = [(exp_days(m), m) for m in puts]; cands = [(d, m) for d, m in cands if d is not None and 3 <= d <= 9]
-    if not cands: log("no weekly put with 3-9 days to expiry found; run 'scan' and check names/expiries"); return
+    if not cands:
+        log("no Friday weekly put 3-9 days out yet; expiries seen:", sorted({str(m.get('expiry')) for m in puts})); return
     dmax = max(d for d, _ in cands); week = [m for d, m in cands if d == dmax]
     strikes = sorted((strike_of(m["instrumentName"]), m) for m in week if strike_of(m["instrumentName"]))
     if not strikes: log("could not parse strikes from names, e.g.", week[0]["instrumentName"]); return
