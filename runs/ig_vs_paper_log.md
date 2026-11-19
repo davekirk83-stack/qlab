@@ -185,3 +185,32 @@ IG side only (for the record, not scored): ig_demo logged no 17 Nov signals. ig_
 Live fill 04:25 UTC SELL: filled 27255.40 vs IG signal close 27258.30 -> +2.9 pts against us; result -45.9 pts (ig_stop). Within the 10-pt threshold.
 
 Running tally (from 2026-11-05), unchanged pending paper bars for 17 Nov: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/8 by script (1/9 adjusted), mean slippage -0.23 pts over 3 scored fills (0.55 pts over 4 including today's unscored +2.9). Combined 2/23 by script (3/24 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-17 (NY day, catch-up) and 2026-11-18 (NY day) — checked 2026-11-19
+
+Paper bars now run to 2026-11-18 23:55 UTC, so 17 Nov is scored as well.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-17 New York
+  no Ignition signal on either feed — agree
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-17 New York
+  00:00 NY SELL IG only    paper close       nan  IG close   27258.7  ad_tue_wed
+  03:15 NY SELL IG only    paper close       nan  IG close   27194.0  ad_tue_wed
+  17:05 NY BUY  IG only    paper close       nan  IG close   27092.6  ad_tue_wed
+  17:25 NY BUY  IG only    paper close       nan  IG close   27150.6  ad_tue_wed
+  17:40 NY BUY  IG only    paper close       nan  IG close   27327.8  ad_tue_wed
+  agreement: 0/5 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-18 New York
+  no Ignition signal on either feed — agree
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-18 New York
+  00:10 NY BUY  IG only    paper close       nan  IG close   27123.4  ad_tue_wed
+  agreement: 0/1 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+```
+
+17 Nov: ig_demo both 0 / paper-only 0 / IG-only 0. ig_live both 0 / paper-only-while-live 0 / IG-only 5 (all ad_tue_wed skips, none taken). The 04:25 UTC live SELL fill noted on 18 Nov is 23:25 NY on 16 Nov, so it is not in this NY day.
+18 Nov: ig_demo both 0 / paper-only 0 / IG-only 0. ig_live both 0 / paper-only-while-live 0 / IG-only 1 (ad_tue_wed skip). No fills on either runner (no 18 Nov rows in runs/ig_*/trades.csv).
+
+Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/14 by script (1/15 adjusted), mean slippage -0.23 pts over 3 scored fills (0.55 over 4 incl. the unscored 16 Nov 23:25 NY +2.9). Combined 2/29 by script (3/30 adjusted) — still below 50% past the 10-signal mark. Every unmatched signal in these two days is IG-only and was skipped by the ad_tue_wed filter, i.e. the paper feed printed no Ignition signal at all. (Sign convention: positive slippage = against us.)
