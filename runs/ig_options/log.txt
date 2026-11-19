@@ -32,3 +32,4 @@
 2026-11-19 06:53:47Z ON.D.SPCXUSud15000YK4.CASH.IP | Weekly SpaceX (24 Hours) 15000 PUT | 27-NOV-26 | 825.0 / 905.0 | 
 2026-11-19 06:53:47Z ON.D.SPCXUSud15250YK4.CASH.IP | Weekly SpaceX (24 Hours) 15250 PUT | 27-NOV-26 | 935.0 / 1170.0 | 
 2026-11-19 06:53:47Z ON.D.SPCXUSud15500YK4.CASH.IP | Weekly SpaceX (24 Hours) 15500 PUT | 27-NOV-26 | 1160.0 / 1355.0 | 
+2026-11-19 06:54:46Z switch_account: error.switch.accountId-must-be-different
