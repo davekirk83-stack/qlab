@@ -61,8 +61,8 @@
   "instrumentName": "US 500 5000 Put",
   "instrumentType": "OPT_INDICES",
   "expiry": "DEC-26",
-  "bid": 2.05,
-  "offer": 2.85,
+  "bid": 2.06,
+  "offer": 2.86,
   "marketStatus": "TRADEABLE",
   "minDealSize": {
    "unit": "POINTS",
@@ -80,38 +80,38 @@
   "instrumentName": "US 500 5000 Put",
   "instrumentType": "OPT_INDICES",
   "expiry": "MAR-27",
-  "bid": 19.77,
-  "offer": 21.85,
+  "bid": 19.75,
+  "offer": 21.83,
   "marketStatus": "TRADEABLE",
-  "minDealSize": {
-   "unit": "POINTS",
-   "value": 10.0
-  },
-  "lotSize": 1.0,
-  "valueOfOnePip": null,
-  "currencies": [
-   "USD",
-   "GBP"
-  ]
+  "detail_error": ""
  },
  {
   "epic": "OP.D.SPX3.5000P.IP",
   "instrumentName": "US 500 5000 Put",
   "instrumentType": "OPT_INDICES",
   "expiry": "JUN-27",
-  "bid": 39.09,
-  "offer": 42.09,
+  "bid": 39.08,
+  "offer": 42.08,
   "marketStatus": "TRADEABLE",
-  "minDealSize": {
-   "unit": "POINTS",
-   "value": 10.0
-  },
-  "lotSize": 1.0,
-  "valueOfOnePip": null,
-  "currencies": [
-   "USD",
-   "GBP"
-  ]
+  "detail_error": ""
+ },
+ {
+  "epic": "OP.D.RUSWEEK.2500C.IP",
+  "instrumentName": "Weekly US Russell 2000 2500 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 231.12,
+  "offer": 232.32,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.RUSWEEK.2500P.IP",
+  "instrumentName": "Weekly US Russell 2000 2500 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 0.02,
+  "offer": 0.62,
+  "marketStatus": "TRADEABLE"
  },
  {
   "epic": "ON.D.SPCXUSud12700YK4.CASH.IP",
@@ -346,5 +346,1211 @@
   "bid": 1160.0,
   "offer": 1355.0,
   "marketStatus": "EDITS_ONLY"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7300P.IP",
+  "instrumentName": "US 500 (End of Month) 7300 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 57.05,
+  "offer": 58.45,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7300P.IP",
+  "instrumentName": "US 500 (End of Month) 7300 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 133.78,
+  "offer": 134.78,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7300P.IP",
+  "instrumentName": "US 500 7300 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 13.08,
+  "offer": 14.45,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7300P.IP",
+  "instrumentName": "US 500 7300 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 153.9,
+  "offer": 156.1,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7300P.IP",
+  "instrumentName": "US 500 7300 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 111.78,
+  "offer": 113.58,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.7300P.IP",
+  "instrumentName": "US 500 7300 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 230.69,
+  "offer": 233.29,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7300P.IP",
+  "instrumentName": "US 500 7300 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 307.36,
+  "offer": 310.36,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.74.IP",
+  "instrumentName": "Daily US 500 7300.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 8.46,
+  "offer": 8.93,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7300P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7300 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 29.76,
+  "offer": 30.56,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7300P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7300 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 44.68,
+  "offer": 45.48,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7300P.IP",
+  "instrumentName": "Weekly US 500 7300 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 18.52,
+  "offer": 19.32,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7250P.IP",
+  "instrumentName": "US 500 (End of Month) 7250 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 44.64,
+  "offer": 46.04,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7250P.IP",
+  "instrumentName": "US 500 (End of Month) 7250 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 119.66,
+  "offer": 120.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7250P.IP",
+  "instrumentName": "US 500 7250 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 7.22,
+  "offer": 7.97,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7250P.IP",
+  "instrumentName": "US 500 7250 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 139.9,
+  "offer": 142.1,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7250P.IP",
+  "instrumentName": "US 500 7250 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 97.81,
+  "offer": 99.61,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7250P.IP",
+  "instrumentName": "US 500 7250 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 292.74,
+  "offer": 295.74,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7250P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7250 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 32.86,
+  "offer": 33.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.94.IP",
+  "instrumentName": "Daily US 500 7250.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 3.66,
+  "offer": 4.05,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7250P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7250 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 19.85,
+  "offer": 20.65,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7250P.IP",
+  "instrumentName": "Weekly US 500 7250 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 10.91,
+  "offer": 11.71,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7200P.IP",
+  "instrumentName": "US 500 (End of Month) 7200 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 34.94,
+  "offer": 36.34,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7200P.IP",
+  "instrumentName": "US 500 (End of Month) 7200 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 107.15,
+  "offer": 108.15,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7200P.IP",
+  "instrumentName": "US 500 7200 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 4.25,
+  "offer": 4.85,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7200P.IP",
+  "instrumentName": "US 500 7200 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 127.2,
+  "offer": 129.4,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7200P.IP",
+  "instrumentName": "US 500 7200 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 85.79,
+  "offer": 87.59,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.7200P.IP",
+  "instrumentName": "US 500 7200 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 202.97,
+  "offer": 205.57,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7200P.IP",
+  "instrumentName": "US 500 7200 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 278.89,
+  "offer": 281.89,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.114.IP",
+  "instrumentName": "Daily US 500 7200.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 1.63,
+  "offer": 1.98,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7200P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7200 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 13.22,
+  "offer": 14.02,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7200P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7200 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 24.08,
+  "offer": 24.88,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7200P.IP",
+  "instrumentName": "Weekly US 500 7200 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 6.53,
+  "offer": 7.22,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7150P.IP",
+  "instrumentName": "US 500 (End of Month) 7150 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 27.43,
+  "offer": 28.83,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7150P.IP",
+  "instrumentName": "US 500 (End of Month) 7150 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 96.0,
+  "offer": 97.0,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7150P.IP",
+  "instrumentName": "US 500 7150 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 2.76,
+  "offer": 3.36,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7150P.IP",
+  "instrumentName": "US 500 7150 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 115.7,
+  "offer": 117.9,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7150P.IP",
+  "instrumentName": "US 500 7150 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 75.26,
+  "offer": 77.06,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7150P.IP",
+  "instrumentName": "US 500 7150 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 265.58,
+  "offer": 268.58,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7150P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7150 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 17.68,
+  "offer": 18.48,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.134.IP",
+  "instrumentName": "Daily US 500 7150.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 0.75,
+  "offer": 1.07,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7150P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7150 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 8.86,
+  "offer": 9.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7150P.IP",
+  "instrumentName": "Weekly US 500 7150 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 4.12,
+  "offer": 4.55,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7100P.IP",
+  "instrumentName": "US 500 (End of Month) 7100 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 21.55,
+  "offer": 22.95,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7100P.IP",
+  "instrumentName": "US 500 (End of Month) 7100 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 86.16,
+  "offer": 87.16,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7100P.IP",
+  "instrumentName": "US 500 7100 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 1.96,
+  "offer": 2.56,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7100P.IP",
+  "instrumentName": "US 500 7100 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 105.4,
+  "offer": 107.6,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7100P.IP",
+  "instrumentName": "US 500 7100 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 65.98,
+  "offer": 67.78,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.7100P.IP",
+  "instrumentName": "US 500 7100 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 178.65,
+  "offer": 181.25,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7100P.IP",
+  "instrumentName": "US 500 7100 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 253.03,
+  "offer": 256.03,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.154.IP",
+  "instrumentName": "Daily US 500 7100.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 0.35,
+  "offer": 0.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7100P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7100 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 6.1,
+  "offer": 6.74,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7100P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7100 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 13.07,
+  "offer": 13.87,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7100P.IP",
+  "instrumentName": "Weekly US 500 7100 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 2.66,
+  "offer": 3.06,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7050P.IP",
+  "instrumentName": "US 500 (End of Month) 7050 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 17.11,
+  "offer": 18.51,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7050P.IP",
+  "instrumentName": "US 500 (End of Month) 7050 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 77.38,
+  "offer": 78.38,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7050P.IP",
+  "instrumentName": "US 500 7050 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 1.45,
+  "offer": 2.05,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7050P.IP",
+  "instrumentName": "US 500 7050 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 96.1,
+  "offer": 98.3,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7050P.IP",
+  "instrumentName": "US 500 7050 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 58.03,
+  "offer": 59.83,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7050P.IP",
+  "instrumentName": "US 500 7050 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 241.0,
+  "offer": 244.0,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.164.IP",
+  "instrumentName": "Daily US 500 7050.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 0.13,
+  "offer": 0.44,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7050P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7050 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 4.34,
+  "offer": 4.79,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7050P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7050 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 9.79,
+  "offer": 10.59,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7050P.IP",
+  "instrumentName": "Weekly US 500 7050 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 1.79,
+  "offer": 2.19,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.7000P.IP",
+  "instrumentName": "US 500 (End of Month) 7000 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 13.72,
+  "offer": 15.12,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.7000P.IP",
+  "instrumentName": "US 500 (End of Month) 7000 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 69.6,
+  "offer": 70.6,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.7000P.IP",
+  "instrumentName": "US 500 7000 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 1.11,
+  "offer": 1.71,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.7000P.IP",
+  "instrumentName": "US 500 7000 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 87.8,
+  "offer": 90.0,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.7000P.IP",
+  "instrumentName": "US 500 7000 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 51.33,
+  "offer": 53.13,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.7000P.IP",
+  "instrumentName": "US 500 7000 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 157.61,
+  "offer": 160.21,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.7000P.IP",
+  "instrumentName": "US 500 7000 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 229.75,
+  "offer": 232.75,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.174.IP",
+  "instrumentName": "Daily US 500 7000.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 0.03,
+  "offer": 0.33,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7000P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7000 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 3.15,
+  "offer": 3.55,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7000P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7000 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 7.47,
+  "offer": 8.26,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7000P.IP",
+  "instrumentName": "Weekly US 500 7000 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 1.27,
+  "offer": 1.67,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.6950P.IP",
+  "instrumentName": "US 500 (End of Month) 6950 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 11.26,
+  "offer": 12.45,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.6950P.IP",
+  "instrumentName": "US 500 (End of Month) 6950 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 62.67,
+  "offer": 63.67,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.6950P.IP",
+  "instrumentName": "US 500 6950 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 0.85,
+  "offer": 1.45,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.6950P.IP",
+  "instrumentName": "US 500 6950 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 80.3,
+  "offer": 82.5,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.6950P.IP",
+  "instrumentName": "US 500 6950 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 45.28,
+  "offer": 47.08,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.6950P.IP",
+  "instrumentName": "US 500 6950 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 147.91,
+  "offer": 150.51,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.6950P.IP",
+  "instrumentName": "US 500 6950 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 218.81,
+  "offer": 221.81,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.6950P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 6950 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 2.34,
+  "offer": 2.74,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.6950P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 6950 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 5.9,
+  "offer": 6.53,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.6950P.IP",
+  "instrumentName": "Weekly US 500 6950 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 0.94,
+  "offer": 1.34,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.6900P.IP",
+  "instrumentName": "US 500 (End of Month) 6900 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 9.33,
+  "offer": 10.31,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.6900P.IP",
+  "instrumentName": "US 500 (End of Month) 6900 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 56.55,
+  "offer": 57.55,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.6900P.IP",
+  "instrumentName": "US 500 6900 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 0.65,
+  "offer": 1.25,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.6900P.IP",
+  "instrumentName": "US 500 6900 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 73.5,
+  "offer": 75.7,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.6900P.IP",
+  "instrumentName": "US 500 6900 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 40.18,
+  "offer": 41.98,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.6900P.IP",
+  "instrumentName": "US 500 6900 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 139.06,
+  "offer": 141.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.6900P.IP",
+  "instrumentName": "US 500 6900 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 208.47,
+  "offer": 211.47,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "DO.D.DSPX.184.IP",
+  "instrumentName": "Daily US 500 6900.0 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "19-NOV-26",
+  "bid": 0.0,
+  "offer": 0.3,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.6900P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 6900 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 1.79,
+  "offer": 2.19,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.6900P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 6900 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 4.8,
+  "offer": 5.3,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.6900P.IP",
+  "instrumentName": "Weekly US 500 6900 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 0.72,
+  "offer": 1.12,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.6850P.IP",
+  "instrumentName": "US 500 (End of Month) 6850 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 7.9,
+  "offer": 8.73,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.6850P.IP",
+  "instrumentName": "US 500 (End of Month) 6850 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 51.13,
+  "offer": 52.13,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.6850P.IP",
+  "instrumentName": "US 500 6850 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 0.49,
+  "offer": 1.09,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.6850P.IP",
+  "instrumentName": "US 500 6850 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 67.4,
+  "offer": 69.6,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.6850P.IP",
+  "instrumentName": "US 500 6850 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 35.67,
+  "offer": 37.47,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.6850P.IP",
+  "instrumentName": "US 500 6850 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 130.79,
+  "offer": 133.39,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.6850P.IP",
+  "instrumentName": "US 500 6850 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 198.58,
+  "offer": 201.58,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.6850P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 6850 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 3.99,
+  "offer": 4.41,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.6850P.IP",
+  "instrumentName": "Weekly US 500 6850 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 0.56,
+  "offer": 0.96,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.6850P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 6850 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 1.41,
+  "offer": 1.81,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.6800P.IP",
+  "instrumentName": "US 500 (End of Month) 6800 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 6.79,
+  "offer": 7.5,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.6800P.IP",
+  "instrumentName": "US 500 (End of Month) 6800 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 46.26,
+  "offer": 47.26,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.6800P.IP",
+  "instrumentName": "US 500 6800 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 0.36,
+  "offer": 0.96,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.6800P.IP",
+  "instrumentName": "US 500 6800 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 61.9,
+  "offer": 64.1,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.6800P.IP",
+  "instrumentName": "US 500 6800 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 31.86,
+  "offer": 33.66,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.6800P.IP",
+  "instrumentName": "US 500 6800 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 123.02,
+  "offer": 125.62,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.6800P.IP",
+  "instrumentName": "US 500 6800 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 189.24,
+  "offer": 192.24,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.6800P.IP",
+  "instrumentName": "Weekly US 500 (Mon) 6800 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 1.15,
+  "offer": 1.55,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.6800P.IP",
+  "instrumentName": "Weekly US 500 (Wed) 6800 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 3.37,
+  "offer": 3.77,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.6800P.IP",
+  "instrumentName": "Weekly US 500 6800 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 0.44,
+  "offer": 0.84,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEOM.6750P.IP",
+  "instrumentName": "US 500 (End of Month) 6750 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "30-NOV-26",
+  "bid": 5.92,
+  "offer": 6.54,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXEMO.6750P.IP",
+  "instrumentName": "US 500 (End of Month) 6750 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "31-DEC-26",
+  "bid": 42.03,
+  "offer": 43.03,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX1.6750P.IP",
+  "instrumentName": "US 500 6750 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "NOV-26",
+  "bid": 0.27,
+  "offer": 0.87,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX4.6750P.IP",
+  "instrumentName": "US 500 6750 PUT",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JAN-27",
+  "bid": 56.9,
+  "offer": 59.1,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX5.6750P.IP",
+  "instrumentName": "US 500 6750 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "DEC-26",
+  "bid": 28.55,
+  "offer": 30.35,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX2.6750P.IP",
+  "instrumentName": "US 500 6750 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "MAR-27",
+  "bid": 115.89,
+  "offer": 118.49,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPX3.6750P.IP",
+  "instrumentName": "US 500 6750 Put",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "JUN-27",
+  "bid": 180.36,
+  "offer": 183.36,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7300C.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7300 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 124.64,
+  "offer": 125.44,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7300C.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7300 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 140.56,
+  "offer": 141.36,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7300C.IP",
+  "instrumentName": "Weekly US 500 7300 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 112.4,
+  "offer": 113.2,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7250C.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7250 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 164.73,
+  "offer": 165.53,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7250C.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7250 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 178.74,
+  "offer": 179.54,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7250C.IP",
+  "instrumentName": "Weekly US 500 7250 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 154.79,
+  "offer": 155.59,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7200C.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7200 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 208.1,
+  "offer": 208.9,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7200C.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7200 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 219.96,
+  "offer": 220.76,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7200C.IP",
+  "instrumentName": "Weekly US 500 7200 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 200.36,
+  "offer": 201.16,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXMON.7150C.IP",
+  "instrumentName": "Weekly US 500 (Mon) 7150 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "23-NOV-26",
+  "bid": 253.74,
+  "offer": 254.54,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWED.7150C.IP",
+  "instrumentName": "Weekly US 500 (Wed) 7150 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "25-NOV-26",
+  "bid": 263.56,
+  "offer": 264.36,
+  "marketStatus": "TRADEABLE"
+ },
+ {
+  "epic": "OP.D.SPXWEEK.7150C.IP",
+  "instrumentName": "Weekly US 500 7150 CALL",
+  "instrumentType": "OPT_INDICES",
+  "expiry": "20-NOV-26",
+  "bid": 247.83,
+  "offer": 248.63,
+  "marketStatus": "TRADEABLE"
  }
 ]
