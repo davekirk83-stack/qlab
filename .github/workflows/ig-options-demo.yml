@@ -1,0 +1,49 @@
+name: IG options VRP book (doc 245; weekly US 500 put spread; DEMO ONLY)
+on:
+  workflow_dispatch:
+    inputs:
+      job: { description: "scan / open / status", default: "scan" }
+      dry: { description: "dry run (no orders)", default: "true" }
+  schedule:
+    - cron: "50 19 * * 5"   # open: Friday ~1h before the US cash close (target 20:00 UTC in winter; script waits)
+    - cron: "50 18 * * 5"   # summer-time variant
+    - cron: "15 21 * * 1-5" # status after the US close
+permissions:
+  contents: write
+concurrency: { group: ig-options-demo, cancel-in-progress: false }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q trading-ig pandas numpy yfinance
+      - name: Run (demo account only; secrets never printed)
+        env:
+          IG_MODE: demo
+          IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD_DEMO_ACCOUNT }}
+          IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
+        run: |
+          JOB="${{ github.event.inputs.job }}"; DRY="${{ github.event.inputs.dry }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            DRY="false"
+            case "${{ github.event.schedule }}" in
+              "15 21 * * 1-5") JOB=status;;
+              *) JOB=open
+                 WAIT=$(( $(TZ=America/New_York date -d "today 15:00" +%s) - $(date -u +%s) ))
+                 if [ "$WAIT" -gt 3600 ]; then echo "other DST variant — exit"; exit 0; fi
+                 if [ "$WAIT" -lt -1800 ]; then echo "fired too late — exit"; exit 0; fi
+                 if [ "$WAIT" -gt 0 ]; then sleep $WAIT; fi;;
+            esac
+          fi
+          [ "$DRY" = "true" ] && DRYF="--dry" || DRYF=""
+          python src/ig_options_vrp.py "$JOB" $DRYF
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "ig-options"; git config user.email "ig-options@users.noreply.github.com"
+          git add -f runs/ig_options; git commit -m "ig options demo $(date -u +%Y-%m-%dT%H:%M)" || true
+          for i in 1 2 3 4 5 6; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep $((i*7)); done
