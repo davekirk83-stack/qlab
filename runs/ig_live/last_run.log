@@ -1,199 +1,206 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-01:56:38 delta-share threshold 0.0500 (percentile-matched on 4170 IG bars); registered 0.05
-01:56:43 history 300 bars to 2026-11-19 01:56:00+00:00
-01:56:43 ls status: CONNECTING
-01:56:43 stream user KT5F1 endpoint https://apd.marketdatasystems.com
-01:56:43 streaming IX.D.NASDAQ.CASH.IP
-01:56:44 ls status: CONNECTED:WS-STREAMING
-01:56:44 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-01:56:44 CHART IX.D.NASDAQ.CASH.IP subscribed
-01:56:44 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27363.3', 'OFR': '27365.5'}
-01:56:44 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27363.7', 'OFR': '27365.9'}
-01:56:44 stream subscribed on CHART via KT5F1
-01:56:44 trading session on live spread-bet account (id not logged: public repo)
-01:56:44 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27363.6', 'OFR': '27365.8'}
-01:56:44 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-01:56:46 [range] NQ: using the runner's own 300 IG bars
-01:56:46 [range] NQ: cache 71932 bars offset -322.9 to IG level, REST 300 bars to 2026-11-19 01:56:00+00:00
-01:56:46 [range] NQ: containment median 0.860 over 23980 15-min bars
-01:56:55 [range] US500: cache 70734 bars offset -48.0 to IG level, REST 300 bars to 2026-11-19 01:56:00+00:00
-01:56:55 [range] US500: containment median 0.880 over 23588 15-min bars
-01:57:03 [range] GOLD: cache 36432 bars offset -328.4 to IG level, REST 300 bars to 2026-11-19 01:57:00+00:00
-01:57:03 [range] GOLD: containment median 0.900 over 12144 15-min bars
-01:57:11 [range] USDJPY: cache 73266 bars offset +174.0 to IG level, REST 300 bars to 2026-11-19 01:57:00+00:00
-01:57:12 [range] USDJPY: containment median 0.900 over 24425 15-min bars
-01:57:12 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt', 'GOLD': 'CS.D.USCGC.TODAY.IP min 0.01 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.01 GBP/pt'}
-01:57:12 streaming IX.D.SPTRD.DAILY.IP
-01:57:12 streaming CS.D.USCGC.TODAY.IP
-01:57:12 streaming CS.D.USDJPY.TODAY.IP
-01:57:12 [spike] markets: ['NQ', 'US500']
-01:57:12 [wvb] markets: ['NQ', 'US500', 'USDJPY', 'GOLD']
-01:57:12 book 13 rehearsal: book equity £471.88 (risk x1.0), news events loaded 0
-01:57:12 MARKET CS.D.USCGC.TODAY.IP subscription error 21 Invalid group
-01:57:12 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-01:57:12 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
-01:57:12 CHART CS.D.USCGC.TODAY.IP subscribed
-01:57:12 CHART IX.D.SPTRD.DAILY.IP subscribed
-01:57:12 CHART CS.D.USDJPY.TODAY.IP subscribed
-02:00:00 [range] NQ 01:45 c 27364.0 ema 27268.6 band 27085.2-27451.9 atr 91.7 regime off L 0 S 0 orders 0
-02:00:01 bar 01:55 o 27364.4 h 27395.1 l 27363.4 c 27379.9 ticks 2164 delta -25
-02:00:01 [range] US500 01:45 c 7360.2 ema 7353.1 band 7322.8-7383.3 atr 15.1 regime off L 0 S 0 orders 0
-02:00:02 [range] GOLD 01:45 c 3753.5 ema 3753.0 band 3728.8-3777.3 atr 12.1 regime off L 0 S 0 orders 0
-02:00:03 [range] USDJPY 01:45 c 15942.1 ema 15937.1 band 15923.6-15950.5 atr 6.7 regime ON L 0 S 0 orders 0
-02:05:00 bar 02:00 o 27379.7 h 27379.7 l 27334.3 c 27345.3 ticks 3529 delta -141
-02:10:00 bar 02:05 o 27344.9 h 27375.7 l 27326.1 c 27331.1 ticks 3423 delta -77
-02:15:00 [range] NQ 02:00 c 27410.1 ema 27282.0 band 27095.5-27468.6 atr 93.3 regime off L 0 S 0 orders 0
-02:15:01 bar 02:10 o 27330.8 h 27413.3 l 27326.1 c 27410.1 ticks 3336 delta +40
-02:15:01 [range] GOLD 02:00 c 3751.3 ema 3752.9 band 3733.3-3772.4 atr 9.8 regime off L 0 S 0 orders 0
-02:15:02 [range] USDJPY 02:00 c 15939.1 ema 15937.3 band 15923.4-15951.1 atr 6.9 regime ON L 0 S 0 orders 0
-02:15:03 [range] US500 02:00 c 7367.5 ema 7354.4 band 7328.2-7380.7 atr 13.1 regime off L 0 S 0 orders 0
-02:20:00 bar 02:15 o 27409.4 h 27427.4 l 27385.6 c 27421.6 ticks 3478 delta -50
-02:25:00 bar 02:20 o 27421.2 h 27424.4 l 27377.2 c 27404.2 ticks 3399 delta -185
-02:30:00 [range] GOLD 02:15 c 3745.9 ema 3752.2 band 3732.3-3772.1 atr 10.0 regime off L 0 S 0 orders 0
-02:30:01 [range] NQ 02:15 c 27376.5 ema 27291.0 band 27109.0-27473.0 atr 91.0 regime off L 0 S 0 orders 0
-02:30:02 bar 02:25 o 27404.7 h 27411.4 l 27372.5 c 27376.5 ticks 3382 delta -158
-02:30:02 [range] US500 02:15 c 7362.6 ema 7355.2 band 7329.0-7381.4 atr 13.1 regime off L 0 S 0 orders 0
-02:30:03 [range] USDJPY 02:15 c 15942.8 ema 15937.8 band 15923.6-15951.9 atr 7.1 regime ON L 0 S 0 orders 0
-02:35:00 bar 02:30 o 27376.3 h 27378.3 l 27342.3 c 27348.6 ticks 3388 delta -54
-02:40:00 bar 02:35 o 27350.4 h 27359.1 l 27328.4 c 27334.3 ticks 2776 delta -84
-02:45:00 [range] US500 02:30 c 7356.9 ema 7355.4 band 7330.4-7380.4 atr 12.5 regime off L 0 S 0 orders 0
-02:45:01 [range] GOLD 02:30 c 3733.6 ema 3750.4 band 3729.9-3771.0 atr 10.3 regime off L 0 S 0 orders 0
-02:45:02 [range] NQ 02:30 c 27323.3 ema 27294.1 band 27112.1-27476.1 atr 91.0 regime off L 0 S 0 orders 0
-02:45:03 bar 02:40 o 27334.4 h 27345.5 l 27317.0 c 27323.3 ticks 2919 delta -117
-02:45:03 [range] USDJPY 02:30 c 15941.1 ema 15938.1 band 15923.8-15952.4 atr 7.1 regime ON L 0 S 0 orders 0
-02:50:00 bar 02:45 o 27322.3 h 27360.2 l 27319.4 c 27346.8 ticks 3017 delta -63
-02:55:00 bar 02:50 o 27346.7 h 27379.8 l 27337.9 c 27377.0 ticks 2965 delta +95
-03:00:00 [range] NQ 02:45 c 27339.6 ema 27298.4 band 27116.7-27480.2 atr 90.9 regime off L 0 S 0 orders 0
-03:00:01 bar 02:55 o 27376.9 h 27381.3 l 27325.0 c 27339.6 ticks 3215 delta -145
-03:00:01 [range] US500 02:45 c 7360.8 ema 7355.9 band 7331.3-7380.5 atr 12.3 regime off L 0 S 0 orders 0
-03:00:02 [range] GOLD 02:45 c 3709.4 ema 3746.5 band 3722.1-3770.9 atr 12.2 regime off L 0 S 0 orders 0
-03:00:03 [range] USDJPY 02:45 c 15953.3 ema 15939.5 band 15924.1-15955.0 atr 7.7 regime ON L 0 S 0 orders 0
-03:05:00 bar 03:00 o 27339.5 h 27352.8 l 27307.1 c 27314.0 ticks 3301 delta -169
-03:10:00 bar 03:05 o 27314.1 h 27322.2 l 27261.2 c 27263.5 ticks 3039 delta -109
-03:15:00 [range] GOLD 03:00 c 3700.0 ema 3742.1 band 3715.7-3768.5 atr 13.2 regime off L 0 S 0 orders 0
-03:15:01 [range] USDJPY 03:00 c 15948.1 ema 15940.4 band 15924.2-15956.5 atr 8.1 regime ON L 0 S 0 orders 0
-03:15:02 [range] NQ 03:00 c 27244.8 ema 27293.3 band 27097.1-27489.6 atr 98.1 regime off L 0 S 0 orders 0
-03:15:03 bar 03:10 o 27263.1 h 27276.8 l 27236.5 c 27244.8 ticks 2962 delta -54
-03:15:03 [range] US500 03:00 c 7345.4 ema 7354.9 band 7329.1-7380.6 atr 12.9 regime off L 0 S 0 orders 0
-03:20:00 bar 03:15 o 27244.7 h 27246.9 l 27220.4 c 27241.8 ticks 2763 delta +61
-03:25:00 bar 03:20 o 27241.5 h 27285.4 l 27232.2 c 27267.6 ticks 2971 delta -61
-03:30:00 [range] NQ 03:15 c 27289.1 ema 27292.9 band 27129.9-27456.0 atr 81.5 regime off L 0 S 0 orders 0
-03:30:01 bar 03:25 o 27267.5 h 27297.7 l 27259.9 c 27289.1 ticks 2944 delta +46
-03:30:01 [range] GOLD 03:15 c 3714.0 ema 3739.4 band 3710.9-3767.9 atr 14.2 regime off L 0 S 0 orders 0
-03:30:02 [range] USDJPY 03:15 c 15951.6 ema 15941.4 band 15924.5-15958.3 atr 8.4 regime ON L 0 S 0 orders 0
-03:30:03 [range] US500 03:15 c 7348.8 ema 7354.3 band 7327.7-7381.0 atr 13.3 regime off L 0 S 0 orders 0
-03:35:00 bar 03:30 o 27288.9 h 27344.0 l 27271.0 c 27335.3 ticks 3133 delta -3
-03:40:00 bar 03:35 o 27335.4 h 27345.1 l 27303.9 c 27319.8 ticks 2969 delta -213
-03:45:00 [range] GOLD 03:30 c 3708.6 ema 3736.5 band 3709.3-3763.6 atr 13.6 regime off L 0 S 0 orders 0
-03:45:01 [range] NQ 03:30 c 27347.2 ema 27298.1 band 27130.3-27465.9 atr 83.9 regime off L 0 S 0 orders 0
-03:45:02 bar 03:40 o 27319.7 h 27359.6 l 27313.8 c 27347.2 ticks 2675 delta +13
-03:45:02 [range] US500 03:30 c 7359.3 ema 7354.8 band 7330.7-7378.9 atr 12.0 regime off L 0 S 0 orders 0
-03:45:06 [range] USDJPY 03:30 c 15956.5 ema 15942.9 band 15926.3-15959.4 atr 8.3 regime ON L 0 S 0 orders 0
-03:50:00 bar 03:45 o 27347.3 h 27405.8 l 27341.7 c 27391.0 ticks 2841 delta +31
-03:55:00 bar 03:50 o 27390.9 h 27401.0 l 27372.6 c 27399.9 ticks 2675 delta -85
-04:00:00 [range] NQ 03:45 c 27423.2 ema 27310.0 band 27136.8-27483.2 atr 86.6 regime off L 0 S 0 orders 0
-04:00:01 bar 03:55 o 27399.7 h 27442.3 l 27394.9 c 27423.2 ticks 2550 delta -66
-04:00:01 [range] US500 03:45 c 7371.1 ema 7356.3 band 7331.5-7381.2 atr 12.4 regime off L 0 S 0 orders 0
-04:00:02 [range] GOLD 03:45 c 3720.4 ema 3734.9 band 3706.9-3763.0 atr 14.0 regime off L 0 S 0 orders 0
-04:00:03 [range] USDJPY 03:45 c 15959.2 ema 15944.4 band 15927.9-15960.9 atr 8.3 regime ON L 0 S 0 orders 0
-04:05:00 bar 04:00 o 27422.9 h 27456.3 l 27422.9 c 27455.3 ticks 2560 delta -2
-04:10:00 bar 04:05 o 27455.2 h 27479.1 l 27449.8 c 27452.8 ticks 2565 delta -121
-04:15:00 [range] NQ 04:00 c 27441.3 ema 27322.5 band 27158.2-27486.9 atr 82.2 regime off L 0 S 0 orders 0
-04:15:01 bar 04:10 o 27452.7 h 27460.0 l 27420.8 c 27441.3 ticks 2785 delta -105
-04:15:01 [range] GOLD 04:00 c 3727.7 ema 3734.2 band 3707.1-3761.4 atr 13.6 regime off L 0 S 0 orders 0
-04:15:02 [range] USDJPY 04:00 c 15959.3 ema 15945.8 band 15929.8-15961.8 atr 8.0 regime ON L 0 S 0 orders 0
-04:15:03 [range] US500 04:00 c 7372.5 ema 7357.9 band 7334.3-7381.5 atr 11.8 regime off L 0 S 0 orders 0
-04:20:00 bar 04:15 o 27441.4 h 27441.4 l 27393.8 c 27414.3 ticks 2650 delta -152
-04:25:00 bar 04:20 o 27414.7 h 27438.7 l 27409.0 c 27416.3 ticks 2769 delta -93
-04:30:00 [range] GOLD 04:15 c 3725.8 ema 3733.4 band 3706.6-3760.2 atr 13.4 regime off L 0 S 0 orders 0
-04:30:01 [range] US500 04:15 c 7367.3 ema 7358.8 band 7335.1-7382.4 atr 11.8 regime off L 0 S 0 orders 0
-04:30:02 [range] NQ 04:15 c 27404.0 ema 27330.3 band 27164.5-27496.0 atr 82.9 regime off L 0 S 0 orders 0
-04:30:03 bar 04:25 o 27418.5 h 27419.3 l 27396.0 c 27404.0 ticks 2163 delta -83
-04:30:03 [range] USDJPY 04:15 c 15956.5 ema 15946.9 band 15931.2-15962.5 atr 7.8 regime ON L 0 S 0 orders 0
-04:35:00 bar 04:30 o 27401.6 h 27425.7 l 27391.9 c 27394.5 ticks 2616 delta -152
-04:40:00 bar 04:35 o 27394.4 h 27397.7 l 27377.7 c 27389.9 ticks 2309 delta -73
-04:45:00 [range] US500 04:30 c 7365.8 ema 7359.4 band 7335.8-7383.1 atr 11.8 regime off L 0 S 0 orders 0
-04:45:01 [range] NQ 04:30 c 27372.7 ema 27334.3 band 27170.2-27498.4 atr 82.1 regime off L 0 S 0 orders 0
-04:45:02 bar 04:40 o 27390.4 h 27395.6 l 27371.9 c 27372.7 ticks 2198 delta -76
-04:45:02 [range] USDJPY 04:30 c 15955.5 ema 15947.7 band 15932.8-15962.6 atr 7.4 regime ON L 0 S 0 orders 0
-04:45:03 [range] GOLD 04:30 c 3723.8 ema 3732.5 band 3706.6-3758.5 atr 13.0 regime off L 0 S 0 orders 0
-04:50:00 bar 04:45 o 27373.6 h 27390.5 l 27367.5 c 27377.0 ticks 2495 delta -39
-04:55:00 bar 04:50 o 27376.9 h 27392.2 l 27345.7 c 27386.4 ticks 2545 delta -11
-05:00:00 [range] NQ 04:45 c 27377.5 ema 27338.4 band 27189.0-27487.8 atr 74.7 regime off L 0 S 0 orders 0
-05:00:01 bar 04:55 o 27386.3 h 27394.6 l 27366.7 c 27377.5 ticks 2296 delta -48
-05:00:01 [range] GOLD 04:45 c 3724.7 ema 3731.8 band 3706.6-3757.0 atr 12.6 regime off L 0 S 0 orders 0
-05:00:02 [range] USDJPY 04:45 c 15957.8 ema 15948.6 band 15935.5-15961.8 atr 6.6 regime ON L 0 S 0 orders 0
-05:00:03 [range] US500 04:45 c 7365.1 ema 7360.0 band 7338.3-7381.7 atr 10.9 regime off L 0 S 0 orders 0
-05:05:00 bar 05:00 o 27377.7 h 27380.2 l 27356.8 c 27369.8 ticks 2883 delta -137
-05:10:00 bar 05:05 o 27369.4 h 27411.3 l 27365.4 c 27398.2 ticks 2750 delta -68
-05:15:00 [range] NQ 05:00 c 27366.5 ema 27341.1 band 27197.3-27484.9 atr 71.9 regime off L 0 S 0 orders 0
-05:15:01 bar 05:10 o 27398.3 h 27401.8 l 27362.6 c 27366.5 ticks 2636 delta -154
-05:15:01 [range] GOLD 05:00 c 3729.1 ema 3731.5 band 3706.9-3756.1 atr 12.3 regime off L 0 S 0 orders 0
-05:15:02 [range] USDJPY 05:00 c 15955.8 ema 15949.3 band 15936.6-15962.0 atr 6.4 regime ON L 0 S 0 orders 0
-05:15:03 [range] US500 05:00 c 7364.7 ema 7360.4 band 7339.4-7381.5 atr 10.5 regime off L 0 S 0 orders 0
-05:20:00 bar 05:15 o 27366.1 h 27386.3 l 27362.3 c 27368.3 ticks 2757 delta -83
-05:25:00 bar 05:20 o 27368.2 h 27386.5 l 27360.3 c 27383.5 ticks 2598 delta -16
-05:30:00 [range] NQ 05:15 c 27402.7 ema 27347.0 band 27209.0-27484.9 atr 69.0 regime off L 0 S 0 orders 0
-05:30:01 bar 05:25 o 27383.6 h 27414.7 l 27377.7 c 27402.7 ticks 2911 delta -85
-05:30:01 [range] GOLD 05:15 c 3734.2 ema 3731.8 band 3707.0-3756.6 atr 12.4 regime off L 0 S 0 orders 0
-05:30:02 [range] US500 05:15 c 7369.2 ema 7361.3 band 7340.8-7381.7 atr 10.2 regime off L 0 S 0 orders 0
-05:30:03 [range] USDJPY 05:15 c 15956.3 ema 15950.0 band 15938.1-15961.9 atr 5.9 regime ON L 0 S 0 orders 0
-05:35:00 bar 05:30 o 27402.9 h 27416.2 l 27387.8 c 27396.0 ticks 2882 delta -154
-05:40:00 bar 05:35 o 27395.9 h 27425.3 l 27389.4 c 27395.3 ticks 2677 delta -79
-05:45:00 [range] NQ 05:30 c 27413.8 ema 27353.3 band 27222.5-27484.2 atr 65.4 regime off L 0 S 0 orders 0
-05:45:01 bar 05:40 o 27395.2 h 27418.7 l 27391.9 c 27413.8 ticks 2484 delta -64
-05:45:01 [range] GOLD 05:30 c 3739.6 ema 3732.5 band 3707.0-3758.0 atr 12.7 regime off L 0 S 0 orders 0
-05:45:02 [range] US500 05:30 c 7371.4 ema 7362.2 band 7342.8-7381.6 atr 9.7 regime off L 0 S 0 orders 0
-05:45:03 [range] USDJPY 05:30 c 15954.0 ema 15950.4 band 15939.2-15961.6 atr 5.6 regime ON L 0 S 0 orders 0
-05:50:00 bar 05:45 o 27413.7 h 27424.3 l 27373.0 c 27374.8 ticks 2435 delta -185
-05:55:00 bar 05:50 o 27374.9 h 27408.1 l 27366.2 c 27393.6 ticks 2465 delta -47
-06:00:00 [range] NQ 05:45 c 27424.8 ema 27360.1 band 27228.5-27491.8 atr 65.8 regime off L 0 S 0 orders 0
-06:00:01 bar 05:55 o 27393.7 h 27426.7 l 27391.9 c 27424.8 ticks 2221 delta -71
-06:00:01 [range] GOLD 05:45 c 3740.4 ema 3733.3 band 3707.4-3759.1 atr 12.9 regime off L 0 S 0 orders 0
-06:00:02 [range] USDJPY 05:45 c 15954.7 ema 15950.8 band 15939.8-15961.8 atr 5.5 regime ON L 0 S 0 orders 0
-06:00:03 [range] US500 05:45 c 7371.6 ema 7363.1 band 7343.6-7382.6 atr 9.8 regime off L 0 S 0 orders 0
-06:05:00 bar 06:00 o 27424.5 h 27477.8 l 27419.5 c 27459.4 ticks 2697 delta -29
-06:10:00 bar 06:05 o 27458.4 h 27458.6 l 27438.5 c 27445.8 ticks 2153 delta -81
-06:15:00 [range] NQ 06:00 c 27461.6 ema 27369.8 band 27238.6-27501.0 atr 65.6 regime off L 0 S 0 orders 0
-06:15:01 bar 06:10 o 27446.0 h 27466.2 l 27421.4 c 27461.6 ticks 2419 delta +3
-06:15:01 [range] GOLD 06:00 c 3739.2 ema 3733.8 band 3708.4-3759.3 atr 12.7 regime off L 0 S 0 orders 0
-06:15:02 [range] US500 06:00 c 7378.0 ema 7364.5 band 7344.7-7384.3 atr 9.9 regime off L 0 S 0 orders 0
-06:15:03 [range] USDJPY 06:00 c 15952.9 ema 15951.0 band 15939.6-15962.3 atr 5.7 regime ON L 0 S 0 orders 0
-06:20:00 bar 06:15 o 27461.4 h 27491.8 l 27452.9 c 27491.5 ticks 2429 delta -11
-06:25:00 bar 06:20 o 27491.2 h 27502.1 l 27478.8 c 27479.8 ticks 2076 delta -64
-06:30:00 [range] NQ 06:15 c 27479.6 ema 27380.3 band 27250.9-27509.7 atr 64.7 regime off L 0 S 0 orders 0
-06:30:01 bar 06:25 o 27479.6 h 27486.6 l 27472.5 c 27479.6 ticks 2078 delta -14
-06:30:01 [range] US500 06:15 c 7381.4 ema 7366.1 band 7346.5-7385.8 atr 9.8 regime off L 0 S 0 orders 0
-06:30:02 [range] USDJPY 06:15 c 15950.6 ema 15950.9 band 15940.8-15961.1 atr 5.1 regime ON L 0 S 0 orders 0
-06:30:03 [range] GOLD 06:15 c 3735.7 ema 3734.0 band 3712.0-3756.0 atr 11.0 regime off L 0 S 0 orders 0
-06:35:00 bar 06:30 o 27480.0 h 27551.8 l 27475.1 c 27546.6 ticks 2994 delta +10
-06:40:00 bar 06:35 o 27546.8 h 27552.3 l 27506.9 c 27522.7 ticks 2703 delta -185
-06:45:00 [range] NQ 06:30 c 27548.0 ema 27396.2 band 27272.4-27520.0 atr 61.9 regime off L 0 S 0 orders 0
-06:45:01 bar 06:40 o 27522.9 h 27549.8 l 27522.7 c 27548.0 ticks 2634 delta -6
-06:45:01 [range] GOLD 06:30 c 3733.1 ema 3733.9 band 3713.9-3753.9 atr 10.0 regime off L 0 S 0 orders 0
-06:45:02 [range] USDJPY 06:30 c 15950.8 ema 15950.9 band 15941.7-15960.2 atr 4.6 regime ON L 0 S 0 orders 0
-06:45:03 [range] US500 06:30 c 7389.5 ema 7368.4 band 7350.0-7386.7 atr 9.2 regime off L 0 S 0 orders 0
-06:50:00 bar 06:45 o 27547.6 h 27561.1 l 27537.2 c 27537.4 ticks 2535 delta -133
-06:55:00 bar 06:50 o 27538.0 h 27572.0 l 27523.5 c 27568.4 ticks 2727 delta -89
-07:00:00 [range] GOLD 06:45 c 3732.9 ema 3733.8 band 3715.1-3752.6 atr 9.4 regime off L 0 S 0 orders 0
-07:00:01 [range] NQ 06:45 c 27613.0 ema 27416.9 band 27291.2-27542.6 atr 62.9 regime off L 0 S 0 orders 0
-07:00:02 bar 06:55 o 27568.5 h 27614.1 l 27552.1 c 27613.0 ticks 2610 delta +16
-07:00:02 [range] USDJPY 06:45 c 15959.3 ema 15951.7 band 15942.1-15961.4 atr 4.8 regime ON L 0 S 0 orders 0
-07:00:03 [range] US500 06:45 c 7398.7 ema 7371.3 band 7352.2-7390.3 atr 9.5 regime off L 0 S 0 orders 0
-07:05:00 bar 07:00 o 27612.9 h 27658.1 l 27611.1 c 27648.5 ticks 3197 delta -73
-07:10:00 bar 07:05 o 27648.7 h 27658.1 l 27607.8 c 27609.4 ticks 2903 delta -153
-07:15:00 [range] GOLD 07:00 c 3734.1 ema 3733.9 band 3715.0-3752.7 atr 9.4 regime off L 0 S 0 orders 0
-07:15:01 [range] NQ 07:00 c 27586.3 ema 27433.0 band 27306.5-27559.5 atr 63.2 regime off L 0 S 0 orders 0
-07:15:02 bar 07:10 o 27610.6 h 27630.2 l 27564.1 c 27586.3 ticks 3047 delta -61
-07:15:02 [range] USDJPY 07:00 c 15959.5 ema 15952.5 band 15942.3-15962.7 atr 5.1 regime ON L 0 S 0 orders 0
-07:15:03 [range] US500 07:00 c 7398.2 ema 7373.8 band 7355.2-7392.4 atr 9.3 regime off L 0 S 0 orders 0
-07:20:00 bar 07:15 o 27587.2 h 27613.2 l 27580.5 c 27582.5 ticks 2925 delta +17
-07:25:00 bar 07:20 o 27582.4 h 27635.0 l 27582.4 c 27632.6 ticks 2661 delta +15
-07:30:00 [range] NQ 07:15 c 27611.3 ema 27450.0 band 27330.0-27570.0 atr 60.0 regime off L 0 S 0 orders 0
-07:30:01 bar 07:25 o 27632.7 h 27635.4 l 27602.5 c 27611.3 ticks 2400 delta -128
-07:30:01 [range] GOLD 07:15 c 3734.7 ema 3733.9 band 3716.2-3751.7 atr 8.9 regime off L 0 S 0 orders 0
-07:30:02 [range] USDJPY 07:15 c 15968.0 ema 15953.9 band 15942.8-15965.1 atr 5.6 regime ON L 0 S 0 orders 0
-07:30:03 [range] US500 07:15 c 7401.9 ema 7376.5 band 7358.9-7394.1 atr 8.8 regime off L 0 S 0 orders 0
-07:35:00 bar 07:30 o 27611.2 h 27617.4 l 27584.3 c 27599.5 ticks 2575 delta -117
-07:36:38 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-07:36:38 done; ticks 385713 bars 367
+07:37:48 delta-share threshold 0.0500 (percentile-matched on 4510 IG bars); registered 0.05
+07:37:53 history 300 bars to 2026-11-19 07:37:00+00:00
+07:37:53 ls status: CONNECTING
+07:37:53 stream user KT5F1 endpoint https://apd.marketdatasystems.com
+07:37:53 streaming IX.D.NASDAQ.CASH.IP
+07:37:54 ls status: CONNECTED:WS-STREAMING
+07:37:54 CHART IX.D.NASDAQ.CASH.IP subscribed
+07:37:54 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+07:37:54 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27595', 'OFR': '27597.2'}
+07:37:54 stream subscribed on CHART via KT5F1
+07:37:54 trading session on live spread-bet account (id not logged: public repo)
+07:37:55 LIVE account (hidden), IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+07:37:55 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27594.8', 'OFR': '27597'}
+07:37:55 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '27594.2', 'OFR': '27596.4'}
+07:37:57 [range] NQ: using the runner's own 300 IG bars
+07:37:57 [range] NQ: cache 71932 bars offset -110.7 to IG level, REST 300 bars to 2026-11-19 07:37:00+00:00
+07:37:57 [range] NQ: containment median 0.860 over 23980 15-min bars
+07:38:05 [range] US500: cache 70734 bars offset -12.6 to IG level, REST 300 bars to 2026-11-19 07:38:00+00:00
+07:38:05 [range] US500: containment median 0.880 over 23588 15-min bars
+07:38:14 [range] GOLD: cache 36432 bars offset -356.1 to IG level, REST 300 bars to 2026-11-19 07:38:00+00:00
+07:38:14 [range] GOLD: containment median 0.900 over 12144 15-min bars
+07:38:23 [range] USDJPY: cache 73266 bars offset +166.5 to IG level, REST 300 bars to 2026-11-19 07:38:00+00:00
+07:38:23 [range] USDJPY: containment median 0.900 over 24425 15-min bars
+07:38:23 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.01 GBP/pt', 'GOLD': 'CS.D.USCGC.TODAY.IP min 0.01 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.01 GBP/pt'}
+07:38:23 streaming IX.D.SPTRD.DAILY.IP
+07:38:23 streaming CS.D.USCGC.TODAY.IP
+07:38:23 streaming CS.D.USDJPY.TODAY.IP
+07:38:23 [spike] markets: ['NQ', 'US500']
+07:38:23 [wvb] markets: ['NQ', 'US500', 'USDJPY', 'GOLD']
+07:38:23 book 13 rehearsal: book equity £471.88 (risk x1.0), news events loaded 0
+07:38:23 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+07:38:23 MARKET CS.D.USCGC.TODAY.IP subscription error 21 Invalid group
+07:38:23 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
+07:38:23 CHART IX.D.SPTRD.DAILY.IP subscribed
+07:38:23 CHART CS.D.USCGC.TODAY.IP subscribed
+07:38:23 CHART CS.D.USDJPY.TODAY.IP subscribed
+07:40:00 bar 07:35 o 27596.1 h 27598.4 l 27587.8 c 27593.1 ticks 915 delta -64
+07:45:00 [range] GOLD 07:30 c 3733.5 ema 3733.7 band 3716.1-3751.3 atr 8.8 regime off L 0 S 0 orders 0
+07:45:01 [range] NQ 07:30 c 27586.4 ema 27463.2 band 27345.6-27580.8 atr 58.8 regime off L 0 S 0 orders 0
+07:45:02 bar 07:40 o 27593.5 h 27603.8 l 27575.6 c 27586.4 ticks 2346 delta -82
+07:45:02 [range] US500 07:30 c 7398.4 ema 7378.7 band 7361.4-7395.9 atr 8.6 regime off L 0 S 0 orders 0
+07:45:03 [range] USDJPY 07:30 c 15972.1 ema 15955.5 band 15943.6-15967.5 atr 6.0 regime ON L 0 S 0 orders 0
+07:50:00 bar 07:45 o 27585.7 h 27605.5 l 27574.0 c 27594.3 ticks 2071 delta +23
+07:55:00 bar 07:50 o 27594.5 h 27596.0 l 27558.9 c 27581.0 ticks 2035 delta -71
+08:00:00 [range] NQ 07:45 c 27616.8 ema 27477.8 band 27358.3-27597.3 atr 59.7 regime off L 0 S 0 orders 0
+08:00:01 bar 07:55 o 27580.8 h 27619.6 l 27580.7 c 27616.8 ticks 2342 delta +110
+08:00:01 [range] GOLD 07:45 c 3737.3 ema 3734.1 band 3716.0-3752.1 atr 9.0 regime off L 0 S 0 orders 0
+08:00:02 [range] USDJPY 07:45 c 15969.9 ema 15956.9 band 15944.8-15969.1 atr 6.1 regime off L 0 S 0 orders 0
+08:00:04 [range] US500 07:45 c 7404.1 ema 7381.1 band 7363.3-7398.9 atr 8.9 regime off L 0 S 0 orders 0
+08:05:00 [wvb] GOLD session open 3737.3, previous range 27.6: BUY STOP 3745.6 / SELL STOP 3729.1, stop distance 16.5, 0.12/pt
+08:05:02 [wvb] USDJPY session open 15970.2, previous range 26.4: BUY STOP 15983.4 / SELL STOP 15957.0, stop distance 26.4, 0.03/pt
+08:05:03 bar 08:00 o 27615.9 h 27629.8 l 27582.3 c 27587.3 ticks 3031 delta -247
+08:10:00 bar 08:05 o 27586.5 h 27602.3 l 27567.1 c 27580.1 ticks 2818 delta -102
+08:15:00 [range] NQ 08:00 c 27616.1 ema 27491.0 band 27370.2-27611.7 atr 60.4 regime off L 0 S 0 orders 0
+08:15:01 bar 08:10 o 27581.2 h 27616.2 l 27575.7 c 27616.1 ticks 2709 delta -69
+08:15:01 [range] GOLD 08:00 c 3740.3 ema 3734.7 band 3716.2-3753.1 atr 9.2 regime off L 0 S 0 orders 0
+08:15:02 [range] USDJPY 08:00 c 15979.2 ema 15959.0 band 15945.8-15972.3 atr 6.6 regime off L 0 S 0 orders 0
+08:15:04 [range] US500 08:00 c 7401.3 ema 7383.0 band 7364.4-7401.6 atr 9.3 regime off L 0 S 0 orders 0
+08:20:00 bar 08:15 o 27616.0 h 27636.8 l 27613.8 c 27619.8 ticks 2664 delta -148
+08:25:00 bar 08:20 o 27619.7 h 27627.9 l 27602.4 c 27606.6 ticks 2107 delta -185
+08:30:00 [range] NQ 08:15 c 27616.6 ema 27502.9 band 27382.6-27623.3 atr 60.2 regime off L 0 S 0 orders 0
+08:30:01 bar 08:25 o 27606.5 h 27616.6 l 27590.8 c 27616.6 ticks 2345 delta +29
+08:30:01 [range] GOLD 08:15 c 3735.5 ema 3734.7 band 3715.8-3753.6 atr 9.4 regime off L 0 S 0 orders 0
+08:30:02 [range] USDJPY 08:15 c 15977.7 ema 15960.8 band 15947.2-15974.5 atr 6.8 regime off L 0 S 0 orders 0
+08:30:04 [range] US500 08:15 c 7401.3 ema 7384.7 band 7365.8-7403.7 atr 9.5 regime off L 0 S 0 orders 0
+08:35:00 bar 08:30 o 27616.5 h 27637.7 l 27608.8 c 27627.2 ticks 2393 delta -51
+08:40:00 bar 08:35 o 27627.0 h 27651.1 l 27625.8 c 27634.7 ticks 2299 delta +1
+08:45:00 [range] NQ 08:30 c 27605.0 ema 27512.7 band 27392.2-27633.1 atr 60.2 regime off L 0 S 0 orders 0
+08:45:01 bar 08:40 o 27634.5 h 27644.2 l 27595.8 c 27605.0 ticks 2241 delta -151
+08:45:01 [range] GOLD 08:30 c 3732.2 ema 3734.5 band 3716.7-3752.3 atr 8.9 regime off L 0 S 0 orders 0
+08:45:02 [range] US500 08:30 c 7399.1 ema 7386.1 band 7367.3-7405.0 atr 9.4 regime off L 0 S 0 orders 0
+08:45:03 [range] USDJPY 08:30 c 15977.4 ema 15962.4 band 15949.1-15975.7 atr 6.7 regime off L 0 S 0 orders 0
+08:50:00 bar 08:45 o 27605.1 h 27605.1 l 27584.7 c 27594.3 ticks 2177 delta +33
+08:55:00 bar 08:50 o 27594.4 h 27622.4 l 27587.1 c 27621.2 ticks 2106 delta +34
+09:00:00 [range] GOLD 08:45 c 3736.7 ema 3734.7 band 3716.8-3752.6 atr 8.9 regime off L 0 S 0 orders 0
+09:00:01 [range] NQ 08:45 c 27625.5 ema 27523.4 band 27403.7-27643.1 atr 59.8 regime off L 0 S 0 orders 0
+09:00:02 bar 08:55 o 27621.1 h 27633.7 l 27611.9 c 27625.5 ticks 2603 delta -127
+09:00:03 [range] USDJPY 08:45 c 15975.8 ema 15963.7 band 15950.1-15977.3 atr 6.8 regime off L 0 S 0 orders 0
+09:00:04 [range] US500 08:45 c 7403.3 ema 7387.8 band 7368.8-7406.7 atr 9.5 regime off L 0 S 0 orders 0
+09:05:00 bar 09:00 o 27624.5 h 27636.9 l 27602.0 c 27627.2 ticks 3125 delta -49
+09:10:00 [wvb] USDJPY FILLED BUY 0.03/pt at 15983.4
+09:10:00 [wvb] USDJPY cancelled the SELL stop order
+09:10:01 bar 09:05 o 27627.1 h 27635.6 l 27609.4 c 27616.1 ticks 2922 delta -34
+09:15:00 [range] GOLD 09:00 c 3733.5 ema 3734.6 band 3717.7-3751.5 atr 8.5 regime off L 0 S 0 orders 0
+09:15:01 [range] NQ 09:00 c 27597.8 ema 27530.5 band 27409.5-27651.5 atr 60.5 regime off L 0 S 0 orders 0
+09:15:02 bar 09:10 o 27617.0 h 27618.1 l 27590.2 c 27597.8 ticks 2850 delta -32
+09:15:03 [range] USDJPY 09:00 c 15983.9 ema 15965.6 band 15951.1-15980.1 atr 7.2 regime off L 0 S 0 orders 0
+09:15:04 [range] US500 09:00 c 7396.6 ema 7388.6 band 7369.2-7408.0 atr 9.7 regime off L 0 S 0 orders 0
+09:20:00 bar 09:15 o 27597.5 h 27607.9 l 27585.1 c 27603.1 ticks 2754 delta -2
+09:25:00 [wvb] GOLD FILLED SELL 0.12/pt at 3729.03
+09:25:00 [wvb] GOLD cancelled the BUY stop order
+09:25:00 bar 09:20 o 27603.3 h 27611.2 l 27578.5 c 27581.1 ticks 2842 delta -110
+09:30:00 [range] NQ 09:15 c 27546.4 ema 27532.0 band 27409.9-27654.1 atr 61.0 regime off L 0 S 0 orders 0
+09:30:01 bar 09:25 o 27581.2 h 27584.7 l 27542.9 c 27546.4 ticks 3074 delta -114
+09:30:01 [range] GOLD 09:15 c 3727.3 ema 3733.9 band 3717.0-3750.8 atr 8.4 regime off L 0 S 0 orders 0
+09:30:02 [range] US500 09:15 c 7386.8 ema 7388.4 band 7368.8-7408.1 atr 9.8 regime off L 0 S 0 orders 0
+09:30:03 [range] USDJPY 09:15 c 15984.7 ema 15967.4 band 15953.0-15981.8 atr 7.2 regime off L 0 S 0 orders 0
+09:35:00 bar 09:30 o 27546.2 h 27588.8 l 27543.2 c 27585.3 ticks 2931 delta +87
+09:40:00 bar 09:35 o 27584.9 h 27611.9 l 27580.5 c 27610.2 ticks 3056 delta +34
+09:45:00 [range] NQ 09:30 c 27617.2 ema 27540.1 band 27413.1-27667.1 atr 63.5 regime off L 0 S 0 orders 0
+09:45:01 bar 09:40 o 27610.1 h 27635.6 l 27608.8 c 27617.2 ticks 3058 delta -62
+09:45:01 [range] GOLD 09:30 c 3731.3 ema 3733.7 band 3716.8-3750.5 atr 8.4 regime off L 0 S 0 orders 0
+09:45:02 [range] US500 09:30 c 7398.5 ema 7389.4 band 7368.6-7410.2 atr 10.4 regime off L 0 S 0 orders 0
+09:45:03 [range] USDJPY 09:30 c 15982.7 ema 15968.9 band 15954.8-15982.9 atr 7.0 regime off L 0 S 0 orders 0
+09:50:00 bar 09:45 o 27617.1 h 27645.7 l 27615.5 c 27632.4 ticks 2756 delta -8
+09:55:00 bar 09:50 o 27632.7 h 27650.5 l 27626.6 c 27628.8 ticks 2196 delta -76
+10:00:00 [range] GOLD 09:45 c 3726.0 ema 3732.9 band 3716.1-3749.8 atr 8.4 regime off L 0 S 0 orders 0
+10:00:01 [range] USDJPY 09:45 c 15988.8 ema 15970.8 band 15956.6-15985.0 atr 7.1 regime off L 0 S 0 orders 0
+10:00:02 [range] NQ 09:45 c 27607.7 ema 27546.6 band 27419.8-27673.3 atr 63.4 regime off L 0 S 0 orders 0
+10:00:03 bar 09:55 o 27628.4 h 27631.8 l 27603.1 c 27607.7 ticks 2252 delta -58
+10:00:03 [range] US500 09:45 c 7396.7 ema 7390.1 band 7369.2-7411.0 atr 10.4 regime off L 0 S 0 orders 0
+10:05:00 bar 10:00 o 27607.6 h 27634.7 l 27592.6 c 27634.4 ticks 2487 delta +57
+10:10:00 bar 10:05 o 27634.0 h 27655.3 l 27623.5 c 27638.5 ticks 2496 delta -30
+10:15:00 [range] NQ 10:00 c 27624.7 ema 27554.0 band 27429.4-27678.6 atr 62.3 regime off L 0 S 0 orders 0
+10:15:01 bar 10:10 o 27638.6 h 27639.5 l 27613.9 c 27624.7 ticks 2209 delta -113
+10:15:01 [range] GOLD 10:00 c 3729.7 ema 3732.6 band 3716.2-3749.1 atr 8.2 regime off L 0 S 0 orders 0
+10:15:02 [range] US500 10:00 c 7400.0 ema 7391.0 band 7370.1-7412.0 atr 10.5 regime off L 0 S 0 orders 0
+10:15:03 [range] USDJPY 10:00 c 15987.1 ema 15972.3 band 15957.9-15986.7 atr 7.2 regime off L 0 S 0 orders 0
+10:20:00 bar 10:15 o 27624.6 h 27668.9 l 27621.4 c 27668.9 ticks 2321 delta +47
+10:25:00 bar 10:20 o 27669.1 h 27690.4 l 27653.3 c 27676.4 ticks 2720 delta +4
+10:30:00 [range] NQ 10:15 c 27666.1 ema 27564.7 band 27443.1-27686.2 atr 60.8 regime off L 0 S 0 orders 0
+10:30:01 bar 10:25 o 27676.1 h 27682.3 l 27655.0 c 27666.1 ticks 2196 delta -96
+10:30:01 [range] GOLD 10:15 c 3727.8 ema 3732.2 band 3715.9-3748.5 atr 8.2 regime off L 0 S 0 orders 0
+10:30:02 [range] USDJPY 10:15 c 15992.5 ema 15974.2 band 15960.0-15988.5 atr 7.1 regime off L 0 S 0 orders 0
+10:30:03 [range] US500 10:15 c 7405.3 ema 7392.4 band 7372.1-7412.7 atr 10.2 regime off L 0 S 0 orders 0
+10:35:00 bar 10:30 o 27666.3 h 27672.5 l 27654.7 c 27663.6 ticks 2180 delta -46
+10:40:00 bar 10:35 o 27664.5 h 27673.4 l 27653.5 c 27655.9 ticks 2056 delta -86
+10:45:00 [range] GOLD 10:30 c 3735.3 ema 3732.5 band 3715.9-3749.0 atr 8.3 regime off L 0 S 0 orders 0
+10:45:01 [range] NQ 10:30 c 27661.6 ema 27573.9 band 27461.6-27686.2 atr 56.2 regime off L 0 S 0 orders 0
+10:45:02 bar 10:40 o 27655.8 h 27665.3 l 27644.1 c 27661.6 ticks 1798 delta +2
+10:45:02 [range] US500 10:30 c 7406.7 ema 7393.8 band 7374.5-7413.0 atr 9.6 regime off L 0 S 0 orders 0
+10:45:03 [range] USDJPY 10:30 c 15989.5 ema 15975.7 band 15961.9-15989.5 atr 6.9 regime off L 0 S 0 orders 0
+10:50:00 bar 10:45 o 27659.2 h 27702.8 l 27657.8 c 27692.5 ticks 2252 delta -36
+10:55:00 bar 10:50 o 27692.3 h 27707.5 l 27683.9 c 27695.8 ticks 2851 delta -69
+11:00:00 [range] NQ 10:45 c 27675.1 ema 27583.5 band 27472.0-27695.1 atr 55.8 regime off L 0 S 0 orders 0
+11:00:01 bar 10:55 o 27696.0 h 27705.1 l 27671.8 c 27675.1 ticks 2373 delta -111
+11:00:01 [range] GOLD 10:45 c 3735.5 ema 3732.7 band 3716.7-3748.8 atr 8.0 regime off L 0 S 0 orders 0
+11:00:03 [range] US500 10:45 c 7408.9 ema 7395.2 band 7375.9-7414.5 atr 9.7 regime off L 0 S 0 orders 0
+11:00:04 [range] USDJPY 10:45 c 15993.0 ema 15977.3 band 15964.4-15990.3 atr 6.5 regime off L 0 S 0 orders 0
+11:05:00 bar 11:00 o 27675.7 h 27693.1 l 27674.9 c 27690.5 ticks 2228 delta -74
+11:10:00 bar 11:05 o 27690.8 h 27707.3 l 27681.1 c 27701.0 ticks 2541 delta -55
+11:15:00 [range] NQ 11:00 c 27702.9 ema 27594.9 band 27484.7-27705.1 atr 55.1 regime off L 0 S 0 orders 0
+11:15:01 bar 11:10 o 27700.9 h 27706.0 l 27688.8 c 27702.9 ticks 2599 delta -95
+11:15:01 [range] US500 11:00 c 7412.4 ema 7396.8 band 7377.7-7416.0 atr 9.6 regime off L 0 S 0 orders 0
+11:15:02 [range] GOLD 11:00 c 3728.2 ema 3732.3 band 3715.8-3748.8 atr 8.3 regime off L 0 S 0 orders 0
+11:15:03 [range] USDJPY 11:00 c 15992.6 ema 15978.8 band 15966.6-15991.0 atr 6.1 regime off L 0 S 0 orders 0
+11:20:00 bar 11:15 o 27703.1 h 27703.6 l 27665.6 c 27669.8 ticks 2373 delta -111
+11:25:00 bar 11:20 o 27669.6 h 27678.6 l 27661.9 c 27670.1 ticks 2242 delta -48
+11:30:00 [range] NQ 11:15 c 27692.7 ema 27604.2 band 27496.7-27711.7 atr 53.8 regime off L 0 S 0 orders 0
+11:30:01 bar 11:25 o 27670.3 h 27701.0 l 27663.9 c 27692.7 ticks 2599 delta -49
+11:30:01 [range] GOLD 11:15 c 3729.5 ema 3732.0 band 3716.0-3748.1 atr 8.0 regime off L 0 S 0 orders 0
+11:30:02 [range] USDJPY 11:15 c 15990.6 ema 15979.9 band 15968.1-15991.8 atr 5.9 regime off L 0 S 0 orders 0
+11:30:04 [range] US500 11:15 c 7413.0 ema 7398.4 band 7379.5-7417.3 atr 9.4 regime off L 0 S 0 orders 0
+11:35:00 bar 11:30 o 27692.6 h 27731.8 l 27691.8 c 27727.5 ticks 3103 delta -77
+11:40:00 bar 11:35 o 27727.8 h 27739.6 l 27716.4 c 27716.9 ticks 2678 delta -70
+11:45:00 [range] NQ 11:30 c 27727.7 ema 27616.0 band 27510.6-27721.4 atr 52.7 regime off L 0 S 0 orders 0
+11:45:01 bar 11:40 o 27716.8 h 27733.8 l 27704.9 c 27727.7 ticks 2814 delta -86
+11:45:01 [range] GOLD 11:30 c 3725.8 ema 3731.4 band 3715.5-3747.4 atr 8.0 regime off L 0 S 0 orders 0
+11:45:02 [range] USDJPY 11:30 c 15988.3 ema 15980.7 band 15969.3-15992.1 atr 5.7 regime off L 0 S 0 orders 0
+11:45:04 [range] US500 11:30 c 7415.4 ema 7400.0 band 7382.0-7418.0 atr 9.0 regime off L 0 S 0 orders 0
+11:50:00 bar 11:45 o 27727.8 h 27746.5 l 27721.9 c 27732.9 ticks 2205 delta -63
+11:55:00 bar 11:50 o 27733.1 h 27745.3 l 27714.0 c 27719.5 ticks 2243 delta -31
+12:00:00 [range] NQ 11:45 c 27702.7 ema 27624.2 band 27518.6-27729.9 atr 52.8 regime off L 0 S 0 orders 0
+12:00:01 bar 11:55 o 27720.3 h 27743.3 l 27698.5 c 27702.7 ticks 2453 delta -89
+12:00:01 [range] US500 11:45 c 7411.8 ema 7401.1 band 7383.0-7419.3 atr 9.1 regime off L 0 S 0 orders 0
+12:00:02 [range] GOLD 11:45 c 3718.8 ema 3730.2 band 3714.4-3746.1 atr 7.9 regime ON L 0 S 0 orders 0
+12:00:04 [range] USDJPY 11:45 c 15990.2 ema 15981.6 band 15970.4-15992.8 atr 5.6 regime off L 0 S 0 orders 0
+12:05:00 bar 12:00 o 27702.6 h 27710.1 l 27680.8 c 27692.3 ticks 2854 delta -78
+12:10:00 bar 12:05 o 27692.4 h 27708.2 l 27683.7 c 27686.9 ticks 2637 delta -17
+12:15:00 [range] NQ 12:00 c 27674.2 ema 27629.0 band 27525.3-27732.7 atr 51.8 regime off L 0 S 0 orders 0
+12:15:01 bar 12:10 o 27687.5 h 27690.9 l 27668.9 c 27674.2 ticks 2976 delta -62
+12:15:01 [range] GOLD 12:00 c 3716.1 ema 3728.9 band 3713.2-3744.6 atr 7.9 regime ON L 0 S 0 orders 0
+12:15:02 [range] USDJPY 12:00 c 15996.6 ema 15983.0 band 15971.5-15994.6 atr 5.8 regime off L 0 S 0 orders 0
+12:15:04 [range] US500 12:00 c 7407.6 ema 7401.7 band 7383.5-7420.0 atr 9.1 regime off L 0 S 0 orders 0
+12:20:00 bar 12:15 o 27674.1 h 27674.4 l 27650.3 c 27657.2 ticks 2925 delta -109
+12:25:00 bar 12:20 o 27656.7 h 27659.0 l 27639.7 c 27648.4 ticks 2692 delta -10
+12:30:00 [range] NQ 12:15 c 27668.5 ema 27632.8 band 27527.0-27738.5 atr 52.9 regime off L 0 S 0 orders 0
+12:30:01 bar 12:25 o 27648.5 h 27673.6 l 27610.9 c 27668.5 ticks 2811 delta +137
+12:30:01 [range] GOLD 12:15 c 3719.1 ema 3728.0 band 3712.7-3743.3 atr 7.7 regime ON L 0 S 0 orders 0
+12:30:02 [range] US500 12:15 c 7407.7 ema 7402.3 band 7383.7-7420.9 atr 9.3 regime off L 0 S 0 orders 0
+12:30:04 [range] USDJPY 12:15 c 15994.8 ema 15984.2 band 15972.7-15995.7 atr 5.8 regime off L 0 S 0 orders 0
+12:35:00 bar 12:30 o 27669.0 h 27673.0 l 27642.1 c 27643.9 ticks 2542 delta -66
+12:40:00 bar 12:35 o 27643.7 h 27660.1 l 27639.6 c 27656.6 ticks 2479 delta -21
+12:45:00 [range] NQ 12:30 c 27648.3 ema 27634.2 band 27530.2-27738.3 atr 52.0 regime off L 0 S 0 orders 0
+12:45:01 bar 12:40 o 27656.4 h 27661.3 l 27638.1 c 27648.3 ticks 2261 delta -125
+12:45:01 [range] GOLD 12:30 c 3713.4 ema 3726.6 band 3711.3-3741.9 atr 7.7 regime ON L 0 S 0 orders 0
+12:45:02 [range] US500 12:30 c 7407.4 ema 7402.8 band 7384.7-7420.8 atr 9.0 regime off L 0 S 0 orders 0
+12:45:03 [range] USDJPY 12:30 c 15993.8 ema 15985.1 band 15974.5-15995.7 atr 5.3 regime off L 0 S 0 orders 0
+12:50:00 bar 12:45 o 27648.1 h 27675.1 l 27642.7 c 27657.8 ticks 2218 delta +6
+12:55:00 bar 12:50 o 27657.5 h 27670.6 l 27639.8 c 27655.0 ticks 2322 delta -94
+13:00:00 [range] GOLD 12:45 c 3720.0 ema 3726.0 band 3710.8-3741.1 atr 7.6 regime ON L 0 S 0 orders 0
+13:00:01 [range] USDJPY 12:45 c 15992.6 ema 15985.8 band 15975.3-15996.3 atr 5.2 regime off L 0 S 0 orders 0
+13:00:03 [range] NQ 12:45 c 27661.8 ema 27636.9 band 27537.5-27736.2 atr 49.7 regime off L 0 S 0 orders 0
+13:00:03 bar 12:55 o 27656.5 h 27668.1 l 27643.7 c 27661.8 ticks 2177 delta -15
+13:00:04 [range] US500 12:45 c 7409.1 ema 7403.4 band 7385.8-7421.0 atr 8.8 regime off L 0 S 0 orders 0
+13:05:00 bar 13:00 o 27661.5 h 27678.6 l 27639.3 c 27668.0 ticks 2881 delta -85
+13:10:00 bar 13:05 o 27667.9 h 27719.2 l 27667.7 c 27719.2 ticks 2730 delta +198
+13:15:00 [range] NQ 13:00 c 27703.9 ema 27643.2 band 27545.1-27741.4 atr 49.1 regime off L 0 S 0 orders 0
+13:15:01 bar 13:10 o 27719.7 h 27723.2 l 27691.1 c 27703.9 ticks 2492 delta -2
+13:15:01 [range] GOLD 13:00 c 3718.4 ema 3725.2 band 3709.9-3740.5 atr 7.7 regime ON L 0 S 0 orders 0
+13:15:03 [range] USDJPY 13:00 c 15995.2 ema 15986.7 band 15976.0-15997.4 atr 5.4 regime off L 0 S 0 orders 0
+13:15:04 [range] US500 13:00 c 7413.4 ema 7404.3 band 7387.6-7421.1 atr 8.4 regime off L 0 S 0 orders 0
+13:17:48 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+13:17:48 done; ticks 334959 bars 367
+13:17:48 ls status: DISCONNECTED
