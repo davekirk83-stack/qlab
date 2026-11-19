@@ -6,12 +6,15 @@ import os, json, pandas as pd
 ROOT = os.environ.get("QLAB_ROOT", "/home/claude/qlab")
 BEFORE, AFTER = pd.Timedelta(minutes=30), pd.Timedelta(minutes=60)
 def _events():
-    try: return json.load(open(f"{ROOT}/runs/event_blackouts.json"))["fomc"]
+    """FOMC statements (2pm NY) and, from 19 Nov 2026, CPI releases (8:30am NY) — DK 10 Nov: "avoid holding positions during a CPI
+    announcement"; 19 Nov: "Should we be trading on CPI days - think I already suggested not to"."""
+    try: j = json.load(open(f"{ROOT}/runs/event_blackouts.json"))
     except Exception: return []
+    return [d + " 14:00" for d in j.get("fomc", [])] + [d + " 08:30" for d in j.get("cpi", [])]
 def windows():
     out = []
     for d in _events():
-        t = pd.Timestamp(d + " 14:00", tz="America/New_York").tz_convert("UTC")
+        t = pd.Timestamp(d, tz="America/New_York").tz_convert("UTC")
         out.append((t - BEFORE, t + AFTER))
     return out
 def in_blackout(ts, lead=pd.Timedelta(0)):

@@ -60,8 +60,16 @@ class WVBEngine:
         self.sync(name, c)
         self.save()
 
+    def cpi_day(self, day):
+        try: return day in json.load(open(os.path.join(os.environ.get("QLAB_ROOT", "."), "runs/event_blackouts.json"))).get("cpi", [])
+        except Exception: return False
+
     def place(self, name, ts):
-        st = self.st[name]; mk = self.eng.mkt[name]; R = self.prev_range(name, st["day"])
+        st = self.st[name]; mk = self.eng.mkt[name]
+        # DK 10 Nov: "avoid holding positions during a CPI announcement"; 19 Nov: "Should we be trading on CPI days - think I already
+        # suggested not to". Williams on CPI days, Nov 25-Nov 26: NQ -0.23R (n8), US500 -0.06R, USDJPY -0.02R vs +0.04 to +0.10 normally.
+        if self.cpi_day(st["day"]): log(name, "CPI day — no bracket today"); st["done"] = True; return
+        R = self.prev_range(name, st["day"])
         if not R or R <= 0: log(name, "no previous session range — no bracket today"); st["done"] = True; return
         if self.beq and not self.beq.day_ok(): log(name, "book day stop — no bracket today"); st["done"] = True; return
         o = st["open"]; a = KM.get(name, K) * R; up, dn, dist = o + a, o - a, 2 * a
