@@ -1,0 +1,2 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-19', exit_px=0.00524477, exit_reason='target', ret=0.037745, pnl=6.24 WHERE sym='ZORAUSD' AND opened='2026-11-08' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-19',1909.85,6,0,0,0,0,'0 signals, 0 taken, 0 dropped, 1 closed, 6 open');
