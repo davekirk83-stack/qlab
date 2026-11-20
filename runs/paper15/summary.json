@@ -1,6 +1,6 @@
 {
  "start": "2026-11-10",
- "asof": "2026-11-20 07:29:00+00:00",
+ "asof": "2026-11-20 17:02:00+00:00",
  "books": {
   "BTCUSDT": {
    "role": "main",
@@ -9,21 +9,11 @@
     "ema": 50,
     "slope": 6
    },
-   "closed": 0,
-   "open": [
-    {
-     "signal": "2026-11-19 16:00:00+00:00",
-     "filled": "2026-11-19 17:00:00+00:00",
-     "side": -1,
-     "entry": 63366.01,
-     "stop": 64131.8753,
-     "target": 61068.4141,
-     "status": "open"
-    }
-   ],
-   "total_R": 0,
-   "win_rate": null,
-   "pool": 500.0
+   "closed": 1,
+   "open": [],
+   "total_R": 2.97,
+   "win_rate": 100.0,
+   "pool": 514.84
   },
   "ETHUSDT": {
    "role": "shadow",
@@ -32,21 +22,11 @@
     "ema": 30,
     "slope": 6
    },
-   "closed": 0,
-   "open": [
-    {
-     "signal": "2026-11-19 16:00:00+00:00",
-     "filled": "2026-11-19 17:00:00+00:00",
-     "side": -1,
-     "entry": 1788.54,
-     "stop": 1818.9528,
-     "target": 1666.8889,
-     "status": "open"
-    }
-   ],
-   "total_R": 0,
-   "win_rate": null,
-   "pool": 500.0
+   "closed": 1,
+   "open": [],
+   "total_R": 3.98,
+   "win_rate": 100.0,
+   "pool": 519.88
   },
   "SOLUSDT": {
    "role": "shadow",
