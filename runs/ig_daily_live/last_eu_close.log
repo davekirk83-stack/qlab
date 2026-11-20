@@ -1,10 +1,5 @@
-16:10:00 job eu_close; daily sub-book £500.00, open positions 5
-16:10:01 switch_account: error.switch.accountId-must-be-different
-16:10:02 TPS book £-37.06 (realised +0.00, open -37.06); stop at -£22
-16:10:02 TPS STOP: £-37.06 <= -£22 — closing every TPS position; no new ladders until DK restarts TPS
-16:10:02 CLOSE TPS US500 TPS book stop: 0.01/pt 7397.7 -> 7296.1 = £-1.02 (book £498.98)
-16:10:03 CLOSE TPS WALLST TPS book stop: 0.01/pt 51272.1 -> 49656.4 = £-16.16 (book £482.82)
-16:10:03 CLOSE TPS US500 TPS book stop: 0.02/pt 7349.42 -> 7296.0 = £-1.07 (book £481.75)
-16:10:03 CLOSE TPS WALLST TPS book stop: 0.02/pt 50596.0 -> 49656.2 = £-18.80 (book £462.95)
-16:10:03 pot £444.56 (start £500, all books -54.96); entries OFF: books (ex TPS) down £25.58 today (-4%): no new entries today
-16:10:05 done; book £462.95, open [('RSI4L', 'US500', 0.02)]
+16:10:01 job eu_close; daily sub-book £462.95, open positions 1
+16:10:02 switch_account: error.switch.accountId-must-be-different
+16:10:04 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£20 — STOPPED
+16:10:04 pot £396.10 (start £500, all books -103.39); entries OFF: books (ex TPS) down £103.39 since start (-20% of £499): back to paper
+16:10:04 done; book £462.95, open [('RSI4L', 'US500', 0.02)]

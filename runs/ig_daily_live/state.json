@@ -46,22 +46,23 @@
   "eu_close:2026-11-19",
   "us_close:2026-11-19",
   "eu_open:2026-11-20",
-  "us_open:2026-11-20"
+  "us_open:2026-11-20",
+  "eu_close:2026-11-20"
  ],
  "day": "2026-11-20",
  "day_eq": 462.95,
- "entries_ok": true,
- "stop_why": "",
+ "entries_ok": false,
+ "stop_why": "books (ex TPS) down \u00a3103.39 since start (-20% of \u00a3499): back to paper",
  "pot": {
   "acc_start": 493.68,
   "start_date": "2026-11-10",
   "day": "2026-11-20",
   "acc_day": 423.73,
   "cash_day": -0.51,
-  "acc": 420.09,
+  "acc": 389.78000000000003,
   "cash": -0.51
  },
- "pot_now": 426.40999999999997,
+ "pot_now": 396.1,
  "tps": {
   "open": 0,
   "day": "2026-11-20",
