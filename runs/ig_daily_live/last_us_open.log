@@ -1,12 +1,10 @@
-14:35:00 job us_open; daily sub-book £500.00, open positions 5
-14:35:01 switch_account: error.switch.accountId-must-be-different
-14:35:02 TPS book £-11.84 (realised +0.00, open -11.84); stop at -£23
-14:35:02 pot £468.07 (start £500, all books -31.45); entries on
-14:35:02 REGIME: US 500 7323.6 below its 200-day 7346.6 — no new dip-book entries today
-14:35:03 US500: final close 2026-11-18 7323.6 RSI2 4.5 RSI4 21.4 5d 7447.0 200d 7346.6 ATR 117.4 | IG open 7408.5
-14:35:03 SKIP TPS US500: exposure cap 5x (whole account)
-14:35:03 NQ: final close 2026-11-18 27116.3 RSI2 29.7 RSI4 32.3 5d 27509.6 200d 28062.8 ATR 708.7 | IG open 27709.5
-14:35:04 WALLST: final close 2026-11-18 50198.2 RSI2 2.0 RSI4 14.9 5d 51442.1 200d 50782.2 ATR 739.3 | IG open 50394.9
-14:35:04 SKIP TPS WALLST: exposure cap 5x (whole account)
-14:35:04 GOLD: final close 2026-11-18 3741.9 RSI2 4.3 RSI4 11.6 5d 3846.1 200d 4457.9 ATR 94.7 | IG open 3714.8
-14:35:04 done; book £500.00, open [('RSI4L', 'US500', 0.02), ('TPS', 'US500', 0.01), ('TPS', 'WALLST', 0.01), ('TPS', 'US500', 0.02), ('TPS', 'WALLST', 0.02)]
+14:35:01 job us_open; daily sub-book £462.95, open positions 1
+14:35:02 switch_account: error.switch.accountId-must-be-different
+14:35:03 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£21 — STOPPED
+14:35:03 pot £426.41 (start £500, all books -73.08); entries on
+14:35:04 REGIME: US 500 7175.8 below its 200-day 7348.0 — no new dip-book entries today
+14:35:04 US500: final close 2026-11-19 7175.8 RSI2 1.2 RSI4 12.4 5d 7363.6 200d 7348.0 ATR 123.5 | IG open 7145.3
+14:35:04 NQ: final close 2026-11-19 26517.1 RSI2 8.5 RSI4 20.6 5d 27155.2 200d 28070.9 ATR 723.7 | IG open 26127.1
+14:35:05 WALLST: final close 2026-11-19 49097.1 RSI2 0.7 RSI4 8.9 5d 50802.1 200d 50780.2 ATR 786.5 | IG open 49222.5
+14:35:05 GOLD: final close 2026-11-19 3685.5 RSI2 2.4 RSI4 8.8 5d 3806.2 200d 4451.6 ATR 95.3 | IG open 3572.2
+14:35:05 done; book £462.95, open [('RSI4L', 'US500', 0.02)]
