@@ -214,3 +214,32 @@ IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-18 New York
 18 Nov: ig_demo both 0 / paper-only 0 / IG-only 0. ig_live both 0 / paper-only-while-live 0 / IG-only 1 (ad_tue_wed skip). No fills on either runner (no 18 Nov rows in runs/ig_*/trades.csv).
 
 Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 0/14 by script (1/15 adjusted), mean slippage -0.23 pts over 3 scored fills (0.55 over 4 incl. the unscored 16 Nov 23:25 NY +2.9). Combined 2/29 by script (3/30 adjusted) — still below 50% past the 10-signal mark. Every unmatched signal in these two days is IG-only and was skipped by the ad_tue_wed filter, i.e. the paper feed printed no Ignition signal at all. (Sign convention: positive slippage = against us.)
+
+## 2026-11-19 (NY day) — checked 2026-11-20
+
+Paper bars run to 2026-11-19 23:55 UTC.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-19 New York
+  11:50 NY SELL paper only paper close   27051.5  IG close       nan  IG runner not running then (coverage, not a feed difference)
+  agreement: 0/0 signals on both feeds while the IG runner was live (1 paper signals fell outside its sessions)
+  paper trade 11:50 NY side -1: +268.8 pts (be)
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-19 New York
+  08:05 NY BUY  IG only    paper close       nan  IG close   27719.2  ad_no_coil
+  10:30 NY SELL IG only    paper close       nan  IG close   27145.0  ad_no_regime
+  11:50 NY SELL both       paper close   27051.5  IG close   27050.5  ad_no_coil
+  18:20 NY SELL IG only    paper close       nan  IG close   26428.0  ad_no_coil
+  agreement: 1/4 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+  paper trade 11:50 NY side -1: +268.8 pts (be)
+```
+
+Day: ig_demo both 0 / paper-only-while-live 0 / IG-only 0 (runner down — see below). ig_live both 1 / paper-only-while-live 0 / IG-only 3 (all filter skips, none taken). No Ignition fills on either runner (no 19 Nov rows in runs/ig_*/trades.csv), so no slippage today.
+
+Flag — taken-trade disagreement: the 11:50 NY (16:50 UTC) SELL printed on both feeds (closes 1 pt apart) and paper took it for +268.8 pts, but ig_live skipped it on the ad_no_coil filter. Feeds agree; the live add-on filter is what dropped a paper-taken winner.
+
+Flag — demo runner down: no ig_demo commit since 2026-11-16 21:59 UTC (4e27a5e) and no demo bars after 16 Nov. runs/ig_demo/last_error.txt holds a traceback ending `error.public-api.exceeded-account-historical-data-allowance`. The 17/18 Nov demo "no signal on either feed — agree" lines above therefore reflect no demo coverage, not agreement.
+
+Side note (not Ignition): ig_live spike engine SELL NQ 17:00 UTC, 26712.3 -> 26941.1, -228.8 pts (-£13.73), ig_stop_or_limit.
+
+Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/18 by script (2/19 adjusted), mean slippage -0.23 pts over 3 scored fills. Combined 3/33 by script (4/34 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
