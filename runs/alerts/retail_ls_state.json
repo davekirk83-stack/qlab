@@ -4,9 +4,9 @@
  "fired": false,
  "armed": true,
  "max_7d": 3.56,
- "last_ratio": 2.97,
- "last_ratio_ts": 1795201200000,
- "last_btc": 58732.41,
- "updated": "2026-11-20T19:41Z",
+ "last_ratio": 2.49,
+ "last_ratio_ts": 1795244400000,
+ "last_btc": 58240.76,
+ "updated": "2026-11-21T07:42Z",
  "notes": "armed=true once ratio>2.6; fire (a) ratio<2.0 while armed, or (b) ratio<=0.65*max_7d; 24h cooldown"
 }
