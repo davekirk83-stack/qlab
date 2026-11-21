@@ -243,3 +243,24 @@ Flag — demo runner down: no ig_demo commit since 2026-11-16 21:59 UTC (4e27a5e
 Side note (not Ignition): ig_live spike engine SELL NQ 17:00 UTC, 26712.3 -> 26941.1, -228.8 pts (-£13.73), ig_stop_or_limit.
 
 Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/18 by script (2/19 adjusted), mean slippage -0.23 pts over 3 scored fills. Combined 3/33 by script (4/34 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-20 (NY day) — checked 2026-11-21 09:05 UTC
+
+Paper bars still end 2026-11-19 23:55 UTC: the Saturday paper run had not pushed by 09:03 UTC (waited 10 min and pulled again, as specified). The comparison could not be run yet.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-20 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-20 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+
+IG side only (from runs/ig_live/signals.csv and trades.csv), not compared with paper:
+- ig_live printed 5 Ignition signals: 07:15 UTC SELL taken, 07:55 UTC SELL taken, 10:45 SELL ad_no_regime, 17:00 SELL ad_no_coil, 20:50 SELL ad_no_coil.
+- Live fills: 07:15 SELL signal close 26244.3, fill 26236.9 → slippage +7.4 pts, exit ig_limit +46.5 pts. 07:55 SELL signal close 26307.3, fill 26304.4 → slippage +2.9 pts, exit ig_stop −65.7 pts. Neither more than 10 pts worse.
+- ig_demo: still no commit since 2026-11-16 21:59 UTC; last_error.txt still ends `error.public-api.exceeded-account-historical-data-allowance`.
+
+Day tally: pending (paper feed missing) — to be scored by the next run, or by rerunning `python src/ig_vs_paper.py 2026-11-20 ig_live` once the paper bars land.
+
+Running tally (from 2026-11-05), agreement unchanged pending 20 Nov: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/18 by script (2/19 adjusted), mean slippage +1.91 pts over 5 scored fills (+2.07 over all 6 incl. 17 Nov 04:25 UTC). Combined 3/33 by script (4/34 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
