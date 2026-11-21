@@ -1,0 +1,7 @@
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=0.00416917, exit_reason='time', ret=-0.251646, pnl=-42.29 WHERE sym='ALTUSD' AND opened='2026-11-05' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=0.31268741, exit_reason='stop', ret=-0.292544, pnl=-49.17 WHERE sym='RLCUSD' AND opened='2026-11-05' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=0.07846498, exit_reason='stop', ret=-0.20614, pnl=-34.05 WHERE sym='ARKMUSD' AND opened='2026-11-08' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=1.05013671, exit_reason='stop', ret=-0.224001, pnl=-37.0 WHERE sym='ORCAUSD' AND opened='2026-11-08' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=7.222e-05, exit_reason='stop', ret=-0.202365, pnl=-32.92 WHERE sym='TOSHIUSD' AND opened='2026-11-09' AND status='open';
+UPDATE pb_positions SET status='closed', closed='2026-11-21', exit_px=0.6651793, exit_reason='stop', ret=-0.199896, pnl=-32.54 WHERE sym='DOTUSD' AND opened='2026-11-11' AND status='open';
+INSERT OR REPLACE INTO pb_equity (d,equity,open_pos,gate,signals_seen,taken,dropped,note) VALUES ('2026-11-21',1681.87,0,0,0,0,0,'0 signals, 0 taken, 0 dropped, 6 closed, 0 open');
