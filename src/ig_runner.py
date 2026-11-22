@@ -236,7 +236,14 @@ class Runner:
         nyt = P7.ny(ts); mins = nyt.hour*60 + nyt.minute
         if self.pos:
             self.manage(d, i); return
-        s = int(row.sig)
+        s = int(row.sig); self.path = "breakout"
+        if s == 0 and os.environ.get("IG_AD_STACK", "") == "1" and os.environ.get("IG_AD_CONV", "") == "1" and not np.isnan(row.atr):
+            # doc 256 (DK 22 Nov "make it work like his"): AuclairsDad's RAW-CONVICTION continuation path - bid/ask ratio >= 1.19
+            # (delta share >= 0.087, scaled to this feed's matched threshold), close in the outer 30% of the bar, HTF EMA20/50 agrees,
+            # then the same regime gate (no coil). Backtest with the breakout path: +8.28 pts/trade, 73% win, dev +8.96 / hold-out +7.16.
+            thr = 0.087 * (P7.DSHARE / 0.05); rngb = row.high - row.low; locb = (row.close - row.low) / rngb if rngb > 0 else 0.5
+            if row.dshare >= thr and locb >= 0.7 and row.htf == 1: s, self.path = 1, "conviction"
+            elif row.dshare <= -thr and locb <= 0.3 and row.htf == -1: s, self.path = -1, "conviction"
         if s == 0 or np.isnan(row.atr): return
         why = self.gate(s, row, ts, i, nyt, mins)
         self.sig_log(ts, s, row, why or "taken")
@@ -266,7 +273,7 @@ class Runner:
             rg, coil = self.ad_ok(s, row)
             if nyt.dayofweek in (1, 2): return "ad_tue_wed"
             if not rg: return "ad_no_regime"
-            if not coil: return "ad_no_coil"
+            if not coil and getattr(self, "path", "breakout") == "breakout": return "ad_no_coil"
         if in_blackout(utcnow()) or in_blackout(ts): log(f"bar {ts:%H:%M} sig {s} inside the FOMC blackout — skipped (doc 154)"); return "fomc_blackout"
         if V11 and nyt.hour in P7.V11_SKIP_HOURS: log(f"bar {ts:%H:%M} sig {s} in the US lunch window (12-15 New York) — skipped (v1.1)"); return "lunch"
         st = self.state

@@ -1,0 +1,7 @@
+doc 227 stack (breakout only)                n  138 ( 126/yr, 0.5/day) pts/trade +7.27 win 69% total +1003 | dev +7.44 hold-out +7.01 | months+ 11/14 worst -48
++ raw conviction                             n  196 ( 179/yr, 0.7/day) pts/trade +8.28 win 73% total +1623 | dev +8.96 hold-out +7.16 | months+ 11/14 worst -48
++ divergence                                 n  223 ( 203/yr, 0.8/day) pts/trade +3.45 win 63% total +769 | dev +4.79 hold-out +1.80 | months+ 8/14 worst -195
+FULL: breakout + conviction + divergence     n  281 ( 256/yr, 1.0/day) pts/trade +4.95 win 67% total +1390 | dev +6.58 hold-out +2.69 | months+ 10/14 worst -167
+FULL, all weekdays                           n  461 ( 420/yr, 1.7/day) pts/trade +3.06 win 62% total +1411 | dev +4.31 hold-out +1.48 | months+ 9/14 worst -181
+conviction alone                             n   81 (  74/yr, 0.3/day) pts/trade +11.52 win 85% total +933 | dev +12.76 hold-out +7.96 | months+ 11/13 worst -47
+divergence alone                             n   86 (  78/yr, 0.3/day) pts/trade -2.96 win 53% total -254 | dev -0.51 hold-out -5.19 | months+ 6/14 worst -206
