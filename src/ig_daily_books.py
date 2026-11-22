@@ -252,6 +252,8 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
     want = size if want is None else want
     if LIVE:
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
+        pz, why_p = L.paused(book)   # doc 257: drift pause on this book's own live record
+        if pz: log(f"SKIP {book} {name}: {why_p}"); return None
         if book == "TPS" and s.get("tps", {}).get("stopped"): log(f"SKIP TPS {name}: TPS stopped at its £ limit (DK restarts it)"); return None
         tps_min = book == "TPS" and L.tier(s.get("pot_now", START_EQ)).get("tps_min_stake", False)
         if size > want * 1.0001 and not tps_min: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than {RISK:.0%} risk ({want:.4f}/pt)"); return None

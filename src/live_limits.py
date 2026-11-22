@@ -84,3 +84,34 @@ class Pot:
         if self.today < -DAY_STOP * (self.pot - self.today): return False, f"books down £{-self.today:.2f} today (-{DAY_STOP:.0%}): no new entries today"
         return True, ""
     def room(self): return EXPO * self.pot - account_notional(self.ig)
+
+# ------------------------------------------------------------------ drift pause (doc 257, DK 22 Nov 13:16 "Fine okay")
+# An engine already live keeps trading until its own live record says it is broken: after DRIFT_N closed live trades, if its average
+# £ per trade is below zero with t <= -1.645 (the worst 5% for an engine whose true edge is zero or better), it takes no new entries.
+# Reads the live ledgers committed in the repo (runs/ig_live/book_eq.json, runs/ig_daily_live/trades.csv). DK un-pauses by adding the
+# engine to config/live_pot.json "drift_override".
+DRIFT_N, DRIFT_T = 15, -1.645
+_DRIFT = {}
+def engine_record(engine):
+    import math
+    root = os.path.dirname(os.path.dirname(CFG)); xs = []
+    try:
+        for r in json.load(open(os.path.join(root, "runs", "ig_live", "book_eq.json"))).get("log", []):
+            if str(r[1]).lower() == engine.lower(): xs.append(float(r[2]))
+    except Exception: pass
+    try:
+        import csv
+        for r in csv.DictReader(open(os.path.join(root, "runs", "ig_daily_live", "trades.csv"))):
+            if r.get("book", "").lower() == engine.lower(): xs.append(float(r["pnl_gbp"]))
+    except Exception: pass
+    n = len(xs); m = sum(xs) / n if n else 0.0
+    sd = math.sqrt(sum((x - m) ** 2 for x in xs) / (n - 1)) if n > 1 else 0.0
+    t = m / (sd / math.sqrt(n)) if n > 1 and sd > 0 else 0.0
+    return n, m, t
+def paused(engine):
+    """(True, reason) if this live engine's own record says stop; (False, '') otherwise."""
+    if engine in _DRIFT: return _DRIFT[engine]
+    if engine.lower() in [e.lower() for e in C.get("drift_override", [])]: _DRIFT[engine] = (False, ""); return _DRIFT[engine]
+    n, m, t = engine_record(engine)
+    _DRIFT[engine] = (True, f"drift pause: {engine} live n{n}, £{m:+.2f}/trade, t {t:.2f}") if n >= DRIFT_N and m < 0 and t <= DRIFT_T else (False, "")
+    return _DRIFT[engine]

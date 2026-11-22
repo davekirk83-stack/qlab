@@ -269,6 +269,11 @@ class Runner:
         hours = os.environ.get("IG_IGN_HOURS", "us")      # doc 227: "runner" = whenever the runner is up (London 08:00 to 17:00 NY), ex US lunch; "all" = any hour (overnight AD stack)
         if hours == "us" and not (US_OPEN <= mins < US_CLOSE): return "outside_us_hours"
         if hours == "runner" and not (P7.ny(ts).tz_convert("Europe/London").hour >= 8 and mins < 17 * 60): return "outside_runner_hours"
+        if LIVE:   # doc 257: drift pause - the engine's own live record says stop
+            try:
+                import live_limits as _L; pz, why_p = _L.paused("ignition")
+                if pz: log(why_p); return "drift_pause"
+            except Exception as e: log("drift check:", e)
         if os.environ.get("IG_AD_STACK", "") == "1":     # doc 227: AuclairsDad's regime + coil gate, Tue/Wed off
             rg, coil = self.ad_ok(s, row)
             if nyt.dayofweek in (1, 2): return "ad_tue_wed"

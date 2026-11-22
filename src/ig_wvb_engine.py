@@ -72,6 +72,11 @@ class WVBEngine:
         except Exception: return False
 
     def place(self, name, ts):
+        if os.environ.get("IG_MODE", "demo").lower() == "live":   # doc 257: drift pause
+            try:
+                import live_limits as _L; pz, why_p = _L.paused("wvb")
+                if pz: log(name, why_p); self.st[name]["done"] = True; return
+            except Exception as e: log(name, "drift check:", e)
         st = self.st[name]; mk = self.eng.mkt[name]
         # DK 10 Nov: "avoid holding positions during a CPI announcement"; 19 Nov: "Should we be trading on CPI days - think I already
         # suggested not to". Williams on CPI days, Nov 25-Nov 26: NQ -0.23R (n8), US500 -0.06R, USDJPY -0.02R vs +0.04 to +0.10 normally.

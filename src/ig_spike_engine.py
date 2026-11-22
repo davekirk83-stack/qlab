@@ -95,6 +95,11 @@ class SpikeEngine:
         if self.dry:
             self.st["pos"][name] = dict(deal_id="dry", side=sig["side"], px=sig["entry"], sz=size, bar=str(ts), stop=sig["stop"], tgt=sig["target"])
         else:
+            if os.environ.get("IG_MODE", "demo").lower() == "live":   # doc 257: drift pause
+                try:
+                    import live_limits as _L; pz, why_p = _L.paused("spike")
+                    if pz: log(name, why_p); return
+                except Exception as e: log(name, "drift check:", e)
             r = self.ig.create_open_position(currency_code=self.ccy, direction="BUY" if sig["side"] == 1 else "SELL", epic=mk["epic"], expiry=mk["expiry"],
                                              force_open=True, guaranteed_stop=False, level=None, limit_distance=None, limit_level=round(sig["target"], 1),
                                              order_type="MARKET", quote_id=None, size=size, stop_distance=None, stop_level=round(sig["stop"], 1),
