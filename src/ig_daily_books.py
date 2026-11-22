@@ -248,8 +248,34 @@ def reconcile(ig, s, day):
                 "size": p["size"], "pnl_gbp": round(pnl, 2), "days": p.get("days", 0), "why": how})
         log(f"CLOSED by IG ({how}): {p['book']} {p['market']} £{pnl:+.2f}")
 
+
+_GEX = None
+def gex_negative():
+    """doc 260: S&P dealer gamma from runs/gex (our daily recorder, else SqueezeMetrics history). True if the latest reading
+    (no older than 5 days) is negative. In negative gamma S&P daily moves were 2.4x bigger (1.53% vs 0.64%, 2011-26) and the
+    RSI(4) dip long made +0.18%/trade (worst -13.1%) against +0.52% (worst -7.2%) in positive gamma."""
+    global _GEX
+    if _GEX is not None: return _GEX
+    _GEX = False
+    try:
+        import pandas as _pd
+        root = os.environ.get("QLAB_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        f = os.path.join(root, "runs", "gex", "gex_daily.csv")
+        if os.path.exists(f):
+            g = _pd.read_csv(f); g = g[g.sym == "_SPX"]
+            if len(g) and (_pd.Timestamp.utcnow().tz_localize(None) - _pd.Timestamp(g.date.iloc[-1])).days <= 5: _GEX = float(g.net_gex_bn.iloc[-1]) < 0; return _GEX
+        g = _pd.read_csv(os.path.join(root, "runs", "gex", "squeezemetrics_dix.csv"))
+        if (_pd.Timestamp.utcnow().tz_localize(None) - _pd.Timestamp(g.date.iloc[-1])).days <= 5: _GEX = float(g.gex.iloc[-1]) < 0
+    except Exception as e: log("gex read:", e)
+    return _GEX
+DIP_BOOKS = ("RSI4", "RSI4L", "TPS")
+
 def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=None, extra=None, want=None, risk=None, side=1, limit_pts=None):
     want = size if want is None else want
+    if book in DIP_BOOKS and name in IDX and gex_negative():   # doc 260: dealers short gamma -> dip books at half risk
+        want = want * 0.5; risk = risk * 0.5 if risk is not None else None
+        if not LIVE: size = want
+        log(f"{book} {name}: S&P dealer gamma negative - half size ({want:.4f}/pt)")
     if LIVE:
         if not s.get("entries_ok", True): log(f"SKIP {book} {name}: {s.get('stop_why')}"); return None
         pz, why_p = L.paused(book)   # doc 257: drift pause on this book's own live record

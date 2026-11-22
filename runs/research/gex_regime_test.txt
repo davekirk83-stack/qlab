@@ -1,0 +1,11 @@
+days 3914, negative-GEX days 348 (9%)
+
+positive GEX  next-day |move| 0.64%  next-day mean +0.037%  n 3565
+negative GEX  next-day |move| 1.53%  next-day mean +0.160%  n 348
+
+RSI(4)<20 dip long, all           n 116 mean +0.54% win 68% worst -13.1% | 2011-18 +0.60 / 2019-26 +0.49
+RSI(4)<20 dip long, positive GEX  n  93 mean +0.52% win 69% worst -7.2% | 2011-18 +0.29 / 2019-26 +0.76
+RSI(4)<20 dip long, negative GEX  n  41 mean +0.18% win 61% worst -13.1% | 2011-18 +0.32 / 2019-26 +0.08
+
+2-day momentum follow, positive GEX  n 650 mean -0.048% win 51% | 2011-18 -0.048 / 2019-26 -0.049
+2-day momentum follow, negative GEX  n 190 mean -0.061% win 49% | 2011-18 +0.044 / 2019-26 -0.118
