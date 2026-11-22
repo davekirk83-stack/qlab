@@ -4,6 +4,7 @@ on:
     inputs:
       minutes: { description: "how long to run", default: "60" }
       dry: { description: "dry run (no orders)", default: "false" }
+      chain: { description: "1 = started by the previous demo session (hand-over chain); 0 for manual runs", default: "0" }
   push:
     paths: ["runs/ig_demo/trigger.txt"]
   schedule:
@@ -34,7 +35,7 @@ on:
     - cron: "5 3 * * 1-5"
 permissions:
   contents: write
-  actions: read
+  actions: write   # 22 Nov: each demo session starts the next (hand-over chain), as live has since 17 Nov
 concurrency:
   group: ig-demo   # ONE runner at a time, whatever started it (26 Oct: a late 13:10 cron overlapped a manual run and doubled the orders)
   cancel-in-progress: false
@@ -47,6 +48,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q trading-ig pandas numpy
+      - run: echo "T0=$(date -u +%s)" >> $GITHUB_ENV
       - name: Run (demo account only; secrets never printed)
         env:
           IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
@@ -102,3 +104,23 @@ jobs:
           git config user.name "ig-runner"; git config user.email "ig-runner@users.noreply.github.com"
           git add -f runs/ig_demo; git commit -m "ig demo run $(date -u +%Y-%m-%dT%H:%M)" || true
           git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
+      - name: Hand over to the next session (22 Nov - demo dead 17-21 Nov because every cron fired 7-9h late)
+        # Same chain as ig-live.yml (17 Nov): the first cron of the week starts it, then each session starts the next the moment it ends,
+        # Mon-Fri round the clock, stopping Fri 21:00 UTC. Short chained runs retry after 5 min, 6 straight short runs stop the chain.
+        if: always() && (github.event_name == 'schedule' || github.event.inputs.chain != '0' && github.event.inputs.chain != '')
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          RAN=$(( ($(date -u +%s) - T0) / 60 )); echo "this session ran $RAN min"
+          C="${{ github.event.inputs.chain }}"; C=${C:-0}; NEXT=1
+          if [ "${{ github.event_name }}" != "schedule" ] && [ "$RAN" -lt 30 ]; then
+            NEXT=$(( C + 1 )); [ "$NEXT" -le 7 ] || { echo "6 short sessions in a row - chain stops (a real fault)"; exit 1; }
+            echo "short chained session ($RAN min) - retry $((NEXT-1)) of 6 in 5 min"; sleep 300
+          fi
+          N=$(gh run list -R ${{ github.repository }} --workflow ig-demo.yml --json databaseId,status -q '[.[] | select(.databaseId != ${{ github.run_id }}) | select(.status != "completed")] | length' 2>/dev/null || echo 1)
+          [ "$N" -eq 0 ] || { echo "another demo session is running or queued - no hand-over needed"; exit 0; }
+          DOW=$(date -u +%u); H=$(date -u +%H)
+          if [ "$DOW" = 6 ] || { [ "$DOW" = 5 ] && [ "$H" -ge 21 ]; } || { [ "$DOW" = 7 ] && [ "$H" -lt 21 ]; }; then echo "weekend - chain stops"; exit 0; fi
+          END=$(date -u -d "$( [ "$DOW" = 5 ] && echo today || echo "next friday" ) 21:00" +%s)
+          MIN=$(( (END - $(date -u +%s)) / 60 )); [ "$MIN" -gt 340 ] && MIN=340
+          [ "$MIN" -ge 10 ] || { echo "under 10 min to the weekend close - chain stops"; exit 0; }
+          gh workflow run ig-demo.yml -R ${{ github.repository }} -f minutes=$MIN -f dry=false -f chain=$NEXT && echo "next demo session started: $MIN min (chain $NEXT)"
