@@ -1,0 +1,23 @@
+== 6AM candle, NQ: 246 days, trade 09:30 open -> 16:00 close
+  close above high -> long               n 64 (26% of days) | direction right 52% | mean -21.4 pts (-0.051 x avg range)
+  close below low -> short               n 45 (18% of days) | direction right 44% | mean -30.3 pts (-0.127 x avg range)
+  inside -> no signal                    n115 (47% of days) | direction right nan% | mean +0.0 pts (+nan x avg range)
+  sweep high, close back in -> short     n  8 (3% of days) | direction right 12% | mean -159.0 pts (-0.404 x avg range)
+  sweep low, close back in -> long       n 14 (6% of days) | direction right 43% | mean -135.5 pts (-0.342 x avg range)
+  ALL signals: n131 right 46%, mean -45.1 pts, total -5906 pts, halves -78.1 / -12.5
+  last month (12 signals): right 58%  (claim: 14 of 15)
+== 6AM candle, US500: 248 days, trade 09:30 open -> 16:00 close
+  close above high -> long               n 53 (21% of days) | direction right 62% | mean +0.1 pts (+0.009 x avg range)
+  close below low -> short               n 41 (17% of days) | direction right 51% | mean -5.0 pts (-0.044 x avg range)
+  inside -> no signal                    n131 (53% of days) | direction right nan% | mean +0.0 pts (+nan x avg range)
+  sweep high, close back in -> short     n 13 (5% of days) | direction right 31% | mean -4.7 pts (-0.067 x avg range)
+  sweep low, close back in -> long       n 10 (4% of days) | direction right 40% | mean -8.3 pts (-0.053 x avg range)
+  ALL signals: n117 right 53%, mean -2.9 pts, total -341 pts, halves -5.3 / -0.6
+  last month (12 signals): right 33%  (claim: 14 of 15)
+== EMA contraction (EMA 20/50/100/200 spread in bottom 20% -> trade the close out of the bunch; stop 1.5 ATR, target 3 ATR, max 48 bars)
+  GOLD  30min: n 88 mean -0.125 ATR win 32% | halves -0.024 / -0.227 | random -0.188
+  GOLD  1h  : n 52 mean +0.079 ATR win 35% | halves +0.381 / -0.223 | random -0.037
+  NQ    30min: n197 mean +0.118 ATR win 37% | halves -0.110 / +0.343 | random +0.082
+  NQ    1h  : n 94 mean +0.174 ATR win 38% | halves +0.103 / +0.245 | random -0.006
+  US500 30min: n188 mean +0.076 ATR win 37% | halves -0.004 / +0.155 | random -0.027
+  US500 1h  : n 99 mean +0.142 ATR win 37% | halves -0.121 / +0.400 | random +0.174
