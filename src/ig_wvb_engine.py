@@ -64,11 +64,20 @@ class WVBEngine:
         try: return day in json.load(open(os.path.join(os.environ.get("QLAB_ROOT", "."), "runs/event_blackouts.json"))).get("cpi", [])
         except Exception: return False
 
+    def after_us_holiday(self, day):
+        try:
+            hol = json.load(open(os.path.join(os.environ.get("QLAB_ROOT", "."), "runs/event_blackouts.json"))).get("us_holidays", [])
+            return str((pd.Timestamp(day) - pd.offsets.BDay(1)).date()) in hol
+        except Exception: return False
+
     def place(self, name, ts):
         st = self.st[name]; mk = self.eng.mkt[name]
         # DK 10 Nov: "avoid holding positions during a CPI announcement"; 19 Nov: "Should we be trading on CPI days - think I already
         # suggested not to". Williams on CPI days, Nov 25-Nov 26: NQ -0.23R (n8), US500 -0.06R, USDJPY -0.02R vs +0.04 to +0.10 normally.
         if self.cpi_day(st["day"]): log(name, "CPI day — no bracket today"); st["done"] = True; return
+        # doc 249 (DK 20 Nov sit-out study): first trading day after a US market holiday — Williams -0.10 to -0.34R on all four markets
+        # (n 23, Nov 25 - Nov 26), so it sits those days out. Low confidence (one year); review with more data.
+        if self.after_us_holiday(st["day"]): log(name, "first day after a US market holiday — no bracket today"); st["done"] = True; return
         R = self.prev_range(name, st["day"])
         if not R or R <= 0: log(name, "no previous session range — no bracket today"); st["done"] = True; return
         if self.beq and not self.beq.day_ok(): log(name, "book day stop — no bracket today"); st["done"] = True; return

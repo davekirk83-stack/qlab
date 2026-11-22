@@ -1,0 +1,44 @@
+== Williams NQ k=0.4: 220 trades, mean +0.093R; no-event days +0.110R
+   CPI                    n  8 -0.234R win 25% | sum -1.87R
+   FOMC                   n  8 -0.124R win 38% | sum -1.00R
+   FOMC minutes           n  8 +0.161R win 62% | sum +1.29R
+   Jobs Friday            n  8 +0.078R win 38% | sum +0.62R
+   US opex                n 11 +0.201R win 64% | sum +2.21R
+   VIX expiry             n 13 +0.120R win 46% | sum +1.56R
+   Month end              n  9 +0.122R win 56% | sum +1.10R
+   Month start            n 10 +0.154R win 70% | sum +1.54R
+   Day before US holiday  n  4 +0.348R win 75% | sum +1.39R
+   Day after US holiday   n  6 -0.344R win 50% | sum -2.07R
+== Williams US500 k=0.5: 190 trades, mean +0.063R; no-event days +0.060R
+   CPI                    n  6 -0.057R win 33% | sum -0.34R
+   FOMC                   n  7 +0.447R win 71% | sum +3.13R
+   FOMC minutes           n  8 -0.198R win 25% | sum -1.59R
+   Jobs Friday            n  5 +0.544R win 40% | sum +2.72R
+   US opex                n 10 +0.270R win 60% | sum +2.70R
+   VIX expiry             n 12 +0.122R win 58% | sum +1.46R
+   Month end              n  7 -0.068R win 43% | sum -0.47R
+   Month start            n  9 +0.007R win 56% | sum +0.07R
+   Day before US holiday  n  4 +0.186R win 50% | sum +0.74R
+   Day after US holiday   n  5 -0.278R win 20% | sum -1.39R
+== Williams GOLD k=0.3: 120 trades, mean +0.033R; no-event days +0.001R
+   CPI                    n  6 +0.183R win 67% | sum +1.10R
+   FOMC                   n  4 +0.054R win 50% | sum +0.22R
+   FOMC minutes           n  4 +0.877R win 100% | sum +3.51R
+   Jobs Friday            n  5 -0.348R win 20% | sum -1.74R
+   US opex                n  6 -0.227R win 33% | sum -1.36R
+   VIX expiry             n  6 +0.455R win 67% | sum +2.73R
+   Month end              n  5 -0.092R win 60% | sum -0.46R
+   Month start            n  6 +0.312R win 67% | sum +1.87R
+   Day before US holiday  n  4 -0.091R win 50% | sum -0.36R
+   Day after US holiday   n  4 -0.251R win 0% | sum -1.00R
+== Williams USDJPY k=0.5: 182 trades, mean +0.092R; no-event days +0.093R
+   CPI                    n 11 -0.018R win 45% | sum -0.20R
+   FOMC                   n  7 +0.235R win 71% | sum +1.65R
+   FOMC minutes           n  7 -0.030R win 43% | sum -0.21R
+   Jobs Friday            n  6 -0.180R win 33% | sum -1.08R
+   US opex                n  8 +0.210R win 50% | sum +1.68R
+   VIX expiry             n 10 +0.078R win 40% | sum +0.78R
+   Month end              n 10 +0.457R win 30% | sum +4.57R
+   Month start            n  8 -0.024R win 50% | sum -0.19R
+   Day before US holiday  n  5 -0.026R win 20% | sum -0.13R
+   Day after US holiday   n  8 -0.099R win 38% | sum -0.79R

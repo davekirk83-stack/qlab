@@ -78,6 +78,15 @@ def entries(d, name):
     """Entry flags for every bar (used live on the last bar, and offline to check against the backtests)."""
     t = d.index; up = d.close > d.ma200
     bme = pd.Series(t == (t + pd.offsets.BMonthEnd(0)), index=t); bqe = pd.Series(t == (t + pd.offsets.BQuarterEnd(0)), index=t)
+    # doc 249 (DK 20 Nov: "instruct the relevant books to sit out any days in which there is a likelihood of losing money"): the TOM entry
+    # sits out when the Monday after Thanksgiving falls in its first two days held (2000-26: those trades -0.41 ATR, 2013-26 -0.38;
+    # walk-forward out of sample total +198 -> +214 ATR, max drawdown 74 -> 64.5).
+    def _tg_mon(y):
+        d0 = pd.Timestamp(y, 11, 1); return d0 + pd.Timedelta(days=(3 - d0.dayofweek) % 7 + 21 + 4)
+    _tgm = set(_tg_mon(y) for y in range(t[0].year, t[-1].year + 2))
+    _nx = pd.Series(t, index=t); _n1, _n2 = _nx.shift(-1), _nx.shift(-2)
+    _n1 = _n1.fillna(pd.Series(t + pd.offsets.BDay(1), index=t)); _n2 = _n2.fillna(pd.Series(t + pd.offsets.BDay(2), index=t))
+    bme = bme & ~(_n1.isin(_tgm) | _n2.isin(_tgm))
     s = pd.Series((t.month == 12) & (t.day >= 22) & (t.day <= 24) & (t.dayofweek < 5), index=t); santa = s & ~s.shift(1, fill_value=False)
     nxt = (t + pd.offsets.BDay(1)).month
     # 15 Nov (DK: make the best books trade; src/sweep_daily_freq.py, sweep_tps_freq.py): thresholds from env, defaults = tested originals.

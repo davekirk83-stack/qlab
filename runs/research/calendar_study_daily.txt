@@ -1,0 +1,82 @@
+
+== RSI4L: 2190 trades, mean +0.130 ATR, total +286, max DD 95.1
+   FOMC decision                        n 126 event +0.317 vs rest +0.119 | 2013-26 +0.256 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   FOMC minutes (approx)                n 132 event +0.326 vs rest +0.118 | 2013-26 +0.250 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   Jobs report (1st Fri, approx)        n 232 event +0.017 vs rest +0.144 | 2013-26 +0.152 | WF out-of-sample total +247 -> +198, max DD 95.1 -> 95.1
+   US monthly opex                      n 187 event +0.246 vs rest +0.120 | 2013-26 +0.225 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   Quad witching / S&P rebalance        n  53 event +0.413 vs rest +0.123 | 2013-26 +0.537 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   VIX expiry                           n 191 event +0.318 vs rest +0.113 | 2013-26 +0.314 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   Day before US holiday                n 116 event +0.091 vs rest +0.133 | 2013-26 +0.060 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   Day after US holiday                 n 101 event +0.153 vs rest +0.129 | 2013-26 +0.343 | WF out-of-sample total +247 -> +235, max DD 95.1 -> 95.1
+   Thanksgiving Wed                     n   9 (too few)
+   Black Friday (half day)              n   7 (too few)
+   Monday after Thanksgiving            n  10 (too few)
+   Christmas-New Year (24 Dec-2 Jan)    n  34 event +1.053 vs rest +0.116 | 2013-26 +1.161 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   US election day (even years)         n   5 (too few)
+   Day after US election                n   2 (too few)
+   Day after presidential election      n   1 (too few)
+   Month end (last business day)        n 202 event +0.280 vs rest +0.115 | 2013-26 +0.353 | WF out-of-sample total +247 -> +239, max DD 95.1 -> 95.1
+   Quarter end                          n  60 event +0.439 vs rest +0.122 | 2013-26 +0.257 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+   Jackson Hole Friday (approx)         n  22 event +0.284 vs rest +0.129 | 2013-26 -0.015 | WF out-of-sample total +247 -> +247, max DD 95.1 -> 95.1
+
+== RSI4: 1208 trades, mean +0.290 ATR, total +350, max DD 70.2
+   FOMC decision                        n  73 event +0.324 vs rest +0.288 | 2013-26 +0.324 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   FOMC minutes (approx)                n  71 event +0.832 vs rest +0.256 | 2013-26 +0.655 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Jobs report (1st Fri, approx)        n 117 event +0.099 vs rest +0.310 | 2013-26 -0.014 | WF out-of-sample total +298 -> +267, max DD 70.2 -> 70.2
+   US monthly opex                      n 114 event +0.516 vs rest +0.266 | 2013-26 +0.662 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Quad witching / S&P rebalance        n  33 event +0.546 vs rest +0.283 | 2013-26 +0.822 | WF out-of-sample total +298 -> +295, max DD 70.2 -> 70.2
+   VIX expiry                           n 113 event +0.571 vs rest +0.261 | 2013-26 +0.437 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Day before US holiday                n  58 event +0.671 vs rest +0.271 | 2013-26 +0.508 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Day after US holiday                 n  37 event +0.721 vs rest +0.276 | 2013-26 +0.640 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Thanksgiving Wed                     n   6 (too few)
+   Black Friday (half day)              n   1 (too few)
+   Monday after Thanksgiving            n   5 (too few)
+   Christmas-New Year (24 Dec-2 Jan)    n  11 (too few)
+   US election day (even years)         n   7 (too few)
+   Day after US election                n   0 (too few)
+   Day after presidential election      n   0 (too few)
+   Month end (last business day)        n 111 event +0.306 vs rest +0.288 | 2013-26 +0.405 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Quarter end                          n  28 event +0.810 vs rest +0.277 | 2013-26 +0.266 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+   Jackson Hole Friday (approx)         n  18 event +0.572 vs rest +0.286 | 2013-26 +0.438 | WF out-of-sample total +298 -> +298, max DD 70.2 -> 70.2
+
+== TPS (1st rung): 1581 trades, mean +0.135 ATR, total +214, max DD 96.6
+   FOMC decision                        n  96 event +0.290 vs rest +0.125 | 2013-26 +0.297 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   FOMC minutes (approx)                n  96 event +0.153 vs rest +0.134 | 2013-26 -0.009 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   Jobs report (1st Fri, approx)        n 167 event +0.069 vs rest +0.143 | 2013-26 +0.213 | WF out-of-sample total +177 -> +156, max DD 96.6 -> 72.4
+   US monthly opex                      n 129 event +0.064 vs rest +0.141 | 2013-26 -0.220 | WF out-of-sample total +177 -> +171, max DD 96.6 -> 96.6
+   Quad witching / S&P rebalance        n  39 event +0.328 vs rest +0.130 | 2013-26 +0.054 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   VIX expiry                           n 141 event +0.186 vs rest +0.130 | 2013-26 -0.006 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   Day before US holiday                n  72 event +0.386 vs rest +0.123 | 2013-26 +0.244 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   Day after US holiday                 n  81 event +0.345 vs rest +0.124 | 2013-26 +0.409 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   Thanksgiving Wed                     n   5 (too few)
+   Black Friday (half day)              n   1 (too few)
+   Monday after Thanksgiving            n   2 (too few)
+   Christmas-New Year (24 Dec-2 Jan)    n  25 event +1.080 vs rest +0.120 | 2013-26 +0.872 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   US election day (even years)         n   2 (too few)
+   Day after US election                n   1 (too few)
+   Day after presidential election      n   0 (too few)
+   Month end (last business day)        n 125 event -0.039 vs rest +0.150 | 2013-26 +0.074 | WF out-of-sample total +177 -> +162, max DD 96.6 -> 92.2
+   Quarter end                          n  36 event +0.120 vs rest +0.135 | 2013-26 -0.591 | WF out-of-sample total +177 -> +177, max DD 96.6 -> 96.6
+   Jackson Hole Friday (approx)         n  24 event -0.206 vs rest +0.140 | 2013-26 -0.422 | WF out-of-sample total +177 -> +178, max DD 96.6 -> 96.6
+
+== TOM: 2462 trades, mean +0.125 ATR, total +308, max DD 74.0
+   FOMC decision                        n 150 event +0.332 vs rest +0.111 | 2013-26 +0.260 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   FOMC minutes (approx)                n 144 event +0.294 vs rest +0.114 | 2013-26 +0.251 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   Jobs report (1st Fri, approx)        n 716 event +0.056 vs rest +0.153 | 2013-26 -0.015 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   US monthly opex                      n   0 (too few)
+   Quad witching / S&P rebalance        n   0 (too few)
+   VIX expiry                           n   0 (too few)
+   Day before US holiday                n 253 event +0.037 vs rest +0.135 | 2013-26 +0.104 | WF out-of-sample total +198 -> +174, max DD 74.0 -> 84.5
+   Day after US holiday                 n 318 event +0.194 vs rest +0.115 | 2013-26 +0.003 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   Thanksgiving Wed                     n   0 (too few)
+   Black Friday (half day)              n   0 (too few)
+   Monday after Thanksgiving            n  62 event -0.408 vs rest +0.139 | 2013-26 -0.384 | WF out-of-sample total +198 -> +214, max DD 74.0 -> 64.5
+   Christmas-New Year (24 Dec-2 Jan)    n  92 event +0.494 vs rest +0.111 | 2013-26 +0.273 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   US election day (even years)         n  48 event +0.898 vs rest +0.110 | 2013-26 +1.239 | WF out-of-sample total +198 -> +198, max DD 74.0 -> 74.0
+   Day after US election                n   4 (too few)
+   Day after presidential election      n   2 (too few)
+   Jackson Hole Friday (approx)         n   0 (too few)
+
+== QUALIFYING SKIPS (out-of-sample: more profit, or >=10% less drawdown keeping >=90% of profit)
+   TPS (1st rung)  skip 'Jackson Hole Friday (approx)': total 176.8 -> 178.5, max DD 96.6 -> 96.6 (n24, event mean -0.206, 2013-26 -0.422)
+   TOM             skip 'Monday after Thanksgiving': total 198.1 -> 213.5, max DD 74.0 -> 64.5 (n62, event mean -0.408, 2013-26 -0.384)

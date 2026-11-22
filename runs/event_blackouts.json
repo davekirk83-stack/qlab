@@ -1,5 +1,5 @@
 {
- "note": "FOMC statement days (2pm New York). Blackout: no new entries 30 min before to 60 min after. Source: federalreserve.gov FOMC calendar (2027 tentative schedule, press release 5 Sep 2025). CPI dates: bls.gov CPI release schedule (8:30am New York).",
+ "note": "FOMC statement days (2pm New York). Blackout: no new entries 30 min before to 60 min after. Source: federalreserve.gov FOMC calendar (2027 tentative schedule, press release 5 Sep 2025). CPI dates: bls.gov CPI release schedule (8:30am New York). US market holidays (NYSE, 2026-27): Williams sits out the first trading day after each (doc 249).",
  "fomc": [
   "2026-10-28",
   "2026-12-09",
@@ -27,5 +27,19 @@
   "2027-10-14",
   "2027-11-10",
   "2027-12-10"
+ ],
+ "us_holidays": [
+  "2026-11-26",
+  "2026-12-25",
+  "2027-01-01",
+  "2027-01-18",
+  "2027-02-15",
+  "2027-03-26",
+  "2027-05-31",
+  "2027-06-18",
+  "2027-07-05",
+  "2027-09-06",
+  "2027-11-25",
+  "2027-12-24"
  ]
 }
