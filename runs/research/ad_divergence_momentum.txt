@@ -1,0 +1,16 @@
+rsi gap 3 regime not_against scale-in stop 1.5 ATR | n  611 (2.2/day) pts +0.07 win 63% | dev +1.43 hold -1.91 | months+ 8/14
+rsi gap 3 regime not_against scale-in stop 2.5 ATR | n  558 (2.0/day) pts -2.16 win 62% | dev +0.06 hold -5.25 | months+ 4/14
+rsi gap 3 regime not_against single   stop 1.5 ATR | n  578 (2.1/day) pts +0.94 win 46% | dev +3.40 hold -2.41 | months+ 8/14
+rsi gap 3 regime not_against single   stop 2.5 ATR | n  511 (1.8/day) pts +1.59 win 47% | dev +4.86 hold -2.91 | months+ 7/14
+rsi gap 3 regime none_only   scale-in stop 1.5 ATR | n  349 (1.3/day) pts -0.60 win 61% | dev +0.72 hold -2.67 | months+ 7/14
+rsi gap 3 regime none_only   scale-in stop 2.5 ATR | n  333 (1.2/day) pts -3.19 win 59% | dev +0.33 hold -8.42 | months+ 6/14
+rsi gap 3 regime none_only   single   stop 1.5 ATR | n  338 (1.2/day) pts +1.69 win 46% | dev +4.51 hold -2.50 | months+ 6/14
+rsi gap 3 regime none_only   single   stop 2.5 ATR | n  307 (1.1/day) pts +0.49 win 45% | dev +5.36 hold -6.50 | months+ 6/14
+rsi gap 6 regime not_against scale-in stop 1.5 ATR | n  304 (1.1/day) pts -0.11 win 63% | dev +1.53 hold -2.32 | months+ 8/14
+rsi gap 6 regime not_against scale-in stop 2.5 ATR | n  287 (1.0/day) pts -1.83 win 61% | dev -0.49 hold -3.59 | months+ 6/14
+rsi gap 6 regime not_against single   stop 1.5 ATR | n  289 (1.0/day) pts -1.40 win 45% | dev +1.82 hold -5.44 | months+ 6/14
+rsi gap 6 regime not_against single   stop 2.5 ATR | n  267 (1.0/day) pts -4.12 win 43% | dev -1.48 hold -7.51 | months+ 5/14
+rsi gap 6 regime none_only   scale-in stop 1.5 ATR | n  182 (0.7/day) pts +0.09 win 62% | dev +1.14 hold -1.42 | months+ 8/14
+rsi gap 6 regime none_only   scale-in stop 2.5 ATR | n  175 (0.6/day) pts -2.29 win 59% | dev -0.92 hold -4.15 | months+ 5/14
+rsi gap 6 regime none_only   single   stop 1.5 ATR | n  175 (0.6/day) pts -0.63 win 45% | dev +3.33 hold -5.91 | months+ 8/14
+rsi gap 6 regime none_only   single   stop 2.5 ATR | n  165 (0.6/day) pts -4.97 win 43% | dev -0.99 hold -10.37 | months+ 5/14
