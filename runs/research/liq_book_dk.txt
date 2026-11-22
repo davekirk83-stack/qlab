@@ -1,0 +1,28 @@
+== regime: all
+  LIQ as built (50/50 bids, target = farthest short cluster) n1075 mean +0.076% win 44% total +81% | halves +0.135/+0.017 | years+ 3/6: 2021:+54 2022:-37 2023:+66 2024:+118 2025:-83 2026:-35
+  LIQ bids, DK take-profit +3%                               n1075 mean -0.012% win 60% total -13% | halves +0.119/-0.142 | years+ 3/6: 2021:+39 2022:-13 2023:+44 2024:+17 2025:-69 2026:-30
+  DK scale-in (10/20/30/40 to -3%), take-profit +3%          n1075 mean +0.069% win 66% total +74% | halves +0.073/+0.064 | years+ 6/6: 2021:+21 2022:+1 2023:+31 2024:+18 2025:+1 2026:+2
+  LIQ bids, DK take-profit +4%                               n1075 mean -0.036% win 53% total -38% | halves +0.075/-0.146 | years+ 3/6: 2021:+32 2022:-33 2023:+47 2024:+17 2025:-45 2026:-56
+  DK scale-in (10/20/30/40 to -3%), take-profit +4%          n1075 mean +0.006% win 57% total +7% | halves +0.042/-0.030 | years+ 3/6: 2021:+25 2022:-17 2023:+18 2024:+19 2025:-20 2026:-19
+  DK scale-in, target = farthest short cluster               n1075 mean +0.032% win 45% total +34% | halves +0.072/-0.009 | years+ 3/6: 2021:+14 2022:-7 2023:+38 2024:+47 2025:-44 2026:-15
+== regime: bull
+  LIQ as built (50/50 bids, target = farthest short cluster) n 521 mean +0.063% win 45% total +33% | halves +0.395/-0.267 | years+ 3/5: 2021:+13 2023:+16 2024:+94 2025:-65 2026:-25
+  LIQ bids, DK take-profit +3%                               n 521 mean +0.012% win 60% total +6% | halves +0.325/-0.301 | years+ 3/5: 2021:+32 2023:+19 2024:+13 2025:-48 2026:-11
+  DK scale-in (10/20/30/40 to -3%), take-profit +3%          n 521 mean +0.095% win 66% total +49% | halves +0.231/-0.041 | years+ 3/5: 2021:+13 2023:+23 2024:+21 2025:-5 2026:-3
+  LIQ bids, DK take-profit +4%                               n 521 mean -0.005% win 54% total -3% | halves +0.227/-0.236 | years+ 3/5: 2021:+26 2023:+20 2024:+0 2025:-43 2026:-7
+  DK scale-in (10/20/30/40 to -3%), take-profit +4%          n 521 mean +0.024% win 58% total +13% | halves +0.153/-0.104 | years+ 3/5: 2021:+13 2023:+7 2024:+20 2025:-21 2026:-6
+  DK scale-in, target = farthest short cluster               n 521 mean +0.015% win 47% total +8% | halves +0.151/-0.121 | years+ 2/5: 2021:-3 2023:+18 2024:+43 2025:-39 2026:-11
+== regime: bull+flush-in-bear
+  LIQ as built (50/50 bids, target = farthest short cluster) n 747 mean +0.114% win 43% total +85% | halves +0.325/-0.095 | years+ 4/6: 2021:+106 2022:+3 2023:+13 2024:+113 2025:-91 2026:-59
+  LIQ bids, DK take-profit +3%                               n 747 mean +0.047% win 61% total +35% | halves +0.274/-0.179 | years+ 4/6: 2021:+81 2022:+1 2023:+17 2024:+18 2025:-51 2026:-32
+  DK scale-in (10/20/30/40 to -3%), take-profit +3%          n 747 mean +0.095% win 66% total +71% | halves +0.160/+0.030 | years+ 4/6: 2021:+36 2022:+12 2023:+21 2024:+20 2025:-6 2026:-11
+  LIQ bids, DK take-profit +4%                               n 747 mean +0.026% win 53% total +19% | halves +0.299/-0.247 | years+ 4/6: 2021:+81 2022:+14 2023:+17 2024:+11 2025:-54 2026:-51
+  DK scale-in (10/20/30/40 to -3%), take-profit +4%          n 747 mean +0.068% win 57% total +51% | halves +0.179/-0.042 | years+ 4/6: 2021:+43 2022:+17 2023:+5 2024:+21 2025:-20 2026:-15
+  DK scale-in, target = farthest short cluster               n 747 mean +0.088% win 45% total +66% | halves +0.218/-0.041 | years+ 4/6: 2021:+55 2022:+12 2023:+15 2024:+49 2025:-43 2026:-23
+== regime: bear-flush-only
+  LIQ as built (50/50 bids, target = farthest short cluster) n 230 mean +0.218% win 38% total +50% | halves +0.737/-0.302 | years+ 3/6: 2021:+86 2022:+3 2023:-3 2024:+24 2025:-25 2026:-35
+  LIQ bids, DK take-profit +3%                               n 230 mean +0.152% win 61% total +35% | halves +0.392/-0.088 | years+ 3/6: 2021:+48 2022:+1 2023:-2 2024:+12 2025:-3 2026:-21
+  DK scale-in (10/20/30/40 to -3%), take-profit +3%          n 230 mean +0.116% win 65% total +27% | halves +0.187/+0.045 | years+ 3/6: 2021:+22 2022:+12 2023:-0 2024:+3 2025:-1 2026:-8
+  LIQ bids, DK take-profit +4%                               n 230 mean +0.095% win 52% total +22% | halves +0.539/-0.348 | years+ 3/6: 2021:+55 2022:+14 2023:-3 2024:+11 2025:-11 2026:-44
+  DK scale-in (10/20/30/40 to -3%), take-profit +4%          n 230 mean +0.173% win 57% total +40% | halves +0.304/+0.043 | years+ 4/6: 2021:+30 2022:+17 2023:-2 2024:+2 2025:+1 2026:-10
+  DK scale-in, target = farthest short cluster               n 230 mean +0.254% win 40% total +58% | halves +0.523/-0.015 | years+ 3/6: 2021:+53 2022:+12 2023:-2 2024:+11 2025:-4 2026:-12
