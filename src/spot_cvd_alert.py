@@ -28,8 +28,27 @@ def check(d):
     r["fire"] = (r["rise_pct"] >= BUILD and give >= GIVEBACK and r["bars_since_peak"] >= 4 and r["last_hour"] < 0 and r["px"] < r["px_peak"])
     return r
 
+def context(d, r):
+    """Doc 231 / 248 follow-up (DK 22 Nov: "Keep it ... what can be improved"): 2021-26, the alert on its own is a coin flip, but its
+    context matters. Bear regime (below the 200-day) + firing on a bounce: 12h mean -0.13% to -0.27%, down 53%, both halves.
+    After a 24h flush (< -3%): next 12h +0.45% (bounce more likely). Everything else: coin flip."""
+    try:
+        dd = d.c.resample("1D").last()
+        if len(dd) < 210:
+            u = f"https://data-api.binance.vision/api/v3/klines?symbol={SYM}&interval=1d&limit=260"
+            k = json.load(urllib.request.urlopen(u, timeout=20)); dd = pd.Series([float(x[4]) for x in k])
+        sma = dd.iloc[:-1].tail(200).mean(); px = r["px"]
+        w = d.iloc[-97:]; ret24 = px / w.c.iloc[0] - 1; pos = (px - w.l.min()) / max(w.h.max() - w.l.min(), 1e-9)
+        if px < sma and (ret24 > 0.02 or pos >= 0.6):
+            return "STRONGER: bear regime (below the 200-day) and firing on a bounce — historically leans down (12h avg -0.13% to -0.27%, 53% down). Good confirmation for a short plan at resistance."
+        if ret24 < -0.03:
+            return "CAUTION: fired after a 24h flush — historically a bounce is more likely (+0.45% avg next 12h). Not a short signal here."
+        return "NEUTRAL: outside its useful context this alert is a coin flip (2021-26) — information only."
+    except Exception as e:
+        return f"context unavailable ({e})"
+
 def text(r):
-    return (f"## {SYM} spot CVD rolling over — {r['t']:%d %b %H:%M} UTC\n\n"
+    return (f"## {SYM} spot CVD rolling over — {r['t']:%d %b %H:%M} UTC\n\n" + f"**{r.get('context', '')}**\n\n"
             f"Binance spot CVD built +{r['rise']:,.0f} BTC ({100 * r['rise_pct']:.1f}% of 24h volume) to a peak at {r['peak_t']:%d %b %H:%M} UTC "
             f"(price {r['px_peak']:,.0f}) and has given back {100 * r['giveback']:.0f}% of it. Last hour's spot delta {r['last_hour']:+,.0f} BTC. "
             f"Price now {r['px']:,.0f}.\n\nKingfisher pattern: spot bid held price while shorts built; spot now being sold. "
@@ -45,6 +64,8 @@ if __name__ == "__main__":
                 last = r["t"]; fwd = d.c.iloc[i - 1:i + 48]
                 print(f"{r['t']:%d %b %H:%M} px {r['px']:,.0f} rise {100 * r['rise_pct']:.1f}% give {100 * r['giveback']:.0f}% | next 12h low {100 * (fwd.min() / r['px'] - 1):+.1f}% high {100 * (fwd.max() / r['px'] - 1):+.1f}%")
         sys.exit()
-    r = check(d); print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()})
+    r = check(d)
+    if r["fire"]: r["context"] = context(d, r)
+    print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()})
     if r["fire"]:
         os.makedirs("runs/alerts", exist_ok=True); open("runs/alerts/spot_cvd_alert.md", "w").write(text(r))

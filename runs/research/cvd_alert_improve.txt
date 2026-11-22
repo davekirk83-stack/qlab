@@ -1,0 +1,29 @@
+all fires                                  n1195 12h mean +0.05% down 48% | 21-23 +0.02% (n364) | 24-26 +0.07% (n831)
+big build (>=4% of 24h vol)                n 363 12h mean +0.11% down 44% | 21-23 -0.19% (n46) | 24-26 +0.15% (n317)
+near the 24h HIGH (top 30% of range)       n 219 12h mean +0.10% down 45% | 21-23 +0.04% (n63) | 24-26 +0.13% (n156)
+near the 24h LOW (bottom 30%)              n 349 12h mean -0.06% down 50% | 21-23 -0.23% (n69) | 24-26 -0.01% (n280)  <-- holds
+price ABOVE 4h EMA20                       n 675 12h mean +0.07% down 48% | 21-23 -0.09% (n244) | 24-26 +0.16% (n431)
+price BELOW 4h EMA20                       n 520 12h mean +0.03% down 47% | 21-23 +0.23% (n120) | 24-26 -0.03% (n400)
+after a 24h rally (> +3%)                  n 101 12h mean +0.16% down 39% | 21-23 +0.13% (n61) | 24-26 +0.20% (n40)
+after a 24h drop (< -3%)                   n  39 12h mean +0.45% down 49% | 21-23 +0.75% (n9) | 24-26 +0.35% (n30)
+US session (14-21 UTC)                     n 378 12h mean +0.07% down 46% | 21-23 +0.11% (n110) | 24-26 +0.05% (n268)
+Asia (0-7 UTC)                             n 356 12h mean +0.15% down 48% | 21-23 +0.19% (n114) | 24-26 +0.12% (n242)
+below 200-day                              n 474 12h mean +0.07% down 47% | 21-23 +0.04% (n131) | 24-26 +0.09% (n343)
+above 200-day                              n 658 12h mean +0.02% down 48% | 21-23 -0.07% (n170) | 24-26 +0.05% (n488)
+near 24h high AND above 4h EMA             n 193 12h mean +0.13% down 43% | 21-23 +0.01% (n57) | 24-26 +0.18% (n136)
+big build AND near 24h high                n  84 12h mean +0.11% down 42% | 21-23 -0.46% (n12) | 24-26 +0.21% (n72)
+below 200d AND near 24h high               n 138 12h mean -0.13% down 53% | 21-23 -0.30% (n39) | 24-26 -0.07% (n99)  <-- holds
+below 200d AND after rally                 n  60 12h mean -0.27% down 53% | 21-23 -0.32% (n30) | 24-26 -0.21% (n30)  <-- holds
+give back >= 80%                           n 474 12h mean +0.07% down 47% | 21-23 +0.23% (n108) | 24-26 +0.03% (n366)
+
+Splits that hold in both halves (12h mean negative in each): near the 24h LOW (bottom 30%), below 200d AND near 24h high, below 200d AND after rally
+
+stop 2.0% target 3% | all fires                    n1195 mean -0.10% win 43% | 21-23 -0.04% 24-26 -0.13%
+stop 2.0% target 3% | CONTEXT: bear + on a bounce  n 151 mean -0.07% win 46% | 21-23 -0.23% 24-26 -0.00%
+stop 1.5% target 3% | all fires                    n1195 mean -0.09% win 42% | 21-23 -0.04% 24-26 -0.10%
+stop 1.5% target 3% | CONTEXT: bear + on a bounce  n 151 mean -0.14% win 42% | 21-23 -0.31% 24-26 -0.06%
+stop 2.0% target 4% | all fires                    n1195 mean -0.10% win 43% | 21-23 -0.02% 24-26 -0.13%
+stop 2.0% target 4% | CONTEXT: bear + on a bounce  n 151 mean -0.04% win 46% | 21-23 -0.11% 24-26 +0.00%
+stop 3.0% target 5% | all fires                    n1195 mean -0.11% win 44% | 21-23 -0.09% 24-26 -0.12%
+stop 3.0% target 5% | CONTEXT: bear + on a bounce  n 151 mean -0.03% win 48% | 21-23 -0.09% 24-26 +0.00%
+context fires per year: 2021 8, 2022 30, 2023 9, 2024 19, 2025 25, 2026 60
