@@ -68,6 +68,7 @@ jobs:
           IG_WVB: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && 'NQ,US500,USDJPY,GOLD' || '' }}   # doc 228/235: Williams breakout — DK's switch IG_WVB_LIVE_ENABLED; USD/JPY via the London-morning job (16 Nov)
           IG_AD_STACK: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}       # doc 235/238: AD stack (regime + coil, Tue/Wed off) — DK's switch IG_ADSTACK_LIVE_ENABLED
           IG_IGN_HOURS: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && 'all' || 'us' }}
+          IG_AD_CONV: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}   # doc 256 (DK 22 Nov 10:32 "Yes add it"): AuclairsDad raw-conviction path, live with his stack
           ADSTACK_ON: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}
           WVB_ON: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && '1' || '0' }}
           IG_WVB_LIVE: "1"
