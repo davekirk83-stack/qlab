@@ -49,6 +49,18 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q trading-ig pandas numpy
       - run: echo "T0=$(date -u +%s)" >> $GITHUB_ENV
+      - name: Arm the options-demo open (22 Nov - its Friday cron fired 5h late on 20 Nov and missed the entry)
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          # If this session will be running at Friday or Monday 15:00 New York, dispatch ig-options-demo.yml (job=open) at that moment.
+          for D in friday monday; do
+            [ "$(TZ=America/New_York date +%A | tr A-Z a-z)" = "$D" ] && W="today" || W="next $D"
+            AT=$(TZ=America/New_York date -d "$W 15:00" +%s); DELAY=$(( AT - $(date -u +%s) ))
+            if [ "$DELAY" -gt 0 ] && [ "$DELAY" -lt 20700 ]; then
+              echo "options open armed for $D 15:00 NY (in $((DELAY/60)) min)"
+              nohup setsid bash -c "sleep $DELAY; gh workflow run ig-options-demo.yml -R ${{ github.repository }} -f job=open -f dry=false" > /tmp/opt_arm.log 2>&1 &
+            fi
+          done
       - name: Run (demo account only; secrets never printed)
         env:
           IG_USERNAME: ${{ secrets.IG_USERNAME_DEMO_ACCOUNT || secrets.IIG_USERNAME_DEMO_ACCOUNT }}
