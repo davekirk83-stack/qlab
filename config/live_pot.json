@@ -31,7 +31,7 @@
     }
   },
   "risk_tiers": {
-    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. DK 10:43 (doc 216, second review): TPS stop = 5% of the pot (closed + open TPS P&L), TPS losses count in the account day stop and floor, auto-restart once the US 500 is back above its 200-day. DK 11 Nov 09:16 'Yes': intraday books (Ignition, AuclairsDad stack, Williams breakout) risk 3% per trade while the pot is under \u00a31,000 (2% from \u00a31,000), and the account floor is -20% under \u00a31,000 (-15% from \u00a31,000). Daily books keep risk_per_trade.",
+    "_note": "DK 10 Nov 08:23: aggressive early, less risk as the stack builds. Each row applies from that pot size up. tps_min_stake: TPS may use IG's minimum stake even above 2% risk. DK 10:43 (doc 216, second review): TPS stop = 5% of the pot (closed + open TPS P&L), TPS losses count in the account day stop and floor, auto-restart once the US 500 is back above its 200-day. DK 11 Nov 09:16 'Yes': intraday books (Ignition, AuclairsDad stack, Williams breakout) risk 3% per trade while the pot is under £1,000 (2% from £1,000), and the account floor is -20% under £1,000 (-15% from £1,000). Daily books keep risk_per_trade. DK 22 Nov 10:13 ('don't turn off the books ... MAKE IT WORK'; chose 'Widen to -30% of £500'): floor under £1,000 widened from -20% to -30% (books stop at ~£350); the -20% floor had tripped 20 Nov 16:10 at £396 (doc 253).",
     "rows": [
       {
         "from_pot": 0,
@@ -39,7 +39,7 @@
         "tps_min_stake": true,
         "tps_stop_frac": 0.05,
         "intraday_risk": 0.03,
-        "floor": 0.2
+        "floor": 0.3
       },
       {
         "from_pot": 1000,
