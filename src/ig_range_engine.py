@@ -70,7 +70,9 @@ def shock_block(d, i):
 # Small-account plan (doc 137): run only the instruments named here. US Tech 100 returns ~4-7x more per margin-hour than the
 # Wall Street / Germany 40 ladders, which lock margin for 2-3 h per episode and add overnight funding.
 _ONLY = [x.strip() for x in os.environ.get("IG_RANGE_INSTR", "").split(",") if x.strip()]
-if _ONLY: INSTR = {k: v for k, v in INSTR.items() if k in _ONLY}
+# doc 252: markets loaded for their bars only (other engines read them, e.g. the EMA contraction engine on Wall Street / Germany 40) — no ladder.
+DATA_ONLY = [x.strip() for x in os.environ.get("IG_RANGE_DATA_ONLY", "").split(",") if x.strip()]
+if _ONLY: INSTR = {k: v for k, v in INSTR.items() if k in _ONLY or k in DATA_ONLY}
 
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
@@ -186,6 +188,7 @@ class RangeEngine:
 
     # ------------------------------------------------------------------ the book, one 15-min bar
     def step(self, name):
+        if name in DATA_ONLY: return                       # doc 252: bars only, no ladder
         d = self.bars15[name]; st = self.st[name]; mk = self.mkt[name]; hours = INSTR[name]["hours"]
         if len(d) < 300: log(name, "not enough bars", len(d)); return
         ema, lo_b, hi_b, a, allow = P6.indicators(d, name); i = len(d) - 1; ts = d.index[i]
