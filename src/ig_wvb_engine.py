@@ -18,6 +18,7 @@ SESS = {"NQ": ("America/New_York", 570, 960), "USDJPY": ("Europe/London", 480, 9
 K, RISK = 0.5, 0.03   # DK 11 Nov: intraday books 3% per trade under a £1,000 pot
 KM = {"NQ": 0.4, "US500": 0.5, "USDJPY": 0.5, "GOLD": 0.3}   # 15 Nov (src/sweep_williams_mkts.py, doc 235): best k per market, both halves positive
 
+US_IDX = {"US500", "NQ", "WALLST"}
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), "[wvb]", *a, flush=True)
 
@@ -86,6 +87,8 @@ class WVBEngine:
         size = max(mk["min"], round(self.beq.eq * RISK * self.beq.k / dist, 2)) if self.beq else mk["min"]
         if self.beq: size = self.beq.cap(size, o, self.notional_fn() if self.notional_fn else 0.0, mk["min"], floor=0.0)   # 17 Nov: USD/JPY was refused at 08:05 because the 5x room was under a quarter of the wanted size; a smaller stake only lowers the risk, so take it
         if size <= 0: log(name, "5x exposure cap — no bracket"); st["done"] = True; return
+        busy = [k for k, so in self.st.items() if k != name and k in US_IDX and isinstance(so, dict) and so.get("day") == st.get("day") and (so.get("orders") or so.get("pos"))]
+        if name in US_IDX and busy: log(name, f"no bracket: {busy[0]} already has today's US-index bracket (one US index at a time, doc 254)"); st["done"] = True; return
         st.update(up=up, dn=dn, dist=dist, size=size, R=R)
         log(name, f"session open {o:.1f}, previous range {R:.1f}: BUY STOP {up:.1f} / SELL STOP {dn:.1f}, stop distance {dist:.1f}, {size}/pt")
         for side, lvl in (("BUY", up), ("SELL", dn)):
@@ -109,6 +112,24 @@ class WVBEngine:
                 if sz2 < mk["min"]: log(name, side, "a wider stop would need a stake under IG's minimum — no order this side"); break
                 d, sz = d2, sz2
 
+    def one_index(self, name):
+        """22 Nov (doc 254): on 20 Nov 14:55 WVB went long NQ AND US 500 on the same bar - one move, two stops, -£29 (6% of the pot).
+        When one US index fills, cancel the other US indices' resting brackets for the day."""
+        if name not in US_IDX: return
+        wo = None
+        if not self.dry:
+            try: wo = {x["workingOrderData"]["dealId"] for x in self.ig.fetch_working_orders().get("workingOrders", [])}
+            except Exception as ex: log(name, "one_index: cannot read working orders, leaving the others alone:", ex); return
+        for other, so in self.st.items():
+            if other == name or other not in US_IDX or not isinstance(so, dict) or not so.get("orders") or so.get("pos"): continue
+            if wo is not None and not all(oo["deal_id"] in wo for oo in so["orders"].values()):
+                log(other, "already filled in the same bar - left for its own sync to manage"); continue
+            for side, oo in list(so["orders"].items()):
+                if not self.dry:
+                    try: self.ig.delete_working_order(oo["deal_id"])
+                    except Exception as ex: log(other, "cancel", side, ex)
+            so["orders"] = {}; so["done"] = True; log(other, f"brackets cancelled: {name} already filled (one US index at a time)")
+
     def sync(self, name, c):
         st = self.st[name]
         if st["pos"] is None and st["orders"]:
@@ -117,7 +138,7 @@ class WVBEngine:
                 if hu or hd:
                     s = 1 if hu else -1; e = st["up"] if s == 1 else st["dn"]
                     st["pos"] = {"deal_id": "dry", "side": s, "px": e, "stop": e - s * st["dist"], "sz": st["size"], "bar": str(c["ts"])}; st["orders"] = {}
-                    log(name, f"dry FILL {'BUY' if s == 1 else 'SELL'} at {e:.1f}")
+                    log(name, f"dry FILL {'BUY' if s == 1 else 'SELL'} at {e:.1f}"); self.one_index(name)
                     if hu and hd: self.book(name, st["pos"]["stop"], "both_in_one_bar(dry)"); st["done"] = True; return
             else:
                 try:
@@ -135,7 +156,7 @@ class WVBEngine:
                             if other != side:
                                 try: self.ig.delete_working_order(oo["deal_id"]); log(name, "cancelled the", other, "stop order")
                                 except Exception as ex: log(name, "cancel", other, ex)
-                        st["orders"] = {}; break
+                        st["orders"] = {}; self.one_index(name); break
         if st["pos"] is not None:
             p = st["pos"]
             if self.dry:

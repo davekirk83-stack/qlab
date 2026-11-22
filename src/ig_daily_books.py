@@ -54,6 +54,7 @@ MKT = {   # name: (yahoo ticker, IG spread-bet epic, group)
 }
 LOCAL = {"US500": "SPX", "NQ": "NDX", "WALLST": "DJI", "GOLD": "GOLD", "DAX": "DAX", "FTSE": "FTSE"}   # data_daily/ names (offline check)
 IDX = ["US500", "NQ", "WALLST", "DAX", "FTSE"]
+US_IDX = {"US500", "NQ", "WALLST"}   # move almost in step: one of them at a time (doc 254)
 BOOKS = {"RSI4": IDX + ["GOLD"], "RSI4L": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
          "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
          "LBS": IDX,    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
@@ -255,6 +256,13 @@ def open_pos(ig, s, book, name, epic, size, mid, k, stop_pts=None, stop_level=No
         tps_min = book == "TPS" and L.tier(s.get("pot_now", START_EQ)).get("tps_min_stake", False)
         if size > want * 1.0001 and not tps_min: log(f"SKIP {book} {name}: IG minimum {size}/pt is more than {RISK:.0%} risk ({want:.4f}/pt)"); return None
         want = size   # live: the stake placed is the stake counted
+    # 22 Nov (doc 254): live 17-19 Nov TPS held US 500 AND Wall Street together = the same bet twice; Wall Street at minimum stake lost
+    # £16-19 a trade, 15x the US 500 legs. Rules: one US index market at a time across all books; no Wall Street for TPS under a £1,000 pot.
+    if name in US_IDX:
+        other = sorted({q["market"] for q in s["pos"] if q["market"] in US_IDX and q["market"] != name})
+        if other: log(f"SKIP {book} {name}: already holding {', '.join(other)} (one US index at a time)"); return None
+    if book == "TPS" and name == "WALLST" and (s.get("pot_now", START_EQ) if LIVE else s["eq"]) < 1000:
+        log(f"SKIP TPS WALLST: minimum stake too big for a pot under £1,000"); return None
     held = ig.account_notional() if LIVE else notional(s)   # live: every book on the account shares one cap on the pot
     if held + want * mid > EXPO * (s.get("pot_now", START_EQ) if LIVE else s["eq"]): log(f"SKIP {book} {name}: exposure cap {EXPO:g}x (whole account)"); return None
     if name in IDX and risk is not None:
