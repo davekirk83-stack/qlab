@@ -1,0 +1,12 @@
+any price | all                                      n1190 mean -0.12% win 44% | 2021-23 -0.07 / 2024-26 -0.14 | yrs+ 1/6
+any price | after 6% flush (72h)                     n 125 mean -0.02% win 50% | 2021-23 -0.14 / 2024-26 +0.12 | yrs+ 3/6
+any price | after 10% flush                          n  27 mean -0.47% win 33% | 2021-23 -0.66 / 2024-26 -0.14 | yrs+ 2/6
+price at/below the CVD low | all                     n 197 mean -0.08% win 52% | 2021-23 +0.10 / 2024-26 -0.15 | yrs+ 4/6
+price at/below the CVD low | after 6% flush (72h)    n  28 mean +0.06% win 57% | 2021-23 -0.33 / 2024-26 +0.52 | yrs+ 3/6
+price at/below the CVD low | after 10% flush         n   7 mean -0.34% win 43% | 2021-23 -0.83 / 2024-26 +0.32 | yrs+ 1/4
+swept 24h low in last hour | all                     n 123 mean -0.00% win 54% | 2021-23 +0.19 / 2024-26 -0.04 | yrs+ 2/6
+swept 24h low in last hour | after 6% flush (72h)    n  14 mean +0.98% win 71% | 2021-23 +1.09 / 2024-26 +0.87 | yrs+ 4/4
+swept 24h low in last hour | after 10% flush         n   1 mean +2.92% win 100% | 2021-23 +nan / 2024-26 +2.92 | yrs+ 1/1
+price already above | all                            n1145 mean -0.13% win 44% | 2021-23 -0.09 / 2024-26 -0.16 | yrs+ 1/6
+price already above | after 6% flush (72h)           n 111 mean -0.09% win 45% | 2021-23 -0.12 / 2024-26 -0.05 | yrs+ 2/6
+price already above | after 10% flush                n  23 mean -0.53% win 30% | 2021-23 -0.72 / 2024-26 -0.24 | yrs+ 2/6

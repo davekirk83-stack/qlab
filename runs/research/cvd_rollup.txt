@@ -1,0 +1,17 @@
+random 12h close mean +0.06%
+ALL roll-ups                       n 197 long-trigger mean -0.08% win 52% | 12h close +0.06% | halves +0.05/-0.21
+below 200-day                      n  79 long-trigger mean -0.06% win 54% | 12h close +0.02% | halves +0.51/-0.30
+above 200-day                      n 104 long-trigger mean -0.09% win 51% | 12h close +0.12% | halves -0.08/-0.10
+context CAUTION                    n   2 long-trigger mean +1.85% win 100% | 12h close +1.63% | halves +1.85/+nan
+context NEUTRAL                    n 117 long-trigger mean -0.13% win 50% | 12h close +0.04% | halves +0.11/-0.31
+context STRONGER                   n  78 long-trigger mean -0.06% win 53% | 12h close +0.06% | halves -0.09/-0.03
+bull=False after 24h drop>3%=False n  68 long-trigger mean +0.01% win 54% | 12h close +0.10% | halves +0.83/-0.27
+bull=False after 24h drop>3%=True  n  11 long-trigger mean -0.51% win 55% | 12h close -0.45% | halves -0.37/-0.67
+bull=True after 24h drop>3%=False  n 101 long-trigger mean -0.10% win 50% | 12h close +0.14% | halves -0.10/-0.11
+bull=True after 24h drop>3%=True   n   3 long-trigger mean +0.33% win 67% | 12h close -0.74% | halves +0.42/+0.14
+  2021                             n  26 long-trigger mean +0.03% win 42% | 12h close +0.27% | halves +0.03/+nan
+  2022                             n  14 long-trigger mean +0.24% win 57% | 12h close +0.29% | halves +0.24/+nan
+  2023                             n  11 long-trigger mean +0.09% win 64% | 12h close +0.20% | halves +0.09/+nan
+  2024                             n  35 long-trigger mean -0.18% win 51% | 12h close -0.09% | halves -0.18/+nan
+  2025                             n  42 long-trigger mean +0.15% win 57% | 12h close +0.38% | halves +0.52/-0.00
+  2026                             n  69 long-trigger mean -0.31% win 49% | 12h close -0.20% | halves +nan/-0.31
