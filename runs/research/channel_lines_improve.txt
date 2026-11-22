@@ -1,0 +1,58 @@
+== BTC 1h: 2032 touches, 2492 breaks
+  touches #3-5, all [stop .5ATR, 2R]                           n1970 mean -0.131% win 32% | halves -0.129/-0.134 | yrs+ 0/6
+  touches #3-5, all [stop 1ATR, 1R, 24 bars]                   n1970 mean -0.128% win 48% | halves -0.097/-0.158 | yrs+ 0/6
+    with the 4h... (price on the line's side of EMA50) [stop .5ATR, 2R] n1013 mean -0.090% win 33% | halves -0.110/-0.069 | yrs+ 1/6
+    with the 4h... (price on the line's side of EMA50) [stop 1ATR, 1R, 24 bars] n1013 mean -0.119% win 50% | halves -0.117/-0.121 | yrs+ 1/6
+    confluence with a prior swing level / round 1,000 [stop .5ATR, 2R] n 939 mean -0.162% win 31% | halves -0.116/-0.209 | yrs+ 0/6
+    confluence with a prior swing level / round 1,000 [stop 1ATR, 1R, 24 bars] n 939 mean -0.117% win 48% | halves -0.032/-0.201 | yrs+ 0/6
+    trend + confluence [stop .5ATR, 2R]                        n 404 mean -0.121% win 33% | halves -0.093/-0.150 | yrs+ 1/6
+    trend + confluence [stop 1ATR, 1R, 24 bars]                n 404 mean -0.106% win 50% | halves -0.015/-0.197 | yrs+ 0/6
+  BREAK of a 3+ touch line, trade the break [stop back inside .75ATR, 2R] n1686 mean -0.099% win 34% | halves -0.155/-0.042 | yrs+ 2/6
+  BREAK of a 3+ touch line, trade the break [stop 1ATR, 1.5R, 24 bars] n1686 mean -0.063% win 43% | halves -0.065/-0.060 | yrs+ 1/6
+  random entries [stop 1ATR, 1R, 24 bars]: mean -0.101% win 48%
+== BTC 4h: 1010 touches, 1063 breaks
+  touches #3-5, all [stop .5ATR, 2R]                           n 944 mean -0.222% win 31% | halves -0.233/-0.211 | yrs+ 1/6
+  touches #3-5, all [stop 1ATR, 1R, 24 bars]                   n 944 mean -0.181% win 47% | halves -0.284/-0.079 | yrs+ 2/6
+    with the 4h... (price on the line's side of EMA50) [stop .5ATR, 2R] n 560 mean -0.141% win 33% | halves -0.000/-0.281 | yrs+ 1/6
+    with the 4h... (price on the line's side of EMA50) [stop 1ATR, 1R, 24 bars] n 560 mean -0.085% win 49% | halves -0.074/-0.096 | yrs+ 3/6
+    confluence with a prior swing level / round 1,000 [stop .5ATR, 2R] n 675 mean -0.235% win 30% | halves -0.265/-0.205 | yrs+ 2/6
+    confluence with a prior swing level / round 1,000 [stop 1ATR, 1R, 24 bars] n 675 mean -0.187% win 45% | halves -0.303/-0.072 | yrs+ 2/6
+    trend + confluence [stop .5ATR, 2R]                        n 363 mean -0.140% win 32% | halves +0.054/-0.334 | yrs+ 2/6
+    trend + confluence [stop 1ATR, 1R, 24 bars]                n 363 mean -0.024% win 48% | halves +0.148/-0.195 | yrs+ 3/6
+  BREAK of a 3+ touch line, trade the break [stop back inside .75ATR, 2R] n 766 mean -0.212% win 34% | halves -0.274/-0.150 | yrs+ 2/6
+  BREAK of a 3+ touch line, trade the break [stop 1ATR, 1.5R, 24 bars] n 766 mean -0.193% win 42% | halves -0.254/-0.132 | yrs+ 2/6
+  random entries [stop 1ATR, 1R, 24 bars]: mean -0.120% win 48%
+
+== Flush INTO the line
+  1h touch #3+ after a move of >= 0 ATR into the line [stop 1ATR, 1R]: n1208 mean -0.135% win 47% | halves -0.115/-0.155
+  1h touch #3+ after a move of >= 0 ATR into the line [stop 1ATR, 2R]: n1208 mean -0.152% win 32% | halves -0.140/-0.163
+  1h touch #3+ after a move of >= 1.5 ATR into the line [stop 1ATR, 1R]: n312 mean -0.268% win 40% | halves -0.240/-0.295
+  1h touch #3+ after a move of >= 1.5 ATR into the line [stop 1ATR, 2R]: n312 mean -0.262% win 28% | halves -0.228/-0.296
+  1h touch #3+ after a move of >= 3.0 ATR into the line [stop 1ATR, 1R]: n60 mean -0.622% win 30% | halves -0.736/-0.507
+  1h touch #3+ after a move of >= 3.0 ATR into the line [stop 1ATR, 2R]: n60 mean -0.533% win 23% | halves -0.618/-0.448
+  4h touch #3+ after a move of >= 0 ATR into the line [stop 1ATR, 1R]: n588 mean -0.145% win 47% | halves -0.199/-0.091
+  4h touch #3+ after a move of >= 0 ATR into the line [stop 1ATR, 2R]: n588 mean -0.067% win 32% | halves +0.019/-0.153
+  4h touch #3+ after a move of >= 1.5 ATR into the line [stop 1ATR, 1R]: n112 mean -0.479% win 43% | halves -0.572/-0.386
+  4h touch #3+ after a move of >= 1.5 ATR into the line [stop 1ATR, 2R]: n112 mean -0.448% win 29% | halves -0.550/-0.346
+  4h touch #3+ after a move of >= 3.0 ATR into the line [stop 1ATR, 1R]: n15 mean +0.168% win 53% | halves +0.425/-0.058
+  4h touch #3+ after a move of >= 3.0 ATR into the line [stop 1ATR, 2R]: n15 mean +0.308% win 40% | halves +0.375/+0.249
+
+== Trade WITH a hard move into the line
+  1h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n312 mean +0.029% win 58% | halves +0.042/+0.015 | yrs+ 2/6
+  1h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n312 mean +0.120% win 42% | halves +0.065/+0.175 | yrs+ 5/6
+  1h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n312 mean +0.206% win 44% | halves +0.306/+0.106 | yrs+ 5/6
+  1h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n176 mean +0.018% win 55% | halves +0.028/+0.008 | yrs+ 3/6
+  1h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n176 mean +0.133% win 40% | halves +0.070/+0.197 | yrs+ 3/6
+  1h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n176 mean +0.174% win 42% | halves +0.233/+0.115 | yrs+ 4/6
+  1h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n60 mean +0.274% win 67% | halves +0.222/+0.326 | yrs+ 4/6
+  1h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n60 mean +0.574% win 53% | halves +0.542/+0.607 | yrs+ 3/6
+  1h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n60 mean +0.567% win 52% | halves +0.443/+0.691 | yrs+ 3/6
+  4h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n112 mean +0.116% win 53% | halves -0.013/+0.245 | yrs+ 4/6
+  4h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n112 mean -0.055% win 35% | halves +0.183/-0.294 | yrs+ 3/6
+  4h move >= 1.5 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n112 mean +0.182% win 37% | halves +0.656/-0.292 | yrs+ 4/6
+  4h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n57 mean +0.026% win 53% | halves -0.090/+0.138 | yrs+ 3/6
+  4h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n57 mean -0.086% win 35% | halves -0.117/-0.055 | yrs+ 2/6
+  4h move >= 2.0 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n57 mean +0.028% win 37% | halves +0.060/-0.003 | yrs+ 3/6
+  4h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 1R]: n15 mean -0.437% win 40% | halves -0.415/-0.456 | yrs+ 2/4
+  4h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1ATR, 2R]: n15 mean -0.391% win 33% | halves -0.915/+0.067 | yrs+ 2/4
+  4h move >= 3.0 ATR into a 3+ touch line, trade WITH the move [stop 1.5ATR, 2R]: n15 mean +0.715% win 47% | halves +0.240/+1.131 | yrs+ 3/4

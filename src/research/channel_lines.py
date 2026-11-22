@@ -62,16 +62,17 @@ def run(tf, k, H, tol=0.15):
         i = int(rng.integers(50, n-H-1)); risk = r.risk*c[i]
         ctrl.append(sim(o,h,l,c,i,r.side, c[i]-r.side*risk, c[i]+r.side*2*risk, H))
     return R, np.array(ctrl)
-out = []
-for tf, k, H in (("1h", 5, 48), ("15min", 8, 96)):
-    R, C = run(tf, k, H)
-    out.append(f"== BTC {tf} (pivot k={k}, max hold {H} bars) — random control mean {100*C.mean():+.3f}% win {(C>0).mean():.0%} n{len(C)}")
-    for side in (1, -1):
-        g = R[R.side == side]
-        for tch, gg in g.groupby(np.minimum(g.touch, 6)):
-            half = len(gg)//2
-            out.append(f"  {'support/long' if side>0 else 'resist/short'} touch {'#'+str(tch) if tch<6 else '#6+'}: n{len(gg):5} mean {100*gg.R.mean():+.3f}% win {(gg.R>0).mean():.0%} "
-                       f"| halves {100*gg.R.iloc[:half].mean():+.3f}% / {100*gg.R.iloc[half:].mean():+.3f}% | 2026 {100*gg[gg.t.dt.year==2026].R.mean():+.3f}%")
-    g3 = R[R.touch.isin([3,4])]
-    out.append(f"  ALL touches #3-#4: n{len(g3)} mean {100*g3.R.mean():+.3f}% win {(g3.R>0).mean():.0%}; by year " + ", ".join(f"{y} {100*x.R.mean():+.2f}%" for y, x in g3.groupby(g3.t.dt.year)))
-open("runs/research/channel_lines.txt","w").write("\n".join(out)); print("\n".join(out))
+if __name__ == "__main__":
+  out = []
+  for tf, k, H in (("1h", 5, 48), ("15min", 8, 96)):
+      R, C = run(tf, k, H)
+      out.append(f"== BTC {tf} (pivot k={k}, max hold {H} bars) — random control mean {100*C.mean():+.3f}% win {(C>0).mean():.0%} n{len(C)}")
+      for side in (1, -1):
+          g = R[R.side == side]
+          for tch, gg in g.groupby(np.minimum(g.touch, 6)):
+              half = len(gg)//2
+              out.append(f"  {'support/long' if side>0 else 'resist/short'} touch {'#'+str(tch) if tch<6 else '#6+'}: n{len(gg):5} mean {100*gg.R.mean():+.3f}% win {(gg.R>0).mean():.0%} "
+                         f"| halves {100*gg.R.iloc[:half].mean():+.3f}% / {100*gg.R.iloc[half:].mean():+.3f}% | 2026 {100*gg[gg.t.dt.year==2026].R.mean():+.3f}%")
+      g3 = R[R.touch.isin([3,4])]
+      out.append(f"  ALL touches #3-#4: n{len(g3)} mean {100*g3.R.mean():+.3f}% win {(g3.R>0).mean():.0%}; by year " + ", ".join(f"{y} {100*x.R.mean():+.2f}%" for y, x in g3.groupby(g3.t.dt.year)))
+  open("runs/research/channel_lines.txt","w").write("\n".join(out)); print("\n".join(out))
