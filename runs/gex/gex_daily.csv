@@ -1,0 +1,5 @@
+date,sym,src,spot,net_gex_bn,regime,gamma_flip,call_wall,put_wall,top_abs_strike
+2026-11-22,_SPX,yahoo,6910.39,-1.603,negative,6858.6,7000.0,6910.0,6910.0
+2026-11-22,_NDX,yahoo,25028.98,-1.103,negative,25842.4,27700.0,24000.0,24000.0
+2026-11-22,SPY,yahoo,689.81,-6.214,negative,703.6,750.0,700.0,700.0
+2026-11-22,QQQ,yahoo,608.45,-2.192,negative,631.3,700.0,600.0,600.0
