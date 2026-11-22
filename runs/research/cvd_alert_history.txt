@@ -1,0 +1,32 @@
+ALERT      n1195 | 12h close mean +0.05% median +0.06% down 48% | low median -0.84% (≤−2%: 20%, ≤−3%: 10%) | high median +0.90% (≥+2%: 21%)
+random     n5000 | 12h close mean +0.06% median +0.03% down 49% | low median -0.96% (≤−2%: 24%, ≤−3%: 13%) | high median +0.96% (≥+2%: 24%)
+2021       n 143 | 12h close mean +0.16% median +0.19% down 44% | low median -1.66% (≤−2%: 41%, ≤−3%: 26%) | high median +1.36% (≥+2%: 37%)
+2022       n  77 | 12h close mean -0.10% median +0.25% down 40% | low median -1.05% (≤−2%: 25%, ≤−3%: 19%) | high median +1.48% (≥+2%: 34%)
+2023       n 144 | 12h close mean -0.06% median -0.03% down 51% | low median -0.64% (≤−2%: 13%, ≤−3%: 8%) | high median +0.58% (≥+2%: 11%)
+2024       n 263 | 12h close mean +0.20% median +0.11% down 48% | low median -0.83% (≤−2%: 16%, ≤−3%: 6%) | high median +1.08% (≥+2%: 21%)
+2025       n 288 | 12h close mean +0.02% median +0.03% down 49% | low median -0.76% (≤−2%: 16%, ≤−3%: 8%) | high median +0.75% (≥+2%: 17%)
+2026       n 280 | 12h close mean -0.00% median +0.05% down 48% | low median -0.82% (≤−2%: 18%, ≤−3%: 7%) | high median +0.78% (≥+2%: 18%)
+SHORT trigger (stop +2%, target −3%, else 12h exit, 0.08% costs): n1195 mean -0.10% win 43% total -122% | halves -0.13% / -0.07%
+Nov 2026 fires:
+                        t       px   lo  hi  close  year
+2026-11-01 19:45:00+00:00 77799.29 -0.2 1.4    0.4  2026
+2026-11-02 11:00:00+00:00 77960.01 -1.6 0.4   -1.5  2026
+2026-11-03 03:00:00+00:00 76923.50 -0.7 1.3    0.7  2026
+2026-11-05 09:00:00+00:00 80324.57 -5.9 0.2   -5.3  2026
+2026-11-06 15:00:00+00:00 75849.00 -0.7 0.5    0.3  2026
+2026-11-07 20:45:00+00:00 75698.28 -0.2 0.4    0.3  2026
+2026-11-08 20:30:00+00:00 75841.95 -3.1 0.0   -2.0  2026
+2026-11-11 23:00:00+00:00 73509.77 -0.3 1.0   -0.1  2026
+2026-11-12 14:15:00+00:00 71862.16 -2.1 0.6   -1.9  2026
+2026-11-13 02:15:00+00:00 70522.04 -4.2 0.0   -1.9  2026
+2026-11-14 03:00:00+00:00 67529.70 -2.9 0.0   -2.8  2026
+2026-11-18 16:15:00+00:00 62548.01 -0.8 1.6    1.3  2026
+2026-11-19 16:00:00+00:00 63149.62 -2.9 0.4   -2.1  2026
+above200   n 721 | 12h close mean +0.04% median +0.06% down 48% | low median -0.84% (≤−2%: 21%, ≤−3%: 11%) | high median +0.88% (≥+2%: 20%) | short trigger mean -0.04% win 45% n721
+below200   n 474 | 12h close mean +0.07% median +0.05% down 47% | low median -0.84% (≤−2%: 17%, ≤−3%: 8%) | high median +0.93% (≥+2%: 23%) | short trigger mean -0.19% win 41% n474
+   2021: n15 short mean -0.43% 12h close median +0.33%
+   2022: n77 short mean -0.27% 12h close median +0.25%
+   2023: n39 short mean -0.20% 12h close median -0.04%
+   2024: n50 short mean -0.49% 12h close median +0.29%
+   2025: n74 short mean -0.26% 12h close median +0.03%
+   2026: n219 short mean -0.06% 12h close median -0.01%
