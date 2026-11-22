@@ -1,0 +1,21 @@
+{
+ "book": "ADFULL doc 227 stack (breakout only)",
+ "note": "",
+ "data": "2025-10-15..2026-11-20",
+ "holdout_from": "2026-06-13",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 82,
+ "dev_R": 0.636,
+ "hold_n": 56,
+ "hold_per_year": 128,
+ "hold_R": 0.262,
+ "t": 1.37,
+ "h1": 0.047,
+ "h2": 0.478,
+ "win": 0.62,
+ "maxdd_R": -5.1,
+ "random_p95": 0.275,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

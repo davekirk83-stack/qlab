@@ -1,0 +1,21 @@
+{
+ "book": "ADFULL FULL, all weekdays",
+ "note": "",
+ "data": "2025-10-15..2026-11-20",
+ "holdout_from": "2026-06-13",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 258,
+ "dev_R": 0.334,
+ "hold_n": 203,
+ "hold_per_year": 463,
+ "hold_R": 0.089,
+ "t": 0.87,
+ "h1": -0.005,
+ "h2": 0.181,
+ "win": 0.54,
+ "maxdd_R": -17.2,
+ "random_p95": 0.049,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

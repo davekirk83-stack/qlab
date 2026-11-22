@@ -1,0 +1,21 @@
+{
+ "book": "ADFULL + divergence",
+ "note": "",
+ "data": "2025-10-15..2026-11-20",
+ "holdout_from": "2026-06-13",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 123,
+ "dev_R": 0.52,
+ "hold_n": 100,
+ "hold_per_year": 228,
+ "hold_R": 0.093,
+ "t": 0.71,
+ "h1": 0.026,
+ "h2": 0.159,
+ "win": 0.6,
+ "maxdd_R": -8.0,
+ "random_p95": 0.163,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "ADFULL + raw conviction",
+ "note": "",
+ "data": "2025-10-15..2026-11-20",
+ "holdout_from": "2026-06-13",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 122,
+ "dev_R": 0.763,
+ "hold_n": 74,
+ "hold_per_year": 169,
+ "hold_R": 0.258,
+ "t": 1.59,
+ "h1": 0.25,
+ "h2": 0.265,
+ "win": 0.65,
+ "maxdd_R": -5.9,
+ "random_p95": 0.235,
+ "label": "WEAK",
+ "reason": "t<2"
+}
