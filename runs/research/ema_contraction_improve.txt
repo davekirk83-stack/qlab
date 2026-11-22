@@ -1,0 +1,14 @@
+  NQ     1h all          : n 92 mean +0.162 ATR win 38% | halves +0.138/+0.185
+  NQ     1h trend-filtered: n 63 mean +0.249 ATR win 40% | halves +0.507/-0.001
+  US500  1h all          : n 99 mean +0.142 ATR win 37% | halves -0.121/+0.400
+  US500  1h trend-filtered: n 65 mean +0.233 ATR win 40% | halves +0.301/+0.166
+  WALLST 1h all          : n 58 mean +0.324 ATR win 41% | halves +0.317/+0.332
+  WALLST 1h trend-filtered: n 47 mean +0.347 ATR win 43% | halves +0.154/+0.531
+  GER40  1h all          : n 53 mean +0.273 ATR win 40% | halves +0.758/-0.194
+  GER40  1h trend-filtered: n 29 mean +0.338 ATR win 41% | halves +0.407/+0.273
+  FTSE   1h all          : n113 mean -0.271 ATR win 28% | halves +0.141/-0.676
+  FTSE   1h trend-filtered: n 70 mean -0.389 ATR win 26% | halves -0.133/-0.644
+  GOLD   1h all          : n 52 mean +0.079 ATR win 35% | halves +0.381/-0.223
+  GOLD   1h trend-filtered: n 33 mean +0.006 ATR win 33% | halves +0.230/-0.204
+  POOLED all: n467 mean +0.076 ATR win 36%
+  POOLED trend-filtered: n307 mean +0.097 ATR win 36%

@@ -67,13 +67,14 @@ def run(d, i, lvl, mode):
     for f, w, px, st in open_: pnl += w*((C[min(end, len(C)-1)] - px) - COST*2*px)
     if not fills and not open_: return None, 0
     return pnl/risk_unit, 1
-d = bars(); S = setups(d); out = [f"BTC flush setups (1h close {DROP:.0%} under the 72h high, close still above prior support): {len(S)} since 2021"]
-res = {}
-for mode in ("allin", "ladder", "adds", "trigger"):
-    r = [(d.index[i], x) for i, lvl in S for x, f in [run(d, i, lvl, mode)] if x is not None]
-    R = pd.Series([x for _, x in r], index=[t for t, _ in r]); res[mode] = R
-    half = len(R)//2; cum = R.cumsum(); dd = (cum.cummax() - cum).max()
-    out.append(f"  {mode:8} n{len(R):3} mean {R.mean():+.3f}R win {(R>0).mean():.0%} total {R.sum():+.1f}R maxDD {dd:.1f}R | halves {R.iloc[:half].mean():+.3f}/{R.iloc[half:].mean():+.3f} | by year " +
-               ", ".join(f"{y} {g.sum():+.1f}" for y, g in R.groupby(R.index.year)))
-open("runs/research/flush_book.txt", "w").write("\n".join(out)); print("\n".join(out))
-pd.concat(res, axis=1).to_csv("runs/research/flush_book_trades.csv")
+if __name__ == "__main__":
+    d = bars(); S = setups(d); out = [f"BTC flush setups (1h close {DROP:.0%} under the 72h high, close still above prior support): {len(S)} since 2021"]
+    res = {}
+    for mode in ("allin", "ladder", "adds", "trigger"):
+        r = [(d.index[i], x) for i, lvl in S for x, f in [run(d, i, lvl, mode)] if x is not None]
+        R = pd.Series([x for _, x in r], index=[t for t, _ in r]); res[mode] = R
+        half = len(R)//2; cum = R.cumsum(); dd = (cum.cummax() - cum).max()
+        out.append(f"  {mode:8} n{len(R):3} mean {R.mean():+.3f}R win {(R>0).mean():.0%} total {R.sum():+.1f}R maxDD {dd:.1f}R | halves {R.iloc[:half].mean():+.3f}/{R.iloc[half:].mean():+.3f} | by year " +
+                   ", ".join(f"{y} {g.sum():+.1f}" for y, g in R.groupby(R.index.year)))
+    open("runs/research/flush_book.txt", "w").write("\n".join(out)); print("\n".join(out))
+    pd.concat(res, axis=1).to_csv("runs/research/flush_book_trades.csv")
