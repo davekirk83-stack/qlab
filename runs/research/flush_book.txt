@@ -1,0 +1,5 @@
+BTC flush setups (1h close 6% under the 72h high, close still above prior support): 216 since 2021
+  allin    n132 mean +0.048R win 61% total +6.3R maxDD 9.2R | halves -0.025/+0.120 | by year 2021 +6.6, 2022 -6.3, 2023 +4.2, 2024 +3.2, 2025 -1.8, 2026 +0.4
+  ladder   n132 mean +0.068R win 64% total +9.0R maxDD 6.1R | halves +0.042/+0.095 | by year 2021 +7.6, 2022 -4.6, 2023 +3.5, 2024 +4.8, 2025 -1.0, 2026 -1.2
+  adds     n132 mean +0.046R win 46% total +6.0R maxDD 11.1R | halves -0.026/+0.117 | by year 2021 +7.7, 2022 -9.9, 2023 +4.1, 2024 +6.3, 2025 -1.5, 2026 -0.7
+  trigger  n126 mean -0.111R win 44% total -14.0R maxDD 17.1R | halves -0.073/-0.148 | by year 2021 -0.4, 2022 -4.2, 2023 +2.0, 2024 -3.9, 2025 -3.1, 2026 -4.4
