@@ -1,6 +1,6 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-07:29:16 delta-share threshold 0.0500 (percentile-matched on 7069 IG bars); registered 0.05
-07:29:17 FATAL Traceback (most recent call last):
+07:34:59 delta-share threshold 0.0500 (percentile-matched on 7069 IG bars); registered 0.05
+07:34:59 FATAL Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 561, in <module>
     Runner(end, dry).run()
     ^^^^^^^^^^^^^^^^
