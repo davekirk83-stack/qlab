@@ -1,0 +1,17 @@
+window 2026-04-01 00:00:00+00:00 -> 2026-11-20 21:55:00+00:00, coverage 100%
+tick-rule  breakout                 n   72 pts/trade +6.52 win 64% total +469 | early +4.48 / late +7.67 | months+ 6/8
+tick-rule  breakout + conviction    n  100 pts/trade +6.53 win 68% total +653 | early +8.75 / late +4.85 | months+ 6/8
+tick-rule  divergence alone         n   46 pts/trade -0.72 win 57% total -33 | early +11.74 / late -16.91 | months+ 3/8
+tick-rule  conviction alone         n   32 pts/trade +5.19 win 75% total +166 | early +11.92 / late -4.64 | months+ 6/8
+tick-rule  all three                n  145 pts/trade +4.42 win 65% total +640 | early +9.87 / late -0.54 | months+ 5/8
+TRUE       breakout                 n  292 pts/trade -2.67 win 54% total -779 | early -5.28 / late -0.30 | months+ 2/8
+TRUE       breakout + conviction    n 1184 pts/trade -1.20 win 56% total -1426 | early -3.06 / late +0.57 | months+ 3/8
+TRUE       divergence alone         n   69 pts/trade -5.92 win 42% total -408 | early +2.38 / late -16.10 | months+ 3/8
+TRUE       conviction alone         n 1133 pts/trade -1.46 win 56% total -1649 | early -3.02 / late +0.05 | months+ 2/8
+TRUE       all three                n 1243 pts/trade -1.43 win 55% total -1783 | early -2.61 / late -0.30 | months+ 3/8
+matched threshold 0.2142 (same signal share as tick-rule)
+TRUE-match breakout                 n   69 pts/trade -1.09 win 67% total -75 | early -3.14 / late +1.43 | months+ 4/8
+TRUE-match breakout + conviction    n 1135 pts/trade -1.49 win 56% total -1696 | early -3.02 / late -0.03 | months+ 2/8
+TRUE-match divergence alone         n   69 pts/trade -5.92 win 42% total -408 | early +2.38 / late -16.10 | months+ 3/8
+TRUE-match conviction alone         n 1133 pts/trade -1.46 win 56% total -1649 | early -3.02 / late +0.05 | months+ 2/8
+TRUE-match all three                n 1195 pts/trade -1.71 win 55% total -2043 | early -2.53 / late -0.91 | months+ 2/8
