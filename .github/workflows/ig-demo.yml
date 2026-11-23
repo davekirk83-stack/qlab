@@ -80,6 +80,7 @@ jobs:
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)
           IG_SIZE: "0.01"         # doc 137: Ignition at ~2% risk of a £1,000 account (stop 45-90 pts)   # 26 Oct: full £1/pt ladders on 3 indices, both sides as working orders, hit INSUFFICIENT_FUNDS on the demo
         run: |
+          mkdir -p runs/ig_demo; GH_TOKEN=${{ github.token }} bash src/session_clock.sh ${{ github.repository }} ig-daily.yml runs/ig_demo/clock.log &   # 23 Nov: demo daily books had no run since 16 Nov (cron-only)
           ARGS="${{ github.event.inputs.minutes }}"; DRY="${{ github.event.inputs.dry }}"
           OTHERS=$(GH_TOKEN=${{ github.token }} gh run list -R ${{ github.repository }} --workflow ig-demo.yml --status in_progress --json databaseId -q '[.[] | select(.databaseId != ${{ github.run_id }})] | length' 2>/dev/null || echo 0)
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${OTHERS:-0}" -gt 0 ]; then echo "another demo session is already running — this one exits"; exit 0; fi
