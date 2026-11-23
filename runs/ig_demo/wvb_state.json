@@ -1,9 +1,9 @@
 {
  "NQ": {
-  "day": "2026-11-16",
+  "day": "2026-11-23",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null,
   "up": 28608.566499999997,
   "dn": 27999.833499999997,
@@ -14,22 +14,34 @@
  "USDJPY": {
   "day": "2026-11-23",
   "orders": {},
-  "pos": null,
+  "pos": {
+   "deal_id": "DIAAAAYWH6L6WBN",
+   "side": 1,
+   "px": 15912.4,
+   "stop": 15888.1,
+   "sz": 0.07,
+   "bar": "2026-11-23 08:30:00+00:00"
+  },
   "done": false,
-  "open": null
+  "open": 15900.2,
+  "up": 15912.35,
+  "dn": 15888.050000000001,
+  "dist": 24.299999999999272,
+  "size": 0.07,
+  "R": 24.299999999999272
  },
  "US500": {
-  "day": "2026-11-16",
+  "day": "2026-11-23",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
  },
  "GOLD": {
   "day": "2026-11-23",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null
+  "done": true,
+  "open": 3618.61
  }
 }
