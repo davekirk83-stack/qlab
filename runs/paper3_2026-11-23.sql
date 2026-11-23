@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO pb3_equity (d, equity, open_positions, closed_total) VALUES ('2026-11-23', 1848.5978, 7, 364);
