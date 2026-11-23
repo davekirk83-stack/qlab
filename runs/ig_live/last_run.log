@@ -1,25 +1,25 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-12:24:19 delta-share threshold 0.0500 (percentile-matched on 7069 IG bars); registered 0.05
-12:24:19 FATAL Traceback (most recent call last):
+12:29:51 delta-share threshold 0.0500 (percentile-matched on 7069 IG bars); registered 0.05
+12:29:52 FATAL Traceback (most recent call last):
   File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 561, in <module>
     Runner(end, dry).run()
     ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 86, in __init__
-    sess = self.ig.create_session(); self.ls_endpoint = sess.get("lightstreamerEndpoint"); cur = sess.get("currentAccountId")
-           ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 2067, in create_session
-    response = self._req(action, endpoint, params, session, version, check=False)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 358, in _req
-    result = self._request(action, endpoint, params, session, version, check)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 367, in _request
-    response = self.crud_session.req(action, endpoint, params, session, version)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 160, in req
-    return d_actions[action](endpoint, params, session, version)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 116, in create
-    raise IGException(f"HTTP error: {response.status_code} {response.text}")
-trading_ig.rest.IGException: HTTP error: 403 <!doctype html> <html> <head> <meta charset='UTF-8'> <title>Custom Deny Page for IG Sites</title> <style> @font-face { font-family: 'Matter SQ'; src: url(https://a.c-dn.net/b/1fS4in.woff#MatterSQ-Regular.woff) format('woff'); font-weight: normal; font-style: normal; } body { width: 100%; height: 100vh; margin: 0; padding: 0; background: #ffffff; } .warning { background-color: #E01B1C; padding: 5px 30px 10px 30px; margin: 30px auto!important; min-width: 30%; max-width: 50%; height: auto!important; border: solid; border-color: #ffffff; border-radius: 15px; } .warning .logo { width: 60px!important; height: auto!important; margin: 30px auto 0px auto!important; } .warning .title h1 { font-family: 'Matter SQ', Arial, Helvetica, sans-serif; font-weight: bold; font-size: 36px; line-height: 40px; text-align: center; color: #ffffff; } .warning .bodytext p { font-family: 'Matter SQ', Arial, Helvetica, sans-serif; font-size: 16px; text-align: center; color: #ffffff; line-height: 1.3; } </style> </head> <body> <section class='warning'> <div class='logo'> <img src='https://a.c-dn.net/b/26OgoI.svg#IG_LOGO_NEW_WHITE.svg' alt='IG'> </div> <div class='title'> <h1>Your request has been denied for security purposes.</h1> </div> <div class='bodytext'> <p>You may want to refresh the page or clear the cookies in your browser.<br>If the problem recurs, please contact IG customer service with the following information:<br><br>Error Code: 0.9623417.1795436659.5a43e043-CR<br>IP Address: 100.62.132.232<br>for further reference.</p> </div> </section> </body> </html>
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 96, in __init__
+    self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
+                                      ^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 148, in history
+    def history(self): return self.rest_history(EPIC, "5Min", 300)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 161, in rest_history
+    try: fresh = self._rest_fetch(epic, res, need)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 178, in _rest_fetch
+    h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1813, in fetch_historical_prices_by_epic
+    data = self.parse_response(response.text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 395, in parse_response
+    raise (Exception(response["errorCode"]))
+Exception: error.public-api.exceeded-account-historical-data-allowance
 
