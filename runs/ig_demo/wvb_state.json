@@ -12,10 +12,10 @@
   "R": 608.7330000000002
  },
  "USDJPY": {
-  "day": "2026-11-16",
+  "day": "2026-11-23",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
  },
  "US500": {
@@ -26,10 +26,10 @@
   "open": null
  },
  "GOLD": {
-  "day": "2026-11-16",
+  "day": "2026-11-23",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
  }
 }
