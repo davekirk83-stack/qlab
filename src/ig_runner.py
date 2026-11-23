@@ -160,7 +160,11 @@ class Runner:
         fresh = pd.DataFrame(columns=cols)
         try: fresh = self._rest_fetch(epic, res, need)
         except Exception as ex:
-            if LIVE: raise                                   # live money: never start from stale history — fail as before
+            # 23 Nov: IG's live historical-data allowance ran out (error.public-api.exceeded-account-historical-data-allowance) after the
+            # weekend gap made every restart ask for ~2 days of bars per market; six crashed restarts stopped the live chain and no live
+            # book traded. Live now falls back like demo when the cache is recent (<= 4 days, i.e. a weekend), and new bars come from the stream.
+            if LIVE and (not len(c) or (utcnow() - c.index[-1]) > pd.Timedelta("4D")): raise
+            if LIVE: log(f"LIVE {name or epic}: IG history refused ({str(ex)[:80]}) - using cache to {c.index[-1] if len(c) else '-'} + own bars; stream fills the rest")
             log(f"{name or epic}: IG history refused ({str(ex)[:80]}) — using cache {len(c)} bars + own logged bars")
             pat = f"{OUT}/bars_{name}_*.csv" if name else (f"{OUT}/bars_20*.csv" if epic == EPIC else None)
             own = [pd.read_csv(x, header=None, names=["ts"] + cols) for x in sorted(glob.glob(pat))[-5:]] if pat else []
