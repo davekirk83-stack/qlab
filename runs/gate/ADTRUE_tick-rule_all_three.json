@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE tick-rule all three",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 35,
+ "dev_R": 0.428,
+ "hold_n": 110,
+ "hold_per_year": 250,
+ "hold_R": 0.156,
+ "t": 1.25,
+ "h1": 0.136,
+ "h2": 0.175,
+ "win": 0.62,
+ "maxdd_R": -6.6,
+ "random_p95": 0.174,
+ "label": "WEAK",
+ "reason": "t<2, not above random 95th pct"
+}

@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE TRUE conviction alone",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 332,
+ "dev_R": -0.113,
+ "hold_n": 801,
+ "hold_per_year": 1817,
+ "hold_R": -0.073,
+ "t": -1.4,
+ "h1": -0.133,
+ "h2": -0.014,
+ "win": 0.56,
+ "maxdd_R": -89.0,
+ "random_p95": 0.016,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

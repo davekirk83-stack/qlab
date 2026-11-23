@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE TRUE breakout + conviction",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 346,
+ "dev_R": -0.098,
+ "hold_n": 838,
+ "hold_per_year": 1901,
+ "hold_R": -0.083,
+ "t": -1.58,
+ "h1": -0.159,
+ "h2": -0.007,
+ "win": 0.56,
+ "maxdd_R": -101.5,
+ "random_p95": -0.004,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

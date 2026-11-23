@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE TRUE all three",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 367,
+ "dev_R": -0.09,
+ "hold_n": 876,
+ "hold_per_year": 1987,
+ "hold_R": -0.1,
+ "t": -1.66,
+ "h1": -0.143,
+ "h2": -0.057,
+ "win": 0.55,
+ "maxdd_R": -122.4,
+ "random_p95": -0.001,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

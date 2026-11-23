@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE TRUE-match breakout",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 22,
+ "dev_R": -0.579,
+ "hold_n": 47,
+ "hold_per_year": 107,
+ "hold_R": 0.159,
+ "t": 0.58,
+ "h1": 0.291,
+ "h2": 0.032,
+ "win": 0.68,
+ "maxdd_R": -8.7,
+ "random_p95": 0.318,
+ "label": "WEAK",
+ "reason": "n<50, t<2, not above random 95th pct"
+}

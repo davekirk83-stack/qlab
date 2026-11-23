@@ -1,0 +1,21 @@
+{
+ "book": "ADTRUE tick-rule conviction alone",
+ "note": "",
+ "data": "2025-10-15..2026-11-22",
+ "holdout_from": "2026-06-14",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 11,
+ "dev_R": 0.188,
+ "hold_n": 21,
+ "hold_per_year": 48,
+ "hold_R": 0.278,
+ "t": 0.92,
+ "h1": 0.615,
+ "h2": -0.029,
+ "win": 0.71,
+ "maxdd_R": -3.4,
+ "random_p95": 0.492,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
