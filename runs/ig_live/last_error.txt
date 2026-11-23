@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 561, in <module>
+    Runner(end, dry).run()
+    ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 96, in __init__
+    self.ig_px = self.ig; self.bars = self.history(); log(f"history {len(self.bars)} bars to {self.bars.index[-1]}")
+                                      ^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 148, in history
+    def history(self): return self.rest_history(EPIC, "5Min", 300)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 161, in rest_history
+    try: fresh = self._rest_fetch(epic, res, need)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qlab/qlab/src/ig_runner.py", line 178, in _rest_fetch
+    h = self.ig_px.fetch_historical_prices_by_epic(epic, resolution=res, numpoints=n)["prices"]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 1813, in fetch_historical_prices_by_epic
+    data = self.parse_response(response.text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/trading_ig/rest.py", line 395, in parse_response
+    raise (Exception(response["errorCode"]))
+Exception: error.public-api.exceeded-account-historical-data-allowance
