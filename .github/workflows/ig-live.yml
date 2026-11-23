@@ -142,7 +142,7 @@ jobs:
           # row (chain counts the short runs); any run of 30+ min resets the count. Only 6 straight failures stop it (a real fault, not a blip).
           C="${{ github.event.inputs.chain }}"; C=${C:-0}; NEXT=1
           if [ "${{ github.event_name }}" != "schedule" ] && [ "$RAN" -lt 30 ]; then
-            NEXT=$(( C + 1 )); [ "$NEXT" -le 7 ] || { echo "6 short sessions in a row - chain stops (a real fault)"; exit 1; }
+            NEXT=$(( C + 1 )); if [ "$NEXT" -gt 7 ]; then echo "6 short sessions in a row - waiting 30 min, then the chain tries again (23 Nov: it must never stop itself on a weekday)"; sleep 1800; NEXT=1; fi
             echo "short chained session ($RAN min) - retry $((NEXT-1)) of 6 in 5 min"; sleep 300
           fi
           N=$(gh run list -R ${{ github.repository }} --workflow ig-live.yml --json databaseId,status -q '[.[] | select(.databaseId != ${{ github.run_id }}) | select(.status != "completed")] | length' 2>/dev/null || echo 1)
