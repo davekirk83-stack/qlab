@@ -4,13 +4,13 @@
  "fired": true,
  "armed": true,
  "max_7d": 3.56,
- "last_ratio": 2.72,
- "last_ratio_ts": 1795460400000,
- "last_btc": 60798.54,
- "updated": "2026-11-23",
+ "last_ratio": 2.55,
+ "last_ratio_ts": 1795503600000,
+ "last_btc": 60406.0,
+ "updated": "2026-11-24",
  "fired_reason": "(b) ratio 2.24 is 37% below 7d high 3.56",
  "retire_when": "BTC UTC daily close >= 66436.80 (10% above alert price)",
  "notes": "armed=true once ratio>2.6; fire (a) ratio<2.0 while armed, or (b) ratio<=0.65*max_7d; 24h cooldown",
- "last_check_note": "23 Nov 19:00Z: ratio 2.72 (73.1% long), back above 2.6 -> (a) re-armed; 24% below 7d high 3.56 (18 Nov 23:00Z) so (b) unlatched. No alert. BTC 60799; max UTC close since alert 61271 (22 Nov), retire level 66436.80 not hit.",
+ "last_check_note": "24 Nov 04:00Z: ratio 2.55 (71.8% long), still armed; 28% below 7d high 3.56 (18 Nov 23:00Z, rolls off ~25 Nov 23:00Z). No alert. BTC 60406; retire level 66436.80 not hit.",
  "b_latched": false
 }
