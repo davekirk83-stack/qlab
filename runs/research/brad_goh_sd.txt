@@ -1,0 +1,2 @@
+BTC 5m/15m 2024-26: n 65 (0.06/day) mean -0.400R win 31% total -26.0R | halves -0.387 / -0.413 | longs -0.459 shorts -0.332 | months+ 13/31
+NQ 5m/15m Oct25-Nov26: n 11 (0.03/day) mean +0.309R win 45% total +3.4R | halves +0.118 / +0.468 | longs +0.122 shorts +0.465 | months+ 4/7
