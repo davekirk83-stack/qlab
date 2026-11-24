@@ -43,7 +43,7 @@ def context(d, r):
             return "STRONGER: bear regime (below the 200-day) and firing on a bounce — historically leans down (12h avg -0.13% to -0.27%, 53% down). Good confirmation for a short plan at resistance."
         if ret24 < -0.03:
             return "CAUTION: fired after a 24h flush — historically a bounce is more likely (+0.45% avg next 12h). Not a short signal here."
-        return "NEUTRAL: outside its useful context this alert is a coin flip (2021-26) — information only."
+        return ""   # DK 24 Nov: no NEUTRAL label
     except Exception as e:
         return f"context unavailable ({e})"
 
@@ -69,18 +69,18 @@ def context_up(d, r):
             return f"STRONGER: fired right after a sweep of the 24h low, {100 * (1 - px / hi72):.0f}% under the 72h high (flush) — historically +0.98% avg, 71% wins (small sample, n14). Fits a flush-bid / scale-in long."
         if px >= d.c.iloc[-97] * 1.03:
             return "CAUTION: price already up >3% in 24h — a late roll-up, not a bottom signal."
-        return "NEUTRAL: outside a flush + sweep the roll-up is a coin flip (2021-26) — information only."
+        return ""   # DK 24 Nov: no NEUTRAL label
     except Exception as e:
         return f"context unavailable ({e})"
 
 def text_up(r):
-    return (f"## {SYM} spot CVD rolling UP — {r['t']:%d %b %H:%M} UTC\n\n" + f"**{r.get('context', '')}**\n\n"
+    return (f"## {SYM} spot CVD rolling UP — {r['t']:%d %b %H:%M} UTC\n\n" + (f"**{r['context']}**\n\n" if r.get('context') else "") +
             f"Binance spot CVD was sold down {r['drop']:,.0f} BTC ({100 * r['drop_pct']:.1f}% of 24h volume) to a low at {r['low_t']:%d %b %H:%M} UTC "
             f"(price {r['px_low']:,.0f}) and has bought back {100 * r['giveback']:.0f}% of it. Last hour's spot delta {r['last_hour']:+,.0f} BTC. "
             f"Price now {r['px']:,.0f} (not yet above the selling low).\n\nSpot buyers absorbing at the lows. Check the liquidation clusters below and the 4h trigger. Not financial advice.\n")
 
 def text(r):
-    return (f"## {SYM} spot CVD rolling over — {r['t']:%d %b %H:%M} UTC\n\n" + f"**{r.get('context', '')}**\n\n"
+    return (f"## {SYM} spot CVD rolling over — {r['t']:%d %b %H:%M} UTC\n\n" + (f"**{r['context']}**\n\n" if r.get('context') else "") +
             f"Binance spot CVD built +{r['rise']:,.0f} BTC ({100 * r['rise_pct']:.1f}% of 24h volume) to a peak at {r['peak_t']:%d %b %H:%M} UTC "
             f"(price {r['px_peak']:,.0f}) and has given back {100 * r['giveback']:.0f}% of it. Last hour's spot delta {r['last_hour']:+,.0f} BTC. "
             f"Price now {r['px']:,.0f}.\n\nKingfisher pattern: spot bid held price while shorts built; spot now being sold. "
@@ -100,12 +100,12 @@ if __name__ == "__main__":
                 lastu = u["t"]; fwd = d.c.iloc[i - 1:i + 48]; print(f"UP   {u['t']:%d %b %H:%M} px {u['px']:,.0f} [{context_up(d.iloc[:i], u)[:8]}] | next 12h low {100 * (fwd.min() / u['px'] - 1):+.1f}% high {100 * (fwd.max() / u['px'] - 1):+.1f}%")
         sys.exit()
     r = check(d)
-    if r["fire"]: r["context"] = context(d, r)
+    if r["fire"]: r["context"] = context(d, r); r["fire"] = r["context"].startswith("STRONGER")   # DK 24 Nov: alert only when STRONGER
     print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()})
     if r["fire"]:
         os.makedirs("runs/alerts", exist_ok=True); open("runs/alerts/spot_cvd_alert.md", "w").write(text(r))
     u = check_up(d)
-    if u["fire"]: u["context"] = context_up(d, u)
+    if u["fire"]: u["context"] = context_up(d, u); u["fire"] = u["context"].startswith("STRONGER")   # DK 24 Nov: alert only when STRONGER
     print("UP:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in u.items()})
     if u["fire"]:
         os.makedirs("runs/alerts", exist_ok=True); open("runs/alerts/spot_cvd_rollup.md", "w").write(text_up(u))
