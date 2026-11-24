@@ -19,3 +19,5 @@
 2026-11-23T20:49:55Z clock: started daily books us_close (target 15:40 America/New_York)
 2026-11-24T08:01:03Z clock: started daily books eu_open (target 08:05 Europe/London)
 2026-11-24T08:12:13Z clock: started daily books eu_open (target 08:05 Europe/London)
+2026-11-24T14:31:20Z clock: started daily books us_open (target 09:35 America/New_York)
+2026-11-24T16:06:29Z clock: started daily books eu_close (target 16:10 Europe/London)
