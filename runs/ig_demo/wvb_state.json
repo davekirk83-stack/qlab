@@ -3,8 +3,8 @@
   "day": "2026-11-24",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null,
+  "done": true,
+  "open": 26293.4,
   "up": 28608.566499999997,
   "dn": 27999.833499999997,
   "dist": 608.7330000000002,
@@ -14,15 +14,8 @@
  "USDJPY": {
   "day": "2026-11-24",
   "orders": {},
-  "pos": {
-   "deal_id": "DIAAAAYWVN2RCA6",
-   "side": -1,
-   "px": 15908.5,
-   "stop": 15960.0,
-   "sz": 0.07,
-   "bar": "2026-11-24 12:30:00+00:00"
-  },
-  "done": false,
+  "pos": null,
+  "done": true,
   "open": 15934.2,
   "up": 15959.95,
   "dn": 15908.45,
@@ -34,8 +27,8 @@
   "day": "2026-11-24",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null
+  "done": true,
+  "open": 7167.950000000001
  },
  "GOLD": {
   "day": "2026-11-24",
