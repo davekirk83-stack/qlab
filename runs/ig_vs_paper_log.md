@@ -264,3 +264,38 @@ IG side only (from runs/ig_live/signals.csv and trades.csv), not compared with p
 Day tally: pending (paper feed missing) — to be scored by the next run, or by rerunning `python src/ig_vs_paper.py 2026-11-20 ig_live` once the paper bars land.
 
 Running tally (from 2026-11-05), agreement unchanged pending 20 Nov: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/18 by script (2/19 adjusted), mean slippage +1.91 pts over 5 scored fills (+2.07 over all 6 incl. 17 Nov 04:25 UTC). Combined 3/33 by script (4/34 adjusted) — still below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-23 (NY day) — checked 2026-11-24 09:10 UTC; also re-scores 2026-11-20
+
+Paper bars (data_nq_cache/nq_5m.csv) still end 2026-11-22 23:55 UTC. Waited 10 min and pulled again: unchanged. Today's "paper books 2026-11-24" commit (08:08 UTC) did not advance the NQ cache, so 23 Nov cannot be compared yet.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-23 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-23 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+
+IG side only for 23 Nov (not compared with paper):
+- ig_live: 4 Ignition signals (02:15, 22:00, 22:05, 22:10 UTC SELL), all skipped ad_no_regime. No Ignition fills.
+- ig_demo: runner is back (signals logged 23 Nov; last demo commit 2026-11-24 07:24 UTC). 8 signals: 13:30 UTC SELL ad_no_coil; 21:50 UTC BUY **taken** (close 26748.40); 22:15–22:55 UTC six BUYs ad_no_regime. The 21:50 taken signal has no row in runs/ig_demo/trades.csv and state.json has reset for 24 Nov, so no fill or result could be scored.
+
+Re-run of 2026-11-20 now that the paper bars cover it:
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-20 New York
+  02:15 NY SELL IG only    paper close       nan  IG close   26244.3  taken
+  02:55 NY SELL IG only    paper close       nan  IG close   26307.3  taken
+  05:45 NY SELL IG only    paper close       nan  IG close   26229.2  ad_no_regime
+  12:00 NY SELL IG only    paper close       nan  IG close   25473.9  ad_no_coil
+  15:50 NY SELL IG only    paper close       nan  IG close   25062.3  ad_no_coil
+  agreement: 0/5 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+  IG fill 02:15 NY side -1: filled 26236.9 vs IG signal close 26244.3 -> +7.4 pts against us; result +46.5 pts (ig_limit)
+  IG fill 02:55 NY side -1: filled 26304.4 vs IG signal close 26307.3 -> +2.9 pts against us; result -65.7 pts (ig_stop)
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-20 New York
+  no Ignition signal on either feed — agree
+```
+
+20 Nov: ig_live both 0 / paper-only-while-live 0 / IG-only 5. Flag — taken-trade disagreement: ig_live took two live SELLs (02:15 and 02:55 NY, net −19.2 pts) that the paper feed never signalled. Neither fill was more than 10 pts worse than its signal.
+
+Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/23 by script (2/24 adjusted), mean slippage +1.91 pts over 5 scored fills. Combined 3/38 by script (4/39 adjusted) — below 50% past the 10-signal mark. 23 Nov pending paper bars. (Sign convention: positive slippage = against us.)
