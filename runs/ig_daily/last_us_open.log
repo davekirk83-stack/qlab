@@ -1,7 +1,8 @@
-14:35:01 job us_open; daily sub-book £500.00, open positions 0
-14:35:02 switch_account: error.switch.accountId-must-be-different
-14:35:04 US500: final close 2026-11-12 7592.4 RSI2 62.2 RSI4 56.6 5d 7531.9 200d 7337.4 ATR 109.6 | IG open 7604.3
-14:35:04 NQ: final close 2026-11-12 28289.2 RSI2 71.1 RSI4 58.5 5d 27860.4 200d 28029.0 ATR 701.6 | IG open 28231.7
-14:35:04 WALLST: final close 2026-11-12 52297.1 RSI2 48.9 RSI4 52.6 5d 52138.2 200d 50740.7 ATR 696.3 | IG open 52436.7
-14:35:05 GOLD: final close 2026-11-12 3885.3 RSI2 5.3 RSI4 21.6 5d 4021.1 200d 4479.4 ATR 88.2 | IG open 3893.5
-14:35:05 done; book £500.00, open []
+14:31:28 job us_open; daily sub-book £500.00, open positions 0
+14:31:29 switch_account: error.switch.accountId-must-be-different
+14:31:30 REGIME: US 500 7237.2 below its 200-day 7350.1 — no new dip-book entries today
+14:31:31 US500: final close 2026-11-23 7237.2 RSI2 64.3 RSI4 48.6 5d 7197.5 200d 7350.1 ATR 152.1 | IG open 7147.9
+14:31:31 NQ: final close 2026-11-23 26746.1 RSI2 65.0 RSI4 50.7 5d 26482.0 200d 28081.7 ATR 864.4 | IG open 26229.8
+14:31:32 WALLST: final close 2026-11-23 49595.3 RSI2 61.7 RSI4 42.7 5d 49559.5 200d 50773.8 ATR 888.5 | IG open 49326.5
+14:31:32 GOLD: final close 2026-11-23 3651.4 RSI2 54.0 RSI4 37.4 5d 3691.7 200d 4438.0 ATR 107.0 | IG open 3619.4
+14:31:32 done; book £500.00, open []
