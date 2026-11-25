@@ -1,0 +1,16 @@
+
+=== BTC 15m 2023-26  bars 134395  cost 0.100% round trip ===
+LONG  exit 1R: n  352  win   51%  mean -0.076R  halves -0.078 / -0.073
+LONG  exit 2R: n  352  win   37%  mean -0.078R  halves -0.103 / -0.053
+LONG  exit ST: n  352  win   32%  mean +0.116R  halves +0.113 / +0.119
+SHORT exit 1R: n  408  win   53%  mean -0.042R  halves -0.112 / +0.027
+SHORT exit 2R: n  408  win   35%  mean -0.104R  halves -0.123 / -0.084
+SHORT exit ST: n  408  win   30%  mean -0.131R  halves -0.144 / -0.118
+
+=== GOLD 15m Apr-Oct 2026  bars 12144  cost 0.015% round trip ===
+LONG  exit 1R: n   42  win   50%  mean -0.018R  halves -0.257 / +0.221
+LONG  exit 2R: n   42  win   31%  mean -0.104R  halves -0.326 / +0.118
+LONG  exit ST: n   42  win   31%  mean -0.012R  halves -0.411 / +0.387
+SHORT exit 1R: n   36  win   53%  mean +0.051R  halves +0.427 / -0.325
+SHORT exit 2R: n   36  win   36%  mean +0.065R  halves +0.288 / -0.158
+SHORT exit ST: n   36  win   31%  mean -0.037R  halves -0.036 / -0.038
