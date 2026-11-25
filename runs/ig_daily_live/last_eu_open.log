@@ -1,8 +1,8 @@
 08:05:00 job eu_open; daily sub-book £456.13, open positions 0
-08:05:02 switch_account: error.switch.accountId-must-be-different
-08:05:03 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£20 — STOPPED
-08:05:03 pot £395.62 (start £500, all books -103.87); entries on
-08:05:03 REGIME: US 500 7237.2 below its 200-day 7350.1 — no new dip-book entries today
-08:05:04 DAX: final close 2026-11-23 25337.3 RSI2 53.0 RSI4 38.2 5d 25477.1 200d 24999.4 ATR 411.1 | IG open 25317.7
-08:05:04 FTSE: final close 2026-11-23 10480.8 RSI2 55.7 RSI4 37.9 5d 10504.2 200d 10560.0 ATR 125.6 | IG open 10483.4
+08:05:01 switch_account: error.switch.accountId-must-be-different
+08:05:03 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£19 — STOPPED
+08:05:03 pot £385.33 (start £500, all books -114.16); entries on
+08:05:03 REGIME: US 500 7201.1 below its 200-day 7351.3 — no new dip-book entries today
+08:05:03 DAX: final close 2026-11-24 25017.8 RSI2 32.5 RSI4 30.4 5d 25271.6 200d 25000.2 ATR 414.8 | IG open 25044.0
+08:05:04 FTSE: final close 2026-11-24 10467.1 RSI2 50.1 RSI4 36.4 5d 10459.6 200d 10560.5 ATR 123.3 | IG open 10515.9
 08:05:04 done; book £456.13, open []

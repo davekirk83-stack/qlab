@@ -3,7 +3,6 @@
  "start": "2026-11-10",
  "pos": [],
  "done": [
-  "us_open:2026-11-12",
   "eu_close:2026-11-12",
   "us_close:2026-11-12",
   "eu_open:2026-11-13",
@@ -32,17 +31,18 @@
   "eu_open:2026-11-24",
   "us_open:2026-11-24",
   "eu_close:2026-11-24",
-  "us_close:2026-11-24"
+  "us_close:2026-11-24",
+  "eu_open:2026-11-25"
  ],
- "day": "2026-11-24",
+ "day": "2026-11-25",
  "day_eq": 456.128,
  "entries_ok": true,
  "stop_why": "",
  "pot": {
   "acc_start": 493.68,
   "start_date": "2026-11-10",
-  "day": "2026-11-24",
-  "acc_day": 389.3,
+  "day": "2026-11-25",
+  "acc_day": 379.01,
   "cash_day": -0.51,
   "acc": 379.01,
   "cash": -0.51
@@ -50,7 +50,7 @@
  "pot_now": 385.33,
  "tps": {
   "open": 0,
-  "day": "2026-11-24",
+  "day": "2026-11-25",
   "day_start": -37.05,
   "stopped": true,
   "realised": -37.05
