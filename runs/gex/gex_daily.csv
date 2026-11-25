@@ -19,3 +19,7 @@ date,sym,src,spot,net_gex_bn,regime,gamma_flip,call_wall,put_wall,top_abs_strike
 2026-11-25,_NDX,yahoo,26214.17,-0.396,negative,,26700.0,27000.0,27000.0
 2026-11-25,SPY,yahoo,718.78,-6.14,negative,,720.0,700.0,700.0
 2026-11-25,QQQ,yahoo,638.1,-2.633,negative,,680.0,640.0,635.0
+2026-11-25,_SPX,yahoo,7182.78,-21.186,negative,7164.8,7200.0,7000.0,7150.0
+2026-11-25,_NDX,yahoo,26046.9,-0.752,negative,26046.9,26700.0,26050.0,26050.0
+2026-11-25,SPY,yahoo,716.7,-6.718,negative,718.5,718.0,700.0,700.0
+2026-11-25,QQQ,yahoo,633.93,-3.131,negative,,650.0,635.0,635.0
