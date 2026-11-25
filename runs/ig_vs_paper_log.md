@@ -299,3 +299,27 @@ IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-20 New York
 20 Nov: ig_live both 0 / paper-only-while-live 0 / IG-only 5. Flag — taken-trade disagreement: ig_live took two live SELLs (02:15 and 02:55 NY, net −19.2 pts) that the paper feed never signalled. Neither fill was more than 10 pts worse than its signal.
 
 Running tally (from 2026-11-05): ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/23 by script (2/24 adjusted), mean slippage +1.91 pts over 5 scored fills. Combined 3/38 by script (4/39 adjusted) — below 50% past the 10-signal mark. 23 Nov pending paper bars. (Sign convention: positive slippage = against us.)
+
+## 2026-11-24 (NY day) — checked 2026-11-25 ~09:20 UTC; 23 Nov still pending
+
+Paper bars (data_nq_cache/nq_5m.csv) still end 2026-11-22 23:55 UTC (last data_nq_cache commit 2026-11-23 14:44 UTC). Waited 10 min and pulled again: unchanged. No "paper books" daily commit since 2026-11-23 08:57 UTC, so neither 23 nor 24 Nov can be compared — paper feed now three NY days behind.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-24 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-24 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-23 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-23 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+
+IG side only for 24 Nov NY (from signals.csv; not compared with paper):
+- ig_live: 6 Ignition signals — SELL 08:25, 10:45 UTC; BUY 22:25, 22:30 UTC; SELL 01:15, 03:45 UTC (25 Nov) — all skipped ad_tue_wed. No rows in trades.csv for 23–25 Nov; no fills.
+- ig_demo: 5 Ignition SELL signals — 08:25, 08:55, 10:45, 12:00, 13:25 UTC — all skipped ad_tue_wed. No fills. Demo runner active (last commit 2026-11-25 06:08 UTC).
+- Both runners' last_error.txt end `error.public-api.exceeded-account-historical-data-allowance` (IG historical-data allowance).
+
+Day tally: pending (paper feed missing). No taken trades on either IG book, so no slippage to add.
+
+Running tally (from 2026-11-05), unchanged: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/23 by script (2/24 adjusted), mean slippage +1.91 pts over 5 scored fills as carried in the 23 Nov entry (note: unclear from the log whether the 20 Nov live fills, +7.4 and +2.9, are inside that figure; if not, it would be +2.84 over 7 — to be reconciled). Combined 3/38 by script (4/39 adjusted) — below 50% past the 10-signal mark. 23 and 24 Nov pending paper bars. (Sign convention: positive slippage = against us.)
