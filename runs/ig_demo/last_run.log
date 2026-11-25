@@ -1,211 +1,292 @@
 munch is not present in the environment. See https://trading-ig.readthedocs.io/en/latest/faq.html#optional-dependencies
-18:47:19 delta-share threshold 0.0500 (percentile-matched on 10960 IG bars); registered 0.05
-18:47:25 history 300 bars to 2026-11-24 18:47:00+00:00
-18:47:25 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
-18:47:25 streaming IX.D.NASDAQ.CASH.IP
-18:47:25 ls status: CONNECTING
-18:47:26 ls status: CONNECTED:WS-STREAMING
-18:47:27 CHART IX.D.NASDAQ.CASH.IP subscribed
-18:47:27 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
-18:47:27 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26253.7', 'OFR': '26254.9'}
-18:47:27 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26253.2', 'OFR': '26254.4'}
-18:47:27 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26253', 'OFR': '26254.2'}
-18:47:27 stream subscribed on CHART via Z6FARW
-18:47:27 trading session on Z6FARW
-18:47:27 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
-18:47:29 [range] NQ: using the runner's own 300 IG bars
-18:47:29 [range] NQ: cache 72649 bars offset +846.7 to IG level, REST 300 bars to 2026-11-24 18:47:00+00:00
-18:47:29 [range] NQ: containment median 0.860 over 24219 15-min bars
-18:47:38 [range] WALLST: cache 40659 bars offset +751.3 to IG level, REST 300 bars to 2026-11-24 18:47:00+00:00
-18:47:38 [range] WALLST: containment median 0.860 over 13557 15-min bars
-18:47:47 [range] DAX: cache 40838 bars offset +436.2 to IG level, REST 300 bars to 2026-11-24 18:47:00+00:00
-18:47:47 [range] DAX: containment median 0.860 over 13621 15-min bars
-18:47:56 [range] US500: cache 71472 bars offset +165.7 to IG level, REST 300 bars to 2026-11-24 18:47:00+00:00
-18:47:56 [range] US500: containment median 0.880 over 23834 15-min bars
-18:48:04 [range] FTSE: cache 71608 bars offset +100.7 to IG level, REST 300 bars to 2026-11-24 18:48:00+00:00
-18:48:05 [range] FTSE: containment median 0.880 over 23901 15-min bars
-18:48:09 GBPUSD: IG history refused () — using cache 1669 bars + own logged bars
-18:48:09 [range] GBPUSD: cache 73364 bars offset -368.9 to IG level, REST 300 bars to 2026-11-24 18:40:00+00:00
-18:48:09 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
-18:48:10 [range] market CS.D.USCGC.TODAY.IP throttled — waiting 15 s
-18:48:33 [range] GOLD: cache 36432 bars offset -486.9 to IG level, REST 300 bars to 2026-11-24 18:48:00+00:00
-18:48:33 [range] GOLD: containment median 0.900 over 12144 15-min bars
-18:48:42 [range] USDJPY: cache 73266 bars offset +139.8 to IG level, REST 300 bars to 2026-11-24 18:48:00+00:00
-18:48:42 [range] USDJPY: containment median 0.900 over 24425 15-min bars
-18:48:42 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'WALLST': 'IX.D.DOW.DAILY.IP min 0.04 GBP/pt', 'DAX': 'IX.D.DAX.DAILY.IP min 0.04 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'GOLD': 'CS.D.USCGC.TODAY.IP min 1.0 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
-18:48:42 streaming IX.D.DOW.DAILY.IP
-18:48:42 streaming IX.D.DAX.DAILY.IP
-18:48:42 streaming IX.D.SPTRD.DAILY.IP
-18:48:42 streaming IX.D.FTSE.DAILY.IP
-18:48:42 streaming CS.D.GBPUSD.TODAY.IP
-18:48:42 streaming CS.D.USCGC.TODAY.IP
-18:48:42 streaming CS.D.USDJPY.TODAY.IP
-18:48:42 [spike] markets: ['NQ', 'US500']
-18:48:42 [wvb] markets: ['NQ', 'USDJPY', 'US500', 'GOLD']
-18:48:42 [emac] markets: ['US500', 'WALLST', 'DAX', 'NQ']
-18:48:42 book 13 rehearsal: book equity £480.63 (risk x1.0), news events loaded 24
-18:48:42 CHART IX.D.DOW.DAILY.IP subscribed
-18:48:42 MARKET IX.D.DOW.DAILY.IP subscription error 21 Invalid group
-18:48:42 MARKET IX.D.DAX.DAILY.IP subscription error 21 Invalid group
-18:48:42 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
-18:48:42 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
-18:48:42 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
-18:48:42 CHART IX.D.DAX.DAILY.IP subscribed
-18:48:42 CHART IX.D.SPTRD.DAILY.IP subscribed
-18:48:42 CHART CS.D.GBPUSD.TODAY.IP subscribed
-18:48:42 CHART IX.D.FTSE.DAILY.IP subscribed
-18:48:42 CHART CS.D.USCGC.TODAY.IP subscribed
-18:48:42 MARKET CS.D.USCGC.TODAY.IP subscription error 21 Invalid group
-18:48:42 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
-18:48:42 CHART CS.D.USDJPY.TODAY.IP subscribed
-18:50:00 bar 18:45 o 26254.3 h 26262.6 l 26218.1 c 26225.9 ticks 1863 delta -68
-18:55:00 bar 18:50 o 26226.1 h 26236.4 l 26199.7 c 26208.7 ticks 3481 delta -11
-19:00:42 [emac] WALLST hour 24 Nov 18:00 close 49910.5 atr 241.5 signal +0
-19:00:42 [emac] DAX hour 24 Nov 18:00 close 25166.5 atr 113.1 signal +0
-19:00:43 [range] GBPUSD 18:45 c 13114.0 ema 13110.0 band 13094.1-13126.0 atr 8.0 regime off L 0 S 0 orders 0
-19:00:44 [range] FTSE 18:45 c 10504.2 ema 10488.6 band 10451.1-10526.0 atr 18.7 regime ON L 0 S 0 orders 0
-19:00:44 [range] GOLD 18:45 c 3555.3 ema 3578.4 band 3558.0-3598.7 atr 10.2 regime off L 0 S 0 orders 0
-19:00:45 [range] USDJPY 18:45 c 15928.8 ema 15922.7 band 15905.1-15940.4 atr 8.8 regime off L 0 S 0 orders 0
-19:00:46 [range] US500 18:45 c 7186.1 ema 7187.5 band 7134.3-7240.7 atr 26.6 regime off L 0 S 0 orders 0
-19:00:46 [emac] US500 hour 24 Nov 18:00 close 7186.1 atr 41.5 signal +0
-19:15:50 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-19:15:50 [range] NQ 18:45 c 26182.8 ema 26209.9 band 25952.8-26467.1 atr 128.6 regime off L 0 S 0 orders 0
-19:15:51 [emac] NQ hour 24 Nov 18:00 close 26182.8 atr 222.8 signal +0
-19:15:51 bar 18:55 o 26209.0 h 26214.4 l 26181.1 c 26182.8 ticks 3561 delta +13
-19:15:51 bar 19:00 o 26183.1 h 26183.1 l 26183.1 c 26183.1 ticks 1 delta -1
-19:20:00 bar 19:15 o 26182.6 h 26286.2 l 26164.4 c 26264.1 ticks 14332 delta -160
-19:25:00 bar 19:20 o 26264.4 h 26276.3 l 26227.4 c 26260.2 ticks 3572 delta -8
-19:45:53 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-19:45:53 [range] NQ 19:15 c 26248.7 ema 26211.3 band 25994.4-26428.3 atr 108.5 regime off L 0 S 0 orders 0
-19:45:53 bar 19:25 o 26260.1 h 26265.5 l 26245.5 c 26248.7 ticks 3526 delta -66
-19:45:53 bar 19:30 o 26249.2 h 26249.2 l 26249.2 c 26249.2 ticks 1 delta -1
-19:45:53 [range] GOLD 19:15 c 3556.8 ema 3576.3 band 3556.8-3595.8 atr 9.8 regime off L 0 S 0 orders 0
-19:45:54 [range] US500 19:15 c 7201.8 ema 7188.9 band 7138.4-7239.3 atr 25.2 regime off L 0 S 0 orders 0
-19:45:55 [range] FTSE 19:15 c 10517.0 ema 10491.3 band 10455.4-10527.2 atr 18.0 regime ON L 0 S 0 orders 0
-19:45:56 [range] USDJPY 19:15 c 15926.0 ema 15923.1 band 15906.1-15940.0 atr 8.5 regime off L 0 S 0 orders 0
-19:46:42 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-19:46:42 [range] GBPUSD 19:15 c 13115.5 ema 13110.5 band 13095.9-13125.2 atr 7.3 regime off L 0 S 0 orders 0
-19:50:00 bar 19:45 o 26249.4 h 26253.5 l 26154.5 c 26175.6 ticks 13959 delta -341
-19:55:00 bar 19:50 o 26176.2 h 26190.5 l 26144.7 c 26146.2 ticks 3482 delta -22
-20:00:00 [emac] WALLST hour 24 Nov 19:00 close 49884.2 atr 249.6 signal +0
-20:15:59 [range] GOLD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-20:15:59 [range] GOLD 19:45 c 3556.4 ema 3574.4 band 3557.4-3591.4 atr 8.5 regime off L 0 S 0 orders 0
-20:16:00 [range] US500 19:45 c 7177.2 ema 7187.8 band 7138.8-7236.7 atr 24.5 regime off L 0 S 0 orders 0
-20:16:00 [emac] US500 hour 24 Nov 19:00 close 7177.2 atr 42.8 signal +0
-20:16:00 [emac] DAX hour 24 Nov 19:00 close 25173.2 atr 113.6 signal +0
-20:16:01 [range] USDJPY 19:45 c 15921.7 ema 15922.9 band 15907.9-15938.0 atr 7.5 regime off L 0 S 0 orders 0
-20:16:01 [range] FTSE 19:45 c 10506.3 ema 10492.7 band 10458.3-10527.1 atr 17.2 regime ON L 0 S 0 orders 0
-20:16:02 [range] GBPUSD 19:45 c 13117.5 ema 13111.2 band 13098.3-13124.1 atr 6.4 regime off L 0 S 0 orders 0
-20:16:40 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-20:16:40 [range] NQ 19:45 c 26117.2 ema 26205.6 band 26009.8-26401.4 atr 97.9 regime off L 0 S 0 orders 0
-20:16:40 [emac] NQ hour 24 Nov 19:00 close 26117.2 atr 228.7 signal +0
-20:16:40 bar 19:55 o 26146.6 h 26146.6 l 26108.2 c 26117.2 ticks 3476 delta -94
-20:20:00 bar 20:15 o 26117.4 h 26178.3 l 26066.9 c 26116.5 ticks 14248 delta -358
-20:25:00 bar 20:20 o 26116.3 h 26129.5 l 26095.7 c 26110.3 ticks 3550 delta -48
-20:45:53 [range] GOLD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-20:45:53 [range] GOLD 20:15 c 3551.8 ema 3570.7 band 3555.5-3585.9 atr 7.6 regime off L 0 S 0 orders 0
-20:45:54 [range] US500 20:15 c 7176.0 ema 7186.6 band 7139.0-7234.3 atr 23.8 regime off L 0 S 0 orders 0
-20:45:55 [range] FTSE 20:15 c 10503.7 ema 10493.8 band 10460.9-10526.6 atr 16.4 regime ON L 0 S 0 orders 0
-20:45:56 [range] USDJPY 20:15 c 15919.1 ema 15922.6 band 15908.7-15936.4 atr 6.9 regime off L 0 S 0 orders 0
-20:45:57 [range] GBPUSD 20:15 c 13116.5 ema 13111.7 band 13099.7-13123.7 atr 6.0 regime off L 0 S 0 orders 0
-20:46:38 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-20:46:38 [range] NQ 20:15 c 26092.1 ema 26194.8 band 25999.7-26389.9 atr 97.6 regime off L 0 S 0 orders 0
-20:46:38 bar 20:25 o 26110.2 h 26117.6 l 26084.6 c 26092.1 ticks 3564 delta -40
-20:50:00 bar 20:45 o 26092.5 h 26198.9 l 26062.9 c 26191.8 ticks 14178 delta +46
-20:55:00 bar 20:50 o 26190.1 h 26276.5 l 26170.0 c 26216.9 ticks 3642 delta +88
-21:00:39 [emac] WALLST hour 24 Nov 20:00 close 50024.8 atr 253.6 signal +0
-21:00:39 [emac] DAX hour 24 Nov 20:00 close 25200.5 atr 112.4 signal +0
-21:15:51 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-21:15:51 [range] NQ 20:45 c 26224.0 ema 26197.6 band 25991.1-26404.1 atr 103.3 regime off L 0 S 0 orders 0
-21:15:51 [emac] NQ hour 24 Nov 20:00 close 26224.0 atr 235.0 signal +0
-21:15:51 bar 20:55 o 26215.2 h 26231.1 l 26179.5 c 26224.0 ticks 3607 delta +61
-21:15:52 [range] GOLD 20:45 c 3553.3 ema 3567.4 band 3553.9-3581.0 atr 6.8 regime off L 0 S 0 orders 0
-21:15:53 bar 21:00 o 26225.4 h 26225.4 l 26225.4 c 26225.4 ticks 1 delta +1
-21:15:53 [range] US500 20:45 c 7204.7 ema 7188.4 band 7141.0-7235.8 atr 23.7 regime off L 0 S 0 orders 0
-21:15:53 [emac] US500 hour 24 Nov 20:00 close 7204.7 atr 43.8 signal +0
-21:15:54 [range] FTSE 20:45 c 10511.4 ema 10495.4 band 10465.2-10525.7 atr 15.1 regime ON L 0 S 0 orders 0
-21:15:55 [range] USDJPY 20:45 c 15923.9 ema 15922.7 band 15909.9-15935.5 atr 6.4 regime off L 0 S 0 orders 0
-21:16:36 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-21:16:36 [range] GBPUSD 20:45 c 13113.4 ema 13111.9 band 13100.2-13123.6 atr 5.8 regime off L 0 S 0 orders 0
-21:20:00 bar 21:15 o 26223.3 h 26223.3 l 26149.1 c 26178.6 ticks 11720 delta +176
-21:25:00 bar 21:20 o 26178.5 h 26204.1 l 26171.1 c 26193.3 ticks 2543 delta +45
-21:45:53 [range] US500 sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-21:45:53 [range] US500 21:15 c 7199.8 ema 7189.5 band 7144.1-7234.8 atr 22.7 regime off L 0 S 0 orders 0
-21:45:54 [range] FTSE 21:15 c 10508.2 ema 10496.6 band 10468.4-10524.9 atr 14.1 regime ON L 0 S 0 orders 0
-21:45:55 [range] GOLD 21:15 c 3552.8 ema 3566.0 band 3553.4-3578.7 atr 6.3 regime off L 0 S 0 orders 0
-21:45:56 [range] GBPUSD 21:15 c 13115.5 ema 13112.2 band 13100.7-13123.7 atr 5.7 regime off L 0 S 0 orders 0
-21:45:56 [range] USDJPY 21:15 c 15924.2 ema 15922.8 band 15911.0-15934.7 atr 5.9 regime ON L 0 S 0 orders 0
-21:46:34 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-21:46:34 [range] NQ 21:15 c 26202.9 ema 26200.5 band 26030.0-26370.9 atr 85.2 regime off L 0 S 0 orders 0
-21:46:35 bar 21:25 o 26193.4 h 26208.3 l 26189.5 c 26202.9 ticks 2451 delta +11
-21:50:00 bar 21:45 o 26202.6 h 26225.2 l 26174.9 c 26193.4 ticks 8189 delta -171
-21:55:00 bar 21:50 o 26193.1 h 26202.5 l 26182.6 c 26191.1 ticks 1755 delta -57
-22:15:51 [range] US500 sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-22:15:51 [range] US500 21:45 c 7195.2 ema 7190.9 band 7154.8-7227.0 atr 18.1 regime off L 0 S 0 orders 0
-22:15:52 [emac] US500 hour 24 Nov 21:00 close 7195.2 atr 43.0 signal +0
-22:15:52 [range] FTSE 21:45 c 10504.9 ema 10497.4 band 10471.0-10523.9 atr 13.2 regime ON L 0 S 0 orders 0
-22:15:53 [emac] WALLST hour 24 Nov 21:00 close 49983.4 atr 250.1 signal +0
-22:15:53 [emac] DAX hour 24 Nov 21:00 close 25178.9 atr 107.1 signal +0
-22:15:53 [range] USDJPY 21:45 c 15926.2 ema 15923.2 band 15912.6-15933.7 atr 5.3 regime ON L 0 S 0 orders 0
-22:15:54 [range] GBPUSD 21:45 c 13116.6 ema 13112.6 band 13101.9-13123.4 atr 5.4 regime off L 0 S 0 orders 0
-22:16:32 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-22:16:32 [range] NQ 21:45 c 26202.2 ema 26200.6 band 26034.3-26367.0 atr 83.2 regime off L 0 S 0 orders 0
-22:16:33 [emac] NQ hour 24 Nov 21:00 close 26202.2 atr 230.4 signal +0
-22:16:33 bar 21:55 o 26191.4 h 26205.9 l 26185.5 c 26202.2 ticks 1887 delta -55
-22:16:33 [range] GOLD 21:45 c 3556.9 ema 3565.2 band 3553.2-3577.1 atr 6.0 regime off L 0 S 0 orders 0
-22:20:00 bar 22:15 o 26202.4 h 26261.8 l 26198.4 c 26230.0 ticks 318 delta +20
-22:25:02 bar 22:20 o 26230.2 h 26232.1 l 26217.7 c 26220.4 ticks 77 delta -3
-22:45:58 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-22:45:58 [range] GBPUSD 22:15 c 13111.7 ema 13112.5 band 13102.1-13123.0 atr 5.2 regime off L 0 S 0 orders 0
-22:45:59 [range] US500 22:15 c 7199.1 ema 7192.0 band 7159.7-7224.4 atr 16.2 regime off L 0 S 0 orders 0
-22:45:59 [range] FTSE 22:15 c 10508.3 ema 10498.5 band 10476.0-10520.9 atr 11.2 regime ON L 0 S 0 orders 0
-22:46:00 [range] USDJPY 22:15 c 15932.8 ema 15924.1 band 15913.6-15934.6 atr 5.2 regime ON L 0 S 0 orders 0
-22:46:35 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-22:46:35 [range] NQ 22:15 c 26254.2 ema 26205.7 band 26047.7-26363.8 atr 79.0 regime off L 0 S 0 orders 0
-22:46:35 bar 22:25 o 26220.6 h 26254.2 l 26220.3 c 26254.2 ticks 115 delta +37
-22:50:07 bar 22:45 o 26254.1 h 26273.5 l 26243.7 c 26244.5 ticks 289 delta -15
-22:55:03 bar 22:50 o 26243.6 h 26244.6 l 26229.7 c 26236.1 ticks 77 delta +5
-23:15:52 [range] USDJPY sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:15:52 [range] USDJPY 22:45 c 15930.1 ema 15924.7 band 15914.5-15934.8 atr 5.1 regime ON L 0 S 0 orders 0
-23:15:52 [emac] WALLST hour 24 Nov 22:00 close 50007.5 atr 241.7 signal +0
-23:15:53 [range] GBPUSD 22:45 c 13111.8 ema 13112.4 band 13102.8-13122.0 atr 4.8 regime off L 0 S 0 orders 0
-23:15:53 [range] US500 22:45 c 7199.7 ema 7192.7 band 7163.8-7221.7 atr 14.5 regime off L 0 S 0 orders 0
-23:15:54 [emac] US500 hour 24 Nov 22:00 close 7199.7 atr 40.9 signal +0
-23:15:54 [range] FTSE 22:45 c 10508.7 ema 10499.4 band 10478.9-10520.0 atr 10.3 regime ON L 0 S 0 orders 0
-23:15:54 [emac] DAX hour 24 Nov 22:00 close 25188.7 atr 98.5 signal +0
-23:16:29 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:16:29 [range] NQ 22:45 c 26238.7 ema 26208.9 band 26058.7-26359.0 atr 75.1 regime off L 0 S 0 orders 0
-23:16:29 [emac] NQ hour 24 Nov 22:00 close 26238.7 atr 216.6 signal +0
-23:16:29 bar 22:55 o 26236.7 h 26241.5 l 26228.3 c 26238.7 ticks 77 delta +7
-23:20:00 bar 23:15 o 26240.9 h 26288.8 l 26174.0 c 26181.7 ticks 8141 delta +117
-23:25:00 bar 23:20 o 26181.6 h 26205.1 l 26174.8 c 26188.4 ticks 2106 delta +78
-23:45:58 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:45:58 [range] GBPUSD 23:15 c 13111.5 ema 13112.3 band 13103.3-13121.4 atr 4.5 regime off L 0 S 0 orders 0
-23:45:59 [range] GOLD 23:15 c 3566.9 ema 3565.3 band 3552.6-3578.0 atr 6.3 regime off L 0 S 0 orders 0
-23:46:00 [range] US500 23:15 c 7196.0 ema 7193.1 band 7165.6-7220.6 atr 13.7 regime off L 0 S 0 orders 0
-23:46:00 [range] FTSE 23:15 c 10505.8 ema 10500.0 band 10481.0-10519.1 atr 9.5 regime ON L 0 S 0 orders 0
-23:46:01 [range] USDJPY 23:15 c 15928.1 ema 15925.5 band 15915.7-15935.2 atr 4.9 regime ON L 0 S 0 orders 0
-23:46:27 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-23:46:27 [range] NQ 23:15 c 26194.5 ema 26207.5 band 26051.1-26363.9 atr 78.2 regime off L 0 S 0 orders 0
-23:46:27 bar 23:25 o 26188.5 h 26199.9 l 26180.5 c 26194.5 ticks 1941 delta +43
-23:50:00 bar 23:45 o 26194.8 h 26198.6 l 26107.2 c 26124.3 ticks 8217 delta -77
-23:55:00 bar 23:50 o 26124.2 h 26146.1 l 26107.3 c 26123.2 ticks 2258 delta +14
-00:00:00 [emac] WALLST hour 24 Nov 23:00 close 49923.2 atr 241.0 signal +0
-00:00:28 [emac] DAX hour 24 Nov 23:00 close 25153.9 atr 94.4 signal +0
-00:15:52 [range] NQ sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:15:52 [range] NQ 23:45 c 26131.9 ema 26200.3 band 26040.3-26360.3 atr 80.0 regime off L 0 S 0 orders 0
-00:15:53 [emac] NQ hour 24 Nov 23:00 close 26131.9 atr 220.9 signal +0
-00:15:53 bar 23:55 o 26122.6 h 26139.6 l 26106.7 c 26131.9 ticks 1934 delta +16
-00:15:53 [range] GOLD 23:45 c 3551.5 ema 3564.0 band 3549.6-3578.4 atr 7.2 regime off L 0 S 0 orders 0
-00:15:53 bar 00:00 o 26132.9 h 26132.9 l 26132.9 c 26132.9 ticks 1 delta +1
-00:15:54 [range] USDJPY 23:45 c 15927.0 ema 15925.6 band 15915.6-15935.6 atr 5.0 regime ON L 0 S 0 orders 0
-00:15:55 [range] US500 23:45 c 7184.2 ema 7192.2 band 7164.5-7219.9 atr 13.9 regime off L 0 S 0 orders 0
-00:15:55 [emac] US500 hour 24 Nov 23:00 close 7184.2 atr 41.1 signal +0
-00:15:55 [range] FTSE 23:45 c 10495.8 ema 10499.6 band 10481.1-10518.2 atr 9.3 regime ON L 0 S 0 orders 0
-00:16:25 [range] GBPUSD sync: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-00:16:25 [range] GBPUSD 23:45 c 13110.5 ema 13112.1 band 13103.9-13120.3 atr 4.1 regime off L 0 S 0 orders 0
-00:20:00 bar 00:15 o 26135.3 h 26135.3 l 26031.3 c 26052.6 ticks 10358 delta -78
-00:25:00 bar 00:20 o 26054.1 h 26140.5 l 26051.1 c 26124.3 ticks 2660 delta +154
-00:27:19 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
-00:27:19 done; ticks 472201 bars 338
-00:27:19 ls status: DISCONNECTED
+00:28:28 delta-share threshold 0.0500 (percentile-matched on 11336 IG bars); registered 0.05
+00:28:34 history 300 bars to 2026-11-25 00:28:00+00:00
+00:28:34 stream user Z6FARW endpoint https://demo-apd.marketdatasystems.com
+00:28:34 streaming IX.D.NASDAQ.CASH.IP
+00:28:34 ls status: CONNECTING
+00:28:35 ls status: CONNECTED:WS-STREAMING
+00:28:35 MARKET IX.D.NASDAQ.CASH.IP subscription error 21 Invalid group
+00:28:35 CHART IX.D.NASDAQ.CASH.IP subscribed
+00:28:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26089.4', 'OFR': '26091.6'}
+00:28:35 stream subscribed on CHART via Z6FARW
+00:28:35 trading session on Z6FARW
+00:28:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26089.5', 'OFR': '26091.7'}
+00:28:35 CHART IX.D.NASDAQ.CASH.IP update: {'BID': '26090.7', 'OFR': '26092.9'}
+00:28:35 DEMO account Z6FARW, IX.D.NASDAQ.CASH.IP US Tech 100 min size 0.01 GBP/pt, status TRADEABLE
+00:28:37 [range] NQ: using the runner's own 300 IG bars
+00:28:37 [range] NQ: cache 72649 bars offset +1073.5 to IG level, REST 300 bars to 2026-11-25 00:28:00+00:00
+00:28:37 [range] NQ: containment median 0.860 over 24219 15-min bars
+00:28:46 [range] WALLST: cache 40659 bars offset +941.0 to IG level, REST 300 bars to 2026-11-25 00:28:00+00:00
+00:28:46 [range] WALLST: containment median 0.860 over 13557 15-min bars
+00:28:54 [range] DAX: cache 40838 bars offset +539.5 to IG level, REST 300 bars to 2026-11-25 00:28:00+00:00
+00:28:54 [range] DAX: containment median 0.860 over 13621 15-min bars
+00:29:03 [range] US500: cache 71472 bars offset +206.5 to IG level, REST 300 bars to 2026-11-25 00:29:00+00:00
+00:29:03 [range] US500: containment median 0.880 over 23834 15-min bars
+00:29:12 [range] FTSE: cache 71608 bars offset +134.5 to IG level, REST 300 bars to 2026-11-25 00:29:00+00:00
+00:29:12 [range] FTSE: containment median 0.880 over 23901 15-min bars
+00:29:16 GBPUSD: IG history refused () — using cache 1737 bars + own logged bars
+00:29:16 [range] GBPUSD: cache 73364 bars offset -358.0 to IG level, REST 300 bars to 2026-11-25 00:20:00+00:00
+00:29:16 [range] GBPUSD: containment median 0.900 over 24463 15-min bars
+00:29:17 [range] market CS.D.USCGC.TODAY.IP throttled — waiting 15 s
+00:29:39 [range] GOLD: cache 36432 bars offset -456.5 to IG level, REST 300 bars to 2026-11-25 00:29:00+00:00
+00:29:39 [range] GOLD: containment median 0.900 over 12144 15-min bars
+00:29:48 [range] USDJPY: cache 73266 bars offset +124.8 to IG level, REST 300 bars to 2026-11-25 00:29:00+00:00
+00:29:48 [range] USDJPY: containment median 0.900 over 24425 15-min bars
+00:29:48 [range] instruments: {'NQ': 'IX.D.NASDAQ.CASH.IP min 0.01 GBP/pt', 'WALLST': 'IX.D.DOW.DAILY.IP min 0.04 GBP/pt', 'DAX': 'IX.D.DAX.DAILY.IP min 0.04 GBP/pt', 'US500': 'IX.D.SPTRD.DAILY.IP min 0.04 GBP/pt', 'FTSE': 'IX.D.FTSE.DAILY.IP min 0.04 GBP/pt', 'GBPUSD': 'CS.D.GBPUSD.TODAY.IP min 0.03 GBP/pt', 'GOLD': 'CS.D.USCGC.TODAY.IP min 1.0 GBP/pt', 'USDJPY': 'CS.D.USDJPY.TODAY.IP min 0.04 GBP/pt'}
+00:29:48 streaming IX.D.DOW.DAILY.IP
+00:29:48 streaming IX.D.DAX.DAILY.IP
+00:29:48 streaming IX.D.SPTRD.DAILY.IP
+00:29:48 streaming IX.D.FTSE.DAILY.IP
+00:29:48 streaming CS.D.GBPUSD.TODAY.IP
+00:29:48 streaming CS.D.USCGC.TODAY.IP
+00:29:48 streaming CS.D.USDJPY.TODAY.IP
+00:29:48 [spike] markets: ['NQ', 'US500']
+00:29:48 [wvb] markets: ['NQ', 'USDJPY', 'US500', 'GOLD']
+00:29:48 [emac] markets: ['US500', 'WALLST', 'DAX', 'NQ']
+00:29:48 book 13 rehearsal: book equity £480.63 (risk x1.0), news events loaded 24
+00:29:48 MARKET IX.D.DOW.DAILY.IP subscription error 21 Invalid group
+00:29:48 MARKET IX.D.SPTRD.DAILY.IP subscription error 21 Invalid group
+00:29:48 MARKET IX.D.DAX.DAILY.IP subscription error 21 Invalid group
+00:29:48 MARKET IX.D.FTSE.DAILY.IP subscription error 21 Invalid group
+00:29:48 MARKET CS.D.GBPUSD.TODAY.IP subscription error 21 Invalid group
+00:29:48 CHART IX.D.DOW.DAILY.IP subscribed
+00:29:48 CHART IX.D.SPTRD.DAILY.IP subscribed
+00:29:48 CHART IX.D.DAX.DAILY.IP subscribed
+00:29:48 CHART IX.D.FTSE.DAILY.IP subscribed
+00:29:48 CHART CS.D.GBPUSD.TODAY.IP subscribed
+00:29:48 MARKET CS.D.USDJPY.TODAY.IP subscription error 21 Invalid group
+00:29:48 MARKET CS.D.USCGC.TODAY.IP subscription error 21 Invalid group
+00:29:48 CHART CS.D.USDJPY.TODAY.IP subscribed
+00:29:48 CHART CS.D.USCGC.TODAY.IP subscribed
+00:30:00 [range] USDJPY 00:15 c 15931.6 ema 15919.4 band 15904.5-15934.4 atr 7.5 regime off L 0 S 0 orders 0
+00:30:01 [range] GOLD 00:15 c 3541.9 ema 3585.7 band 3557.9-3613.4 atr 13.9 regime off L 0 S 0 orders 0
+00:30:02 [range] US500 00:15 c 7176.7 ema 7197.5 band 7165.3-7229.7 atr 16.1 regime off L 0 S 0 orders 0
+00:30:02 [range] NQ 00:15 c 26087.7 ema 26288.0 band 26144.1-26431.9 atr 72.0 regime off L 0 S 0 orders 0
+00:30:02 bar 00:25 o 26090.5 h 26103.1 l 26083.5 c 26100.2 ticks 701 delta +16
+00:30:03 [range] FTSE 00:15 c 10492.3 ema 10492.6 band 10466.3-10519.0 atr 13.2 regime ON L 0 S 0 orders 0
+00:30:03 [range] GBPUSD 00:15 c 13109.0 ema 13111.8 band 13103.5-13120.1 atr 4.1 regime off L 0 S 0 orders 0
+00:35:00 bar 00:30 o 26100.3 h 26146.1 l 26100.0 c 26112.0 ticks 3208 delta -10
+00:40:00 bar 00:35 o 26112.1 h 26113.0 l 26078.4 c 26085.8 ticks 3150 delta -38
+00:45:00 [range] NQ 00:30 c 26112.7 ema 26271.3 band 26131.4-26411.3 atr 70.0 regime off L 0 S 0 orders 0
+00:45:00 bar 00:40 o 26086.3 h 26116.1 l 26082.2 c 26112.7 ticks 3229 delta +21
+00:45:01 [range] US500 00:30 c 7181.2 ema 7195.9 band 7164.8-7227.1 atr 15.6 regime off L 0 S 0 orders 0
+00:45:01 [range] GOLD 00:30 c 3544.2 ema 3581.7 band 3555.2-3608.2 atr 13.2 regime off L 0 S 0 orders 0
+00:45:02 [range] USDJPY 00:30 c 15932.6 ema 15920.7 band 15905.9-15935.5 atr 7.4 regime off L 0 S 0 orders 0
+00:45:02 [range] GBPUSD 00:30 c 13108.8 ema 13111.5 band 13103.3-13119.7 atr 4.1 regime off L 0 S 0 orders 0
+00:45:03 [range] FTSE 00:30 c 10494.6 ema 10492.8 band 10468.6-10517.0 atr 12.1 regime ON L 0 S 0 orders 0
+00:50:00 bar 00:45 o 26112.8 h 26126.0 l 26085.0 c 26109.1 ticks 3456 delta -16
+00:55:00 bar 00:50 o 26108.8 h 26145.2 l 26103.5 c 26117.1 ticks 3500 delta -66
+01:00:00 [range] NQ 00:45 c 26099.8 ema 26255.0 band 26114.8-26395.2 atr 70.1 regime off L 0 S 0 orders 0
+01:00:00 [emac] NQ hour 25 Nov 00:00 close 26099.8 atr 224.4 signal +0
+01:00:00 bar 00:55 o 26117.6 h 26127.3 l 26092.5 c 26099.8 ticks 3356 delta -76
+01:00:01 [range] GOLD 00:45 c 3548.5 ema 3578.5 band 3550.9-3606.2 atr 13.8 regime off L 0 S 0 orders 0
+01:00:01 [range] USDJPY 00:45 c 15924.4 ema 15921.0 band 15905.4-15936.7 atr 7.8 regime off L 0 S 0 orders 0
+01:00:02 [emac] WALLST hour 25 Nov 00:00 close 49909.8 atr 246.6 signal +0
+01:00:02 [emac] DAX hour 25 Nov 00:00 close 25174.5 atr 95.0 signal +0
+01:00:02 [range] FTSE 00:45 c 10497.5 ema 10493.3 band 10469.1-10517.5 atr 12.1 regime ON L 0 S 0 orders 0
+01:00:03 [range] US500 00:45 c 7180.1 ema 7194.4 band 7163.5-7225.3 atr 15.4 regime off L 0 S 0 orders 0
+01:00:03 [emac] US500 hour 25 Nov 00:00 close 7180.1 atr 45.7 signal +0
+01:00:03 [range] GBPUSD 00:45 c 13115.1 ema 13111.8 band 13103.5-13120.2 atr 4.2 regime off L 0 S 0 orders 0
+01:05:00 bar 01:00 o 26099.7 h 26126.1 l 26037.2 c 26038.3 ticks 3813 delta -61
+01:10:00 bar 01:05 o 26039.7 h 26072.7 l 26029.2 c 26060.6 ticks 3600 delta +20
+01:15:00 [range] NQ 01:00 c 26164.7 ema 26246.4 band 26088.7-26404.0 atr 78.8 regime off L 0 S 0 orders 0
+01:15:00 bar 01:10 o 26060.8 h 26177.3 l 26050.7 c 26164.7 ticks 3734 delta -42
+01:15:01 [range] GOLD 01:00 c 3540.5 ema 3574.9 band 3546.0-3603.9 atr 14.5 regime off L 0 S 0 orders 0
+01:15:01 [range] US500 01:00 c 7188.8 ema 7193.9 band 7160.7-7227.1 atr 16.6 regime off L 0 S 0 orders 0
+01:15:02 [range] USDJPY 01:00 c 15925.1 ema 15921.4 band 15905.7-15937.1 atr 7.8 regime off L 0 S 0 orders 0
+01:15:02 [range] GBPUSD 01:00 c 13111.0 ema 13111.8 band 13103.0-13120.5 atr 4.4 regime off L 0 S 0 orders 0
+01:15:03 [range] FTSE 01:00 c 10511.5 ema 10495.0 band 10470.1-10520.0 atr 12.5 regime ON L 0 S 0 orders 0
+01:20:00 bar 01:15 o 26164.4 h 26174.8 l 26119.8 c 26125.1 ticks 3736 delta -170
+01:25:00 bar 01:20 o 26125.0 h 26157.8 l 26111.7 c 26125.9 ticks 3808 delta -154
+01:30:00 [range] GOLD 01:15 c 3541.6 ema 3571.7 band 3551.2-3592.3 atr 10.3 regime off L 0 S 0 orders 0
+01:30:01 [range] GBPUSD 01:15 c 13106.4 ema 13111.2 band 13102.3-13120.2 atr 4.5 regime off L 0 S 0 orders 0
+01:30:01 [range] FTSE 01:15 c 10499.1 ema 10495.4 band 10475.1-10515.8 atr 10.2 regime ON L 0 S 0 orders 0
+01:30:02 [range] NQ 01:15 c 26127.0 ema 26235.0 band 26077.2-26392.8 atr 78.9 regime off L 0 S 0 orders 0
+01:30:02 bar 01:25 o 26126.2 h 26182.3 l 26123.7 c 26127.0 ticks 3793 delta -37
+01:30:03 [range] USDJPY 01:15 c 15929.6 ema 15922.2 band 15907.0-15937.4 atr 7.6 regime off L 0 S 0 orders 0
+01:30:03 [range] US500 01:15 c 7183.0 ema 7192.9 band 7164.8-7220.9 atr 14.0 regime off L 0 S 0 orders 0
+01:35:00 bar 01:30 o 26127.4 h 26137.6 l 26072.8 c 26101.8 ticks 3851 delta -83
+01:40:00 bar 01:35 o 26101.3 h 26140.6 l 26078.8 c 26080.4 ticks 3844 delta -94
+01:45:00 [range] NQ 01:30 c 26062.3 ema 26218.6 band 26065.9-26371.2 atr 76.3 regime off L 0 S 0 orders 0
+01:45:00 bar 01:40 o 26080.1 h 26111.1 l 26055.1 c 26062.3 ticks 3817 delta -123
+01:45:01 [range] GOLD 01:30 c 3551.9 ema 3569.9 band 3547.5-3592.3 atr 11.2 regime off L 0 S 0 orders 0
+01:45:01 [range] USDJPY 01:30 c 15930.3 ema 15923.0 band 15907.8-15938.2 atr 7.6 regime off L 0 S 0 orders 0
+01:45:02 [range] US500 01:30 c 7172.1 ema 7190.9 band 7164.7-7217.1 atr 13.1 regime off L 0 S 0 orders 0
+01:45:04 [range] GBPUSD 01:30 c 13106.5 ema 13110.8 band 13102.1-13119.5 atr 4.3 regime off L 0 S 0 orders 0
+01:45:05 [range] FTSE 01:30 c 10502.9 ema 10496.1 band 10476.9-10515.3 atr 9.6 regime ON L 0 S 0 orders 0
+01:50:00 bar 01:45 o 26062.1 h 26079.3 l 26018.1 c 26039.8 ticks 3797 delta -97
+01:55:00 bar 01:50 o 26039.9 h 26044.7 l 25994.3 c 26032.8 ticks 3781 delta -71
+02:00:00 [emac] WALLST hour 25 Nov 01:00 close 49811.6 atr 220.8 signal +0
+02:00:00 [range] NQ 01:45 c 26006.3 ema 26198.3 band 26047.9-26348.8 atr 75.2 regime off L 0 S 0 orders 0
+02:00:00 [emac] NQ hour 25 Nov 01:00 close 26006.3 atr 208.4 signal +0
+02:00:00 bar 01:55 o 26032.6 h 26044.7 l 26004.4 c 26006.3 ticks 3811 delta -41
+02:00:01 [range] US500 01:45 c 7162.2 ema 7188.2 band 7162.8-7213.5 atr 12.7 regime off L 0 S 0 orders 0
+02:00:01 [emac] US500 hour 25 Nov 01:00 close 7162.2 atr 44.3 signal +0
+02:00:01 [range] GOLD 01:45 c 3546.2 ema 3567.6 band 3544.8-3590.4 atr 11.4 regime off L 0 S 0 orders 0
+02:00:01 [emac] DAX hour 25 Nov 01:00 close 25143.8 atr 91.9 signal +0
+02:00:02 [range] FTSE 01:45 c 10501.8 ema 10496.7 band 10477.9-10515.4 atr 9.4 regime ON L 0 S 0 orders 0
+02:00:02 [range] USDJPY 01:45 c 15927.0 ema 15923.4 band 15907.7-15939.0 atr 7.8 regime off L 0 S 0 orders 0
+02:00:04 [range] GBPUSD 01:45 c 13107.5 ema 13110.5 band 13102.1-13118.9 atr 4.2 regime off L 0 S 0 orders 0
+02:05:00 bar 02:00 o 26006.1 h 26031.3 l 25995.1 c 26006.3 ticks 3787 delta -7
+02:10:00 bar 02:05 o 26006.0 h 26010.7 l 25968.4 c 25974.6 ticks 3774 delta -56
+02:15:00 [range] NQ 02:00 c 25988.7 ema 26178.4 band 26027.4-26329.4 atr 75.5 regime off L 0 S 0 orders 0
+02:15:01 bar 02:10 o 25974.4 h 25989.7 l 25956.1 c 25988.7 ticks 3716 delta +72
+02:15:01 [range] GOLD 02:00 c 3559.5 ema 3566.8 band 3542.1-3591.5 atr 12.3 regime off L 0 S 0 orders 0
+02:15:01 [range] US500 02:00 c 7166.1 ema 7186.1 band 7161.8-7210.3 atr 12.1 regime off L 0 S 0 orders 0
+02:15:02 [range] USDJPY 02:00 c 15928.2 ema 15923.8 band 15908.2-15939.4 atr 7.8 regime off L 0 S 0 orders 0
+02:15:03 [range] GBPUSD 02:00 c 13110.4 ema 13110.5 band 13101.9-13119.1 atr 4.3 regime off L 0 S 0 orders 0
+02:15:03 [range] FTSE 02:00 c 10503.6 ema 10497.3 band 10478.7-10516.0 atr 9.3 regime ON L 0 S 0 orders 0
+02:20:00 bar 02:15 o 25988.6 h 25990.8 l 25916.4 c 25929.0 ticks 3754 delta -128
+02:25:00 bar 02:20 o 25929.4 h 25941.7 l 25903.0 c 25920.0 ticks 3768 delta +20
+02:30:00 [range] GOLD 02:15 c 3565.3 ema 3566.7 band 3541.5-3591.9 atr 12.6 regime off L 0 S 0 orders 0
+02:30:01 [range] NQ 02:15 c 25964.2 ema 26158.0 band 26003.7-26312.3 atr 77.2 regime off L 0 S 0 orders 0
+02:30:01 bar 02:25 o 25920.2 h 25992.6 l 25915.7 c 25964.2 ticks 3804 delta +18
+02:30:01 [range] FTSE 02:15 c 10508.4 ema 10498.4 band 10479.4-10517.4 atr 9.5 regime ON L 0 S 0 orders 0
+02:30:02 [range] US500 02:15 c 7165.0 ema 7184.1 band 7159.9-7208.2 atr 12.1 regime off L 0 S 0 orders 0
+02:30:02 [range] USDJPY 02:15 c 15926.9 ema 15924.1 band 15907.8-15940.4 atr 8.1 regime off L 0 S 0 orders 0
+02:30:03 [range] GBPUSD 02:15 c 13110.9 ema 13110.5 band 13101.7-13119.3 atr 4.4 regime off L 0 S 0 orders 0
+02:35:00 bar 02:30 o 25961.1 h 25972.8 l 25921.4 c 25934.0 ticks 3792 delta -64
+02:40:00 bar 02:35 o 25934.1 h 25967.5 l 25917.4 c 25944.0 ticks 3738 delta -10
+02:45:00 [range] GOLD 02:30 c 3556.8 ema 3565.7 band 3538.4-3593.1 atr 13.7 regime off L 0 S 0 orders 0
+02:45:01 [range] NQ 02:30 c 25904.4 ema 26133.8 band 25974.2-26293.5 atr 79.8 regime off L 0 S 0 orders 0
+02:45:01 bar 02:40 o 25943.9 h 25951.4 l 25898.5 c 25904.4 ticks 3767 delta -137
+02:45:01 [range] USDJPY 02:30 c 15921.9 ema 15923.9 band 15906.9-15940.9 atr 8.5 regime off L 0 S 0 orders 0
+02:45:02 [range] FTSE 02:30 c 10505.6 ema 10499.1 band 10479.6-10518.5 atr 9.7 regime ON L 0 S 0 orders 0
+02:45:02 [range] US500 02:30 c 7156.0 ema 7181.4 band 7156.7-7206.1 atr 12.4 regime off L 0 S 0 orders 0
+02:45:03 [range] GBPUSD 02:30 c 13105.4 ema 13110.0 band 13100.3-13119.7 atr 4.8 regime off L 0 S 0 orders 0
+02:50:00 bar 02:45 o 25904.3 h 25944.3 l 25895.3 c 25900.3 ticks 3717 delta +1
+02:55:00 bar 02:50 o 25900.1 h 25914.2 l 25862.9 c 25873.7 ticks 3733 delta -83
+03:00:00 [range] GOLD 02:45 c 3551.1 ema 3564.3 band 3537.6-3591.1 atr 13.4 regime off L 0 S 0 orders 0
+03:00:00 [emac] DAX hour 25 Nov 02:00 close 25105.7 atr 87.9 signal +0
+03:00:01 [range] NQ 02:45 c 25863.4 ema 26108.1 band 25946.8-26269.4 atr 80.6 regime off L 0 S 0 orders 0
+03:00:01 [emac] NQ hour 25 Nov 02:00 close 25863.4 atr 193.3 signal +0
+03:00:01 bar 02:55 o 25873.6 h 25881.0 l 25854.2 c 25863.4 ticks 3661 delta -1
+03:00:01 [range] GBPUSD 02:45 c 13103.1 ema 13109.4 band 13100.1-13118.7 atr 4.6 regime off L 0 S 0 orders 0
+03:00:02 [range] USDJPY 02:45 c 15912.1 ema 15922.8 band 15904.2-15941.3 atr 9.3 regime off L 0 S 0 orders 0
+03:00:02 [emac] WALLST hour 25 Nov 02:00 close 49802.3 atr 188.7 signal +0
+03:00:02 [range] FTSE 02:45 c 10497.2 ema 10498.9 band 10478.6-10519.1 atr 10.1 regime ON L 0 S 0 orders 0
+03:00:04 [range] US500 02:45 c 7150.1 ema 7178.4 band 7153.3-7203.4 atr 12.5 regime off L 0 S 0 orders 0
+03:00:04 [emac] US500 hour 25 Nov 02:00 close 7150.1 atr 39.2 signal +0
+03:05:00 bar 03:00 o 25863.7 h 25871.2 l 25843.4 c 25853.9 ticks 3654 delta +0
+03:10:00 bar 03:05 o 25853.7 h 25914.5 l 25852.2 c 25908.3 ticks 3648 delta +34
+03:15:00 [range] NQ 03:00 c 25938.9 ema 26092.0 band 25919.0-26265.0 atr 86.5 regime off L 0 S 0 orders 0
+03:15:00 bar 03:10 o 25908.2 h 25982.3 l 25907.4 c 25938.9 ticks 3696 delta -48
+03:15:01 [range] GOLD 03:00 c 3557.6 ema 3563.7 band 3537.3-3590.2 atr 13.2 regime off L 0 S 0 orders 0
+03:15:01 [range] US500 03:00 c 7161.4 ema 7176.8 band 7150.0-7203.5 atr 13.4 regime off L 0 S 0 orders 0
+03:15:02 [range] USDJPY 03:00 c 15920.9 ema 15922.6 band 15903.6-15941.6 atr 9.5 regime off L 0 S 0 orders 0
+03:15:02 [range] FTSE 03:00 c 10503.4 ema 10499.3 band 10477.8-10520.8 atr 10.7 regime ON L 0 S 0 orders 0
+03:15:21 [range] GBPUSD 03:00 c 13097.5 ema 13108.2 band 13098.4-13118.1 atr 4.9 regime off L 0 S 0 orders 0
+03:20:00 bar 03:15 o 25938.7 h 25966.7 l 25928.2 c 25965.2 ticks 3741 delta +17
+03:25:00 bar 03:20 o 25965.3 h 25972.3 l 25934.7 c 25966.7 ticks 3557 delta +17
+03:30:00 [range] NQ 03:15 c 25939.7 ema 26077.5 band 25903.8-26251.1 atr 86.8 regime off L 0 S 0 orders 0
+03:30:00 bar 03:25 o 25966.6 h 25974.4 l 25936.7 c 25939.7 ticks 3758 delta -158
+03:30:01 [range] US500 03:15 c 7159.9 ema 7175.2 band 7148.7-7201.6 atr 13.2 regime off L 0 S 0 orders 0
+03:30:01 [range] FTSE 03:15 c 10495.6 ema 10499.0 band 10477.2-10520.7 atr 10.9 regime ON L 0 S 0 orders 0
+03:30:02 [range] GOLD 03:15 c 3551.2 ema 3562.5 band 3535.9-3589.1 atr 13.3 regime off L 0 S 0 orders 0
+03:30:02 [range] USDJPY 03:15 c 15920.9 ema 15922.4 band 15903.7-15941.2 atr 9.4 regime off L 0 S 0 orders 0
+03:30:03 [range] GBPUSD 03:15 c 13099.6 ema 13107.4 band 13097.0-13117.8 atr 5.2 regime off L 0 S 0 orders 0
+03:35:00 bar 03:30 o 25939.8 h 25983.3 l 25920.8 c 25974.6 ticks 3792 delta +8
+03:40:00 bar 03:35 o 25974.8 h 26027.3 l 25969.6 c 26003.5 ticks 3790 delta -28
+03:45:00 [range] NQ 03:30 c 25998.1 ema 26069.9 band 25890.2-26249.6 atr 89.9 regime off L 0 S 0 orders 0
+03:45:00 bar 03:40 o 26003.8 h 26011.7 l 25970.2 c 25998.1 ticks 3768 delta -72
+03:45:01 [range] GOLD 03:30 c 3550.2 ema 3561.3 band 3535.4-3587.3 atr 13.0 regime off L 0 S 0 orders 0
+03:45:01 [range] US500 03:30 c 7169.0 ema 7174.6 band 7147.2-7202.0 atr 13.7 regime off L 0 S 0 orders 0
+03:45:02 [range] FTSE 03:30 c 10501.4 ema 10499.2 band 10476.7-10521.7 atr 11.3 regime ON L 0 S 0 orders 0
+03:45:02 [range] GBPUSD 03:30 c 13093.1 ema 13106.1 band 13095.4-13116.8 atr 5.3 regime off L 0 S 0 orders 0
+03:45:03 [range] USDJPY 03:30 c 15929.5 ema 15923.1 band 15904.8-15941.4 atr 9.1 regime off L 0 S 0 orders 0
+03:50:00 bar 03:45 o 25998.0 h 26007.1 l 25920.2 c 25928.6 ticks 3771 delta -143
+03:55:00 bar 03:50 o 25928.4 h 25951.1 l 25915.8 c 25942.8 ticks 3694 delta +70
+04:00:00 [emac] WALLST hour 25 Nov 03:00 close 49825.7 atr 181.2 signal +0
+04:00:00 [range] GOLD 03:45 c 3548.5 ema 3560.1 band 3535.0-3585.3 atr 12.6 regime off L 0 S 0 orders 0
+04:00:01 [range] NQ 03:45 c 25955.9 ema 26059.0 band 25883.4-26234.6 atr 87.8 regime off L 0 S 0 orders 0
+04:00:01 [emac] NQ hour 25 Nov 03:00 close 25955.9 atr 188.4 signal +0
+04:00:01 bar 03:55 o 25942.9 h 25960.8 l 25934.1 c 25955.9 ticks 3529 delta +41
+04:00:01 [range] FTSE 03:45 c 10496.9 ema 10499.0 band 10477.4-10520.5 atr 10.8 regime ON L 0 S 0 orders 0
+04:00:02 [range] US500 03:45 c 7158.8 ema 7173.1 band 7146.3-7199.9 atr 13.4 regime off L 0 S 0 orders 0
+04:00:02 [emac] US500 hour 25 Nov 03:00 close 7158.8 atr 35.0 signal +0
+04:00:02 [emac] DAX hour 25 Nov 03:00 close 25110.0 atr 79.7 signal +0
+04:00:02 [range] GBPUSD 03:45 c 13092.0 ema 13104.7 band 13094.3-13115.2 atr 5.2 regime off L 0 S 0 orders 0
+04:00:03 [range] USDJPY 03:45 c 15929.0 ema 15923.7 band 15906.5-15940.8 atr 8.6 regime off L 0 S 0 orders 0
+04:05:00 bar 04:00 o 25955.1 h 25955.1 l 25912.6 c 25921.6 ticks 3458 delta -106
+04:10:00 bar 04:05 o 25921.8 h 25944.7 l 25916.5 c 25925.7 ticks 3303 delta -41
+04:15:00 [range] NQ 04:00 c 25949.1 ema 26048.6 band 25876.5-26220.7 atr 86.1 regime off L 0 S 0 orders 0
+04:15:00 bar 04:10 o 25926.6 h 25955.8 l 25920.4 c 25949.1 ticks 3359 delta -65
+04:15:01 [range] GOLD 04:00 c 3549.4 ema 3559.1 band 3534.2-3584.0 atr 12.5 regime off L 0 S 0 orders 0
+04:15:02 [range] US500 04:00 c 7158.6 ema 7171.7 band 7145.3-7198.1 atr 13.2 regime off L 0 S 0 orders 0
+04:15:02 [range] USDJPY 04:00 c 15930.8 ema 15924.3 band 15907.7-15941.0 atr 8.3 regime off L 0 S 0 orders 0
+04:15:03 [range] GBPUSD 04:00 c 13093.1 ema 13103.6 band 13093.2-13114.0 atr 5.2 regime off L 0 S 0 orders 0
+04:15:03 [range] FTSE 04:00 c 10498.5 ema 10498.9 band 10477.4-10520.4 atr 10.7 regime ON L 0 S 0 orders 0
+04:20:00 bar 04:15 o 25949.4 h 26009.0 l 25947.5 c 25995.3 ticks 3489 delta -39
+04:25:00 bar 04:20 o 25995.5 h 26003.1 l 25960.6 c 25963.3 ticks 3544 delta -284
+04:30:00 [range] NQ 04:15 c 25956.3 ema 26039.8 band 25867.5-26212.1 atr 86.2 regime off L 0 S 0 orders 0
+04:30:00 bar 04:25 o 25962.8 h 25996.2 l 25956.3 c 25956.3 ticks 3508 delta -136
+04:30:01 [range] GOLD 04:15 c 3551.4 ema 3558.4 band 3534.3-3582.4 atr 12.0 regime off L 0 S 0 orders 0
+04:30:01 [range] FTSE 04:15 c 10499.5 ema 10499.0 band 10478.0-10520.0 atr 10.5 regime ON L 0 S 0 orders 0
+04:30:02 [range] GBPUSD 04:15 c 13093.9 ema 13102.7 band 13092.8-13112.5 atr 4.9 regime off L 0 S 0 orders 0
+04:30:02 [range] US500 04:15 c 7160.8 ema 7170.7 band 7144.5-7196.8 atr 13.1 regime off L 0 S 0 orders 0
+04:30:03 [range] USDJPY 04:15 c 15932.6 ema 15925.1 band 15909.7-15940.5 atr 7.7 regime off L 0 S 0 orders 0
+04:35:00 bar 04:30 o 25956.4 h 25956.5 l 25921.6 c 25923.3 ticks 3335 delta -173
+04:40:00 bar 04:35 o 25924.0 h 25932.5 l 25913.5 c 25915.1 ticks 3037 delta -35
+04:45:00 [range] NQ 04:30 c 25888.6 ema 26025.4 band 25864.0-26186.7 atr 80.7 regime off L 0 S 0 orders 0
+04:45:00 bar 04:40 o 25914.6 h 25915.3 l 25885.1 c 25888.6 ticks 3141 delta -29
+04:45:01 [range] GOLD 04:30 c 3548.3 ema 3557.4 band 3535.1-3579.7 atr 11.2 regime off L 0 S 0 orders 0
+04:45:01 [range] US500 04:30 c 7150.5 ema 7168.7 band 7144.1-7193.4 atr 12.3 regime off L 0 S 0 orders 0
+04:45:02 [range] USDJPY 04:30 c 15931.8 ema 15925.8 band 15910.6-15940.9 atr 7.6 regime off L 0 S 0 orders 0
+04:45:03 [range] GBPUSD 04:30 c 13090.4 ema 13101.5 band 13091.7-13111.3 atr 4.9 regime off L 0 S 0 orders 0
+04:45:06 [range] FTSE 04:30 c 10496.5 ema 10498.8 band 10479.1-10518.4 atr 9.8 regime ON L 0 S 0 orders 0
+04:50:00 bar 04:45 o 25888.5 h 25911.6 l 25879.9 c 25883.4 ticks 3146 delta -42
+04:55:00 bar 04:50 o 25884.1 h 25895.7 l 25866.2 c 25885.8 ticks 3116 delta -60
+05:00:00 [emac] WALLST hour 25 Nov 04:00 close 49828.7 atr 148.9 signal +0
+05:00:00 [range] US500 04:45 c 7154.7 ema 7167.4 band 7143.2-7191.6 atr 12.1 regime off L 0 S 0 orders 0
+05:00:00 [emac] US500 hour 25 Nov 04:00 close 7154.7 atr 26.4 signal +0
+05:00:01 [range] NQ 04:45 c 25908.9 ema 26014.3 band 25856.6-26172.0 atr 78.9 regime off L 0 S 0 orders 0
+05:00:01 [emac] NQ hour 25 Nov 04:00 close 25908.9 atr 153.2 signal +0
+05:00:01 bar 04:55 o 25886.1 h 25909.1 l 25876.8 c 25908.9 ticks 2883 delta -25
+05:00:01 [range] USDJPY 04:45 c 15937.8 ema 15926.9 band 15912.0-15941.8 atr 7.5 regime off L 0 S 0 orders 0
+05:00:02 [range] GOLD 04:45 c 3549.2 ema 3556.6 band 3535.2-3578.0 atr 10.7 regime off L 0 S 0 orders 0
+05:00:02 [emac] DAX hour 25 Nov 04:00 close 25110.0 atr 64.6 signal +0
+05:00:02 [range] FTSE 04:45 c 10502.8 ema 10499.1 band 10480.4-10517.9 atr 9.4 regime ON L 0 S 0 orders 0
+05:00:03 [range] GBPUSD 04:45 c 13088.5 ema 13100.3 band 13090.8-13109.8 atr 4.7 regime off L 0 S 0 orders 0
+05:05:00 bar 05:00 o 25909.1 h 25933.4 l 25889.1 c 25902.7 ticks 3379 delta -71
+05:10:00 bar 05:05 o 25902.6 h 25914.6 l 25882.8 c 25902.7 ticks 3512 delta -36
+05:15:00 [range] GOLD 05:00 c 3546.7 ema 3555.7 band 3536.3-3575.0 atr 9.7 regime off L 0 S 0 orders 0
+05:15:01 [range] USDJPY 05:00 c 15940.0 ema 15928.2 band 15913.6-15942.7 atr 7.3 regime off L 0 S 0 orders 0
+05:15:01 [range] NQ 05:00 c 25870.7 ema 26000.6 band 25845.0-26156.2 atr 77.8 regime off L 0 S 0 orders 0
+05:15:01 bar 05:10 o 25903.2 h 25909.1 l 25863.1 c 25870.7 ticks 3214 delta -180
+05:15:02 [range] US500 05:00 c 7145.1 ema 7165.3 band 7141.1-7189.5 atr 12.1 regime off L 0 S 0 orders 0
+05:15:02 [range] GBPUSD 05:00 c 13088.5 ema 13099.2 band 13089.6-13108.8 atr 4.8 regime off L 0 S 0 orders 0
+05:15:03 [range] FTSE 05:00 c 10492.8 ema 10498.5 band 10478.9-10518.1 atr 9.8 regime ON L 0 S 0 orders 0
+05:20:00 bar 05:15 o 25870.6 h 25910.4 l 25852.3 c 25908.3 ticks 3319 delta -23
+05:25:00 bar 05:20 o 25908.5 h 25913.0 l 25833.3 c 25850.4 ticks 3547 delta -205
+05:30:00 [range] NQ 05:15 c 25839.6 ema 25985.3 band 25830.3-26140.3 atr 77.5 regime off L 0 S 0 orders 0
+05:30:00 bar 05:25 o 25850.6 h 25873.6 l 25832.1 c 25839.6 ticks 3590 delta -82
+05:30:01 [range] GBPUSD 05:15 c 13090.0 ema 13098.3 band 13088.6-13107.9 atr 4.8 regime off L 0 S 0 orders 0
+05:30:01 [range] GOLD 05:15 c 3539.8 ema 3554.2 band 3535.0-3573.4 atr 9.6 regime off L 0 S 0 orders 0
+05:30:02 [range] FTSE 05:15 c 10495.9 ema 10498.3 band 10478.5-10518.1 atr 9.9 regime ON L 0 S 0 orders 0
+05:30:02 [range] US500 05:15 c 7141.6 ema 7163.0 band 7138.9-7187.2 atr 12.1 regime off L 0 S 0 orders 0
+05:30:03 [range] USDJPY 05:15 c 15947.0 ema 15930.0 band 15915.3-15944.6 atr 7.3 regime off L 0 S 0 orders 0
+05:35:00 bar 05:30 o 25839.9 h 25851.8 l 25821.0 c 25832.9 ticks 3567 delta -93
+05:40:00 bar 05:35 o 25832.8 h 25838.6 l 25819.1 c 25822.2 ticks 3084 delta -28
+05:45:00 [range] NQ 05:30 c 25845.8 ema 25972.0 band 25821.5-26122.5 atr 75.3 regime off L 0 S 0 orders 0
+05:45:00 bar 05:40 o 25821.8 h 25848.8 l 25807.8 c 25845.8 ticks 3101 delta -43
+05:45:01 [range] GOLD 05:30 c 3530.6 ema 3551.9 band 3533.0-3570.8 atr 9.5 regime off L 0 S 0 orders 0
+05:45:01 [range] FTSE 05:30 c 10493.9 ema 10497.9 band 10478.0-10517.7 atr 9.9 regime ON L 0 S 0 orders 0
+05:45:02 [range] USDJPY 05:30 c 15945.2 ema 15931.4 band 15916.9-15945.9 atr 7.3 regime off L 0 S 0 orders 0
+05:45:02 [range] US500 05:30 c 7143.0 ema 7161.1 band 7136.9-7185.3 atr 12.1 regime ON L 0 S 0 orders 0
+05:45:03 [range] GBPUSD 05:30 c 13085.5 ema 13097.1 band 13086.9-13107.2 atr 5.1 regime off L 0 S 0 orders 0
+05:50:00 bar 05:45 o 25845.9 h 25863.4 l 25838.3 c 25838.8 ticks 3198 delta -124
+05:55:00 bar 05:50 o 25838.9 h 25856.2 l 25826.0 c 25844.2 ticks 3044 delta -18
+06:00:00 [range] NQ 05:45 c 25822.9 ema 25957.8 band 25813.5-26102.1 atr 72.2 regime off L 0 S 0 orders 0
+06:00:00 [emac] NQ hour 25 Nov 05:00 close 25822.9 atr 155.7 signal +0
+06:00:00 bar 05:55 o 25844.1 h 25847.6 l 25817.1 c 25822.9 ticks 2964 delta -154
+06:00:01 [range] USDJPY 05:45 c 15941.4 ema 15932.4 band 15918.1-15946.6 atr 7.1 regime off L 0 S 0 orders 0
+06:00:01 [range] US500 05:45 c 7141.6 ema 7159.3 band 7136.2-7182.4 atr 11.5 regime ON L 0 S 0 orders 0
+06:00:01 [emac] US500 hour 25 Nov 05:00 close 7141.6 atr 27.0 signal +0
+06:00:01 [emac] WALLST hour 25 Nov 05:00 close 49761.7 atr 152.7 signal +0
+06:00:01 [emac] DAX hour 25 Nov 05:00 close 25073.0 atr 66.0 signal +0
+06:00:02 [range] GOLD 05:45 c 3523.4 ema 3549.2 band 3530.8-3567.6 atr 9.2 regime off L 0 S 0 orders 0
+06:00:02 [range] GBPUSD 05:45 c 13085.6 ema 13096.0 band 13086.4-13105.5 atr 4.8 regime off L 0 S 0 orders 0
+06:00:03 [range] FTSE 05:45 c 10492.5 ema 10497.3 band 10478.3-10516.4 atr 9.5 regime ON L 0 S 0 orders 0
+06:05:00 bar 06:00 o 25822.8 h 25822.8 l 25798.8 c 25812.2 ticks 3473 delta -67
+06:08:28 [range] working orders cancelled; positions left to IG's limit (mid) and stop (break) until the next job
+06:08:28 done; ticks 658831 bars 367
