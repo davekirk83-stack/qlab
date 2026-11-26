@@ -1,24 +1,9 @@
 {
  "NQ": {
   "day": "2026-11-26",
-  "orders": {
-   "BUY": {
-    "deal_id": "DIAAAAYX9G4NHBE",
-    "ref": "VKWUDLLECU8TYTK",
-    "level": 26627.72,
-    "dist": 889.4399999999995,
-    "size": 0.02
-   },
-   "SELL": {
-    "deal_id": "DIAAAAYX9HECZBV",
-    "ref": "FE4SLF4TCBQTYTK",
-    "level": 25738.28,
-    "dist": 889.4399999999995,
-    "size": 0.02
-   }
-  },
+  "orders": {},
   "pos": null,
-  "done": false,
+  "done": true,
   "open": 26183.0,
   "up": 26627.72,
   "dn": 25738.28,
