@@ -323,3 +323,53 @@ IG side only for 24 Nov NY (from signals.csv; not compared with paper):
 Day tally: pending (paper feed missing). No taken trades on either IG book, so no slippage to add.
 
 Running tally (from 2026-11-05), unchanged: ig_demo agree 2/15, mean slippage -0.46 pts over 5 fills; ig_live agree 1/23 by script (2/24 adjusted), mean slippage +1.91 pts over 5 scored fills as carried in the 23 Nov entry (note: unclear from the log whether the 20 Nov live fills, +7.4 and +2.9, are inside that figure; if not, it would be +2.84 over 7 — to be reconciled). Combined 3/38 by script (4/39 adjusted) — below 50% past the 10-signal mark. 23 and 24 Nov pending paper bars. (Sign convention: positive slippage = against us.)
+
+## 2026-11-23 and 2026-11-24 (NY days, now compared); 2026-11-25 pending — checked 2026-11-26 ~09:15 UTC
+
+Paper bars now end 2026-11-24 23:55 UTC (paper books commit 2026-11-25 09:38 UTC). Waited 10 min and pulled again: no 25 Nov bars, so 25 Nov stays pending.
+
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-23 New York
+  17:00 NY SELL IG only    paper close       nan  IG close   26749.7  ad_no_regime
+  17:05 NY SELL IG only    paper close       nan  IG close   26741.8  ad_no_regime
+  17:10 NY SELL IG only    paper close       nan  IG close   26744.5  ad_no_regime
+  19:30 NY SELL IG only    paper close       nan  IG close   26722.0  ad_no_coil
+  agreement: 0/4 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-23 New York
+  08:30 NY SELL IG only    paper close       nan  IG close   25846.2  ad_no_coil
+  16:50 NY BUY  IG only    paper close       nan  IG close   26748.4  taken
+  17:15 NY BUY  IG only    paper close       nan  IG close   26756.8  ad_no_regime
+  17:20 NY BUY  IG only    paper close       nan  IG close   26760.7  ad_no_regime
+  17:25 NY BUY  IG only    paper close       nan  IG close   26768.0  ad_no_regime
+  17:30 NY BUY  IG only    paper close       nan  IG close   26775.5  ad_no_regime
+  17:35 NY BUY  IG only    paper close       nan  IG close   26787.9  ad_no_regime
+  17:55 NY BUY  IG only    paper close       nan  IG close   26796.5  ad_no_regime
+  agreement: 0/8 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-24 New York
+  03:25 NY SELL IG only    paper close       nan  IG close   26645.2  ad_tue_wed
+  05:45 NY SELL IG only    paper close       nan  IG close   26259.0  ad_tue_wed
+  17:25 NY BUY  IG only    paper close       nan  IG close   26254.2  ad_tue_wed
+  17:30 NY BUY  IG only    paper close       nan  IG close   26264.0  ad_tue_wed
+  20:15 NY SELL IG only    paper close       nan  IG close   26124.2  ad_tue_wed
+  22:45 NY SELL IG only    paper close       nan  IG close   25928.6  ad_tue_wed
+  agreement: 0/6 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-24 New York
+  03:25 NY SELL IG only    paper close       nan  IG close   26645.3  ad_tue_wed
+  03:55 NY SELL IG only    paper close       nan  IG close   26537.8  ad_tue_wed
+  05:45 NY SELL IG only    paper close       nan  IG close   26257.4  ad_tue_wed
+  07:00 NY SELL IG only    paper close       nan  IG close   26298.8  ad_tue_wed
+  08:25 NY SELL IG only    paper close       nan  IG close   26140.0  ad_tue_wed
+  agreement: 0/5 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-25 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-25 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+
+23 Nov: ig_live both 0 / paper-only-while-live 0 / IG-only 4 (none taken). ig_demo both 0 / paper-only 0 / IG-only 8; one marked taken (BUY 16:50 NY) but runs/ig_demo/trades.csv has no row after 12 Nov, so no fill recorded — possibly blocked by the IG error below. Demo only, not live.
+24 Nov: ig_live both 0 / paper-only 0 / IG-only 6; ig_demo both 0 / paper-only 0 / IG-only 5. All skipped ad_tue_wed. No fills.
+Both runners' last_error.txt still end `error.public-api.exceeded-account-historical-data-allowance`.
+
+Slippage reconciled from runs/ig_live/trades.csv (fills since 5 Nov, (IG fill − IG signal close) × side): -0.6, -1.6, +1.5, +2.9, +7.4, +2.9 → mean +2.07 pts over 6 fills (includes the two 20 Nov fills). No new fills on 23–24 Nov on either book.
+
+Running tally (from 2026-11-05): ig_demo agree 2/28, mean slippage -0.46 pts over 5 fills; ig_live agree 1/33 by script (2/34 adjusted), mean slippage +2.07 pts over 6 fills. Combined 3/61 by script (4/62 adjusted) — below 50% past the 10-signal mark. 25 Nov pending paper bars. (Sign convention: positive slippage = against us.)
