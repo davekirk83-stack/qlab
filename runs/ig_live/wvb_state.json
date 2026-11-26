@@ -3,8 +3,8 @@
   "day": "2026-11-26",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null,
+  "done": true,
+  "open": 26187.4,
   "up": 26393.199999999997,
   "dn": 26187.199999999997,
   "dist": 206.0,
@@ -15,8 +15,8 @@
   "day": "2026-11-26",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null,
+  "done": true,
+  "open": 7226.03,
   "up": 7183.945,
   "dn": 7123.575000000001,
   "dist": 60.36999999999989,
@@ -26,15 +26,8 @@
  "USDJPY": {
   "day": "2026-11-26",
   "orders": {},
-  "pos": {
-   "deal_id": "DIAAAASK2P9CJBW",
-   "side": 1,
-   "px": 15927.8,
-   "stop": 15907.9,
-   "sz": 0.12,
-   "bar": "2026-11-26 10:15:00+00:00"
-  },
-  "done": false,
+  "pos": null,
+  "done": true,
   "open": 15917.0,
   "up": 15926.95,
   "dn": 15907.05,
@@ -44,24 +37,9 @@
  },
  "GOLD": {
   "day": "2026-11-26",
-  "orders": {
-   "BUY": {
-    "deal_id": "DIAAAASK2PTB8BZ",
-    "ref": "ZH6WVX3JCC6TYN7",
-    "level": 3578.813,
-    "dist": 27.42600000000002,
-    "size": 0.23
-   },
-   "SELL": {
-    "deal_id": "DIAAAASK2P924A6",
-    "ref": "4UM6W63P7METYN7",
-    "level": 3551.3869999999997,
-    "dist": 27.42600000000002,
-    "size": 0.23
-   }
-  },
+  "orders": {},
   "pos": null,
-  "done": false,
+  "done": true,
   "open": 3565.1,
   "up": 3578.813,
   "dn": 3551.3869999999997,
