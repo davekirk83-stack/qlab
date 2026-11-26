@@ -17,3 +17,5 @@
 20:40:10 EXIT (stop -4%) 2 rungs: $-0.66
 20:40:10 ladder at 56,983 (100x): 56,983, 56,413, 55,844, 55,274
 20:40:10 ladder book $634.34; trades 1, total $-0.66
+03:06:39 liq-level snapshot: 21 levels -> /home/runner/work/qlab/qlab/runs/liq_levels/2026-11.csv
+03:06:39 ladder book $634.34; trades 1, total $-0.66
