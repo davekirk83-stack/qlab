@@ -12,10 +12,10 @@
   "R": 129.29999999999563
  },
  "USDJPY": {
-  "day": "2026-11-25",
+  "day": "2026-11-26",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null,
   "up": 15959.95,
   "dn": 15908.45,
@@ -31,10 +31,10 @@
   "open": 7046.84
  },
  "GOLD": {
-  "day": "2026-11-25",
+  "day": "2026-11-26",
   "orders": {},
   "pos": null,
-  "done": true,
+  "done": false,
   "open": null
  }
 }
