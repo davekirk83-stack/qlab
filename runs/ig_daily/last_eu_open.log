@@ -1,6 +1,6 @@
-08:01:34 job eu_open; daily sub-book £500.00, open positions 0
-08:01:36 switch_account: error.switch.accountId-must-be-different
-08:01:37 REGIME: US 500 7201.1 below its 200-day 7351.3 — no new dip-book entries today
-08:01:37 DAX: final close 2026-11-24 25017.8 RSI2 32.5 RSI4 30.4 5d 25271.6 200d 25000.2 ATR 414.8 | IG open 25084.8
-08:01:37 FTSE: final close 2026-11-24 10467.1 RSI2 50.1 RSI4 36.4 5d 10459.6 200d 10560.5 ATR 123.3 | IG open 10525.9
-08:01:38 done; book £500.00, open []
+08:01:48 job eu_open; daily sub-book £500.00, open positions 0
+08:01:49 switch_account: error.switch.accountId-must-be-different
+08:01:50 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
+08:01:50 DAX: final close 2026-11-25 24702.1 RSI2 18.4 RSI4 23.9 5d 25064.8 200d 24999.1 ATR 428.4 | IG open 25160.3
+08:01:51 FTSE: final close 2026-11-25 10426.9 RSI2 31.4 RSI4 31.5 5d 10434.8 200d 10560.3 ATR 125.4 | IG open 10554.7
+08:01:51 done; book £500.00, open []
