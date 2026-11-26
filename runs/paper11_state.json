@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-24",
+ "since": "2026-11-25",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -24,7 +24,7 @@
     "w": 1.0,
     "legs": [],
     "be": false,
-    "n": 1,
+    "n": 2,
     "kind": "shadow"
    }
   ],
