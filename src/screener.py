@@ -87,14 +87,14 @@ def main():
         for s, D in data.items():
             r = D.iloc[-1]; cls = "macro ETF" if s in ETFS else "US stock"
             if s3_ok(r, commodity=s in ("GLD", "SLV", "CPER", "USO", "UNG")):
-                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="A" if (spx_dn or not r.up) else "B", sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2),
+                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier=("A" if (spx_dn and not r.up) else ("B" if (spx_dn or not r.up) else "C")) if cls == "US stock" else ("A" if (spx_dn or not r.up) else "B"), sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2),
                                  context="uptrend" if r.up else "deep flush", exit_rule=f"sell first close > 5d mean (now {r.ma5:.2f}); 10-day limit"))
     else:
         data = {}
         for s in COINS:
             D = prep(binance_daily(s)); data[s] = D; r = D.iloc[-1]                     # last row = today's (UTC) daily bar, ~15 min before close
             if s3_ok(r):
-                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="A" if not r.up else "B", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2), context="uptrend" if r.up else "deep flush",
+                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="-", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2), context="uptrend" if r.up else "deep flush",
                                  exit_rule=f"sell first daily close > 5d mean (now {r.ma5:.4g}); 10-day limit"))
             sig = D.c.pct_change().rolling(14).std().iloc[-1]                          # sigma for TOMORROW (known at today's close)
             if bool(r.up or r.deep):
@@ -105,7 +105,7 @@ def main():
     if len(S):
         S.insert(0, "screened", stamp); S = S.sort_values([c for c in ("tier", "setup", "rsi2") if c in S])
         hdr = not os.path.exists(f"{OUT}/signals.csv"); S.to_csv(f"{OUT}/signals.csv", mode="a", header=hdr, index=False)
-    md = [f"# Screener ({MODE}) — {stamp}", "", "Data and paper only. No orders are placed. Tier A = deep flush or S&P below its 200-day (backtest ~4x the edge of tier B, doc 280).", ""]
+    md = [f"# Screener ({MODE}) — {stamp}", "", "Data and paper only. No orders are placed. US stocks: tier A = own deep flush AND S&P below its 200-day (~+2%/trade); B = one of the two (~+0.3-0.5%); C = calm uptrend (no edge after checker - paper only). ETFs: A = deep flush or S&P below 200-day. Crypto: no tier (it reverses there). Doc 280.", ""]
     md += [S.drop(columns=["screened"]).to_markdown(index=False) if len(S) else "No setups today."]
     open(f"{OUT}/latest_{MODE}.md", "w").write("\n".join(md) + "\n"); print("\n".join(md))
     # paper ledger
