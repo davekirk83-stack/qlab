@@ -1,0 +1,21 @@
+{
+ "book": "ADX live set BE30 trail2.0",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 114,
+ "dev_R": 0.957,
+ "hold_n": 67,
+ "hold_per_year": 150,
+ "hold_R": 0.263,
+ "t": 0.95,
+ "h1": -0.017,
+ "h2": 0.534,
+ "win": 0.61,
+ "maxdd_R": -12.3,
+ "random_p95": 0.391,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

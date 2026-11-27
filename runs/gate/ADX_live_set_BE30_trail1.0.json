@@ -1,0 +1,21 @@
+{
+ "book": "ADX live set BE30 trail1.0",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 115,
+ "dev_R": 1.04,
+ "hold_n": 68,
+ "hold_per_year": 152,
+ "hold_R": 0.365,
+ "t": 1.47,
+ "h1": 0.41,
+ "h2": 0.319,
+ "win": 0.69,
+ "maxdd_R": -7.2,
+ "random_p95": 0.291,
+ "label": "WEAK",
+ "reason": "t<2"
+}
