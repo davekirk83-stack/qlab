@@ -1,10 +1,16 @@
 14:35:01 job us_open; daily sub-book £456.13, open positions 0
 14:35:02 switch_account: error.switch.accountId-must-be-different
-14:35:03 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£19 — STOPPED
-14:35:03 pot £383.34 (start £500, all books -116.15); entries on
-14:35:03 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
-14:35:04 US500: final close 2026-11-25 7182.8 RSI2 50.0 RSI4 43.7 5d 7141.5 200d 7352.5 ATR 163.6 | IG open 7232.5
-14:35:04 NQ: final close 2026-11-25 26046.9 RSI2 39.4 RSI4 40.0 5d 26110.6 200d 28091.0 ATR 933.3 | IG open 26240.7
-14:35:04 WALLST: final close 2026-11-25 50182.9 RSI2 76.7 RSI4 53.4 5d 49408.3 200d 50773.2 ATR 974.4 | IG open 50414.6
-14:35:05 GOLD: final close 2026-11-25 3535.8 RSI2 25.5 RSI4 26.3 5d 3590.0 200d 4423.0 ATR 114.8 | IG open 3582.2
-14:35:05 done; book £456.13, open []
+14:35:05 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:05 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£19 — STOPPED
+14:35:05 pot £384.90 (start £500, all books -114.59); entries on
+14:35:06 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:06 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
+14:35:08 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:08 US500: final close 2026-11-25 7182.8 RSI2 50.0 RSI4 43.7 5d 7141.5 200d 7352.5 ATR 163.6 | IG open 7247.0
+14:35:09 NQ: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:09 NQ: final close 2026-11-25 26046.9 RSI2 39.4 RSI4 40.0 5d 26110.6 200d 28091.0 ATR 933.3 | IG open 26328.3
+14:35:11 WALLST: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:11 WALLST: final close 2026-11-25 50182.9 RSI2 76.7 RSI4 53.4 5d 49408.3 200d 50773.2 ATR 974.4 | IG open 50626.1
+14:35:13 GOLD: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:35:13 GOLD: final close 2026-11-25 3535.8 RSI2 25.5 RSI4 26.3 5d 3590.0 200d 4423.0 ATR 114.8 | IG open 3637.3
+14:35:13 done; book £456.13, open []
