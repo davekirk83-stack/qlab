@@ -43,7 +43,7 @@ def run(d, mode, venue, spread=0.0):
         if j < 96 * 30 or j >= N - 96 * 8 or j <= busy or not np.isfinite(ATRP[j]) or not np.isfinite(HI20[j]): continue
         a = ATRP[j]; lvl = L[j - 96:j].min() * (1 - 0.1 * a if mode == "vol-scaled" else 0.997)
         if C[j - 1] > lvl * (1 + (a if mode == "vol-scaled" else 0.03)): continue
-        deep = C[j] <= HI20[j] * (1 - (5 * a if mode == "vol-scaled" else 0.15))
+        deep = C[j - 1] <= HI20[j] * (1 - (5 * a if mode == "vol-scaled" else 0.15))   # checker 27 Nov: was C[j]
         if not (deep or UP[j]): continue
         step = float(np.clip(0.3 * a, 0.006 if mode == "as tested" else 0.1 * a, 0.03))
         rungs = [lvl * (1 - step * r) for r in range(4)]; wts = (0.1, 0.2, 0.3, 0.4); stop = rungs[-1] * (1 - step)

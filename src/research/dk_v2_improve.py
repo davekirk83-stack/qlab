@@ -35,7 +35,7 @@ def run(d, o):
         if o.get("noweekend") and U[j].dayofweek in (4, 5): continue
         a = ATRP[j]; lvl = L[j - 96:j].min() * 0.997
         if C[j - 1] > lvl * 1.03: continue
-        if not (C[j] <= HI20[j] * (1 - deep_th) or UP[j]): continue
+        if not (C[j - 1] <= HI20[j] * (1 - deep_th) or UP[j]): continue      # checker 27 Nov: was C[j] (15-min peek)
         step = float(np.clip(0.3 * a, 0.006, 0.03)); rungs = [lvl * (1 - step * r) for r in range(nr)]; stop = rungs[-1] * (1 - stop_k * step)
         nc = cpi[np.searchsorted(cpi, j + 1)] if np.searchsorted(cpi, j + 1) < len(cpi) else 10 ** 9
         qty = cost = pnl = 0.0; part = False; done = [False] * nr; k1 = None; res = None; kend = min(N - 1, j + 96 * days); best = 0

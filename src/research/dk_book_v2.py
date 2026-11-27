@@ -44,7 +44,7 @@ def run_longs(o, label):
     for j, lvl, _, _ in D.low_events().values:
         j = int(j)
         if j <= busy: continue
-        deep = np.isfinite(HI20[j]) and C[j] <= HI20[j] * (1 - o["deep"])
+        deep = np.isfinite(HI20[j]) and C[j - 1] <= HI20[j] * (1 - o["deep"])   # checker 27 Nov: was C[j]
         if o["ctx"] == "deep or uptrend" and not (deep or UP[j]): continue
         if o["ctx"] == "deep only" and not deep: continue
         if o["ctx"] == "v1 (flush or bull)" and not (D.BULL[j] or C[j] <= D.hi72[j] * 0.94): continue
