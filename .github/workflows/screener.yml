@@ -1,0 +1,36 @@
+name: screener
+# doc 279: cross-asset setup screener — DATA + PAPER ONLY (no orders, no trading API calls). Alpaca market data + Binance public data.
+on:
+  schedule:
+    - cron: "40 19 * * 1-5"   # 20 min before the NYSE close in US summer time (script checks the New York clock)
+    - cron: "40 20 * * 1-5"   # 20 min before the NYSE close in US winter time
+    - cron: "45 23 * * *"     # crypto, 15 min before the UTC daily close
+  workflow_dispatch:
+    inputs:
+      mode: { description: "us or crypto", default: "us" }
+      force: { description: "1 = run outside the pre-close window", default: "0" }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pandas tabulate
+      - name: Screen
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "45 23 * * *" ]; then export MODE=crypto; else export MODE=us; fi
+          else export MODE="${{ github.event.inputs.mode }}"; export FORCE="${{ github.event.inputs.force }}"; fi
+          python src/screener.py
+        env:
+          ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
+          ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "screener"; git config user.email "screener@users.noreply.github.com"
+          git add -f runs/screener/ 2>/dev/null; git commit -m "screener results" || true
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep $((i*7)); done
