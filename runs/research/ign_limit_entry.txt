@@ -1,0 +1,5 @@
+market (live)                          n  270 pts/trade +11.01 win 70% total +2974 | halves +10.23 / +11.80 | dev +11.18 hold-out +10.73 | months+ 11/14 worst -133
+limit 0.25 ATR back, 3 bars            n  215 pts/trade +6.78 win 63% total +1457 | halves +7.48 / +6.08 | dev +9.02 hold-out +2.84 | months+ 10/14 worst -66
+limit 0.5 ATR back, 3 bars             n  168 pts/trade +7.93 win 61% total +1332 | halves +9.67 / +6.19 | dev +12.13 hold-out -0.25 | months+ 11/14 worst -137
+limit 0.25 ATR back, 6 bars            n  233 pts/trade +6.94 win 62% total +1616 | halves +9.12 / +4.77 | dev +9.04 hold-out +3.40 | months+ 10/14 worst -63
+limit at signal-bar midpoint, 3 bars   n  159 pts/trade +7.49 win 58% total +1190 | halves +6.26 / +8.69 | dev +9.85 hold-out +3.15 | months+ 11/14 worst -88

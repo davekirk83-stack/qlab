@@ -1,0 +1,21 @@
+{
+ "book": "IGLIM limit 0.25 ATR back 6 bars",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 147,
+ "dev_R": 0.69,
+ "hold_n": 86,
+ "hold_per_year": 193,
+ "hold_R": 0.216,
+ "t": 1.49,
+ "h1": 0.427,
+ "h2": 0.005,
+ "win": 0.58,
+ "maxdd_R": -7.2,
+ "random_p95": 0.169,
+ "label": "WEAK",
+ "reason": "t<2"
+}

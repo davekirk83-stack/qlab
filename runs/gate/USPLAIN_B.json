@@ -1,0 +1,21 @@
+{
+ "book": "USPLAIN B",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 172,
+ "dev_R": 0.641,
+ "hold_n": 98,
+ "hold_per_year": 220,
+ "hold_R": 0.335,
+ "t": 2.37,
+ "h1": 0.557,
+ "h2": 0.113,
+ "win": 0.65,
+ "maxdd_R": -9.1,
+ "random_p95": 0.162,
+ "label": "TESTED",
+ "reason": "all conditions met"
+}

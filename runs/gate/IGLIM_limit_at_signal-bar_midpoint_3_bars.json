@@ -1,0 +1,21 @@
+{
+ "book": "IGLIM limit at signal-bar midpoint 3 bars",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 104,
+ "dev_R": 0.535,
+ "hold_n": 55,
+ "hold_per_year": 123,
+ "hold_R": 0.016,
+ "t": 0.07,
+ "h1": 0.234,
+ "h2": -0.195,
+ "win": 0.44,
+ "maxdd_R": -11.7,
+ "random_p95": 0.254,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}

@@ -1,0 +1,3 @@
+A live set before today (stack all hours)          n  196 pts/trade +8.28 win 73% total +1623 | halves +9.73 / +6.84 | dev +8.99 hold-out +7.01 | months+ 11/14 worst -48
+B IG_US_PLAIN (plain in US hours, stack outside)   n  270 pts/trade +11.01 win 70% total +2974 | halves +10.23 / +11.80 | dev +11.18 hold-out +10.73 | months+ 11/14 worst -133
+C plain Ignition, US cash hours only               n   89 pts/trade +16.14 win 61% total +1437 | halves +11.03 / +21.14 | dev +17.12 hold-out +14.82 | months+ 12/14 worst -123

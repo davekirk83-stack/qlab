@@ -1,0 +1,21 @@
+{
+ "book": "USPLAIN C",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 52,
+ "dev_R": 0.329,
+ "hold_n": 37,
+ "hold_per_year": 83,
+ "hold_R": 0.406,
+ "t": 2.04,
+ "h1": 0.744,
+ "h2": 0.085,
+ "win": 0.65,
+ "maxdd_R": -3.0,
+ "random_p95": 0.306,
+ "label": "WEAK",
+ "reason": "n<50"
+}

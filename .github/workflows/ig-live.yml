@@ -73,7 +73,7 @@ jobs:
           ADSTACK_ON: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}
           WVB_ON: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && '1' || '0' }}
           IG_WVB_LIVE: "1"
-          IG_SPIKE: "NQ"              # 27 Nov (doc 268): US500 off live — no edge in any stop variant 2025-26 (n24). doc 194: spike continuation engine (doc 191) on live, minimum stakes, 2% risk cap
+          IG_SPIKE: "NQ,US500"              # 27 Nov audit (doc 269): US500 restored — the removal used the wrong unit (per spike range, not R); in R both markets are noise at n<35. doc 194: spike continuation engine (doc 191) on live, minimum stakes, 2% risk cap
           IG_SHOCK_PAUSE: "NQ,FTSE"         # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h (as on the demo)
           IG_GOV_SPLIT: "1"                 # doc 189: each engine/market its own 8 trades a day; Ignition cap in points, ladders in £
           IG_BOOK_START_EQ: "500"   # doc 171: the demo trades as the £500 combined book (book 13); stakes come from book equity (src/ig_book.py)

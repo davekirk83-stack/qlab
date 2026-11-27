@@ -1,0 +1,21 @@
+{
+ "book": "IGLIM limit 0.5 ATR back 3 bars",
+ "note": "",
+ "data": "2025-10-15..2026-11-26",
+ "holdout_from": "2026-06-16",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 112,
+ "dev_R": 0.713,
+ "hold_n": 56,
+ "hold_per_year": 125,
+ "hold_R": -0.005,
+ "t": -0.03,
+ "h1": 0.201,
+ "h2": -0.212,
+ "win": 0.5,
+ "maxdd_R": -9.6,
+ "random_p95": 0.222,
+ "label": "FAILED",
+ "reason": "holdout mean R <= 0 or a holdout half <= 0"
+}
