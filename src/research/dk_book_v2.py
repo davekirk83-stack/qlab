@@ -27,7 +27,17 @@ def campaign_v2(j, lvl, o):
     stop = rungs[-1] * (1 - step); opt = dict(part=True, be=False, near=False, add=False)
     r = D.manage(j, min(N - 1, j + 96 * 7), 0.0, 0.0, stop, 0, dict(opt, **o.get("mgmt", {})), lvl, filling=(rungs, wts, min(N - 1, j + 192), [False] * 4))
     if r is None: return None
-    return r[0] / lvl * 100, r[1]
+    pnl, kx = r[0], r[1]
+    if o.get("reentry") and r[2]:                      # DK: "buys again after each stop-run sweep ... stop under the new low" (fixed 27 Nov audit)
+        sw = r[3]
+        for k in range(kx + 1, min(N - 1, kx + 32)):
+            sw = min(sw, L[k])
+            if C[k] > r[4]:
+                e = C[k] * (1 + D.SLIP) * (1 + D.TAKER)
+                r2 = D.manage(k + 1, min(N - 1, k + 96 * 3), 0.5, 0.5 * e, sw * 0.995, 0, dict(opt, **o.get("mgmt", {})), lvl)
+                if r2: pnl += r2[0]; kx = r2[1]
+                break
+    return pnl / lvl * 100, kx
 
 def run_longs(o, label):
     rows = []; busy = -1

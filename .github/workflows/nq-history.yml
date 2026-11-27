@@ -1,0 +1,24 @@
+name: nq-history
+# doc 277: data only — NQ (Dukascopy USATECHIDXUSD) 5-minute bars with tick-rule delta for whole years, same format as data_nq_cache/nq_5m.csv.
+on:
+  workflow_dispatch:
+    inputs:
+      years: { description: "JSON list of years", default: "[2020, 2021, 2022, 2023, 2024, 2025]" }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy: { fail-fast: false, max-parallel: 6, matrix: { year: "${{ fromJSON(github.event.inputs.years) }}" } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pandas numpy
+      - run: python src/nq_history_5m.py ${{ matrix.year }}
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nq-history"; git config user.email "nq@users.noreply.github.com"
+          git add -f data_nq_cache/nq_5m_${{ matrix.year }}.csv.gz 2>/dev/null; git commit -m "NQ 5m history ${{ matrix.year }} (Dukascopy, tick-rule delta)" || true
+          for i in 1 2 3 4 5 6 7 8; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep $((i*9)); done

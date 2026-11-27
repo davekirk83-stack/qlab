@@ -50,19 +50,19 @@ def manage(k0, kend, qty, cost, stop, near, opt, lvl, filling=None):
             continue
         low = min(low, L[k]); avg = cost / qty
         if L[k] <= stop:                                                       # stop first (conservative)
-            px = stop * (1 - SLIP); pnl += qty * (px * (1 - TAKER) - avg); return pnl, k, True, low
+            px = stop * (1 - SLIP); pnl += qty * (px * (1 - TAKER) - avg); return pnl, k, True, low, stop
         if k >= ncpi - 1:                                                      # flat before the CPI release
-            pnl += qty * (C[k] * (1 - SLIP) * (1 - TAKER) - avg); return pnl, k, False, low
+            pnl += qty * (C[k] * (1 - SLIP) * (1 - TAKER) - avg); return pnl, k, False, low, None
         if opt["part"] and not part and H[k] >= avg * 1.015 and k > k0:
             q = qty / 3; pnl += q * (avg * 1.015 - avg); qty -= q; cost = avg * qty; part = True
             if opt["be"]: stop = max(stop, avg)
         tgt = max(near if (opt["near"] and near) else 0, avg * 1.03)
         if k > k0 and H[k] >= tgt:
-            pnl += qty * (tgt - avg); return pnl, k, False, low
+            pnl += qty * (tgt - avg); return pnl, k, False, low, None
         if opt["add"] and not added and END4[k] and C4[k] > lvl and HUP[k]:
             q = 0.5; px = C[k] * (1 + SLIP) * (1 + TAKER); qty += q; cost += q * px; added = True
             stop = max(stop, low * 0.995) if not part else stop
-    avg = cost / qty; pnl += qty * (C[kend] * (1 - SLIP) * (1 - TAKER) - avg); return pnl, kend, False, low
+    avg = cost / qty; pnl += qty * (C[kend] * (1 - SLIP) * (1 - TAKER) - avg); return pnl, kend, False, low, None
 
 def campaign(j, lvl, near, opt):
     rungs = [lvl * f for f in ((1.0, 0.99, 0.98, 0.97) if opt["ladder"] else (1.0,))]
@@ -70,12 +70,12 @@ def campaign(j, lvl, near, opt):
     stop = min(rungs) * 0.99; kend = min(N - 1, j + 96 * 7)
     r = manage(j, kend, 0.0, 0.0, stop, near, opt, lvl, filling=(rungs, wts, min(N - 1, j + 192), [False] * len(rungs)))
     if r is None: return None
-    pnl, kx, stopped, low = r; pnl /= lvl                                     # fraction of the ladder budget
+    pnl, kx, stopped, low, xstop = r; pnl /= lvl                                     # fraction of the ladder budget
     if stopped and opt["reentry"]:
         sw = low
         for k in range(kx + 1, min(N - 1, kx + 32)):
             sw = min(sw, L[k])
-            if C[k] > stop:                                                    # reclaim of the old stop after the sweep
+            if C[k] > xstop:                                                   # 27 Nov audit fix: reclaim of the level we were actually stopped at (was the original deep stop, so it re-entered on the next bar)
                 e = C[k] * (1 + SLIP) * (1 + TAKER); st2 = sw * 0.995
                 r2 = manage(k + 1, min(N - 1, k + 96 * 3), 0.5, 0.5 * e, st2, near, dict(opt, add=False), lvl)
                 if r2: pnl += r2[0] / lvl; kx = r2[1]

@@ -7,7 +7,7 @@ import lzma, time, datetime as dt, urllib.request, os
 import numpy as np, pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 BASE = "https://datafeed.dukascopy.com/datafeed"; INSTR = "USATECHIDXUSD"; POINT = 1000.0
-OUT = "/home/claude/qlab/data_nq"; os.makedirs(OUT, exist_ok=True)
+OUT = os.environ.get("NQ_TICK_OUT", "/home/claude/qlab/data_nq"); os.makedirs(OUT, exist_ok=True)
 import sys
 START, END = (sys.argv[1], sys.argv[2]) if len(sys.argv) > 2 else ("2026-07-15", "2026-10-17")
 
