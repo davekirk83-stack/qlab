@@ -1,8 +1,13 @@
-14:31:38 job us_open; daily sub-book £500.00, open positions 0
-14:31:39 switch_account: error.switch.accountId-must-be-different
-14:31:40 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
-14:31:41 US500: final close 2026-11-25 7182.8 RSI2 50.0 RSI4 43.7 5d 7141.5 200d 7352.5 ATR 163.6 | IG open 7229.1
-14:31:41 NQ: final close 2026-11-25 26046.9 RSI2 39.4 RSI4 40.0 5d 26110.6 200d 28091.0 ATR 933.3 | IG open 26218.1
-14:31:41 WALLST: final close 2026-11-25 50182.9 RSI2 76.7 RSI4 53.4 5d 49408.3 200d 50773.2 ATR 974.4 | IG open 50391.8
-14:31:42 GOLD: final close 2026-11-25 3535.8 RSI2 25.5 RSI4 26.3 5d 3590.0 200d 4423.0 ATR 114.8 | IG open 3579.4
-14:31:42 done; book £500.00, open []
+14:31:50 job us_open; daily sub-book £500.00, open positions 0
+14:31:51 switch_account: error.switch.accountId-must-be-different
+14:31:53 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:31:53 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
+14:31:55 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:31:55 US500: final close 2026-11-25 7182.8 RSI2 50.0 RSI4 43.7 5d 7141.5 200d 7352.5 ATR 163.6 | IG open 7260.2
+14:31:56 NQ: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:31:56 NQ: final close 2026-11-25 26046.9 RSI2 39.4 RSI4 40.0 5d 26110.6 200d 28091.0 ATR 933.3 | IG open 26430.3
+14:31:58 WALLST: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:31:58 WALLST: final close 2026-11-25 50182.9 RSI2 76.7 RSI4 53.4 5d 49408.3 200d 50773.2 ATR 974.4 | IG open 50656.3
+14:32:00 GOLD: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+14:32:00 GOLD: final close 2026-11-25 3535.8 RSI2 25.5 RSI4 26.3 5d 3590.0 200d 4423.0 ATR 114.8 | IG open 3635.7
+14:32:00 done; book £500.00, open []
