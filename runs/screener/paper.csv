@@ -1,1 +1,3 @@
-date,sym,cls,setup,entry,status,exit_date,exit,ret_pct
+date,sym,cls,setup,entry,status,exit_date,exit,ret_pct,tier
+2026-11-27,HAS,US stock,S3,109.09,open,,,,A
+2026-11-27,SJM,US stock,S3+,126.86,open,,,,A
