@@ -53,7 +53,13 @@ def prep(D):
     m50, m200 = D.c.rolling(50).mean(), D.c.rolling(200, min_periods=150).mean()
     D["up"] = (D.c > m50) & (D.c > m200); D["deep"] = D.c <= D.h.rolling(20).max() * 0.85; D["ctx"] = D.up | D.deep
     dd = D.c.diff(); u = dd.clip(lower=0).ewm(alpha=0.5, adjust=False).mean(); dn = (-dd.clip(upper=0)).ewm(alpha=0.5, adjust=False).mean()
-    D["rsi2"] = 100 - 100 / (1 + u / dn.replace(0, np.nan)); D["ma5"] = D.c.rolling(5).mean(); return D
+    D["rsi2"] = 100 - 100 / (1 + u / dn.replace(0, np.nan)); D["ma5"] = D.c.rolling(5).mean()
+    D["ibs"] = (D.c - D.l) / (D.h - D.l).replace(0, np.nan); D["shock"] = D.c.pct_change() <= -3 * D.sig; return D
+
+def s3_ok(r, commodity=False):
+    """doc 280 refined S3: RSI(2) < 10 in v2 context, close in the bottom quarter of the day's range (not for commodities, where it hurt),
+    and not a > 3-sigma shock day (news/earnings, not a pullback)."""
+    return bool(r.rsi2 < 10 and r.ctx and not r.shock and (commodity or (np.isfinite(r.ibs) and r.ibs < 0.25)))
 
 def ledger_update(P, data):
     """close open paper trades by the S3 exit (close > 5-day mean, 10-day limit) or the S2 exit (next 23:00 UTC -> approximated by next daily close)."""
@@ -77,17 +83,18 @@ def main():
         if os.environ.get("FORCE") != "1" and not (ny.dayofweek < 5 and 905 <= mins <= 950): print("not ~20 min before the NYSE close:", ny); return
         stocks = sorted({os.path.basename(f)[:-7].replace("-", ".") for f in glob.glob("data_stocks/*.csv.gz") if not f.endswith(".L.csv.gz")})
         data = {s: prep(x) for s, x in alpaca_daily(stocks + list(ETFS)).items() if len(x) >= 210}
+        spy = data.get("SPY"); spx_dn = bool(spy is not None and spy.c.iloc[-1] < spy.c.rolling(200).mean().iloc[-1])
         for s, D in data.items():
             r = D.iloc[-1]; cls = "macro ETF" if s in ETFS else "US stock"
-            if r.rsi2 < 10 and r.ctx:
-                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1),
+            if s3_ok(r, commodity=s in ("GLD", "SLV", "CPER", "USO", "UNG")):
+                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="A" if (spx_dn or not r.up) else "B", sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2),
                                  context="uptrend" if r.up else "deep flush", exit_rule=f"sell first close > 5d mean (now {r.ma5:.2f}); 10-day limit"))
     else:
         data = {}
         for s in COINS:
             D = prep(binance_daily(s)); data[s] = D; r = D.iloc[-1]                     # last row = today's (UTC) daily bar, ~15 min before close
-            if r.rsi2 < 10 and r.ctx:
-                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), context="uptrend" if r.up else "deep flush",
+            if s3_ok(r):
+                rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="A" if not r.up else "B", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2), context="uptrend" if r.up else "deep flush",
                                  exit_rule=f"sell first daily close > 5d mean (now {r.ma5:.4g}); 10-day limit"))
             sig = D.c.pct_change().rolling(14).std().iloc[-1]                          # sigma for TOMORROW (known at today's close)
             if bool(r.up or r.deep):
@@ -96,19 +103,20 @@ def main():
     S = pd.DataFrame(rows)
     stamp = NOW.strftime("%Y-%m-%d %H:%M UTC")
     if len(S):
-        S.insert(0, "screened", stamp); S = S.sort_values(["setup", "rsi2"])
+        S.insert(0, "screened", stamp); S = S.sort_values([c for c in ("tier", "setup", "rsi2") if c in S])
         hdr = not os.path.exists(f"{OUT}/signals.csv"); S.to_csv(f"{OUT}/signals.csv", mode="a", header=hdr, index=False)
-    md = [f"# Screener ({MODE}) — {stamp}", "", "Data and paper only. No orders are placed.", ""]
+    md = [f"# Screener ({MODE}) — {stamp}", "", "Data and paper only. No orders are placed. Tier A = deep flush or S&P below its 200-day (backtest ~4x the edge of tier B, doc 280).", ""]
     md += [S.drop(columns=["screened"]).to_markdown(index=False) if len(S) else "No setups today."]
     open(f"{OUT}/latest_{MODE}.md", "w").write("\n".join(md) + "\n"); print("\n".join(md))
     # paper ledger
     pf = f"{OUT}/paper.csv"
     P = pd.read_csv(pf) if os.path.exists(pf) else pd.DataFrame(columns=["date", "sym", "cls", "setup", "entry", "status", "exit_date", "exit", "ret_pct"])
+    if "tier" not in P: P["tier"] = ""
     P = ledger_update(P, data)
     today = str(NOW.tz_convert("America/New_York" if MODE == "us" else "UTC").date())
     for r in rows:
         if r["setup"].startswith("S3") and not ((P.sym == r["sym"]) & (P.status == "open")).any():
-            P.loc[len(P)] = [today, r["sym"], r["cls"], r["setup"], r["price"], "open", "", np.nan, np.nan]
+            P.loc[len(P)] = [today, r["sym"], r["cls"], r["setup"], r["price"], "open", "", np.nan, np.nan, r.get("tier", "")]
     P.to_csv(pf, index=False)
     c = P[P.status == "closed"]
     if len(c): print(f"\npaper: {len(c)} closed, mean {c.ret_pct.astype(float).mean():+.3f}%/trade, win {(c.ret_pct.astype(float) > 0).mean():.0%}; open {(P.status == 'open').sum()}")
