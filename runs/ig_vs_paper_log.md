@@ -373,3 +373,33 @@ Both runners' last_error.txt still end `error.public-api.exceeded-account-histor
 Slippage reconciled from runs/ig_live/trades.csv (fills since 5 Nov, (IG fill − IG signal close) × side): -0.6, -1.6, +1.5, +2.9, +7.4, +2.9 → mean +2.07 pts over 6 fills (includes the two 20 Nov fills). No new fills on 23–24 Nov on either book.
 
 Running tally (from 2026-11-05): ig_demo agree 2/28, mean slippage -0.46 pts over 5 fills; ig_live agree 1/33 by script (2/34 adjusted), mean slippage +2.07 pts over 6 fills. Combined 3/61 by script (4/62 adjusted) — below 50% past the 10-signal mark. 25 Nov pending paper bars. (Sign convention: positive slippage = against us.)
+
+## 2026-11-25 (NY) — checked 2026-11-27 (26 Nov Thanksgiving: no paper bars, cash closed)
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-25 New York
+  09:30 NY SELL IG only    paper close       nan  IG close   25157.5  ad_tue_wed
+  09:40 NY SELL IG only    paper close       nan  IG close   25010.9  ad_tue_wed
+  17:15 NY BUY  IG only    paper close       nan  IG close   25969.3  ad_tue_wed
+  17:25 NY BUY  IG only    paper close       nan  IG close   25979.7  ad_tue_wed
+  17:30 NY BUY  IG only    paper close       nan  IG close   25991.8  ad_tue_wed
+  17:35 NY BUY  IG only    paper close       nan  IG close   26006.0  ad_tue_wed
+  17:45 NY BUY  IG only    paper close       nan  IG close   26018.2  ad_tue_wed
+  17:50 NY BUY  IG only    paper close       nan  IG close   26023.7  ad_tue_wed
+  18:50 NY BUY  IG only    paper close       nan  IG close   26069.5  ad_tue_wed
+  agreement: 0/9 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-25 New York
+  00:20 NY SELL IG only    paper close       nan  IG close   25850.4  ad_tue_wed
+  06:50 NY SELL IG only    paper close       nan  IG close   25511.2  ad_tue_wed
+  09:30 NY SELL IG only    paper close       nan  IG close   25160.8  ad_tue_wed
+  17:15 NY BUY  IG only    paper close       nan  IG close   25969.3  ad_tue_wed
+  17:30 NY BUY  IG only    paper close       nan  IG close   25989.2  ad_tue_wed
+  17:35 NY BUY  IG only    paper close       nan  IG close   26003.3  ad_tue_wed
+  17:40 NY BUY  IG only    paper close       nan  IG close   26008.1  ad_tue_wed
+  17:45 NY BUY  IG only    paper close       nan  IG close   26015.4  ad_tue_wed
+  agreement: 0/8 signals on both feeds while the IG runner was live (0 paper signals fell outside its sessions)
+```
+
+25 Nov: ig_live both 0 / paper-only-while-live 0 / IG-only 9; ig_demo both 0 / paper-only 0 / IG-only 8. All skipped ad_tue_wed. No fills on either book (ig_live trades.csv last row 20 Nov, ig_demo 12 Nov).
+Both runners' last_error.txt still end `error.public-api.exceeded-account-historical-data-allowance`.
+
+Running tally (from 2026-11-05): ig_demo agree 2/36, mean slippage -0.46 pts over 5 fills; ig_live agree 1/42 by script (2/43 adjusted), mean slippage +2.07 pts over 6 fills. Combined 3/78 by script (4/79 adjusted) — below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
