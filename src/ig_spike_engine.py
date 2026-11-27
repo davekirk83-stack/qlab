@@ -43,6 +43,8 @@ def spike_signal(d, tz, h0, h1):
     ext = (H[i] - H[j]) / r if s == 1 else (L[j] - L[i]) / r
     if not (ext > X_EXT and s * (C[i] - C[j]) > 0): return None
     stop = float(L[i]) if s == 1 else float(H[i])
+    if os.environ.get("IG_SPIKE_STOP", "confirm") == "spike":   # 27 Nov (doc 268): stop at the SPIKE bar's far end; NQ 2025-26 +0.158 vs +0.001 per spike range (n32), demo first
+        stop = float(min(L[i], L[j])) if s == 1 else float(max(H[i], H[j]))
     if s * (C[i] - stop) <= 0: return None
     return dict(side=s, entry=float(C[i]), stop=stop, target=float(C[i] + s * TGT_R * r), spike_range=r, ref=ref, bar=str(d.index[i]))
 

@@ -278,7 +278,11 @@ class Runner:
                 import live_limits as _L; pz, why_p = _L.paused("ignition")
                 if pz: log(why_p); return "drift_pause"
             except Exception as e: log("drift check:", e)
-        if os.environ.get("IG_AD_STACK", "") == "1":     # doc 227: AuclairsDad's regime + coil gate, Tue/Wed off
+        us_plain = (os.environ.get("IG_US_PLAIN", "") == "1" and getattr(self, "path", "breakout") == "breakout"
+                    and P7.US_OPEN <= mins < P7.US_CLOSE)
+        # 27 Nov (doc 268): in US cash hours plain Ignition v1.1 (+22.7 pts/trade, 88% win, n86) beats the AD stack gate (+5.8, n15 there).
+        # Stack outside US hours + plain v1.1 inside: total +3,486 vs +1,623 pts, halves +10.8 / +15.3, 12/14 months. IG_US_PLAIN=1 skips the gate in US hours.
+        if os.environ.get("IG_AD_STACK", "") == "1" and not us_plain:     # doc 227: AuclairsDad's regime + coil gate, Tue/Wed off
             rg, coil = self.ad_ok(s, row)
             if nyt.dayofweek in (1, 2): return "ad_tue_wed"
             if not rg: return "ad_no_regime"

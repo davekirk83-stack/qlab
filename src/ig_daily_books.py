@@ -382,7 +382,7 @@ def job_open(ig, s, group, hist_fn):
                     rungs = [q for q in s["pos"] if q["book"] == "TPS" and q["market"] == name]
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)
                     if b.r2 > 70: why = "RSI2 > 70"
-                    elif b.close / k <= avg * 0.85: why = "15% below avg"
+                    elif b.close / k <= avg * (1 - float(os.environ.get("IG_TPS_KILL", "0.15"))): why = f"{100*float(os.environ.get('IG_TPS_KILL', '0.15')):.0f}% below avg"   # 27 Nov (doc 268): IG_TPS_KILL=0.10 on demo (same mean, worst episode -11.4% vs -14.8%)
                 if p["book"] == "TPSS":
                     rungs = [q for q in s["pos"] if q["book"] == "TPSS" and q["market"] == name]
                     avg = sum(q["entry_ig"] * q["size"] for q in rungs) / sum(q["size"] for q in rungs)

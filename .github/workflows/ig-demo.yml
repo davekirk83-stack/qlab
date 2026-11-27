@@ -68,10 +68,12 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY_DEMO_ACCOUNT }}
           IG_RANGE_SIZE: "0.14"   # doc 137: ladder sized as for a £1,000 account (20% of equity as margin at 5% = £4,000 notional on US Tech 100)
           IG_RANGE_INSTR: "NQ,US500,FTSE,GBPUSD,USDJPY,GOLD"   # doc 186 (DK 4 Nov): + GBP/USD and USD/JPY ladders, London hours. doc 175: the ladder on US Tech 100 + US 500 (NY hours) + FTSE 100 (London hours)    # doc 137: US Tech 100 only — best return per margin-hour; Wall Street / Germany 40 dropped
+          IG_SPIKE_STOP: "spike"   # 27 Nov (doc 268): wider spike-bar stop on demo first
           IG_SPIKE: "NQ,US500"         # doc 191 (DK 8 Nov): spike continuation engine on the demo
           IG_SHOCK_PAUSE: "NQ,FTSE"    # doc 190 S1 / 191: no ladder rungs against an abnormal 15-min bar for 2h
           IG_EMAC: "US500,WALLST,DAX,NQ"      # doc 252 (DK 22 Nov "Yes do all of those on your list"): EMA contraction breakout, 1h, stop 1.5 ATR, limit 3 ATR, 48h max
           IG_RANGE_DATA_ONLY: "WALLST,DAX"    # doc 252: bars only for the EMA contraction engine (no ladder on these)
+          IG_US_PLAIN: "1"   # 27 Nov (doc 268)
           IG_BE: "20"   # 27 Nov (doc 267): breakeven at +20 pts on demo before live
           IG_WVB: "NQ,USDJPY,US500,GOLD"     # doc 228 part 2 (DK 11 Nov): Larry Williams' volatility breakout, k 0.5, bracket stop orders at the open, flat at the close
           IG_AD_STACK: "1"        # 22 Nov (doc 256): demo mirrors live - AuclairsDad stack round the clock, Tue/Wed off
