@@ -72,6 +72,9 @@ for t in rows:
                 "gave_back": (mfe - pts) if pd.notna(pts) else np.nan})
 
 X = pd.DataFrame(out)
+import sys
+if "--since" in sys.argv:                      # weekly review: python src/research/trade_excursions.py --since 2026-11-23
+    X = X[X.opened >= pd.Timestamp(sys.argv[sys.argv.index("--since") + 1], tz="UTC")]
 X["loss"] = X.pts < 0
 X["was_up_1x"] = X.loss & (X.mfe >= X.pts.abs())            # was up at least as much as it finally lost
 X["was_up_half"] = X.loss & (X.mfe >= 0.5 * X.pts.abs())
