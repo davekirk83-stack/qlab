@@ -107,3 +107,5 @@
 2026-11-25 04:11:17Z options open: 0 legs, running P&L £+0.00
 2026-11-26 03:33:25Z switch_account: error.switch.accountId-must-be-different
 2026-11-26 03:33:25Z options open: 0 legs, running P&L £+0.00
+2026-11-27 03:38:56Z switch_account: error.switch.accountId-must-be-different
+2026-11-27 03:38:56Z options open: 0 legs, running P&L £+0.00
