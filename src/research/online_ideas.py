@@ -35,20 +35,37 @@ for j in ent:
     if k >= len(O): continue
     res[U[j]] = O[k] / O[j] - 1
 g2 = pd.Series(res)
-for lab, cost in (("Q2 overnight MAX(10), gross", 0.0), ("Q2 net, market both ways", 2 * 0.0014), ("Q2 net, maker in / market out", 0.0014)):
+for lab, cost in (("Q2 overnight MAX(10), gross [check = yesterday's close; checker: UNSAFE, stale]", 0.0), ("Q2 net, market both ways", 2 * 0.0014), ("Q2 net, maker in / market out", 0.0014)):
     rows.append(summ(g2 - cost, lab))
+# Q2 redo (checker 27 Nov): make the 10-day-high check AT the 16:00 NY entry, against the prior 9 daily closes / prior daily highs; plus no filter
+dh = d.high.resample("1D").max()
+for mode in ("close", "high", "none"):
+    res = {}
+    for j in ent:
+        day = U[j].floor("1D"); prev = dc.index.searchsorted(day) - 1
+        if prev < 10: continue
+        if mode == "close" and C[j] < dc.iloc[prev - 8:prev + 1].max(): continue
+        if mode == "high" and C[j] < dh.iloc[prev - 9:prev + 1].max(): continue
+        tgt = (ny[j] + pd.Timedelta(days=3 if ny[j].dayofweek == 4 else 1)).normalize() + pd.Timedelta("10h")
+        k = U.searchsorted(tgt.tz_convert("UTC"))
+        if k >= len(O): continue
+        res[U[j]] = O[k] / O[j] - 1
+    g3 = pd.Series(res)
+    for lab, cost in ((f"Q2 redo, check at entry vs {mode}, gross", 0.0), (f"Q2 redo {mode}, net market both ways", 2 * 0.0014)):
+        r = summ(g3 - cost, lab); s = (g3 - cost).sort_values()
+        r["median_pct"] = round(100 * s.median(), 3); r["drop_top5_mean_pct"] = round(100 * s.iloc[:-5].mean(), 3); rows.append(r)
 # N1 / C1 on DK v2 (+ the 13:00 level kept in doc 274)
 dl = d.close.resample("1D").last(); hi = d.high.resample("1D").max(); lo = d.low.resample("1D").min()
 tr = np.maximum(hi - lo, np.maximum((hi - dl.shift()).abs(), (lo - dl.shift()).abs())); atrp = (tr.rolling(14).mean() / dl).shift(1); med = atrp.rolling(365, min_periods=120).median()
-hv = (atrp > med)
+hv = (atrp > med).where(med.notna())                                       # checker: no 1y median yet -> neither bucket (was counted as low)
 base = I.run(d, {"ny": True}); rows.append(dict(summ(base / 100, "DK v2 + 13:00 level (current best)")))
 for lab, keep in (("N1 v2 only when vol is HIGH (ATR% > 1y median)", True), ("N1 v2 only when vol is LOW", False)):
-    m = hv.reindex(base.index.floor("1D")).fillna(False).values
-    rows.append(summ((base[m] if keep else base[~m]) / 100, lab))
+    hvx = hv.reindex(base.index.floor("1D")); m = (hvx == (1.0 if keep else 0.0)).values
+    rows.append(summ(base[m] / 100, lab))
 # C1: deeper first bid - shift the 24h-low level down by k x daily ATR% (patched into the improve engine through the lvl factor)
 src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dk_v2_improve.py")).read()
 for kdeep in (0.3, 0.6):
-    code = src.replace("lvl = L[j - 96:j].min() * 0.997", f"lvl0 = L[j - 96:j].min() * 0.997; lvl = lvl0 * (1 - {kdeep} * a)").replace("if C[j - 1] > lvl * 1.03: continue", "if C[j - 1] > lvl0 * 1.03: continue")   # audit: same events, only the bids move
+    code = src.replace("lvl = L[j - 96:j].min() * 0.997", f"lvl0 = L[j - 96:j].min() * 0.997; lvl = lvl0 * (1 - {kdeep} * a)").replace("if C[j - 1] > lvl * 1.03: continue", "if C[j - 1] > lvl0 * 1.03: continue")   # only the bids move; campaign set still changes because deeper bids fill less (checker: like-for-like on shared campaigns is also worse)
     ns = {"__file__": os.path.join(os.path.dirname(os.path.abspath(__file__)), "dk_v2_improve.py")}; exec(compile(code.split('if __name__ == "__main__":')[0], "c1", "exec"), ns)
     r = ns["run"](d, {"ny": True}); rows.append(summ(r / 100, f"C1 v2 + first bid {kdeep} x ATR deeper"))
 R = pd.DataFrame(rows); R.to_csv("runs/research/online_ideas.csv", index=False); pd.set_option("display.width", 250); print(R.to_string(index=False))
