@@ -28,7 +28,7 @@ if os.access(os.path.dirname(ROOT) if os.path.exists(os.path.dirname(ROOT)) else
 STATE = f"{RUNS}/paper7_state.json"; BARS = f"{CACHE}/nq_5m.csv"
 START_DATE = "2026-10-19"; START = 2000.0; PT = 2.0
 IGN, DSHARE = 1.25, 0.05
-STOP, BE, TRAIL_ATR, TGT_ATR, CAP = 45.0, 15.0, 1.0, 9.0, 36
+STOP, BE, TRAIL_ATR, TGT_ATR, CAP = 45.0, float(os.environ.get("IG_BE", "15")), 1.0, 9.0, 36   # 27 Nov (doc 267): IG_BE=20 on demo first (AD stack backtest BE20: +8.92 vs +8.28 pts, dev/hold-out +8.95/+8.87, 12/14 months)
 MAXT, COOL, LOSSCAP = 8, 3, 200.0
 NCTRL = 5
 

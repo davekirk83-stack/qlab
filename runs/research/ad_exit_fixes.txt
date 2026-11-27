@@ -1,0 +1,7 @@
+live set BE15 trail1.0     n  196 pts/trade +8.28 win 73% total +1623 | dev +8.99 hold-out +7.01 | months+ 11/14 worst -48
+live set BE20 trail1.0     n  192 pts/trade +8.92 win 74% total +1713 | dev +8.95 hold-out +8.87 | months+ 12/14 worst -36
+live set BE30 trail1.0     n  183 pts/trade +10.84 win 71% total +1983 | dev +12.65 hold-out +7.77 | months+ 10/14 worst -109
+live set BE15 trail1.5     n  194 pts/trade +7.00 win 68% total +1359 | dev +8.68 hold-out +4.03 | months+ 10/14 worst -79
+live set BE30 trail1.5     n  183 pts/trade +9.24 win 70% total +1690 | dev +12.12 hold-out +4.36 | months+ 10/14 worst -129
+live set BE45 trail1.5     n  176 pts/trade +10.62 win 64% total +1869 | dev +13.27 hold-out +6.19 | months+ 12/14 worst -149
+live set BE30 trail2.0     n  181 pts/trade +9.28 win 67% total +1680 | dev +11.58 hold-out +5.38 | months+ 10/14 worst -132
