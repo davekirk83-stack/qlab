@@ -19,6 +19,8 @@ K, RISK = 0.5, 0.03   # DK 11 Nov: intraday books 3% per trade under a £1,000 p
 KM = {"NQ": 0.4, "US500": 0.5, "USDJPY": 0.5, "GOLD": 0.3}   # 15 Nov (src/sweep_williams_mkts.py, doc 235): best k per market, both halves positive
 
 US_IDX = {"US500", "NQ", "WALLST"}
+TGT_R = float(os.environ.get("IG_WVB_TGT_R", "0") or 0)   # 27 Nov (doc 267/268): profit target at TGT_R x the stop distance (demo 2R: NQ +0.097 -> +0.129R, US500 +0.070 -> +0.091R, both halves)
+TGT_MKTS = set(os.environ.get("IG_WVB_TGT_MKTS", "NQ,US500").split(","))   # gold / USD-JPY: a target did not help in the test
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
 def log(*a): print(utcnow().strftime("%H:%M:%S"), "[wvb]", *a, flush=True)
 
@@ -105,7 +107,8 @@ class WVBEngine:
                 try:
                     r = self.ig.create_working_order(currency_code=self.ccy, direction=side, epic=mk["epic"], expiry=mk["expiry"], guaranteed_stop=False,
                                                      level=round(lvl, 1), size=sz, time_in_force="GOOD_TILL_CANCELLED", order_type="STOP",
-                                                     stop_distance=round(d, 1), force_open=True)
+                                                     stop_distance=round(d, 1), force_open=True,
+                                                     **({"limit_distance": round(TGT_R * d, 1)} if (TGT_R and name in TGT_MKTS) else {}))
                 except Exception as ex: log(name, side, "working order:", ex); break
                 if r.get("dealStatus") == "ACCEPTED":
                     st["orders"][side] = {"deal_id": r.get("dealId"), "ref": r.get("dealReference"), "level": lvl, "dist": d, "size": sz}
@@ -166,6 +169,8 @@ class WVBEngine:
             p = st["pos"]
             if self.dry:
                 if (p["side"] == 1 and c["low"] <= p["stop"]) or (p["side"] == -1 and c["high"] >= p["stop"]): self.book(name, p["stop"], "stop(dry)"); st["done"] = True
+                elif TGT_R and name in TGT_MKTS and (lambda tp: (p["side"] == 1 and c["high"] >= tp) or (p["side"] == -1 and c["low"] <= tp))(p["px"] + p["side"] * TGT_R * st["dist"]):
+                    self.book(name, p["px"] + p["side"] * TGT_R * st["dist"], "target(dry)"); st["done"] = True
             else:
                 try: ids = {x["position"]["dealId"] for x in self.ig.fetch_open_positions()["positions"]}
                 except Exception as ex: log(name, "sync:", ex); return

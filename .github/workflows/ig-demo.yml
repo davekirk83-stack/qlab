@@ -75,6 +75,7 @@ jobs:
           IG_RANGE_DATA_ONLY: "WALLST,DAX"    # doc 252: bars only for the EMA contraction engine (no ladder on these)
           IG_US_PLAIN: "1"   # 27 Nov (doc 268)
           IG_BE: "20"   # 27 Nov (doc 267): breakeven at +20 pts on demo before live
+          IG_WVB_TGT_R: "2"   # 27 Nov (doc 268): Williams 2R profit target on demo first
           IG_WVB: "NQ,USDJPY,US500,GOLD"     # doc 228 part 2 (DK 11 Nov): Larry Williams' volatility breakout, k 0.5, bracket stop orders at the open, flat at the close
           IG_AD_STACK: "1"        # 22 Nov (doc 256): demo mirrors live - AuclairsDad stack round the clock, Tue/Wed off
           IG_AD_CONV: "1"         # doc 256: + his raw-conviction continuation path (demo first)
