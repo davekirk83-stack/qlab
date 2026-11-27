@@ -1,6 +1,7 @@
-08:01:48 job eu_open; daily sub-book £500.00, open positions 0
-08:01:49 switch_account: error.switch.accountId-must-be-different
-08:01:50 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
-08:01:50 DAX: final close 2026-11-25 24702.1 RSI2 18.4 RSI4 23.9 5d 25064.8 200d 24999.1 ATR 428.4 | IG open 25160.3
-08:01:51 FTSE: final close 2026-11-25 10426.9 RSI2 31.4 RSI4 31.5 5d 10434.8 200d 10560.3 ATR 125.4 | IG open 10554.7
-08:01:51 done; book £500.00, open []
+08:01:53 job eu_open; daily sub-book £500.00, open positions 0
+08:01:55 switch_account: error.switch.accountId-must-be-different
+08:01:57 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+08:01:57 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
+08:01:58 DAX: final close 2026-11-26 25215.5 RSI2 66.1 RSI4 47.9 5d 25015.1 200d 25001.2 ATR 438.2 | IG open 25381.3
+08:01:58 FTSE: final close 2026-11-26 10609.3 RSI2 84.3 RSI4 62.4 5d 10466.1 200d 10561.3 ATR 132.0 | IG open 10672.5
+08:01:58 done; book £500.00, open []
