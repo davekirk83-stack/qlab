@@ -3,8 +3,8 @@
   "day": "2026-11-27",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null,
+  "done": true,
+  "open": 26521.4,
   "up": 26627.72,
   "dn": 25738.28,
   "dist": 889.4399999999995,
@@ -27,8 +27,8 @@
   "day": "2026-11-27",
   "orders": {},
   "pos": null,
-  "done": false,
-  "open": null
+  "done": true,
+  "open": 7272.33
  },
  "GOLD": {
   "day": "2026-11-27",
