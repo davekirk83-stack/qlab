@@ -1,8 +1,10 @@
 08:05:00 job eu_open; daily sub-book £456.13, open positions 0
 08:05:01 switch_account: error.switch.accountId-must-be-different
+08:05:03 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
 08:05:03 TPS book £-37.05 (realised -37.05, open +0.00); stop at -£19 — STOPPED
-08:05:03 pot £383.67 (start £500, all books -115.82); entries on
-08:05:03 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
-08:05:03 DAX: final close 2026-11-25 24702.1 RSI2 18.4 RSI4 23.9 5d 25064.8 200d 24999.1 ATR 428.4 | IG open 25154.1
-08:05:04 FTSE: final close 2026-11-25 10426.9 RSI2 31.4 RSI4 31.5 5d 10434.8 200d 10560.3 ATR 125.4 | IG open 10563.3
-08:05:04 done; book £456.13, open []
+08:05:03 pot £384.90 (start £500, all books -114.59); entries on
+08:05:04 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+08:05:04 REGIME: US 500 7182.8 below its 200-day 7352.5 — no new dip-book entries today
+08:05:05 DAX: final close 2026-11-26 25215.5 RSI2 66.1 RSI4 47.9 5d 25015.1 200d 25001.2 ATR 438.2 | IG open 25420.2
+08:05:05 FTSE: final close 2026-11-26 10609.3 RSI2 84.3 RSI4 62.4 5d 10466.1 200d 10561.3 ATR 132.0 | IG open 10683.2
+08:05:05 done; book £456.13, open []
