@@ -1,0 +1,35 @@
+name: alpaca-trades
+# doc 276: data only — QQQ (or SYM) trades from DK's free Alpaca account, aggregated to 5-min tick-rule buy/sell volume. No orders.
+on:
+  workflow_dispatch:
+    inputs:
+      sym: { description: "symbol", default: "QQQ" }
+      feed: { description: "iex (free real-time feed) or sip (all exchanges, history only)", default: "iex" }
+      start: { description: "first day", default: "2026-04-01" }
+      end: { description: "last day", default: "2026-11-20" }
+      maxpages: { description: "page cap", default: "40000" }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pandas numpy
+      - run: python src/alpaca_trades.py
+        env:
+          ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
+          ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
+          SYM: ${{ github.event.inputs.sym }}
+          FEED: ${{ github.event.inputs.feed }}
+          START: ${{ github.event.inputs.start }}
+          END: ${{ github.event.inputs.end }}
+          MAXPAGES: ${{ github.event.inputs.maxpages }}
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "alpaca-trades"; git config user.email "alpaca@users.noreply.github.com"
+          git add -f data_alpaca/*_delta_5m.csv.gz 2>/dev/null; git commit -m "Alpaca 5-min tick-rule delta (${{ github.event.inputs.sym }} ${{ github.event.inputs.feed }})" || true
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q && break; sleep $((i*7)); done
