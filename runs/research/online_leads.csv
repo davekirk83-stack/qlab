@@ -1,0 +1,10 @@
+change,btc_n,btc_mean,btc_h1,btc_h2,btc_total,alts_n,alts_mean,alts_h1,alts_h2,alts_total,keeps
+v2 (base),276,0.2,0.216,0.184,55.2,3187,0.079,0.12,0.038,250.8,False
+L1a skip ladder if today < -1.5 sigma,267,0.175,0.203,0.147,46.7,3089,0.086,0.12,0.051,264.2,False
+L1b no fills until next day if today < -1.5 sigma,273,0.172,0.182,0.163,47.1,3150,0.061,0.096,0.026,192.6,False
+L1c skip ladder if yesterday < -1.5 sigma,266,0.207,0.248,0.167,55.2,3052,0.086,0.143,0.029,262.0,False
+L1a skip ladder if today < -2.0 sigma,270,0.188,0.215,0.16,50.6,3142,0.08,0.118,0.041,249.8,False
+L1b no fills until next day if today < -2.0 sigma,274,0.168,0.172,0.163,46.0,3171,0.068,0.109,0.027,216.8,False
+L1c skip ladder if yesterday < -2.0 sigma,270,0.197,0.223,0.172,53.3,3137,0.079,0.13,0.029,248.9,False
+L2 stand aside when taker-flow variance in bottom 20%,236,0.214,0.269,0.158,50.4,2763,0.075,0.124,0.025,206.6,False
+L2 stand aside when taker-flow variance in bottom 10%,247,0.232,0.256,0.208,57.3,2966,0.087,0.139,0.036,258.6,False
