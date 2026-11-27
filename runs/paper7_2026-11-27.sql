@@ -1,0 +1,3 @@
+INSERT OR REPLACE INTO pb7_equity (d, equity, shadow_equity, open_positions, closed_total, closed_shadow, equity_us, shadow_us, closed_us, equity_v11, shadow_v11, closed_v11) VALUES ('2026-11-27', 4576.94, 1729.85, 1, 76, 380, 3172.08, 2069.80, 24, 2927.90, 1948.86, 12);
+INSERT INTO pb7_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-27', 'NQ', '2026-11-26 06:20:00+00:00', '2026-11-26 06:30:00+00:00', 0.74, 'be', 0);
+INSERT INTO pb7_trades (d, sym, opened, closed, ret, how, shadow) VALUES ('2026-11-27', 'NQ', '2026-11-26 10:15:00+00:00', '2026-11-26 11:05:00+00:00', 49.16, 'be', 0);
