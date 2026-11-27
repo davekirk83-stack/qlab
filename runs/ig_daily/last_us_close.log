@@ -1,7 +1,7 @@
-20:36:23 job us_close; daily sub-book £500.00, open positions 0
-20:36:24 switch_account: error.switch.accountId-must-be-different
-20:36:25 US500: market OFFLINE — skipped
-20:36:25 NQ: market OFFLINE — skipped
-20:36:25 WALLST: market OFFLINE — skipped
-20:36:25 GOLD: market OFFLINE — skipped
-20:36:25 done; book £500.00, open []
+20:36:29 job us_close; daily sub-book £500.00, open positions 0
+20:36:31 switch_account: error.switch.accountId-must-be-different
+20:36:33 US500: Yahoo ends 2026-11-25 and IG daily bars don't overlap — using Yahoo as is
+20:36:33 NQ: market OFFLINE — skipped
+20:36:34 WALLST: market OFFLINE — skipped
+20:36:34 GOLD: market OFFLINE — skipped
+20:36:34 done; book £500.00, open []
