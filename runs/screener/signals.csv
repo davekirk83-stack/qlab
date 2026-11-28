@@ -26,3 +26,7 @@ screened,setup,sym,cls,price,rsi2,context,bid,exit_rule
 2026-11-28 08:05 UTC,S2 band bid,SOLUSDT,crypto,71.17,78.7,deep flush,68.8478,"resting bid for today 2026-11-28 (UTC, from its open); if filled, sell at 23:00 UTC the day after"
 2026-11-28 08:05 UTC,S2 band bid,XRPUSDT,crypto,0.9426,83.1,deep flush,0.912894,"resting bid for today 2026-11-28 (UTC, from its open); if filled, sell at 23:00 UTC the day after"
 2026-11-28 08:05 UTC,S2 band bid,DOGEUSDT,crypto,0.0568,91.1,deep flush,0.0554357,"resting bid for today 2026-11-28 (UTC, from its open); if filled, sell at 23:00 UTC the day after"
+2026-11-28 08:34 UTC,FD,A,WST,,US stock,366.17,5.9,0.16,"S&P<200d, W%R -97",sell first close > 5d mean (now 383.49); 10-day limit
+2026-11-28 08:34 UTC,FD,A,INTU,,US stock,271.94,21.6,0.11,"S&P<200d, W%R -96",sell first close > 5d mean (now 273.80); 10-day limit
+2026-11-28 08:34 UTC,S3,B,HAS,,US stock,109.09,5.1,0.21,uptrend,sell first close > 5d mean (now 111.57); 10-day limit
+2026-11-28 08:34 UTC,S3+,B,SJM,,US stock,126.86,3.8,0.12,uptrend,sell first close > 5d mean (now 130.85); 10-day limit
