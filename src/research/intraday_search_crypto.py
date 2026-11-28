@@ -20,7 +20,7 @@ if __name__ == "__main__":
         C["_sym"] = s; C["_grp"] = "core" if s in ("BTCUSDT", "ETHUSDT") else "alts"; C["_t"] = d.index; C["_day"] = d["day"].values
         for k in X: C[f"_g{k}"] = X[k].values
         rows.append(C.reset_index(drop=True)); print(s, len(C), flush=True)
-    M = pd.concat(rows, ignore_index=True); M["_cost"] = 0.0007          # 0 in + 0.14% out, split per side for the evaluator's 2 x cost
+    M = pd.concat(rows, ignore_index=True); M["_cost"] = float(os.environ.get("CRYPTO_COST", "0.0007"))   # per side; 0.0007 = Revolut X (0 in + 0.14% out); 0.00025 = perp venue (~0.05% round trip)
     yr = pd.to_datetime(M._t, utc=True).dt.year.values
     base = {(ex, s): M[I.gcol(ex, s)][yr <= 2023].groupby(M._grp[yr <= 2023]).mean() for ex in I.EXITS for s in (1, -1)}
     names = [c for c in M.columns if not c.startswith("_")]; B = {k: M[k].fillna(False).values.astype(bool) for k in names}; grp = M._grp.values
@@ -37,7 +37,7 @@ if __name__ == "__main__":
                     t2 = I.evaluate(M, mk & TE, ex, side, base) or dict(net=np.nan, t=np.nan, n=0); a2 = I.evaluate(M, mk & AL, ex, side, base) or dict(net=np.nan, t=np.nan, n=0)
                     res.append(dict(combo=" + ".join(cb), exit=ex, side="long" if side == 1 else "short", tr_net=e["net"], tr_t=e["t"], tr_n=e["n"], te_net=t2["net"], te_t=t2["t"], te_n=t2["n"], alts_net=a2["net"], alts_t=a2["t"], alts_n=a2["n"]))
     if not res: print("no train survivors"); sys.exit(0)
-    R = pd.DataFrame(res).sort_values("tr_t", ascending=False); R.to_csv("runs/research/intraday_search_crypto.csv", index=False)
+    R = pd.DataFrame(res).sort_values("tr_t", ascending=False); R.to_csv(f"runs/research/intraday_search_crypto_{os.environ.get('CRYPTO_COST', '0.0007')}.csv", index=False)
     R["oos"] = (R.te_net > 0) & (R.te_t >= 2)
     pd.set_option("display.width", 250); pd.set_option("display.max_colwidth", 55)
     print("train survivors:", len(R), "| OOS (BTC+ETH 2024-26 t>=2, net>0):", int(R.oos.sum()), "| of which alts net>0:", int((R.oos & (R.alts_net > 0)).sum()))
