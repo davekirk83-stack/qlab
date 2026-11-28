@@ -71,6 +71,7 @@ if __name__ == "__main__":
                         res.append(dict(universe=universe, combo=" + ".join(cb), exit=ex, side="long" if side == 1 else "short", tr_net=e["net"], tr_t=e["t"], tr_n=e["n"],
                                         te_net=t2["net"], te_t=t2["t"], te_n=t2["n"]))
         print(universe, "done", flush=True)
+    if not res: print("no train survivors (needs 2020-23 data)"); sys.exit(0)
     R = pd.DataFrame(res).sort_values("tr_t", ascending=False); R.to_csv("runs/research/intraday_search_nq.csv", index=False)
     R["oos"] = (R.te_net > 0) & (R.te_t >= 2)
     pd.set_option("display.width", 250); pd.set_option("display.max_colwidth", 55)
