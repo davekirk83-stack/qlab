@@ -35,9 +35,11 @@ jobs:
           tail -n 400 runs/revx_liq_$MODE.log > /tmp/l && mv /tmp/l runs/revx_liq_$MODE.log
           QLAB_ROOT=$PWD python src/revx_liq_ladder.py 2>&1 | tee -a runs/revx_liq_ladder_dry.log || true
           tail -n 400 runs/revx_liq_ladder_dry.log > /tmp/l && mv /tmp/l runs/revx_liq_ladder_dry.log
+          QLAB_ROOT=$PWD python src/revx_dkv2.py 2>&1 | tee -a runs/revx_dkv2_dry.log || true      # doc 284: DK v2 longs, PAPER only
+          tail -n 400 runs/revx_dkv2_dry.log > /tmp/l && mv /tmp/l runs/revx_dkv2_dry.log
       - name: Commit results
         if: always()
         run: |
           git config user.name "revx-liq"; git config user.email "revx-liq@users.noreply.github.com"
-          for p in runs/revx_liq_dry runs/revx_liq_live runs/revx_liq_dry.log runs/revx_liq_live.log runs/revx_liq_ladder_dry runs/revx_liq_ladder_dry.log runs/liq_levels; do [ -e "$p" ] && git add -f "$p"; done; git commit -q -m "revx liq $(date -u +%Y-%m-%dT%H:%M)" || true
+          for p in runs/revx_liq_dry runs/revx_liq_live runs/revx_liq_dry.log runs/revx_liq_live.log runs/revx_liq_ladder_dry runs/revx_liq_ladder_dry.log runs/liq_levels runs/revx_dkv2_dry runs/revx_dkv2_dry.log; do [ -e "$p" ] && git add -f "$p"; done; git commit -q -m "revx liq $(date -u +%Y-%m-%dT%H:%M)" || true
           for i in 1 2 3 4 5 6; do git pull -q --rebase -X theirs origin main && git push -q && break; echo "push retry $i"; sleep $((i*7)); done
