@@ -27,3 +27,5 @@
 22:12:04 no fill in 48h - ladder cancelled
 22:12:04 ladder at 59,140 (100x): 59,140, 58,549, 57,958, 57,366
 22:12:04 ladder book $634.34; trades 1, total $-0.66
+03:54:02 liq-level snapshot: 14 levels -> /home/runner/work/qlab/qlab/runs/liq_levels/2026-11.csv
+03:54:02 ladder book $634.34; trades 1, total $-0.66
