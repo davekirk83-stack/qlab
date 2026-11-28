@@ -6,9 +6,9 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ["NQ_TICK_OUT"] = f"/tmp/nqticks_{sys.argv[1]}"
 import get_nq_ticks as G
-Y = int(sys.argv[1]); G.OUT = f"/tmp/nqticks_{Y}"; os.makedirs(f"{G.OUT}/days", exist_ok=True)
+Y = int(sys.argv[1]); HALF = int(sys.argv[2]) if len(sys.argv) > 2 else 0; G.OUT = f"/tmp/nqticks_{Y}"; os.makedirs(f"{G.OUT}/days", exist_ok=True)
 out = []; last = 0.0
-for m in range(1, 13):
+for m in ((range(1, 7) if HALF == 1 else range(7, 13)) if HALF else range(1, 13)):
     days = [x.date() for x in pd.date_range(f"{Y}-{m:02d}-01", pd.Timestamp(f"{Y}-{m:02d}-01") + pd.offsets.MonthEnd(0)) if x.weekday() != 5]
     days = [d for d in days if pd.Timestamp(d) <= pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta("2D")]
     if not days: break
@@ -16,10 +16,7 @@ for m in range(1, 13):
     parts = [pd.read_csv(f) for f in fs]; t = pd.concat([p for p in parts if len(p)])
     if t.empty: continue
     t["ts"] = pd.to_datetime(t.ts, utc=True); t = t.sort_values("ts"); t["mid"] = (t.ask + t.bid) / 2
-    d = np.sign(t.mid.diff().fillna(0).values)
-    if len(d) and d[0] == 0: d[0] = last
-    for i in range(1, len(d)):
-        if d[i] == 0: d[i] = d[i - 1]
+    d = pd.Series(np.sign(t.mid.diff().fillna(0).values)).replace(0, np.nan).ffill().fillna(last).values   # 28 Nov: vectorised (the python loop over ticks hit the 6h job limit)
     last = d[-1] if len(d) else last
     t["sgn"] = d; t = t.set_index("ts"); r = t.mid.resample("5min")
     b = pd.DataFrame({"open": r.first(), "high": r.max(), "low": r.min(), "close": r.last(), "vol": r.count(),
@@ -28,4 +25,4 @@ for m in range(1, 13):
     out.append(b); print(Y, m, len(t), "ticks ->", len(b), "bars", flush=True)
     for f in fs: os.remove(f)
 B = pd.concat(out); B.index.name = "ts"; os.makedirs("data_nq_cache", exist_ok=True)
-B.to_csv(f"data_nq_cache/nq_5m_{Y}.csv.gz", compression="gzip"); print("wrote", len(B), "bars", B.index[0], B.index[-1])
+B.to_csv(f"data_nq_cache/nq_5m_{Y}" + (f"_h{HALF}" if HALF else "") + ".csv.gz", compression="gzip"); print("wrote", len(B), "bars", B.index[0], B.index[-1])
