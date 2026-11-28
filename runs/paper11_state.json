@@ -1,6 +1,6 @@
 {
  "started": "2026-10-28",
- "since": "2026-11-25",
+ "since": "2026-11-27",
  "spec": "Stock pivots: Minervini VCP (MV) + episodic pivot (EP), doc 151",
  "MV": {
   "equity": 2000.0,
@@ -19,12 +19,17 @@
     "sym": "JBIO",
     "opened": "2026-11-23",
     "entry": 16.309900283813477,
-    "stop": 15.484999656677246,
+    "stop": 16.309900283813477,
     "risk": 0.050576681204782786,
-    "w": 1.0,
-    "legs": [],
-    "be": false,
-    "n": 2,
+    "w": 0.5,
+    "legs": [
+     [
+      0.5,
+      17.799999237060547
+     ]
+    ],
+    "be": true,
+    "n": 3,
     "kind": "shadow"
    }
   ],
