@@ -105,7 +105,10 @@ if __name__ == "__main__":
     M["_cost"] = M._cls.map({"FX": 0.0002, "crypto": 0.0014}).fillna(0.001)          # per side
     for hh in HOLDS:   # market/hold baseline: average raw forward return of that market class on that day (removes market drift)
         raw = M[f"_r{hh}"] + 2 * M._cost
-        M[f"_base{hh}"] = raw.groupby([M._cls, M._t]).transform("mean")
+        if os.environ.get("BASE") == "sameday": M[f"_base{hh}"] = raw.groupby([M._cls, M._t]).transform("mean")   # pass 1: stock selection only
+        else:   # pass 2 (default): versus the market class's long-run average move over the TRAIN years (keeps market-timing edges, removes drift)
+            yr = pd.to_datetime(M._t).dt.year
+            M[f"_base{hh}"] = M._cls.map(raw[yr <= 2015].groupby(M._cls[yr <= 2015]).mean())
     M.to_pickle("/tmp/claude-0/-home-claude/6103913e-5d93-5930-ba67-b97312457994/scratchpad/ind_M.pkl")
     names = [c for c in M.columns if not c.startswith("_")]
     B = {k: M[k].fillna(False).astype(bool).values for k in names}      # markets without volume have NaN volume conditions -> False
@@ -134,7 +137,7 @@ if __name__ == "__main__":
         for c, om in OTHER.items():
             e = evaluate(M, mk & om, r.hold, side); row[f"{c}_mean"] = e["mean"] if e else np.nan; row[f"{c}_t"] = e["t"] if e else np.nan; row[f"{c}_n"] = e["n"] if e else 0
         out.append(row)
-    O = pd.DataFrame(out); O.to_csv("runs/research/indicator_search.csv", index=False)
+    O = pd.DataFrame(out); O.to_csv(f"runs/research/indicator_search_{os.environ.get('BASE', 'drift')}.csv", index=False)
     O["oos_ok"] = (O.te_mean > 0) & (O.te_t >= 2) & (O.te_net > 0)
     O["xasset_ok"] = ((O.indices_mean > 0).astype(int) + (O.commodities_mean > 0).astype(int) + (O.crypto_mean > 0).astype(int) + (O.FX_mean > 0).astype(int))
     pd.set_option("display.width", 300); pd.set_option("display.max_colwidth", 45)
