@@ -1,0 +1,21 @@
+{
+ "book": "IGNTGT_target_ge_1.5_x_stop_BE20",
+ "note": "",
+ "data": "2025-10-15..2026-11-27",
+ "holdout_from": "2026-06-17",
+ "lookahead_ok": true,
+ "lookahead_at": "",
+ "dev_n": 168,
+ "dev_R": 0.655,
+ "hold_n": 98,
+ "hold_per_year": 220,
+ "hold_R": 0.372,
+ "t": 2.27,
+ "h1": 0.589,
+ "h2": 0.156,
+ "win": 0.69,
+ "maxdd_R": -7.3,
+ "random_p95": 0.168,
+ "label": "TESTED",
+ "reason": "all conditions met"
+}
