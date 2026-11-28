@@ -58,7 +58,8 @@ US_IDX = {"US500", "NQ", "WALLST"}   # move almost in step: one of them at a tim
 BOOKS = {"RSI4": IDX + ["GOLD"], "RSI4L": IDX + ["GOLD"], "TPS": IDX + ["GOLD"], "TOM": IDX + ["GOLD"], "SANTA": IDX, "HALLO": IDX,
          "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
          "LBS": IDX,    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
-         "INS": ["US500"]}   # INS = insurance short at each new ALL-TIME closing high of the US 500 (doc 223, DK 11:42: demo, 0.5% risk)
+         "INS": ["US500"],   # INS = insurance short at each new ALL-TIME closing high of the US 500 (doc 223, DK 11:42: demo, 0.5% risk)
+         "S3": IDX}   # S3 = RSI(2) pullback in DK v2's context (docs 279-281, DK 27 Nov "creation mode"): DEMO ONLY until the promotion rule is met
 if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
 def utcnow(): return dt.datetime.now(dt.timezone.utc)
@@ -100,7 +101,7 @@ def entries(d, name):
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "RSI4L": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"RSI4": 10, "RSI4L": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
+MAXD = {"S3": 10, "RSI4": 10, "RSI4L": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -333,6 +334,28 @@ CLOSE_BOOKS = ("TOM", "SANTA", "HALLO")  # date-based signals (known in advance)
 TPS_RUNGS = int(L.C.get("tps_rungs", 4)) if LIVE else 4   # doc 216: 3 rungs keeps ~77% of the profit, halves the worst loss
 IDX_RISK_CAP = L.IDX_CAP if LIVE else 0.06   # total risk on the five equity indices at once (they move together: ~2-3 independent bets)
 
+def s3_flags(d):
+    """S3 (docs 279-281): RSI(2) < 10 in DK v2's context (uptrend: close above the 50- and 200-day, OR deep flush: close <= 85% of the
+    20-day high), close in the bottom quarter of the day's range (IBS < 0.25), and not a > 3-sigma shock day. Buy the close; sell the
+    first close above the 5-day mean, 10-day limit; stop 3 daily sigmas under the entry (indices: doc 279 risk table, +0.41%/trade with it,
+    worst -14%). Backtest on the 7 indices 2000-26 (IBS + no-shock): +0.73%/trade, PF 2.18; strongest when the S&P is below its 200-day."""
+    c = d.close; sig = c.pct_change().rolling(14).std().shift(1); m50 = c.rolling(50).mean(); m200 = c.rolling(200, min_periods=150).mean()
+    up = (c > m50) & (c > m200); deep = c <= d.high.rolling(20).max() * 0.85; ibs = (c - d.low) / (d.high - d.low).replace(0, np.nan)
+    shock = c.pct_change() <= -3 * sig
+    return (d.r2 < 10) & (up | deep) & (ibs < 0.25) & ~shock, sig, up, deep, ibs
+
+def s3_close(ig, s, name, epic, d, k, mid, day):
+    b = d.iloc[-1]; ent, sig, up, deep, ibs = s3_flags(d)
+    for p in [p for p in s["pos"] if p["market"] == name and p["book"] == "S3"]:
+        p["days"] = int((d.index > pd.Timestamp(p["entered"])).sum())
+        if b.close > b.ma5: close_pos(ig, s, p, mid, "close > 5-day mean", day.date())
+        elif p["days"] >= MAXD["S3"]: close_pos(ig, s, p, mid, f"{p['days']} days", day.date())
+    log(f"S3 {name}: RSI2 {b.r2:.1f} IBS {ibs.iloc[-1]:.2f} {'uptrend' if up.iloc[-1] else ('deep flush' if deep.iloc[-1] else 'no context')} sigma {sig.iloc[-1]:.4f} -> {'ENTRY' if bool(ent.iloc[-1]) else 'no entry'}")
+    if not bool(ent.iloc[-1]) or any(q["book"] == "S3" and q["market"] == name for q in s["pos"]): return
+    stop_pts = round(3 * float(sig.iloc[-1]) * mid, 1); atr_ig = b.atr / k
+    f_ = fit(s, stop_pts, atr_ig, ig.min_size(epic), name)
+    if f_: sz, w, stp = f_; open_pos(ig, s, "S3", name, epic, sz, mid, k, stop_pts=stp, want=w, risk=w * stp, extra={"tier": "A" if not up.iloc[-1] else "B"})
+
 def job_close(ig, s, group, hist_fn):
     """Calendar books: exits after their fixed number of days, entries on their known dates; USCL exits at the European close."""
     day = pd.Timestamp(utcnow().date())
@@ -350,6 +373,7 @@ def job_close(ig, s, group, hist_fn):
                 if not bool(entries(d, bk).iloc[-1]): continue
                 f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, ig.min_size(epic), name)
                 if f_: sz, w, stop_pts = f_; open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
+            if "S3" in BOOKS and name in BOOKS["S3"]: s3_close(ig, s, name, epic, d, k, mid, day)   # same bar, same market (never a stale d)
         except Exception: log(f"{name} failed:", traceback.format_exc())
     if group == "eu":
         for p in [p for p in s["pos"] if p["book"] == "USCL"]:
