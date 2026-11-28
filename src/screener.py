@@ -54,7 +54,8 @@ def prep(D):
     D["up"] = (D.c > m50) & (D.c > m200); D["deep"] = D.c <= D.h.rolling(20).max() * 0.85; D["ctx"] = D.up | D.deep
     dd = D.c.diff(); u = dd.clip(lower=0).ewm(alpha=0.5, adjust=False).mean(); dn = (-dd.clip(upper=0)).ewm(alpha=0.5, adjust=False).mean()
     D["rsi2"] = 100 - 100 / (1 + u / dn.replace(0, np.nan)); D["ma5"] = D.c.rolling(5).mean()
-    D["ibs"] = (D.c - D.l) / (D.h - D.l).replace(0, np.nan); D["shock"] = D.c.pct_change() <= -3 * D.sig; return D
+    D["ibs"] = (D.c - D.l) / (D.h - D.l).replace(0, np.nan); D["shock"] = D.c.pct_change() <= -3 * D.sig
+    D["willr"] = -100 * (D.h.rolling(10).max() - D.c) / (D.h.rolling(10).max() - D.l.rolling(10).min()).replace(0, np.nan); return D
 
 def s3_ok(r, commodity=False):
     """doc 280 refined S3: RSI(2) < 10 in v2 context, close in the bottom quarter of the day's range (not for commodities, where it hurt),
@@ -68,7 +69,7 @@ def ledger_update(P, data):
         if D is None: continue
         after = D[D.index > pd.Timestamp(p.date)]
         if not len(after): continue
-        if p.setup.startswith("S3"):
+        if p.setup.startswith("S3") or p.setup == "FD":
             hit = after[after.c > after.ma5]; k = hit.index[0] if len(hit) else (after.index[9] if len(after) >= 10 else None)
         else: k = after.index[0] if len(after) >= 1 and p.get("filled", True) else None
         if k is None: continue
@@ -86,6 +87,11 @@ def main():
         spy = data.get("SPY"); spx_dn = bool(spy is not None and spy.c.iloc[-1] < spy.c.rolling(200).mean().iloc[-1])
         for s, D in data.items():
             r = D.iloc[-1]; cls = "macro ETF" if s in ETFS else "US stock"
+            if spx_dn and r.willr < -90 and not s3_ok(r, commodity=s in ("GLD", "SLV", "CPER", "USO", "UNG")) and s not in ("GLD", "SLV", "CPER", "USO", "UNG"):
+                # doc 282 family A (checker: VALID): Williams %R(10) < -90 while the S&P is below its 200-day; ~+0.5%/trade on stocks 2016-26,
+                # US indices +0.66, FX +0.41; fails on commodities (excluded). Same exit as S3. Logged only when S3 itself is not already signalling.
+                rows.append(dict(setup="FD", tier="A", sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2),
+                                 context=f"S&P<200d, W%R {r.willr:.0f}", exit_rule=f"sell first close > 5d mean (now {r.ma5:.2f}); 10-day limit"))
             if s3_ok(r, commodity=s in ("GLD", "SLV", "CPER", "USO", "UNG")):
                 rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier=("A" if (spx_dn and not r.up) else ("B" if (spx_dn or not r.up) else "C")) if cls == "US stock" else ("A" if (spx_dn or not r.up) else "B"), sym=s, name=ETFS.get(s, ""), cls=cls, price=round(r.c, 2), rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2),
                                  context="uptrend" if r.up else "deep flush", exit_rule=f"sell first close > 5d mean (now {r.ma5:.2f}); 10-day limit"))
@@ -122,7 +128,7 @@ def main():
     P = ledger_update(P, data)
     today = str(NOW.tz_convert("America/New_York" if MODE == "us" else "UTC").date())
     for r in rows:
-        if r["setup"].startswith("S3") and not ((P.sym == r["sym"]) & (P.status == "open")).any():
+        if (r["setup"].startswith("S3") or r["setup"] == "FD") and not ((P.sym == r["sym"]) & (P.status == "open")).any():
             P.loc[len(P)] = [today, r["sym"], r["cls"], r["setup"], r["price"], "open", "", np.nan, np.nan, r.get("tier", "")]
     P.to_csv(pf, index=False)
     c = P[P.status == "closed"]
