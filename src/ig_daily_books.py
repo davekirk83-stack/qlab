@@ -59,6 +59,7 @@ BOOKS = {"RSI4": IDX + ["GOLD"], "RSI4L": IDX + ["GOLD"], "TPS": IDX + ["GOLD"],
          "TPSS": IDX,   # TPSS = TPS SHORT ladder, only while the US 500 is below its 200-day (doc 221, DK 11:21: demo only)
          "LBS": IDX,    # LBS = dormant long-bear breakdown short (doc 222, DK 11:33: demo only) — wakes only in an established long bear
          "INS": ["US500"],   # INS = insurance short at each new ALL-TIME closing high of the US 500 (doc 223, DK 11:42: demo, 0.5% risk)
+         "ONF": ["NQ"],   # ONF = overnight hold after a fear day (doc 284; QQQ was the strongest): DEMO ONLY
          "S3": IDX}   # S3 = RSI(2) pullback in DK v2's context (docs 279-281, DK 27 Nov "creation mode"): DEMO ONLY until the promotion rule is met
 if LIVE: BOOKS = {k: v for k, v in BOOKS.items() if k in L.engines("daily")}   # live books listed in config/live_pot.json (DK-approved)
 
@@ -101,7 +102,7 @@ def entries(d, name):
             "TOM": bme, "SANTA": santa,
             "HALLO": bme & pd.Series(np.isin(nxt, [11, 12, 1, 2, 3, 4]), index=t)}[name]
 STOP_ATR = {"RSI4": 3, "RSI4L": 3, "TOM": 5, "SANTA": 5, "HALLO": 8, "USCL": 2}
-MAXD = {"S3": 10, "RSI4": 10, "RSI4L": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
+MAXD = {"ONF": 1, "S3": 10, "RSI4": 10, "RSI4L": 10, "TPS": 30, "TOM": 3, "SANTA": 7, "HALLO": 21, "TPSS": 30, "LBS": 60, "INS": 60}
 
 # ------------------------------------------------------------------ data
 def yahoo(tk):
@@ -374,6 +375,13 @@ def job_close(ig, s, group, hist_fn):
                 f_ = fit(s, round(STOP_ATR[bk] * atr_ig, 1), atr_ig, ig.min_size(epic), name)
                 if f_: sz, w, stop_pts = f_; open_pos(ig, s, bk, name, epic, sz, mid, k, stop_pts=stop_pts, want=w, risk=w * stop_pts)
             if "S3" in BOOKS and name in BOOKS["S3"]: s3_close(ig, s, name, epic, d, k, mid, day)   # same bar, same market (never a stale d)
+            if "ONF" in BOOKS and name in BOOKS["ONF"] and not any(q["book"] == "ONF" for q in s["pos"]):
+                # doc 284: daily RSI(2) < 10 on today's (near-final) close -> hold overnight, sell at the next 09:35 NY open. Alpaca 2021-26 net of IG
+                # spread + funding: QQQ +29 bp/night (t 2.7), SPY +19.5 bp (t 2.4), every year positive.
+                if d.r2.iloc[-1] < 10:
+                    sig = float(d.close.pct_change().rolling(14).std().iloc[-1]); stop_pts = round(3 * sig * mid, 1)
+                    f_ = fit(s, stop_pts, b.atr / k, ig.min_size(epic), name)
+                    if f_: sz, w, stp = f_; open_pos(ig, s, "ONF", name, epic, sz, mid, k, stop_pts=stp, want=w, risk=w * stp)
         except Exception: log(f"{name} failed:", traceback.format_exc())
     if group == "eu":
         for p in [p for p in s["pos"] if p["book"] == "USCL"]:
@@ -399,6 +407,8 @@ def job_open(ig, s, group, hist_fn):
             h = hist_fn(name); d = add_ind(h[h.index < day].copy()); b = d.iloc[-1]
             mid = (float(snap["bid"]) + float(snap["offer"])) / 2; k = b.close / mid; atr_ig = b.atr / k
             log(f"{name}: final close {d.index[-1].date()} {b.close:.1f} RSI2 {b.r2:.1f} RSI4 {b.r4:.1f} 5d {b.ma5:.1f} 200d {b.ma200:.1f} ATR {b.atr:.1f} | IG open {mid:.1f}")
+            for p in [p for p in s["pos"] if p["market"] == name and p["book"] == "ONF"]:
+                close_pos(ig, s, p, mid, "next cash open (overnight hold done)", day.date())
             for p in [p for p in s["pos"] if p["market"] == name and p["book"] in OPEN_BOOKS + ("TPSS", "LBS", "INS")]:
                 p["days"] = int((d.index >= pd.Timestamp(p["entered"])).sum()); why = None
                 if p["book"] in ("RSI4", "RSI4L", "RSI2") and b.r4 > 55: why = "RSI(4) > 55"
