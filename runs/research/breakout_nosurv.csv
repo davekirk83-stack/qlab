@@ -1,0 +1,17 @@
+scan,cls,n,mean,h1,h2,win,calm,fear,syms_pos
+"Donchian 55d, hold 20d",FX,2039,-0.11,-0.04,-0.17,0.47,-0.2,0.27,1/5
+"Donchian 55d, hold 20d",commodities,2901,0.7,0.96,0.44,0.52,1.1,-0.65,4/5
+"Donchian 55d, hold 20d",crypto,1016,5.42,5.06,5.77,0.5,5.09,7.21,9/10
+"Donchian 55d, hold 20d",indices,5686,0.22,0.22,0.21,0.58,0.3,-1.7,5/7
+"Donchian 55d, trail 50d",FX,2039,-0.29,-0.29,-0.28,0.31,-0.38,0.07,1/5
+"Donchian 55d, trail 50d",commodities,2901,0.73,1.23,0.22,0.38,1.12,-0.6,3/5
+"Donchian 55d, trail 50d",crypto,1016,7.45,11.29,3.62,0.4,4.76,22.06,9/10
+"Donchian 55d, trail 50d",indices,5686,0.38,0.34,0.42,0.4,0.51,-2.47,5/7
+"MTT 52w-high, hold 20d",FX,58,-1.08,0.39,-2.55,0.41,-0.44,-3.09,1/3
+"MTT 52w-high, hold 20d",commodities,1188,1.32,1.68,0.96,0.55,2.0,-1.11,3/5
+"MTT 52w-high, hold 20d",crypto,264,6.12,5.13,7.11,0.5,5.16,28.05,6/10
+"MTT 52w-high, hold 20d",indices,1752,-0.09,-0.39,0.22,0.55,-0.09,3.22,3/7
+"MTT 52w-high, trail 50d",FX,58,-1.47,-0.46,-2.48,0.24,-0.69,-3.94,0/3
+"MTT 52w-high, trail 50d",commodities,1188,2.3,3.7,0.89,0.44,3.09,-0.56,3/5
+"MTT 52w-high, trail 50d",crypto,264,7.59,9.43,5.75,0.41,4.63,75.79,4/10
+"MTT 52w-high, trail 50d",indices,1752,-0.55,-1.4,0.3,0.32,-0.55,-0.51,2/7
