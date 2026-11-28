@@ -111,3 +111,5 @@
 2026-11-27 03:38:56Z options open: 0 legs, running P&L £+0.00
 2026-11-27 20:00:30Z switch_account: error.switch.accountId-must-be-different
 2026-11-27 20:00:33Z no Friday weekly put 3-9 days out yet; expiries seen: ['12-JUN-26']
+2026-11-28 03:18:59Z switch_account: error.switch.accountId-must-be-different
+2026-11-28 03:19:00Z options open: 0 legs, running P&L £+0.00
