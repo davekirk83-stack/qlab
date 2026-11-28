@@ -112,15 +112,18 @@ def build():
 def gcol(ex, side): return f"_g{ex}" if ex != "VWAP" else ("_gVWAPL" if side == 1 else "_gVWAPS")
 
 def evaluate(M, mask, ex, side, base):
+    """28 Nov fix (per-day averaging hid the losing trend days - vwap_fade.py showed the 'best' survivor loses as real trades):
+    PER TRADE. Only the FIRST bar of each run of consecutive signals (same symbol and day) is a trade - what a trader would take.
+    Mean per trade; t-stat from MONTHLY SUMS of trade P&L (clustering by month)."""
     g = M[gcol(ex, side)].values; m = mask & np.isfinite(g)
+    prev = np.r_[False, m[:-1]] & np.r_[False, (M._sym.values[1:] == M._sym.values[:-1]) & (M._day.values[1:] == M._day.values[:-1])]
+    m = m & ~prev
     if m.sum() < 40: return None
-    net = side * g[m] - 2 * M._cost.values[m]; edge = net - side * base[(ex, side)][M._grp.values[m]] if isinstance(base[(ex, side)], dict) else net
-    if isinstance(base[(ex, side)], pd.Series): edge = net - side * base[(ex, side)].reindex(M._grp.values[m]).values
-    dd = pd.DataFrame({"edge": edge, "net": net}, index=M._day.values[m]).groupby(level=0).mean()
-    if len(dd) < 25: return None
-    mo = dd.edge.groupby(pd.to_datetime(dd.index).to_period("M")).mean()
-    t = mo.mean() / (mo.std() / np.sqrt(len(mo))) if len(mo) > 3 and mo.std() > 0 else 0
-    return dict(edge=100 * dd.edge.mean(), t=t, net=100 * dd.net.mean(), days=len(dd), n=int(m.sum()), win=float((net > 0).mean()))
+    net = side * g[m] - 2 * M._cost.values[m]; edge = net - side * base[(ex, side)].reindex(M._grp.values[m]).values
+    mo_key = pd.to_datetime(M._day.values[m]).to_period("M")
+    ms = pd.Series(edge, index=mo_key).groupby(level=0).sum(); cnt = pd.Series(1, index=mo_key).groupby(level=0).sum()
+    t = ms.mean() / (ms.std() / np.sqrt(len(ms))) if len(ms) > 3 and ms.std() > 0 else 0
+    return dict(edge=100 * edge.mean(), t=t, net=100 * net.mean(), days=int(pd.Series(M._day.values[m]).nunique()), n=int(m.sum()), win=float((net > 0).mean()))
 
 if __name__ == "__main__":
     M = build(); print("rows", len(M), M._grp.value_counts().to_dict(), flush=True)
@@ -162,7 +165,7 @@ if __name__ == "__main__":
         for nm, om in OTH.items():
             e = evaluate(M, mk & om, r.exit, side, base); row[f"{nm}_net"] = e["net"] if e else np.nan; row[f"{nm}_t"] = e["t"] if e else np.nan; row[f"{nm}_n"] = e["n"] if e else 0
         out.append(row)
-    O = pd.DataFrame(out); O.to_csv("runs/research/intraday_search.csv", index=False)
+    O = pd.DataFrame(out); O.to_csv("runs/research/intraday_search_pertrade.csv", index=False)
     if len(O):
         O["oos_ok"] = (O.te_edge > 0) & (O.te_t >= 2) & (O.te_net > 0)
         pd.set_option("display.width", 320); pd.set_option("display.max_colwidth", 50)
