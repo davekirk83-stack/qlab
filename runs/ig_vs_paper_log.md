@@ -403,3 +403,20 @@ IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-25 New York
 Both runners' last_error.txt still end `error.public-api.exceeded-account-historical-data-allowance`.
 
 Running tally (from 2026-11-05): ig_demo agree 2/36, mean slippage -0.46 pts over 5 fills; ig_live agree 1/42 by script (2/43 adjusted), mean slippage +2.07 pts over 6 fills. Combined 3/78 by script (4/79 adjusted) — below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
+
+## 2026-11-27 (NY) — checked 2026-11-28 ~09:05 UTC (paper bars not yet pushed)
+```
+IGNITION v1.1 — paper feed vs IG (ig_live), 2026-11-27 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+IGNITION v1.1 — paper feed vs IG (ig_demo), 2026-11-27 New York
+  paper feed has no bars for this day yet — run after the 07:23 paper update
+```
+data_nq_cache/nq_5m.csv still ends 2026-11-26 23:55 UTC after a 10-minute wait and re-pull (the paper run has pushed ~09:17 UTC on recent days). Agreement for 27 Nov pending.
+
+New fills on 27 Nov from trades.csv:
+- ig_live: BUY opened 04:30 UTC, paper_entry 26700.30, IG fill 26701.30 (+1.0 pts), exit 26742.50 ig_limit, +41.20 pts.
+- ig_live: BUY opened 20:15 UTC, paper_entry 26705.50, IG fill 26706.90 (+1.4 pts), exit 26704.90 session_end, -2.00 pts.
+- ig_demo: BUY opened 2026-11-27T02:49, paper_entry nan, IG fill 26627.70, exit 26652.60 ig_limit, +24.90 pts — no signal price recorded, so no slippage figure.
+Both runners' last_error.txt still end `error.public-api.exceeded-account-historical-data-allowance`.
+
+Running tally (from 2026-11-05; 27 Nov signals not yet counted): ig_demo agree 2/36, mean slippage -0.46 pts over 5 fills; ig_live agree 1/42 by script (2/43 adjusted), mean slippage +1.86 pts over 8 fills (-0.6, -1.6, +1.5, +2.9, +7.4, +2.9, +1.0, +1.4). Combined 3/78 by script (4/79 adjusted) — below 50% past the 10-signal mark. (Sign convention: positive slippage = against us.)
