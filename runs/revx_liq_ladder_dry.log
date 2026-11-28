@@ -29,3 +29,5 @@
 22:12:04 ladder book $634.34; trades 1, total $-0.66
 03:54:02 liq-level snapshot: 14 levels -> /home/runner/work/qlab/qlab/runs/liq_levels/2026-11.csv
 03:54:02 ladder book $634.34; trades 1, total $-0.66
+08:53:28 rung 1 filled at 59,140
+08:53:28 ladder book $634.34; trades 1, total $-0.66
