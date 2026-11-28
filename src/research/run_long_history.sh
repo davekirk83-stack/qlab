@@ -8,7 +8,7 @@ cp -r "$REPO/data_ig_cache" "$W/" 2>/dev/null || true
 python - "$REPO" "$W" <<'EOF'
 import sys, glob, pandas as pd
 repo, w = sys.argv[1], sys.argv[2]
-parts = [pd.read_csv(f, index_col=0) for f in sorted(glob.glob(f"{repo}/data_nq_cache/nq_5m_20*_h*.csv.gz"))]
+parts = [pd.read_csv(f, index_col=0) for f in sorted(glob.glob(f"{repo}/data_nq_cache/nq_5m_20*_h*.csv.gz") + glob.glob(f"{repo}/data_nq_cache/nq_5m_20[0-9][0-9]_[01][0-9].csv.gz"))]
 cur = pd.read_csv(f"{repo}/data_nq_cache/nq_5m.csv", index_col=0)
 d = pd.concat(parts + [cur]); d.index = pd.to_datetime(d.index, utc=True); d = d[~d.index.duplicated(keep="last")].sort_index()
 d.to_csv(f"{w}/data_nq_cache/nq_5m.csv"); print("long NQ 5m:", len(d), d.index[0], d.index[-1], "parts", len(parts))
