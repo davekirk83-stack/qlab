@@ -92,14 +92,21 @@ def main():
     else:
         data = {}
         for s in COINS:
-            D = prep(binance_daily(s)); data[s] = D; r = D.iloc[-1]                     # last row = today's (UTC) daily bar, ~15 min before close
+            # 28 Nov fix: GitHub's scheduler can fire hours late. Near the UTC close (>= 23:00) today's bar is (almost) complete: S3 on it,
+            # S2 bid for TOMORROW at ~today's close x (1 - sigma). Otherwise (a late run after midnight): S3 on YESTERDAY's completed bar
+            # (flagged late), and the S2 bid for TODAY from today's actual open - the backtest rule exactly.
+            raw = binance_daily(s); near_close = NOW.hour == 23
+            D = prep(raw if near_close else raw.iloc[:-1]); data[s] = D; r = D.iloc[-1]
+            late = "" if near_close else f" (signal from {D.index[-1].date()} close; screen ran late at {NOW:%H:%M} UTC)"
             if s3_ok(r):
                 rows.append(dict(setup="S3+" if r.rsi2 < 5 else "S3", tier="-", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), ibs=round(r.ibs, 2), context="uptrend" if r.up else "deep flush",
-                                 exit_rule=f"sell first daily close > 5d mean (now {r.ma5:.4g}); 10-day limit"))
-            sig = D.c.pct_change().rolling(14).std().iloc[-1]                          # sigma for TOMORROW (known at today's close)
+                                 exit_rule=f"sell first daily close > 5d mean (now {r.ma5:.4g}); 10-day limit" + late))
+            sig = D.c.pct_change().rolling(14).std().iloc[-1]
             if bool(r.up or r.deep):
-                rows.append(dict(setup="S2 band bid", sym=s, cls="crypto", price=r.c, rsi2=round(r.rsi2, 1), context="uptrend" if r.up else "deep flush",
-                                 bid=float(f"{r.c * (1 - sig):.6g}"), exit_rule="resting bid for the next UTC day at ~open x (1 - 1 sigma); if filled, sell at 23:00 UTC the day after"))
+                base, day = (r.c, "tomorrow (UTC)") if near_close else (float(raw.o.iloc[-1]), f"today {NOW.date()} (UTC, from its open)")
+                bid = base * (1 - sig); hit = (not near_close) and float(raw.l.iloc[-1]) < bid
+                rows.append(dict(setup="S2 band bid", sym=s, cls="crypto", price=float(raw.c.iloc[-1]), rsi2=round(r.rsi2, 1), context="uptrend" if r.up else "deep flush",
+                                 bid=float(f"{bid:.6g}"), exit_rule=f"resting bid for {day}; if filled, sell at 23:00 UTC the day after" + (" — ALREADY FILLED today" if hit else "")))
     S = pd.DataFrame(rows)
     stamp = NOW.strftime("%Y-%m-%d %H:%M UTC")
     if len(S):

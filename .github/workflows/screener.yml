@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "40 19 * * 1-5"   # 20 min before the NYSE close in US summer time (script checks the New York clock)
     - cron: "40 20 * * 1-5"   # 20 min before the NYSE close in US winter time
-    - cron: "45 23 * * *"     # crypto, 15 min before the UTC daily close
+    - cron: "20 23 * * *"     # crypto, ~40 min before the UTC daily close (GitHub can fire late; script handles late runs)
   workflow_dispatch:
     inputs:
       mode: { description: "us or crypto", default: "us" }
@@ -22,7 +22,7 @@ jobs:
       - name: Screen
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            if [ "${{ github.event.schedule }}" = "45 23 * * *" ]; then export MODE=crypto; else export MODE=us; fi
+            if [ "${{ github.event.schedule }}" = "20 23 * * *" ]; then export MODE=crypto; else export MODE=us; fi
           else export MODE="${{ github.event.inputs.mode }}"; export FORCE="${{ github.event.inputs.force }}"; fi
           python src/screener.py
         env:
