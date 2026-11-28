@@ -106,7 +106,7 @@ def build():
     for k in X: C[f"_g{k}"] = X[k].values
     rows.append(C.reset_index(drop=True))
     M = pd.concat(rows, ignore_index=True)
-    M["_cost"] = M._grp.map({"index": 0.0002, "ig_nq": 0.0002}).fillna(0.0003)
+    M["_cost"] = M._grp.map({"index": 0.000075, "ig_nq": 0.000075}).fillna(0.0003)   # 28 Nov: IG index cost ~0.005% spread + slippage per side (was 0.02%, 3-4x too high)
     return M
 
 def gcol(ex, side): return f"_g{ex}" if ex != "VWAP" else ("_gVWAPL" if side == 1 else "_gVWAPS")
