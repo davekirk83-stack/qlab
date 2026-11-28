@@ -273,6 +273,11 @@ class Runner:
         hours = os.environ.get("IG_IGN_HOURS", "us")      # doc 227: "runner" = whenever the runner is up (London 08:00 to 17:00 NY), ex US lunch; "all" = any hour (overnight AD stack)
         if hours == "us" and not (US_OPEN <= mins < US_CLOSE): return "outside_us_hours"
         if hours == "runner" and not (P7.ny(ts).tz_convert("Europe/London").hour >= 8 and mins < 17 * 60): return "outside_runner_hours"
+        # 28 Nov weekly review: no entries on a dead/closed tape. Live 27 Nov 20:15 UTC (Black Friday, cash closed 18:15) Ignition bought a
+        # 10-tick bar with a 5-pt spread and ATR 1.9 (target 17 pts vs a 45-pt stop). IG quotes 5.0 pts whenever CME is shut (daily break,
+        # half-day closes); normal IG spreads are 1.0-2.2. The backtest data has no bars in those periods, so this keeps live in line with it.
+        mx = os.environ.get("IG_MAX_SPREAD", "")
+        if mx and np.isfinite(float(row.spread)) and float(row.spread) > float(mx): log(f"bar {ts:%H:%M} sig {s} spread {float(row.spread):.1f} > {mx} (market shut/thin) — skipped"); return "wide_spread"
         if LIVE:   # doc 257: drift pause - the engine's own live record says stop
             try:
                 import live_limits as _L; pz, why_p = _L.paused("ignition")

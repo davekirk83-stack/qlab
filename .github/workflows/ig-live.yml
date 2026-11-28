@@ -69,6 +69,7 @@ jobs:
           IG_AD_STACK: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}       # doc 235/238: AD stack (regime + coil, Tue/Wed off) — DK's switch IG_ADSTACK_LIVE_ENABLED
           IG_IGN_HOURS: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && 'all' || 'us' }}
           IG_US_PLAIN: "1"   # 27 Nov (doc 268): plain Ignition v1.1 in US cash hours (the original live engine), AD stack outside them
+          IG_MAX_SPREAD: ${{ vars.IG_SPREAD_GUARD_LIVE_ENABLED == 'true' && '3' || '' }}   # 28 Nov weekly review: dead-tape guard, DEMO first; OFF on live until DK sets IG_SPREAD_GUARD_LIVE_ENABLED=true
           IG_AD_CONV: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}   # doc 256 (DK 22 Nov 10:32 "Yes add it"): AuclairsDad raw-conviction path, live with his stack
           ADSTACK_ON: ${{ vars.IG_ADSTACK_LIVE_ENABLED == 'true' && '1' || '0' }}
           WVB_ON: ${{ vars.IG_WVB_LIVE_ENABLED == 'true' && '1' || '0' }}
