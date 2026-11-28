@@ -98,14 +98,17 @@ def evaluate(M, mask, hold, side):
 if __name__ == "__main__":
     U = X.load(); spx = U[("indices", "SPX")]; spxup = (spx.c > spx.c.rolling(200).mean())
     vix = pd.read_csv("data_daily/VIX.csv", index_col=0); vix.index = pd.to_datetime(vix.index, utc=True).tz_localize(None).normalize(); vix = vix.close
-    M = build(U, spxup, vix); print("rows", len(M), flush=True)
+    PK = "/tmp/claude-0/-home-claude/6103913e-5d93-5930-ba67-b97312457994/scratchpad/ind_M.pkl"
+    if os.environ.get("REUSE") == "1" and os.path.exists(PK): M = pd.read_pickle(PK)
+    else: M = build(U, spxup, vix)
+    print("rows", len(M), flush=True)
     M["_cost"] = M._cls.map({"FX": 0.0002, "crypto": 0.0014}).fillna(0.001)          # per side
     for hh in HOLDS:   # market/hold baseline: average raw forward return of that market class on that day (removes market drift)
         raw = M[f"_r{hh}"] + 2 * M._cost
         M[f"_base{hh}"] = raw.groupby([M._cls, M._t]).transform("mean")
     M.to_pickle("/tmp/claude-0/-home-claude/6103913e-5d93-5930-ba67-b97312457994/scratchpad/ind_M.pkl")
     names = [c for c in M.columns if not c.startswith("_")]
-    B = {k: M[k].values for k in names}
+    B = {k: M[k].fillna(False).astype(bool).values for k in names}      # markets without volume have NaN volume conditions -> False
     year = pd.to_datetime(M._t).dt.year.values; cls = M._cls.values
     TRAIN = (cls == "US stocks") & (year <= 2015); TEST = (cls == "US stocks") & (year >= 2016)
     OTHER = {c: (cls == c) for c in ("indices", "commodities", "FX", "crypto")}
