@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       syms: { description: "comma-separated symbols (blank = default list)", default: "" }
+      tf: { description: "bar size (15Min, 5Min, 1Min)", default: "15Min" }
 permissions: { contents: write }
 jobs:
   run:
@@ -19,6 +20,7 @@ jobs:
           ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
           ALPACA_API_SECRET_KEY: ${{ secrets.ALPACA_API_SECRET_KEY }}
           SYMS: ${{ github.event.inputs.syms }}
+          TF: ${{ github.event.inputs.tf }}
       - name: Commit
         if: always()
         run: |

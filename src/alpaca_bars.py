@@ -9,7 +9,7 @@ START, END = os.environ.get("START", "2021-01-01T00:00:00Z"), pd.Timestamp.utcno
 def get(sym, feed):
     rows, tok = [], None
     while True:
-        q = {"symbols": sym, "timeframe": "15Min", "start": START, "end": END.strftime("%Y-%m-%dT%H:%M:%SZ"), "limit": 10000, "adjustment": "all", "feed": feed}
+        q = {"symbols": sym, "timeframe": os.environ.get("TF") or "15Min", "start": START, "end": END.strftime("%Y-%m-%dT%H:%M:%SZ"), "limit": 10000, "adjustment": "all", "feed": feed}
         if tok: q["page_token"] = tok
         req = urllib.request.Request("https://data.alpaca.markets/v2/stocks/bars?" + urllib.parse.urlencode(q), headers={"APCA-API-KEY-ID": KEY, "APCA-API-SECRET-KEY": SEC})
         r = json.load(urllib.request.urlopen(req, timeout=60)); rows += r.get("bars", {}).get(sym, []) or []
@@ -23,5 +23,5 @@ for s in SYMS:
             b = get(s, feed)
             if b:
                 d = pd.DataFrame(b).rename(columns={"t": "ts", "o": "open", "h": "high", "l": "low", "c": "close", "v": "vol"})[["ts", "open", "high", "low", "close", "vol"]]
-                d.to_csv(f"data_alpaca/{s}_15m.csv.gz", index=False, compression="gzip"); print(s, feed, len(d), d.ts.iloc[0], d.ts.iloc[-1], flush=True); break
+                d.to_csv(f"data_alpaca/{s}_{(os.environ.get('TF') or '15Min').lower().replace('min', 'm')}.csv.gz", index=False, compression="gzip"); print(s, feed, len(d), d.ts.iloc[0], d.ts.iloc[-1], flush=True); break
         except Exception as e: print(s, feed, "failed:", str(e)[:120], flush=True)
